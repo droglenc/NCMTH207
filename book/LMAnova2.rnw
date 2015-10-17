@@ -231,7 +231,7 @@ The mean table shown in \tabref{tab:TWATadpoleMeansAll} are the actual results f
 \end{table}
 
 <<TWATadpoleEffectsMain, echo=FALSE, fig.cap="Main effects plots for the UV-B light intensity (Left) and tadpole densities (Right) factors.",fig.pos="!h">>=
- tad <- read.table("data/Tadpoles.txt",header=TRUE)
+ tad <- read.csv("data/Tadpoles.csv")
  tad$uvb <- factor(tad$uvb,levels=c("Low","High"))
  tad$density <- factor(tad$density)
  tad.lm1 <- lm(mass~uvb*density,data=tad)
@@ -295,7 +295,7 @@ If there is a significant main effect in the absence of a significant interactio
 A two-way ANOVA can be fit in R with \R{lm()} similarly to fitting a one-way ANOVA.  The only real difference between fitting the two-way rather than the one-way ANOVA is that the formula entered as the first argument is slightly more complicated for the two-way ANOVA.  If an interaction term is to be fit in the two-way ANOVA then the model is of the form \R{response}$\sim$\R{factor1*factor2}.  In other words, the entire model can be formed by simply identifying the interaction term because R will automatically include the main factors as terms in the model.  The same model could also be declared with a formula of the form \R{response}$\sim$\R{factor1+factor2+factor1:factor2}\footnote{Note that the actual interaction term is indicated by separating the main effect names by a colon.}.  For example, the two-way ANOVA model with an interaction term for the tadpole example is fit with
 
 <<>>=
-tad <- read.table("data/Tadpoles.txt",header=TRUE)
+tad <- read.csv("data/Tadpoles.csv")
 tad$uvb <- factor(tad$uvb,levels=c("Low","High"))  # re-order levels
 tad$density <- factor(tad$density)                 # force numeric values to be levels
 tad.lm1 <- lm(mass~uvb*density,data=tad)
@@ -437,7 +437,7 @@ It can be concluded that the different UV-B light intensities and tadpole densit
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> Tadpoles <- read.table("data/Tadpoles.txt",header=TRUE)
+> Tadpoles <- read.csv("data/Tadpoles.csv")
 > Tadpoles$uvb <- factor(Tadpoles$uvb,levels=c("Low","High"))
 > Tadpoles$density <- factor(Tadpoles$density)
 > boxplot(mass~density+uvb,data=Tadpoles,ylab="Body Mass (g)")
@@ -463,7 +463,7 @@ It can be concluded that the different UV-B light intensities and tadpole densit
 \subsection{Blood Pressure \& Na-K-ATPase}
 \subsubsection*{Introduction}
 <<echo=FALSE>>=
- nak <- read.table("data/NAKATPase.txt",header=TRUE)
+ nak <- read.csv("data/NAKATPase.csv")
 @
 Sodium (Na) plays an important role in the genesis of high blood pressure, and the kidney is the principal organ that regulates the amount of sodium in the body.  The kidney contains an enzyme, Na-K-ATPase, which is essential for maintaining proper sodium levels.  If the enzyme does not function properly, then high blood pressure may result.  The activity of this enzyme has been studied in whole kidneys, even though the kidney is known to contain many functionally distinct sites.  To see whether any particular site of Na-K-ATPase activity was abnormal in hypertension, or whether this enzyme was uniformly abnormal throughout the kidney, \cite{Gargetal1985} studied Na-K-ATPase activity at different sites along the nephrons of normal rats and specially bred rats which spontaneously develop hypertension.  The sites in the kidney examined by Garg et al. were the distal collecting tubule (DCT), cortical collecting duct (CCD), and outer medullary collecting duct (OMCD).
 
@@ -538,7 +538,7 @@ Strictly speaking, causal inferences cannot be made from this study because the 
 \newpage
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> NAKATPase <- read.table("data/NAKATPase.txt",header=TRUE)
+> NAKATPase <- read.csv("data/NAKATPase.csv")
 > NAKATPase$site <- factor(NAKATPase$site)
 > NAKATPase$strain <- factor(NAKATPase$strain)
 > boxplot(activity~site+strain,data=NAKATPase,ylab="Na-K-ATPase Activity")

@@ -56,7 +56,7 @@ It should be noted that a rejection of the null hypothesis in favor of this alte
 The simple and full models corresponding to the null and alternative hypotheses of the one-way ANOVA are the same as those for the two-sample t-test except to note that there are $I>2$ means in the full model \figrefp{fig:LM1AOVModels}.  Thus, the total, within, and among SS are computed using the same formulas -- i.e., \eqref{eqn:SStotal}, \eqref{eqn:SSwithin}, and \eqref{eqn:SSamong} -- except to note that $I>2$.  The degrees-of-freedom are computed similarly -- i.e., $df_{Within}=n-I$ and $df_{Among}=I-1$.  The MS, F, and p-value are computed the same\footnote{The MS, F, and p-value are computed the same in nearly every ANOVA table encountered in this class.}.
 
 <<LM1AOVModels, echo=FALSE, fig.cap="Immunoglobulin concentrations in Virginia opossums sampled from different seasons.  The horizontal line on the left graph represents the simple model of a grand mean for both groups.  The three horizontal lines on the right graph represent the full model of separate means for each group.",fig.pos="!h">>=
- opp <- read.table("data/Opposums.txt",header=TRUE)
+ opp <- read.csv("data/Opposums.csv")
  opp$season <- factor(opp$season,levels=c("feb","may","nov"))
 
  plot(imm~as.numeric(season),data=opp,xlab="Season",ylab="Immunoglobulin Concentration",xlim=c(0.5,3.5),xaxt="n")
@@ -79,10 +79,10 @@ The simple and full models corresponding to the null and alternative hypotheses 
 
 \subsection{One-way ANOVA in R}
 \subsubsection*{Data Format}
-As with a two-sample t-test, the data for a one-way ANOVA must be stacked \sectrefp{sect:DataStacked}.  For example, the \href{https://sites.google.com/site/ncstats/data/Opposums.txt}{opposums.txt} file contains the immunoglobulin concentration levels measured on Virginia opossums sampled from three different seasons.  The structure of the data file indicates two variables -- \var{imm}, the immunoglobulin concentration levels, and \var{season}, the season the opossum was sampled -- for 27 opossums.  In addition, the  structure indicates that the \var{season} variable is a factor with three levels.  The display of several lines of the file shows the stacked nature of the data.
+As with a two-sample t-test, the data for a one-way ANOVA must be stacked \sectrefp{sect:DataStacked}.  For example, the \dfile{Opposums.csv} (\href{https://github.com/droglenc/NCData/blob/master/Opposums.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Opposums.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Opposums_meta.txt}{meta}) file contains the immunoglobulin concentration levels measured on Virginia opossums sampled from three different seasons.  The structure of the data file indicates two variables -- \var{imm}, the immunoglobulin concentration levels, and \var{season}, the season the opossum was sampled -- for 27 opossums.  In addition, the  structure indicates that the \var{season} variable is a factor with three levels.  The display of several lines of the file shows the stacked nature of the data.
 
 <<>>=
-opp <- read.table("data/Opposums.txt",header=TRUE)
+opp <- read.csv("data/Opposums.csv")
 str(opp)
 headtail(opp)
 @
@@ -227,7 +227,7 @@ It should be noted that significant outliers according to the \R{outlierTest()} 
 \subsection{Tomatoes-Nematodes I} \label{sect:OWAEx1A}
 \subsubsection*{Introduction}
 <<echo=FALSE>>=
- TomatoNematode <- read.table("data/TomatoNematode.txt",header=TRUE)
+ TomatoNematode <- read.csv("data/TomatoNematode.csv")
  TomatoNematode$density <- factor(TomatoNematode$density)
 @
 
@@ -285,7 +285,7 @@ From these results, the experimenter might want to re-run the experiment for den
 
 \subsubsection*{Appendix -- R Commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> TomatoNematode <- read.table("data/TomatoNematode.txt",header=TRUE)
+> TomatoNematode <- read.csv("data/TomatoNematode.csv")
 > TomatoNematode$density <- factor(TomatoNematode$density)
 > boxplot(growth~density,data=TomatoNematode,xlab="Nematode Density",ylab="Growth (inches)")
 > tn.lm <- lm(growth~density,data=TomatoNematode)
@@ -300,7 +300,7 @@ From these results, the experimenter might want to re-run the experiment for den
 \subsection{Moose-Pines I} \label{sect:OWAEx2A}
 \subsubsection*{Introduction}
 <<echo=FALSE>>=
-MooseBrowse <- read.table("data/MooseBrowse.txt",header=TRUE)
+MooseBrowse <- read.csv("data/MooseBrowse.csv")
 MooseBrowse$treat <- factor(MooseBrowse$treat,levels=c("Control","Fertilized","Clipped","Shaded"))
 @
 
@@ -369,7 +369,7 @@ It can be concluded that the different treatments caused the differences in tree
 \subsubsection*{Appendix -- R Commands}
 \vspace{-8pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> MooseBrowse <- read.table("data/MooseBrowse.txt",header=TRUE)
+> MooseBrowse <- read.csv("data/MooseBrowse.csv")
 > MooseBrowse$treat <- factor(MooseBrowse$treat,
    levels=c("Control","Fertilized","Clipped","Shaded"))
 > Summarize(height~treat,data=MooseBrowse)
@@ -707,7 +707,7 @@ Thus, a confidence interval for the difference in two means of a log-transformed
 \section{Example Analyses III}
 \subsection{Peak Discharge}
 <<echo=FALSE>>=
- PD <- read.table("data/PeakDischarge.txt",header=TRUE)
+ PD <- read.csv("data/PeakDischarge.csv")
  PD$method <- factor(PD$method)
 @
 Mathematical models are used to predict flood flow frequency and estimates of peak discharge for the Mississippi River watershed.  These models are important in forecasting potential dangers to the public.  A civil engineer is interested in determining whether four different methods of estimating flood flow frequency produce equivalent estimates of peak discharge when applied to the same watershed.  The statistical hypotheses to be examined are
@@ -777,7 +777,7 @@ The four methods produced significantly different mean square-root peak discharg
 \newpage
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> PeakDischarge <- read.table("data/PeakDischarge.txt",header=TRUE)
+> PeakDischarge <- read.csv("data/PeakDischarge.csv")
 > PeakDischarge$method <- factor(PeakDischarge$method)
 > pd.lm <- lm(discharge~method,data=PeakDischarge)
 > leveneTest(pd.lm)
@@ -894,7 +894,7 @@ The process of fitting and interpreting linear models is as much an art as it is
     \end{Enumerate}
 
 \newpage
-  \item \label{hwprob:LMANOVA1Cuckoo} \textbf{[10 pts]} Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the young of the cuckoos at the expense of their own young.  Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the tree pipet, hedge sparrow, and pied wagtail - are provided in the \href{https://sites.google.com/site/ncstats/data/Cuckoos.txt}{cuckoos.txt} file.  Load these data into R, construct a one-way ANOVA, and answer the following questions.
+  \item \label{hwprob:LMANOVA1Cuckoo} \textbf{[10 pts]} Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the young of the cuckoos at the expense of their own young.  Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the tree pipet, hedge sparrow, and pied wagtail - are provided in the \dfile{Cuckoos.csv} (\href{https://github.com/droglenc/NCData/blob/master/Cuckoos.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Cuckoos_meta.txt}{meta}) file.  Load these data into R, construct a one-way ANOVA, and answer the following questions.
     \begin{Enumerate}
       \item Show the output from \R{anova()}.  Fully show how each df was computed and interpret the meaning of each MS and the F test statistic in the output.
       \item Show the output from \R{summary()}.  Fully interpret the meaning of each coefficient and p-value in the \emph{coefficients} portion of the output.

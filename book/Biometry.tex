@@ -121,12 +121,12 @@ where the pooled sample variance, $s_{p}^{2}$, is a measure of the common varian
 Methods for analyzing a two-sample t-test in R were discussed in detail in your introductory statistics course.  Those methods are briefly summarized in the next three subsections.
 
 \subsection{Data Format} \label{sect:DataStacked}
-The data for a 2-sample t-test must be entered in stacked format.  In stacked format the measurements are in one vector (i.e., column) and a label for which group the measurement was recorded from is in another vector (column).  If both vectors are in a data frame\footnote{This will most likely be the case as this data will most likely be read from an external data file.} then each row corresponds to the measurement and group of a single individual.  This is the general format in which most data is entered and in which most databases and R functions require the data.  The data for this example are read from the \href{https://sites.google.com/site/ncstats/data/BOD.txt}{BOD.txt} file and displayed (as an illustration of stacked data) with
+The data for a 2-sample t-test must be entered in stacked format.  In stacked format the measurements are in one vector (i.e., column) and a label for which group the measurement was recorded from is in another vector (column).  If both vectors are in a data frame\footnote{This will most likely be the case as this data will most likely be read from an external data file.} then each row corresponds to the measurement and group of a single individual.  This is the general format in which most data is entered and in which most databases and R functions require the data.  The data for this example are read from the \dfile{BOD.csv} (\href{https://github.com/droglenc/NCData/blob/master/BOD.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/BOD_meta.txt}{meta}) file and displayed (as an illustration of stacked data) with
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-> aqua <- read.table("data/BOD.txt",header=TRUE)
+> aqua <- read.csv("data/BOD.csv")
 > headtail(aqua)   # random six rows, not whole data frame
      BOD    src
 1  6.782  inlet
@@ -623,12 +623,12 @@ The simple and full models corresponding to the null and alternative hypotheses 
 
 \subsection{One-way ANOVA in R}
 \subsubsection*{Data Format}
-As with a two-sample t-test, the data for a one-way ANOVA must be stacked \sectrefp{sect:DataStacked}.  For example, the \href{https://sites.google.com/site/ncstats/data/Opposums.txt}{opposums.txt} file contains the immunoglobulin concentration levels measured on Virginia opossums sampled from three different seasons.  The structure of the data file indicates two variables -- \var{imm}, the immunoglobulin concentration levels, and \var{season}, the season the opossum was sampled -- for 27 opossums.  In addition, the  structure indicates that the \var{season} variable is a factor with three levels.  The display of several lines of the file shows the stacked nature of the data.
+As with a two-sample t-test, the data for a one-way ANOVA must be stacked \sectrefp{sect:DataStacked}.  For example, the \dfile{Opposums.csv} (\href{https://github.com/droglenc/NCData/blob/master/Opposums.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Opposums.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Opposums_meta.txt}{meta}) file contains the immunoglobulin concentration levels measured on Virginia opossums sampled from three different seasons.  The structure of the data file indicates two variables -- \var{imm}, the immunoglobulin concentration levels, and \var{season}, the season the opossum was sampled -- for 27 opossums.  In addition, the  structure indicates that the \var{season} variable is a factor with three levels.  The display of several lines of the file shows the stacked nature of the data.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-> opp <- read.table("data/Opposums.txt",header=TRUE)
+> opp <- read.csv("data/Opposums.csv")
 > str(opp)
 'data.frame':	27 obs. of  2 variables:
  $ imm   : num  0.64 0.68 0.731 0.587 0.668 0.613 0.713 0.701 0.729 0.726 ...
@@ -931,7 +931,7 @@ From these results, the experimenter might want to re-run the experiment for den
 
 \subsubsection*{Appendix -- R Commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> TomatoNematode <- read.table("data/TomatoNematode.txt",header=TRUE)
+> TomatoNematode <- read.csv("data/TomatoNematode.csv")
 > TomatoNematode$density <- factor(TomatoNematode$density)
 > boxplot(growth~density,data=TomatoNematode,xlab="Nematode Density",ylab="Growth (inches)")
 > tn.lm <- lm(growth~density,data=TomatoNematode)
@@ -1049,7 +1049,7 @@ It can be concluded that the different treatments caused the differences in tree
 \subsubsection*{Appendix -- R Commands}
 \vspace{-8pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> MooseBrowse <- read.table("data/MooseBrowse.txt",header=TRUE)
+> MooseBrowse <- read.csv("data/MooseBrowse.csv")
 > MooseBrowse$treat <- factor(MooseBrowse$treat,
    levels=c("Control","Fertilized","Clipped","Shaded"))
 > Summarize(height~treat,data=MooseBrowse)
@@ -1145,9 +1145,9 @@ nov - feb == 0 -0.17667    0.04107  -4.301   <0.001
 nov - may == 0 -0.23343    0.04657  -5.012   <0.001
 > confint(opp.mc)
                Estimate lwr      upr     
-may - feb == 0  0.05676 -0.05001  0.16353
-nov - feb == 0 -0.17667 -0.27913 -0.07420
-nov - may == 0 -0.23343 -0.34962 -0.11724
+may - feb == 0  0.05676 -0.04999  0.16351
+nov - feb == 0 -0.17667 -0.27912 -0.07422
+nov - may == 0 -0.23343 -0.34959 -0.11726
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1215,12 +1215,12 @@ The results of applying Tukey's method to these data \tabrefp{tab:OWAEx1HSD} ind
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
                  Estimate Std. Error    t value     p value
-1000 - 0 = 0       -0.225   1.178408 -0.1909355 0.997391544
-5000 - 0 = 0       -5.050   1.178408 -4.2854421 0.004853693
-10000 - 0 = 0      -5.200   1.178408 -4.4127324 0.004057367
-5000 - 1000 = 0    -4.825   1.178408 -4.0945065 0.007093258
-10000 - 1000 = 0   -4.975   1.178408 -4.2217969 0.005675825
-10000 - 5000 = 0   -0.150   1.178408 -0.1272904 0.999219834
+1000 - 0 = 0       -0.225   1.178408 -0.1909355 0.997392667
+5000 - 0 = 0       -5.050   1.178408 -4.2854421 0.004967705
+10000 - 0 = 0      -5.200   1.178408 -4.4127324 0.003965026
+5000 - 1000 = 0    -4.825   1.178408 -4.0945065 0.007101906
+10000 - 1000 = 0   -4.975   1.178408 -4.2217969 0.005876595
+10000 - 5000 = 0   -0.150   1.178408 -0.1272904 0.999220059
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1264,11 +1264,11 @@ There appears to be a significant difference in mean tree growth among the four 
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
                            Estimate Std. Error    t value     p value
-Fertilized - Control = 0   5.534286   2.173279   2.546515 0.057524720
+Fertilized - Control = 0   5.534286   2.173279   2.546515 0.057422199
 Clipped - Control = 0    -33.420000   2.173279 -15.377688 0.000000000
-Shaded - Control = 0      -1.400000   2.173279  -0.644188 0.917407001
+Shaded - Control = 0      -1.400000   2.173279  -0.644188 0.917410757
 Clipped - Fertilized = 0 -38.954286   2.173279 -17.924202 0.000000000
-Shaded - Fertilized = 0   -6.934286   2.173279  -3.190703 0.009633378
+Shaded - Fertilized = 0   -6.934286   2.173279  -3.190703 0.009476638
 Shaded - Clipped = 0      32.020000   2.173279  14.733500 0.000000000
 \end{verbatim}
 \end{kframe}
@@ -1546,7 +1546,7 @@ The four methods produced significantly different mean square-root peak discharg
 \newpage
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> PeakDischarge <- read.table("data/PeakDischarge.txt",header=TRUE)
+> PeakDischarge <- read.csv("data/PeakDischarge.csv")
 > PeakDischarge$method <- factor(PeakDischarge$method)
 > pd.lm <- lm(discharge~method,data=PeakDischarge)
 > leveneTest(pd.lm)
@@ -1663,7 +1663,7 @@ The process of fitting and interpreting linear models is as much an art as it is
     \end{Enumerate}
 
 \newpage
-  \item \label{hwprob:LMANOVA1Cuckoo} \textbf{[10 pts]} Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the young of the cuckoos at the expense of their own young.  Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the tree pipet, hedge sparrow, and pied wagtail - are provided in the \href{https://sites.google.com/site/ncstats/data/Cuckoos.txt}{cuckoos.txt} file.  Load these data into R, construct a one-way ANOVA, and answer the following questions.
+  \item \label{hwprob:LMANOVA1Cuckoo} \textbf{[10 pts]} Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the young of the cuckoos at the expense of their own young.  Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the tree pipet, hedge sparrow, and pied wagtail - are provided in the \dfile{Cuckoos.csv} (\href{https://github.com/droglenc/NCData/blob/master/Cuckoos.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Cuckoos_meta.txt}{meta}) file.  Load these data into R, construct a one-way ANOVA, and answer the following questions.
     \begin{Enumerate}
       \item Show the output from \R{anova()}.  Fully show how each df was computed and interpret the meaning of each MS and the F test statistic in the output.
       \item Show the output from \R{summary()}.  Fully interpret the meaning of each coefficient and p-value in the \emph{coefficients} portion of the output.
@@ -2046,7 +2046,7 @@ A two-way ANOVA can be fit in R with \R{lm()} similarly to fitting a one-way ANO
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-> tad <- read.table("data/Tadpoles.txt",header=TRUE)
+> tad <- read.csv("data/Tadpoles.csv")
 > tad$uvb <- factor(tad$uvb,levels=c("Low","High"))  # re-order levels
 > tad$density <- factor(tad$density)                 # force numeric values to be levels
 > tad.lm1 <- lm(mass~uvb*density,data=tad)
@@ -2274,7 +2274,7 @@ It can be concluded that the different UV-B light intensities and tadpole densit
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> Tadpoles <- read.table("data/Tadpoles.txt",header=TRUE)
+> Tadpoles <- read.csv("data/Tadpoles.csv")
 > Tadpoles$uvb <- factor(Tadpoles$uvb,levels=c("Low","High"))
 > Tadpoles$density <- factor(Tadpoles$density)
 > boxplot(mass~density+uvb,data=Tadpoles,ylab="Body Mass (g)")
@@ -2410,7 +2410,7 @@ Strictly speaking, causal inferences cannot be made from this study because the 
 \newpage
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> NAKATPase <- read.table("data/NAKATPase.txt",header=TRUE)
+> NAKATPase <- read.csv("data/NAKATPase.csv")
 > NAKATPase$site <- factor(NAKATPase$site)
 > NAKATPase$strain <- factor(NAKATPase$strain)
 > boxplot(activity~site+strain,data=NAKATPase,ylab="Na-K-ATPase Activity")
@@ -2651,7 +2651,7 @@ The best-fit regression line is obtained with \R{lm()}.  The formula argument to
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-> LT <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+> LT <- read.csv("data/LakeTroutEggs.csv")
 > ( lt.lm <- lm(eggs~tl,data=LT) )
 Coefficients:
 (Intercept)           tl  
@@ -3506,7 +3506,7 @@ The trial-and-error method of finding a transformation uses \R{transChooser()} w
 \cite{Schram1993} examined the relationship between the total length and the number of eggs found in female lake trout from Lake Superior.  Schram's primary goal was to develop a model that could be used to predict the number of eggs produced by a female lake trout from the total length of that fish.  This relationship could be used in subsequent models used to manage the population of lake trout.
 
 \subsubsection*{Data Collection}
-Lake trout were collected during the spawning season from set netting areas in the Apostle Islands, Wisconsin.  A sample of 101 ripe but not spent female lake trout over the range of observed lengths were sacrificed and the eggs removed by dissection.  For each fish, the total length (TL; mm) and weight (g) was recorded and the total number of eggs counted.  The data are stored in \href{"https://sites.google.com/site/ncstats/data/LakeTroutEggs.txt"}{LakeTroutEggs.txt}.
+Lake trout were collected during the spawning season from set netting areas in the Apostle Islands, Wisconsin.  A sample of 101 ripe but not spent female lake trout over the range of observed lengths were sacrificed and the eggs removed by dissection.  For each fish, the total length (TL; mm) and weight (g) was recorded and the total number of eggs counted.  The data are stored in \dfile{LakeTroutEggs.csv} (\href{https://github.com/droglenc/NCData/blob/master/LakeTroutEggs.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/LakeTroutEggs.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/LakeTroutEggs_meta.txt}{meta}).
 
 \subsubsection*{EDA \& Assumption Checking}
 
@@ -3587,7 +3587,7 @@ A significant, but only moderately strong, relationship was found between the nu
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> LakeTroutEggs <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+> LakeTroutEggs <- read.csv("data/LakeTroutEggs.csv")
 > lt.lm1 <- lm(eggs~tl,data=LakeTroutEggs)
 > fitPlot(lt.lm1,main="")
 > residPlot(lt.lm1)
@@ -3723,7 +3723,7 @@ predicted log(consumption)    (10.985,11.252) (10.975,11.203)
 \subsubsection*{Appendix -- R commands}
 \vspace{-18pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> Consumption <- read.table("data/Consumption.txt",header=TRUE)
+> Consumption <- read.csv("data/Consumption.csv")
 > Consumption1 <- Consumption[!is.na(Consumption$biomass),] # removing missing data
 > fcb.lm1 <- lm(consumption~biomass,data=Consumption1)
 > fitPlot(fcb.lm1,main="",pts=19,ltyp=2)
@@ -3887,7 +3887,7 @@ F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
       \item Explain why your answer to (b) is different from your answer to (c) -- be specific.
     \end{Enumerate}
 
-  \item \label{hwprob:LMSLRCarMPG1} \textbf{[10 pts]} Students in the Introduction to Environmental Studies course were interested in what characteristics of cars affected the gas mileage (miles per gallon) of a car.  Using an internet search they recorded several variables on a sample of makes of cars (note, these data are industry-reported summaries for the make of a car, not measurements on an individual car).  Two of the variables that they recorded were \var{mpg} (miles per gallon of gasoline for the car) and \var{hp} (horsepower of the car engine).  These data, along with a variety of other variables, can be found in the \href{https://sites.google.com/site/ncstats/data/CarMPG.txt}{CarMPG.txt} data file.  Use these data to compute a model that can be used to predict the mpg of a car based on its horsepower.
+  \item \label{hwprob:LMSLRCarMPG1} \textbf{[10 pts]} Students in the Introduction to Environmental Studies course were interested in what characteristics of cars affected the gas mileage (miles per gallon) of a car.  Using an internet search they recorded several variables on a sample of makes of cars (note, these data are industry-reported summaries for the make of a car, not measurements on an individual car).  Two of the variables that they recorded were \var{mpg} (miles per gallon of gasoline for the car) and \var{hp} (horsepower of the car engine).  These data, along with a variety of other variables, can be found in the \dfile{CarMPG.csv} (\href{https://github.com/droglenc/NCData/blob/master/CarMPG.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/CarMPG_meta.txt}{meta}) file.  Use these data to compute a model that can be used to predict the mpg of a car based on its horsepower.
     \begin{Enumerate}
       \item Show the output from \R{summary()}.  Fully interpret the meaning of each value in the output except for the \emph{Std. Error}, \emph{t value}, \emph{residuals}, and \emph{Adjusted R-squared} portions.
       \item Show the output from \R{confint()}.  Fully interpret the meaning of each pair of (CI) values in the output.
@@ -3906,7 +3906,7 @@ F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
     \end{Enumerate}
 
 \vspace{30pt}
-  \item \label{hwprob:LMSLRRusconi} \textbf{[15 pts]} A high respiratory rate is a potential diagnostic indicator of respiratory infection in children.  To judge whether a respiratory rate is truly ``high,'' however, a physician must have a clear picture of the distribution of normal respiratory rates.  To this end, Italian researchers \citep{Rusconietal1994} measured the respiratory rates of 618 children between the ages of 4 days and 3 years.  The data are in \href{https://sites.google.com/site/ncstats/data/Rusconi.txt}{Rusconi.txt} with the variables \var{Age} = ``age of children \emph{in months}'' and \var{Rate} = ``respiratory rate in breaths per minute.''  Import these data into R and answer the following questions.
+  \item \label{hwprob:LMSLRRusconi} \textbf{[15 pts]} A high respiratory rate is a potential diagnostic indicator of respiratory infection in children.  To judge whether a respiratory rate is truly ``high,'' however, a physician must have a clear picture of the distribution of normal respiratory rates.  To this end, Italian researchers \citep{Rusconietal1994} measured the respiratory rates of 618 children between the ages of 4 days and 3 years.  The data are in \dfile{Rusconi.csv} (\href{https://github.com/droglenc/NCData/blob/master/Rusconi.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Rusconi.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Rusconi_meta.txt}{meta}) with the variables \var{Age} = ``age of children \emph{in months}'' and \var{Rate} = ``respiratory rate in breaths per minute.''  Import these data into R and answer the following questions.
     \begin{Enumerate}
       \item Perform a thorough analysis of assumptions.
       \item If needed, identify a transformation so that the assumptions of a SLR are met.  Describe your process and show that the assumptions are adequately met on the new scale. [Note: attempt to find a simple scale where most of the assumptions are at least closely met.  The ideal analysis for these data is a combination of transformation and polynomial regression -- you do not have to do the polynomial regression.]
@@ -4834,7 +4834,7 @@ These results indicate that the relationship between square root closing force a
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> CrabClaw <- read.table("data/CrabClaw.txt",header=TRUE)
+> CrabClaw <- read.csv("data/CrabClaw.csv")
 > crab.lm1 <- lm(force~propodus*spec,data=CrabClaw)
 > adTest(crab.lm1$residuals)
 > outlierTest(crab.lm1)
@@ -5285,7 +5285,7 @@ A main thing to remember about ANCOVA is that it is a very powerful method that 
     \end{Enumerate}
 
 
-  \item \label{hwprob:LMIVRBatMorph} \textbf{[15 pts]} \cite{Hutcheonetal2002} examined variations in total brain volume and in the volume of three brain regions (main olfactory bulb, hippocampus, auditory nuclei) using a data set for 63 species of bats (Chiroptera).  The data can be found in \href{https://sites.google.com/site/ncstats/data/Batmorph2.txt}{batmorph2.txt}.  They were primarily interested in determining if the volume of the brain region differed among broad foraging categories (phytophagous, gleaner, and aerial insectivore).  However, they decided to ``factor out'' the body weight of the bats because differences in size of bats among the foraging categories was suspected and thought to possibly mask possible differences in the volume of the brain regions.  A fourth foraging type -- vampire bats -- were excluded from the analysis (you should do this also).  Load these data into R and compute results to address the questions below assuming that interest is in just the \textbf{auditory nuclei mass}.
+  \item \label{hwprob:LMIVRBatMorph} \textbf{[15 pts]} \cite{Hutcheonetal2002} examined variations in total brain volume and in the volume of three brain regions (main olfactory bulb, hippocampus, auditory nuclei) using a data set for 63 species of bats (Chiroptera).  The data can be found in \dfile{Batmorph2.csv} (\href{https://github.com/droglenc/NCData/blob/master/Batmorph2.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph2.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Batmorph2_meta.txt}{meta}).  They were primarily interested in determining if the volume of the brain region differed among broad foraging categories (phytophagous, gleaner, and aerial insectivore).  However, they decided to ``factor out'' the body weight of the bats because differences in size of bats among the foraging categories was suspected and thought to possibly mask possible differences in the volume of the brain regions.  A fourth foraging type -- vampire bats -- were excluded from the analysis (you should do this also).  Load these data into R and compute results to address the questions below assuming that interest is in just the \textbf{auditory nuclei mass}.
 
     \begin{Enumerate}
       \item Construct (i.e., write) the ultimate full model for an indicator variable regression with these data.  Use codes such that the phytophagous foraging group will be considered the reference group.
@@ -5443,11 +5443,11 @@ Standard errors or confidence intervals for the parameters of the logistic regre
 In bootstrapping, $B$ (re)samples of the same size as the original sample are produced with replacement from the original sample.  The logistic regression model is fit to each of these new (re)samples and the estimates of interest (i.e., slope, intercept, predicted probability, etc.) are computed each time.  The estimates from each (re)sample are then aggregated and an approximate 95\% confidence interval is computed as the values of the estimate that have 2.5\% of all bootstrapped values smaller and greater (i.e., find the bounds that contain the most common 95\% of bootstrapped values).  Bootstrap confidence intervals are computer intensive, but provide an interval that does not depend on the shape of the underlying sampling distribution.
 
 \section{Logistic Regression in R}
-\cite{Bliss1935} examined the mortality response of beetles to various concentrations of gaseous carbon disulphide (mg/liter).  The concentration and whether or not the beetle survived the exposure to that concentraton was recorded for each beetle and stored in \href{https://sites.google.com/site/ncstats/data/Bliss.txt}{Bliss.txt}.  These data are read into R and viewed with
+\cite{Bliss1935} examined the mortality response of beetles to various concentrations of gaseous carbon disulphide (mg/liter).  The concentration and whether or not the beetle survived the exposure to that concentraton was recorded for each beetle and stored in \dfile{Bliss.csv} (\href{https://github.com/droglenc/NCData/blob/master/Bliss.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Bliss.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Bliss_meta.txt}{meta}).  These data are read into R and viewed with
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-> d <- read.table("data/Bliss.txt",header=TRUE)
+> d <- read.csv("data/Bliss.csv")
 > str(d)
 'data.frame':	481 obs. of  2 variables:
  $ outcome: Factor w/ 2 levels "alive","dead": 2 2 2 2 2 2 1 1 1 1 ...
@@ -5642,7 +5642,7 @@ Thus, one is 95\% confident that the predicted concentration where 50\% of the b
 \newpage
 \begin{hwsection}{All questions below should be answered with complete sentences and with all work shown.  Your answers should be typed with hand calculations included as a hand-written appendix.}
 
-  \item \label{hwprob:LMlogisticGSS} \textbf{[XX pts]}  The General Sociological Survey (GSS) is a very large survey that has been administered 25 times since 1972.  The basic purposes of the GSS are to gather data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviors, and attributes; to examine the structure and functioning of society in general as well as the role played by relevant subgroups; to compare the United States to other societies in order to place American society in comparative perspective and develop crossnational models of human society; and to make high-quality data easily accessible to scholars, students, policy makers, and others, with minimal cost and waiting.  One question that was asked in the most recent GSS was ``Have you watched an x-rated movie in the last year?''  The respondent's answer to this question (Yes or No) and age are recorded in \dfile{XMovieAge.txt}.  Read these data into R, remove all individuals older than age 95, fit a logistic regression model, and answer the following questions.
+  \item \label{hwprob:LMlogisticGSS} \textbf{[XX pts]}  The General Sociological Survey (GSS) is a very large survey that has been administered 25 times since 1972.  The basic purposes of the GSS are to gather data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviors, and attributes; to examine the structure and functioning of society in general as well as the role played by relevant subgroups; to compare the United States to other societies in order to place American society in comparative perspective and develop crossnational models of human society; and to make high-quality data easily accessible to scholars, students, policy makers, and others, with minimal cost and waiting.  One question that was asked in the most recent GSS was ``Have you watched an x-rated movie in the last year?''  The respondent's answer to this question (Yes or No) and age are recorded in \dfile{XMovieAge.csv} (\href{https://github.com/droglenc/NCData/blob/master/XMovieAge.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/XMovieAge.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/XMovieAge_meta.txt}{meta}).  Read these data into R, remove all individuals older than age 95, fit a logistic regression model, and answer the following questions.
 
     \begin{enumerate}
       \item Construct a ``fitted-line plot'' for the logistic regression model (use enough breaks to adequately characterize the change in proportions).  Comment on the adequacy of fit of this logistic regression model.
@@ -5658,7 +5658,7 @@ Thus, one is 95\% confident that the predicted concentration where 50\% of the b
     \end{enumerate}
 
 \newpage
-  \item \label{hwprob:LMlogisticRuffe1} \textbf{[XX pts]}  \cite{Ogleetal2004} examined the diet of larval ruffe (\emph{Gymnocephalus cernuus}) in the St. Louis River Harbor, Lake Superior.  In one part of their study, they recorded the occurrence (i.e., presence or absence) of six different prey items, plus an ``other'' category, for ruffe captured at two locations (Allouez Bay and Whaleback Bay) over six dates.  In addition, they recorded the length of the larval ruffe (in mm).  The results of this study are found in \href{https://sites.google.com/site/ncstats/data/RuffeLarvalDiet.txt}{RuffeLarvalDiet.txt}.  For the questions below, restrict the data set to \textbf{just Allouez Bay} and focus on the occurrence of \emph{Daphnia} relative to the length of larval ruffe.
+  \item \label{hwprob:LMlogisticRuffe1} \textbf{[XX pts]}  \cite{Ogleetal2004} examined the diet of larval ruffe (\emph{Gymnocephalus cernuus}) in the St. Louis River Harbor, Lake Superior.  In one part of their study, they recorded the occurrence (i.e., presence or absence) of six different prey items, plus an ``other'' category, for ruffe captured at two locations (Allouez Bay and Whaleback Bay) over six dates.  In addition, they recorded the length of the larval ruffe (in mm).  The results of this study are found in \dfile{RuffeLarvalDiet.csv} (\href{https://github.com/droglenc/NCData/blob/master/RuffeLarvalDiet.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/RuffeLarvalDiet_meta.txt}{meta}).  For the questions below, restrict the data set to \textbf{just Allouez Bay} and focus on the occurrence of \emph{Daphnia} relative to the length of larval ruffe.
 
     \begin{enumerate}
       \item Construct a ``fitted-line plot'' for the logistic regression model (use enough breaks to adequately characterize the change in proportions).  Comment on the adequacy of fit of this logistic regression model.

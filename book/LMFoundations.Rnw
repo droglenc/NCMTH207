@@ -58,10 +58,10 @@ where the pooled sample variance, $s_{p}^{2}$, is a measure of the common varian
 Methods for analyzing a two-sample t-test in R were discussed in detail in your introductory statistics course.  Those methods are briefly summarized in the next three subsections.
 
 \subsection{Data Format} \label{sect:DataStacked}
-The data for a 2-sample t-test must be entered in stacked format.  In stacked format the measurements are in one vector (i.e., column) and a label for which group the measurement was recorded from is in another vector (column).  If both vectors are in a data frame\footnote{This will most likely be the case as this data will most likely be read from an external data file.} then each row corresponds to the measurement and group of a single individual.  This is the general format in which most data is entered and in which most databases and R functions require the data.  The data for this example are read from the \href{https://sites.google.com/site/ncstats/data/BOD.txt}{BOD.txt} file and displayed (as an illustration of stacked data) with
+The data for a 2-sample t-test must be entered in stacked format.  In stacked format the measurements are in one vector (i.e., column) and a label for which group the measurement was recorded from is in another vector (column).  If both vectors are in a data frame\footnote{This will most likely be the case as this data will most likely be read from an external data file.} then each row corresponds to the measurement and group of a single individual.  This is the general format in which most data is entered and in which most databases and R functions require the data.  The data for this example are read from the \dfile{BOD.csv} (\href{https://github.com/droglenc/NCData/blob/master/BOD.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/BOD_meta.txt}{meta}) file and displayed (as an illustration of stacked data) with
 
 <<>>=
-aqua <- read.table("data/BOD.txt",header=TRUE)
+aqua <- read.csv("data/BOD.csv")
 headtail(aqua)   # random six rows, not whole data frame
 @
 
@@ -120,7 +120,7 @@ The null and alternative hypotheses can each be related to a model.  The model c
 where $\mu_{i}$ represents the population mean of the $i$th group and $\mu$ (with no subscript) represents an overall or \emph{grand} mean for both groups combined.  Thus, the simple model says that there is one mean -- the grand mean, $\mu$ -- that adequately represents each group; whereas the full model says that each group is represented by a separate mean.  These models are visually represented in \figref{fig:LM2TModels}.  The simple model is called ``simple'' because it has fewer parameters (i.e., one mean) then the full model (i.e., as many means as groups).
 
 <<LM2TModels, echo=FALSE, fig.cap="Biological oxygen demand measurements at two locations -- an inlet and an outlet.  The horizontal line on the left graph represents the simple model of a grand mean for both groups.  The two horizontal lines on the right graph represent the full model of separate means for each group.",fig.pos="!h">>=
-aqua <- read.table("data/BOD.txt",header=TRUE)
+aqua <- read.csv("data/BOD.csv")
 aqua$src <- factor(aqua$src)
 plot(BOD~as.numeric(src),data=aqua,xlab="Source",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
 axis(1,at=c(1,2),labels=c("Inlet","Outlet"))

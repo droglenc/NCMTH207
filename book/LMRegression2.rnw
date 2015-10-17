@@ -651,7 +651,7 @@ In the models, \var{spec} will be converted to indicator variables of the form \
 
 \subsubsection*{EDA \& Assumption Checking}
 <<echo=FALSE>>=
- CrabClaw <- read.table("data/CrabClaw.txt",header=TRUE)
+ CrabClaw <- read.csv("data/CrabClaw.csv")
  crab.lm1 <- lm(force~propodus*spec,data=CrabClaw)
  crab.ad1 <- adTest(crab.lm1$residuals)
  CrabClaw$sqrt.force <- sqrt(CrabClaw$force)
@@ -713,7 +713,7 @@ These results indicate that the relationship between square root closing force a
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> CrabClaw <- read.table("data/CrabClaw.txt",header=TRUE)
+> CrabClaw <- read.csv("data/CrabClaw.csv")
 > crab.lm1 <- lm(force~propodus*spec,data=CrabClaw)
 > adTest(crab.lm1$residuals)
 > outlierTest(crab.lm1)
@@ -1079,7 +1079,7 @@ A main thing to remember about ANCOVA is that it is a very powerful method that 
     \end{Enumerate}
 
 
-  \item \label{hwprob:LMIVRBatMorph} \textbf{[15 pts]} \cite{Hutcheonetal2002} examined variations in total brain volume and in the volume of three brain regions (main olfactory bulb, hippocampus, auditory nuclei) using a data set for 63 species of bats (Chiroptera).  The data can be found in \href{https://sites.google.com/site/ncstats/data/Batmorph2.txt}{batmorph2.txt}.  They were primarily interested in determining if the volume of the brain region differed among broad foraging categories (phytophagous, gleaner, and aerial insectivore).  However, they decided to ``factor out'' the body weight of the bats because differences in size of bats among the foraging categories was suspected and thought to possibly mask possible differences in the volume of the brain regions.  A fourth foraging type -- vampire bats -- were excluded from the analysis (you should do this also).  Load these data into R and compute results to address the questions below assuming that interest is in just the \textbf{auditory nuclei mass}.
+  \item \label{hwprob:LMIVRBatMorph} \textbf{[15 pts]} \cite{Hutcheonetal2002} examined variations in total brain volume and in the volume of three brain regions (main olfactory bulb, hippocampus, auditory nuclei) using a data set for 63 species of bats (Chiroptera).  The data can be found in \dfile{Batmorph2.csv} (\href{https://github.com/droglenc/NCData/blob/master/Batmorph2.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph2.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Batmorph2_meta.txt}{meta}).  They were primarily interested in determining if the volume of the brain region differed among broad foraging categories (phytophagous, gleaner, and aerial insectivore).  However, they decided to ``factor out'' the body weight of the bats because differences in size of bats among the foraging categories was suspected and thought to possibly mask possible differences in the volume of the brain regions.  A fourth foraging type -- vampire bats -- were excluded from the analysis (you should do this also).  Load these data into R and compute results to address the questions below assuming that interest is in just the \textbf{auditory nuclei mass}.
 
     \begin{Enumerate}
       \item Construct (i.e., write) the ultimate full model for an indicator variable regression with these data.  Use codes such that the phytophagous foraging group will be considered the reference group.

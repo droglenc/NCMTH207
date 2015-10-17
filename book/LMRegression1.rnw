@@ -62,7 +62,7 @@ In other words, \eqref{eqn:SLRpopn} is essentially a parameter (i.e., it represe
 The statistics $(\hat{\alpha}, \hat{\beta}_{1})$ in \eqref{eqn:SLRsample} are determined by finding the values for $(\alpha, \beta_{1})$ that minimize the residual sum-of-squares (RSS).  A residual is the difference between an observed value of the response variable for an individual, $y_{i}$, and a predicted value of the response variable based on the model \eqref{eqn:SLRpopn} given that individuals value of the explanatory variable, $x_{i}$ \figrefp{fig:SLRResidDemo}.  In other words, a residual is computed as $y_{i}-\hat{\mu}_{Y|X=x_{i}}$.
 
 <<SLRResidDemo, echo=FALSE, fig.cap="Scatterplot with best-fit line illustrating five residuals.", fig.pos="h">>=
- LT <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+ LT <- read.csv("data/LakeTroutEggs.csv")
  lt.lm <- lm(eggs~tl,data=LT)
  plot(eggs~tl,data=LT,xlab="Total Length (mm)",ylab="Number of Eggs",col="white",xlim=c(650,950))
  abline(lt.lm,lwd=2,col="blue")
@@ -96,7 +96,7 @@ where $r$ is the sample correlation coefficient, $\overline{Y}$ and $\overline{X
 The best-fit regression line is obtained with \R{lm()}.  The formula argument to this function is of the form \R{response}$\sim$\R{explanatory}.  As usual, the results of this function should be assigned to an object that can be sent to other functions to extract specific results.  For example, the simple linear regression for predicting the number of eggs based on the total length of a Lake Superior female lake trout is obtained with
 
 <<>>=
-LT <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+LT <- read.csv("data/LakeTroutEggs.csv")
 ( lt.lm <- lm(eggs~tl,data=LT) )
 @
 
@@ -829,7 +829,7 @@ The trial-and-error method of finding a transformation uses \R{transChooser()} w
 \cite{Schram1993} examined the relationship between the total length and the number of eggs found in female lake trout from Lake Superior.  Schram's primary goal was to develop a model that could be used to predict the number of eggs produced by a female lake trout from the total length of that fish.  This relationship could be used in subsequent models used to manage the population of lake trout.
 
 \subsubsection*{Data Collection}
-Lake trout were collected during the spawning season from set netting areas in the Apostle Islands, Wisconsin.  A sample of 101 ripe but not spent female lake trout over the range of observed lengths were sacrificed and the eggs removed by dissection.  For each fish, the total length (TL; mm) and weight (g) was recorded and the total number of eggs counted.  The data are stored in \href{"https://sites.google.com/site/ncstats/data/LakeTroutEggs.txt"}{LakeTroutEggs.txt}.
+Lake trout were collected during the spawning season from set netting areas in the Apostle Islands, Wisconsin.  A sample of 101 ripe but not spent female lake trout over the range of observed lengths were sacrificed and the eggs removed by dissection.  For each fish, the total length (TL; mm) and weight (g) was recorded and the total number of eggs counted.  The data are stored in \dfile{LakeTroutEggs.csv} (\href{https://github.com/droglenc/NCData/blob/master/LakeTroutEggs.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/LakeTroutEggs.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/LakeTroutEggs_meta.txt}{meta}).
 
 \subsubsection*{EDA \& Assumption Checking}
 <<echo=FALSE>>=
@@ -885,7 +885,7 @@ A significant, but only moderately strong, relationship was found between the nu
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> LakeTroutEggs <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+> LakeTroutEggs <- read.csv("data/LakeTroutEggs.csv")
 > lt.lm1 <- lm(eggs~tl,data=LakeTroutEggs)
 > fitPlot(lt.lm1,main="")
 > residPlot(lt.lm1)
@@ -910,7 +910,7 @@ A significant, but only moderately strong, relationship was found between the nu
 \subsection{Fish Consumption Estimation}
 \subsubsection*{Introduction}
 <<echo=FALSE>>=
- Consumption <- read.table("data/Consumption.txt",sep="\t",header=TRUE)
+ Consumption <- read.csv("data/Consumption.csv")
  Consumption1 <- Consumption[!is.na(Consumption$biomass),]
 @
 Fish population consumption is an important process linking predator populations to their prey resources.  Simple tools are needed to enable fisheries managers to estimate population consumption.  One such possible simple tool is to estimate population consumption from estimates of the number or biomass of animals in the population.
@@ -993,7 +993,7 @@ predicted log(consumption)    (10.985,11.252) (10.975,11.203)
 \subsubsection*{Appendix -- R commands}
 \vspace{-18pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> Consumption <- read.table("data/Consumption.txt",header=TRUE)
+> Consumption <- read.csv("data/Consumption.csv")
 > Consumption1 <- Consumption[!is.na(Consumption$biomass),] # removing missing data
 > fcb.lm1 <- lm(consumption~biomass,data=Consumption1)
 > fitPlot(fcb.lm1,main="",pts=19,ltyp=2)
@@ -1157,7 +1157,7 @@ F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
       \item Explain why your answer to (b) is different from your answer to (c) -- be specific.
     \end{Enumerate}
 
-  \item \label{hwprob:LMSLRCarMPG1} \textbf{[10 pts]} Students in the Introduction to Environmental Studies course were interested in what characteristics of cars affected the gas mileage (miles per gallon) of a car.  Using an internet search they recorded several variables on a sample of makes of cars (note, these data are industry-reported summaries for the make of a car, not measurements on an individual car).  Two of the variables that they recorded were \var{mpg} (miles per gallon of gasoline for the car) and \var{hp} (horsepower of the car engine).  These data, along with a variety of other variables, can be found in the \href{https://sites.google.com/site/ncstats/data/CarMPG.txt}{CarMPG.txt} data file.  Use these data to compute a model that can be used to predict the mpg of a car based on its horsepower.
+  \item \label{hwprob:LMSLRCarMPG1} \textbf{[10 pts]} Students in the Introduction to Environmental Studies course were interested in what characteristics of cars affected the gas mileage (miles per gallon) of a car.  Using an internet search they recorded several variables on a sample of makes of cars (note, these data are industry-reported summaries for the make of a car, not measurements on an individual car).  Two of the variables that they recorded were \var{mpg} (miles per gallon of gasoline for the car) and \var{hp} (horsepower of the car engine).  These data, along with a variety of other variables, can be found in the \dfile{CarMPG.csv} (\href{https://github.com/droglenc/NCData/blob/master/CarMPG.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/CarMPG_meta.txt}{meta}) file.  Use these data to compute a model that can be used to predict the mpg of a car based on its horsepower.
     \begin{Enumerate}
       \item Show the output from \R{summary()}.  Fully interpret the meaning of each value in the output except for the \emph{Std. Error}, \emph{t value}, \emph{residuals}, and \emph{Adjusted R-squared} portions.
       \item Show the output from \R{confint()}.  Fully interpret the meaning of each pair of (CI) values in the output.
@@ -1176,7 +1176,7 @@ F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
     \end{Enumerate}
 
 \vspace{30pt}
-  \item \label{hwprob:LMSLRRusconi} \textbf{[15 pts]} A high respiratory rate is a potential diagnostic indicator of respiratory infection in children.  To judge whether a respiratory rate is truly ``high,'' however, a physician must have a clear picture of the distribution of normal respiratory rates.  To this end, Italian researchers \citep{Rusconietal1994} measured the respiratory rates of 618 children between the ages of 4 days and 3 years.  The data are in \href{https://sites.google.com/site/ncstats/data/Rusconi.txt}{Rusconi.txt} with the variables \var{Age} = ``age of children \emph{in months}'' and \var{Rate} = ``respiratory rate in breaths per minute.''  Import these data into R and answer the following questions.
+  \item \label{hwprob:LMSLRRusconi} \textbf{[15 pts]} A high respiratory rate is a potential diagnostic indicator of respiratory infection in children.  To judge whether a respiratory rate is truly ``high,'' however, a physician must have a clear picture of the distribution of normal respiratory rates.  To this end, Italian researchers \citep{Rusconietal1994} measured the respiratory rates of 618 children between the ages of 4 days and 3 years.  The data are in \dfile{Rusconi.csv} (\href{https://github.com/droglenc/NCData/blob/master/Rusconi.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Rusconi.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Rusconi_meta.txt}{meta}) with the variables \var{Age} = ``age of children \emph{in months}'' and \var{Rate} = ``respiratory rate in breaths per minute.''  Import these data into R and answer the following questions.
     \begin{Enumerate}
       \item Perform a thorough analysis of assumptions.
       \item If needed, identify a transformation so that the assumptions of a SLR are met.  Describe your process and show that the assumptions are adequately met on the new scale. [Note: attempt to find a simple scale where most of the assumptions are at least closely met.  The ideal analysis for these data is a combination of transformation and polynomial regression -- you do not have to do the polynomial regression.]
