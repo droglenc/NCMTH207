@@ -1,0 +1,82 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = MTH207 HO - Two-Way ANOVA}
+
+\begin{document}
+  \titleRHO{TWO-Way ANOVA}{MTH207 Biometry}{Winter}
+<<setup,echo=FALSE,include=FALSE>>=
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+@
+
+\section{Initialization} \label{sect:Inits}
+\vspace{-12pt}
+<<results='hide', message=FALSE, warning=FALSE>>=
+library(NCStats)
+library(multcomp)  # for glht()
+@
+
+\section{Bacteria Example}
+\vspace{-12pt}
+<<BactIntPlot, message=FALSE>>=
+bact <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Bacteria.csv")
+str(bact)
+bact$ftemp <- factor(bact$temp)
+bact$fconc <- factor(bact$conc)
+str(bact)
+sumTable(cells~ftemp*fconc,data=bact,FUN=length)
+sumTable(cells~ftemp*fconc,data=bact,FUN=mean,digits=0)
+sumTable(cells~ftemp*fconc,data=bact,FUN=sd,digits=1)
+lm1 <- lm(cells~ftemp*fconc,data=bact)
+anova(lm1)
+fitPlot(lm1, main="")  # left
+fitPlot(lm1,interval=FALSE,change.order=TRUE,xlab="Concentration (%)",
+ylab="Mean Number of Cells",legend="topleft", main="")  # right
+@
+
+<<BactMainPlot1, message=FALSE>>=
+fitPlot(lm1,which="ftemp",ylim=c(60,270),xlab="Temperature (C)",
+ylab="Mean Number of Cells", main="")  # left
+fitPlot(lm1,which="fconc",ylim=c(60,270),xlab="Concentration (%)",
+ylab="Mean Number of Cells", main="")  # right
+@
+
+<<>>=
+bact.mc1 <- glht(lm1,mcp(fconc="Tukey"))
+summary(bact.mc1)
+@
+\newpage
+<<BactMainPlot2, warning=FALSE>>=
+fitPlot(lm1,which="fconc",xlab="Concentration (%)",ylab="Mean Number of Cells",main="")
+addSigLetters(lm1,which="fconc",lets=c("a","a","a","b","a"),pos=c(2,2,4,2,4))
+@
+
+
+\section{Soil Phosphorous Example}
+<<SoilResidPlot, fig.show='asis', fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+sp <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/SoilPhosphorous.csv")
+str(sp)
+lm1 <- lm(phos~soil*topo,data=sp)
+leveneTest(lm1)
+residPlot(lm1)
+adTest(lm1$residuals)
+outlierTest(lm1)
+anova(lm1)
+@
+<<>>=
+sp$comb <- sp$soil:sp$topo
+view(sp)
+lm1a <- lm(phos~comb,data=sp)
+anova(lm1a)
+spint.mc <- glht(lm1a, mcp(comb="Tukey"))
+@
+\newpage
+<<SoilFLP1, warning=FALSE>>=
+summary(spint.mc)
+glhtSig(spint.mc)
+fitPlot(lm1,change.order=TRUE,interval=FALSE,main="",ylab="Mean Phosphorous Level",
+xlab="Topographic Location",legend="topleft")
+addSigLetters(lm1,change.order=TRUE,lets=c("a","a","a","ab","a","ab","a","b"),
+pos=c(1,3,1,3,1,1,3,1))
+@
+\end{document}

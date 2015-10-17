@@ -1,0 +1,101 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = MTH207 HO - Simple Linear Regression}
+
+\begin{document}
+  \titleRHO{Simple Linear Regression}{MTH207 Biometry}{Winter}
+<<setup,echo=FALSE,include=FALSE>>=
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+@
+
+\section{Initialization} \label{sect:Inits}
+\vspace{-12pt}
+<<results='hide', message=FALSE, warning=FALSE>>=
+library(NCStats)
+@
+
+\vspace{-12pt}
+\section{Salmon Sperm Example}
+\vspace{-12pt}
+\subsection{Data Preparation}
+\vspace{-12pt}
+<<>>=
+ss <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/SalmonSperm.csv")
+@
+<<echo=FALSE>>=
+ss <- ss[-c(1,10,11),]  # only for class demo purposes
+@
+<<>>=
+str(ss)
+xlbl <- "Sperm Tail End Piece Length (um)"
+ylbl <- "Fertilization Success"
+@
+
+\subsection{Lecture Support I -- Model Fitting and Simple Predictions}
+\vspace{-12pt}
+<<SalmonFLP1, fig.show='asis', message=FALSE>>=
+( lm1 <- lm(fert.succ~step.len,data=ss) )
+fitPlot(lm1,xlab=xlbl,ylab=ylbl,main="")
+predict(lm1,data.frame(step.len=3.5))
+@
+
+\subsection{Lecture Support II -- Sampling Variability}
+<<SalmonFLP2>>=
+summary(lm1)
+confint(lm1)
+fitPlot(lm1,interval="both",xlab=xlbl,ylab=ylbl,main="")
+@
+
+<<SalmonPredPlot1>>=
+predict(lm1,data.frame(step.len=3.5),interval="confidence")
+predict(lm1,data.frame(step.len=3.5),interval="prediction")
+predictionPlot(lm1,data.frame(step.len=c(3.3,3.5)),interval="prediction",
+xlab=xlbl,ylab=ylbl,main="")
+@
+
+
+\subsection{Lecture Support III -- Model Comparisons}
+\vspace{-12pt}
+<<>>=
+anova(lm1)
+@
+
+\subsection{Lecture Support IV -- Assumption Checking}
+\vspace{-12pt}
+<<SalmonAssump1, fig.show='asis', fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+residPlot(lm1,main="")
+adTest(lm1$residuals)
+outlierTest(lm1)
+@
+
+\section{Petrels Example}
+\vspace{-12pt}
+<<PetrelsFLP1>>=
+petrels <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Petrels.csv")
+str(petrels)
+lm1 <- lm(weight.loss~weight,data=petrels)
+fitPlot(lm1,xlab="Weight (g)",ylab="Weight Loss (g/g/d)",main="")
+@
+<<PetrelsResidPlot1, fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+residPlot(lm1,main="")
+@
+<<PetrelsFLP2, eval=-2>>=
+with(petrels,max(weight)/min(weight))
+transChooser(lm1) # interactive, results not shown
+petrels$log.wt <- log(petrels$weight)
+petrels$log.wtloss <- log(petrels$weight.loss)
+lm2 <- lm(log.wtloss~log.wt,data=petrels)
+fitPlot(lm2,xlab="log Weight (g)",ylab="log Weight Loss (g/g/d)",main="")
+@
+
+<<PetrelsResidPlot2, fig.show='asis', fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+residPlot(lm2,main="")
+adTest(lm2$residuals)
+anova(lm2)
+summary(lm2)
+confint(lm2)
+( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),interval="confidence") )
+exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
+@
+\end{document}

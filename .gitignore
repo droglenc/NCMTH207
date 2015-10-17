@@ -34,10 +34,14 @@ lecture/CEs/*.log
 lecture/CEs/*.synctex.gz
 lecture/CEs/*.tex
 lecture/CEs/Figs/*.pdf
+lecture/HOs/*.aux
 lecture/HOs/*.log
+lecture/HOs/*.out
 lecture/HOs/*.synctex.gz
 lecture/HOs/*.tex
 lecture/HOs/Figs/*.pdf
+lecture/HOs/cache/
+lecture/HOs/zOld/
 
 ## R History files
 .Rhistory

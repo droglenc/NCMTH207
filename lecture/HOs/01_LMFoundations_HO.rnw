@@ -1,0 +1,39 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = MTH207 HO - Linear Model Foundation}
+
+\begin{document}
+  \titleRHO{Linear Models Foundation}{MTH207 Biometry}{Winter}
+<<setup, echo=FALSE, include=FALSE>>=
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+@
+
+\section{Initialization}
+<<results='hide', message=FALSE, warning=FALSE>>=
+library(NCStats)
+@
+
+\section{Two-Sample t-Test} \label{sect:sect1}
+<<hist, fig.show='asis', fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+sdir <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/SexDirection.csv")
+str(sdir)
+sdir$fsex <- factor(sdir$sex,levels=c("male","female"))
+str(sdir)
+hist(abserr~fsex,data=sdir,xlab="Absolute Error",breaks=seq(0,200,25),col="gray90")
+Summarize(abserr~fsex,data=sdir,digits=2)
+leveneTest(abserr~fsex,data=sdir)
+t.test(abserr~fsex,data=sdir,var.equal=TRUE)
+t.test(abserr~sex,data=sdir,var.equal=TRUE)
+@
+
+\newpage
+\section{Two-Sample t-Test as a Linear Model}
+<<T2LM, fig.show='asis'>>=
+lm1 <- lm(abserr~fsex,data=sdir)
+summary(lm1)
+confint(lm1)
+fitPlot(lm1,xlab="Sex",ylab="Absolute Error",main="")
+anova(lm1)
+@
+\end{document}
