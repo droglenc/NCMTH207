@@ -7,10 +7,7 @@ title: Biometry (MTH207)
 * [Importance](#importance)
 * [Learning Outcomes](#learning-outcomes)
 * [Tutors](#tutors)
-* [Grading](#grading)
-    *[Homework](#homework)
-    *[Exams](#exams)
-    *[Final Portfolio](#final-portfolio)
+* [Grading](#grading) -- [Homework](#homework), [Exams](#exams), [Final Portfolio](#final-portfolio)
 * [Attendance](#attendance)
 * [Conduct](#conduct)
 * [Accomodations](#accomodations)
@@ -41,7 +38,7 @@ At the end of this class you will be able to ...
 
 ## Instructor
 
-* Dr. Derek H. Ogle, Professor of Mathematical Sciences & Natural Resources
+* [Dr. Derek H. Ogle](http://derekogle.com), Professor of Mathematical Sciences & Natural Resources
 * CSE239; 682-1300; [dogle@northland.edu](mailto:dogle@northland.edu)
 * Office Hours: XXX
 
