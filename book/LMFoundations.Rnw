@@ -62,7 +62,7 @@ The data for a 2-sample t-test must be entered in stacked format.  In stacked fo
 
 <<>>=
 aqua <- read.table("data/BOD.txt",header=TRUE)
-view(aqua)   # random six rows, not whole data frame
+headtail(aqua)   # random six rows, not whole data frame
 @
 
 \defn{Stacked Data}{Data where the quantitative measurements of two groups are ``stacked'' on top of each other and a second variable is used to record to which group the measurement belongs.}

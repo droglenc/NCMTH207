@@ -127,14 +127,14 @@ The data for a 2-sample t-test must be entered in stacked format.  In stacked fo
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > aqua <- read.table("data/BOD.txt",header=TRUE)
-> view(aqua)   # random six rows, not whole data frame
+> headtail(aqua)   # random six rows, not whole data frame
      BOD    src
 1  6.782  inlet
 2  5.809  inlet
-5  7.014  inlet
-8  6.628  inlet
-13 8.660 outlet
+3  6.849  inlet
+18 8.545 outlet
 19 8.063 outlet
+20 8.001 outlet
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -633,14 +633,14 @@ As with a two-sample t-test, the data for a one-way ANOVA must be stacked \sectr
 'data.frame':	27 obs. of  2 variables:
  $ imm   : num  0.64 0.68 0.731 0.587 0.668 0.613 0.713 0.701 0.729 0.726 ...
  $ season: Factor w/ 3 levels "feb","may","nov": 1 1 1 1 1 1 1 1 1 1 ...
-> view(opp)
+> headtail(opp)
      imm season
 1  0.640    feb
-6  0.613    feb
-9  0.729    feb
-13 0.580    may
-22 0.596    nov
+2  0.680    feb
+3  0.731    feb
 25 0.490    nov
+26 0.333    nov
+27 0.492    nov
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1140,14 +1140,14 @@ For example, the multiple comparison results for the immunoglobulin opossum data
 > opp.mc <- glht(opp.lm,mcp(season="Tukey"))
 > summary(opp.mc)
                Estimate Std. Error t value Pr(>|t|)
-may - feb == 0  0.05676    0.04280   1.326 0.393794
-nov - feb == 0 -0.17667    0.04107  -4.301 0.000655
-nov - may == 0 -0.23343    0.04657  -5.012  < 1e-04
+may - feb == 0  0.05676    0.04280   1.326    0.394
+nov - feb == 0 -0.17667    0.04107  -4.301   <0.001
+nov - may == 0 -0.23343    0.04657  -5.012   <0.001
 > confint(opp.mc)
                Estimate lwr      upr     
-may - feb == 0  0.05676 -0.05004  0.16357
-nov - feb == 0 -0.17667 -0.27917 -0.07416
-nov - may == 0 -0.23343 -0.34966 -0.11720
+may - feb == 0  0.05676 -0.05001  0.16353
+nov - feb == 0 -0.17667 -0.27913 -0.07420
+nov - may == 0 -0.23343 -0.34962 -0.11724
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1215,12 +1215,12 @@ The results of applying Tukey's method to these data \tabrefp{tab:OWAEx1HSD} ind
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
                  Estimate Std. Error    t value     p value
-1000 - 0 = 0       -0.225   1.178408 -0.1909355 0.997390680
-5000 - 0 = 0       -5.050   1.178408 -4.2854421 0.005280137
-10000 - 0 = 0      -5.200   1.178408 -4.4127324 0.004186848
-5000 - 1000 = 0    -4.825   1.178408 -4.0945065 0.007167488
-10000 - 1000 = 0   -4.975   1.178408 -4.2217969 0.005662273
-10000 - 5000 = 0   -0.150   1.178408 -0.1272904 0.999219439
+1000 - 0 = 0       -0.225   1.178408 -0.1909355 0.997391544
+5000 - 0 = 0       -5.050   1.178408 -4.2854421 0.004853693
+10000 - 0 = 0      -5.200   1.178408 -4.4127324 0.004057367
+5000 - 1000 = 0    -4.825   1.178408 -4.0945065 0.007093258
+10000 - 1000 = 0   -4.975   1.178408 -4.2217969 0.005675825
+10000 - 5000 = 0   -0.150   1.178408 -0.1272904 0.999219834
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1264,11 +1264,11 @@ There appears to be a significant difference in mean tree growth among the four 
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
                            Estimate Std. Error    t value     p value
-Fertilized - Control = 0   5.534286   2.173279   2.546515 0.057299115
+Fertilized - Control = 0   5.534286   2.173279   2.546515 0.057524720
 Clipped - Control = 0    -33.420000   2.173279 -15.377688 0.000000000
-Shaded - Control = 0      -1.400000   2.173279  -0.644188 0.917405129
+Shaded - Control = 0      -1.400000   2.173279  -0.644188 0.917407001
 Clipped - Fertilized = 0 -38.954286   2.173279 -17.924202 0.000000000
-Shaded - Fertilized = 0   -6.934286   2.173279  -3.190703 0.009464191
+Shaded - Fertilized = 0   -6.934286   2.173279  -3.190703 0.009633378
 Shaded - Clipped = 0      32.020000   2.173279  14.733500 0.000000000
 \end{verbatim}
 \end{kframe}

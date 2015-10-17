@@ -84,7 +84,7 @@ As with a two-sample t-test, the data for a one-way ANOVA must be stacked \sectr
 <<>>=
 opp <- read.table("data/Opposums.txt",header=TRUE)
 str(opp)
-view(opp)
+headtail(opp)
 @
 
 Recall that R alphabetically orders the levels of a factor variable by default.  In this instance, the alphabetical ordering is acceptable; i.e., ``feb'', ``may'', and ``nov'' is both the alphabetic and natural order for these levels.  If, for some reason in this example, the order should be reversed, then \R{factor()} with the \R{levels=} argument can be used.  For example, a new factor variable with the order reversed would be created with
