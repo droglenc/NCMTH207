@@ -1,6 +1,7 @@
 ---
 layout: page
-title: Biometry (MTH207)
+title: Biometry
+subtitle: MTH207
 ---
 
 * [Description](#description)
