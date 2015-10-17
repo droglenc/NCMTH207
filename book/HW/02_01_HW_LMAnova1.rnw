@@ -1,20 +1,19 @@
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
 \input{c:/aaaWork/zGnrlLatex/justRPreamble}
-\hypersetup{pdftitle = NRS207 HW Key - 2.1}
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+\hypersetup{pdftitle = NRS207 HW Key - 2.1-2.3}
 
 \begin{document}
+\titleRKey{Linear Models One-Way ANOVA}{Biometry}
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
 <<echo=FALSE, include=FALSE, warning=FALSE, message=FALSE>>=
 source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
 library(NCStats)
 @
-\titleRKey{Linear Models One-Way ANOVA}{Biometry}
-
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
 
 \vspace{-12pt}
-\section*{Question 2.1 (6 pts)}
+\section*{Question 2.1}
   \begin{Enumerate}
     \item Table below
       \begin{center}
@@ -41,7 +40,7 @@ library(NCStats)
   \end{Enumerate}
 
 \vspace{-18pt}
-\section*{Question 2.2 (6 pts)}
+\section*{Question 2.2}
   \begin{Enumerate}
     \item Table below
       \begin{center}
@@ -68,7 +67,7 @@ library(NCStats)
   \end{Enumerate}
 
 \vspace{-18pt}
-\section*{Question 2.3 (3 pts)}
+\section*{Question 2.3}
   \begin{Enumerate}
     \item Table below
       \begin{center}

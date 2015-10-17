@@ -1,28 +1,22 @@
-%===============================================================================
-% swv2PDF("06_01_HW_Logistic.rnw",createScript=FALSE)
-%===============================================================================
-% Overall Sweave and R options
-%-------------------------------------------------------------------------------
-\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
-\SweaveOpts{width=4,height=3.5}
-<<echo=false,results=hide>>=
-rm(list=ls(all=TRUE))
-options(width=80,show.signif.stars=FALSE,continue="  ")
-options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,2),mgp=c(2,0.75,0))))
-loadNeeded(c("NCStats"))
-@
-%===============================================================================
-
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+
 \begin{document}
 \titleRKey{Logistic Regression}{Biometry}
+\renewcommand{\theenumi}{\alph{enumi}}  % changes enumerates from numbers to letters
 
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+<<setup,echo=FALSE,include=FALSE>>=
+## load knitr helper materials
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+## Make sure that the required packages are loaded
+rqrd <- c("NCStats")
+for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
+@
 
-\section*{Question 6.1 (10 pts)}
-<<echo=FALSE,results=hide>>=
-df <- readData("http://www.ncfaculty.net/dogle/R/Data_Master/R/XMovieAge.txt")
+\section*{Question 6.1}
+<<echo=FALSE, results='hide', message=FALSE>>=
+df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/XMovieAge.csv")
 df <- Subset(df,age<96)
 glm1 <- glm(seen~age,data=df,family=binomial)
 cf1 <- coef(glm1)
@@ -30,32 +24,27 @@ ci1 <- confint(glm1)
 log50 <- predict(glm1,data.frame(age=50))
 p50 <- predict(glm1,data.frame(age=50),type="response")
 p30 <- predict(glm1,data.frame(age=30),type="response")
-p31 <- predict(glm1,data.frame(age=31),type="response") 
+p31 <- predict(glm1,data.frame(age=31),type="response")
 @
 
   \begin{enumerate}
     \item The fitted-line plot \figrefp{fig:movieFitPlot} suggests that the logistic regression model fits the proportions that had seen an x-rated movie by age fairly well as indicated by the relative closeness of the modeled line to the observed proportions (i.e., blue pluses).
-<<label=movieFitPlot,fig=TRUE,include=FALSE,echo=FALSE>>=
+<<label=movieFitPlot, echo=FALSE, message=FALSE, fig.cap="Fitted plot for the logistic regression of whether or not the respondent had seen an x-rated movie and the respondent's age.", fig.pos="h">>=
 fitPlot(glm1,main="",xlab="Age (yrs)",ylab="Seen an X-Rated Movie?")
 @
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=2in]{Figs/ansHW-movieFitPlot.pdf}
-  \caption{Fitted plot for the logistic regression of whether or not the respondent had seen an x-rated movie and the respondent's age.}\label{fig:movieFitPlot}
-\end{figure}
     \item The estimated slope indicates that the log odd that a respondent has seen an x-rated movie decrease between \Sexpr{formatC(-1*ci1[2,2],format="f",digits=4)} and \Sexpr{formatC(-1*ci1[2,1],format="f",digits=4)}, on average, for every increase in age by one year.
     \item The back-transformed estimated slopes indicates that the odds that a respondent has seen an x-rated movie are between \Sexpr{formatC(exp(ci1[2,1]),format="f",digits=4)} and \Sexpr{formatC(exp(ci1[2,2]),format="f",digits=4)} as much after an increase of one year.
     \item The log odds of having seen an x-rated movie for a 50-year-old is computed with \Sexpr{formatC(cf1[1],format="f",digits=4)}+\Sexpr{formatC(cf1[2],format="f",digits=4)}*50 = \Sexpr{formatC(log50,format="f",digits=4)}.
     \item The log odds of having seen an x-rated movie for a 50-year-old as computed in R is \Sexpr{formatC(log50,format="f",digits=4)} as seen below.
 <<>>=
 ( log50 <- predict(glm1,data.frame(age=50)) )
-@ 
+@
     \item The odds of having seen an x-rated for a 50-year-old is \Sexpr{formatC(exp(log50),format="f",digits=4)} as computed with $e^{\Sexpr{formatC(log50,format="f",digits=4)}}$.
     \item The probability of having seen an x-rated for a 50-year-old is computed with $\frac{\Sexpr{formatC(exp(log50),format="f",digits=4)}}{1+\Sexpr{formatC(exp(log50),format="f",digits=4)}}$=\Sexpr{formatC(p50,format="f",digits=4)}.
     \item The probability of having seen an x-rated for a 50-year-old as computed in R is \Sexpr{formatC(p50,format="f",digits=4)} as seen below.
 <<>>=
 ( p50 <- predict(glm1,data.frame(age=50),type="response") )
-@     
+@
     \item The probability of having seen an x-rated movie for a 30-year old is \Sexpr{formatC(p30,format="f",digits=4)}.  Thus, the odds that a 30-year old has seen an x-rated movie is $\frac{\Sexpr{formatC(p30,format="f",digits=4)}}{1-\Sexpr{formatC(p30,format="f",digits=4)}}$=\Sexpr{formatC(p30/(1-p30),format="f",digits=4)}.
     \item The probability of having seen an x-rated movie for a 31-year old is \Sexpr{formatC(p31,format="f",digits=4)}.  Thus, the odds that a 31-year old has seen an x-rated movie is $\frac{\Sexpr{formatC(p31,format="f",digits=4)}}{1-\Sexpr{formatC(p31,format="f",digits=4)}}$=\Sexpr{formatC(p31/(1-p31),format="f",digits=4)}.  The ratio of the odds for the 31-year-old to the odds of the 30-year-old is $\frac{\Sexpr{formatC(p31/(1-p31),format="f",digits=4)}}{\Sexpr{formatC(p30/(1-p30),format="f",digits=4)}}$ = \Sexpr{formatC(exp(cf1[2]),format="f",digits=4)}, which is the same as the back-transformed slope (i.e., $e^{\Sexpr{formatC(cf1[2],format="f",digits=4)}}$).
 \end{enumerate}

@@ -1,26 +1,20 @@
-%===============================================================================
-% swv2PDF("05_01_HW_LMRegression2.rnw",createScript=FALSE)
-%===============================================================================
-% Overall Sweave and R options
-%-------------------------------------------------------------------------------
-\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
-\SweaveOpts{width=3.5,height=3.5}
-<<echo=false,results=hide>>=
-rm(list=ls(all=TRUE))
-options(width=80,show.signif.stars=FALSE,continue="  ")
-options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
-loadNeeded(c("NCStats"))
-@
-%===============================================================================
-
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+
 \begin{document}
 \titleRKey{Linear Models IVR}{Biometry}
+\renewcommand{\theenumi}{\alph{enumi}}  % changes enumerates from numbers to letters
 
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+<<setup,echo=FALSE,include=FALSE>>=
+## load knitr helper materials
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+## Make sure that the required packages are loaded
+rqrd <- c("NCStats")
+for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
+@
 
-\section*{Question 5.1 (10 pts)}
+\section*{Question 5.1}
   \begin{enumerate}
     \item The indicator variable is named \var{TAME} where $TAME=1$ if the pronghorn is in the ``tame'' group and $TAME=0$ if it is in the ``diet-curtailed'' group.
     \item The full model is $\mu_{GROWTH} = \alpha + \beta_{1}TIME + \delta_{1}TAME + \gamma_{1}TAME*TIME$
@@ -60,7 +54,7 @@ loadNeeded(c("NCStats"))
 \textbf{[Turn the Page]}
 \end{center}
 \newpage
-\section*{Question 5.2 (10 pts)}
+\section*{Question 5.2}
   \begin{enumerate}
     \item The three required indicator variables are shown below
       \begin{Itemize}
@@ -68,12 +62,12 @@ loadNeeded(c("NCStats"))
         \item $EIGHT=1$ if in the ``eight-day starved'' group, $EIGHT=0$ otherwise
         \item $STEEN=1$ if in the ``sixteen-day starved'' group, $STEEN=0$ otherwise
       \end{Itemize}
-    \item  The full model is 
-    
+    \item  The full model is
+
 \[ \begin{split}
 \mu_{stomvol} &= \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
               &+ \gamma_{1}FOUR*intake + \gamma_{2}EIGHT*intake + \gamma_{3}STEEN*intake \\
-\end{split} \]     
+\end{split} \]
 
     \item The sub-models for all four groups are shown in the table below
 \begin{center}
@@ -95,11 +89,11 @@ loadNeeded(c("NCStats"))
       \begin{Itemize}
         \item $\alpha$ is the intercept of the 1-day starved (reference) group
         \item $\beta_{1}$ is the slope of the 1-day starved (reference)group
-        \item $\delta_{1}$ is the difference in the intercepts of the 4-day and 1-day starved groups 
+        \item $\delta_{1}$ is the difference in the intercepts of the 4-day and 1-day starved groups
         \item $\gamma_{1}$ is the difference in the slopes of the 4-day and 1-day starved groups
-        \item $\delta_{2}$ is the difference in the intercepts of the 8-day and 1-day starved groups 
+        \item $\delta_{2}$ is the difference in the intercepts of the 8-day and 1-day starved groups
         \item $\gamma_{2}$ is the difference in the slopes of the 8-day and 1-day starved groups
-        \item $\delta_{3}$ is the difference in the intercepts of the 16-day and 1-day starved groups 
+        \item $\delta_{3}$ is the difference in the intercepts of the 16-day and 1-day starved groups
         \item $\gamma_{3}$ is the difference in the slopes of the 16-day and 1-day starved groups
       \end{Itemize}
     \item Models for the ``parallel lines test'' are shown below
@@ -107,12 +101,12 @@ loadNeeded(c("NCStats"))
   H_{O}: \mu_{stomvol} &= \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
   H_{A}: \mu_{stomvol} &= \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
   &+ \gamma_{1}FOUR*intake + \gamma_{2}EIGHT*intake + \gamma_{3}STEEN*intake \\
-\end{split} \]     
+\end{split} \]
     \item Models for the ``equal-intercepts test'' (assuming parallel lines) are shown below
 \[ \begin{split}
   H_{O}&: \mu_{stomvol} = \alpha + \beta_{1}intake \\
   H_{A}&: \mu_{stomvol} = \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
 \end{split} \]
-  \end{enumerate}      
+  \end{enumerate}
 
 \end{document}

@@ -1,10 +1,10 @@
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
 \input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+
 \begin{document}
 \titleRKey{Linear Models One-Way ANOVA}{Biometry}
-
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+\renewcommand{\theenumi}{\alph{enumi}}  % changes enumerates from numbers to letters
 
 <<setup,echo=FALSE,include=FALSE>>=
 ## load knitr helper materials
@@ -15,7 +15,7 @@ for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
 @
 
 
-\section*{Question 2.7 (15 pts)}
+\section*{Question 2.7}
 <<echo=FALSE,results='hide'>>=
 data <- c(16.7,59.2,30.2,20.2,17.6,24.3,38.5,10,10.9,10.2,14.7,16.5,8.8,9.4,26.3,6.5,14.6,16.8,22.4,11.8,12.4,3.3,8.5,5.1,6.4,13.3,8.1,
 16.4,8.6,15.0,5.5,4.3,10.7,6.2,11.8)

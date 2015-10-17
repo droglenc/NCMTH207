@@ -4,7 +4,9 @@ book/FBMatter/*.aux
 book/data/zPDFSources/
 book/Figs/*.pdf
 book/Figs/zzzOld/
+book/HW/*.aux
 book/HW/*.log
+book/HW/*.out
 book/HW/*.synctex.gz
 book/HW/*.tex
 book/HW/Figs/*.pdf

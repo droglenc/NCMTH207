@@ -11,11 +11,10 @@ library(NCStats)
 @
 \titleRKey{Linear Models Foundations}{Biometry}
 
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
-
 \section*{Question 1.2 (15 pts)}
 <<echo=FALSE, results='hide'>>=
-d <- data.frame(DBP=c(8,12,10,14,2,0,0,-6,0,1,2,-3,-4,2),diet=factor(rep(c("Fish","Standard"),each=7)))
+d <- data.frame(DBP=c(8,12,10,14,2,0,0,-6,0,1,2,-3,-4,2),
+                diet=factor(rep(c("Fish","Standard"),each=7)))
 fish.t <- t.test(DBP~diet,data=d,var.equal=TRUE)
 lm1 <- lm(DBP~diet,data=d)
 a1 <- anova(lm1)
@@ -61,7 +60,7 @@ kREG(lm1)
 
 \vspace{12pt}
 R commands
-<<eval=FALSE,keep.source=TRUE>>=
+<<eval=FALSE>>=
 ## The three lines below are an alternative way to enter the data
 ##   using read.table() is likely easier
 DBP <- c(8,12,10,14,2,0,0,-6,0,1,2,-3,-4,2)

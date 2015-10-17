@@ -1,26 +1,20 @@
-%===============================================================================
-% swv2PDF("04_01_HW_LMRegerssion1.rnw",createScript=FALSE)
-%===============================================================================
-% Overall Sweave and R options
-%-------------------------------------------------------------------------------
-\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
-\SweaveOpts{width=3.5,height=3.5}
-<<echo=false,results=hide>>=
-rm(list=ls(all=TRUE))
-options(width=80,show.signif.stars=FALSE,continue="  ")
-options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
-loadNeeded(c("NCStats"))
-@
-%===============================================================================
-
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+
 \begin{document}
 \titleRKey{Linear Models SLR}{Biometry}
+\renewcommand{\theenumi}{\alph{enumi}}  % changes enumerates from numbers to letters
 
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+<<setup,echo=FALSE,include=FALSE>>=
+## load knitr helper materials
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+## Make sure that the required packages are loaded
+rqrd <- c("NCStats")
+for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
+@
 
-\section*{Question 4.1 (13 pts)}
+\section*{Question 4.1}
   \begin{Enumerate}
     \item Results in table below.
   \begin{Verbatim}[formatcom=\color{blue},xleftmargin=5mm,commandchars=\\\{\}]

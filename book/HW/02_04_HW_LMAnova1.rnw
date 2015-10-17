@@ -1,28 +1,20 @@
-%===============================================================================
-% swv2PDF("02_04_HW_LMAnova1.rnw",createScript=FALSE)
-%===============================================================================
-% Overall Sweave and R options
-%-------------------------------------------------------------------------------
-\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
-\SweaveOpts{width=3.5,height=3.5}
-<<echo=false,results=hide>>=
-rm(list=ls(all=TRUE))
-options(width=80,show.signif.stars=FALSE,continue=" ")
-options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
-loadNeeded(c("NCStats"))
-@
-%===============================================================================
-
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = NRS207 HW Key - 2.4}
+
 \begin{document}
 \titleRKey{Linear Models One-Way ANOVA}{Biometry}
-
 \renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
 
-\section*{Question 2.4 (10 pts)}
-<<echo=FALSE,results=hide>>=
-cuc <- read.table("http://www.ncfaculty.net/dogle/R/Data_Master/R/Cuckoos.txt",header=TRUE)
+<<echo=FALSE, include=FALSE, warning=FALSE, message=FALSE>>=
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+library(NCStats)
+@
+
+\section*{Question 2.4}
+<<echo=FALSE, results="hide">>=
+cuc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv")
 lm1 <- lm(length~species,data=cuc)
 c1 <- coef(lm1)
 s1 <- summary(lm1)
@@ -77,7 +69,7 @@ kREG(lm1)
 \vspace{12pt}
 R commands
 <<eval=FALSE>>=
-cuc <- read.table("http://www.ncfaculty.net/dogle/R/Data_Master/R/Cuckoos.txt",header=TRUE)
+cuc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv")
 lm1 <- lm(length~species,data=cuc)
 anova(lm1)
 summary(lm1)

@@ -1,28 +1,22 @@
-%===============================================================================
-% swv2PDF("04_04_HW_LMRegression1.rnw",createScript=FALSE)
-%===============================================================================
-% Overall Sweave and R options
-%-------------------------------------------------------------------------------
-\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
-\SweaveOpts{width=3.5,height=3.5}
-<<echo=false,results=hide>>=
-rm(list=ls(all=TRUE))
-options(width=80,show.signif.stars=FALSE,continue="  ")
-options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
-loadNeeded(c("NCStats"))
-@
-%===============================================================================
-
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+
 \begin{document}
 \titleRKey{Linear Models SLR}{Biometry}
+\renewcommand{\theenumi}{\alph{enumi}}  % changes enumerates from numbers to letters
 
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+<<setup,echo=FALSE,include=FALSE>>=
+## load knitr helper materials
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+## Make sure that the required packages are loaded
+rqrd <- c("NCStats")
+for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
+@
 
-\section*{Question 4.4 (10 pts)}
-<<echo=FALSE,results=hide>>=
-car <- read.table("http://www.ncfaculty.net/dogle/R/Data_Master/R/CarMPG.txt",header=TRUE)
+\section*{Question 4.4}
+<<echo=FALSE, results='hide'>>=
+car <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv")
 lm1 <- lm(mpg~hp,data=car)
 c1 <- coef(lm1)
 sum1 <- summary(lm1)
@@ -84,41 +78,28 @@ kANOVA(lm1)
   \end{Enumerate}
 
 
-\section*{Question 4.5 (10 pts)}
-<<echo=FALSE,results=hide>>=
+\section*{Question 4.5}
+<<echo=FALSE, results='hide'>>=
 ncv1 <- ncvTest(lm1)
 ad1 <- adTest(lm1$residuals)
 out1 <- outlierTest(lm1)
 @
 
-<<label=carresidplot1,fig=TRUE,include=FALSE,echo=FALSE>>=
-residPlot(lm1,main="")
-@
-<<label=carresidplot2,fig=TRUE,include=FALSE,echo=FALSE>>=
-hist(lm1$residuals,xlab="Residuals",main="")
+<<carresidplot1, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) for the simple linear regression of car mpg on car horespower.", fig.pos="h", fig.width=7, fig.height=3.5, out.width='0.6\\linewidth'>>=
+residPlot(lm1)
 @
   \begin{Enumerate}
     \item The cars appear to be independent as no car was used twice and they were all of different makes and models.
-    \item No non-linearity was detected as the residual plot does not exhibit a distinct curvature \figrefp{fig:carresidplot1}.
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=2.5in]{Figs/ansHW-carresidplot1.pdf}
-  \caption{Residual plot for the simple linear regression of car mpg on car horespower.}\label{fig:carresidplot1}
-\end{figure}
-    \item The residual plot does show a slight heteroscedasticity \figrefp{fig:carresidplot1}.
-    \item The Anderson-Darling test shows weak but insignificant evidence for non-normality (\Sexpr{kPvalue(ad1$p)}) and the histogram of residuals is approximately symmetric \figrefp{fig:carresidplot2}.
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=2in]{Figs/ansHW-carresidplot2.pdf}
-  \caption{Histogram of residuals from the simple linear regression of car mpg on car horespower.}\label{fig:carresidplot2}
-\end{figure}
+    \item No non-linearity was detected as the residual plot does not exhibit a distinct curvature (\figref{fig:carresidplot1}-Left).
+    \item The residual plot does show a slight heteroscedasticity (\figref{fig:carresidplot1}-Left).
+    \item The Anderson-Darling test shows weak but insignificant evidence for non-normality (\Sexpr{kPvalue(ad1$p)}) and the histogram of residuals is approximately symmetric (\figref{fig:carresidplot2}-Right).
     \item There are no significant outliers according to the outlier test (\Sexpr{kPvalue(out1$bonf.p)})
   \end{Enumerate}
 
 \section*{R Commands}
 \vspace{-12pt}
 <<eval=FALSE>>=
-car <- read.table("http://www.ncfaculty.net/dogle/R/Data_Master/R/CarMPG.txt",header=TRUE)
+car <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv")
 lm1 <- lm(mpg~hp,data=car)
 summary(lm1)
 confint(lm1)
@@ -135,9 +116,5 @@ outlierTest(lm1)
 \begin{Itemize}
   \item
 \end{Itemize}
-
-<<echo=FALSE,results=hide>>=
-graphics.off()
-@
 
 \end{document}

@@ -1,29 +1,25 @@
-%===============================================================================
-% swv2PDF("04_02_HW_LMRegression1.rnw",createScript=FALSE)
-%===============================================================================
-% Overall Sweave and R options
-%-------------------------------------------------------------------------------
-\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
-\SweaveOpts{width=3.5,height=3.5}
-<<echo=false,results=hide>>=
-rm(list=ls(all=TRUE))
-options(width=80,show.signif.stars=FALSE,continue="  ")
-options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
-loadNeeded(c("NCStats"))
-@
-%===============================================================================
-
 \documentclass{article}
 \input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+
 \begin{document}
 \titleRKey{Linear Models SLR}{Biometry}
+\renewcommand{\theenumi}{\alph{enumi}}  % changes enumerates from numbers to letters
 
-\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+<<setup,echo=FALSE,include=FALSE>>=
+## load knitr helper materials
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+## Make sure that the required packages are loaded
+rqrd <- c("NCStats")
+for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
+@
 
-\section*{Question 4.2 (6 pts)}
-<<echo=FALSE,results=hide>>=
+\section*{Question 4.2}
+<<echo=FALSE, results='hide'>>=
 year <- 1970:1990
-propmale <- c(0.5134,0.5126,0.5125,0.5128,0.5133,0.5132,0.5128,0.5128,0.5129,0.5127,0.5129,0.5126,0.5123,0.5127,0.5122,0.5126,0.5122,0.5120,0.5121,0.5120,0.5120)
+propmale <- c(0.5134,0.5126,0.5125,0.5128,0.5133,0.5132,0.5128,
+              0.5128,0.5129,0.5127,0.5129,0.5126,0.5123,0.5127,
+              0.5122,0.5126,0.5122,0.5120,0.5121,0.5120,0.5120)
 d <- data.frame(year,propmale)
 lm1 <- lm(propmale~year,data=d)
 sum1 <- summary(lm1)
@@ -52,10 +48,13 @@ ci1
 
 
 
-\section*{Question 4.3 (8 pts)}
-<<echo=FALSE,results=hide>>=
-mass <- c(3.33,4.62,5.43,5.73,6.12,6.29,6.45,6.51,6.65,6.75,6.81,7.56,7.83,8.02,8.06,8.18,9.08,9.15,9.35,9.42,9.95)
-t.cell <- c(0.252,0.263,0.251,0.251,0.183,0.213,0.332,0.203,0.252,0.342,0.471,0.431,0.312,0.304,0.370,0.381,0.430,0.430,0.213,0.508,0.411)
+\section*{Question 4.3}
+<<echo=FALSE, results='hide'>>=
+mass <- c(3.33,4.62,5.43,5.73,6.12,6.29,6.45,6.51,6.65,6.75,6.81,
+          7.56,7.83,8.02,8.06,8.18,9.08,9.15,9.35,9.42,9.95)
+t.cell <- c(0.252,0.263,0.251,0.251,0.183,0.213,0.332,0.203,0.252,
+            0.342,0.471,0.431,0.312,0.304,0.370,0.381,0.430,0.430,
+            0.213,0.508,0.411)
 d <- data.frame(mass,t.cell)
 lm1 <- lm(t.cell~mass,data=d)
 sum1 <- summary(lm1)
@@ -91,18 +90,20 @@ ci1
 \vspace{-12pt}
 <<eval=FALSE>>=
 year <- 1970:1990
-propmale <- c(0.5134,0.5126,0.5125,0.5128,0.5133,0.5132,0.5128,0.5128,0.5129,0.5127,
-0.5129,0.5126,0.5123,0.5127,0.5122,0.5126,0.5122,0.5120,0.5121,0.5120,0.5120)
+propmale <- c(0.5134,0.5126,0.5125,0.5128,0.5133,0.5132,0.5128,
+              0.5128,0.5129,0.5127,0.5129,0.5126,0.5123,0.5127,
+              0.5122,0.5126,0.5122,0.5120,0.5121,0.5120,0.5120)
 d <- data.frame(year,propmale)
 lm1 <- lm(propmale~year,data=d)
 summary(lm1)
 confint(lm1)
 @
 <<eval=FALSE>>=
-mass <- c(3.33,4.62,5.43,5.73,6.12,6.29,6.45,6.51,6.65,6.75,6.81,7.56,7.83,8.02,
-8.06,8.18,9.08,9.15,9.35,9.42,9.95)
-t.cell <- c(0.252,0.263,0.251,0.251,0.183,0.213,0.332,0.203,0.252,0.342,0.471,
-0.431,0.312,0.304,0.370,0.381,0.430,0.430,0.213,0.508,0.411)
+mass <- c(3.33,4.62,5.43,5.73,6.12,6.29,6.45,6.51,6.65,6.75,
+          6.81,7.56,7.83,8.02,8.06,8.18,9.08,9.15,9.35,9.42,9.95)
+t.cell <- c(0.252,0.263,0.251,0.251,0.183,0.213,0.332,0.203,0.252,
+            0.342,0.471,0.431,0.312,0.304,0.370,0.381,0.430,0.430,
+            0.213,0.508,0.411)
 d <- data.frame(mass,t.cell)
 lm2 <- lm(t.cell~mass,data=d)
 summary(lm2)
@@ -117,7 +118,5 @@ predict(lm2,data.frame(mass=5),interval="p")
   \item When discussing whether there is a relationship between the response and the explanatory variable you must explicitly note that you are referring to the slope p-value.  You cannot just refer the reader to the ``p-value'' in the table from \R{summary()} because there are three p-values in that table.  Be precise with your language!!
   \item Remember to use CI when describing rates of change (i.e., slopes) or predictions; don't just use the best estimate.
 \end{Itemize}
-
-
 
 \end{document}
