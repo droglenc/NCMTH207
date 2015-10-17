@@ -1,0 +1,130 @@
+\chapter{Proofs}
+\vspace{-40pt}
+This appendix contains proofs mentioned throughout the book.
+
+\section{Partition Total SS} \label{app:ProofSSPartition}
+The following proof shows that $SS_{Total}$ algebraically partitions into $SS_{Within}$ and $SS_{Among}$.  This proof is for the simplest situation where group means are considered (rather than regression lines) and under the assumption that the sample sizes are equal among all groups.
+\begin{itemize}
+  \item Define $SS_{Total}$.
+    \[\Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2} \]
+
+  \item Add and subtract a $\bar{Y}_{i\cdot}$ term in $SS_{Total}$
+    \[ \begin{split}
+      \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}+\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2} \\
+      \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left[\left(Y_{ij}-\bar{Y}_{i\cdot}\right)+\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)\right]^{2} \\
+    \end{split} \]
+
+  \item Perform basic distributive algebra.
+    \[ \begin{split}
+      \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left[\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}+2\left(Y_{ij}-\bar{Y}_{i\cdot}\right)\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)+\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}\right] \\
+      \Sum_{i=1}^{I}\left[\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}+\Sum_{j=1}^{n_{i}}2\left(Y_{ij}-\bar{Y}_{i\cdot}\right)\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)+\Sum_{j=1}^{n_{i}}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}\right] \\
+    \end{split} \]
+
+  \item Examine the $\Sum_{j=1}^{n_{i}}2\left(Y_{ij}-\bar{Y}_{i\cdot}\right)\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)$ term more closely
+    \begin{itemize}
+      \item Perform algebra
+        \[ \begin{split}
+          2\Sum_{j=1}^{n_{i}}\left(Y_{ij}\bar{Y}_{i\cdot}-Y_{ij}\bar{Y}_{\cdot\cdot}-\bar{Y}_{i\cdot}\bar{Y}_{i\cdot}+\bar{Y}_{i\cdot}\bar{Y}_{\cdot\cdot}\right) \\
+          2\left(\Sum_{j=1}^{n_{i}}Y_{ij}\bar{Y}_{i\cdot}-\Sum_{j=1}^{n_{i}}Y_{ij}\bar{Y}_{\cdot\cdot}-\Sum_{j=1}^{n_{i}}\bar{Y}_{i\cdot}^{2}+\Sum_{j=1}^{n_{i}}\bar{Y}_{i\cdot}\bar{Y}_{\cdot\cdot}\right) \\
+          2\left(\bar{Y}_{i\cdot}\Sum_{j=1}^{n_{i}}Y_{ij}-\bar{Y}_{\cdot\cdot}\Sum_{j=1}^{n_{i}}Y_{ij}-\bar{Y}_{i\cdot}^{2}\Sum_{j=1}^{n_{i}}1+\bar{Y}_{i\cdot}\bar{Y}_{\cdot\cdot}\Sum_{j=1}^{n_{i}}1\right) \\
+        \end{split} \]
+      \item Under the assumption of equal $n_{i}$ for all $i$ then
+        \[ 2\left(\bar{Y}_{i\cdot}n_{i}\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}n_{i}\bar{Y}_{i\cdot}-\bar{Y}_{i\cdot}^{2}n_{i}+\bar{Y}_{i\cdot}\bar{Y}_{\cdot\cdot}n_{i} \right) = 0 \]
+    \end{itemize}
+
+  \item The middle term then falls out leaving
+    \[ \Sum_{i=1}^{I}\left[\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}+\Sum_{j=1}^{n_{i}}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}\right]  \]
+  \item More algebra yields
+    \[ \begin{split}
+      \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}+\Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2} \\
+      \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}+\Sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}
+    \end{split} \]
+  \item Thus, by definition of \eqref{eqn:SSwithin} and \eqref{eqn:SSamong}, $SS_{Total}=$$SS_{Within}+$$SS_{Among}$
+\end{itemize}
+
+
+%\vspace{24pt}
+\section{Back-Transforming Mean of Log Scale} \label{app:ProofBackTransform1}
+The following proof shows that back-transforming the arithmetic mean on the natural log scale produces the geometric mean on the original scale.
+
+\begin{itemize}
+  \item Define the arithmetic mean as $\bar{x} = \frac{\Sum_{i=1}^{n} x_i}{n}$ and the geometric mean as $\ddot{x} = \sqrt[n]{\Prod_{i=1}^{n} x_i}$.
+  \item Consider the mean of a natural log-transformed variable
+    \[ \overline{log(x)} = \frac{\Sum_{i=1}^{n} log(x_i)}{n} \]
+  \item To back-transform raise the mean of the natural log-transformed variable as the power of $e$.
+    \[ e^{\overline{log(x)}} = e^{\frac{\Sum_{i=1}^{n} log(x_i)}{n}} \]
+  \item Simplify the exponent
+    \[ e^{\overline{log(x)}} = \left[e^{\Sum_{i=1}^{n} log(x_i)}\right]^{\frac{1}{n}} \]
+  \item Rewrite the summation
+    \[ e^{\overline{log(x)}} = \left[e^{log(x_1)+log(x_2)+ \cdots + log(x_n)}\right]^{\frac{1}{n}} \]
+  \item Apply the rule that $e^{a+b}=e^{a}e^{b}$
+    \[ e^{\overline{log(x)}} = \left[e^{log(x_1)}e^{log(x_2)} \cdots e^{log(x_n)}\right]^{\frac{1}{n}} \]
+  \item Apply the rule that $e^{log(a)}=a$
+    \[ e^{\overline{log(x)}} = \left[x_1 x_2 \cdots x_n\right]^{\frac{1}{n}} \]
+  \item Use the definition of a product and inverse exponents
+    \[ e^{\overline{log(x)}} = \left[\Prod_{i=1}^{n}\right]^{\frac{1}{n}} = \sqrt[n]{\Prod_{i=1}^{n} x_i} \]
+  \item Thus, by definition of the geometric mean, $e^{\overline{log(x)}} = \ddot{x}$
+\end{itemize}
+
+This phenomenon can also be illustrated with the simple example shown in \tabref{tab:SLRTransformDemo}.  In this example, the raw data is in the column labeled $Y$ and the natural log transformed data are in the $log(Y)$ column.  The arithmetic means of each column are shown at the bottom of the table.  The back-transformed arithmetic mean of the log-transformed data is thus $e^{4.605}=100$.  This value is equal to the geometric mean of the raw data and considerably underestimates the arithmetic mean of the raw data illustrating the negative bias associated with back-transforming log-transformed data.
+
+\begin{table}[h]
+  \centering
+  \caption{Demonstration of means for raw ($Y$) and log-transformed ($log(Y)$) data}\label{tab:SLRTransformDemo}
+    \begin{tabular}{ccc}
+       & $Y$ & $log(Y)$ \\
+      \cline{2-3}
+       & 1 & 0 \\
+       & 10 & 2.303 \\
+       & 100 & 4.605 \\
+       & 1000 & 6.908 \\
+       & 10000 & 9.210 \\
+      \cline{2-3}
+      Mean &  &  \\
+      \cline{1-1}
+      Arithmetic & 2222.2 & 4.605 \\
+      Geometric & 100 &  \\
+    \end{tabular}
+\end{table}
+
+
+
+
+%\newpage
+%\section{Poisson PDF} \label{app:ProofPoissonPDF}
+%\begin{itemize}
+%  \item Begin with the binomial PDF
+%    \[ P(X=x) = \left(\begin{array}[pos]{c}
+%      n\\
+%      x\end{array}\right)(\theta h)^{x}(1-\theta h)^{n-x} \]
+%  \item Replace $h$ with $\frac{t}{n}$
+%    \[ P(X=x) = \left(\begin{array}[pos]{c}
+%      n\\
+%      x\end{array}\right)\left(\theta\frac{t}{n}\right)^{x}\left(1-\theta\frac{t}{n}\right)^{n-x} \]
+%  \item Separate exponents and the binomial coefficient
+%    \[ P(X=x) = \frac{n!}{x!(n-x)!}\frac{(\theta t)^{x}}{n^{x}}\left(1-\frac{\theta t}{n}\right)^{n}\left(1-\frac{\theta t}{n}\right)^{-x}  \]
+%  \item Rearrange some of the terms in the fractions
+%    \[ P(X=x) = \frac{n!}{n^{x}(n-x)!}\frac{(\theta t)^{x}}{x!}\left(1-\frac{\theta t}{n}\right)^{n}\left(1-\frac{\theta t}{n}\right)^{-x}  \]
+%  \item Realize that the $\begin{array}[pos]{c}
+%      \text{lim}\\
+%      n\rightarrow\infty\end{array}$ of $\frac{n!}{n^{x}(n-x)!}$ and $\left(1-\frac{\theta t}{n}\right)^{-x}$ is 1. Thus,
+%    \[ \begin{array}[pos]{c}
+%      \text{lim} \\
+%      n\rightarrow\infty\end{array} P(X=x) = \frac{(\theta t)^{x}}{x!}\left(1-\frac{\theta t}{n}\right)^{n} \]
+%  \item Replace $-\frac{\theta t}{n}$ with $Z$ realizing also that $n=-\frac{\theta t}{Z}$
+%    \[ \begin{array}[pos]{c}
+%      \text{lim} \\
+%      n\rightarrow\infty\end{array} P(X=x) = \frac{(\theta t)^{x}}{x!}(1+Z)^{-\frac{\theta t}{Z}} \]
+%  \item Rewrite exponent of last term on right-hand side
+%    \[ \begin{array}[pos]{c}
+%      \text{lim} \\
+%      n\rightarrow\infty\end{array} P(X=x) = \frac{(\theta t)^{x}}{x!}\left[(1+Z)^{\frac{1}{Z}}\right]^{-\theta t} \]
+%  \item Realize that as $n\rightarrow\infty$ that $Z\rightarrow0$ and that $\begin{array}[pos]{c}
+%      \text{lim}\\
+%      Z\rightarrow0\end{array} \left(1+Z\right)^{\frac{1}{X}}=e$.  Thus,
+%    \[ \begin{array}[pos]{c}
+%      \text{lim} \\
+%      n\rightarrow\infty\end{array} P(X=x) = \frac{(\theta t)^{x}}{x!}e^{-\theta t} \]
+%\end{itemize}
+
+%Thus, the Poisson PDF is $f(x)=\frac{(\theta t)^{x}}{x!}e^{-\theta t}$.

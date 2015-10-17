@@ -1,0 +1,54 @@
+\documentclass[10pt,openany]{book}
+
+%\usepackage{animate}
+%\input{c:/aaaWork/zGnrlLatex/BookPreamble_HC}   % use for the hard-copy version
+\input{c:/aaaWork/zGnrlLatex/BookPreamble}
+\hypersetup{pdftitle = MTH207 Notes}
+\input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+
+\begin{document}
+<<setup,echo=FALSE,include=FALSE>>=
+## load knitr helper materials
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+## more knitr options -- force use of include for child documents
+opts_knit$set(child.command='input')
+## Turn off highlighting and darken box a bit
+opts_chunk$set(highlight=FALSE,background=c(235,235,235)/255)
+## Make sure that the required packages are loaded
+rqrd <- c("NCStats","FSA","car","DAAG","multcomp")
+for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
+@
+
+  \frontmatter
+    \include{FMatter}
+
+  \mainmatter
+<<child-Foundations, child='LMFoundations.Rnw', eval=TRUE>>=
+@
+<<child-Anova1, child='LMAnova1.Rnw',           eval=TRUE>>=
+@
+<<child-Anova2, child='LMAnova2.Rnw',           eval=TRUE>>=
+@
+<<child-Regression1, child='LMRegression1.Rnw', eval=TRUE>>=
+@
+<<child-Regression2, child='LMRegression2.Rnw', eval=TRUE>>=
+@
+<<child-Logistic, child='LMLogistic.Rnw',       eval=TRUE>>=
+@
+
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{part}{Appendix}            %Add a TOC entry
+    \addtocontents{toc}{\setcounter{tocdepth}{0}}    %so appendices not in TOC
+    \chapter*{Appendices}
+    \appendix
+      \include{Proofs}
+
+  \backmatter
+%BIBLIOGRAPHY -----------------------------------------------------------------------
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{part}{Bibliography}        %Add a TOC entry
+    \bibliography{c:/aaaWork/zGnrlLatex/DHO_Bib}     %make the bibliography
+
+\end{document}

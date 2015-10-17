@@ -1,0 +1,37 @@
+%===============================================================================
+% swv2PDF("03_01_HW_LMAnova2.rnw",createScript=FALSE)
+%===============================================================================
+% Overall Sweave and R options
+%-------------------------------------------------------------------------------
+\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
+\SweaveOpts{width=3.5,height=3.5}
+<<echo=false,results=hide>>=
+rm(list=ls(all=TRUE))
+options(width=80,show.signif.stars=FALSE,continue="  ")
+options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
+loadNeeded(c("NCStats"))
+@
+%===============================================================================
+
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\begin{document}
+\titleRKey{Linear Models Two-Way ANOVA}{Biometry}
+
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\section*{Question 3.1 (6 pts)}
+  \begin{enumerate}
+    \item There is NO interaction effect because all ``lines'' are ``parallel'' to each other.  There is a row factor main effect because all ``lines'' in the left plot are not horizontal (implying a difference in row level means).  There is a column factor main effect because all ``lines'' in the right plot are not horizontal (implying a difference in column level means).
+    \item There is NO interaction effect because all ``lines'' are ``parallel'' to each other.  There is a row factor main effect because all ``lines'' in the left plot are not horizontal (implying a difference in row level means).  There is NO column factor main effect because all ``lines'' in the right plot are horizontal (implying that the column level means are all equal).
+    \item There IS an interaction effect because the ``lines'' are not parallel (i.e., they intersect) in both plots.  I will not comment on the main effects because of the presence of the interaction effect.
+  \end{enumerate}
+
+
+\vspace{48pt}
+\section*{Notes from the Professor}
+\begin{Itemize}
+  \item Make sure that you comment about each type of effect (interaction, row factor,  and column factor) even if that effect is not evident.  In other words, explicitly state that there is no effect if there is no effect; don't just leave that effect absent from your answer.
+\end{Itemize}
+
+\end{document}

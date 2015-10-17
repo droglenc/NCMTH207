@@ -1,0 +1,104 @@
+# Tadpoles.txt
+#
+# Body mass of plains leopard frog tadpoles kept at two levels of UV-B light
+#   intensity and three levels of density		
+#     uvb: UV-B light intensity treatment (Low, High)
+#     density: Tadpole density treatment (1,2, or 4 tadpoles per 'tank')
+#     mass: measured body mass of the tadpole (g)
+#
+# Data simulated from Smith et al. 2000. Consequences of embryonic UV-B exposure
+#  for embryos and tadpoles of the plains leopard frog. Conservation Biology 14:1903-1907.
+#
+# use uvb <- factor(uvb,levels=c("Low","High")) after entering
+#
+uvb	density	mass
+High	1	0.910
+High	1	0.045
+High	1	2.880
+High	1	0.980
+High	1	1.072
+High	1	0.834
+High	1	0.877
+High	1	1.973
+High	1	0.937
+High	1	0.022
+High	1	2.333
+High	1	1.009
+High	1	0.452
+High	1	0.291
+High	1	1.356
+Low	1	1.890
+Low	1	2.386
+Low	1	1.511
+Low	1	1.254
+Low	1	0.656
+Low	1	1.119
+Low	1	1.906
+Low	1	1.313
+Low	1	0.587
+Low	1	0.710
+Low	1	2.075
+Low	1	1.762
+Low	1	3.179
+Low	1	1.140
+Low	1	0.658
+High	2	0.239
+High	2	0.924
+High	2	0.343
+High	2	1.199
+High	2	0.398
+High	2	1.076
+High	2	1.347
+High	2	0.469
+High	2	0.202
+High	2	0.827
+High	2	0.547
+High	2	1.251
+High	2	0.469
+High	2	0.942
+High	2	1.160
+Low	2	0.921
+Low	2	0.519
+Low	2	0.630
+Low	2	0.973
+Low	2	1.145
+Low	2	1.521
+Low	2	0.555
+Low	2	0.803
+Low	2	0.826
+Low	2	1.166
+Low	2	0.835
+Low	2	0.822
+Low	2	0.988
+Low	2	0.847
+Low	2	0.529
+High	4	0.875
+High	4	0.448
+High	4	0.144
+High	4	0.967
+High	4	0.917
+High	4	0.570
+High	4	0.836
+High	4	0.588
+High	4	1.117
+High	4	1.151
+High	4	0.414
+High	4	0.892
+High	4	1.192
+High	4	0.002
+High	4	1.114
+Low	4	1.331
+Low	4	0.594
+Low	4	0.755
+Low	4	0.607
+Low	4	1.072
+Low	4	0.727
+Low	4	1.182
+Low	4	0.668
+Low	4	0.919
+Low	4	0.869
+Low	4	0.318
+Low	4	0.642
+Low	4	0.704
+Low	4	0.632
+Low	4	0.771

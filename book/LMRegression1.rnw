@@ -1,0 +1,1187 @@
+<<echo=FALSE, cache=FALSE, results='hide'>>=
+set_parent('Biometry.Rnw')
+@
+
+\chapter{Simple Linear Regression}  \label{chap:LMRegression1}
+  \vspace{0pt}
+    \begin{ChapObj}{\boxwidth}
+      \textbf{Chapter Objectives:}
+        \begin{Enumerate}
+          \item Describe the equation of a line including the meanings of the two parameters.
+          \item Describe how the best-fit line to a set of bivariate data is derived.
+          \item Understand how to construct hypothesis tests and confidence intervals for parameters and predictions.
+          \item Describe the difference between confidence and prediction intervals related to predictions.
+          \item Describe the importance of the default hypothesis tests for parameters.
+          \item Show all interrelationships among coefficient, ANOVA, and summary computations.
+          \item Describe why meeting the assumptions of a regression analysis is important.
+          \item Describe what a residual is.
+          \item Describe how to assess the four major assumptions of linear regression.
+          \item Describe the importance of transforming variables.
+          \item Describe three methods for choosing an appropriate variable transformation.
+          \item Understand the concept of competing models and their relationship to hypothesis tests in SLR.
+          \item Understand how to interpret the results in an ANOVA table.
+        \end{Enumerate}
+    \end{ChapObj}
+  \vspace{-12pt}
+\minitoc
+\newpage
+
+\lettrine{A}{ simple linear regression (SLR) is used} when a single quantitative response and a single quantitative explanatory variable are considered\footnote{Indicator variable regression (IVR; see \chapref{chap:LMRegression2} is used when multiple explanatory variables are present and some of those are factor variables.  Multiple linear regression (MLR) will be used when multiple quantitative explanatory variables are present.}.  The goals of SLR are to use the value of the explanatory variable to (1) predict future values of the response variable and (2) explain the variability of the response variable.  A simple linear regression, the topic of this chapter, would be used in each of these situations:
+\begin{Enumerate}
+  \item Predict annual consumption for a species from a biomass estimate.
+  \item Evaluate the variability of porcupine body mass based on days since the beginning of winter.
+  \item Evaluate the variability in clutch size relative to length of female spiders.
+  \item Predict daily energy consumption from the body weight of penguins.
+  \item Predict change in duck abundance from the loss of wetlands.
+  \item Predict plant shoot dry mass from total leaf length.
+\end{Enumerate}
+
+\warn{The two major goals of SLR are to use the explanatory variable to (1) predict a future value of the response variable and (2) explain the variability of the response variable.}
+
+\section{Foundational Review}
+\subsection{Variable Definitions}
+In SLR, the variable that will be predicted or have its variability explained, is called the \emph{response variable}\footnote{Some call this the \emph{dependant variable}.}.  The other variable, the variable that will be used to make better predictions and to help explain the variability of the response variable, is called the \emph{explanatory variable}\footnote{Some call this the \emph{independent variable}.}.  The explanatory variable is always plotted on the x-axis; thus, the response variable is always plotted on the y-axis.
+
+\defn{Response Variable}{The variable in SLR that is to be predicted or have its variability explained.}
+
+\vspace{-12pt}
+\defn{Explanatory Variable}{The variable in SLR that is used to predict or explain the variability of the response variable.}
+
+\subsection{Line Equation}
+Both goals of SLR are accomplished by finding the model\footnote{The use of the word ``model'' is used here instead of the word ``line'' because in this class, models other than lines will be fit to some data.  However, all models will be fit by finding a ``scale'' on which the form of the relationship between the response and explanatory variable is linear.} that best fits the relationship between the response variable and the explanatory variable\footnote{It is assumed that you covered the basics of simple linear regression in your introductory statistics course.  Thus, parts of this section will be review, although the nomenclature used may differ somewhat.}.  When examining statistical regression models, the most common expression for the equation of the best-fit line is
+\begin{equation}\label{eqn:SLRpopn}
+  \mu_{Y|X} = \alpha + \beta_{1}X
+\end{equation}
+where $Y$ represents the response variable, $X$ the explanatory variable, $\alpha$ the y-intercept and $\beta_{1}$ the slope.  The left-hand-side (LHS) of \eqref{eqn:SLRpopn} is read as ``the mean of Y at a given value of X.''   This terminology is used for the LHS because the best-fit line actually models the mean values of $Y$ at each value of $X$ rather than the individuals themselves.  The model in \eqref{eqn:SLRpopn} is for the population\footnote{This was likely obvious as you noticed the use of Greek letters which are reserved for parameters.}.  The equation of the best-fit line based on the information in the sample is written as
+\begin{equation}\label{eqn:SLRsample}
+  \hat{\mu}_{Y|X} = \hat{\alpha} + \hat{\beta}_{1}X
+\end{equation}
+In other words, \eqref{eqn:SLRpopn} is essentially a parameter (i.e., it represents the population line) and \eqref{eqn:SLRsample} is a statistic (i.e., it estimates a parameter based only on the information in a sample).  Thus,  $\alpha$ and $\beta_{1}$ represent the population y-intercept and slope, respectively; whereas $\hat{\alpha}$ and $\hat{\beta}_{1}$ represent the sample y-intercept and slope.
+
+\subsection{Best-Fit Line}
+The statistics $(\hat{\alpha}, \hat{\beta}_{1})$ in \eqref{eqn:SLRsample} are determined by finding the values for $(\alpha, \beta_{1})$ that minimize the residual sum-of-squares (RSS).  A residual is the difference between an observed value of the response variable for an individual, $y_{i}$, and a predicted value of the response variable based on the model \eqref{eqn:SLRpopn} given that individuals value of the explanatory variable, $x_{i}$ \figrefp{fig:SLRResidDemo}.  In other words, a residual is computed as $y_{i}-\hat{\mu}_{Y|X=x_{i}}$.
+
+<<SLRResidDemo, echo=FALSE, fig.cap="Scatterplot with best-fit line illustrating five residuals.", fig.pos="h">>=
+ LT <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+ lt.lm <- lm(eggs~tl,data=LT)
+ plot(eggs~tl,data=LT,xlab="Total Length (mm)",ylab="Number of Eggs",col="white",xlim=c(650,950))
+ abline(lt.lm,lwd=2,col="blue")
+ lt.sub <- c(10,45,64,100,101)
+ points(LT$tl[lt.sub],LT$eggs[lt.sub])
+ for (i in 1:length(lt.sub)) {
+   lines(c(LT$tl[lt.sub[i]],LT$tl[lt.sub[i]]),c(LT$eggs[lt.sub[i]],lt.lm$fitted.values[lt.sub[i]]),lty=2,col="blue")
+ }
+@
+
+\defn{Residual}{The difference between the observed value of the response variable for an individual and the predicted value of the response variable using the best-fit line; i.e., $y_{i}-\hat{\mu}_{Y|X=x_{i}}$.}
+
+The RSS is the sum of the squares of these residuals, or
+\[ RSS = \Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X=x_{i}}\right)^{2} \]
+It can be shown with calculus that the RSS is minimized with a slope given by
+\[ \hat{\beta}_{1} = r\frac{s_{Y}}{s_{X}} \]
+and a y-intercept given by
+\begin{equation}\label{eqn:SLRintercept}
+    \hat{\alpha} = \overline{Y} - \hat{\beta}_{1}\overline{X}
+\end{equation}
+
+where $r$ is the sample correlation coefficient, $\overline{Y}$ and $\overline{X}$ are the sample means, and $s_{Y}$ and $s_{X}$ are the sample standard deviations of the response and explanatory variable, respectively.
+
+\defn{RSS}{Residual Sum-of-Squares}
+
+\vspace{-12pt}
+\warn{The best-fit line is the line of all possible lines that minimizes the RSS.}
+
+\subsection{Best-Fit Line in R}
+\subsubsection*{Coefficient Results}
+The best-fit regression line is obtained with \R{lm()}.  The formula argument to this function is of the form \R{response}$\sim$\R{explanatory}.  As usual, the results of this function should be assigned to an object that can be sent to other functions to extract specific results.  For example, the simple linear regression for predicting the number of eggs based on the total length of a Lake Superior female lake trout is obtained with
+
+<<>>=
+LT <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+( lt.lm <- lm(eggs~tl,data=LT) )
+@
+
+These results show that the slope of the best-fit line is \Sexpr{formatC(coef(lt.lm)[2],format="f",digits=1)} and the intercept is \Sexpr{formatC(coef(lt.lm)[1],format="f",digits=1)}.  Thus, with this model, it is predicted that the number of eggs will increase by about \Sexpr{formatC(coef(lt.lm)[2],format="f",digits=1)}, on average, for each 1 mm increase in total length of a female lake trout.  Because these data are not longitudinal this result is best stated for a 1 mm difference in total length of two female lake trout; i.e., a female lake trout that is 1 mm longer than another female lake trout will have an average of \Sexpr{formatC(coef(lt.lm)[2],format="f",digits=1)} more eggs.
+
+\subsubsection*{Fitted-Line Plot}
+A visual representation of the best-fit line is obtained by super-imposing the best-fit line onto a scatterplot of the data.  This plot is called a fitted-line plot and can be obtained with \R{fitPlot()} in essentially the same way it was used in previous chapters.  The fitted-line plot for the lake trout egg data \figrefp{fig:SLRLTFittedLinePlot} is obtained with
+
+<<SLRLTFittedLinePlot, fig.cap="Scatterplot of number of eggs versus total length for Lake Superior lake trout with best-fit line superimposed.", fig.pos="h">>=
+ fitPlot(lt.lm,ylab="Number of eggs",xlab="Total Length",main="")
+@
+
+
+\section{Inferences} \label{sect:SLRInferences}
+\subsection{Slope \& Intercept}
+It is very common to make inferences about $\alpha$ and $\beta_{1}$ from the corresponding statistics.  Just like every other statistic, these statistics are subject to sampling variability and, thus, have sampling distributions.  The sampling distributions of $\hat{\alpha}$ and $\hat{\beta}_{1}$ are normally distributed (if the assumptions of SLR are met; see \sectref{sect:SLRAssumptions}) and unbiased\footnote{It is important to think back to your introductory statistics course to remind yourself what it means for a statistic to be unbiased.}.  The standard error of the sample y-intercept is given by
+\[ SE_{\hat{\alpha}} = \sqrt{s^{2}_{Y|X}\left(\frac{1}{n}+\frac{\bar{X}^{2}}{(n-1)s_{X}^{2}}\right)} \]
+and the standard error of the sample slope is given by
+\[ SE_{\hat{\beta}_{1}} = \sqrt{\frac{s^{2}_{Y|X}}{(n-1)s_{X}^{2}}}  \]
+where $s^{2}_{Y|X}$ is the variance that measures the natural variability of individuals around the line\footnote{The best-fit line does not perfectly represent every individual.  This statistic is a measure of how the individuals scatter around the line.}.
+
+\warn{The sample slope and sample y-intercept are statistics and thus have sampling distributions and standard errors.}
+
+More complete results from fitting the SLR model to the lake trout egg data are shown in  \tabref{tab:SLRLTResults1}.  All results for the y-intercept are in the row labeled with ``(Intercept).''  All results for the slope are in the row labeled with the variable name of the explanatory variable (\var{tl} in this example).  The estimated y-intercept and slope values are in the column labeled ``Estimate.''  The standard errors for the sample y-intercept and slope are in the column labeled ``Std. Error.''
+
+\begin{table}[h]
+  \centering
+  \caption{Least-squares regression results for the model $\mu_{eggs|tl} = \alpha + \beta_{1}tl$}\label{tab:SLRLTResults1}
+<<echo=FALSE, background="white">>=
+kREG(lt.lm)
+@
+\end{table}
+
+Two common hypothesis tests in SLR are to determine whether or not the population y-intercept or the population slope is equal to a particular value.  These hypotheses are written in the typical format as
+\[ \begin{split}
+H_{A}&: \alpha \neq \alpha_{0} \\
+H_{A}&: \beta_{1} \neq \beta_{10}
+\end{split} \]
+where $\alpha_{0}$ and $\beta_{10}$ represents a specific value for $\alpha$ and $\beta_{1}$.  As an example\footnote{It is assumed that you are familiar with the following test statistic and confidence interval formula from the 1-sample t-test taught in your introductory statistics course.}, the hypothesis for the slope is tested with the following test statistic
+\begin{equation}\label{eqn:tTestStat}
+  t = \frac{\hat{\beta}_{1}-\beta_{10}}{SE_{\hat{\beta}_{1}}}
+\end{equation}
+with $df=n-2$.  Familiarly, a confidence interval is constructed with
+\[ \hat{\beta}_{1} \pm t^{*}SE_{\hat{\beta}_{1}} \]
+The test statistic and confidence interval for the intercept test is constructed similarly.
+
+\warn{Hypothesis tests and confidence intervals for the population slope and population y-intercept are performed with the same general formulas for t- test statistics and confidence intervals learned in your introductory statistics course.  The major difference being that $df=n-2$.}
+
+As an example, suppose that interest is in determining whether or not a significant portion of the variability in the number of eggs in mature female lake trout can be explained by the total length of the fish.  This question translates into a hypothesis to determine if the response and explanatory variable are significantly related.  This in turn translates into a simple hypothesis test to determine if the population slope is equal to zero or not\footnote{You should convince yourself that a test of whether or not the slope is equal to zero, is also a test of whether or not the response and explanatory variable are significantly related}.  Thus, the statistical hypotheses to be tested are
+\[ \begin{split}
+H_{0}&: \beta_{1} = 0 \\
+H_{A}&: \beta_{1} \neq 0
+\end{split} \]
+
+The test statistic\footnote{The values used in this test statistic come from \tabref{tab:SLRLTResults1}.} for testing this hypothesis is $t=\frac{22.15-0}{2.35}=9.44$.  Thus, with $df=99$, the p-value is exceptionally small and the null hypothesis is soundly rejected resulting in a conclusion that the number of eggs per female is, in fact, significantly related to the length of the female lake trout.  This conclusion can be made stronger by computing a 95\% confidence interval for the population slope in orer to give an estimate of the direction and magnitude of the relationship.  A 95\% confidence interval for the slope is $22.15\pm1.984*2.35$ or $(17.50, 26.81)$.  Thus, one is 95\% confident that the true change in the mean number of eggs with a one mm increase in total length is between 17.50 and 26.81.
+
+A careful examination of \tabref{tab:SLRLTResults1} shows that the test statistic and p-value for this hypothesis test have already been calculated by R\footnote{As an example, for the population slope, compare the results in the slope row from \tabref{tab:SLRLTResults1} with the results in the previous paragraph.}.  In fact, these t- and p-values are for testing the very common specific hypotheses of whether the model parameter equals zero or not; e.g., tests if the population slope is different from zero.
+
+It is important for you to note that the t- and p-values printed in this output are only useful for testing the particular hypotheses that the corresponding parameter is equal to zero; all other hypothesis tests are NOT computed automatically by R or other common software packages.  However, it is also important to note that testing that the slope is equal to zero is of great importance in linear regression because it determines whether the explanatory and response variable are significantly related or not.
+
+\warn{The default p-values printed by most software programs are for the specific null hypothesis that the corresponding parameter is equal to zero (vs. that it is not).  Those values cannot be used for any other hypothesis tests.}
+
+\vspace{-12pt}
+\warn{The test of whether the population slope equals zero or not is also a test of whether the response and explanatory variable are significantly related.}
+
+\subsubsection{Slope \& Intercept Inferences in R}
+The information necessary for computing hypothesis tests about the slope and y-intercept (i.e., the results shown in \tabref{tab:SLRLTResults1}) is obtained by submitting the fitted \R{lm} object to \R{summary()}.  In addition, confidence intervals for each parameter in a linear model can be obtained by submitting the saved \R{lm} object to \R{confint()}.  For example, the confidence intervals for the parameters in the lake trout egg data are obtained with\footnote{Note that the 95\% confidence interval for the population slope is found in the row labeled with the explanatory variable.  Thus, in this example, one is 95\% confident that the population slope is between \Sexpr{formatC(confint(lt.lm)[2,1],format="f",digits=1)} and \Sexpr{formatC(confint(lt.lm)[2,2],format="f",digits=1)}.}
+
+<<>>=
+confint(lt.lm)
+@
+
+A simultaneous confidence ``region'' for both parameters of an SLR actually forms an elliptical region \figrefp{fig:SLRLTConfEllipse}.  The region shown in \figref{fig:SLRLTConfEllipse} is set to contain the point $(\alpha,\beta_{1})$ with 95\% confidence.  In other words, one is 95\% confident that \emph{both} $\alpha$ and $\beta_{1}$ are simultaneously contained within the elliptical region shown.  Interestingly, projections of the extremes of the ellipse onto the ``Intercept'' (i.e., ``X'') and ``slope'' (i.e., ``Y'') axes form univariate 95\% confidence intervals for the intercept and slope parameters, respectively\footnote{Note how these projections have the same endpoints as the results from \R{confint()}.}.
+
+<<SLRLTConfEllipse, echo=FALSE, fig.cap="Confidence ellipse for $\\alpha$ and $\\beta_{1}$ from the regression of number of eggs versus total length for Lake Superior lake trout.", fig.pos="h">>=
+ ci <- confint(lt.lm)
+ confidenceEllipse(lt.lm,Scheffe=TRUE,col="black",lwd=2,xaxt="n",yaxt="n")
+ lines(rep(ci[1,2],2),c(0,ci[2,1]),lty=2,col="red",lwd=2)
+ lines(rep(ci[1,1],2),c(0,ci[2,2]),lty=2,col="red",lwd=2)
+ lines(c(-15000,ci[1,2]),rep(ci[2,1],2),lty=3,col="blue",lwd=2)
+ lines(c(-15000,ci[1,1]),rep(ci[2,2],2),lty=3,col="blue",lwd=2)
+ axis(1,at=ci[1,],labels=round(ci[1,],0),padj=1.25,tcl=-1,fg="red",col.axis="red",lwd=2)
+ axis(2,at=ci[2,],labels=round(ci[2,],1),padj=-1.25,tcl=-1,fg="blue",col.axis="blue",lwd=2)
+@
+\vspace{9pt}
+Another interesting result illustrated with \figref{fig:SLRLTConfEllipse} is that the regression parameters are highly correlated.  In this instance, as the intercept increases the slope decreases.  Not all regression parameters are highly correlated, but many are.  This may cause some difficulty in some situations; corrections will be addressed when those topics are discussed in subsequent sections.
+
+The testing of hypotheses comparing the slope and intercept to values other than zero can be efficiently computed with \R{hoCoef()}\footnote{This function is a very simple function that computes the test statistic as defined in \eqref{eqn:tTestStat} and then computes the p-value from the t-distribution with the \R{pt()} function.}.  This function requires the saved \R{lm} object as its first argument, a number representing the term in the model to be tested (in SLR \R{term=1} is the intercept and \R{term=2} is the slope) as its second argument, and the null hypothesized value (i.e., $\alpha_{0}$ or $\beta_{10}$) as the third argument.  In addition, the direction of the alternative hypothesis can be defined with the \R{alt=} argument.  For example, the following code can be used to test whether the true slope is greater than 20 eggs (i.e.,  $H_{A}: \beta_{1}>20$),
+
+<<>>=
+hoCoef(lt.lm,2,20,alt="greater")
+@
+Thus, there is very little evidence (\Sexpr{kPvalue(hoCoef(lt.lm,2,20,alt="greater")[,"p value"])}) that the increase in number of eggs for a 1 mm increase in length is significantly greater than 20\footnote{This is not a surprising result given the confidence interval for the slope computed above.}.
+
+
+\subsection{Centering \& Intercept} \label{sect:SLRCentering}
+Most hypothesis tests in SLR are related to the slope.  However, in some instances, interest may be in the intercept.  However, the interpretation of the y-intercept is often nonsensical because $X=0$ is not within the domain of the explanatory variable.  In other words, the value of the response variable when the explanatory variable is zero is often an extrapolation and can result in exceptionally odd statements.  This problem is further exacerbated when considering inferences about the y-intercept because, as will be shown in the next section, the variability around the model increases as the distance away from the mean of the explanatory variable increases.  Thus, if $X=0$ is considerably outside the range of the data and is, thus, considerably ``away from'' $\bar{x}$ then the variability at the intercept will be very large and statistical power will be very low.
+
+One method for constructing an intercept term that is meaningful is to re-center the explanatory variable to zero.  Variables are re-centered to zero by subtracting the mean of that variable from every observed value of that variable.  In other words, the new variable, $X^{*}$, is formed with $X-\bar{x}$.
+
+Centering the explanatory variable does nothing more than shift the entire distribution from being centered on $\bar{x}$ to being centered on $0$ \figrefp{fig:SLRCentering}.  The interpretation of the y-intercept changes with this shift from representing the average value of $Y$ when $X=0$ to representing the average value of $Y$ when $X=\bar{x}$.  Thus, the $\hat{\alpha}$ from the centered data is likely different than $\hat{\alpha}$ from the original un-centered data.  However, the slope and its interpretation is unchanged as are all predictions\footnote{The researcher must remember to center the value of $X$ though before using the model to predict the mean value of $Y$.}.
+
+<<SLRCentering, echo=FALSE, fig.cap="Scatterplot of number of eggs versus total length (Left) and centered total length (Right). The vertical gray line on the left is the mean total length whereas the vertical gray line on the right is at 0 and is the mean centered total length.", fig.pos="h">>=
+ fitPlot(lt.lm,ylab="Number of eggs",xlab="Total Length",main="")
+ abline(v=mean(LT$tl),lwd=2,col="gray")
+ LT$c.tl <- LT$tl-mean(LT$tl)
+ ltc.lm <- lm(eggs~c.tl,data=LT)
+ fitPlot(ltc.lm,ylab="Number of eggs",xlab="Centered Total Length",main="")
+ abline(v=0,lwd=2,col="gray")
+@
+
+As an example, the linear regression of number of eggs in female lake trout on total length and centered total length is shown in Tables \ref{tab:SLRLTResults1} and \ref{tab:SLRLTResults2}, respectively.  Note that the estimated intercept terms in each model are dramatically different as is their corresponding standard errors.  The intercept term from the un-centered model represents the mean number of eggs in a lake trout with a total length of 0.  In contrast, the intercept term from the centered model represents the mean number of eggs in a lake trout with an average total length.  Further notice that all other results are exactly the same between the two models.
+
+\begin{table}[h]
+  \centering
+  \caption{Least-squares regression results for the model $\mu_{eggs|tl} = \alpha + \beta_{1}(tl-\overline{tl})$}\label{tab:SLRLTResults2}
+<<echo=FALSE, background="white">>=
+kREG(ltc.lm)
+@
+\end{table}
+
+In general, in SLR, centering of the explanatory variable is not critical unless the interpretation of the intercept term is of great importance.  However, a side effect of centering the explanatory variable is that the estimated slope and intercept are then orthogonal -- which, for all practical purposes, means uncorrelated \figrefp{fig:SLRLTConfEllipse2}.  This characteristic allows the centering of explanatory variables to have other uses and positive impacts in multiple linear regressions.
+
+<<SLRLTConfEllipse2, echo=FALSE, fig.cap="Confidence ellipse for $\\alpha$ and $\\beta_{1}$ from the regression of number of eggs versus CENTERED total length for Lake Superior lake trout.", fig.pos="h">>=
+ ci <- confint(ltc.lm)
+ confidenceEllipse(ltc.lm,Scheffe=TRUE,col="black",xaxt="n",yaxt="n")
+ lines(rep(ci[1,2],2),c(0,coef(ltc.lm)[2]),lty=2,col="red",lwd=2)
+ lines(rep(ci[1,1],2),c(0,coef(ltc.lm)[2]),lty=2,col="red",lwd=2)
+ lines(c(5500,coef(ltc.lm)[1]),rep(ci[2,1],2),lty=3,col="blue",lwd=2)
+ lines(c(5500,coef(ltc.lm)[1]),rep(ci[2,2],2),lty=3,col="blue",lwd=2)
+ axis(1,at=ci[1,],labels=round(ci[1,],0),padj=1.25,tcl=-1,fg="red",col.axis="red",lwd=2)
+ axis(2,at=ci[2,],labels=round(ci[2,],1),padj=-1.25,tcl=-1,fg="blue",col.axis="blue",lwd=2)
+@
+
+\subsubsection*{Centering Variables in R}
+A variable is centered in R by subtracting the mean value from the vector of all measurements of the explanatory variable.  The mean of all measurements in a vector is computed with \R{mean()}.  For example, the centered total length of lake trout in the lake trout eggs example is obtained from the original \var{tl} variable with
+
+<<>>=
+LT$ctl <- LT$tl - mean(LT$tl)
+@
+
+This new variable can then be used in \R{lm()} to perform a regression using the centered explanatory variable.
+
+\subsection{Predicting Mean \& Individuals}
+One of the major goals of linear regression is to use the best-fit line and a known value of the explanatory variable to predict a future value of the response variable.  This prediction is easily made by plugging the known value of the explanatory variable (generically labeled as $x_{0}$) into the equation of the best-fit line for $X$.  Generically, this is
+\[ \hat{\mu}_{Y|X=x_{0}} = \hat{\alpha} + \hat{\beta}_{1}x_{0} \]
+
+For example, the predicted number of eggs for a 700-mm female lake trout is computed by plugging 700 into $\hat{\mu}_{eggs|tl=700}$=\Sexpr{formatC(coef(lt.lm)[1],format="f",digits=2)}+\Sexpr{formatC(coef(lt.lm)[2],format="f",digits=2)}*700 = \Sexpr{formatC(predict(lt.lm,data.frame(tl=700)),format="f",digits=2)} or \Sexpr{formatC(predict(lt.lm,data.frame(tl=700)),format="f",digits=0)} eggs.
+
+This prediction is the best guess at the \textbf{mean} number of eggs for all 700-mm individuals and is, thus, also the best guess at the number of eggs for a 700-mm long individual.  So, in essence, this one calculation accomplishes two things: (1) predicts the \textbf{mean} value of the response variable for \textbf{all} individuals with a given value of the explanatory variable and (2) predicts the value of the response variable for \textbf{an} individual with a given value of the explanatory variable.  To keep these two items separate, the first objective (predict the mean) is often called finding a \emph{fitted value} because the best-fit line actually ``fits'' the mean values of $Y$ at a given value of $X$.  The second objective (predict the individual) is often called finding a \emph{predicted value} because ``predictions'' are generally made for individuals.
+
+\defn{Fitted value}{The predicted mean value of the response variable for all individuals with a given value of the explanatory variable.}
+
+\vspace{-12pt}
+\defn{Predicted value}{The predicted value of the response variable for an individual with a given value of the explanatory variable.}
+
+Both calculations -- of the fitted value and the predicted value -- are statistics that are subject to sampling variability.  Thus, both results have sampling distributions that are normally distributed\footnote{If the regression assumptions are met; see \sectref{sect:SLRAssumptions}.)} with a mean equal to $\hat{\mu}_{Y|X=x_{0}}$.  The standard error for the fitted value is labeled as $SE_{fits}$ and is given by
+\begin{equation}\label{eqn:SLRSEfits}
+    \sqrt{s_{Y|X}^{2}\left(\frac{1}{n}+\frac{\left(x_{0}-\bar{X}\right)^{2}}{(n-1)s_{x}^{2}}\right)}
+\end{equation}
+The standard error for the predicted value is labeled as $SE_{pred}$ and is given by
+\begin{equation}\label{eqn:SLRSEpred}
+    \sqrt{s_{Y|X}^{2}+s_{Y|X}^{2}\left(\frac{1}{n}+\frac{\left(x_{0}-\bar{X}\right)^{2}}{(n-1)s_{x}^{2}}\right)}
+\end{equation}
+Both standard errors can be used to construct intervals.  For example, the interval of $\hat{\mu}_{Y|X=x_{0}}\pm t^{*}SE_{fits}$ gives a confidence interval for the mean value of $Y$ when $X$ is equal to $x_{0}$; whereas the interval of $\hat{\mu}_{Y|X=x_{0}}\pm t^{*}SE_{pred}$ gives a prediction interval for the value of $Y$ when $X$ is equal to $x_{0}$.
+
+\warn{A confidence interval is for the mean value of the response variable at a given value of the explanatory variable.  A prediction interval is for the value of the response variable at a given value of the explanatory variable.}
+
+The width of these intervals depends on the value of $x_{0}$.  The $SE_{fit}$ and $SE_{pred}$ are minimized when $x_{0}=\bar{X}$ because $\left(x_{0}-\bar{X}\right)^{2}$ is minimized when $x_{0}=\bar{X}$.  Thus, these intervals are narrowest at $\bar{X}$ and progressively wider as $x_{0}$ is further away from $\bar{X}$\footnote{Make sure you can see why this is true by looking at \eqref{eqn:SLRSEfits} and \eqref{eqn:SLRSEpred}}.  This widening is intuitive because the bulk of the data (or information) is near the ``middle'' of the range of the explanatory variable; thus, confidence in predictions is greatest near the middle and is less near the margins of the range of the explanatory variable.
+
+\warn{Both confidence and prediction intervals are narrowest at the mean of the explanatory variable and get wider further from the mean of the explanatory variable.}
+
+It is critically important to understand the interpretational difference between intervals made using $SE_{fits}$ and those using $SE_{pred}$.  Intervals using $SE_{fits}$ are constructed in conjunction with estimates of the mean value of $Y$ at a given value of $X$.  Thus, $SE_{fits}$ is simply a measure of sampling variability or a measure of how different the mean value of $Y$ at a given $X$ would be if different samples were taken.  In contrast, intervals using $SE_{pred}$ are used in conjunction with estimates of the value of $Y$ at a given value of $X$ for an individual.  Thus, $SE_{pred}$ contains two types of variability; (1) sampling variability associated with estimating the mean and (2) natural variability associated with individuals.  In other words, there is variability associated with estimating the means (as measured by $SE_{fits}$) and there is natural variability among individuals (as measured by $s_{Y|X}^{2}$).  Graphically, sampling variability is illustrated in \figref{fig:SLRConfBands}.  Thus, the dashed lines in \figref{fig:SLRConfBands} illustrate ``confidence bands'' for the mean value of $Y$ at all given values of $X$.  To make ``prediction bands'' that will contain the predicted value of $Y$ for an individual at each given value of $X$, additional natural variability would need to be added onto the ends of each of the confidence bands in \figref{fig:SLRConfBands}.  This additional variability is illustrated by the dashed blue lines in \figref{fig:SLRPredBands} and is also evident by noting the extra $s_{Y|X}^{2}$ when comparing equations \eqref{eqn:SLRSEfits} and \eqref{eqn:SLRSEpred}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=3in]{FigsStatic/SLR_Conf_Bands.jpg}
+  \caption{Idealistic conceptualization of a best-fit line surrounded by confidence intervals for $\mu_{Y|X}$.}\label{fig:SLRConfBands}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=3in]{FigsStatic/SLR_Pred_Bands.jpg}
+  \caption{Idealistic conceptualization of a best-fit line surrounded by confidence intervals for $\mu_{Y|X}$ (in red) and prediction intervals for $Y$ (in blue).}\label{fig:SLRPredBands}
+\end{figure}
+
+\warn{$SE_{fits}$ represents one type of error - sampling variability related to predicting the mean value of the response variable at a given value of the explanatory variable.  $SE_{pred}$ represents two types of error - sampling variability related to predicting the mean value of the response variable and natural variability related to predicting an individual's difference from that mean.}
+
+<<echo=FALSE>>=
+pred1 <- predict(lt.lm,data.frame(tl=700),interval="confidence")
+pred2 <- predict(lt.lm,data.frame(tl=700),interval="prediction")
+@
+
+For example, suppose that one wants to predict the mean number of eggs for all 700-mm female lake trout (i.e., ``fitted value'').  This requires the calculation of a confidence interval using $SE_{fits}$ because it is related to a \emph{mean} for \emph{all} 700-mm lake trout.  Thus, the mean number of eggs for all 700-mm female lake trout is between \Sexpr{round(pred1[1,"lwr"],0)} and \Sexpr{round(pred1[1,"upr"],0)} \tabrefp{tab:SLRLTPredict}.  Further suppose that one wants to predict the number of eggs for a 700-mm female lake trout (i.e., ``predicted value'').  This requires a prediction interval using $SE_{pred}$ because it is about \emph{an individual} 700-mm lake trout.  Thus, the number of eggs predicted for a 700-mm female lake trout is between \Sexpr{round(pred2[1,"lwr"],0)} and \Sexpr{round(pred2[1,"upr"],0)} \tabrefp{tab:SLRLTPredict}.
+
+\begin{table}[h]
+  \centering
+  \caption{Fitted values, confidence intervals (top row), and prediction intervals (bottom row) for number of eggs for 700-mm female lake trout.}\label{tab:SLRLTPredict}
+<<echo=FALSE, background="white", warning=FALSE>>=
+junk <- rbind(predict(lt.lm,data.frame(tl=700),interval="confidence"),predict(lt.lm,data.frame(tl=700),interval="prediction"))
+print(data.frame(junk),row.names=FALSE)
+@
+\end{table}
+
+\subsubsection*{Predictions in R}
+Future means and individuals can be predicted using the results of a simple linear regression with \R{predict()}.  This function requires three arguments in the following order,
+\begin{Itemize}
+  \item An \R{lm} object.
+  \item A data frame that consists of values of the explanatory variable at which to make predictions.
+  \item A string in the \R{interval=} argument that indicates whether to construct a confidence (\R{interval="confidence"}) or prediction (\R{interval="prediction"}) interval.
+\end{Itemize}
+For example, the confidence interval for the mean number of eggs in all 700-mm total length lake trout is obtained with
+
+<<>>=
+predict(lt.lm,data.frame(tl=700),interval="confidence")
+@
+
+As another example, prediction intervals for the number of eggs in a 700-mm and in a 770-mm lake trout are obtained with
+
+<<>>=
+predict(lt.lm,data.frame(tl=c(700,770)),interval="prediction")
+@
+
+The most difficult aspect of making predictions in R appears to be the use of the data frame in the second argument of \R{predict()}.  The main thing to remember is that within \R{data.frame()} the name of the explanatory variable must be used exactly as it appeared in the saved \R{lm} object.  In other words, if \var{tl} was used to fit the linear model, then \var{tl} must be used in \R{data.frame()} within \R{predict()}.
+
+The confidence and prediction bands can be plotted by adding the \R{interval=} argument to \R{fitPlot()}.  The \R{interval=} argument can be set to \R{"confidence"} to construct a confidence band, to \R{"prediction"} to construct a prediction band, or \R{"both"} to construct both confidence and prediction bands.  The 95\% confidence and prediction bands are added to the fitted-line plot for the lake trout data \figrefp{fig:SLRLTFittedLinePlot2} with
+
+<<SLRLTFittedLinePlot2, fig.cap="Scatterplot of number of eggs versus total length for Lake Superior lake trout with best-fit line and 95\\% confidence and prediction bands superimposed.", fig.pos="h">>=
+fitPlot(lt.lm,interval="both",xlab="Total Length",ylab="Number of Eggs",main="")
+@
+
+Finally, a visual of the predictions with intervals superimposed on to a fitted-line plot with the confidence and prediction bands can be constructed with \R{predictionPlot()}.  This function takes the exact same arguments as \R{predict()} and returns the predicted values, with intervals, and a visual plot.  For example, the predicted values for 700 and 770 mm lake trout are obtained with
+
+<<SLRLTFittedLinePlot3, fig.cap="Scatterplot of number of eggs versus total length for Lake Superior lake trout with best-fit line, 95\\% confidence and prediction bands superimposed, and 95\\% prediction intervals shown for a 700 (interval 1) and 710 (interval 2) mm lake trout.", fig.pos="h">>=
+predictionPlot(lt.lm,data.frame(tl=c(700,770)),interval="prediction",
+ xlab="Total Length",ylab="Number of Eggs",main="")
+@
+
+and visualized in \figref{fig:SLRLTFittedLinePlot3}.  Inasmuch as the results of \R{predict()} are included in \R{predictionPlot()}, it is suggested that you use \R{predictionPlot()} to make predictions as this should help you avoid making extrapolations with the model.
+
+\subsection{Models \& SS}
+As with all linear models (see \chapref{chap:LMFoundations}), the important hypothesis tests of SLR can be reduced to the method of comparing two models' lack-of-fit to the data.  From above it was seen that the hypothesis test to determine if the response and explanatory variable are significantly related is
+
+\[ \begin{split}
+H_{0}&: \beta_{1} = 0 \\
+H_{A}&: \beta_{1} \neq 0
+\end{split} \]
+
+This can be written in terms of models as
+
+\[ \begin{split}
+H_{0}&: \mu_{Y|X} = \alpha \\
+H_{A}&: \mu_{Y|X} = \alpha + \beta_{1}X
+\end{split} \]
+
+Furthermore, by substituting \eqref{eqn:SLRintercept} into \eqref{eqn:SLRsample}, the sample best-fit line can be rewritten as follows
+
+\[ \begin{split} \hat{\mu}_{Y|X} &= \overline{Y} - \hat{\beta}_{1}\overline{X} + \hat{\beta}_{1}X \\
+                                 &= \overline{Y} + \hat{\beta}_{1}\left(X-\overline{X}\right) \end{split} \]
+
+Thus, if $\hat{\beta}_{1}=0$ then the model reduces to $\hat{\mu}_{Y|X}=\overline{Y}$.
+
+Therefore, testing the hypothesis that the slope is equal to zero is equivalent to testing whether the very simple model of $\overline{Y}$ (or, equivalently, the constant $\hat{\alpha}$) adequately fits the data versus a more complicated model where a slope is needed \figrefp{fig:SLRModelsVisual}.  Said another way, this is the same as testing whether the mean value of $Y$ is the same for all $X$s (i.e., no slope, no relationship) or whether the mean value of $Y$ depends on the value of $X$ (i.e., a slope, there is a relationship).
+
+<<SLRModelsVisual, echo=FALSE, fig.cap="Scatterplot illustrating two competing models for describing the relationship between number of eggs and total length.  The horizontal red line is placed at the mean number of eggs and represents the simple model (Left).  The blue line is the best-fit line and represents the full model (Right).", fig.pos="h">>=
+ plot(eggs~tl,data=LT,xlab="Total Length (mm)",ylab="Number of Eggs")
+ abline(h=mean(LT$eggs),lwd=2,col="red")
+ plot(eggs~tl,data=LT,xlab="Total Length (mm)",ylab="Number of Eggs")
+ abline(lt.lm,lwd=2,col="blue")
+@
+
+\warn{The simple model in SLR represents a flat line at the mean of the response variable.  The full model in SLR represents a line with a significant slope.}
+
+Of course, the lack-of-fit of the two models is calculated by summing the squared residuals using predictions from the two models.  Specifically, the lack-of-fit of the simple model is computed with residuals using predictions from the mean value of the response variable (\figref{fig:SLRModelsResids}-Left), or
+
+\begin{equation}\label{eqn:SLRsimpleRSS}
+  SS_{Total} = \Sum_{i=1}^{n}\left(y_{i}-\overline{Y}\right)^{2}
+\end{equation}
+
+As expected, this SS is called $SS_{Total}$ because it is the basis of the measure of the ``total'' variability in the response variable as calculated by the variability around the overall mean.
+
+The lack-of-fit of the full model is computed with residuals using predictions from the best-fit regression line (\figref{fig:SLRModelsResids}-Right), or
+
+\[ SS_{Residual} = \Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X}\right)^{2} = \Sum_{i=1}^{n}\left(y_{i}-\left(\hat{\alpha}+\hat{\beta}_{1}x_{i}\right)\right)^{2} \]
+
+This SS is termed $SS_{Residual}$ in SLR, but it is exactly analogous to $SS_{Within}$ from Chapters \ref{chap:LMFoundations} and \ref{chap:LMANOVA1}.
+
+<<SLRModelsResids, echo=FALSE, fig.cap="Scatterplots illustrating two competing models for describing the relationship between number of eggs and total length.  The horizontal red line is placed at the mean number of eggs and represents the simple model (Left).  The blue line is the best-fit line and represents the full model (Right).  Residuals for each model are shown on the respective graphs.", fig.pos="h">>=
+ plot(eggs~tl,data=LT,xlab="Total Length (mm)",ylab="Number of Eggs")
+ mn.eggs <- mean(LT$eggs)
+ abline(h=mn.eggs,lwd=2,col="red")
+ for (i in 1:length(LT$eggs)) {
+   lines(c(LT$tl[i],LT$tl[i]),c(LT$eggs[i],mn.eggs),lty=2,col="red")
+ }
+ plot(eggs~tl,data=LT,xlab="Total Length (mm)",ylab="Number of Eggs")
+ abline(lt.lm,lwd=2,col="blue")
+ for (i in 1:length(LT$eggs)) {
+   lines(c(LT$tl[i],LT$tl[i]),c(LT$eggs[i],lt.lm$fitted.values[i]),lty=2,col="blue")
+ }
+@
+
+\warn{The $SS_{Total}$ measures the ``variability'' in the simplest model, which is just the mean of the response variable.  Thus, $SS_{Total}$ measures the maximum total ``variability'' in the response variable.}
+
+As always, the $SS_{Total}$ can be partitioned into two parts; generically as
+
+\[ SS_{Total} = SS_{Residual} + SS_{Regression} \]
+
+and more specifically as
+
+\[ \Sum_{i=1}^{n}\left(y_{i}-\overline{Y}\right)^{2} = \Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X}\right)^{2} + \Sum_{i=1}^{n}\left(\hat{\mu}_{Y|X}-\overline{Y}\right)^{2} \]
+
+$SS_{Residual}$ represents the part of the total variability in the response variable that is not explained by the full model.  The difference between $SS_{Total}$ and  $SS_{Residual}$ is called  $SS_{Regression}$ and represents the part of the total variability in the response variable that \emph{is} explained by the full model.  This part is exactly analogous to $SS_{Among}$ from Chapters \ref{chap:LMFoundations} and \ref{chap:LMANOVA1}, but is called $SS_{Regression}$ in SLR because it is the amount of variability explained by using the best-fit regression line.  Thus, as would be expected, $SS_{Regression}$ measures how much ``better'' the full model fits compared to the simple model.  However, as with $SS_{Among}$, this statistic must be converted to an $MS$ and then, ultimately, to an F test statistic.
+
+\warn{$SS_{Total} = SS_{Residual} + SS_{Regression}$.}
+
+\vspace{-12pt}
+\warn{The residual SS ($SS_{Residual}$) is the measure of the ``variability'' in the response variable that is unexplained when an explanatory variable is incorporated into the model.}
+
+\vspace{-12pt}
+\warn{The regression SS ($SS_{Regression}$) is the measure of the ``variability'' in the response variable that is explained when an explanatory variable is incorporated into the model.}
+
+
+\subsubsection{ANOVA Table}
+The three $SS$ just discussed are converted to $MS$ by dividing by their respective $df$.  The $df_{Total}=n-1$ as discussed in \chapref{chap:LMFoundations}.  The $df_{Residual}$ is equal to the number of individuals minus the number of parameters in the full model\footnote{This is a general rule for the calculation of $df_{Residual}$.} -- i.e., $n-2$.  Thus, using the rule that dfs partition in the same way as $SS$, the $df_{Regression}$ is $(n-1)-$$(n-2)$$=1$\footnote{It is also common that the $df_{Regression}$ is the difference in number of parameters between the full and simple models.}.
+
+\warn{The regression df are always 1 in SLR.}
+
+With these definitions of $df$, the $MS$ are computed as such,
+
+\begin{equation}\label{eqn:SLRsimpleMS}
+  MS_{Total} = \frac{SS_{Total}}{df_{Total}} = \frac{\Sum_{i=1}^{n}\left(y_{i}-\overline{Y}\right)^{2}}{n-1} = s_{Y}^{2}
+\end{equation}
+\begin{equation}\label{eqn:SLRfullMS}
+  MS_{Residual} = \frac{SS_{Residual}}{df_{Residual}} = \frac{\Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X}\right)^{2}}{n-2} = s_{Y|X}^{2}
+\end{equation}
+\[ MS_{Regression} = \frac{SS_{Regression}}{df_{Regression}} = \frac{\Sum_{i=1}^{n}\left(\hat{\mu}_{Y|X}-\overline{Y}\right)^{2}}{1} \]
+
+The F test statistic is computed in a manner very similar to what was described in \chapref{chap:LMFoundations}.  Specifically,
+\[ F = \frac{MS_{Regression}}{MS_{Residual}} \]
+with $df_{Regression}$ numerator and $df_{Residual}$ denominator df.
+
+As usual, the degrees-of-freedom ($df$), sum-of-squares ($SS$), mean-squares ($MS$), F test statistic ($F$), and corresponding p-value are summarized in an analysis of variance table \tabrefp{tab:SLRLTANOVA}.
+
+\begin{table}[h]
+  \centering
+  \caption{Analysis of variance table for the regression of $\mu_{eggs|tl} = \alpha + \beta_{1}tl$.}\label{tab:SLRLTANOVA}
+<<echo=FALSE, background="white">>=
+kANOVA(lt.lm)
+@
+\end{table}
+<<echo=FALSE>>=
+lt.anova <- anova(lt.lm)
+@
+
+The results in \tabref{tab:SLRLTANOVA} indicate that there is a significant relationship between \var{eggs} and \var{tl} (\Sexpr{kPvalue(lt.anova[1,"Pr(>F)"])}).  This same result indicates that a full model with a slope term on the \var{tl} variable is significantly ``better'' at fitting the observed data then a simple model that does not contain a slope term.
+
+In addition to the primary objective of comparing the full and simple models, several items of interest can be identified from an analysis of variance table.  Using \tabref{tab:SLRLTANOVA} as an example, the following items are identified:
+\begin{Itemize}
+  \item The variance of individuals about the regression line ($s_{Y|X}^{2}$) is given by $MS_{Residual}$ (e.g., =\Sexpr{formatC(lt.anova[2,"Mean Sq"],format="f",digits=0)}).
+  \item The variance of individuals about the mean ($s_{Y}^{2}$) is given by $MS_{Total}$ (e.g., $SS_{Total}$=\Sexpr{formatC(lt.anova[1,"Sum Sq"],format="f",digits=0)}+\Sexpr{formatC(lt.anova[2,"Sum Sq"],format="f",digits=0)} divided by $df_{Total}$=\Sexpr{formatC(lt.anova[1,"Df"],format="f",digits=0)}+\Sexpr{formatC(lt.anova[2,"Df"],format="f",digits=0)} or \Sexpr{formatC((lt.anova[1,"Sum Sq"]+lt.anova[2,"Sum Sq"])/(lt.anova[1,"Df"]+lt.anova[2,"Df"]),format="f",digits=1)}).
+  \item The F test statistic is equal to the square\footnote{This is a general rule between the T and F distributions.  An F with $1$ numerator df and $\nu$ denominator df is equal to the square of a T with $\nu$ df.} of the t test statistic from testing $H_{0}:\beta_{1}=0$.
+\end{Itemize}
+
+\subsubsection*{Regression ANOVA Table in R}
+The ANOVA table for a SLR is obtained by submitting the saved \R{lm} object to \R{anova()} (e.g., the ANOVA table results for the lake trout egg data shown in \tabref{tab:SLRLTANOVA} were obtained with \R{anova(lt.lm)}).
+
+\subsubsection{Coefficient Of Determination}
+The coefficient of determination ($R^{2}$) is a measure of the proportion of the total variability in the response variable that is explained by knowing the value of the explanatory variable\footnote{It is assumed that you learned this statistic in your introductory statistics course.}.  Thus, from the $SS$ definitions above,
+
+\[ R^{2} = \frac{SS_{Regression}}{SS_{Total}} \]
+
+In essence, $R^{2}$ is a measure of the strength for predictions that can be made.  In other words, $R^{2}$ values near one indicate a relationship that is very strong and will lead to precise predictions, whereas $R^{2}$ values near zero indicate a very weak relationship with correspondingly weak predictions.
+
+\subsubsection*{Coefficient of Determination in R}
+The coefficient of determination is shown in the output following ``multiple R-squared`` when a saved \R{lm} object is submitted to the \R{summary()} function.  An example is shown in \tabref{tab:SLRLTResults2}.  This value can also be isolated by submitting the saved \R{lm} object to \R{rSquared()}.
+
+
+\section{Assumptions} \label{sect:SLRAssumptions}
+Simple linear regression has five major assumptions,
+\begin{Enumerate}
+  \item Each individual is independent of each and every other individual (``independence'' assumption).
+  \item The mean values of $Y$ at each given value of $X$ fall on a straight line (``linearity'' assumption).
+  \item The variances of $Y$ at each given value of $X$ are all equal (to $\sigma^{2}_{Y|X}$) (``homoscedasticity'' assumption).
+  \item The values of $Y$ at each given value of $X$ are normally distributed (``normality'' assumption).
+  \item No outliers.
+\end{Enumerate}
+These five assumptions lead to the idealistic model illustrated in \figref{fig:SLRIdealModel}.
+
+<<echo=FALSE>>=
+## Creates a 3-D graph of regression assumptions -- used in next chunks
+ if (!("scatterplot3d" %in% search())) library(scatterplot3d)
+ plot.regassump <- function(int,slp,sig,xseq,ang,...) {
+   max.x<-max(xseq)
+   max.y<-max(int+slp*min(xseq),int+slp*max(xseq))+3*sig
+   max.z<-max(dnorm(max.y,max.y,sig))
+
+   j<-scatterplot3d(c(0,max.x),c(0,max.y),c(0,max.z),angle=ang,box=FALSE,color="white",xlab="X",ylab="Y",zlab="",...)  # Creates template
+   j$points3d(c(0,max.x),c(int,int+max.x*slp),c(0,0),type="l",lwd=3,col="blue") # Puts on best-fit line
+
+   set.seed(1)
+   for (i in (1:length(xseq))) {    # Puts on individual histograms
+     ymu<-int+slp*xseq[i]
+     y<-seq(ymu-3*sig,ymu+3*sig,by=0.01)
+     z<-dnorm(y,ymu,sig)
+     x<-rep(xseq[i],length(y))
+     j$points3d(x,y,z,type="l",lwd=3)
+     j$points3d(c(xseq[i],xseq[i]),c(ymu,ymu),c(0,max(z)),type="l",lwd=2,lty=3,col="red")
+     j$points3d(c(xseq[i],xseq[i]),c(min(y),max(y)),c(0,0),type="l",lwd=2,lty=3,col="red")
+     x<-rep(xseq[i],6)
+     y<-rnorm(6,int+slp*xseq[i],sig)
+     z<-rep(0,6)
+     j$points3d(x,y,z,pch=16)
+   }
+ }
+@
+<<eval=FALSE, SLRIdealModel3D, echo=FALSE, results='hide', include=FALSE, fig.width=7, fig.height=3.5, par1=TRUE, fig.show='animate', cache=TRUE>>=
+# Creates animated version ... but seems to screw up parskip
+for (i in 100:150) plot.regassump(1,2,0.5,seq(0,1,by=0.2),i,mar=c(3,2,0,3),label.tick.marks=FALSE)
+@
+<<eval=TRUE, SLRIdealModel, echo=FALSE, fig.cap="Two depictions of the assumptions of the simple linear regression model.  The blue ``best-fit'' line intersects the mean of each normal distribution.  Each normal distribution represents the distribution of the response variable for all individuals at a particular value of the explanatory variable.  Example data are shown by the black dots.", fig.pos="h">>=
+plot.regassump(1,2,0.5,seq(0,1,by=0.2),100,mar=c(3,2,0,3),label.tick.marks=FALSE)
+plot.regassump(1,2,0.5,seq(0,1,by=0.2),150,mar=c(3,2,0,3),label.tick.marks=FALSE)
+@
+\vspace{9pt}
+It is important to note that the first assumption states that the \textbf{means} all fall on a straight line, not that the individuals do.  This is why the left-hand-sides of equations \eqref{eqn:SLRpopn} and \eqref{eqn:SLRsample} contain $\mu_{Y|X}$ rather than just $Y$.  This is also demonstrated by the observation that the line drawn on \figref{fig:SLRIdealModel} intersects the means of the individual normal distributions.  Thus, don't lose track of the fact that \eqref{eqn:SLRpopn} represents the mean values of the response variable at a given value of the explanatory variable and not the individual values of the response variable.
+
+The model in \eqref{eqn:SLRpopn} can be modified to represent each individual (rather than the mean of individuals) by adding an error term ($\epsilon$).  Thus, the model to represent individuals is written
+\begin{equation}\label{eqn:SLRpopnErr}
+  Y|X = \alpha + \beta_{1}X + \epsilon
+\end{equation}
+From the assumptions (as illustrated in \figref{fig:SLRIdealModel}), the errors will be normally distributed with a mean of 0 (because the line passes through the $\mu_{Y|X}$ and the residuals, or errors, are computed from that point) and a variance of $\sigma^{2}_{Y|X}$.  Thus, in shorthand, the $\epsilon\sim N(0,\sigma_{Y|X}$).
+
+\warn{The errors about the best-fit line are $N(0,\sigma_{Y|X}$).}
+
+The $\sigma^{2}_{Y|X}$ is called ``the common variance about the model'' and represents the natural variability about the model (i.e., ``how much does each individual naturally vary from the model'').  This common variance is exactly analogous to $MS_{Within}$ discussed in Chapters \ref{chap:LMFoundations} and \ref{chap:LMANOVA1} and is the basis of nearly all inferences in SLR (as seen in \sectref{sect:SLRInferences}).  The common variance is a parameter that is estimated using the residuals from the individuals in a sample with
+
+\[ s^{2}_{Y|X} = MS_{Residual} = \frac{\Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X=x_{i}}\right)^{2}}{n-2} \]
+
+Thus, $\sigma^{2}_{Y|X}$ is a population variance and $s^{2}_{Y|X}$ is a sample variance.
+
+\subsection{Diagnostics}
+The assumption of the independence of individuals is generally assessed with common sense and is controlled through proper sample design just as was described in Chapters \ref{chap:LMFoundations}-\ref{chap:LMANOVA2}\footnote{If the individuals are ordered by time or space then the Durbin-Watson statistic can be used to determine if the individuals are serially correlated or not.  Generally, the $H_{0}:$ ``not serially correlated'' and $H_{A}:$ ``is serially correlated'' are the hypotheses for the Durbin-Watson test.  Thus, p-values $<\alpha$ result in the rejection of $H_{0}$ and the conclusion of a lack of independence.  In this case, the regression assumption would be violated and other methods, primarily time-series methods, should be considered.}.
+
+The linearity assumption is the most important assumption in SLR; i.e., the form of the bivariate relationship must be linear in order to fit a line to it.  Problems with the linearity assumption are diagnosed by close examination of the fitted-line plot.  In some instances, the departures from linearity may be subtle or the strength of relationship so strong and the range of the explanatory variable so large that departures from linearity are difficult to discern.  In these instances, one should look at a residual plot from the model fit.  The residual plot effectively ``zooms in'' on the best-fit line such that subtle departures from linearity can be more easily identified.  The most common departures from linearity look like parabolas, but more ``complicated'' structures may also be noted \figrefp{fig:SLRResidPlotViolations}.
+
+<<SLRResidPlotViolations, echo=FALSE, fig.width=7, fig.height=7, out.width='.8\\linewidth', fig.cap="Residual plots illustrating when the regression assumptions are met (upper-left) and three common assumption violations.", fig.pos="h">>=
+ par(mar=c(2.5,3.5,2,1), mgp=c(0.75,0,0), mfrow=c(2,2),tcl=-0.2)
+ set.seed(1)
+ n <- 100; mu <- 100; sigma <- 10
+ x <- rnorm(n,mu,sigma);   logx <- log(x)
+ y1 <- rnorm(n,mu,sigma);               lm1 <- lm(y1~x)  # no troubles (OK)
+  plot(lm1$fitted.values,lm1$residuals,xlab="Fitted Values",ylab="Residuals",xaxt="n",yaxt="n"); abline(h=0)
+  mtext("Assumptions Met",line=0.5,col="blue")
+ y2 <- (x-mean(x))^2 + rnorm(n,0,100);  lm2 <- lm(y2~x)  # curvature (OK)
+  plot(lm2$fitted.values,lm2$residuals,xlab="Fitted Values",ylab="Residuals",xaxt="n",yaxt="n"); abline(h=0)
+  mtext("Non-linear",line=0.5,col="red")
+ x1 <- runif(n,min=0,max=10)
+ y3 <- NULL
+ for (i in 1:n) {
+   y3 <- c(y3,rnorm(1,0,x1[i]/100))
+ }  # heteroscedasticity only (OK)
+  plot(x1,y3,xlab="Fitted Values",ylab="Residuals",xaxt="n",yaxt="n"); abline(h=0)
+  mtext("Heteroscedastic",line=0.5,col="red")
+ y4 <- 8*log(x) + rnorm(n,0,0.4); y4 <- exp(y4);  lm4 <- lm(y4~x) # curvature and heteroscedasticity
+  plot(lm4$fitted.values,lm4$residuals,xlab="Fitted Values",ylab="Residuals",xaxt="n",yaxt="n"); abline(h=0)
+  mtext("Non-linear & Heteroscedastic",line=0.5,col="red")
+@
+
+\warn{The linearity assumption can be addressed with a fitted-line or a residual plot.}
+
+\vspace{-12pt}
+\warn{A fitted-line or residual plot that exhibits no obvious curvature is evidence that the linearity assumption has been met.}
+
+The homoscedasticity assumption is also vital because all inferences in SLR depend on $s^{2}_{Y|X}$.  The homoscedasticity assumption assures that the variability is constant around the line and that $s^{2}_{Y|X}$ estimates a constant quantity.  If this assumption is not met, then a common variance does not exist, $s^{2}_{Y|X}$ measures a quantity that does not exist, and all of the SE calculations from \sectref{sect:SLRInferences} will not work properly.  Difficulties with the homoscedasticity assumption are diagnosed by close examination of a residual plot.  If the points on the residual plot show the same degree of scatter from left-to-right then the homoscedasticity assumption is likely met.  A common violation of the assumption appears as a funnel shape from left-to-right \figrefp{fig:SLRResidPlotViolations}.
+
+\warn{The homoscedasticity assumption is most often addressed with a residual plot.}
+
+\vspace{-12pt}
+\warn{A residual plot that exhibits no vertical compression of points is evidence that the homoscedasticity assumption has been met.}
+
+Interpreting residual plots requires some practice and experience.  The trick to examining residual plots is to look for distinctive patterns and shapes.  Most novice statisticians find too much detail in residual plots, identifying every subtle curvature and change in variability.  If distinct patterns do not exist then the assumptions are probably adequately met.  Remember, a residual plot with random scatter and no discernible pattern is an indication that the linearity and homoscedasticity assumptions have been met.
+
+The normality assumption is dealt with exactly as it was in Chapters \ref{chap:LMFoundations}-\ref{chap:LMANOVA2}.  It is virtually impossible in most SLR to test the normality of residuals at each given value of $X$ because there typically is very few replicates of each value of $X$.  Thus, the assumption is assessed with the Anderson-Darling normality test of the residuals from the full model.
+
+The assumption of no outliers is also tested exactly as described in Chapters \ref{chap:LMFoundations}-\ref{chap:LMANOVA2}; i.e., with a hypothesis test using the Studentized residuals and a Bonferroni correction.  However, further discussion of outliers in SLR is warranted.  \cite{Fox1997} describes ``unusual'' observations the best with,
+
+\begin{quote}
+Unusual data are problematic in linear models fit by least squares because they can unduly influence the results of the analysis, and because their presence may signal that the model fails to capture important characteristics of the data.
+\end{quote}
+
+In its simplest sense, a regression outlier is an individual for which the response variable is unusual given the value of the explanatory variable and the overall ``fit'' of the model.  Following the arguments of \cite{Fox1997}, regression outliers are shown in \figref{fig:SLRDiagnosticsConcept}-left and \figref{fig:SLRDiagnosticsConcept}-middle.  In contrast, a univariate outlier is an individual for which the value of a variable is unusual relative to the mean of that single variable.  An outlier for the response variable and for the explanatory variable, but not a regression outlier is shown in \figref{fig:SLRDiagnosticsConcept}-right.  Note that in \figref{fig:SLRDiagnosticsConcept}-right that the outlying individual is ``extreme'' along both the x- and y-axes but not relative to the linear model fit.  Univariate outliers are not necessarily regression outliers.  However, sometimes the two types of outliers are found in the same individual -- e.g., \figref{fig:SLRDiagnosticsConcept}-middle.
+
+<<SLRDiagnosticsConcept, echo=FALSE, fig.width=10.5, out.width='.95\\linewidth', fig.cap="Illustration of the concepts of outliers and influence in a simple linear regression.  Each plot consists of one SLR fit to the ``original'' data (i.e., black solid line and black dots) and another SLR fit to the ``original'' data with the addition of one ``unusual'' point (point shown by red ``x'' and fitted line shown by red dashed line).",fig.pos="h">>=
+ par(mar=c(1.5,1.5,0.5,0.5), mgp=c(0.25,0,0),mfrow=c(1,3),cex=1.25,tcl=-0.2)
+ set.seed(15)
+ x <- c(1,2,3,4,5);  y <- 1+x+rnorm(length(x),0,0.3)
+ x1 <- c(x,2.5);     y1 <- c(y,1)
+ x2 <- c(x,9);       y2 <- c(y,3)
+ x3 <- x2;           y3 <- c(y,9.8)
+ xlim <- range(c(x1,x2,x3)); ylim <- range(c(y1,y2,y3))
+ plot(x,y,xlab="X",ylab="Y",xlim=xlim,ylim=ylim,pch=19,xaxt="n",yaxt="n")
+ inf.lm <- lm(y~x); abline(inf.lm,lwd=2)
+ points(x1[length(x1)],y1[length(y1)],pch="x",col="red")
+ inf.lm1 <- lm(y1~x1); abline(inf.lm1,col="red",lwd=2,lty=2)
+
+ plot(x,y,xlab="X",ylab="Y",xlim=xlim,ylim=ylim,pch=19,xaxt="n",yaxt="n")
+ abline(inf.lm,lwd=2)
+ points(x2[length(x2)],y2[length(y2)],pch="x",col="red")
+ inf.lm2 <- lm(y2~x2); abline(inf.lm2,col="red",lwd=2,lty=2)
+
+ plot(x,y,xlab="X",ylab="Y",xlim=xlim,ylim=ylim,pch=19,xaxt="n",yaxt="n")
+ abline(inf.lm,lwd=2)
+ points(x3[length(x3)],y3[length(y3)],pch="x",col="red")
+ inf.lm3 <- lm(y3~x3); abline(inf.lm3,col="red",lwd=2,lty=2)
+@
+\vspace{9pt}
+Individuals that substantially impact the fitted line (i.e., result in substantially different values for the regression coefficients; \figref{fig:SLRDiagnosticsConcept}-middle) are called \emph{influential points}.  The ``influence'' of an individual is related to both it's horizontal distance from the center of the explanatory variable and its vertical distance from the best-fit line.  Intuitively then, highly influential points are points that have a combined ``large'' distance from left-to-right and top-to-bottom relative to the best-fit line.  It is possible that a highly influential point will not appear as an outlier in \R{outlierTest()} because of the high influence it has on the position of the line.  Thus, influential points are diagnosed with careful attention to the fitted-line and residual plots.
+
+\defn{Influential Point}{An individual whose inclusion in the data set substantially impacts the coefficients of the fitted line.}
+
+\subsubsection*{Assumption Checking in R}
+The fitted-line plot, residual plot, Anderson-Darling normality test, and the outlier test are constructed exactly as described\footnote{That is, by using \R{fitPlot()}, \R{residPlot()}, \R{adTest()}, and \R{outlierTest()}.} in Chapters \ref{chap:LMFoundations}-\ref{chap:LMANOVA2}.  The residual plot, however, plots the residuals versus the fitted values from the full model rather than a boxplot of residuals versus level names.
+
+
+\section{Transformations} \label{sect:SLRTransformations}
+If one or more of the linearity, homoscedasticity, normality, or outlier assumptions are violated then the data may be transformed to a different scale where the assumptions are met.  Either the response or explanatory variable can be transformed, although transformation of the response variable is generally more effective.  In general, the family of power transformations (see \sectref{sect:AOVTransformations}) will be considered for both the response and explanatory variables, although some special transformations can be used in specific situations (e.g., $\sin^{-1}\sqrt{Y}$ for proportions or percentage data).
+
+\warn{If the normality, linearity, or homoscedasticity assumption is violated then a transformation of variables should be considered.}
+
+\subsection{Selecting Power Transformations}
+Power transformations for the variables in a SLR can be selected from a variety of methods -- (1) based on theory, (2) from past experience, or (3) trial-and-error with dynamic graphics.  Specifics of these methods are discussed in the following sections.
+
+\subsubsection*{Theoretical Transformations}
+Transformations may be chosen if a theoretical functional form for the relationship between the response and explanatory variables can be identified.  For example, many relationships follow a non-linear power function -- $Y=aX^{b}$ -- where $X$ and $Y$ are variables (as always) and $a$ and $b$ are scalars (i.e., constant numbers).  An example of this type of data is shown in \figref{fig:SLRPowerFun1}.
+
+<<SLRPowerFun1, echo=FALSE, fig.cap="Fitted line plot (Left) and residual plot (Right) for data simulated from a power function, $Y=aX^{b}$. The residual plot is overlaid with a LOESS smoother function (red line) to highlight the curvature.", fig.pos="h">>=
+ pwr <- read.table("Figs/PowerFun.txt",header=TRUE)
+ pwr.lm <- lm(y~x,data=pwr)
+ fitPlot(pwr.lm,cex.main=0.8,lwd=2,main="")
+ residPlot(pwr.lm,cex.main=0.8,main="",inclHist=FALSE)
+@
+
+If logarithms are taken of both sides of a power function then the form reduces to
+
+\[ \begin{split}
+  log(Y) &= log(aX^{b}) \\
+  log(Y) &= log(a) + log(X^{b}) \\
+  log(Y) &= log(a) + blog(X)
+\end{split} \]
+
+which, because $log(Y)$ and $log(X)$ are still variables and $log(a)$ is still a constant, is in a linear form.  Thus, transforming both the response and explanatory variable to the logarithm scale will ``linearize'' a relationship that is known to theoretically follow a power function (\figref{fig:SLRPowerFun2}; note the lack of curvature in both plots).
+
+<<SLRPowerFun2, echo=FALSE, fig.scap="log-log transform of power function",fig.cap="Scatterplot (Left) and residual plot (Right) from a log-log transformation of the data simulated from power function and shown in \\figref{fig:SLRPowerFun1}.", fig.pos="h">>=
+ pwr$lny <- log(pwr$y); pwr$lnx <- log(pwr$x)
+ pwr.lm2 <- lm(lny~lnx,data=pwr)
+ fitPlot(pwr.lm2,cex.main=0.8,lwd=2,ylab="log(y)",xlab="log(x)",main="")
+ residPlot(pwr.lm2,cex.main=0.8,main="",inclHist=FALSE)
+@
+\vspace{9pt}
+Another common form is the non-linear exponential form -- $Y=ae^{bX}$ -- where $e$ is the base of the natural log and is a constant.  An example of this type of data is shown in \figref{fig:SLRExponentialFun1}.  Again, taking the natural log of both sides reduces this functional form to
+
+\[ \begin{split}
+  log(Y) &= log(ae^{bX}) \\
+  log(Y) &= log(a) + log(e^{bX}) \\
+  log(Y) &= log(a) + bX
+\end{split} \]
+
+Thus, transforming the response, but not the explanatory, variable to the logarithm scale will ``linearize'' a relationship that is known to theoretically follow an exponential function \figrefp{fig:SLRExponentialFun2}.
+
+<<SLRExponentialFun1, echo=FALSE, fig.cap="Scatterplot (Left) and residual plot (Right) for data simulated from an exponential function, $Y=ae^{bX}$.  The residual plot is overlaid with a LOESS smoother function (red line) to highlight the curvature.", fig.pos="h">>=
+ expo <- read.table("Figs/ExponentialFun.txt",header=TRUE)
+ expo.lm <- lm(y~x,data=expo)
+ fitPlot(expo.lm,cex.main=0.8,lwd=2,main="")
+ residPlot(expo.lm,cex.main=0.8,main="",inclHist=FALSE)
+@
+
+<<SLRExponentialFun2, echo=FALSE, fig.scap="log-transformed exponential function.", fig.cap="Scatterplot (Left) and residual plot (Right) for log-transformed data simulated from an exponential function and shown in \\figref{fig:SLRExponentialFun1}.", fig.pos="h">>=
+ expo$lny <- log(expo$y)
+ expo.lm2 <- lm(lny~x,data=expo)
+ fitPlot(expo.lm2,cex.main=0.8,lwd=2,main="")
+ residPlot(expo.lm2,cex.main=0.8,main="",inclHist=FALSE)
+@
+
+Other common equation types, their transformations to a linear form, and estimates of the model parameters are shown in \tabref{tab:SLRTransformForms}.  Many of these models are important in specific scientific fields.
+
+\begin{sidewaystable}
+  \centering
+  \caption{Common mathematical models, their transformations to a linear form, and parameter estimates..}\label{tab:SLRTransformForms}
+\begin{tabular}{|l|c|c|}
+\multicolumn{1}{l}{} & \multicolumn{2}{c}{Model Forms} \\
+\cline{1-3}
+\widen{-2}{7}{Model Name} & Standard & Linear \\
+\cline{1-3}
+\widen{-2}{7}{Exponential} & $Y=ae^{bX}$ & $log(Y)=log(a)+bX$ \\
+\cline{1-3}
+\widen{-2}{7}{Power Function} & $Y=aX^{b}$ & $log(Y)=log(a)+blog(X)$ \\
+\cline{1-3}
+\widen{-2}{7}{Modified Power Function} & $Y=aX^{b}+c$ & $log(Y-c)=log(a)+blog(X)$ \\
+\cline{1-3}
+\widen{-2}{7}{Sigmoid} & $Y=\frac{c}{1+aX^{b}}$ & $log\left(\frac{c}{Y}-1\right)=log(a)+blog(X)$ \\
+\cline{1-3}
+\widen{-2}{7}{Exponential Sigmoid} & $Y=\frac{c}{1+ae^{bX}}$ & $log\left(\frac{c}{Y}-1\right)=log(a)+bX$ \\
+\cline{1-3}
+\widen{-2}{7}{Exponential Saturation} & $Y=a\left(1-e^{bX}\right)$ & $log(a-Y)=log(a)+bX$\\
+\cline{1-3}
+\widen{-2}{7}{Maxima Function} & $Y=aXe^{bX}$ & $log\left(\frac{Y}{X}\right)=log(A)+bX$ \\
+\cline{1-3}
+\widen{-2}{7}{Modified Inverse} & $Y=\frac{a}{b+X}$ & $\frac{1}{Y}=\frac{b}{a}+\frac{1}{a}X$ \\
+\cline{1-3}
+\widen{-2}{7}{Hyperbola} & $Y=\frac{aX}{b+X}$ & $\frac{X}{Y}=\frac{b}{a}+\frac{1}{a}X$ \\
+\cline{1-3}
+\end{tabular}
+
+    \vspace{0.2in}
+
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\multicolumn{1}{l}{} & \multicolumn{2}{c}{Transformations} & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Parameter Estimates} \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Model Name} & Response & Explanatory &  & a & b & c \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Exponential} & $log(Y)$ & $X$ &  & $e^{intercept}$ & $slope$ & -- \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Power Function} & $log(Y)$ & $log(X)$ &  &  $e^{intercept}$ & $slope$ & -- \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Modified Power Function} & $log(Y-c)$ & $log(X)$ &  & $e^{intercept}$ & $slope$ & estimated \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Sigmoid} & $log\left(\frac{c}{Y}-1\right)$ & $log(X)$ &  & $e^{intercept}$ & $slope$ & estimated \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Exponential Sigmoid} & $log\left(\frac{c}{Y}-1\right)$ & $X$ &  & $e^{intercept}$ & $slope$ & estimated \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Exponential Saturation} & $log(a-Y)$ & $X$ &  & $e^{intercept}$ & $slope$ & -- \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Maxima Function} & $log\left(\frac{Y}{X}\right)$ & $X$ &  & $e^{intercept}$ & $slope$ & -- \\\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Modified Inverse} & $\frac{1}{Y}$ & $X$ &  & $\frac{1}{slope}$ & $\frac{intercept}{slope}$ & -- \\
+\cline{1-3}\cline{5-7}
+\widen{-2}{7}{Hyperbola} & $\frac{X}{Y}$ & $X$ &  & $\frac{1}{slope}$ & $\frac{intercept}{slope}$ & -- \\
+\cline{1-3}\cline{5-7}
+\end{tabular}
+
+\end{sidewaystable}
+
+
+\subsubsection*{Transformations from Experience}
+Finally, transformations for the response variable may be determined based on common transformations for a particular type of data.  Transformations for some common types of data are shown in \tabref{tab:RegCommonTransforms}.
+
+\begin{table}[h]
+  \centering
+  \caption{Common response transformations and their typical usage.}\label{tab:RegCommonTransforms}
+  \begin{tabular}{|p{1.6in}|p{4.4in}|}
+    \hline
+    \widen{-2}{6}{$Y^{*}=Y^{0.5}$} & Commonly used for discrete count data (comes from Poisson distribution theory). \\
+    \hline
+    \widen{-2}{6}{$Y^{*}=Y^{0.5}+(Y+1)^{0.5}$} & Same as above except for use when some values are 0 or very small. \\
+    \hline
+    \widen{-2}{6}{$Y^{*}=ln(Y+1)$} & Use when a logarithm transformation is warranted but there are 0s in the data. \\
+    \hline
+    \widen{-2}{6}{$Y^{*}=Y^{-1}$} & Often used when a response time is recorded.  This transformation changes the units from the scale of time per response to number of responses per time. \\
+    \hline
+    \widen{-2}{6}{$Y^{*}=sin^{-1}\left(Y^{0.5}\right)$} & Commonly used when the data recorded are proportions or percentages. \\
+    \hline
+  \end{tabular}
+\end{table}
+
+It should also be noted that \cite{Weisberg1985} suggested that if the ratio of maximum to minimum value for the explanatory variable is greater than 10 then it should be transformed to the natural log scale.
+
+\subsubsection*{Trial-and-Error}
+Transformations for the response and explanatory variable can be identified by trying a variety of powers for each variable and exploring the results of each.  Of course, this is a tedious process.  Fortunately, computer programs exist for dynamically determining the effect of transforming each variable.  When using these programs the user should attempt to transform just the response variable first.
+
+\subsection*{Back-Transformation Issues}
+As discussed in \sectref{sect:AOVTransformationsInterp}, back-transformation is the process of reversing the results found on the transformed scale to the original scale for ease of interpretation.  In regression analyses, the coefficients and predicted values can be thought of as being one of two types.  The intercept, fitted values, and predicted values (along with the endpoints of their confidence intervals) can be thought of as being estimates of average values.  These values are back-transformed as discussed in \sectref{sect:AOVTransformationsInterp}, including the use of the correction factor when a log transformation is used\footnote{Note, however, that the $MS_{Within}$ is replaced with $MS_{Residual}$ so that the correction factor is $e^{\frac{MS_{Residual}}{2}}$.}.  In contrast, the slope is thought of as being an estimate of a rate of change.  Back-transformation of the slope must be interpreted differently.
+
+The back-transformed values of rates (i.e., slopes) from some transformed scales may have a useful interpretational meaning on the original scale.  For example, the back-transformed slope when the response variable has been transformed to the natural log scale is an estimate of the multiplicative change in the mean value of the response variable for a one unit change of the explanatory variable.  Make a clear note of the word ``multiplicative'' in the previous sentence.  Without transformation, the slope is an estimate of how much is ``added'' to the mean of $Y$ for a unit change in $X$; however, back-transforming the slope from the log scale is an estimate of how much the mean of $Y$ is multiplied by for a unit change of $X$.
+
+This interpretation can be illustrated by first looking at the difference in the log-transformed means for a unit change in $X$,
+
+\[log\left(\mu_{Y|X+1}\right)-log\left(\mu_{Y|X}\right) = \left[\alpha+\beta_{1}(X+1)\right] - \left[\alpha+\beta_{1}X\right] = \beta_{1}\]
+
+Thus, not surprisingly, on the log-transformed scale a unit change in $X$ results in a $\beta_{1}$ unit change in the natural logarithm mean of $Y$.  Now, raise both sides of this equation to the power of $e$ and simplify,
+
+\[ \begin{split}
+  e^{\beta_{1}} &= e^{log(\mu_{Y|X+1})-log(\mu_{Y|X})} \\
+  e^{\beta_{1}} &= e^{log\left(\frac{\mu_{Y|X+1}}{\mu_{Y|X}}\right)} \\
+  e^{\beta_{1}} &= \frac{\mu_{Y|X+1}}{\mu_{Y|X}}
+\end{split} \]
+
+Thus, $e^{\beta_{1}}$ does NOT represent the difference in two means, rather it represents the ratio of two means on the original scale.
+
+\warn{The value of a slope back-transformed from a natural log transformation represents the ratio of the two means separated by one unit of the explanatory variable on the original scale.  In other words, this back-transformed values it he multiplicative change in the mean response for a unit change in the explanatory variable.}
+
+Note that the correction factor discussed in \sectref{sect:AOVTransformationsInterp} is NOT used when back-transforming rates.  Also, note that this interpretation on the original scale is only true if a log transformation was used.  Useful interpretations on the original scale can not be found for most other transformations.  Thus, the slope should \emph{NOT} be back-transformed if a transformation other than a logarithm was used.
+
+\warn{Do NOT back-transform slopes if other than a log transformation was used.}
+
+\subsection{Polynomial Regression}
+The power transformations discussed above have a tendency to simultaneously ``fix'' violations of the linearity, homoscedasticity, and normality assumptions.  This can be troublesome if only one of these assumptions is violated.  For example, it is possible to have data that meet the normality and homoscedasticity assumptions, but are non-linear.  In this case, a power transformation may linearize the data, but may then also make the residuals non-normal or heteroscedastic.  In this example, the meeting of two assumptions was ``traded for'' the meeting of just one assumption.
+
+In this specific situation -- non-linear data with homoscedastic, normal residuals --  it may be appropriate to fit what is called a polynomial regression.  A polynomial regression consists of a generic model of
+
+\[ \mu_{Y|X}=\alpha+\beta_{1}x +\beta_{2}x^{2}+\beta_{3}x^{3}+\beta_{4}x^{4}+\ldots \]
+
+Generally speaking, the polynomial regression model will have one more term (i.e., highest exponent) than the number of ``turns'' in the data.  So, if the form of the relationship looks like a parabola (i.e., one ``turn'') then a model that stops with $X^{2}$ would be tried.  If the data has two ``turns'' then a model that stops with $X^{3}$ would be tried.  Models with more than three or four terms are rarely used because of their complexity.
+
+An example of this type of data is shown in \figref{fig:SLRPolynomial1}.  Clearly a linear model does not fit these data.  However, the residuals do not show an increasing variance around the loess line shown in the residual plot.  Thus, these data are a good candidate to be fit by a polynomial regression.  In fact, a polynomial regression with three terms seems to fit the data well \figrefp{fig:SLRPolynomial2}.
+
+<<SLRPolynomial1, echo=FALSE, fig.cap="Fitted line plot (Left) and residual plot (Right) for the fit of a linear model to data simulated from a cubic model.", fig.pos="h">>=
+ pol <- read.table("Figs/Polynomial.txt",header=TRUE)
+ pol.lm <- lm(y~x,data=pol)
+ fitPlot(pol.lm,main="",lwd=2)
+ residPlot(pol.lm,main="",inclHist=FALSE)
+@
+
+<<SLRPolynomial2, echo=FALSE, fig.cap="Fitted line plot (Left) and residual plot (Right) for the fit of $\\mu_{Y|X}=\\alpha+\\beta_{1}X+\\beta_{2}X^{2}+\\beta_{3}X^{3}$ to data simulated from a cubic model.", fig.pos="h">>=
+ pol2.lm <- lm(y~x+I(x^2)+I(x^3),data=pol)
+ fitPlot(pol2.lm,main="",lwd=2)
+ residPlot(pol2.lm,main="",inclHist=FALSE)
+@
+
+Polynomial regression generally falls under the heading of multiple linear regression and will not be discussed further here.  However, at this point, note that polynomial regression is a useful technique if only the linearity assumption has been violated.
+
+\warn{Polynomial regressions are useful when ONLY the linearity assumption has been violated.  If more than one assumption is violated then polynomial regression is unlikely to solve the problem (and, thus, a power transformation should be considered).}
+
+
+\subsection{Transformations in R}
+The trial-and-error method of finding a transformation uses \R{transChooser()} with the only difference being that a start value for the explanatory value can be included in the \R{startx=} argument and that a slider bar will be provided for both the explanatory and response variables.  Once a transformation has been identified the variable is transformed exactly as described in Chapters \ref{chap:LMFoundations}-\ref{chap:LMANOVA2}.
+
+
+\section{Example Analyses}
+\subsection{Lake Trout Fecundity}
+\subsubsection*{Introduction}
+\cite{Schram1993} examined the relationship between the total length and the number of eggs found in female lake trout from Lake Superior.  Schram's primary goal was to develop a model that could be used to predict the number of eggs produced by a female lake trout from the total length of that fish.  This relationship could be used in subsequent models used to manage the population of lake trout.
+
+\subsubsection*{Data Collection}
+Lake trout were collected during the spawning season from set netting areas in the Apostle Islands, Wisconsin.  A sample of 101 ripe but not spent female lake trout over the range of observed lengths were sacrificed and the eggs removed by dissection.  For each fish, the total length (TL; mm) and weight (g) was recorded and the total number of eggs counted.  The data are stored in \href{"https://sites.google.com/site/ncstats/data/LakeTroutEggs.txt"}{LakeTroutEggs.txt}.
+
+\subsubsection*{EDA \& Assumption Checking}
+<<echo=FALSE>>=
+lt.lm1 <- lm(eggs~tl,data=LT)
+lt.ad1 <- adTest(lt.lm1$residuals)
+@
+
+The initial fit of the untransformed simple linear regression model of the number of eggs on total length indicated that the linear model was adequate for these data  and the residuals were approximately symmetric \figrefp{fig:SLRLTResidA}.  The residuals were weakly, but not significantly, non-normal (Anderson-Darling \Sexpr{kPvalue(lt.ad1$p)}).  However, the outlier test, as displayed in the residual plot, indicated that observation 96 was a significant outlier.  A closer examination of observation 96 showed that (1) the number of eggs was 31\% larger than the next highest number of eggs for similarly sized fish, (2) the number of eggs was 78\% larger than predicted by the linear model, and (3) five fish were larger but none produced more eggs.  There is no indication that either the length or the number of eggs for this fish were measured in error.  Thus, in an effort to produce a model that represents ``typical'' female lake trout this ``unusual'' observation was removed from further analysis.
+
+<<SLRLTResidA, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) from the fit of a SLR model to the raw Lake Superior lake trout data.", fig.pos="h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+residPlot(lt.lm1)
+@
+
+<<echo=FALSE>>=
+LT1 <- LT[-96,]
+lt.lm2 <- lm(eggs~tl,data=LT1)
+lt.ad2 <- adTest(lt.lm2$residuals)
+@
+
+The fit of the untransformed simple linear regression model of the number of eggs on total length, without observation 96, indicated that the linear model still adequately fit the data \figrefp{fig:SLRLTResidB}, the residuals were largely homoscedastic \figrefp{fig:SLRLTResidB} and approximately normal (Anderson-Darling \Sexpr{kPvalue(lt.ad2$p)}), and there were no significant outliers left in these data.  Thus, a simple linear regression, with no transformations, will be fit to the data with observation 96 removed.
+
+<<SLRLTResidB, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) from the fit of a SLR model to the raw Lake Superior lake trout data with observation 96 removed.", fig.pos="h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+residPlot(lt.lm2)
+@
+
+\subsubsection*{Results}
+There is a significant relationship between the number of eggs produced and the total length of female Lake Superior lake trout (ANOVA \Sexpr{kPvalue(anova(lt.lm2)[1,"Pr(>F)"])}).  The relationship is only moderately strong ($R^{2}=$\Sexpr{formatC(rSquared(lt.lm2),format="f",digits=3)}) and is characterized by the linear equation $\mu_{eggs|tl}=$\Sexpr{formatC(coef(lt.lm2)[2],format="f",digits=3)}tl\Sexpr{formatC(coef(lt.lm2)[1],format="f",digits=3)} \tabrefp{tab:SLRLTResults3}.  Thus, a 1-mm increase in the total length of a female lake trout corresponds to an average increase of approximately \Sexpr{formatC(coef(lt.lm2)[2],format="f",digits=1)} eggs with a 95\% prediction interval of between \Sexpr{formatC(confint(lt.lm2)[2,1],format="f",digits=1)} and \Sexpr{formatC(confint(lt.lm2)[2,2],format="f",digits=1)} eggs.
+
+\begin{table}[h]
+  \centering
+  \caption{Coefficient results from the fit of eggs produced on total length of the raw Lake Superior lake trout data with observation 96 removed.}\label{tab:SLRLTResults3}
+<<echo=FALSE, background="white">>=
+kREG(lt.lm2)
+@
+\end{table}
+
+<<echo=FALSE, include=FALSE, results='hide'>>=
+tls <- c(650,750,850)
+pred1 <- predict(lt.lm2,data.frame(tl=tls),interval="prediction")
+@
+As an example, a female lake trout with a total length of \Sexpr{formatC(tls[1],format="f",digits=0)} mm would be predicted to have \Sexpr{formatC(pred1[1,"fit"],format="f",digits=0)} eggs with a 95\% confidence interval of \Sexpr{formatC(pred1[1,"lwr"],format="f",digits=0)} to \Sexpr{formatC(pred1[1,"upr"],format="f",digits=0)} eggs.  Examples for fish of other lengths are shown in \tabref{tab:SLRLTResults4}.
+
+\begin{table}[h]
+  \centering
+  \caption{Predicted number of eggs and 95\% prediction intervals for female Lake Superior lake trout with total lengths of 650, 750, and 850 mm.}\label{tab:SLRLTResults4}
+<<echo=FALSE, background="white">>=
+print(data.frame(tl=tls,pred1),row.names=FALSE)
+@
+\end{table}
+
+\subsubsection*{Conclusion}
+A significant, but only moderately strong, relationship was found between the number of eggs produced and the total length of ``typical'' female lake trout from Lake Superior.  A model was produced that can be used to predict the number of eggs in female lake trout of different total lengths but, because the fit is only moderately strong, these predictions exhibit substantial variability.  Further, it must be noted that this model was fit with the exclusion of one observed fish that had an ``unusually'' large number of eggs given its total length.  Thus, these results are only appropriate for individuals that don't have an ``unusually'' large number of eggs given their total length.
+
+\subsubsection*{Appendix -- R commands}
+\begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
+> LakeTroutEggs <- read.table("data/LakeTroutEggs.txt",header=TRUE)
+> lt.lm1 <- lm(eggs~tl,data=LakeTroutEggs)
+> fitPlot(lt.lm1,main="")
+> residPlot(lt.lm1)
+> adTest(lt.lm1$residuals)
+> LakeTroutEggs[tl>870 & tl<880,]        # finding fish with similar length to #96
+> (eggs[96]-eggs[94])/eggs[94]
+> lt.lm1$residuals[96]/lt.lm1$fitted.values[96]
+> rank(tl)[96]; rank(eggs)[96]
+> LakeTroutEggs1 <- LakeTroutEggs[-96,]  # remove #96
+> lt.lm2 <- lm(eggs~tl,data=LakeTroutEggs1)
+> fitPlot(lt.lm2,main="")
+> residPlot(lt.lm2)
+> adTest(lt.lm2$residuals)
+> anova(lt.lm2)
+> summary(lt.lm2)
+> confint(lt.lm2)
+> new <- c(650,750,850)
+> predictionPlot(lt.lm2,data.frame(tl=new),interval="prediction")
+\end{Verbatim}
+
+
+\subsection{Fish Consumption Estimation}
+\subsubsection*{Introduction}
+<<echo=FALSE>>=
+ Consumption <- read.table("data/Consumption.txt",sep="\t",header=TRUE)
+ Consumption1 <- Consumption[!is.na(Consumption$biomass),]
+@
+Fish population consumption is an important process linking predator populations to their prey resources.  Simple tools are needed to enable fisheries managers to estimate population consumption.  One such possible simple tool is to estimate population consumption from estimates of the number or biomass of animals in the population.
+
+\subsubsection*{Data Collection}
+\cite{Liaoetal2005} assembled, from the literature, a data set of 74 individual estimates of annual consumption by freshwater fish populations and their mean annual population size, 41 of which also included estimates of mean annual biomass.  The data set included 14 freshwater fish species from 10 different bodies of water.  The authors hoped to develop a simple relationship between population food consumption and the numbers or biomass of fish in the population.  This analysis will focus on the relationship between population consumption and biomass of the population.
+
+\subsubsection*{EDA \& Assumption Checking}
+<<echo=FALSE>>=
+ fcb.lm1 <- lm(consumption~biomass,data=Consumption)
+ fcb.ad1 <- adTest(fcb.lm1$residuals)
+@
+
+An initial EDA of the data indicates a large amount of variability in both the consumption and biomass variables with outlying individuals in both variables.  In addition, the fitted-line and residual plots indicate a lack of linearity and a broad heteroscedasticity and the Anderson-Darling test indicates a non-normality (\Sexpr{kPvalue(fcb.ad1$p)}).  These results all indicate that a transformation should be explored.
+
+<<SLRFCPlot1, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) for the regression of annual population consumptions on population biomass.", fig.pos="h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+ residPlot(fcb.lm1)
+@
+
+<<echo=FALSE>>=
+ Consumption$logcons <- log(Consumption$consumption)
+ Consumption$logbio <- log(Consumption$biomass)
+ fcb.lm2 <- lm(logcons~logbio,data=Consumption)
+ fcb.ad2 <- adTest(fcb.lm2$residuals)
+@
+
+The natural log of biomass (explanatory variable) was initially used because the ratio of maximum to minimum biomass was \Sexpr{formatC(max(Consumption$biomass,na.rm=TRUE)/min(Consumption$biomass,na.rm=TRUE),format="f",digits=0)}.  A natural log transformation for the food consumption variable was also found through a trial-and-error process using \R{transChooser()}.  The relationship between log(consumption) and log(biomass) was linear (\figref{fig:SLRFCPlot2}-Left).  However, the residual plot indicated a slight heteroscedasticity, though this may be apparent because of the lack of data for smaller and larger values of biomass.  The residuals were non-normal (Anderson-Darling \Sexpr{kPvalue(fcb.ad2$p)}) and decidedly right-skewed (\figref{fig:SLRFCPlot2}-Right).  Examination of the residual plot (\figref{fig:SLRFCPlot2}-Middle) indicated that observation 3 was an outlier and, due to its position to the far left, a potentially influential point.  Observation 3 was one of only two measurements made at substantially smaller biomass values then the bulk of the observations.  It is not clear that this observation is in error, nor is it apparent that the observation is ``unusual'' as their is only one comparable value to compare it to.  Observation 3 will remain in the data set, but its effect on the regression results will be commented on in the conclusion.  The linear regression model was fit to the log-log transformed data as the linearity and homoscedasticity assumptions were largely met and no other transformation proved ``better.''
+
+<<SLRFCPlot2, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) for the regression of natural-log transformed annual population consumption on natural-log transformed population biomass.", fig.pos="h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
+ residPlot(fcb.lm2)
+@
+
+\subsubsection*{Results}
+The relationship between log(consumption) and log(biomass) was significantly positive (ANOVA \Sexpr{kPvalue(anova(fcb.lm2)[1,"Pr(>F)"])}).  In fact, it appears that as the log(biomass) increases by one unit that the average log(consumption) increases by approximately \Sexpr{formatC(coef(fcb.lm2)[2],format="f",digits=2)} \tabrefp{tab:SLRFCCoef} units with a 95\% confidence interval between \Sexpr{formatC(confint(fcb.lm2)[2,1],format="f",digits=2)} and \Sexpr{formatC(confint(fcb.lm2)[2,2],format="f",digits=2)} units \tabrefp{tab:SLRFCCoefCI}.  Alternatively, a one unit increase in biomass results in an average \Sexpr{formatC(exp(confint(fcb.lm2)[2,1]),format="f",digits=2)} to \Sexpr{formatC(exp(confint(fcb.lm2)[2,2]),format="f",digits=2)} \textbf{times} increase in annual population consumption.
+
+\begin{table}[h]
+  \centering
+  \caption{Summary results for the regression of $\mu_{log(consumption)|log(biomass)} = \alpha + \beta_{1}log(biomass)$.}\label{tab:SLRFCCoef}
+<<echo=FALSE, background="white">>=
+kREG(fcb.lm2)
+@
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{Confidence intervals for parameters in $\mu_{log(consumption)|log(biomass)} = \alpha + \beta_{1}log(biomass)$.}\label{tab:SLRFCCoefCI}
+<<echo=FALSE, background="white">>=
+confint(fcb.lm2)
+@
+\end{table}
+
+As an example, suppose that interest is in predicting the mean population consumption for all systems with a biomass of 20000 kg.  This prediction would be accomplished by first converting the given biomass to log(biomass) and plugging that value into the equation of the best-fit line to predict the log(consumption) \tabrefp{tab:SLRFCPred}.  The predicted value and the end points of the confidence interval would then be used as the powers of $e$ to ``back-transform'' the results to the original scale.  These back-transformed values are $58991$ and $77023$.  However, because the natural log transformation was used for the response variable, these back-transformed values should be corrected for back-transformation bias by multiplying each value by $e^{\frac{s^{2}_{Y|X}}{2}}$$=e^{\frac{0.4199^{2}}{2}}$$=e^{0.088}$$=1.092$\footnote{Note that $s^{2}_{Y|X}$=0.4199 as shown in the ``Residual standard error'' portion of \tabref{tab:SLRFCCoef}}.  With this correction, the mean consumption level for all systems with a biomass of 20000 kg would be expected to be between $64428$ and $84122$ kg.
+
+\begin{table}[h]
+  \centering
+  \caption{Results for the prediction of the mean log(consumption) for a biomass of 20000 kg.}\label{tab:SLRFCPred}
+<<echo=FALSE, background="white">>=
+pred2 <- predict(fcb.lm2,data.frame(logbio=log(20000)),interval="confidence")
+print(data.frame(pred2),row.names=FALSE)
+@
+\end{table}
+
+\subsubsection*{Conclusion}
+A significant, and very strong, relationship was found between the natural log annual population consumption and the natural log biomass for fish species from a variety of aquatic ecosystems.  A model was developed from this relationship that can be used to predict the annual population consumption of a system from the measured biomass in the system.
+
+One observation, a system with a possibly unusually high annual population consumption value relative to its very low biomass level, was an apparent outlier and influential point in the development of the model.  This point was not removed from the analysis because it was not obviously in error or unusual.  However, if it had been deleted, the changes in the estimates of the slope, intercept, and predicted mean log(consumption) given a biomass of 20000 kg would have changed very little \tabrefp{tab:SLRFCOutlier}.
+
+\begin{table}[h]
+  \centering
+  \caption{Confidence intervals for the slope, intercept, and predicted mean log(consumption) for the regression of log annual population consumption on log biomass with and without observation 3.}\label{tab:SLRFCOutlier}
+  \begin{Verbatim}[xleftmargin=5mm]
+                                     w/ obs 3       w/o obs 3
+slope                         ( 0.954, 1.039) ( 0.983, 1.059)
+intercept                     ( 0.824, 1.682) ( 0.591, 1.366)
+predicted log(consumption)    (10.985,11.252) (10.975,11.203)
+  \end{Verbatim}
+\end{table}
+
+\vspace{-24pt}
+\subsubsection*{Appendix -- R commands}
+\vspace{-18pt}
+\begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
+> Consumption <- read.table("data/Consumption.txt",header=TRUE)
+> Consumption1 <- Consumption[!is.na(Consumption$biomass),] # removing missing data
+> fcb.lm1 <- lm(consumption~biomass,data=Consumption1)
+> fitPlot(fcb.lm1,main="",pts=19,ltyp=2)
+> residPlot(fcb.lm1)
+> adTest(fcb.lm1$residuals)
+> transChooser(fcb.lm1)
+> Consumption1$logcons <- log(Consumption1$consumption)
+> Consumption1$logbio <- log(Consumption1$biomass)
+> fcb.lm2 <- lm(logcons~logbio,data=Consumption1)
+> fitPlot(fcb.lm2,main="")
+> residPlot(fcb.lm2)
+> adTest(fcb.lm2$residuals)
+> anova(fcb.lm2)
+> summary(fcb.lm2)
+> confint(fcb.lm2)
+> predictionPlot(fcb.lm2,data.frame(logbio=log(20000)),interval="c")
+> Consumption2 <- Consumption1[-3,]  # remove individual #3 to assess its impact
+> fcb.lm3 <- lm(logcons~logbio,,data=Consumption2)
+> fitPlot(fcb.lm3,main="")
+> residPlot(fcb.lm3)
+> adTest(fcb.lm3$residuals)
+> confint(fcb.lm3)
+> predictionPlot(fcb.lm3,data.frame(logbio=log(20000)),interval="c")
+\end{Verbatim}
+
+\clearpage
+\section{Summary Process}
+The following is a template for a process of fitting a simple linear regression model.  This template can be used initially to get a feel for how to proceed but should not be considered as a concrete process for all models.
+
+\vspace{-10pt}
+\begin{Enumerate}
+  \item Perform a thorough EDA.
+    \begin{Itemize}
+      \item Pay close attention to the form, strength, and outliers on the scatterplot [\R{plot()}] of the response and explanatory variables.
+    \end{Itemize}
+  \item Fit the untransformed ultimate full model [\R{lm()}].
+  \item Check the assumptions of the fit of the model.
+    \begin{Itemize}
+      \item Check the linearity of the relationship with a fitted-line plot [\R{fitPlot()}] and residual plot [\R{residPlot()}].
+      \item Check homoscedasticity with a fitted-line plot and residual plot.
+      \item Check normality of residuals with an Anderson-Darling test [\R{adTest()}] and histogram of residuals [\R{residPlot()}].
+      \item Check for outliters and influential points with the outlier test [\R{outlierTest()}], fitted-line plot, and residual plot.
+    \end{Itemize}
+  \item If an assumption or assumptions are violated then attempt to find a transformation where the assumptions are met.
+    \begin{Itemize}
+      \item Use the trial-and-error method [\R{transChooser()}], theory, or experience to identify possible transformations for the response variable and, possibly, for the explanatory variable.
+      \item If only an ``unusual'' or influential observation exists (i.e., linear, homoscedastic, and normal residuals) and no transformation corrects the ``problem'' then consider removing that observation from the data set.
+    \end{Itemize}
+  \item Fit the ultimate full model with the transformed variable(s) or reduced data set.
+  \item Construct an ANOVA table for the full model [\R{anova()}] and interpret the overall F-test.
+  \item Summarize findings with coefficient results [\R{summary()}, \R{confint()}] and fitted-line plot [\R{fitPlot()}].
+  \item Make predictions if desired [\R{predictionPlot()}].
+\end{Enumerate}
+
+
+\turnpage{100}
+\begin{hwsection}{All questions below (except where noted) should be typed, refer to tables of output, be answered with complete sentences, and include an appendix of R commands.}
+
+  \item \label{hwprob:LMSLR1} \textbf{[13 pts]} The data below consisted of the number of chirps in 15 seconds by a cricket (CHIRPS) and the temperature ($^{o}$F) the cricket was held at (TEMP). A total of 15 crickets were recorded \citep{Pierce1948}.  The author was attempting to see if the temperature could be predicted from the number of cricket chirps.
+
+    \begin{Enumerate}
+      \item Fill in all blank cells in the results below.  These results can be hand-written but make sure to show your work in the order that you solved the blanks.
+
+  \begin{Verbatim}[formatcom=\color{blue},xleftmargin=5mm,commandchars=\\\{\}]
+\textcolor{red}{> summary(cricket)}
+       chirps            temp
+ Min.   :14.0   Min.   :69.00
+ 1st Qu.:15.5   1st Qu.:75.50
+ Median :16.0   Median :81.00
+ Mean   :16.6   Mean   :_____
+ Max.   :20.0   Max.   :93.00
+ StDev  : 1.7   StDev  : 6.72
+
+\textcolor{red}{> lm1 <- lm(temp~chirps)}
+\textcolor{red}{> summary(lm1)}
+Call: lm(formula = temp ~ chirps)
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  26.7420    _______   2.627 0.020917
+chirps       _______     0.6102   _____ 0.000151
+
+Residual standard error: 3.936 on 13 degrees of freedom
+Multiple R-Squared: 0.6812,     Adjusted R-squared: 0.6567
+F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
+
+\textcolor{red}{> predict(lm1,data.frame(chirps=15),interval="confidence")}
+          fit      lwr      upr
+[1,] ________ ________ 78.03173
+
+\textcolor{red}{> predict(lm1,data.frame(chirps=15),interval="prediction")}
+          fit      lwr      upr
+[1,] ________ 65.95557 ________
+\end{Verbatim}
+
+\vspace{12pt}
+      \item Write the equation of the best fit line in terms of \var{temp} and \var{chirps}.
+      \item Is there a significant relationship between temperature and number of chirps? Explain.
+    \end{Enumerate}
+
+\turnpage{36}
+  \item \label{hwprob:LMSLRBirths} \textbf{[6 pts]} \cite{Davisetal1998} examined the proportion of male births (PropMale) in several industrialized nations.  The data for the United States are shown below.
+
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        \widen{-1}{5}{Year} & 1970 & 1971 & 1972 & 1973 & 1974 & 1975 & 1976 \\
+        \hline
+        \widen{-1}{5}{PropMale} & 0.5134 & 0.5126 & 0.5125 & 0.5128 & 0.5133 & 0.5132 & 0.5128 \\
+        \hline
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\
+        \hline
+        \widen{-1}{5}{Year} & 1977 & 1978 & 1979 & 1980 & 1981 & 1982 & 1983 \\
+        \hline
+        \widen{-1}{5}{PropMale} & 0.5128 & 0.5129 & 0.5127 & 0.5129 & 0.5126 & 0.5123 & 0.5127 \\
+        \hline
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\
+        \hline
+        \widen{-1}{5}{Year} & 1984 & 1985 & 1986 & 1987 & 1988 & 1989 & 1990 \\
+        \hline
+        \widen{-1}{5}{PropMale} & 0.5122 & 0.5126 & 0.5122 & 0.5120 & 0.5121 & 0.5120 & 0.5120 \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+  Enter these data into R (check your data entry!!!) and compute results to answer the questions below.
+    \begin{Enumerate}
+      \item Is there evidence for a significant statistical change in the proportion of male births over the study period?
+      \item At what annual rate (i.e., how much per year) did the proportion of male births decline or increase?
+      \item Explain why the p-value for the slope is so small even though the value of the estimated slope is such a small number [i.e., what must be true to conclude that the slope was different than zero when it is so very close to zero?].
+    \end{Enumerate}
+
+  \item \label{hwprob:LMSLRWheatears} \textbf{[8 pts]} Black wheatears (\emph{Oenanthe leucura}) are small birds of Spain and Morocco.  Male black wheatears demonstrate an exaggerated sexual display by carrying many heavy stones to nesting cavities.  \cite{Soleretal1999} studied whether carrying larger stones might be a signal of higher health status.  They measured the average stone mass carried (in g) for 21 male black wheatears.  In addition, they indexed the health of each bird by measuring their T-cell response which reflects the bird's immune system strength (larger T-cell responses indicate a ``healthier'' bird).  Their results are below.
+
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        \widen{-1}{5}{Mean Stone Mass} & 3.33 & 4.62 & 5.43 & 5.73 & 6.12 & 6.29 & 6.45 \\
+        \hline
+        \widen{-1}{5}{T-Cell Response} & 0.252 & 0.263 & 0.251 & 0.251 & 0.183 & 0.213 & 0.332 \\
+        \hline
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\
+        \hline
+        \widen{-1}{5}{Mean Stone Mass} & 6.51 & 6.65 & 6.75 & 6.81 & 7.56 & 7.83 & 8.02 \\
+        \hline
+        \widen{-1}{5}{T-Cell Response} & 0.203 & 0.252 & 0.342 & 0.471 & 0.431 & 0.312 & 0.304 \\
+        \hline
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} \\
+        \hline
+        \widen{-1}{5}{Mean Stone Mass} & 8.06 & 8.18 & 9.08 & 9.15 & 9.35 & 9.42 & 9.95 \\
+        \hline
+        \widen{-1}{5}{T-Cell Response} & 0.370 & 0.381 & 0.430 & 0.430 & 0.213 & 0.508 & 0.411 \\
+        \hline
+      \end{tabular}
+    \end{center}
+
+  Enter these data into R (check your data entry!!!) and compute results to answer the questions below.
+    \begin{Enumerate}
+      \item Is there a significant relationship between the mass of carried stones and the ``health'' of the birds?  If so, specifically describe that relationship (with appropriate interval)?
+      \item Predict (with appropriate interval) the mean T-Cell response for birds that carried a mean stone mass of 5 g.
+      \item Predict (with appropriate interval) the T-Cell response for a bird that carried a mean stone mass of 5 g.
+      \item Explain why your answer to (b) is different from your answer to (c) -- be specific.
+    \end{Enumerate}
+
+  \item \label{hwprob:LMSLRCarMPG1} \textbf{[10 pts]} Students in the Introduction to Environmental Studies course were interested in what characteristics of cars affected the gas mileage (miles per gallon) of a car.  Using an internet search they recorded several variables on a sample of makes of cars (note, these data are industry-reported summaries for the make of a car, not measurements on an individual car).  Two of the variables that they recorded were \var{mpg} (miles per gallon of gasoline for the car) and \var{hp} (horsepower of the car engine).  These data, along with a variety of other variables, can be found in the \href{https://sites.google.com/site/ncstats/data/CarMPG.txt}{CarMPG.txt} data file.  Use these data to compute a model that can be used to predict the mpg of a car based on its horsepower.
+    \begin{Enumerate}
+      \item Show the output from \R{summary()}.  Fully interpret the meaning of each value in the output except for the \emph{Std. Error}, \emph{t value}, \emph{residuals}, and \emph{Adjusted R-squared} portions.
+      \item Show the output from \R{confint()}.  Fully interpret the meaning of each pair of (CI) values in the output.
+      \item Show the output from \R{anova()}.  Fully show how each df was computed and interpret the meaning of each MS and the F test statistic in the output.
+      \item Is there evidence, at the 5\% level, for a relationship between the horsepower and the mpg of the car?
+    \end{Enumerate}
+
+\vspace{30pt}
+  \item \label{hwprob:LMSLRCarMPG2} \textbf{[10 pts]} Continue with the car data collected by students in the Introduction to Environmental Studies course begun in \ref{hwprob:LMSLRCarMPG1}.
+    \begin{Enumerate}
+      \item Assess the independence assumption for these data.
+      \item Thoroughly test the linearity assumption for these data.
+      \item Thoroughly test the homoscedasticity assumption for these data.
+      \item Thoroughly test the normality assumption for these data.
+      \item Thoroughly test the outliers assumption for these data.
+    \end{Enumerate}
+
+\vspace{30pt}
+  \item \label{hwprob:LMSLRRusconi} \textbf{[15 pts]} A high respiratory rate is a potential diagnostic indicator of respiratory infection in children.  To judge whether a respiratory rate is truly ``high,'' however, a physician must have a clear picture of the distribution of normal respiratory rates.  To this end, Italian researchers \citep{Rusconietal1994} measured the respiratory rates of 618 children between the ages of 4 days and 3 years.  The data are in \href{https://sites.google.com/site/ncstats/data/Rusconi.txt}{Rusconi.txt} with the variables \var{Age} = ``age of children \emph{in months}'' and \var{Rate} = ``respiratory rate in breaths per minute.''  Import these data into R and answer the following questions.
+    \begin{Enumerate}
+      \item Perform a thorough analysis of assumptions.
+      \item If needed, identify a transformation so that the assumptions of a SLR are met.  Describe your process and show that the assumptions are adequately met on the new scale. [Note: attempt to find a simple scale where most of the assumptions are at least closely met.  The ideal analysis for these data is a combination of transformation and polynomial regression -- you do not have to do the polynomial regression.]
+      \item Describe whether a significant relationship exists between the two variables.  If so, describe that relationship.
+      \item Demonstrate how your model can be used to predict the respiratory rate for a given child (you choose the age, make sure to interpret the interval on the scale of interest to the doctors).
+    \end{Enumerate}
+
+\end{hwsection}

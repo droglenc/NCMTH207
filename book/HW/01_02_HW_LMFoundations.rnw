@@ -1,0 +1,77 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = NRS207 HW Key - 1.2}
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\begin{document}
+<<echo=FALSE, include=FALSE, warning=FALSE, message=FALSE>>=
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+library(NCStats)
+@
+\titleRKey{Linear Models Foundations}{Biometry}
+
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\section*{Question 1.2 (15 pts)}
+<<echo=FALSE, results='hide'>>=
+d <- data.frame(DBP=c(8,12,10,14,2,0,0,-6,0,1,2,-3,-4,2),diet=factor(rep(c("Fish","Standard"),each=7)))
+fish.t <- t.test(DBP~diet,data=d,var.equal=TRUE)
+lm1 <- lm(DBP~diet,data=d)
+a1 <- anova(lm1)
+s1 <- summary(lm1)
+c1 <- coef(lm1)
+@
+
+  \begin{Enumerate}
+    \item Results from the \R{t.test()} are shown in the \tabref{tab:LMFoundFishDiet3}.
+\begin{table}[!h]
+  \centering
+  \caption{Results from two-sample t-test of diastolic blood pressure by diet type.}\label{tab:LMFoundFishDiet3}
+<<echo=FALSE>>=
+fish.t
+@
+\end{table}
+
+    \item Results from \R{anova()} and \R{summary()} are shown in \tabref{tab:LMFoundFishDiet1} and \tabref{tab:LMFoundFishDiet2} , respectively.
+
+\begin{table}[!h]
+  \centering
+  \caption{Analysis of variance table for the diastolic blood pressure by diet type.}\label{tab:LMFoundFishDiet1}
+<<echo=FALSE>>=
+kANOVA(lm1)
+@
+\end{table}
+
+\begin{table}[!h]
+  \centering
+  \caption{Coefficient results from the one-way ANOVA fit of diastolic blood pressure by diet type.}\label{tab:LMFoundFishDiet2}
+<<echo=FALSE>>=
+kREG(lm1)
+@
+\end{table}
+
+    \item The overall p-value from the ANOVA table (\Sexpr{kPvalue(a1[1,"Pr(>F)"])}), for the slope coefficient (\Sexpr{kPvalue(fish.t$p.value)}), and for the two-sample t-test (\Sexpr{kPvalue(fish.t$p.value)}) are equal.  With these p-values, very strong evidence to reject the null hypothesis exists.  Thus, the group means appear to be different.
+      \item The intercept coefficient in the one-way ANOVA (\Sexpr{formatC(c1[1],format="f",digits=2)}) is the same as the mean of the first (Fish) group in the two-sample t-test (\Sexpr{formatC(fish.t$estimate[1],format="f",digits=2)}).  This occurs because an intercept is defined as the ``value of $Y$ when $X$=0, on average'' and the fish group is coded with a zero in \R{lm()}.
+    \item The difference in the means (i.e., \Sexpr{formatC(fish.t$estimate[2],format="f",digits=2)}-\Sexpr{formatC(fish.t$estimate[1],format="f",digits=2)} = \Sexpr{formatC(fish.t$estimate[2]-fish.t$estimate[1],format="f",digits=2)}) is the same as the slope coefficient in the one-way ANOVA model (i.e., \Sexpr{formatC(c1[2],format="f",digits=2)}).  This is because the slope coefficient shows the change in $Y$ (DBP) for a one ``unit'' change in $X$ (``diet group''), which is a change from the ``Fish'' group (coded with a zero) to the ``Standard'' group (code with a one) because of the coding in \R{lm()}.
+      \item The df from the two-sample t-test (\Sexpr{formatC(fish.t$parameter,format="f",digits=0)}) and the within df from the one-way ANOVA (\Sexpr{formatC(a1$Df[2],format="f",digits=0)}) are identical.  The within df are equal to the total number of individuals ($n=n_{1}+n_{2}$) minus the number of groups ($I=2$), which is the same as for the two-sample t-test.
+      \item The F test statistic (\Sexpr{formatC(a1$F[1],format="f",digits=2)}) is equal to the square of the t test statistic (\Sexpr{formatC(fish.t$statistic,format="f",digits=2)}$^2$=\Sexpr{formatC(fish.t$statistic^2,format="f",digits=2)}).  This relationship occurs when the numerator df for the ANOVA is equal to one (i.e., there are only two groups).
+      \item The SE for the difference in means is equal to $\frac{{\bar x_1  - \bar x_2 }}{t}$ = $\frac{6.571429+1.142857}{3.0621}$ = 2.519280.  The pooled variance is then equal to this value divided by the sum of the reciprocals of the sample sizes -- i.e., $\frac{{SE_{\bar x_1  - \bar x_2 }^2 }}{{{\textstyle{1 \over {n_1 }}} + {\textstyle{1 \over {n_2 }}}}}$ = $\frac{2.519280^{2}}{{{\textstyle{1 \over 7}} + {\textstyle{1 \over 7}}}}$ = 22.214.  This is the same as $MS_{within}$ \tabrefp{tab:LMFoundFishDiet1}.
+    \end{Enumerate}
+
+\vspace{12pt}
+R commands
+<<eval=FALSE,keep.source=TRUE>>=
+## The three lines below are an alternative way to enter the data
+##   using read.table() is likely easier
+DBP <- c(8,12,10,14,2,0,0,-6,0,1,2,-3,-4,2)
+diet <- factor(rep(c("Fish","Standard"),each=7))
+d <- data.frame(DBP,diet)
+t.test(DBP~diet,data=d,var.equal=TRUE)
+lm1 <- lm(DBP~diet,data=d)
+anova(lm1)
+summary(lm1)
+confint(lm1)
+@
+
+\end{document}

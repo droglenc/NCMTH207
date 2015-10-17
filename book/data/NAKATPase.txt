@@ -1,0 +1,36 @@
+# NAKATPase.txt		
+#
+# Na-K-ATPase activity at different sites along the nephrons of normal rats
+#  and specially bred rats which spontaneously develop hypertension.
+#   site: site along the nephron (DCD: distal collecting tubule, CCD: cortical
+#         collecting duct, and OMCD: outer medullary collecting duct)
+#   strain: rat strin (normal, hyper)
+#   activity: Na-K-ATPase activity level (pmol/(min*mm))
+#
+# Data simulated from Garg et al. 1985. XXX. American Journal of Physiology 249:F863-F869.
+#
+site	strain	activity
+DCT	Normal	62
+DCT	Normal	73
+DCT	Normal	58
+DCT	Normal	66
+DCT	Hyper	44
+DCT	Hyper	49
+DCT	Hyper	46
+DCT	Hyper	37
+CCD	Normal	15
+CCD	Normal	31
+CCD	Normal	19
+CCD	Normal	35
+CCD	Hyper	8
+CCD	Hyper	36
+CCD	Hyper	11
+CCD	Hyper	18
+OMCD	Normal	7
+OMCD	Normal	7
+OMCD	Normal	9
+OMCD	Normal	17
+OMCD	Hyper	19
+OMCD	Hyper	7
+OMCD	Hyper	15
+OMCD	Hyper	4

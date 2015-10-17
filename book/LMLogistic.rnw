@@ -1,0 +1,267 @@
+<<echo=FALSE, cache=FALSE, results='hide'>>=
+set_parent('Biometry.Rnw')
+@
+
+\chapter{Logistic Regression}  \label{chap:LMLogistic}
+  \vspace{0pt}
+    \begin{ChapObj}{\boxwidth}
+      \textbf{Chapter Objectives:}
+        \begin{Enumerate}
+          \item
+        \end{Enumerate}
+    \end{ChapObj}
+
+\minitoc
+\newpage
+
+\lettrine{L}{ogistic regression} models are used when a researcher is investigating the relationship between a binary categorical response variable and a quantitative explanatory variable\footnote{Strictly, a logistic regression can be used with a categorical explanatory variable or multiple explanatory variables of mixed type.  These notes will focus on the simplest situation where there is only one quantitative explanatory variable.}.  Typically, logistic regression is used to predict the probability of membership in one level, or the other, of the response variable given a particular value of the explanatory variable.  In some instances, the reverse will be solved for, such that one finds the value of the explanatory variable where a certain probability of the response variable would occur.  Binary\footnote{This qualifying statement is needed as not all logistic regressions have a response variable with only two levels.} logistic regression, the topic of this chapter, would be used in each of the following situations:
+\begin{Enumerate}
+  \item Predict the probability that a species of bat is of a certain subspecies based on the size of the canine tooth.
+  \item Predict the probability that a household will accept an offer to install state-subsidized solar panels given the household's income.
+  \item Predict the probability that a beetle will die when exposed to a certain concentration of a chemical pollutant.
+  \item Predict the probability of mortality for a patient given a certain ``score'' on a medical exam.
+  \item Identify the concentration of a chemical that will result in a 50\% mortality rate for an animal.
+\end{Enumerate}
+
+\defn{Binary Logistic Regression}{A linear model where a binary response variable is examined with a quantitative explanatory variable.}
+
+\section{Logit Transformation}
+<<echo=FALSE>>=
+# Create some random data to be used for demonstrating non-linearity of raw data
+set.seed(3436234)
+xmids <- seq(12.5,47.5,2.5)
+alpha <- -7
+beta1 <- 0.235
+pmids <- exp(alpha+beta1*xmids)/(1+exp(alpha+beta1*xmids))
+fdat <- NULL
+for (i in 1:length(xmids)) {
+  fdat <- c(fdat,sample(c("fail","succ"),20,prob=c(1-pmids[i],pmids[i]),replace=TRUE))
+}
+d <- data.frame(x=round(rep(xmids,each=20)+runif(length(fdat),-1.25,1.25),0),f=factor(fdat))
+@
+
+The binary response variable in a logistic regression is treated as an indicator variable\footnote{Indicator variables were discussed in great detail in \sectref{sect:IndicatorVars}.}, where a ``success'' is coded as a ``1'' and a ``failure'' is coded as a ``0.''  Fitting a linear regression to this response variable plotted against the quantitative explanatory variable immediately exposes two problems \figrefp{fig:logRaw}.  First, the linearity (and homoscedasticity) assumptions of linear regression are not met.  Second, predicted probabilities from this model can be less than 0 and greater than 1, even within the domain of the quantitative explanatory variable.  Clearly, a linear regression cannot be used to model this type of data.
+
+<<logRaw, echo=FALSE, fig.width=4, out.width='.45\\linewidth', fig.cap="Plot of the binary response variable, as an indicator variable, versus a quantitative explanatory variable with the best-fit linear regression line super-imposed.  Note that darker points have more individuals over-plotted at that coordinate.", fig.pos="!h">>=
+ par(mar=c(3.5,3.5,1,3), mgp=c(2,0.75,0),las=1,tcl=-0.2)
+ plotBinResp(f~x,data=d,breaks=seq(10,50,2.5),plot.p=FALSE,xlim=c(10,50),xlab="Quantitative Variable",ylab="Binary Response Variable")
+ abline(lm((as.numeric(f)-1)~x,data=d),col="red",lwd=2)
+@
+\vspace{9pt}
+Logistic regression is focused on the probability of ``success'' ($p_{i}$) at a given value of the quantitative explanatory variable ($x_{i}$).  These probabilities are often calculated within ``windows'' of the $x_{i}$, as seldom are there enough multiple response observations at each given explanatory observation.  For example, the probability of ``success'' may be calculated for the data shown in \figref{fig:logRaw} within ``windows'' that are 2.5 units wide on the x-axis \figrefp{fig:logProb}.  From this, it is obvious, that a model for the probability of ``success'' is clearly non-linear.
+
+<<logProb, echo=FALSE, fig.width=4, out.width='.45\\linewidth', fig.cap="Plot of the binary response variable, as an indicator variable, versus a quantitative explanatory variable with the vertical lines representing the ``windows'' in which the probability of ``success'' (blue pluses) were calculated.  Note that darker points have more individuals over-plotted at that coordinate.">>=
+ par(mar=c(3.5,3.5,1,3), mgp=c(2,0.75,0),las=1,tcl=-0.2)
+ plotBinResp(f~x,data=d,breaks=seq(10,50,2.5),xlim=c(10,50),xlab="Quantitative Variable",ylab="Binary Response Variable")
+ abline(v=seq(10,50,2.5),col="red",lty=3)
+@
+\vspace{9pt}
+The odds of an event occurring is the probability of that event occurring divided by the probability of that event not occurring.  Thus, the odds of ``success'' is computed with
+
+\[ odds_{i} = \frac{p_{i}}{1-p_{i}} \]
+
+Thinking in terms of odds takes some practice.  For example, an odds of 5 means that the probability of a ``success'' is five times more likely then the probability of a ``failure,'' whereas an odds of 0.2 means that the probability of a ``failure'' is five times (i.e., $\frac{1}{0.2}$$=5$) more likely then the probability of a ``success.''  Furthermore, it is instructive to note that an odds of 1 means that the probability of a ``success'' and a ``failure'' are equally likely.  Finally, note that odds are bounded below by 0 (i.e., negative odds are impossible) but are not bounded above (i.e., odds can increase to positive infinity).  A plot of the odds for the same data shown in \figref{fig:Odds} illustrates these characteristics of odds.
+
+<<Odds, echo=FALSE, fig.cap="Plot of the odds of a ``success'' at various ``windows'' of the quantitative explanatory variable.">>=
+ d <- lencat(~x,data=d,startcat=10,w=5)
+ tbl <- with(d,table(LCat,f))
+ ptbl <- prop.table(tbl,margin=1)
+ prsuc <- ptbl[,2]
+ xs <- as.numeric(names(prsuc))
+ oddsuc <- prsuc/(1-prsuc)
+ plot(oddsuc~xs,pch=3,col="blue",cex=1.25,ylab="Odds Success",xlim=c(10,50),xlab="Quantitative Variable",xaxt="n")
+ axis(1,seq(10,50,10))
+@
+\vspace{9pt}
+While the plot of the odds of ``success'' versus the quantitative explanatory variable is not linear, it does have the characteristic shape of an exponential function.  Exponential functions are ``linearized'' by transforming the response variable with natural logarithms (see \chapref{chap:LMRegression1}).  The natural log of the odds is called the ``logit'' transformation.  Thus,
+
+\[ logit(p_{i}) = log\left(\frac{p_{i}}{1-p_{i}}\right) \]
+
+and the plot of $logit(p_{i})$ versus the explanatory variable will be linear \figrefp{fig:logOdds}.
+
+<<logOdds, echo=FALSE, fig.cap="Plot of the logit transformed probability of a ``success'' (i.e., log odds of a ``success'') at various ``windows'' of the quantitative explanatory variable.">>=
+ logitsuc <- log(oddsuc)
+ plot(logitsuc~xs,pch=3,col="blue",cex=1.25,ylab="Log(Odds Success)",xlab="Quantitative Variable",xlim=c(10,50),xaxt="n")
+ axis(1,seq(10,50,10))
+@
+
+\clearpage
+\section{Logistic Regression}
+\subsection{The Model}
+The logit transformation is a common transformation for ``linearizing'' the probability of ``success'' versus quantitative explanatory variable data.  The logit transformation is the basis for a logistic regression, such that the logistic regression model is
+
+\begin{equation}\label{eqn:logRegModel}
+  log\left(\frac{p_{i}}{1-p_{i}}\right) = \alpha + \beta_{1}x_{i}
+\end{equation}
+
+where $\alpha$ is the ``intercept'' parameter and $\beta_{1}$ is the ``slope'' parameter.
+
+\subsection{Intepreting the Slope Coefficient}
+The slope for any linear regression represents the average change in the response variable for a unit change in the explanatory variable.  In logistic regression, this corresponds to the average (additive) change in the log odds of a ``success'' for a unit change in the explanatory variable, or
+
+\[ \beta_{1} = log\left(\frac{PR(Y|X+1)}{1-PR(Y|X+1)}\right) - log\left(\frac{PR(Y|X)}{1-PR(Y|X)}\right) \]
+
+Of course, a change in the log odds is not easily interpretable.  Back-transforming the slope coefficient, i.e.,
+
+\[ e^{\beta_{1}} = \frac{\frac{PR(Y|X+1)}{1-PR(Y|X+1)}}{\frac{PR(Y|X)}{1-PR(Y|X)}} \]
+
+results in a measure of the \textbf{multiplicative} change in the odds of a ``success'' for a unit change in the explanatory variable.  For example, a $\hat{\beta}_{1}$=0.2 would mean that the log odds of a ``success'' increases by 0.2, on average, for a one unit increase in $X$.  The corresponding back-tranformed slope, $e^{0.2}$=\Sexpr{formatC(exp(0.2),format="f",digits=2)}, however, indicates that the odds of a ``success'' are \Sexpr{formatC(exp(0.2),format="f",digits=2)} \textbf{times} greater for each unit increase of the explanatory variable.  The back-transformed slope does not indicate what the odds are, only that the odds are \Sexpr{formatC(exp(0.2),format="f",digits=2)} \textbf{times} greater with an increase of one unit in the explanatory variable.
+
+Nearly all software will provide a ``default'' significance test for the slope.  This significant test tests the $H_{0}:\beta_{1}=0$ versus $H_{A}:\beta_{1}\neq0$.  Thus, this significance tests determines if, with a one unit increase in the explanatory variable, if the (additive) change in log odds of ``success'' is zero or the (multiplicative) change in odds is one.  The probability does not change if the (additive) change in log odds is zero or, equivalently, if the (multiplicative) change in odds is one.  Thus, the default hypothesis test for the slope determines if the probability of ``success'' changes with changing value of the explanatory variable.  Alternatively, this test determines if there is a significant relationship between the probability of ``success'' and the explanatory variable.
+
+\subsection{Predictions}
+Inserting a given value of the explanatory variable into the fitted logistic regression model, i.e., into \eqref{eqn:logRegModel}, results in a predicted log odds of ``success.''  Back-transforming this prediction results in a predicted odds of ``success'', i.e.,
+
+\begin{equation} \label{eqn:predOdds}
+  \frac{p_{i}}{1-p_{i}}  = e^{\alpha + \beta_{1}x_{i}}
+\end{equation}
+
+The predicted odds equation, \eqref{eqn:predOdds}, can be algebraically solved for $p_{i}$ to provide a formula for predicting the probability of ``success'', i.e.,
+
+\begin{equation}\label{eqn:predProb}
+  p_{i} = \frac{e^{\alpha + \beta_{1}x_{i}}}{1+e^{\alpha + \beta_{1}x_{i}}}
+\end{equation}
+
+The predicted odds equation, \eqref{eqn:predOdds}, can also be algebraically solved for $x_{i}$ to provide a formula for the value of $X$ corresponding to a given probability of ``success'', i.e.,
+
+\begin{equation}\label{eqn:predX}
+  x_{i} = \frac{log\left(\frac{p_{i}}{1-p_{i}}\right) - \alpha}{\beta_{1}}
+\end{equation}
+
+\subsection{Variability Estimates}
+Standard errors or confidence intervals for the parameters of the logistic regression model can be computed with normal distribution theory.  However, this theory does not hold for all logistic regression models.  In addition, methods for computing confidence intervals for predicted probabilities or for predicted values of $X$ for a particular probability are not well formed.  Bootstrapping provides one method for producing confidence intervals for these parameters.
+
+In bootstrapping, $B$ (re)samples of the same size as the original sample are produced with replacement from the original sample.  The logistic regression model is fit to each of these new (re)samples and the estimates of interest (i.e., slope, intercept, predicted probability, etc.) are computed each time.  The estimates from each (re)sample are then aggregated and an approximate 95\% confidence interval is computed as the values of the estimate that have 2.5\% of all bootstrapped values smaller and greater (i.e., find the bounds that contain the most common 95\% of bootstrapped values).  Bootstrap confidence intervals are computer intensive, but provide an interval that does not depend on the shape of the underlying sampling distribution.
+
+\section{Logistic Regression in R}
+\cite{Bliss1935} examined the mortality response of beetles to various concentrations of gaseous carbon disulphide (mg/liter).  The concentration and whether or not the beetle survived the exposure to that concentraton was recorded for each beetle and stored in \href{https://sites.google.com/site/ncstats/data/Bliss.txt}{Bliss.txt}.  These data are read into R and viewed with
+<<>>=
+d <- read.table("data/Bliss.txt",header=TRUE)
+str(d)
+levels(d$outcome)
+@
+The levels for the \var{outcome} variable will be coded as ``0''s and ``1''s in the order they are listed with \R{levels()}.  Thus, ``dead'' will be coded with ``1''s and the proportion of ``successes'' will be the proportion of beetles that were dead at the end of the exposure to the gaseous carbon disulphide.
+
+\subsection{Fitting the Logistic Regression Model}
+\vspace{-9pt}
+A general plot of the binary response variable versus the quantitative explanatory variable is constructed with \R{plotBinResp()}.  This function requires a formula of the form \R{factor}$\sim$\R{quantitative} where \R{factor} represents the binomial response variable and \R{quantitative} represents the quantitative explanatory variable as the first argument and the data frame that contains these variables in the \R{data=} argument.  The individuals on the \R{plotBinResp()} plot will be shown with transparent ``dots'' such that over-plotting of several individuals will make the ``dots'' appear darker.  This form of plotting is necessary due to the extreme discreteness of the response variable.  In addition, \R{plotBinResp()} will show the proportion of ``1''s within several ``windows'' of values of the explanatory variable.  The number of ``windows'' can be defined by setting the \R{breaks=} argument to a single number.  Alternatively, the ``windows'' can be defined by setting \R{breaks=} argument to a sequence of numbers\footnote{This sequence is best created with \R{seq()} where the three argument are the starting, ending, and step value of the sequence.} identifying the endpoints of the ``windows.''  For example, the plot constructed with breaks that begin at 45 and step every 5 units to 80 \figrefp{fig:BtlBinResp} is constructed with
+
+<<BtlBinResp, echo=-1, fig.width=4, out.width='.45\\linewidth', fig.cap="Plot of the binary outcome variable versus the concentration of calcium disulfide with the probability of death (blue pluses) calculated at every five units of concentration.  Note that darker points have more individuals over-plotted at that coordinate.">>=
+par(mar=c(3.5,3.5,1,3), mgp=c(2,0.75,0),las=1,tcl=-0.2)
+plotBinResp(outcome~conc,data=d,breaks=seq(45,80,5),xlim=c(45,80),
+xlab="Concentration of Calcium Disulphide (mg/l)",ylab="Probability of Death")
+@
+
+The logistic regression model is fit with the \emph{general linear model} function, \R{glm()}, which takes the same formula and \R{data=} arguments as described for \R{plotBinResp()}.  In addition, the \R{family=binomial} argument must be included to force \R{glm()} to fit a logistic regression model.  The results of \R{glm()} should be saved to an object.  Submitting the saved \R{glm} object to \R{summary()} provides basic model summary results.  These two functions are illustrated with
+<<echo=-3>>=
+glm1 <- glm(outcome~conc,data=d,family=binomial)
+summary(glm1)
+sum1 <- summary(glm1)
+@
+From these results, the estimated intercept is \Sexpr{formatC(sum1$coefficients["(Intercept)","Estimate"],format="f",digits=2)} and the estimated slope is \Sexpr{formatC(sum1$coefficients["conc","Estimate"],format="f",digits=3)}.  In addition, it is apparent that there is a signifcant relationship between the log odds of death for the beetles and the concentration of the calcium disulphide (slope \Sexpr{kPvalue(sum1$coefficients["(Intercept)","Pr(>|z|)"])}).
+
+The fit of the logistic regression model is seen using \R{fitPlot()} with the saved \R{glm} object as the first argument and the same optional parameters as used in \R{plotBinResp()}.  For example, the fitted logistic regression \figrefp{fig:BtlFitPlot} is constructed with
+
+<<BtlFitPlot, fig.width=4, out.width='.45\\linewidth', fig.cap="Plot of the binary outcome variable versus the concentration of calcium disulfide with the probability of death (blue pluses) calculated at every five units of concentration and the fitted logistic regression model superimposed (in red).  Note that darker points have more individuals over-plotted at that coordinate.">>=
+par(mar=c(3.5,3.5,1,3), mgp=c(2,0.75,0),las=1,tcl=-0.2)
+fitPlot(glm1,breaks=seq(45,80,5),xlim=c(45,80),main="")
+@
+
+Confidence intervals based on normal theory are obtained by submitting the saved \R{glm} object to \R{confint()}.  For example,
+<<>>=
+confint(glm1)              # normal theory
+@
+
+Bootstrap samples are taken by sending the saved \R{glm} object to \R{bootCase()}\footnote{\R{bootCase()} is from the \R{car} package.} and saving the results to an object.  The bootstrap samples are taken and the first six rows of results are shown with
+<<>>=
+bc1 <- bootCase(glm1)      # bootstrapping, be patient!
+head(bc1)
+@
+
+The bootstrap confidence intervals are then obtained by sending the \R{bootCase} object to \R{confint()}, i.e.,
+<<>>=
+confint(bc1)
+@
+<<echo=FALSE, results='hide', warning=FALSE, include=FALSE>>=
+ci1 <- confint(glm1)
+ci2 <- confint(bc1)
+@
+Thus, the normal theory provides a 95\% confidence interval for the slope from \Sexpr{formatC(ci1["conc",1],format="f",digits=3)} to \Sexpr{formatC(ci1["conc",2],format="f",digits=3)}, whereas the bootstrap estimates are from \Sexpr{formatC(ci2["conc",1],format="f",digits=3)} to \Sexpr{formatC(ci2["conc",2],format="f",digits=3)}.  The confidence intervals for the slope from these two methods are not widely disparate in this example because the sampling distribution of the slope is approximately normal \figrefp{fig:BtlParamDist}.  The distributions of the parameters from the bootstrap samples \figrefp{fig:BtlParamDist} are constructed with
+
+<<BtlParamDist, fig.width=7, out.width='.8\\linewidth', fig.cap="Histograms of the logistic regression parameter estimates from the bootstrapped samples.">>=
+hist(bc1,breaks=15)
+@
+
+\subsection{Predictions}
+The predicted probability of death given a value of the concentration of calcium disulphide is found with \R{predict()} in a manner similar to what was shown in previous chapters.  The one difference is that if one wants to predict the probability, rather than the log odds, then include the \R{type="response"} argument in \R{predict()}.  For example, the predicted probability of death at a concentration of 70 mg/l is computed with
+<<>>=
+predict(glm1,data.frame(conc=70),type="response")
+@
+Unfortunately, confidence intervals for this prediction can not be constructed with \R{predict()}.  Bootstrap confidence intervals, however, can be constructed with a bit of work.  First, one must create a small function that computes the predicted probability ``by hand'', i.e., code \eqref{eqn:predProb} with
+<<>>=
+predProb <- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
+@
+A quick check of this function,
+<<>>=
+predProb(70,coef(glm1)[1],coef(glm1)[2])
+@
+shows that it provides the same prediction as found with \R{predict()}.  Now use \R{predProb()} to predict the probability given the parameter estimates for each bootstrap sample (by realizing that the intercepts are in the first and the slopes are in the second column of \R{bc1}).  These predicted probabilities should be saved to an object that can be submitted to \R{quantile()} to compute the quantiles that represent the confidence bounds.  These calculations are illustrated with
+<<echo=-3>>=
+p70 <- predProb(70,bc1[,1],bc1[,2])
+quantile(p70,c(0.025,0.975))
+ci70 <- quantile(p70,c(0.025,0.975))
+@
+Thus, one is 95\% confident that the predicted probability of death for beetles exposed to 70 mg/l calcium disulphide is between \Sexpr{formatC(ci70[1],format="f",digits=3)} and \Sexpr{formatC(ci70[2],format="f",digits=3)}.
+
+A similar process is used to predict the concentration where 50\%, for example, of the beetles will have died (in this case, \eqref{eqn:predX} must be coded as a function).  For example,
+<<echo=-4>>=
+predX <- function(p,alpha,beta1) (log(p/(1-p))-alpha)/beta1
+x50 <- predX(0.5,bc1[,1],bc1[,2])
+quantile(x50,c(0.025,0.975))
+ci50 <- quantile(x50,c(0.025,0.975))
+@
+Thus, one is 95\% confident that the predicted concentration where 50\% of the beetles would be dead is between \Sexpr{formatC(ci50[1],format="f",digits=1)} and \Sexpr{formatC(ci50[2],format="f",digits=1)}.
+
+\turnpage{120}
+\newpage
+\begin{hwsection}{All questions below should be answered with complete sentences and with all work shown.  Your answers should be typed with hand calculations included as a hand-written appendix.}
+
+  \item \label{hwprob:LMlogisticGSS} \textbf{[XX pts]}  The General Sociological Survey (GSS) is a very large survey that has been administered 25 times since 1972.  The basic purposes of the GSS are to gather data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviors, and attributes; to examine the structure and functioning of society in general as well as the role played by relevant subgroups; to compare the United States to other societies in order to place American society in comparative perspective and develop crossnational models of human society; and to make high-quality data easily accessible to scholars, students, policy makers, and others, with minimal cost and waiting.  One question that was asked in the most recent GSS was ``Have you watched an x-rated movie in the last year?''  The respondent's answer to this question (Yes or No) and age are recorded in \dfile{XMovieAge.txt}.  Read these data into R, remove all individuals older than age 95, fit a logistic regression model, and answer the following questions.
+
+    \begin{enumerate}
+      \item Construct a ``fitted-line plot'' for the logistic regression model (use enough breaks to adequately characterize the change in proportions).  Comment on the adequacy of fit of this logistic regression model.
+      \item Interpret the meaning of the slope ($\beta_{1}$) from the fit of the logistic regression model.
+      \item Interpret the meaning of the ``back-transformed'' slope ($e^{\beta_{1}}$) from the fit of the logistic regression model.
+      \item Show (``by hand'') how to predict the log odds of having seen an x-rated movie in the last year for a 50-year-old respondent.
+      \item Confirm your hand-calculations to the previous question with R output.
+      \item Show (``by hand'') how to predict the odds that a 50-year-old respondent has seen an x-rated movie in the last year.
+      \item Show (``by hand'') how to predict the probability that a 50-year-old respondent has seen an x-rated movie in the last year.
+      \item Confirm your hand-calculations to the previous question with R output.
+      \item Use R to predict the probability that a 30-year-old respondent has seen an x-rated movie in the last year.  Then show (``by hand'') how to compute the odds that a 30-year-old respondent will have seen an x-rated movie in the last year.
+      \item Repeat the previous question but for a 31-year-old respondent.  Use these results and the results from the previous question to show a computational example of the meaning of ($e^{\beta_{1}}$).
+    \end{enumerate}
+
+\newpage
+  \item \label{hwprob:LMlogisticRuffe1} \textbf{[XX pts]}  \cite{Ogleetal2004} examined the diet of larval ruffe (\emph{Gymnocephalus cernuus}) in the St. Louis River Harbor, Lake Superior.  In one part of their study, they recorded the occurrence (i.e., presence or absence) of six different prey items, plus an ``other'' category, for ruffe captured at two locations (Allouez Bay and Whaleback Bay) over six dates.  In addition, they recorded the length of the larval ruffe (in mm).  The results of this study are found in \href{https://sites.google.com/site/ncstats/data/RuffeLarvalDiet.txt}{RuffeLarvalDiet.txt}.  For the questions below, restrict the data set to \textbf{just Allouez Bay} and focus on the occurrence of \emph{Daphnia} relative to the length of larval ruffe.
+
+    \begin{enumerate}
+      \item Construct a ``fitted-line plot'' for the logistic regression model (use enough breaks to adequately characterize the change in proportions).  Comment on the adequacy of fit of this logistic regression model.
+      \item Is there a significant relationship between the logit probability of consuming a  \emph{Daphnia} and the length of the larval ruffe?  Explain.
+      \item Describe, in as much detail and as specifically as possible, the relationship between the probability of having consumed a \emph{Daphnia} and the length of the larval ruffe.
+      \item Predict the odds that a 6-mm larval ruffe consumed a \emph{Daphnia}.  Describe what this number means.
+      \item Predict the probability, with appropriate confidence interval, that a 6-mm larval ruffe consumed a \emph{Daphnia}.  Describe what this number means.
+    \end{enumerate}
+
+\vspace{18pt}
+  \item \label{hwprob:LMlogisticRuffe2} \textbf{[XX pts]}  As a continuation of the previous question, fit a logistic regression model that will allow you to compare the relationship between the probability that a larval ruffe consumed \emph{Daphnia} and the length of larval ruffe between larval ruffe captured in Allouez and Whaleback Bays.  Note: (1) you should treat Allouez Bay as the reference group and (2) you will have to return to the original data set that included information from Whaleback Bay.
+
+    \begin{enumerate}
+      \item Construct (i.e., write) the ultimate full model on the transformed scale (i.e., the logit scale).
+      \item Explicitly define all variables and describe the meaning of each parameter in your ultimate full model.
+      \item Fit your full model in R.  Is there a difference between the two locations in the relationship between the probability that a larval ruffe consumed \emph{Daphnia} and the length of larval ruffe.  Explain.
+      \item Predict, for fish from both locations, the probability that a 6-mm larval ruffe consumed a \emph{Daphnia}.
+      \item Fit a similar model in R but focused on the occurrence of \emph{Bosmina}.  Is there a difference between the two locations in the relationship between the probability that a larval ruffe consumed \emph{Bosmina} and the length of larval ruffe.  Explain.
+      \item Predict, for fish from both locations, the probability that a 6-mm larval ruffe consumed a \emph{Bosmina}.
+    \end{enumerate}
+
+\end{hwsection}

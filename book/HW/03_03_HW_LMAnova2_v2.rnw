@@ -1,0 +1,144 @@
+%===============================================================================
+% swv2PDF("03_03_HW_LMAnova2_v2.rnw",createScript=FALSE)
+%===============================================================================
+% Overall Sweave and R options
+%-------------------------------------------------------------------------------
+\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
+\SweaveOpts{width=3.5,height=3.5}
+<<echo=false,results=hide>>=
+rm(list=ls(all=TRUE))
+options(width=80,show.signif.stars=FALSE,continue="  ")
+options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
+loadNeeded(c("NCStats","multcomp"))
+@
+%===============================================================================
+
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\begin{document}
+\titleRKey{Linear Models Two-Way ANOVA}{Biometry}
+
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\section*{Question 3.4 (15 pts)}
+<<echo=FALSE,results=hide>>=
+active <- c(3,2,3,2,2,2,7,14,4,4,10,5,4,2,4,3,2,4,4,3,4,3,4,4,24,33,41,6,22,28,12,35,31,30,24,39,3,3,4,2,5,3,49,13,40,48,47,47)
+feed <- factor(c(rep("Fed",6),rep("Unfed",6),rep("Fed",12),rep("Unfed",12),rep("Fed",6),rep("Unfed",6)))
+time <- factor(c(rep(12,12),rep(17,24),rep(19,12)))
+cray <- data.frame(active,feed,time)
+lm1 <- lm(active~feed*time,data=cray)
+lev1 <- leveneTest(lm1)
+ad1 <- adTest(lm1$residuals)
+out1 <- outlierTest(lm1)
+cray$t.active <- cray$active^(-1/3)
+lm2 <- lm(t.active~feed*time,data=cray)
+lev2 <- leveneTest(lm2)
+ad2 <- adTest(lm2$residuals)
+out2 <- outlierTest(lm2)
+@
+
+  \begin{Enumerate}
+     \item On the original scale the variances are unequal (Levene's \Sexpr{kPvalue(lev1[1,"Pr(>F)"])}), the residuals are not normal (Anderson-Darling \Sexpr{kPvalue(ad2$p.value)}) nor symmetric \figrefp{fig:cray2ResidPlot1}, and there is one possible outlier (individual 44; \Sexpr{kPvalue(out1$bonf.p)}).  The trial-and-error method suggested an inverse cube-root transformation for the number of active crayfish (response variable).  This transformation provided equal variances (Levene's \Sexpr{kPvalue(lev2[1,"Pr(>F)"])}) and residuals that are not normal (Anderson-Darling \Sexpr{kPvalue(ad2$p.value)}) but, even though they were right-skewed, it is not ``long-tailed'' \figrefp{fig:cray2ResidPlot2}.  There are no outliers according to the outlier test (\Sexpr{kPvalue(out2$bonf.p)}; \figref{fig:cray2ResidPlot2}).  Thus, the assumptions have been largely met on the inverse cube-root scale with no individuals removed.
+
+<<label=cray2ResidPlot1,fig=TRUE,include=FALSE,echo=FALSE>>=
+hist(lm1$residuals,xlab="Residuals",main="")
+@
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=2in]{Figs/ansHW-cray2ResidPlot1.pdf}
+  \caption{Histograms of residuals from the two-way ANOVA of activity level by feeding regime and temperature.}\label{fig:cray2ResidPlot1}
+\end{figure}
+
+<<label=cray2ResidPlot2,fig=TRUE,include=FALSE,echo=FALSE>>=
+hist(lm2$residuals,xlab="Residuals",main="")
+@
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=2in]{Figs/ansHW-cray2ResidPlot2.pdf}
+  \caption{Histograms of residuals from the two-way ANOVA of the inverse cube root of activity level by feeding regime and temperature.}\label{fig:cray2ResidPlot2}
+\end{figure}
+
+<<echo=FALSE,results=hide>>=
+aov2 <- anova(lm2)
+@
+  \item There is a significant interaction effect (\Sexpr{kPvalue(aov2[3,"Pr(>F)"])}; \tabref{tab:cray2Anova}).  The main effects cannot be interpreted.
+\begin{table}[!h]
+  \centering
+  \caption{Analysis of variance table for inverse square-root transformed crayfish activity  level by feeding regime and temperature.}\label{tab:cray2Anova}
+<<echo=FALSE>>=
+kANOVA(lm2)
+@
+\end{table}
+
+<<echo=FALSE,results=hide>>=
+cray$group <- interaction(cray$feed,cray$time)
+lm3 <- lm(t.active~group,data=cray)
+mc3 <- glht(lm3,mcp(group="Tukey"))
+mc3p <- kGLHT(mc3)
+@
+      \item Tukey's HSD method applied to the interaction term suggests that there is no significant difference among the three FED treatments, all UNFED treatments have significantly \emph{more} active crayfish then the FED treatments, and crayfish in the UNFED treatment are significantly \emph{more} active at 1700 and 1900 than at 1200, with no significant difference between 1700 and 1900 \tabrefp{tab:cray2MultComp}.
+\begin{table}[!h]
+  \centering
+  \caption{Tukey's multiple comparison results for the interaction term in the two-way ANOVA of inverse square-root transformed crayfish activity level by feeding regime and temperature.}\label{tab:cray2MultComp}
+<<echo=FALSE>>=
+mc3p
+@
+\end{table}
+      \item The summary plot of these results is shown in \figrefp{fig:cray2FitPlot}.
+<<label=cray2FitPlot,fig=TRUE,include=FALSE,echo=FALSE>>=
+fitPlot(lm2,change.order=TRUE,interval=FALSE,ylab="Inverse Cube Root of Active Crayfish",xlab="Time of Day",main="",legend="bottomleft")
+addSigLetters(lm2,change.order=TRUE,lets=c("a","b","a","c","a","c"),pos=c(1,3,1,3,1,3))
+@
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=3in]{Figs/ansHW-cray2FitPlot.pdf}
+  \caption{Interaction plot for the two-way ANOVA of the inverse cube root of activity level by feeding regime and temperature.  Treatment means with different letters are significantly different.}\label{fig:cray2FitPlot}
+\end{figure}
+  \end{Enumerate}
+
+
+\newpage
+\section*{R Commands}
+\vspace{-12pt}
+<<eval=FALSE>>=
+active <- c(3,2,3,2,2,2,7,14,4,4,10,5,4,2,4,3,2,4,4,3,4,3,4,4,24,33,41,6,22,28,12,
+35,31,30,24,39,3,3,4,2,5,3,49,13,40,48,47,47)
+feed <- c(rep("Fed",6),rep("Unfed",6),rep("Fed",12),rep("Unfed",12),rep("Fed",6),
+rep("Unfed",6))
+feed <- factor(feed)
+time <- c(rep(12,12),rep(17,24),rep(19,12))
+time <- factor(time)
+cray <- data.frame(active,feed,time)
+lm1 <- lm(active~feed*time,data=cray)
+leveneTest(lm1)
+adTest(lm1$residuals)
+hist(lm1$residuals,main="")
+outlierTest(lm1)
+transChooser(lm1)
+cray$t.active <- cray$active^(-1/3)
+lm2 <- lm(t.active~feed*time,data=cray)
+residPlot(lm2,main="")
+leveneTest(lm2)
+adTest(lm2$residuals)
+hist(lm2$residuals,main="")
+outlierTest(lm2)
+anova(lm2)
+cray$group <- interaction(cray$feed*cray$time)
+lm3 <- lm(t.active~group,data=cray)
+mc3 <- glht(lm3,mcp(group="Tukey"))
+fitPlot(lm2,change.order=TRUE,interval=FALSE,xlab="Time of Day"
+,ylab="Inverse Cube Root of Active Crayfish",main="",legend="bottomleft")
+addSigLetters(lm2,change.order=TRUE,lets=c("a","b","a","c","a","c"),pos=c(1,3,1,3,1,3))
+@
+
+\vspace{48pt}
+\section*{Notes from the Professor}
+\begin{Itemize}
+  \item Note that the data were analyzed with an inverse transformation.  This means that ``small'' values on the transformed scale are actually ``large'' values on the original scale.  Thus, small means on the transformed scale actually represent more active crayfish on the original scale.
+\end{Itemize}
+
+<<echo=FALSE,results=hide>>=
+graphics.off()
+@
+
+\end{document}

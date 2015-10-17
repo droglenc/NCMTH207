@@ -1,0 +1,25 @@
+# TomatoNematode.txt
+#
+# The growth of tomatoe plants grown at a variety of densities of nematodes
+#   density: number of nematodes per pot
+#   growth: change in height of the plant from beginning to end in inches
+#
+# Note: change density to a factor once loaded into R
+#
+density	growth
+0	10.8
+0	9.1
+0	13.5
+0	9.2
+1000	11.1
+1000	11.1
+1000	8.2
+1000	11.3
+5000	5.4
+5000	4.6
+5000	7.4
+5000	5
+10000	5.8
+10000	5.3
+10000	3.2
+10000	7.5

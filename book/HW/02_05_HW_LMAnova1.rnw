@@ -1,0 +1,151 @@
+%===============================================================================
+% swv2PDF("02_05_HW_LMAnova1.rnw",createScript=FALSE)
+%===============================================================================
+% Overall Sweave and R options
+%-------------------------------------------------------------------------------
+\SweaveOpts{engine=R,eps=FALSE,pdf=TRUE,strip.white=true,keep.source=TRUE,prefix.string=Figs/ansHW}
+\SweaveOpts{width=3.5,height=3.5}
+<<echo=false,results=hide>>=
+rm(list=ls(all=TRUE))
+options(width=80,show.signif.stars=FALSE,continue="  ")
+options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
+loadNeeded(c("NCStats","multcomp"))
+@
+%===============================================================================
+
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\begin{document}
+\titleRKey{Linear Models One-Way ANOVA}{Biometry}
+
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\section*{Question 2.5 (8 pts)}
+<<echo=FALSE,results=hide>>=
+cause <- factor(c(rep("Adenoma",6),rep("BiHyper",10),rep("Carcinoma",5)),levels= c("Adenoma","BiHyper","Carcinoma"))
+uth <- c(3.1,3,1.9,3.8,4.1,1.9,8.3,3.8,3.9,7.8,9.1,15.4,7.7,6.5,5.7,13.6,10.2,9.2,9.6,53.8,15.8)
+d <- data.frame(uth,cause)
+lm1 <- lm(uth~cause,data=d)
+lev1 <- leveneTest(lm1)
+ad1 <- adTest(lm1$residuals)
+out1 <- outlierTest(lm1)
+@
+
+  \begin{Enumerate}
+    \item The individuals appear to be independent among groups (i.e., an individual cannot possibly be in more than one group as that person cannot have two reasons for the syndrome).  They are likely independent within groups as there is no indication of any connection between individuals within a group.  However, the within group independence is not obvious with the information given.
+      \item The Levene's test suggests that the variances are equal (\Sexpr{kPvalue(lev1[1,"Pr(>F)"])}).  The residual plot is not of much help because individual 20 appears to be such a large outlier \figrefp{fig:uthresidplot1}.
+\SweaveOpts{width=3.5,height=3.5}
+<<label=uthresidplot1,fig=TRUE,include=FALSE,echo=FALSE>>=
+residPlot(lm1,main="")
+@
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=2.5in]{Figs/ansHW-uthresidplot1.pdf}
+  \caption{Residual plot from the one-way ANOVA of UTH levels by syndrome type.}\label{fig:uthresidplot1}
+\end{figure}
+
+      \item The Anderson-Darling normality test strongly suggests that the residuals are not normally distributed (\Sexpr{kPvalue(ad1$p.value)}).  The histogram of the residuals is not of much help because of the very large outlier \figrefp{fig:uthresidplot2}.
+<<label=uthresidplot2,fig=TRUE,include=FALSE,echo=FALSE>>=
+hist(lm1$residuals,xlab="Residuals",main="")
+@
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=2.5in]{Figs/ansHW-uthresidplot2.pdf}
+  \caption{Histograms of residuals from the one-way ANOVA of UTH levels by syndrome type.}\label{fig:uthresidplot2}
+\end{figure}
+
+      \item Observation 20 appears to be a significant outlier (\Sexpr{kPvalue(out1$bonf.p)}).  This was also evident on the residual plot \figrefp{fig:uthresidplot1} and histogram of residuals \figrefp{fig:uthresidplot2}.
+    \end{Enumerate}
+
+\vspace{12pt}
+R commands
+<<eval=FALSE,keep.source=TRUE>>=
+library(NCStats)
+library(multcomp)
+# the next four lines is just an alternative way to enter the data
+#   using read.table() is easier and more efficient
+cause <- c(rep("Adenoma",6),rep("BiHyper",10),rep("Carcinoma",5))
+cause <- factor(cause,levels= c("Adenoma","BiHyper","Carcinoma"))
+uth <- c(3.1,3,1.9,3.8,4.1,1.9,8.3,3.8,3.9,7.8,9.1,15.4,7.7,6.5,5.7,13.6,
+10.2,9.2,9.6,53.8,15.8)
+d <- data.frame(uth,cause)
+lm1 <- lm(uth~cause,data=3)
+leveneTest(lm1)
+residPlot(lm1,main="")
+adTest(lm1$residuals)
+hist(lm1$residuals,xlab="Residuals",main="")
+outlierTest(lm1)
+@
+
+\section*{Question 2.6 (8 pts)}
+<<echo=FALSE,results=hide>>=
+d2 <- d[-20,]
+lm2 <- lm(uth~cause,data=d2)
+aov2 <- anova(lm2)
+@
+
+  \begin{Enumerate}
+      \item The mean UTH is significantly different among the three groups (\Sexpr{kPvalue(aov2[1,"Pr(>F)"])}; \tabref{tab:LMAnovaUTH1}).
+\begin{table}[!h]
+  \centering
+  \caption{Analysis of variance table for the UTH values by syndrome type with the 20th individual removed.}\label{tab:LMAnovaUTH1}
+<<echo=FALSE>>=
+kANOVA(lm2)
+@
+\end{table}
+
+<<echo=FALSE,results=hide>>=
+mc2 <- glht(lm2,mcp(cause="Tukey"))
+mc2p <- kGLHT(mc2)
+@
+      \item It appears that the mean UTH for the adenoma group is significantly different from the mean UTH for both the bilateral hyperplasia (\Sexpr{kPvalue(mc2p[1,"p value"])}; \tabref{tab:LMMultCompUTH2}) and carcinoma (\Sexpr{kPvalue(mc2p[2,"p value"])}; \tabref{tab:LMMultCompUTH2}) groups and that the mean UTH for the bilateral hyperplasia and carcinoma groups are NOT statistically different (\Sexpr{kPvalue(mc2p[3,"p value"])}; \tabref{tab:LMMultCompUTH2}).  These results are shown visually in \figref{fig:uthfitplot3}.
+
+\begin{table}[!h]
+  \centering
+  \caption{Tukey's multiple comparison results for the UTH values by syndrome type with the 20th individual removed.}\label{tab:LMMultCompUTH2}
+<<echo=FALSE>>=
+mc2p
+@
+\end{table}
+<<label=uthfitplot3,fig=TRUE,include=FALSE,echo=FALSE>>=
+fitPlot(lm2,xlab="Cause",ylab="Urine Tetrahydrocortisone Level",main="")
+addSigLetters(lm2,c("a","b","b"),pos=c(2,2,4))
+@
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=2.5in]{Figs/ansHW-uthfitplot3.pdf}
+  \caption{Plot of mean (with 95\% CI) UTH level by syndrome type with the 20th individual removed.  Different letters indicate means that are significantly different.}\label{fig:uthfitplot3}
+\end{figure}
+
+
+<<echo=FALSE,results=hide>>=
+mc2c <- kGLHT(mc2,type="c")
+@
+      \item The mean of the bilateral hyperplasia group is between \Sexpr{formatC(mc2c[1,"lwr"],format="f",digits=2)} and \Sexpr{formatC(mc2c[1,"upr"],format="f",digits=2)} units greater than the mean for the adenoma group \tabrefp{tab:LMMultCompUTH3}.  The mean for the carcinoma group is between \Sexpr{formatC(mc2c[2,"lwr"],format="f",digits=2)} and \Sexpr{formatC(mc2c[2,"upr"],format="f",digits=2)} units greater than the mean for the adenoma group \tabrefp{tab:LMMultCompUTH3}.  The means for the bilateral hyperplasia and carcinoma groups are not statistically different.
+
+\begin{table}[!h]
+  \centering
+  \caption{Tukey's confidence interval results for the difference in mean UTH values by syndrome type with the 20th individual removed.}\label{tab:LMMultCompUTH3}
+<<echo=FALSE>>=
+mc2c
+@
+\end{table}
+
+  \end{Enumerate}
+
+\vspace{48pt}
+R commands
+<<eval=FALSE>>=
+d2 <- d[-20,]
+lm2 <- lm(uth~cause,data=d2)
+anova(lm2)
+glht(lm2,mcp(cause="Tukey"))
+fitPlot(lm2,xlab="Cause",ylab="Urine Tetrahydrocortisone Level",main="")
+addSigLetters(lm2,c("a","b","b"),pos=c(2,2,2))
+@
+
+<<echo=FALSE,results=hide>>=
+graphics.off()
+@
+
+\end{document}

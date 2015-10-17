@@ -1,0 +1,99 @@
+%===============================================================================
+% swv2PDF("03_02_HW_LMAnova2.rnw",createScript=FALSE)
+%===============================================================================
+% Overall Sweave and R options
+%-------------------------------------------------------------------------------
+<<echo=FALSE,results='hide'>>=
+rm(list=ls(all=TRUE))
+options(width=80,show.signif.stars=FALSE,continue="  ")
+options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,1,1),mgp=c(2,0.75,0))))
+loadNeeded(c("NCStats","xtable"))
+@
+%===============================================================================
+
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\begin{document}
+\titleRKey{Linear Models Two-Way ANOVA}{Biometry}
+
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\section*{Question 3.2 (10 pts)}
+<<echo=FALSE, results='hide'>>=
+tmns <- matrix(c(75.45,83.98,74.46,80.70),byrow=TRUE,nrow=2)
+colnames(tmns) <- c("Lecture","Self")
+rownames(tmns) <- c("A","B")
+mns <- addmargins(tmns,FUN=mean)
+r <- c <- 2
+n <- 25
+ssins <- r*n*sum((mns[1:2,3]-mns[3,3])^2)
+ssmeth <- r*n*sum((mns[3,1:2]-mns[3,3])^2)
+ssamong <- n*sum((mns[1:2,1:2]-mns[3,3])^2)
+ssint <- ssamong-ssins-ssmeth
+sstotal <- 20227.3
+sswithin <- sstotal-ssamong
+dfamong <- r*c-1
+dfins <- r-1
+dfmeth <- c-1
+dfint <- dfamong-dfins-dfmeth
+dftotal <- r*c*n-1
+dfwithin <- dftotal-dfamong
+ss <- c(ssamong,ssins,ssmeth,ssint,sswithin)
+df <- c(dfamong,dfins,dfmeth,dfint,dfwithin)
+ms <- ss/df
+f <- ms[-length(ms)]/ms[length(ms)]
+p <- pf(f,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)
+tbl <- cbind(c(df,dftotal),c(ss,sstotal),c(ms,NA),c(f,NA,NA),c(p,NA,NA))
+colnames(tbl) <- c("df","SS","MS","F","p")
+rownames(tbl) <- c("Among","Instructor","Method","Interaction","Within","Total")
+@
+
+Results shown in \tabref{tab:ANOVAtbl}.  R code to make calculations are shown in an appendix (note, however, that you are not expected to make these calculations in R).
+ 
+<<label=ANOVAtbl, results='asis', echo=FALSE>>=
+print(xtable(tbl,digits=c(0,0,1,1,2,4),caption="Completed analysis of variance table for learning methods data.",label="tab:ANOVAtbl"),caption.placement="top",table.placement="!h")
+@
+
+\vspace{-24pt}
+\section*{Notes from Professor}
+\begin{Itemize}
+  \item The key to this problem is to construct a table of treatment, level, and grand means similar to what is shown in \tabref{tab:MEANStbl}.  Then $SS_{instructor}$, $SS_{method}$ and $SS_{among}$ are computed by following the $SS_{row}$, $SS_{column}$ and $SS_{among}$ formulas from the book.  The $SS_{interaction}$ is then found from these $SS$ and $SS_{total}$ by subtraction.  All of the degrees-of-freedom are found by formulas supplied in the book and realizing that $r=2$, $c=2$ and $n=25$.  The $MS$ and $F$ are found as usual and the p-values are found with \R{distrib()}.
+  
+<<label=MEANStbl,results='asis',echo=FALSE>>=
+print(xtable(mns,digits=2,caption="Means table for learning methods data.",label="tab:MEANStbl"),caption.placement="top",table.placement="!h")
+@
+\end{Itemize}
+
+\vspace{-24pt}
+\section*{R Commands}
+\vspace{-12pt}
+<<eval=FALSE>>=
+tmns <- matrix(c(75.45,83.98,74.46,80.70),byrow=TRUE,nrow=2)
+colnames(tmns) <- c("Lecture","Self")
+rownames(tmns) <- c("A","B")
+mns <- addmargins(tmns,FUN=mean)
+r <- c <- 2
+n <- 25
+ssins <- r*n*sum((mns[1:2,3]-mns[3,3])^2)
+ssmeth <- r*n*sum((mns[3,1:2]-mns[3,3])^2)
+ssamong <- n*sum((mns[1:2,1:2]-mns[3,3])^2)
+ssint <- ssamong-ssins-ssmeth
+sstotal <- 20227.3
+sswithin <- sstotal-ssamong
+dfamong <- r*c-1
+dfins <- r-1
+dfmeth <- c-1
+dfint <- dfamong-dfins-dfmeth
+dftotal <- r*c*n-1
+dfwithin <- dftotal-dfamong
+ss <- c(ssamong,ssins,ssmeth,ssint,sswithin)
+df <- c(dfamong,dfins,dfmeth,dfint,dfwithin)
+ms <- ss/df
+f <- ms[-length(ms)]/ms[length(ms)]
+p <- pf(f,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)
+tbl <- cbind(c(df,dftotal),c(ss,sstotal),c(ms,NA),c(f,NA,NA),c(p,NA,NA))
+colnames(tbl) <- c("df","SS","MS","F","p")
+rownames(tbl) <- c("Among","Instructor","Method","Interaction","Within","Total")
+@
+
+\end{document}
