@@ -1,8 +1,24 @@
 ---
 layout: page
+title: Biometry (MTH207)
 ---
 
-# Biometry (MTH207)
+* [Description](#description)
+* [Importance](#importance)
+* [Learning Outcomes](#learning-outcomes)
+* [Tutors](#tutors)
+* [Grading](#grading)
+    *[Homework](#homework)
+    *[Exams](#exams)
+    *[Final Portfolio](#final-portfolio)
+* [Attendance](#attendance)
+* [Conduct](#conduct)
+* [Accomodations](#accomodations)
+* [Important Dates](#important-dates)
+
+----
+
+## Description
 
 Foundational principles of probability including methods of counting and specific probability distribution and density functions; linear models including one- and two-way ANOVA with post-hoc multiple comparisons and transformations, simple and multiple linear regression including transformations and indicator variables, and logistic regression; and basic principles of sample and experimental design.  The theoretical constructs of all topics will be developed and applied to real-life or realistic situations in the life and natural sciences.  Pre-requisite: [MTH107](http://derekogle.com/NCMTH107/).  4 Credits.
 
