@@ -1,0 +1,148 @@
+% setwd("C://aaaWork//Class Materials//MTH207//Lecture/Handouts//")
+% Sweave("LMAnova1.Rnw",stylepath=TRUE)
+
+\documentclass[a4paper]{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+
+\begin{document}
+\SweaveOpts{prefix.string=figs/lma1,eps=FALSE,keep.source=TRUE,width=3.5,height=3.5}
+
+\title{One-Way ANOVA Handout}
+\date{}  % makes date blank -- title will only have the title above then
+\maketitle
+\vspace{-72pt}
+
+<<echo=false,results=hide>>=
+options(width=90,"show.signif.stars"=FALSE,continue="  ") # these are R options
+options(SweaveHooks = list(fig = function() par(mar=c(3.5,3.5,3,3),mgp=c(2,0.75,0))))
+rqrd <- c("NCStats","multcomp")
+need <- rqrd[!paste("package:",rqrd,sep="") %in% search()]
+if (length(need)>0) for (i in 1:length(need)) library(need[i],character.only=TRUE)
+if (!is.null(attached())) detachAll()
+@
+
+\section{Initialization} \label{sect:Inits}
+\vspace{-18pt}
+<<eval=FALSE>>=
+library(NCStats)
+library(multcomp)  # for multiple comparison methods
+@
+
+\vspace{-24pt}
+\section{Raspberry Example}
+You must change the directory to where the following file is located.
+<<>>=
+rasp <- read.table("Raspberry.txt",head=TRUE)
+str(rasp)
+rasp$fwater <- factor(rasp$water)
+str(rasp)
+@
+
+\vspace{-18pt}
+\subsection{Fitting the Linear Model}
+\vspace{-12pt}
+<<label=RaspFLP1,fig=TRUE,include=FALSE>>=
+lm1 <- lm(weight~fwater,data=rasp)
+anova(lm1)
+summary(lm1)
+fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)")
+@
+
+\includegraphics[width=3in]{Figs/lma1-RaspFLP1.PDF}
+
+\subsection{Multiple Comparison Tests}
+<<label=RaspFLP2,fig=TRUE,include=FALSE>>=
+rasp.mc <- glht(lm1, mcp(fwater = "Tukey"))
+summary(rasp.mc)
+confint(rasp.mc)
+fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
+addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4),col=c("blue","blue","red","red"))
+@
+\includegraphics[width=3in]{Figs/lma1-RaspFLP2.PDF}
+
+
+\subsection{Checking the Assumptions}
+<<label=RaspResidPlot,fig=TRUE,include=FALSE>>=
+leveneTest(lm1)
+residPlot(lm1)
+@
+\includegraphics[width=3in]{Figs/lma1-RaspResidPlot.PDF}
+
+<<label=RaspResidHist,fig=TRUE,include=FALSE>>=
+adTest(lm1$residuals)
+hist(lm1$residuals,xlab="Residuals",main="")
+@
+\includegraphics[width=3in]{Figs/lma1-RaspResidHist.PDF}
+
+<<>>=
+outlierTest(lm1)
+@
+
+\newpage
+\section{Benthic Infaunal Example}
+It is assumed that the initialization steps shown in Section \ref{sect:Inits} have already been followed and that the working directory has been changed to where the external data file is located.
+<<>>=
+ben <- read.table("BenthicInfaunal.txt",head=TRUE)
+ben$fsite <- factor(ben$site)
+str(ben)
+lm2 <- lm(abundance~fsite,data=ben)
+@
+
+\subsection{Assumption Checking with Possible Transformations}
+
+<<label=benResidPlot1,fig=TRUE,include=FALSE>>=
+leveneTest(lm2)
+residPlot(lm2)
+@
+
+\includegraphics[width=3in]{Figs/lma1-benResidPlot1.PDF}
+
+<<label=benResidHist1,fig=TRUE,include=FALSE>>=
+adTest(lm2$residuals)
+hist(lm2$residuals,main="")
+@
+
+\includegraphics[width=3in]{Figs/lma1-benResidHist1.PDF}
+
+<<>>=
+outlierTest(lm2)
+@
+
+The following function was used to determine that a log transformation would most likely lead to the assumptions being met.  This function cannot be illustrated in a handout because it requires interactions from the user.
+<<eval=FALSE>>=
+transChooser(lm2,show.stats=TRUE)
+@
+\vspace{-18pt}
+
+<<>>=
+ben$logab <- log(ben$abundance)
+lm3 <- lm(logab~fsite,data=ben)
+leveneTest(lm3)
+@
+<<label=benResidPlot2,fig=TRUE,include=FALSE>>=
+residPlot(lm3)
+@
+\includegraphics[width=3in]{Figs/lma1-benResidPlot2.PDF}
+
+<<>>=
+adTest(lm3$residuals)
+outlierTest(lm3)
+@
+
+\subsection{Model Summarization}
+<<label=benFLP,fig=TRUE,include=FALSE>>=
+anova(lm3)
+ben.mc <- glht(lm3, mcp(fsite = "Dunnett"))
+summary(ben.mc)
+fitPlot(lm3,ylab="Log Abundance",xlab="Site",main="")
+addSigLetters(lm3,lets=c("","","***","***","***","","","***",""),pos=c(2,4,2,4,2,2,4,2,4))
+@
+\includegraphics[width=3in]{Figs/lma1-benFLP.PDF}
+
+<<>>=
+logdiff <- confint(ben.mc)$confint
+logdiff
+exp(logdiff)
+@
+
+\end{document}
