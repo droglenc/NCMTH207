@@ -1,0 +1,71 @@
+.img-right {
+   display: inline-block;
+   margin: 0px 0px  40px 20px;
+   float: right;
+   width: 200px;
+   border-radius:3%;
+}
+
+.tg {
+  border-collapse:collapse;
+  border-spacing:0;
+  border-style:ridge;
+  border-width:3px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tg td{
+  padding:10px;
+  text-align:left;
+  background-color: #f2f2f2;
+}
+
+
+.grader {
+  border-collapse:collapse;
+  border-spacing:0;
+  border-style:ridge;
+  border-width:3px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grader th {
+  text-align:center;
+  background-color: #f2f2f2;
+  padding:5px;
+}
+
+.grader td {
+  text-align:center;
+  padding:5px;
+}
+
+.grader input {
+  text-align:center;
+}
+
+.tutors {
+  border-collapse:collapse;
+  border-spacing:0;
+  border-style:ridge;
+  border-width:3px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tutors th {
+  text-align:center;
+  padding:5px;
+  border-style:solid;
+  border-width:1px;
+}
+
+.tutors td {
+  vertical-algin:top;
+  text-align:left;
+  padding:5px;
+  border-style:solid;
+  border-width:1px;
+}

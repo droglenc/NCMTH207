@@ -18,8 +18,8 @@ navbar-links:
   Book: "book"
   Lecture: "lecture"
   Resources: "resources"
-  Syllabus: "resources/Syllabus-F14"
-  Derek: "../aboutme"
+  Syllabus: "resources/Syllabus-Current"
+  Dates: "resources/calendar"
 
 # --- Footer options --- #
 author:
