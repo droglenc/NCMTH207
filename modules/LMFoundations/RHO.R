@@ -1,11 +1,13 @@
+#=============================================================
+#=============== IGNORE/DELETE FROM HERE .... ================
 # Renders an appropriate HTML file for the webpage
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LMFoundations")
 source("../../rhelpers/rhelpers.R")
-fnm <- "RHO"
-modHTML(fnm)
+modHTML("RHO")
 
-fnm <- "RHO"
 source("../../rhelpers/knitr_setup.R")
+#=============== .... TO HERE ================================
+#=============================================================
 
 library(NCStats)
 
@@ -29,4 +31,4 @@ fitPlot(lm1,xlab="Sex",ylab="Absolute Error",main="")
 anova(lm1)
 
 
-# Script created at 2015-12-20 13:02:52
+# Script created at 2015-12-20 13:16:18

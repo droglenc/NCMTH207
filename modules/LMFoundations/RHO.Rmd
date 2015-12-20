@@ -15,16 +15,18 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE}
+#=============================================================
+#=============== IGNORE/DELETE FROM HERE .... ================
 # Renders an appropriate HTML file for the webpage
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LMFoundations")
 source("../../rhelpers/rhelpers.R")
-fnm <- "RHO"
-modHTML(fnm)
+modHTML("RHO")
 ```
 
 ```{r echo=FALSE, results='hide', message='FALSE'}
-fnm <- "RHO"
 source("../../rhelpers/knitr_setup.R")
+#=============== .... TO HERE ================================
+#=============================================================
 ```
 ----
 
@@ -68,5 +70,5 @@ anova(lm1)
 
 
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2(paste0(fnm,".Rmd"))
+purl2("RHO.Rmd")
 ```
