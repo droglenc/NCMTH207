@@ -7,15 +7,11 @@ css: /css/syllabus.css
 
 <SCRIPT SRC="../js/grader.js"></SCRIPT>
 
-* [Description](#description)
-* [Importance](#importance)
-* [Learning Outcomes](#learning-outcomes)
-* [Tutors](#tutors)
+* Class [Description](#description), [Importance](#importance), and [Learning Outcomes](#learning-outcomes)
+* [Instructor](#instructor) and [Tutors](#tutors)
 * [Grading](#grading) -- [Homework](#homework), [Exams](#exams), [Final Portfolio](#final-portfolio)
-* [Attendance](#attendance)
-* [Conduct](#conduct)
+* [Participation and Conduct](#participation-and-conduct)
 * [Accomodations](#accomodations)
-* [Important Dates](resources/calendar.html)
 
 ----
 
@@ -103,13 +99,13 @@ Several homework assignments will be assigned per major course topic.  Grading o
 
 ### Exams
 
-Exams will be on 16-Feb (Tues), 22-Mar (Tues), and 19-Apr (Tues).  Make-up exams will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to make up an exam missed without my prior approval.  The final exam will not be given early.
+Exams dates are shown on the [Dates page](calendar.html){:target="_blank"}.  Make-up exams will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to make up an exam missed without my prior approval.  The final exam will not be given early.
 
 ### Final Portfolio
 
 The portfolio project serves as the capstone experience for the course and allows you flexibility to demonstrate working knowledge of the major topics of the course.  In general, the portfolio will consist of a thorough analysis of data using four (cannot use any topic more than once) of the following major topics in the course: (I) One-Way ANOVA (*must have more than two groups and cannot be a subset of your Two-Way ANOVA*), (II) Two-Way ANOVA, (III) Simple Linear Regression (*cannot be a subset of your Indicator Variable Regression*), (IV) Indicator Variable Regression, or (V) Logistic Regression.  You can also propose an alternative topic for my approval.
 
-For each topic you must gather and appropriately analyze data.  The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source.  The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting to you.  **Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me by **4-Mar** that briefly describes the data that you will use, the types (i.e., quantitative or categorical) of response and explanatory variable(s), the question to be asked or hypotheses to be tested with the data, and which topic you will use to answer the question.  The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio.  *I strongly urge you to discuss your initial proposal with me before turning it in.*
+For each topic you must gather and appropriately analyze data.  The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source.  The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting to you.  **Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me in the eighth week (see [Dates page](calendar.html){:target="_blank"}) that briefly describes the data that you will use, the types (i.e., quantitative or categorical) of response and explanatory variable(s), the question to be asked or hypotheses to be tested with the data, and which topic you will use to answer the question.  The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio.  *I strongly urge you to discuss your initial proposal with me before turning it in.*
 
 For each topic you will write a report with the following sections:
 
@@ -120,17 +116,14 @@ For each topic you will write a report with the following sections:
 * Discussion: describe what you found and how it relates to your reasoning from the introduction.
 * Works cited: list of references (if any) used to support your project.
 
-It is possible that all four analyses can be conducted from the same large data set.  Thus, it is possible to have a single introduction and single methods section describing the data collection, but separate methods for analysis, assumption checking, results, and discussion.  Alternatively, if different data sets are used for each topic, then separate introductions, methods, assumption checking, results, and discussion will be required.  The final portfolio should be typed, grammatically correct, and refer to supporting graphics and tables.  The final portfolio is due on **20-Apr**.
+It is possible that all four analyses can be conducted from the same large data set.  Thus, it is possible to have a single introduction and single methods section describing the data collection, but separate methods for analysis, assumption checking, results, and discussion.  Alternatively, if different data sets are used for each topic, then separate introductions, methods, assumption checking, results, and discussion will be required.  The final portfolio should be typed, grammatically correct, and refer to supporting graphics and tables.  The final portfolio is due during the last week of classes (see [Dates page](calendar.html){:target="_blank"}).
 
 ### Incomplete Grades
 
 Under Northland College policy, an incomplete grade will be given ONLY under extreme circumstances beyond your control, such as a major illness.  An incomplete grade will be given ONLY if you have successfully completed the entire course except for the final exam.
 
-## Attendance
-
-For most students, achievement is strongly positively related to attendance.  I will take attendance each day but attendance will not factor into your final grade with the following exception.  At the end of the semester I may, at my discretion, decide to eliminate one or more of your homework or exam grades.  Your attendance record will be one item considered when I make this decision.
-
 ## Participation and Conduct
+For most students, achievement is strongly positively related to attendance.  I will take attendance each day but attendance will not factor into your final grade with the following exception.  At the end of the semester I may, at my discretion, decide to eliminate one or more of your homework or exam grades.  Your attendance record will be one item considered when I make this decision.
 
 <img class="img-right" src="../img/studying.jpg">
 
