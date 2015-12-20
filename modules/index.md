@@ -3,29 +3,15 @@ layout: page
 title: Lecture Materials
 ---
 
-1. **Linear Model Foundations**
-    * [Slides](LMFoundations/PPT.pptx)
-    * Handouts -- [![Web](../img/web.png)](LMFoundations/RHO.html){:target="_blank"}  [![PDF](../img/pdf.png)](LMFoundations/RHO.pdf) [![R](../img/Rlogo.png)](LMFoundations/RHO.R){:target="_blank"}
-1. **One-Way ANOVA**
-    * [Slides](Anova-1Way/PPT.pptx) / [Handouts](HOs/02_LMAnova1_HO.pdf)
-1. **Two-Way ANOVA**
-    * [Slides](Anova-2Way/PPT.pptx) / [Handouts](HOs/03_LMAnova2_HO.pdf)
-1. **Simple Linear Regression**
-    * [Slides](SLRegression/PPT.pptx) / [Handouts](HOs/04_SLRegression_HO.pdf)
-1. **Indicator Variable REgrssions**
-    * [Slides](IVRegression/PPT.pptx) / [Handouts](HOs/05_IVROneWay_HO.pdf) / [Exercises](CEs/05_IVROneWay_CE.html)
-1. **Logistic Regression**
-    * [Slides](LogisticRegression/PPT.pptx) / [Handouts](HOs/06_LMLogistic_HO.pdf)
-
 <div class="panel-group" id="accordion">
  
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Linear Model Foundations</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseLMF">Linear Model Foundations</a>
       </h4>
     </div>
-    <div id="collapse1" class="panel-collapse collapse">
+    <div id="collapseLMF" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
         <li><a href="LMFoundations/PPT.pptx)">Slides</a></li>
@@ -38,10 +24,10 @@ title: Lecture Materials
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">One-Way ANOVA</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseAOV1">One-Way ANOVA</a>
       </h4>
     </div>
-    <div id="collapse2" class="panel-collapse collapse">
+    <div id="collapseAOV1" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
         <li><a href="Anova-1Way/PPT.pptx)">Slides</a></li>
@@ -54,10 +40,10 @@ title: Lecture Materials
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Two-Way ANOVA</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseAOV2">Two-Way ANOVA</a>
       </h4>
     </div>
-    <div id="collapse3" class="panel-collapse collapse">
+    <div id="collapseAOV2" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
         <li><a href="Anova-2Way/PPT.pptx)">Slides</a></li>
@@ -70,10 +56,10 @@ title: Lecture Materials
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">One-Way ANOVA</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSLR">Simple Linear Regression</a>
       </h4>
     </div>
-    <div id="collapse4" class="panel-collapse collapse">
+    <div id="collapseSLR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
         <li><a href="SLRegression/PPT.pptx)">Slides</a></li>
@@ -86,10 +72,10 @@ title: Lecture Materials
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">One-Way ANOVA</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseIVR">Indicator Variable Regression</a>
       </h4>
     </div>
-    <div id="collapse5" class="panel-collapse collapse">
+    <div id="collapseIVR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
         <li><a href="IVRegression/PPT.pptx)">Slides</a></li>
@@ -102,10 +88,10 @@ title: Lecture Materials
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">One-Way ANOVA</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseLogisticR">Logistic Regression</a>
       </h4>
     </div>
-    <div id="collapse6" class="panel-collapse collapse">
+    <div id="collapseLogisticR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
         <li><a href="LogisticRegression/PPT.pptx)">Slides</a></li>
