@@ -17,19 +17,19 @@ title: Lecture Materials
 1. **Logistic Regression**
     * [Slides](LogisticRegression/PPT.pptx) / [Handouts](HOs/06_LMLogistic_HO.pdf)
 
- <div class="panel-group" id="accordion">
+<div class="panel-group" id="accordion">
+ 
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        Linear Model Foundations</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Linear Model Foundations</a>
       </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
         <li><a href="LMFoundations/PPT.pptx)">Slides</a></li>
-        <li>Handouts -- <a href="LMFoundations/RHO.html"><img src="../img/web.png"></a> <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/web.png"></a></li>
+        <li>Handouts -- <a href="LMFoundations/RHO.html"><img src="../img/web.png"></a> <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
       </ul>
       </div>
     </div>
@@ -38,29 +38,81 @@ title: Lecture Materials
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        Collapsible Group 2</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">One-Way ANOVA</a>
       </h4>
     </div>
     <div id="collapse2" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
+      <div class="panel-body">
+      <ul>
+        <li><a href="Anova-1Way/PPT.pptx)">Slides</a></li>
+        <li>Handouts -- <a href="Anova-1Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-1Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-1Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+      </ul>
+      </div>
     </div>
   </div>
+  
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-        Collapsible Group 3</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Two-Way ANOVA</a>
       </h4>
     </div>
     <div id="collapse3" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
+      <div class="panel-body">
+      <ul>
+        <li><a href="Anova-2Way/PPT.pptx)">Slides</a></li>
+        <li>Handouts -- <a href="Anova-2Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-2Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-2Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+      </ul>
+      </div>
     </div>
   </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">One-Way ANOVA</a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">
+      <ul>
+        <li><a href="SLRegression/PPT.pptx)">Slides</a></li>
+        <li>Handouts -- <a href="SLRegression/RHO.html"><img src="../img/web.png"></a> <a href="SLRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="SLRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">One-Way ANOVA</a>
+      </h4>
+    </div>
+    <div id="collapse5" class="panel-collapse collapse">
+      <div class="panel-body">
+      <ul>
+        <li><a href="IVRegression/PPT.pptx)">Slides</a></li>
+        <li>Handouts -- <a href="IVRegression/RHO.html"><img src="../img/web.png"></a> <a href="IVRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="IVRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">One-Way ANOVA</a>
+      </h4>
+    </div>
+    <div id="collapse6" class="panel-collapse collapse">
+      <div class="panel-body">
+      <ul>
+        <li><a href="LogisticRegression/PPT.pptx)">Slides</a></li>
+        <li>Handouts -- <a href="LogisticRegression/RHO.html"><img src="../img/web.png"></a> <a href="LogisticRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LogisticRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
 </div> 
