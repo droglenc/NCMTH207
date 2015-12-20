@@ -37,6 +37,8 @@ library(NCStats)
 library(multcomp)     # glht()
 ```
 
+----
+
 # Raspberry Example
 ## Background
 
@@ -74,6 +76,8 @@ residPlot(lm1)
 adTest(lm1$residuals)
 outlierTest(lm1)
 ```
+
+----
 
 # Benthic Infaunal Example
 ## Background
