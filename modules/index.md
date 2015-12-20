@@ -14,7 +14,7 @@ title: Lecture Materials
     <div id="collapseLMF" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="LMFoundations/PPT.pptx)">Slides</a></li>
+        <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="LMFoundations/RHO.html"><img src="../img/web.png"></a> <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
       </ul>
       </div>
@@ -30,7 +30,7 @@ title: Lecture Materials
     <div id="collapseAOV1" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="Anova-1Way/PPT.pptx)">Slides</a></li>
+        <li><a href="Anova-1Way/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="Anova-1Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-1Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-1Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
       </ul>
       </div>
@@ -46,7 +46,7 @@ title: Lecture Materials
     <div id="collapseAOV2" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="Anova-2Way/PPT.pptx)">Slides</a></li>
+        <li><a href="Anova-2Way/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="Anova-2Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-2Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-2Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
       </ul>
       </div>
@@ -62,7 +62,7 @@ title: Lecture Materials
     <div id="collapseSLR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="SLRegression/PPT.pptx)">Slides</a></li>
+        <li><a href="SLRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="SLRegression/RHO.html"><img src="../img/web.png"></a> <a href="SLRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="SLRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
       </ul>
       </div>
@@ -78,7 +78,7 @@ title: Lecture Materials
     <div id="collapseIVR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="IVRegression/PPT.pptx)">Slides</a></li>
+        <li><a href="IVRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="IVRegression/RHO.html"><img src="../img/web.png"></a> <a href="IVRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="IVRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
       </ul>
       </div>
@@ -94,7 +94,7 @@ title: Lecture Materials
     <div id="collapseLogisticR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="LogisticRegression/PPT.pptx)">Slides</a></li>
+        <li><a href="LogisticRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="LogisticRegression/RHO.html"><img src="../img/web.png"></a> <a href="LogisticRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LogisticRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
       </ul>
       </div>
