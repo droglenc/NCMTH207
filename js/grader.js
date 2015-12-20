@@ -21,7 +21,7 @@ function get_wghts() {
 //**  Computes the final grade                                                    **
 //**********************************************************************************
 function find_grade(form, pts, outof) {
-	curr_sc = round(pts/outof,3);
+	curr_sc = roundDec(pts/outof,3);
 	form.SCORE.value = curr_sc*100;
 	if (curr_sc >= 0.915) {form.GRADE.value="A"}
 	else if (curr_sc >= 0.895) {form.GRADE.value="A-"}
