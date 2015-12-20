@@ -99,7 +99,7 @@ Lowest possible final letter grades will be assigned by comparing your overall p
 
 Several homework assignments will be assigned per major course topic.  Grading of each assignment will be described on the assignment sheet.  Completed homework assignments will be due at the beginning of the class period on dates announced when the homework was assigned.  Assignments will be accepted up to one day late but will be reduced by 50% of the worth of the assignment.  Assignments not handed in at the beginning of the class period will be considered one day late.  **If there is any indication, whether I can confirm it or not, that you have not worked alone on your homework, then you will receive a 0 for that homework and will be warned of further penalties for subsequent offenses.**
 
-*Not all homework problems will be graded for content, some will be graded only for completeness (you will be responsible for checking content with an on-line answer key).*
+*Not all homework problems will be graded for content, some will be graded only for completeness (you will be responsible for checking content with an [on-line answer key](index.html)).*
 
 ### Exams
 
