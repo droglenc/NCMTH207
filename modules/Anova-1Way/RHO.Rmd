@@ -1,0 +1,125 @@
+---
+layout: page
+title: "One-Way ANOVA"
+subtitle: R Handout
+author: "Derek H. Ogle"
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 3
+    self_contained: no
+  pdf_document:
+    fig_width: 3
+    fig_height: 3
+---
+
+```{r echo=FALSE, eval=FALSE}
+#=============================================================
+#=============== IGNORE/DELETE FROM HERE .... ================
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-1Way")
+source("../../rhelpers/rhelpers.R")
+modHTML("RHO")
+```
+
+```{r echo=FALSE, results='hide', message='FALSE'}
+source("../../rhelpers/knitr_setup.R")
+#=============== .... TO HERE ================================
+#=============================================================
+```
+----
+
+## Initialization
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(multcomp)     # glht()
+```
+
+# Raspberry Example
+## Background
+
+A researcher is interested in the effect of irrigation on fruit production by raspberry plants.  The researcher has determined that he will examine the effects of 100 ml (a maintenance amount), 200, 400, and 800 ml of water per pot.  The researcher had 16 identical planting pots available and much more than that number of raspberry plant seedlings.  A square table for growing the plants in a greenhouse was also available.  He had enough time to let the plants mature to the point of producing fruit (i.e. berries) or not.  At the end of this period, the total weight (g) of mature berries was recorded.
+
+```{r}
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-1Way")
+rasp <- read.csv("Raspberry.csv")
+str(rasp)
+rasp$water <- factor(rasp$water)
+str(rasp)
+```
+
+## Fitting the Linear Model
+```{r par1=TRUE}
+lm1 <- lm(weight~water,data=rasp)
+anova(lm1)
+summary(lm1)
+fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
+```
+
+## Multiple Comparison Tests
+```{r par1=TRUE}
+rasp.mc <- glht(lm1, mcp(water = "Tukey"))
+summary(rasp.mc)
+confint(rasp.mc)
+fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
+addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4))
+```
+
+## Checking the Assumptions
+```{r fig.show='asis', fig.width=6, par1=TRUE}
+levenesTest(lm1)
+residPlot(lm1)
+adTest(lm1$residuals)
+outlierTest(lm1)
+```
+
+# Benthic Infaunal Example
+## Background
+
+Australian researchers were interested in the effect of effluent releases on benthic organisms in the release area.  To examine the effect, the researchers recorded the total abundance of benthic organisms at 8 haphazardly-selected sublocations at each of 8 control locations (thought to have not been impacted by the effluent release) and 1 potentially impacted location.  The results are recorded in `BenthicInfaunal.csv`.  Use these data to determine if the mean abundance of benthic organisms differs between the locations (and, especially, if the impacted location differs from any of the control locations).
+
+```{r}
+ben <- read.csv("BenthicInfaunal.csv")
+ben$site <- factor(ben$site)
+str(ben)
+```
+
+## Assumption Checking with Possible Transformations
+```{r fig.show='asis', fig.width=6, par1=TRUE}
+lm2 <- lm(abundance~site,data=ben)
+levenesTest(lm2)
+residPlot(lm2)
+adTest(lm2$residuals)
+outlierTest(lm2)
+```
+
+```{r eval=-1, fig.show='asis', fig.width=6, par1=TRUE}
+transChooser(lm2)  # interactive, result not shown
+ben$logab <- log(ben$abundance)
+lm3 <- lm(logab~site,data=ben)
+levenesTest(lm3)
+residPlot(lm3)
+adTest(lm3$residuals)
+outlierTest(lm3)
+```
+
+## Model Summarization
+```{r message=FALSE, par1=TRUE}
+anova(lm3)
+ben.mc <- glht(lm3, mcp(site = "Dunnett"))
+summary(ben.mc)
+fitPlot(lm3,ylab="Log Abundance",xlab="Site",main="")
+addSigLetters(lm3,lets=c("","","***","***","***","","","***",""),pos=c(2,4,2,4,2,2,4,2,4))
+```
+
+```{r}
+confint(ben.mc)
+exp(confint(ben.mc)$confint)
+
+```
+
+```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
+purl2("RHO.Rmd")
+```

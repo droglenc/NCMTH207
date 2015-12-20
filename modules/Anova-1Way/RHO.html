@@ -1,0 +1,267 @@
+---
+layout: page
+title: "One-Way ANOVA"
+subtitle: R Handout
+author: "Derek H. Ogle"
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="initialization" class="section level2">
+<h2>Initialization</h2>
+<pre class="r"><code>&gt; library(NCStats)
+&gt; library(multcomp)     # glht()</code></pre>
+</div>
+<div id="raspberry-example" class="section level1">
+<h1>Raspberry Example</h1>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>A researcher is interested in the effect of irrigation on fruit production by raspberry plants. The researcher has determined that he will examine the effects of 100 ml (a maintenance amount), 200, 400, and 800 ml of water per pot. The researcher had 16 identical planting pots available and much more than that number of raspberry plant seedlings. A square table for growing the plants in a greenhouse was also available. He had enough time to let the plants mature to the point of producing fruit (i.e. berries) or not. At the end of this period, the total weight (g) of mature berries was recorded.</p>
+<pre class="r"><code>&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-1Way&quot;)
+&gt; rasp &lt;- read.csv(&quot;Raspberry.csv&quot;)
+&gt; str(rasp)</code></pre>
+<pre><code>&#39;data.frame&#39;:   16 obs. of  2 variables:
+ $ water : int  100 100 100 100 200 200 200 200 400 400 ...
+ $ weight: num  8.1 10.9 11.1 13.9 12.2 11.5 11.4 6.8 6.5 5.5 ...</code></pre>
+<pre class="r"><code>&gt; rasp$water &lt;- factor(rasp$water)
+&gt; str(rasp)</code></pre>
+<pre><code>&#39;data.frame&#39;:   16 obs. of  2 variables:
+ $ water : Factor w/ 4 levels &quot;100&quot;,&quot;200&quot;,&quot;400&quot;,..: 1 1 1 1 2 2 2 2 3 3 ...
+ $ weight: num  8.1 10.9 11.1 13.9 12.2 11.5 11.4 6.8 6.5 5.5 ...</code></pre>
+</div>
+<div id="fitting-the-linear-model" class="section level2">
+<h2>Fitting the Linear Model</h2>
+<pre class="r"><code>&gt; lm1 &lt;- lm(weight~water,data=rasp)
+&gt; anova(lm1)</code></pre>
+<pre><code>Analysis of Variance Table
+
+Response: weight
+          Df  Sum Sq Mean Sq F value   Pr(&gt;F)
+water      3 115.043  38.348  10.793 0.001004
+Residuals 12  42.635   3.553                 </code></pre>
+<pre class="r"><code>&gt; summary(lm1)</code></pre>
+<pre><code>Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  11.0000     0.9425  11.672 6.58e-08
+water200     -0.5250     1.3328  -0.394  0.70057
+water400     -5.6250     1.3328  -4.220  0.00119
+water800     -5.6000     1.3328  -4.202  0.00123
+
+Residual standard error: 1.885 on 12 degrees of freedom
+Multiple R-squared: 0.7296, Adjusted R-squared: 0.662 
+F-statistic: 10.79 on 3 and 12 DF,  p-value: 0.001004 </code></pre>
+<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Water Treatment (ml)&quot;,ylab=&quot;Weight (g)&quot;,main=&quot;&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="288" /></p>
+</div>
+<div id="multiple-comparison-tests" class="section level2">
+<h2>Multiple Comparison Tests</h2>
+<pre class="r"><code>&gt; rasp.mc &lt;- glht(lm1, mcp(water = &quot;Tukey&quot;))
+&gt; summary(rasp.mc)</code></pre>
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = weight ~ water, data = rasp)
+
+Linear Hypotheses:
+               Estimate Std. Error t value Pr(&gt;|t|)
+200 - 100 == 0   -0.525      1.333  -0.394  0.97832
+400 - 100 == 0   -5.625      1.333  -4.220  0.00565
+800 - 100 == 0   -5.600      1.333  -4.202  0.00584
+400 - 200 == 0   -5.100      1.333  -3.826  0.01106
+800 - 200 == 0   -5.075      1.333  -3.808  0.01146
+800 - 400 == 0    0.025      1.333   0.019  1.00000
+(Adjusted p values reported -- single-step method)</code></pre>
+<pre class="r"><code>&gt; confint(rasp.mc)</code></pre>
+<pre><code>
+     Simultaneous Confidence Intervals
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = weight ~ water, data = rasp)
+
+Quantile = 2.969
+95% family-wise confidence level
+ 
+
+Linear Hypotheses:
+               Estimate lwr     upr    
+200 - 100 == 0 -0.5250  -4.4822  3.4322
+400 - 100 == 0 -5.6250  -9.5822 -1.6678
+800 - 100 == 0 -5.6000  -9.5572 -1.6428
+400 - 200 == 0 -5.1000  -9.0572 -1.1428
+800 - 200 == 0 -5.0750  -9.0322 -1.1178
+800 - 400 == 0  0.0250  -3.9322  3.9822</code></pre>
+<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Water Treatment (ml)&quot;,ylab=&quot;Weight (g)&quot;,main=&quot;&quot;)
+&gt; addSigLetters(lm1,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;),pos=c(2,4,2,4))</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="288" /></p>
+</div>
+<div id="checking-the-assumptions" class="section level2">
+<h2>Checking the Assumptions</h2>
+<pre class="r"><code>&gt; levenesTest(lm1)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  3  0.3256 0.8069
+      12               </code></pre>
+<pre class="r"><code>&gt; residPlot(lm1)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="576" /></p>
+<pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
+<pre><code>Anderson-Darling normality test with x 
+A = 0.4308, p-value = 0.2688</code></pre>
+<pre class="r"><code>&gt; outlierTest(lm1)</code></pre>
+<pre><code>
+No Studentized residuals with Bonferonni p &lt; 0.05
+Largest |rstudent|:
+   rstudent unadjusted p-value Bonferonni p
+8 -2.836044           0.016196      0.25914</code></pre>
+</div>
+</div>
+<div id="benthic-infaunal-example" class="section level1">
+<h1>Benthic Infaunal Example</h1>
+<div id="background-1" class="section level2">
+<h2>Background</h2>
+<p>Australian researchers were interested in the effect of effluent releases on benthic organisms in the release area. To examine the effect, the researchers recorded the total abundance of benthic organisms at 8 haphazardly-selected sublocations at each of 8 control locations (thought to have not been impacted by the effluent release) and 1 potentially impacted location. The results are recorded in <code>BenthicInfaunal.csv</code>. Use these data to determine if the mean abundance of benthic organisms differs between the locations (and, especially, if the impacted location differs from any of the control locations).</p>
+<pre class="r"><code>&gt; ben &lt;- read.csv(&quot;BenthicInfaunal.csv&quot;)
+&gt; ben$site &lt;- factor(ben$site)
+&gt; str(ben)</code></pre>
+<pre><code>&#39;data.frame&#39;:   72 obs. of  2 variables:
+ $ site     : Factor w/ 9 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 1 1 1 1 1 1 1 2 2 ...
+ $ abundance: num  14.4 20.4 21.2 17.6 29 ...</code></pre>
+</div>
+<div id="assumption-checking-with-possible-transformations" class="section level2">
+<h2>Assumption Checking with Possible Transformations</h2>
+<pre class="r"><code>&gt; lm2 &lt;- lm(abundance~site,data=ben)
+&gt; levenesTest(lm2)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value   Pr(&gt;F)
+group  8  3.2452 0.003726
+      63                 </code></pre>
+<pre class="r"><code>&gt; residPlot(lm2)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="576" /></p>
+<pre class="r"><code>&gt; adTest(lm2$residuals)</code></pre>
+<pre><code>Anderson-Darling normality test with x 
+A = 1.6389, p-value = 0.0002996</code></pre>
+<pre class="r"><code>&gt; outlierTest(lm2)</code></pre>
+<pre><code>   rstudent unadjusted p-value Bonferonni p
+20 6.624666         9.5554e-09   6.8799e-07</code></pre>
+<pre class="r"><code>&gt; ## transChooser(lm2)  # interactive, result not shown
+&gt; ben$logab &lt;- log(ben$abundance)
+&gt; lm3 &lt;- lm(logab~site,data=ben)
+&gt; levenesTest(lm3)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  8  1.5339 0.1636
+      63               </code></pre>
+<pre class="r"><code>&gt; residPlot(lm3)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="576" /></p>
+<pre class="r"><code>&gt; adTest(lm3$residuals)</code></pre>
+<pre><code>Anderson-Darling normality test with x 
+A = 0.3323, p-value = 0.5062</code></pre>
+<pre class="r"><code>&gt; outlierTest(lm3)</code></pre>
+<pre><code>
+No Studentized residuals with Bonferonni p &lt; 0.05
+Largest |rstudent|:
+   rstudent unadjusted p-value Bonferonni p
+20 2.928889           0.004754      0.34229</code></pre>
+</div>
+<div id="model-summarization" class="section level2">
+<h2>Model Summarization</h2>
+<pre class="r"><code>&gt; anova(lm3)</code></pre>
+<pre><code>Analysis of Variance Table
+
+Response: logab
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)
+site       8 8.6683 1.08353  29.066 &lt; 2.2e-16
+Residuals 63 2.3485 0.03728                  </code></pre>
+<pre class="r"><code>&gt; ben.mc &lt;- glht(lm3, mcp(site = &quot;Dunnett&quot;))
+&gt; summary(ben.mc)</code></pre>
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Dunnett Contrasts
+
+
+Fit: lm(formula = logab ~ site, data = ben)
+
+Linear Hypotheses:
+            Estimate Std. Error t value Pr(&gt;|t|)
+2 - 1 == 0 -0.218435   0.096537  -2.263  0.14564
+3 - 1 == 0  0.703189   0.096537   7.284  &lt; 0.001
+4 - 1 == 0  0.453836   0.096537   4.701  &lt; 0.001
+5 - 1 == 0 -0.414859   0.096537  -4.297  &lt; 0.001
+6 - 1 == 0 -0.004238   0.096537  -0.044  1.00000
+7 - 1 == 0  0.140280   0.096537   1.453  0.57981
+8 - 1 == 0 -0.371867   0.096537  -3.852  0.00194
+9 - 1 == 0  0.168668   0.096537   1.747  0.37956
+(Adjusted p values reported -- single-step method)</code></pre>
+<pre class="r"><code>&gt; fitPlot(lm3,ylab=&quot;Log Abundance&quot;,xlab=&quot;Site&quot;,main=&quot;&quot;)
+&gt; addSigLetters(lm3,lets=c(&quot;&quot;,&quot;&quot;,&quot;***&quot;,&quot;***&quot;,&quot;***&quot;,&quot;&quot;,&quot;&quot;,&quot;***&quot;,&quot;&quot;),pos=c(2,4,2,4,2,2,4,2,4))</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="288" /></p>
+<pre class="r"><code>&gt; confint(ben.mc)</code></pre>
+<pre><code>
+     Simultaneous Confidence Intervals
+
+Multiple Comparisons of Means: Dunnett Contrasts
+
+
+Fit: lm(formula = logab ~ site, data = ben)
+
+Quantile = 2.7271
+95% family-wise confidence level
+ 
+
+Linear Hypotheses:
+           Estimate  lwr       upr      
+2 - 1 == 0 -0.218435 -0.481700  0.044831
+3 - 1 == 0  0.703189  0.439923  0.966454
+4 - 1 == 0  0.453836  0.190571  0.717102
+5 - 1 == 0 -0.414859 -0.678125 -0.151594
+6 - 1 == 0 -0.004238 -0.267503  0.259028
+7 - 1 == 0  0.140280 -0.122985  0.403546
+8 - 1 == 0 -0.371867 -0.635133 -0.108602
+9 - 1 == 0  0.168668 -0.094598  0.431934</code></pre>
+<pre class="r"><code>&gt; exp(confint(ben.mc)$confint)</code></pre>
+<pre><code>       Estimate       lwr       upr
+2 - 1 0.8037761 0.6176552 1.0459817
+3 - 1 2.0201841 1.5523940 2.6289355
+4 - 1 1.5743404 1.2097890 2.0487437
+5 - 1 0.6604332 0.5075045 0.8594446
+6 - 1 0.9957713 0.7651923 1.2958317
+7 - 1 1.1505965 0.8841665 1.4973111
+8 - 1 0.6894457 0.5297989 0.8971996
+9 - 1 1.1837272 0.9096255 1.5404252
+attr(,&quot;conf.level&quot;)
+[1] 0.95
+attr(,&quot;calpha&quot;)
+[1] 2.728381</code></pre>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
