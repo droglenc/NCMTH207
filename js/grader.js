@@ -24,14 +24,14 @@ function find_grade(form, pts, outof) {
 	curr_sc = pts/outof;
 	form.SCORE.value = roundDec(curr_sc*100,1);
 	if (curr_sc > 0.92) {form.GRADE.value="A"}
-	else if (curr_sc > 0.90) {form.GRADE.value="A-"}
-	else if (curr_sc > 0.87) {form.GRADE.value="B+"}
-	else if (curr_sc > 0.82) {form.GRADE.value="B"}
-	else if (curr_sc > 0.80) {form.GRADE.value="B-"}
-	else if (curr_sc > 0.77) {form.GRADE.value="C+"}
-	else if (curr_sc > 0.70) {form.GRADE.value="C"}
-	else if (curr_sc > 0.67) {form.GRADE.value="D+"}
-	else if (curr_sc > 0.60) {form.GRADE.value="D"}
+	else if (curr_sc >= 0.90) {form.GRADE.value="A-"}
+	else if (curr_sc >= 0.87) {form.GRADE.value="B+"}
+	else if (curr_sc >= 0.82) {form.GRADE.value="B"}
+	else if (curr_sc >= 0.80) {form.GRADE.value="B-"}
+	else if (curr_sc >= 0.77) {form.GRADE.value="C+"}
+	else if (curr_sc >= 0.70) {form.GRADE.value="C"}
+	else if (curr_sc >= 0.67) {form.GRADE.value="D+"}
+	else if (curr_sc >= 0.60) {form.GRADE.value="D"}
 	else {form.GRADE.value="F"}
 }
 

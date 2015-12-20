@@ -15,7 +15,7 @@ css: /css/syllabus.css
 * [Attendance](#attendance)
 * [Conduct](#conduct)
 * [Accomodations](#accomodations)
-* [Important Dates](#important-dates)
+* [Important Dates](resources/calendar.html)
 
 ----
 
@@ -42,16 +42,14 @@ At the end of this class you will be able to ...
 
 ## Instructor
 
-<table class="tutors" width="50%">
-<tr><th><a href="http://derekogle.com" target="_blank">Dr. Derek H. Ogle</a><br>Professor of Mathematical Sciences<br> & Natural Resources</th></tr>
-<tr><th><img src="../img/DerekOgle1.jpg"></th></tr>
-<tr><td>CSE239; 682-1300<br><a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
-<a href="https://www.suggestionox.com/r/W16-207">Feedback / Suggestions</a></td></tr>
-<tr><td style="vertical-align:top">Office Hours:<br>
-Tues 12-1p<br>
-Thurs 10-11a<br>
-Fri 3-4p</td></tr>
-</table>
+<img class="img-right" src="../img/DerekOgle1.jpg">
+
+<ul>
+  <li><a href="http://derekogle.com" target="_blank">Dr. Derek H. Ogle</a><br>Professor of Mathematical Sciences<br> & Natural Resources</li>
+  <li>CSE239; 682-1300; <a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
+<a href="https://www.suggestionox.com/r/W16-207">Feedback / Suggestions</a></li>
+  <li>Office Hours: Tues 12-1p; Thurs 10-11a; Fri 3-4p</li>
+</ul>
 
 ## Tutors
 
@@ -70,7 +68,7 @@ An overall percentage score will be computed from the items and associated weigh
 <th><a href="#exams">MT1</A></th>
 <th><a href="#exams">MT2</A></th>
 <th><a href="#exams">Final</A></th>
-<th><a href="#final=portfolio">Portfolio</A></th></tr>
+<th><a href="#final-portfolio">Portfolio</A></th></tr>
 
 <tr><th>Weight</th>
 <th>25%</th><th>15%</th><th>15%</th><th>15%</th><th>30%</th></tr>
@@ -105,13 +103,13 @@ Several homework assignments will be assigned per major course topic.  Grading o
 
 ### Exams
 
-Exams will be on 3-Oct (Fri), 24-Oct (Fri), 14-Nov (Fri), and 12-Dec (Fri).  Make-up exams will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to make up an exam missed without my prior approval.  The final exam will not be given early.
+Exams will be on 16-Feb (Tues), 22-Mar (Tues), and 19-Apr (Tues).  Make-up exams will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to make up an exam missed without my prior approval.  The final exam will not be given early.
 
 ### Final Portfolio
 
 The portfolio project serves as the capstone experience for the course and allows you flexibility to demonstrate working knowledge of the major topics of the course.  In general, the portfolio will consist of a thorough analysis of data using four (cannot use any topic more than once) of the following major topics in the course: (I) One-Way ANOVA (*must have more than two groups and cannot be a subset of your Two-Way ANOVA*), (II) Two-Way ANOVA, (III) Simple Linear Regression (*cannot be a subset of your Indicator Variable Regression*), (IV) Indicator Variable Regression, or (V) Logistic Regression.  You can also propose an alternative topic for my approval.
 
-For each topic you must gather and appropriately analyze data.  The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source.  The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting to you.  **Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me by **23-Feb** that briefly describes the data that you will use, the types (i.e., quantitative or categorical) of response and explanatory variable(s), the question to be asked or hypotheses to be tested with the data, and which topic you will use to answer the question.  The initial proposal is worth an all-or-nothing 10% of the overall grade for the portfolio.  *I strongly urge you to discuss your initial proposal with me before turning it in.*
+For each topic you must gather and appropriately analyze data.  The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source.  The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting to you.  **Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me by **4-Mar** that briefly describes the data that you will use, the types (i.e., quantitative or categorical) of response and explanatory variable(s), the question to be asked or hypotheses to be tested with the data, and which topic you will use to answer the question.  The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio.  *I strongly urge you to discuss your initial proposal with me before turning it in.*
 
 For each topic you will write a report with the following sections:
 
@@ -153,14 +151,3 @@ You will be asked to leave class if your behavior is disrespectful of others.
 
 ## Accomodations
 Students in need of academic accommodation should contact [Kathleen Skoraczewski](mailto:kskoraczewski@northland.edu), Campus Counselor	and Disabilities Service Coordinator, ext. 1369, Ponzio Center Rm. 232.
-
-## Important Dates
-
-* 16-Jan – No Class
-* 19-Jan – Martin Luther King, Jr. Day Celebration (on-campus events)
-* 25-Feb – Portfolio Work Day (Prof. Ogle at AFS Meeting)
-* 2-Mar – Portfolio Work Day (Prof. Ogle teaching DNR Workshop)
-* 4,6-Mar – Mid-Session Break (No Class)
-* 1-Apr – Honors Day (No Class … Attend poster presentations for Extra Credit)
-* 3-Apr – Good Friday (No Class)
-
