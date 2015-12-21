@@ -1,0 +1,127 @@
+---
+layout: page
+title: "One-Way ANOVA"
+subtitle: R Handout
+author: "Derek H. Ogle"
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 3
+    self_contained: no
+  pdf_document:
+    fig_width: 3
+    fig_height: 3
+---
+
+```{r echo=FALSE, eval=FALSE}
+#=============================================================
+#=============== IGNORE/DELETE FROM HERE .... ================
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way")
+source("../../rhelpers/rhelpers.R")
+modHTML("RHO")
+```
+
+```{r echo=FALSE, results='hide', message='FALSE'}
+source("../../rhelpers/knitr_setup.R")
+#=============== .... TO HERE ================================
+#=============================================================
+```
+----
+
+## Initialization
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(multcomp)     # glht()
+```
+
+----
+
+# Bacteria Example
+## Background
+What is the optimal temperature (27,35,43<sup>o</sup>C) and concentration (0.6,0.8,1.0,1.2,1.4% by weight) of the nutrient, tryptone, for culturing the <emph>Staphylococcus aureus<emph> bacterium.  Each treatment was repeated twice. The number of bacteria was recorded in millions CFU/mL (CFU=Colony Forming Units).
+
+```{r message=FALSE}
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way")
+bact <- read.csv("Bacteria.csv")
+str(bact)
+bact$ftemp <- factor(bact$temp)
+bact$fconc <- factor(bact$conc)
+str(bact)
+```
+
+## Initial Summaries
+```{r}
+sumTable(cells~ftemp*fconc,data=bact,FUN=length)
+sumTable(cells~ftemp*fconc,data=bact,FUN=mean,digits=0)
+sumTable(cells~ftemp*fconc,data=bact,FUN=sd,digits=1)
+```
+
+## Model Fitting and Summary
+```{r fig.show="hold", par1=TRUE}
+lm1 <- lm(cells~ftemp*fconc,data=bact)
+anova(lm1)
+fitPlot(lm1, main="")  # left
+fitPlot(lm1,interval=FALSE,change.order=TRUE,xlab="Concentration (%)",
+        ylab="Mean Number of Cells",legend="topleft", main="")  # right
+```
+
+```{r fig.show="hold", par1=TRUE}
+fitPlot(lm1,which="ftemp",ylim=c(60,270),xlab="Temperature (C)",
+        ylab="Mean Number of Cells", main="")  # left
+fitPlot(lm1,which="fconc",ylim=c(60,270),xlab="Concentration (%)",
+        ylab="Mean Number of Cells", main="")  # right
+```
+
+## Multiple Comparisons
+```{r par1=TRUE}
+bact.mc1 <- glht(lm1,mcp(fconc="Tukey"))
+summary(bact.mc1)
+fitPlot(lm1,which="fconc",xlab="Concentration (%)",ylab="Mean Number of Cells",main="")
+addSigLetters(lm1,which="fconc",lets=c("a","a","a","b","a"),pos=c(2,2,4,2,4))
+```
+
+----
+
+# Soil Phosphorous Example
+## Background
+Soil phosphorous is important for the invasion of native vegatation by exotic weeds.  Clements (1983) studied the soil phosphorous in the Sydney region (Australia) to determine how soil phosphorous varied with topographical location and soil type.  Bushland sites were chosen in Brisbane Waters National Park, Ku-ring-gai Chase National Park and Royal National Park.  These areas were relatively unaffected by suburban development, were free from immediate roadside or track effects, and had not been burned for at least two years.  Shale-derived and sandstone-derived soils in four topographic locations were examined with three 250 m<sup>2</sup> quadrats in each of the eight combinations of soil type and topography.  Cores of soil of 75 mm depth and 25 mm diameter, free from surface litter, were collected from each of five randomly selected points in each quadrat.  The five soil samples were pooled and the total soil phosphorous (ppm) was determined for each pooled sample.  Determine the effect of soil type and topography on total soil phosphorous level.
+
+```{r}
+sp <- read.csv("SoilPhosphorous.csv")
+str(sp)
+```
+
+## Analysis
+
+```{r fig.show='asis', fig.width=6, par1=TRUE}
+lm1 <- lm(phos~soil*topo,data=sp)
+levenesTest(lm1)
+residPlot(lm1)
+adTest(lm1$residuals)
+outlierTest(lm1)
+anova(lm1)
+```
+
+```{r}
+sp$comb <- sp$soil:sp$topo
+view(sp)
+lm1a <- lm(phos~comb,data=sp)
+anova(lm1a)
+spint.mc <- glht(lm1a, mcp(comb="Tukey"))
+```
+
+```{r warning=FALSE, par1=TRUE}
+summary(spint.mc)
+glhtSig(spint.mc)
+fitPlot(lm1,change.order=TRUE,interval=FALSE,main="",ylim=c(20,160),
+        ylab="Mean Phosphorous Level",xlab="Topographic Location",legend="topleft")
+addSigLetters(lm1,change.order=TRUE,lets=c("a","a","a","ab","a","ab","a","b"),
+              pos=c(1,3,1,3,1,1,3,1))
+```
+
+```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
+purl2("RHO.Rmd")
+```
