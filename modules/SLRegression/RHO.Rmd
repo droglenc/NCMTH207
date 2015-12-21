@@ -1,0 +1,127 @@
+---
+layout: page
+title: "Simple Linear Regression"
+subtitle: R Handout
+author: "Derek H. Ogle"
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 3
+    self_contained: no
+  pdf_document:
+    fig_width: 3
+    fig_height: 3
+---
+
+```{r echo=FALSE, eval=FALSE}
+#=============================================================
+#=============== IGNORE/DELETE FROM HERE .... ================
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
+source("../../rhelpers/rhelpers.R")
+modHTML("RHO")
+```
+
+```{r echo=FALSE, results='hide', message='FALSE'}
+source("../../rhelpers/knitr_setup.R")
+#=============== .... TO HERE ================================
+#=============================================================
+```
+----
+
+## Initialization
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+```
+
+----
+
+# Salmon Sperm Example
+## Background
+[Vladic *et al.* (2002)](http://www.biolreprod.org/content/66/1/98.long) recorded (in `SalmonSperm.csv`) the probability of successful egg fertilization (`fert.success`) and the length of sperm tail end piece (`step.len`).  They asked "Are fertilization success and length of sperm related?"
+
+```{r}
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
+ss <- read.csv("SalmonSperm.csv")
+ss <- ss[-c(1,10,11),]  # only for class demo purposes
+str(ss)
+xlbl <- "Sperm Tail End Piece Length (um)"
+ylbl <- "Fertilization Success"
+```
+
+## Lecture Support I -- Model Fitting and Simple Predictions
+```{r message=FALSE, par1=TRUE}
+( lm1 <- lm(fert.succ~step.len,data=ss) )
+fitPlot(lm1,xlab=xlbl,ylab=ylbl,main="")
+predict(lm1,data.frame(step.len=3.5))
+```
+
+## Lecture Support II -- Sampling Variability
+```{r par1=TRUE}
+summary(lm1)
+confint(lm1)
+fitPlot(lm1,interval="both",xlab=xlbl,ylab=ylbl,main="")
+```
+
+```{r par1=TRUE}
+predict(lm1,data.frame(step.len=3.5),interval="confidence")
+predict(lm1,data.frame(step.len=3.5),interval="prediction")
+predictionPlot(lm1,data.frame(step.len=c(3.3,3.5)),interval="prediction",
+               xlab=xlbl,ylab=ylbl,main="")
+```
+
+## Lecture Support III -- Model Comparisons
+```{r}
+anova(lm1)
+```
+
+## Lecture Support IV -- Assumption Checking
+```{r fig.width=6, par1=TRUE}
+residPlot(lm1,main="")
+adTest(lm1$residuals)
+outlierTest(lm1)
+```
+
+# Petrels Example
+## Background
+[Croxall (1982)](http://www.jstor.org/stable/4318?seq=1#page_scan_tab_contents) examined the weight loss of adult petrels during periods of egg incubation.  He examined 13 species but some had measurements for both sexes such that 19 measurements are found in `Petrels.csv`.  For each measurement the mean initial weight (g) and mean weight lost (g/g/d) were recorded.  Determine if the mean initial weight significant explains variability in mean weight lost.
+
+```{r}
+petrels <- read.csv("Petrels.csv")
+str(petrels)
+```
+
+## Analysis
+```{r par1=TRUE}
+lm1 <- lm(weight.loss~weight,data=petrels)
+fitPlot(lm1,xlab="Weight (g)",ylab="Weight Loss (g/g/d)",main="")
+```
+
+```{r fig.width=6, par1=TRUE}
+residPlot(lm1,main="")
+```
+
+```{r eval=-2, par1=TRUE}
+with(petrels,max(weight)/min(weight))
+transChooser(lm1) # interactive, results not shown
+petrels$log.wt <- log(petrels$weight)
+petrels$log.wtloss <- log(petrels$weight.loss)
+lm2 <- lm(log.wtloss~log.wt,data=petrels)
+fitPlot(lm2,xlab="log Weight (g)",ylab="log Weight Loss (g/g/d)",main="")
+```
+
+```{r fig.width=6, par1=TRUE}
+residPlot(lm2,main="")
+adTest(lm2$residuals)
+anova(lm2)
+summary(lm2)
+confint(lm2)
+( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),interval="confidence") )
+exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
+```
+
+```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
+purl2("RHO.Rmd")
+```

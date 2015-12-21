@@ -1,0 +1,20 @@
+species,sex,weight,weight.loss
+Diomedea exulans,male,10577,0.0087
+Diomedea exulans,female,9022,0.0096
+Diomedea melanophris,male,3922,0.013
+Diomedea melanophris,female,3694,0.011
+Diomedea chrysostoma,male,3751,0.01
+Diomedea chrysostoma,female,3624,0.012
+Diomedea immutabilis,male,3305,0.011
+Diomedea immutabilis,female,3000,0.0125
+Diomedea immutabilis,both,2996,0.0109
+Pterodroma macroptera,male,668,0.0128
+Pterodroma macroptera,female,667,0.0129
+Pterodroma phaeopygia,unknown,430,0.0343
+Pterodroma inexpectata,unknown,370,0.0214
+Pterodroma pycrofti,unknown,197,0.0256
+Puffinus puffinus,unknown,430,0.025
+Puffinis lherminieri,unknown,178,0.0359
+Fregetta tropica,unknown,56,0.0479
+Oceanodroma castro,unknown,42,0.0453
+Oceanites oceanicus,unknown,42,0.0663
