@@ -17,6 +17,7 @@ css: "/css/modules.css"
 1. Carefully interpret the meaning of each of the parameters in your ultimate full model.
 1. What are the models in the null and alternative hypothesis for the parallel lines test?
 1. What are the models in the null and alternative hypothesis for the intercepts test (assuming that the lines are parallel)?
+1. Comment on the model fits. [*Hint: Examine the plot closely.*]
 
 ----
 
