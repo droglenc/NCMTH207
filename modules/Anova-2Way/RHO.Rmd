@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "One-Way ANOVA"
+title: "Two-Way ANOVA"
 subtitle: R Handout
 author: "Derek H. Ogle"
 css: "/css/modules.css"
