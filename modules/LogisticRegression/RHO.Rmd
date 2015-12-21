@@ -1,0 +1,155 @@
+---
+title: "Logistic Regression"
+author: "Derek H. Ogle"
+layout: page
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 3
+    self_contained: no
+  pdf_document:
+    fig_height: 3
+    fig_width: 3
+subtitle: R Handout
+css: /css/modules.css
+---
+
+```{r echo=FALSE, eval=FALSE}
+#=============================================================
+#=============== IGNORE/DELETE FROM HERE .... ================
+# Must first use Knit HTML and Knit PDF buttons, then use code below
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression")
+source("../../rhelpers/rhelpers.R")
+modHTML("RHO",need2render=FALSE)
+```
+
+```{r echo=FALSE, results='hide', message='FALSE'}
+source("../../rhelpers/knitr_setup.R")
+#=============== .... TO HERE ================================
+#=============================================================
+```
+----
+
+## Initialization
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(plotrix)  #histStack()
+library(car)      #bootCase()
+```
+
+----
+
+# Bat Morphology Example
+## Background
+Researchers measured tthe canine tooth height (among other things) from two subspecies of bats () found in Hawaii.  Their primary question was to determine if canine tooth height differed between the subspecies and, more importantly to them, could the canine tooth height be used to predict the subspecies of bat.
+
+```{r}
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression")
+bat <- read.csv("Batmorph.csv")
+str(bat)
+bat$canine10 <- bat$canine*10
+xlbl <- "Canine Tooth Height (x10,mm)"
+ylbl <- "Subspecies Code"
+```
+
+## Explorations
+```{r par1=TRUE}
+hist(canine10~subsp,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
+     xlab=xlbl,nrow=2,ncol=1)
+histStack(canine10~subsp,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
+          col="gray.colors",xlab=xlbl,right=FALSE)
+```
+
+```{r echo=-1, par1=TRUE}
+par(mar=c(3.5,3.5,1.5,1.5))
+plotBinResp(subsp~canine10,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
+            xlab=xlbl,ylab=ylbl)
+```
+
+## Model Fitting and Examination
+```{r echo=-1, par1=TRUE}
+par(mar=c(3.5,3.5,1.5,1.5))
+glm1 <- glm(subsp~canine10,data=bat,family=binomial)
+fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlab=xlbl,ylab=ylbl,main="")
+summary(glm1)
+confint(glm1)
+```
+
+## Lecture Support -- Interpretation of Slope
+```{r}
+x1 <- c(3,4)                  # purposely pick two canine10 values 1 unit apart
+( p1 <- predict(glm1,data.frame(canine10=x1)) )
+p1[2]-p1[1]
+exp(-11.112)                  # back-transformed 'slope' from summary() above
+( bp1 <- exp(p1) )
+bp1[2]/bp1[1]
+```
+
+## Predicting Probabilities
+```{r}
+( p2 <- predict(glm1,data.frame(canine10=c(3,3.4))) )
+exp(p2)/(1+exp(p2))
+predict(glm1,data.frame(canine10=c(3,3.4)),type="response")
+```
+
+## X for a Certain Proportion
+```{r}
+( cfs <- coef(glm1) )
+p <- 0.5    # canine tooth height where subspecies ratio is 50/50
+( x <- (log(p/(1-p))-cfs[1])/cfs[2] )
+predict(glm1,data.frame(canine10=x),type="response")    # test the answer
+p <- 0.9    # length where 90% are semotus, 10% are cinereus
+(log(p/(1-p))-cfs[1])/cfs[2]
+```
+
+## Bootstrapping
+```{r fig.width=6, par1=TRUE}
+bc1 <- bootCase(glm1)      # bootstrapping, be patient!
+head(bc1)
+confint(bc1)
+#hist(bc1,breaks=15)
+predProb <- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
+predProb(3,coef(glm1)[1],coef(glm1)[2])
+p3 <- predProb(3,bc1[,1],bc1[,2])
+head(p3)
+quantile(p3,c(0.025,0.975))
+predX <- function(p,alpha,beta1) (log(p/(1-p))-alpha)/beta1
+x50 <- predX(0.5,bc1[,1],bc1[,2])
+head(x50)
+quantile(x50,c(0.025,0.975))
+```
+
+# Solar Panel Offer Data
+## Background
+Households were asked if they would accept an offer to put solar panels on the roof of their house if they would receive a 50% subsidy from the state.  Demographic variables for each household such as income, size, monthly mortgage payment, and age of the head of household were also recorded.  The researchers had three primary questions:
+
+* At what income will 25% of households accept?
+* What is the probability of acceptance for a household with an income of $80000?
+* How much does odds of acceptance change for each $1000 increase in household income?
+
+```{r}
+sp <- read.csv("SolarOffer.csv")
+str(sp)
+xlbl <- "Family Income (1000s)"
+ylbl <- "Response to Offer"
+```
+
+## Analysis
+```{r echo=-1, par1=TRUE}
+par(mar=c(3.5,3.5,1.5,1.5))
+plotBinResp(takeoffer~income,data=sp,xlab=xlbl,ylab=ylbl,breaks=seq(25,135,5))
+glm2 <- glm(takeoffer~income,data=sp,family=binomial)
+summary(glm2)
+fitPlot(glm2,xlab=xlbl,ylab=ylbl,breaks=seq(25,135,5),main="")
+p <- 0.25
+(log(p/(1-p))-coef(glm2)[1])/coef(glm2)[2]
+predict(glm2,data.frame(income=80),type="response")
+```
+
+
+
+```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
+purl2("RHO.Rmd",moreItems=c("par"))
+```
