@@ -1,6 +1,8 @@
 ---
 layout: page
-title: IVR Exercises
+title: Indicator Variable Regression
+subtitle: Class Exercises
+css: "/css/modules.css"
 ---
 
 ----
