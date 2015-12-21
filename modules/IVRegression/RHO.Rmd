@@ -1,0 +1,119 @@
+---
+layout: page
+title: "Indicator Variable Regression"
+subtitle: R Handout
+author: "Derek H. Ogle"
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3
+    fig_width: 3
+    self_contained: no
+  pdf_document:
+    fig_width: 3
+    fig_height: 3
+---
+
+```{r echo=FALSE, eval=FALSE}
+#=============================================================
+#=============== IGNORE/DELETE FROM HERE .... ================
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression")
+source("../../rhelpers/rhelpers.R")
+modHTML("RHO")
+```
+
+```{r echo=FALSE, results='hide', message='FALSE'}
+source("../../rhelpers/knitr_setup.R")
+#=============== .... TO HERE ================================
+#=============================================================
+```
+----
+
+## Initialization
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+```
+
+----
+
+# Salmon Sperm Example
+## Background
+[Vladic *et al.* (2002)](http://www.biolreprod.org/content/66/1/98.long) recorded (in `SalmonSperm.csv`) the probability of successful egg fertilization (`fert.success`) and the length of sperm tail end piece (`step.len`).  They asked "Are fertilization success and length of sperm related and does that relationship differ between adult and parr salmon?"
+
+```{r}
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression")
+ss <- read.csv("SalmonSperm.csv")
+ss <- ss[-c(1,10,11),]  # only for class demo purposes
+str(ss)
+xlbl <- "Sperm Tail End Piece Length (um)"
+ylbl <- "Fertilization Success"
+```
+
+## Fitting the Linear Model
+```{r fig.width=6, par1=TRUE}
+lm1 <- lm(fert.succ~step.len*mat,data=ss)
+residPlot(lm1,legend=FALSE,main="",pch=16)
+adTest(lm1$residuals)
+outlierTest(lm1)
+```
+
+## Model Exploration and Summarization
+```{r message=FALSE, par1=TRUE}
+summary(lm1)
+confint(lm1)
+fitPlot(lm1,interval="confidence",xlab=xlbl,ylab=ylbl,legend="topleft",main="")
+( nd <- data.frame(step.len=c(3.4,3.7),mat=c("Adult","Parr")) )
+predictionPlot(lm1,nd,interval="confidence",legend="topleft",main="")
+```
+
+## Lecture Support -- ANOVA Demonstration
+```{r}
+lm1 <- lm(fert.succ~step.len*mat,data=ss)
+anova(lm1)
+lm2 <- lm(fert.succ~step.len+mat,data=ss)
+anova(lm2)
+lm3 <- lm(fert.succ~step.len,data=ss)
+anova(lm3)
+```
+
+# Fish Energy Density Example
+## Background
+[Hartman and Brandt (1995)](http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281995%29124%3C0347%3AEEDOF%3E2.3.CO%3B2) examined the relationship between energy density and percent dry weight for four species of fish -- Bay Ancovy (*Anchoa mitchilli*), Bluefish (*Pomatomus saltatrix*), Striped Bass (*Morone saxatilis*), and Weakfish (*Cynoscion regalis*).  They wanted to describe the relationship between these two variables and determine if there were any differences among species.
+
+```{r}
+FED <- read.csv("FishEnergyDensity.csv")
+str(FED)
+```
+
+## Model Fitting and Analysis
+```{r fig.width=6, par1=TRUE}
+lm1 <- lm(ed~dw*species,data=FED)
+residPlot(lm1,main="",legend=FALSE,pch=16)
+adTest(lm1$residuals)
+outlierTest(lm1)
+```
+
+```{r par1=TRUE}
+anova(lm1)
+compSlopes(lm1)
+fitPlot(lm1,xlab="Dry Weight",ylab="Energy Density",legend="topleft",main="")
+```
+
+## Follow-Up Model Fitting and Analysis
+
+```{r par1=TRUE}
+FED1 <- Subset(FED,species!="bayanchovy")
+lm2 <- lm(ed~dw*species,data=FED1)
+anova(lm2)
+compIntercepts(lm2)
+compIntercepts(lm2,common.cov=0)
+compIntercepts(lm2,common.cov=20)
+fitPlot(lm2,xlab="Dry Weight",ylab="Energy Density",legend="topleft",main="")
+```
+
+
+```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
+purl2("RHO.Rmd")
+```

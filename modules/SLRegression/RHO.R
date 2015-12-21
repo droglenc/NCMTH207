@@ -61,4 +61,4 @@ confint(lm2)
 exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
 
 
-# Script created at 2015-12-20 19:08:38
+# Script created at 2015-12-20 20:51:09
