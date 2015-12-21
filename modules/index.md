@@ -80,6 +80,7 @@ title: Lecture Materials
       <ul>
         <li><a href="IVRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="IVRegression/RHO.html"><img src="../img/web.png"></a> <a href="IVRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="IVRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+        <li><a href="CE.html">Class Exercise</a></li>
       </ul>
       </div>
     </div>
