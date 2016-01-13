@@ -17,7 +17,7 @@ css: /css/syllabus.css
 
 ## Description
 
-Linear models including one- and two-way ANOVA with post-hoc multiple comparisons and transformations, simple and multiple linear regression including transformations and indicator variables, and logistic regression; and basic principles of sample and experimental design.  The theoretical constructs of all topics will be developed and applied to real-life or realistic situations in the life and natural sciences.  Pre-requisite: [MTH107](http://derekogle.com/NCMTH107/).  4 Credits.
+Linear models including one- and two-way ANOVA with post-hoc multiple comparisons and transformations, simple and multiple linear regression including transformations and indicator variables, and logistic regression; and basic principles of sample and experimental design.  The theoretical constructs of all topics will be developed and applied to real-life or realistic situations in the life and natural sciences.  Prerequisite: [MTH107](http://derekogle.com/NCMTH107/).  4 Credits.
 
 ## Importance
 
@@ -53,7 +53,7 @@ At the end of this class you will be able to ...
 
 ## Grading
 
-An overall percentage score will be computed from the items and associated weights listed in the table below.  A specific description for each item is given further below.  You can also use this table to compute your current or projected future grade.  To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed.  To project your future grade, also include percentages for future assessements.  [*It is your responsibility to track your scores on the individual assessments.*]
+An overall percentage score will be computed from the items and associated weights listed in the table below.  A specific description for each item is given further below.  You can also use this table to compute your current or projected future grade.  To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed.  To project your future grade, also include percentages for future assessments.  [*It is your responsibility to track your scores on the individual assessments.*]
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
 
