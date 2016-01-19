@@ -1,6 +1,6 @@
 ## Stuff that should not be public
 Year_Specific/
-
+book/HW/
 
 ## Book materials that do not need to be in the repo
 book/cache/
@@ -8,13 +8,6 @@ book/FBMatter/*.aux
 book/data/zPDFSources/
 book/Figs/*.pdf
 book/Figs/zzzOld/
-book/HW/*.aux
-book/HW/*.log
-book/HW/*.out
-book/HW/*.synctex.gz
-book/HW/*.tex
-book/HW/Figs/*.pdf
-book/HW/zzzOld
 book/*.synctex.gz
 book/Biometry.pdf
 book/Biometry.aux
