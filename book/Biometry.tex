@@ -151,6 +151,7 @@ Before conducting a 2-sample t-test, the assumption of equal variances must be t
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > leveneTest(BOD~src,data=aqua)
+Levene's Test for Homogeneity of Variance (center = median)
       Df F value Pr(>F)
 group  1  0.2989 0.5913
       18               
@@ -479,10 +480,12 @@ The models for a two-sample t-test can be fit and assessed with \R{lm()}.  This 
 \begin{verbatim}
 > aqua.lm <- lm(BOD~src,data=aqua)
 > anova(aqua.lm)
+Analysis of Variance Table
+
+Response: BOD
           Df  Sum Sq Mean Sq F value    Pr(>F)
 src        1 20.6756 20.6756  80.891 4.449e-08
 Residuals 18  4.6008  0.2556                  
-Total     19 25.2764                          
 > summary(aqua.lm)
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
@@ -673,10 +676,12 @@ A one-way ANOVA model can be fit with \R{lm()}\footnote{The \R{aov()} function c
 \begin{verbatim}
 > opp.lm <- lm(imm~season,data=opp)
 > anova(opp.lm)
+Analysis of Variance Table
+
+Response: imm
           Df  Sum Sq  Mean Sq F value    Pr(>F)
 season     2 0.23401 0.117005  14.449 7.609e-05
 Residuals 24 0.19435 0.008098                  
-Total     26 0.42836                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -690,9 +695,7 @@ Of course, the natural reaction at this point is to ask ``Which means are differ
 \begin{verbatim}
 > fitPlot(opp.lm,main="")
 \end{verbatim}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{Loading required namespace: sciplot}}\end{kframe}\begin{figure}[hbtp]
+\end{kframe}\begin{figure}[hbtp]
 
 {\centering \includegraphics[width=.4\linewidth]{Figs/LM1PlotMeans-1} 
 
@@ -775,6 +778,7 @@ The equal variances assumptions is tested with \R{leveneTest()} which requires a
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > leveneTest(opp.lm)
+Levene's Test for Homogeneity of Variance (center = median)
       Df F value Pr(>F)
 group  2  1.0344 0.3708
       24               
@@ -812,7 +816,7 @@ The Anderson-Darling normality test is performed with \R{adTest()}.  The normali
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > adTest(opp.lm$residuals)
-Anderson-Darling normality test with opp.lm$residuals 
+Anderson-Darling normality test with x 
 A = 0.697, p-value = 0.0609
 \end{verbatim}
 \end{kframe}
@@ -903,7 +907,6 @@ There appears to be a significant difference in mean tomato seedling growth amon
           Df  Sum Sq Mean Sq F value    Pr(>F)
 density    3 100.647  33.549   12.08 0.0006163
 Residuals 12  33.327   2.777                  
-Total     15 133.974                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1021,7 +1024,6 @@ There appears to be a significant difference in mean tree growth among the four 
            Df Sum Sq Mean Sq F value    Pr(>F)
 treat       3  32728 10909.2  131.98 < 2.2e-16
 Residuals 136  11241    82.7                  
-Total     139  43969                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1139,15 +1141,38 @@ For example, the multiple comparison results for the immunoglobulin opossum data
 \begin{verbatim}
 > opp.mc <- glht(opp.lm,mcp(season="Tukey"))
 > summary(opp.mc)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = imm ~ season, data = opp)
+
+Linear Hypotheses:
                Estimate Std. Error t value Pr(>|t|)
-may - feb == 0  0.05676    0.04280   1.326 0.393879
-nov - feb == 0 -0.17667    0.04107  -4.301 0.000672
-nov - may == 0 -0.23343    0.04657  -5.012 0.000110
+may - feb == 0  0.05676    0.04280   1.326    0.394
+nov - feb == 0 -0.17667    0.04107  -4.301   <0.001
+nov - may == 0 -0.23343    0.04657  -5.012   <0.001
+(Adjusted p values reported -- single-step method)
 > confint(opp.mc)
+
+	 Simultaneous Confidence Intervals
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = imm ~ season, data = opp)
+
+Quantile = 2.4969
+95% family-wise confidence level
+ 
+
+Linear Hypotheses:
                Estimate lwr      upr     
-may - feb == 0  0.05676 -0.05002  0.16355
-nov - feb == 0 -0.17667 -0.27915 -0.07418
-nov - may == 0 -0.23343 -0.34964 -0.11722
+may - feb == 0  0.05676 -0.05010  0.16362
+nov - feb == 0 -0.17667 -0.27922 -0.07411
+nov - may == 0 -0.23343 -0.34972 -0.11714
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1166,10 +1191,33 @@ It is vitally important that you note that this function treats the first level 
 > opp.lm2 <- lm(imm~season1,data=opp)
 > opp.mc2 <- glht(opp.lm2,mcp(season1="Dunnett"))
 > summary(opp.mc2)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Dunnett Contrasts
+
+
+Fit: lm(formula = imm ~ season1, data = opp)
+
+Linear Hypotheses:
                Estimate Std. Error t value Pr(>|t|)
 feb - may == 0 -0.05676    0.04280  -1.326    0.318
 nov - may == 0 -0.23343    0.04657  -5.012 7.79e-05
+(Adjusted p values reported -- single-step method)
 > confint(opp.mc2)
+
+	 Simultaneous Confidence Intervals
+
+Multiple Comparisons of Means: Dunnett Contrasts
+
+
+Fit: lm(formula = imm ~ season1, data = opp)
+
+Quantile = 2.3368
+95% family-wise confidence level
+ 
+
+Linear Hypotheses:
                Estimate lwr      upr     
 feb - may == 0 -0.05676 -0.15677  0.04325
 nov - may == 0 -0.23343 -0.34226 -0.12460
@@ -1215,12 +1263,12 @@ The results of applying Tukey's method to these data \tabrefp{tab:OWAEx1HSD} ind
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
                  Estimate Std. Error    t value     p value
-1000 - 0 = 0       -0.225   1.178408 -0.1909355 0.997393035
-5000 - 0 = 0       -5.050   1.178408 -4.2854421 0.005039310
-10000 - 0 = 0      -5.200   1.178408 -4.4127324 0.004220236
-5000 - 1000 = 0    -4.825   1.178408 -4.0945065 0.007080421
-10000 - 1000 = 0   -4.975   1.178408 -4.2217969 0.005796068
-10000 - 5000 = 0   -0.150   1.178408 -0.1272904 0.999219481
+1000 - 0 = 0       -0.225   1.178408 -0.1909355 0.997392396
+5000 - 0 = 0       -5.050   1.178408 -4.2854421 0.005049134
+10000 - 0 = 0      -5.200   1.178408 -4.4127324 0.004015037
+5000 - 1000 = 0    -4.825   1.178408 -4.0945065 0.006855251
+10000 - 1000 = 0   -4.975   1.178408 -4.2217969 0.005552799
+10000 - 5000 = 0   -0.150   1.178408 -0.1272904 0.999220693
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1264,11 +1312,11 @@ There appears to be a significant difference in mean tree growth among the four 
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
                            Estimate Std. Error    t value     p value
-Fertilized - Control = 0   5.534286   2.173279   2.546515 0.057616333
+Fertilized - Control = 0   5.534286   2.173279   2.546515 0.057402948
 Clipped - Control = 0    -33.420000   2.173279 -15.377688 0.000000000
-Shaded - Control = 0      -1.400000   2.173279  -0.644188 0.917410106
+Shaded - Control = 0      -1.400000   2.173279  -0.644188 0.917413721
 Clipped - Fertilized = 0 -38.954286   2.173279 -17.924202 0.000000000
-Shaded - Fertilized = 0   -6.934286   2.173279  -3.190703 0.009357665
+Shaded - Fertilized = 0   -6.934286   2.173279  -3.190703 0.009312189
 Shaded - Clipped = 0      32.020000   2.173279  14.733500 0.000000000
 \end{verbatim}
 \end{kframe}
@@ -1503,7 +1551,6 @@ There appeared to be a significant difference in mean square root peak discharge
           Df Sum Sq Mean Sq F value    Pr(>F)
 method     3 32.684 10.8947  81.049 2.296e-11
 Residuals 20  2.688  0.1344                  
-Total     23 35.373                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2060,12 +2107,14 @@ As with the \R{lm()} implementation for the one-way ANOVA, the result should be 
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > anova(tad.lm1)
+Analysis of Variance Table
+
+Response: mass
             Df  Sum Sq Mean Sq F value    Pr(>F)
 uvb          1  0.7889 0.78886  2.9204 0.0911577
 density      2  4.6251 2.31253  8.5611 0.0004132
 uvb:density  2  0.5876 0.29381  1.0877 0.3416820
 Residuals   84 22.6900 0.27012                  
-Total       89 28.6916                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2080,15 +2129,38 @@ The Tukey HSD procedure can be applied to either of the two main effects with \R
 \begin{verbatim}
 > tad.mc1 <- glht(tad.lm1,mcp(density="Tukey"))
 > summary(tad.mc1)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = mass ~ uvb * density, data = tad)
+
+Linear Hypotheses:
            Estimate Std. Error t value Pr(>|t|)
 2 - 1 == 0 -0.60440    0.18978  -3.185  0.00573
 4 - 1 == 0 -0.69033    0.18978  -3.638  0.00132
 4 - 2 == 0 -0.08593    0.18978  -0.453  0.89328
+(Adjusted p values reported -- single-step method)
 > confint(tad.mc1)
+
+	 Simultaneous Confidence Intervals
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = mass ~ uvb * density, data = tad)
+
+Quantile = 2.3862
+95% family-wise confidence level
+ 
+
+Linear Hypotheses:
            Estimate lwr      upr     
-2 - 1 == 0 -0.60440 -1.05730 -0.15150
-4 - 1 == 0 -0.69033 -1.14323 -0.23744
-4 - 2 == 0 -0.08593 -0.53883  0.36696
+2 - 1 == 0 -0.60440 -1.05725 -0.15155
+4 - 1 == 0 -0.69033 -1.14318 -0.23749
+4 - 2 == 0 -0.08593 -0.53878  0.36691
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2104,6 +2176,15 @@ Tukey's procedure should NOT be applied to the main effects if a significant int
 > tad.lm2 <- lm(mass~grps,data=tad)   # fit new one-way ANOVA model
 > tad.mc2 <- glht(tad.lm2,mcp(grps="Tukey"))
 > summary(tad.mc2)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = mass ~ grps, data = tad)
+
+Linear Hypotheses:
                      Estimate Std. Error t value Pr(>|t|)
 Low:2 - Low:1 == 0   -0.60440    0.18978  -3.185  0.02406
 Low:4 - Low:1 == 0   -0.69033    0.18978  -3.638  0.00607
@@ -2120,6 +2201,7 @@ High:4 - Low:4 == 0  -0.03760    0.18978  -0.198  0.99996
 High:2 - High:1 == 0 -0.30520    0.18978  -1.608  0.59549
 High:4 - High:1 == 0 -0.31627    0.18978  -1.667  0.55759
 High:4 - High:2 == 0 -0.01107    0.18978  -0.058  1.00000
+(Adjusted p values reported -- single-step method)
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2228,7 +2310,6 @@ uvb          1  0.7889 0.78886  2.9204 0.0911577
 density      2  4.6251 2.31253  8.5611 0.0004132
 uvb:density  2  0.5876 0.29381  1.0877 0.3416820
 Residuals   84 22.6900 0.27012                  
-Total       89 28.6916                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2244,10 +2325,10 @@ Effect sizes for all pairs of levels are shown in \tabref{tab:TWATadpoleTukey}. 
 \begin{verbatim}
              Estimate        lwr         upr
 High - Low -0.4116667 -0.7890621 -0.03427121
-         Estimate        lwr        upr
-2 - 1 -0.60440000 -1.0573370 -0.1514630
-4 - 1 -0.69033333 -1.1432703 -0.2373963
-4 - 2 -0.08593333 -0.5388703  0.3670037
+         Estimate       lwr        upr
+2 - 1 -0.60440000 -1.057288 -0.1515124
+4 - 1 -0.69033333 -1.143221 -0.2374457
+4 - 2 -0.08593333 -0.538821  0.3669543
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -2351,12 +2432,11 @@ There appears to be a significant interaction effect ($p=0.0404$; \tabref{tab:TW
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-            Df  Sum Sq Mean Sq F value   Pr(>F)
-site         2  8287.0  4143.5 64.3928 6.27e-09
-strain       1   459.4   459.4  7.1390  0.01555
-site:strain  2   496.0   248.0  3.8541  0.04044
-Residuals   18  1158.3    64.3                 
-Total       23 10400.6                         
+            Df Sum Sq Mean Sq F value   Pr(>F)
+site         2 8287.0  4143.5 64.3928 6.27e-09
+strain       1  459.4   459.4  7.1390  0.01555
+site:strain  2  496.0   248.0  3.8541  0.04044
+Residuals   18 1158.3    64.3                 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -3116,10 +3196,9 @@ As usual, the degrees-of-freedom ($df$), sum-of-squares ($SS$), mean-squares ($M
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-           Df    Sum Sq   Mean Sq F value    Pr(>F)
-tl          1 287104252 287104252  89.148 1.806e-15
-Residuals  99 318832897   3220534                  
-Total     100 605937149                            
+          Df    Sum Sq   Mean Sq F value    Pr(>F)
+tl         1 287104252 287104252  89.148 1.806e-15
+Residuals 99 318832897   3220534                  
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4320,12 +4399,14 @@ This process can be illustrated with the mirex concentration data.  First, the u
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > anova(mirex.lm1)
+Analysis of Variance Table
+
+Response: mirex
                 Df  Sum Sq  Mean Sq F value    Pr(>F)
 weight           1 0.22298 0.222980 26.8586 9.155e-07
 species          1 0.00050 0.000498  0.0600   0.80690
 weight:species   1 0.02744 0.027444  3.3057   0.07158
 Residuals      118 0.97964 0.008302                  
-Total          121 1.23056                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4337,10 +4418,12 @@ The $df$ and $SS$ of interest, at this point, are in the ``Residuals'' row of th
 \begin{verbatim}
 > mirex.lm2 <- lm(mirex~weight,data=Mirex)
 > anova(mirex.lm2)
+Analysis of Variance Table
+
+Response: mirex
            Df  Sum Sq  Mean Sq F value    Pr(>F)
 weight      1 0.22298 0.222980  26.556 1.019e-06
 Residuals 120 1.00758 0.008396                  
-Total     121 1.23056                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4370,11 +4453,13 @@ The F test for comparing these models still uses the results from the fit of the
 \begin{verbatim}
 > mirex.lm3 <- lm(mirex~weight+species,data=Mirex)
 > anova(mirex.lm3)
+Analysis of Variance Table
+
+Response: mirex
            Df  Sum Sq  Mean Sq F value    Pr(>F)
 weight      1 0.22298 0.222980 26.3481 1.124e-06
 species     1 0.00050 0.000498  0.0589    0.8087
 Residuals 119 1.00708 0.008463                  
-Total     121 1.23056                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4447,12 +4532,14 @@ Most of the F tests just described can all be computed efficiently by submitting
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > anova(mirex.lm1)
+Analysis of Variance Table
+
+Response: mirex
                 Df  Sum Sq  Mean Sq F value    Pr(>F)
 weight           1 0.22298 0.222980 26.8586 9.155e-07
 species          1 0.00050 0.000498  0.0600   0.80690
 weight:species   1 0.02744 0.027444  3.3057   0.07158
 Residuals      118 0.97964 0.008302                  
-Total          121 1.23056                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4473,6 +4560,10 @@ The coincident lines test p-value is not found in the output from \R{anova()} as
 \definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
 > anova(mirex.lm2,mirex.lm1)
+Analysis of Variance Table
+
+Model 1: mirex ~ weight
+Model 2: mirex ~ weight * species
   Res.Df     RSS Df Sum of Sq      F Pr(>F)
 1    120 1.00758                           
 2    118 0.97964  2  0.027942 1.6828 0.1903
@@ -4508,12 +4599,14 @@ To motivate the topics of this section, consider a change in the intent for the 
 > Mirex$year <- factor(Mirex$year)
 > mirex.lma <- lm(mirex~weight*year,data=Mirex)
 > anova(mirex.lma)
+Analysis of Variance Table
+
+Response: mirex
              Df  Sum Sq  Mean Sq F value    Pr(>F)
 weight        1 0.22298 0.222980 60.2061   4.7e-12
 year          5 0.50667 0.101333 27.3607 < 2.2e-16
 weight:year   5 0.09351 0.018703  5.0499 0.0003326
 Residuals   110 0.40740 0.003704                  
-Total       121 1.23056                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4521,10 +4614,7 @@ Total       121 1.23056
 The interaction term p-value ($p=0.0003$) provides very strong evidence that the six lines are not parallel.  Because the lines are not parallel, the equal-intercepts test (second line of output) was not interpreted.  The next question after a result such as this is to ask which lines have different slopes -- does just one line have a different slope, do all lines have different slopes, etc.  An examination of the fitted-line plot for this model \figrefp{fig:IVRSalmonYearFittedLinePlot} suggests that the first four years have similar slopes, 1996 has a shallower slope, and 1999 has an even shallower slope.  However, it is impossible to determine which slopes are significantly different from this graph.
 
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\itshape\color{messagecolor}{Loading required namespace: gplots}}\end{kframe}\begin{figure}[h]
+\definecolor{shadecolor}{rgb}{0.922, 0.922, 0.922}\color{fgcolor}\begin{figure}[h]
 
 {\centering \includegraphics[width=.4\linewidth]{Figs/IVRSalmonYearFittedLinePlot-1} 
 
@@ -4590,22 +4680,22 @@ The Bonferroni, sequential Bonferroni, or FDR methods work by multiplying the in
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
- comparison     diff      lwr      upr   raw.p   adj.p
-  1982-1977 -0.00202 -0.01678  0.01273 0.78627 0.93698
-  1986-1977 -0.00331 -0.01670  0.01008 0.62556 0.93698
-  1992-1977 -0.00233 -0.01676  0.01211 0.75010 0.93698
-  1996-1977 -0.01661 -0.02903 -0.00418 0.00929 0.02322
-  1999-1977 -0.02500 -0.03964 -0.01036 0.00099 0.00559
-  1986-1982 -0.00128 -0.01393  0.01137 0.84111 0.93698
-  1992-1982 -0.00030 -0.01405  0.01345 0.96535 0.96535
-  1996-1982 -0.01458 -0.02621 -0.00295 0.01445 0.02709
-  1999-1982 -0.02297 -0.03694 -0.00901 0.00149 0.00559
-  1992-1986  0.00098 -0.01130  0.01326 0.87451 0.93698
-  1996-1986 -0.01330 -0.02314 -0.00346 0.00854 0.02322
-  1999-1986 -0.02169 -0.03421 -0.00917 0.00084 0.00559
-  1996-1992 -0.01428 -0.02550 -0.00306 0.01310 0.02709
-  1999-1992 -0.02267 -0.03630 -0.00904 0.00132 0.00559
-  1999-1996 -0.00839 -0.01988  0.00309 0.15049 0.25082
+ comparison     diff X95..LCI X95..UCI p.unadj   p.adj
+  1982-1977 -0.00202 -0.01678  0.01273 0.78627 1.00000
+  1986-1977 -0.00331 -0.01670  0.01008 0.62556 1.00000
+  1992-1977 -0.00233 -0.01676  0.01211 0.75010 1.00000
+  1996-1977 -0.01661 -0.02903 -0.00418 0.00929 0.09394
+  1999-1977 -0.02500 -0.03964 -0.01036 0.00099 0.01386
+  1986-1982 -0.00128 -0.01393  0.01137 0.84111 1.00000
+  1992-1982 -0.00030 -0.01405  0.01345 0.96535 1.00000
+  1996-1982 -0.01458 -0.02621 -0.00295 0.01445 0.11790
+  1999-1982 -0.02297 -0.03694 -0.00901 0.00149 0.01788
+  1992-1986  0.00098 -0.01130  0.01326 0.87451 1.00000
+  1996-1986 -0.01330 -0.02314 -0.00346 0.00854 0.09394
+  1999-1986 -0.02169 -0.03421 -0.00917 0.00084 0.01260
+  1996-1992 -0.01428 -0.02550 -0.00306 0.01310 0.11790
+  1999-1992 -0.02267 -0.03630 -0.00904 0.00132 0.01716
+  1999-1996 -0.00839 -0.01988  0.00309 0.15049 1.00000
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4647,12 +4737,14 @@ The parallel line test and equal-intercepts tests for this reduced data set are 
 \begin{verbatim}
 > mirex1.lma <- lm(mirex~weight*year,data=Mirex1)
 > anova(mirex1.lma)
+Analysis of Variance Table
+
+Response: mirex
             Df  Sum Sq Mean Sq  F value    Pr(>F)
 weight       1 0.43886 0.43886 103.7272 7.431e-16
 year         3 0.07602 0.02534   5.9895  0.001016
 weight:year  3 0.00089 0.00030   0.0704  0.975568
 Residuals   76 0.32155 0.00423                   
-Total       83 0.83733                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4662,7 +4754,7 @@ The interaction term p-value ($p=0.976$) confirms the conclusion that the slopes
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
- comparison        diff         lwr          upr        p.adj
+ comparison        diff    X95..LCI     X95..UCI        p.adj
   1982-1977 -0.05416588 -0.10225344 -0.006078329 0.0209412606
   1986-1977 -0.06545122 -0.11353877 -0.017363664 0.0033259143
   1992-1977 -0.09021635 -0.14911133 -0.031321360 0.0007448995
@@ -4762,12 +4854,11 @@ The parallel lines test indicated that at least two of the three regression line
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-              Df Sum Sq Mean Sq F value    Pr(>F)
-propodus       1 29.449 29.4494  93.468 7.135e-11
-spec           2 15.688  7.8442  24.896 3.563e-07
-propodus:spec  2  6.701  3.3507  10.635 0.0003043
-Residuals     31  9.767  0.3151                  
-Total         36 61.607                          
+              Df  Sum Sq Mean Sq F value    Pr(>F)
+propodus       1 29.4494 29.4494  93.468 7.135e-11
+spec           2 15.6884  7.8442  24.896 3.563e-07
+propodus:spec  2  6.7015  3.3507  10.635 0.0003043
+Residuals     31  9.7673  0.3151                  
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4778,18 +4869,20 @@ Total         36 61.607
   \caption{Post hoc multiple comparisons of all pairs of slopes (top) and for comparison of each slope to zero (bottom) for the transformed crab claw data.}\label{tab:IVRCrabSlopeComp}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
 
-Multiple Slope Comparisons
-  comparison     diff      lwr      upr   raw.p   adj.p
-1      hn-cp -0.32405 -0.55558 -0.09253 0.00762 0.01143
+
+{\ttfamily\noindent\itshape\color{messagecolor}{Multiple Slope Comparisons (using the 'holm' adjustment)}}\begin{verbatim}
+  comparison     diff  95% LCI  95% UCI p.unadj   p.adj
+1      hn-cp -0.32405 -0.55558 -0.09253 0.00762 0.01524
 2      lb-cp  0.20622 -0.04844  0.46088 0.10872 0.10872
 3      lb-hn  0.53027  0.28919  0.77135 0.00009 0.00027
+\end{verbatim}
 
-Slope Information
-  level  slopes      lwr     upr   raw.p   adj.p
+
+{\ttfamily\noindent\itshape\color{messagecolor}{\\Slope Information (using the 'holm' adjustment)}}\begin{verbatim}
+  level  slopes  95% LCI 95% UCI p.unadj   p.adj
 2    hn 0.04118 -0.11190 0.19427 0.58715 0.58715
-1    cp 0.36524  0.19155 0.53893 0.00016 0.00024
+1    cp 0.36524  0.19155 0.53893 0.00016 0.00032
 3    lb 0.57145  0.38522 0.75769 0.00000 0.00000
 \end{verbatim}
 \end{kframe}
@@ -4810,7 +4903,6 @@ propodus       1 20.8363 20.8363 59.4969 2.869e-07
 spec           1  0.1699  0.1699  0.4853    0.4945
 propodus:spec  1  0.8594  0.8594  2.4540    0.1337
 Residuals     19  6.6540  0.3502                  
-Total         22 28.5196                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -4900,12 +4992,11 @@ Possums from Victoria and possums from other locations had similar slopes for th
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{1, 1, 1}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-              Df  Sum Sq Mean Sq F value    Pr(>F)
-footlgth       1  375.36  375.36  32.124 1.428e-07
-Pop            1  353.26  353.26  30.233 2.995e-07
-footlgth:Pop   1   11.53   11.53   0.987    0.3229
-Residuals     99 1156.79   11.68                  
-Total        102 1896.95                          
+             Df  Sum Sq Mean Sq F value    Pr(>F)
+footlgth      1  375.36  375.36  32.124 1.428e-07
+Pop           1  353.26  353.26  30.233 2.995e-07
+footlgth:Pop  1   11.53   11.53   0.987    0.3229
+Residuals    99 1156.79   11.68                  
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -5087,7 +5178,6 @@ It may seem reasonable that the effect of initial weight was ``handled'' by pair
           Df Sum Sq Mean Sq F value Pr(>F)
 group      1  14.05  14.045  0.4304 0.5211
 Residuals 16 522.12  32.633               
-Total     17 536.16                       
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -5138,7 +5228,6 @@ This example illustrates how the inclusion of a ``strong'' covariate can mask th
 wt.init    1 486.82  486.82 206.8897 3.505e-10
 group      1  14.05   14.05   5.9688   0.02741
 Residuals 15  35.30    2.35                   
-Total     17 536.17                           
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -5177,7 +5266,6 @@ A one-way ANOVA provides strong evidence for a difference in gonad weight betwee
           Df Sum Sq Mean Sq F value    Pr(>F)
 loc        1 1378.1 1378.12  45.511 4.696e-06
 Residuals 16  484.5   30.28                  
-Total     17 1862.6                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -5228,7 +5316,6 @@ This example illustrates how the inclusion of a ``strong'' covariate and a signi
 wt.somat   1 1824.71 1824.71 722.2189 4.21e-14
 loc        1    0.02    0.02   0.0083   0.9284
 Residuals 15   37.90    2.53                  
-Total     17 1862.62                          
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
