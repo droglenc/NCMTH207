@@ -21,5 +21,5 @@ title: Homework Keys, W16
 * [HW 2.1-2.3](_noPrint.pdf){:target="_blank"}
 -->
 
-* [HW 1.1](HW1_2_noPrint.pdf){:target="_blank"}
+* [HW 1.2](HW1_2_noPrint.pdf){:target="_blank"}
 * [HW 1.1](HW1_1_noPrint.pdf){:target="_blank"}
