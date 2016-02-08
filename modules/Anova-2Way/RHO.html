@@ -18,7 +18,7 @@ css: "/css/modules.css"
 <h1>Bacteria Example</h1>
 <div id="background" class="section level2">
 <h2>Background</h2>
-<p>What is the optimal temperature (27,35,43<sup>o</sup>C) and concentration (0.6,0.8,1.0,1.2,1.4% by weight) of the nutrient, tryptone, for culturing the <emph>Staphylococcus aureus<emph> bacterium. Each treatment was repeated twice. The number of bacteria was recorded in millions CFU/mL (CFU=Colony Forming Units).</p>
+<p>What is the optimal temperature (27,35,43<sup>o</sup>C) and concentration (0.6,0.8,1.0,1.2,1.4% by weight) of the nutrient, tryptone, for culturing the <em>Staphylococcus aureus</em> bacterium. Each treatment was repeated twice. The number of bacteria was recorded in millions CFU/mL (CFU=Colony Forming Units).</p>
 <pre class="r"><code>&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way&quot;)
 &gt; bact &lt;- read.csv(&quot;Bacteria.csv&quot;)
 &gt; str(bact)</code></pre>
@@ -92,16 +92,16 @@ Fit: lm(formula = cells ~ ftemp * fconc, data = bact)
 
 Linear Hypotheses:
                Estimate Std. Error t value Pr(&gt;|t|)
-0.8 - 0.6 == 0      3.0       27.7   0.108  0.99996
-1 - 0.6 == 0       57.0       27.7   2.058  0.28718
-1.2 - 0.6 == 0    164.5       27.7   5.939  &lt; 0.001
-1.4 - 0.6 == 0     28.5       27.7   1.029  0.83816
-1 - 0.8 == 0       54.0       27.7   1.950  0.33499
-1.2 - 0.8 == 0    161.5       27.7   5.831  &lt; 0.001
-1.4 - 0.8 == 0     25.5       27.7   0.921  0.88452
-1.2 - 1 == 0      107.5       27.7   3.881  0.01104
-1.4 - 1 == 0      -28.5       27.7  -1.029  0.83817
-1.4 - 1.2 == 0   -136.0       27.7  -4.910  0.00152
+0.8 - 0.6 == 0      3.0       27.7   0.108 0.999965
+1 - 0.6 == 0       57.0       27.7   2.058 0.287186
+1.2 - 0.6 == 0    164.5       27.7   5.939 0.000231
+1.4 - 0.6 == 0     28.5       27.7   1.029 0.838179
+1 - 0.8 == 0       54.0       27.7   1.950 0.334986
+1.2 - 0.8 == 0    161.5       27.7   5.831 0.000262
+1.4 - 0.8 == 0     25.5       27.7   0.921 0.884522
+1.2 - 1 == 0      107.5       27.7   3.881 0.010928
+1.4 - 1 == 0      -28.5       27.7  -1.029 0.838183
+1.4 - 1.2 == 0   -136.0       27.7  -4.910 0.001526
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,which=&quot;fconc&quot;,xlab=&quot;Concentration (%)&quot;,ylab=&quot;Mean Number of Cells&quot;,main=&quot;&quot;)
 &gt; addSigLetters(lm1,which=&quot;fconc&quot;,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;a&quot;),pos=c(2,2,4,2,4))</code></pre>
@@ -153,11 +153,11 @@ Residuals 16 12445.3   777.8                  </code></pre>
 &gt; view(sp)</code></pre>
 <pre><code>        soil    topo phos              comb
 1      shale  valley   98      shale:valley
-7      shale   south  117       shale:south
-9      shale   south   96       shale:south
-18 sandstone   north   24   sandstone:north
-20 sandstone   south   53   sandstone:south
-22 sandstone hilltop   55 sandstone:hilltop</code></pre>
+5      shale   north   77       shale:north
+6      shale   north  100       shale:north
+10     shale hilltop   83     shale:hilltop
+22 sandstone hilltop   55 sandstone:hilltop
+23 sandstone hilltop   21 sandstone:hilltop</code></pre>
 <pre class="r"><code>&gt; lm1a &lt;- lm(phos~comb,data=sp)
 &gt; anova(lm1a)</code></pre>
 <pre><code>Analysis of Variance Table
@@ -179,33 +179,33 @@ Fit: lm(formula = phos ~ comb, data = sp)
 Linear Hypotheses:
                                           Estimate Std. Error t value Pr(&gt;|t|)
 sandstone:north - sandstone:hilltop == 0     1.667     22.772   0.073  1.00000
-sandstone:south - sandstone:hilltop == 0    19.333     22.772   0.849  0.98685
+sandstone:south - sandstone:hilltop == 0    19.333     22.772   0.849  0.98683
 sandstone:valley - sandstone:hilltop == 0   -4.000     22.772  -0.176  1.00000
 shale:hilltop - sandstone:hilltop == 0       4.667     22.772   0.205  1.00000
-shale:north - sandstone:hilltop == 0        53.333     22.772   2.342  0.32984
-shale:south - sandstone:hilltop == 0        57.333     22.772   2.518  0.25554
-shale:valley - sandstone:hilltop == 0      120.000     22.772   5.270  0.00138
-sandstone:south - sandstone:north == 0      17.667     22.772   0.776  0.99220
+shale:north - sandstone:hilltop == 0        53.333     22.772   2.342  0.32992
+shale:south - sandstone:hilltop == 0        57.333     22.772   2.518  0.25536
+shale:valley - sandstone:hilltop == 0      120.000     22.772   5.270  0.00155
+sandstone:south - sandstone:north == 0      17.667     22.772   0.776  0.99218
 sandstone:valley - sandstone:north == 0     -5.667     22.772  -0.249  1.00000
 shale:hilltop - sandstone:north == 0         3.000     22.772   0.132  1.00000
-shale:north - sandstone:north == 0          51.667     22.772   2.269  0.36556
-shale:south - sandstone:north == 0          55.667     22.772   2.445  0.28505
-shale:valley - sandstone:north == 0        118.333     22.772   5.196  0.00176
-sandstone:valley - sandstone:south == 0    -23.333     22.772  -1.025  0.96347
+shale:north - sandstone:north == 0          51.667     22.772   2.269  0.36504
+shale:south - sandstone:north == 0          55.667     22.772   2.445  0.28502
+shale:valley - sandstone:north == 0        118.333     22.772   5.196  0.00178
+sandstone:valley - sandstone:south == 0    -23.333     22.772  -1.025  0.96342
 shale:hilltop - sandstone:south == 0       -14.667     22.772  -0.644  0.99746
-shale:north - sandstone:south == 0          34.000     22.772   1.493  0.80047
-shale:south - sandstone:south == 0          38.000     22.772   1.669  0.70558
-shale:valley - sandstone:south == 0        100.667     22.772   4.421  0.00784
+shale:north - sandstone:south == 0          34.000     22.772   1.493  0.80062
+shale:south - sandstone:south == 0          38.000     22.772   1.669  0.70562
+shale:valley - sandstone:south == 0        100.667     22.772   4.421  0.00778
 shale:hilltop - sandstone:valley == 0        8.667     22.772   0.381  0.99992
-shale:north - sandstone:valley == 0         57.333     22.772   2.518  0.25546
-shale:south - sandstone:valley == 0         61.333     22.772   2.693  0.19386
-shale:valley - sandstone:valley == 0       124.000     22.772   5.445  0.00112
-shale:north - shale:hilltop == 0            48.667     22.772   2.137  0.43361
-shale:south - shale:hilltop == 0            52.667     22.772   2.313  0.34379
-shale:valley - shale:hilltop == 0          115.333     22.772   5.065  0.00224
+shale:north - sandstone:valley == 0         57.333     22.772   2.518  0.25562
+shale:south - sandstone:valley == 0         61.333     22.772   2.693  0.19394
+shale:valley - sandstone:valley == 0       124.000     22.772   5.445  0.00108
+shale:north - shale:hilltop == 0            48.667     22.772   2.137  0.43349
+shale:south - shale:hilltop == 0            52.667     22.772   2.313  0.34421
+shale:valley - shale:hilltop == 0          115.333     22.772   5.065  0.00230
 shale:south - shale:north == 0               4.000     22.772   0.176  1.00000
-shale:valley - shale:north == 0             66.667     22.772   2.928  0.13124
-shale:valley - shale:south == 0             62.667     22.772   2.752  0.17615
+shale:valley - shale:north == 0             66.667     22.772   2.928  0.13091
+shale:valley - shale:south == 0             62.667     22.772   2.752  0.17632
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; glhtSig(spint.mc)</code></pre>
 <pre><code>[1] &quot;shale:valley - sandstone:hilltop&quot; &quot;shale:valley - sandstone:north&quot;  

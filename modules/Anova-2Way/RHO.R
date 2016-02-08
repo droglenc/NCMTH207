@@ -63,4 +63,4 @@ addSigLetters(lm1,change.order=TRUE,lets=c("a","a","a","ab","a","ab","a","b"),
               pos=c(1,3,1,3,1,1,3,1))
 
 
-# Script created at 2015-12-20 18:32:03
+# Script created at 2016-02-08 09:24:56
