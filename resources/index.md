@@ -9,7 +9,7 @@ title: Resources
 
 ## Learning Assistance
 1. [Accessing on-line data files](https://vimeo.com/user45324800/ncstats-preparedatawebpage)
-1. Enter Your Own Data -- [with Excel](http://derekogle.com/NCMTH107/img/dhovid.png) or [without Excel](https://vimeo.com/user45324800/ncstats-preparedatatextfile)
+1. Enter Your Own Data -- [with Excel](https://vimeo.com/user45324800/ncstats-preparedataexcel) or [without Excel](https://vimeo.com/user45324800/ncstats-preparedatatextfile)
 1. [Load Data into RStudio](https://vimeo.com/user45324800/ncstats-loadcsvrstudio)
 
 ## Computer
