@@ -30,12 +30,12 @@ css: /css/syllabus.css
 
 ## Exam or Other Due Dates
 <dl class="dl-horizontal">
-<dt>22-Mar</dt><dd>Second Exam</dd>
-<dt>20-Apr</dt><dd><a href="Syllabus-Current.html#final-portfolio">Portfolio Final Report</a></dd>
 <dt>19-Apr</dt><dd>Final Exam</dd>
+<dt>20-Apr</dt><dd><a href="Syllabus-Current.html#final-portfolio">Portfolio Final Report</a></dd>
 </dl>
 
 <!---
+<dt>22-Mar</dt><dd>Second Exam</dd>
 <dt>16-Feb</dt><dd>First Exam</dd>
 <dt>4-Mar</dt><dd><a href="Syllabus-Current.html#final-portfolio">Portfolio Proposal</a></dd>
 --->
@@ -44,7 +44,6 @@ css: /css/syllabus.css
 
 ## Cancelled Classes
 <dl class="dl-horizontal">
-<dt>25-Mar</dt><dd>NO CLASS (Good Friday)</dd>
 </dl>
 
 <!---
@@ -53,4 +52,5 @@ css: /css/syllabus.css
 <dt>19-Feb</dt><dd>NO CLASS (Dr. Ogle at AFS Conference)</dd>
 <dt>9-Mar</dt><dd>NO CLASS (Midterm Break)</dd>
 <dt>11-Mar</dt><dd>NO CLASS (Midterm Break)</dd>
+<dt>25-Mar</dt><dd>NO CLASS (Good Friday)</dd>
 --->
