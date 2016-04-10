@@ -6,9 +6,9 @@ title: Homework Keys, W16
 <!--
 
 * [HW 6.2](HW6_2_noPrint.pdf){:target="_blank"}
-* [HW 6.1](HW6_1_noPrint.pdf){:target="_blank"}
 -->
 
+* [HW 6.1](HW6_1_noPrint.pdf){:target="_blank"}
 * [HW 5.3](HW5_3_noPrint.pdf){:target="_blank"}
 * [HW 5.1-5.2](HW5_1_2_noPrint.pdf){:target="_blank"}
 * [HW 4.6](HW4_6_noPrint.pdf){:target="_blank"}
