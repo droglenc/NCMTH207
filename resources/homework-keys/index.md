@@ -5,8 +5,6 @@ title: Homework Keys, W16
 
 <!--
 
--->
-
 * [HW 6.2](HW6_2_noPrint.pdf){:target="_blank"}
 * [HW 6.1](HW6_1_noPrint.pdf){:target="_blank"}
 * [HW 5.3](HW5_3_noPrint.pdf){:target="_blank"}
@@ -25,3 +23,5 @@ title: Homework Keys, W16
 * [HW 2.1-2.3](HW2_1_3_noPrint.pdf){:target="_blank"}
 * [HW 1.2](HW1_2_noPrint.pdf){:target="_blank"}
 * [HW 1.1](HW1_1_noPrint.pdf){:target="_blank"}
+
+-->

@@ -31,11 +31,11 @@ css: /css/syllabus.css
 
 ## Exam or Other Due Dates
 <dl class="dl-horizontal">
-<dt>19-Apr</dt><dd>Final Exam</dd>
-<dt>20-Apr</dt><dd><a href="Syllabus-Current.html#final-portfolio">Portfolio Final Report</a></dd>
 </dl>
 
 <!---
+<dt>19-Apr</dt><dd>Final Exam</dd>
+<dt>20-Apr</dt><dd><a href="Syllabus-Current.html#final-portfolio">Portfolio Final Report</a></dd>
 <dt>22-Mar</dt><dd>Second Exam</dd>
 <dt>16-Feb</dt><dd>First Exam</dd>
 <dt>4-Mar</dt><dd><a href="Syllabus-Current.html#final-portfolio">Portfolio Proposal</a></dd>
