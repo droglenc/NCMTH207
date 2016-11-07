@@ -10,7 +10,7 @@ set_parent('Biometry.Rnw')
         \item Understand the concept underlying comparing a simple and full model.
         \item Understand how $MS_{Total}$, $MS_{Within}$, and $MS_{Among}$ are computed.
         \item Understand what $MS_{Total}$, $MS_{Within}$, and $MS_{Among}$ measure or represent.
-        \item Understand how the F test statistic is used to make a decision regarding two statistical models.
+        \item Understand how the $F$ test statistic is used to make a decision regarding two statistical models.
         \item Understand how the decision about two statistical models relates to a decision about hypotheses.
         \item Understand how to read an ANOVA table and identify relationships within the table (e.g., partitioning).
       \end{Enumerate}
@@ -19,33 +19,37 @@ set_parent('Biometry.Rnw')
 \minitoc
 \newpage
 
-\lettrine{T}{hree types of linear models} will be considered in this book.  Each of these linear models is characterized by the type of response variable and type(s) of explanatory variables considered \tabrefp{tab:LMTypes}.  The first major type of models to be considered are the so-called ANOVA models.  The ANOVA acronym is short for ``ANalysis Of VAriance.''  These models are characterized by a quantitative response variable and factor (categorical) explanatory variables.  One-way ANOVAs occur when only one factor explanatory variable is considered, whereas two-way ANOVAs occur when two factor explanatory variables are considered.  ANOVA models are discussed in detail in Chapters \ref{chap:LMANOVA1} and \ref{chap:LMANOVA2}.
+\lettrine{T}{hree types of linear models}, characterized by the type of response variable and type(s) of explanatory variables considered, will be considered in this book.  The first major type are the ``ANalysis Of VAriance'' or ANOVA models.  ANOVA models are characterized by a quantitative response variable and factor (categorical) explanatory variables \tabrefp{tab:LMTypes}.  One-way ANOVAs consider only one factor explanatory variable, whereas two-way ANOVAs consider two factor explanatory variables.
 
 \begin{table}[h]
   \centering
-  \caption{The models considered in these notes categorized by the types of response and explanatory variables.}\label{tab:LMTypes}
+  \caption{Linear models considered in this book categorized by the types of response and explanatory variables.}\label{tab:LMTypes}
     \begin{tabular}{|c||c|c|}
     \multicolumn{1}{c||}{Explanatory} & \multicolumn{2}{c}{Response Variable} \\
     \cline{2-3}
     \multicolumn{1}{c||}{\widen{-1}{6}{Variable(s)}} & Quantitative & Categorical \\
     \hline\hline
-    \widen{-1}{6}{Categorical} & 1- \& 2-Way ANOVA & Chi-Square \\
+    \widen{-1}{6}{\multirow{2}{*}{Categorical}} & One-Way ANOVA (\chapref{chap:LMANOVA1}) & \multirow{2}{*}{Chi-Square} \\
+     & Two-Way ANOVA (\chapref{chap:LMANOVA2}) & \\
     \hline
-    \widen{-1}{6}{Quantitative} & Linear Regression & Logistic Regression \\
-    \hline
-    \widen{-1}{6}{Mixed} & Indicator Variable Regression & Logistic Regression \\
+    \widen{-1}{6}{\multirow{2}{*}{Quantitative}} & Linear Regression &  \\
+     & (\chapref{chap:LMRegression1}) & \multirow{2}{*}{Logistic Regression}\\
+    \cline{1-2}
+    \widen{-1}{6}{\multirow{2}{*}{Both}} & Indicator Variable Regression & (\chapref{chap:LMLogistic}) \\
+     & (\chapref{chap:LMRegression2}) & \\
     \hline
   \end{tabular}
 \end{table}
 
-The second major type of linear model to be considered is the family of linear regression models.  Linear regression models are characterized by a quantitative response and quantitative explanatory variables.  Simple linear regression is the case where only one explanatory variable is considered, whereas multiple linear regression considers multiple explanatory variables.  Simple linear regression is the focus of \chapref{chap:LMRegression1}.  Multiple quantitative explanatory variables will not be explored here.  However, indicator variable regression, which is a multiple regression with one quantitative and one or more factor explanatory variables is the focus of \chapref{chap:LMRegression2}.  It should be noted that the the common analysis of covariance (ANCOVA) model is a special case of indicator variable regression.
+The second major type of linear model to be considered is linear regression, which are characterized by quantitative response and explanatory variables \tabrefp{tab:LMTypes}.  Simple linear regression (SLR) occurs when only one explanatory variable is considered, whereas multiple linear regression considers multiple explanatory variables.  Multiple quantitative explanatory variables will not be explored here.  However, the third major type of linear model is indicator variable regression (IVR), which is a multiple regression with one quantitative and one or more factor explanatory variables \tabrefp{tab:LMTypes}.  Note that the ANalysis of COVAriance (ANCOVA) model is a special case of indicator variable regression.
 
-The third major type of linear model to be considered is logistic regression models where the response variable is categorical and the explanatory variables are generally quantitative (though categorical explanatory variables may be considered in the same manner that they are considered in indicator variable regression models).  Logistic regression models are considered in detail in \chapref{chap:LMLogistic}.
+The fourth major type of linear model to be considered is logistic regression, where the response variable is categorical and the explanatory variables are generally quantitative \tabrefp{tab:LMTypes}.\footnote{Though categorical explanatory variables may be considered in a manner similar to indicator variable regression models.}
 
-The remainder of this chapter is devoted to reviewing basic concepts from your introductory statistics course and developing a common general framework that can be used to analyze all three types of linear models described above.  Thus, this chapter serves as the theoretical foundation for Chapters \ref{chap:LMANOVA1}-\ref{chap:LMLogistic}.
+The remainder of this chapter is devoted to reviewing basic concepts from your introductory statistics course and developing a common general framework that can be used to analyze all four types of linear models described above.  Thus, this chapter serves as the theoretical foundation for Chapters \ref{chap:LMANOVA1}-\ref{chap:LMLogistic}.
+
 
 \section{Two-Sample t-Test Review} \label{sect:2tTest}
-A two-sample t-test is an inferential statistical method for comparing the means of a quantitative variable between two populations represented by two independent samples.  The specific details of a two-sample t-test are covered in most introductory statistics courses\footnote{Thus, it is assumed that you have a working knowledge of a two-sample t-test.}.  Specifically, the null hypothesis is $H_{0}:\mu_{1}=\mu_{2}$ where the subscripts represent the two groups.  This hypothesis is tested with the t test statistic\footnote{Under the assumptions of independent and normally distributed ``errors'' and equal variances between the two groups.},
+A two-sample t-test is an statistical method for comparing the means of a quantitative variable between two populations represented by two independent samples.  The specific details of a two-sample t-test are covered in most introductory statistics courses.\footnote{Thus, it is assumed that you have a working knowledge of a two-sample t-test.}  Specifically, the null hypothesis is $H_{0}:\mu_{1}=\mu_{2}$ where the subscripts represent the two populations.  This hypothesis is tested with the t test statistic,\footnote{Under the assumptions of independent and normally distributed ``errors'' and equal variances between the two groups.}
 
 \begin{equation} \label{eqn:2tTestStat}
    t=\frac{\bar{x}_{1}-\bar{x}_{2}-0}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}}
@@ -55,93 +59,99 @@ where the pooled sample variance, $s_{p}^{2}$, is a measure of the common varian
 
 \[ s_{p}^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2} \]
 
-Methods for analyzing a two-sample t-test in R were discussed in detail in your introductory statistics course.  Those methods are briefly summarized in the next three subsections.
+Methods for analyzing a two-sample t-test in R are briefly summarized in the next three subsections.
 
 \subsection{Data Format} \label{sect:DataStacked}
-The data for a 2-sample t-test must be entered in stacked format.  In stacked format the measurements are in one vector (i.e., column) and a label for which group the measurement was recorded from is in another vector (column).  If both vectors are in a data frame\footnote{This will most likely be the case as this data will most likely be read from an external data file.} then each row corresponds to the measurement and group of a single individual.  This is the general format in which most data is entered and in which most databases and R functions require the data.  The data for this example are read from the \dfile{BOD.csv} (\href{https://github.com/droglenc/NCData/blob/master/BOD.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/BOD_meta.txt}{meta}) file and displayed (as an illustration of stacked data) with
-
-<<>>=
+The data for a 2-sample t-test must be entered in stacked format.  In stacked format, the measurements are in one vector (i.e., column) and a label for the populations is in another vector (column).  If both vectors are in a data frame,\footnote{This will most likely be the case as this data will most likely be read from an external data file.} then each row corresponds to the measurement and population of a single individual.  The data for this example are read from the \dfile{BOD.csv} (\href{https://github.com/droglenc/NCData/blob/master/BOD.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/BOD_meta.txt}{meta}) file below\footnote{These data can be downloaded from the class webpage by right-clicking on "download" and saving to your computer.  The working directory should then be set to where this file is located on your computer.  The data are then read into R with \R{read.csv()}.  It is assumed that you remember this procedure from your introduction to R.} and several rows are displayed with \R{headtail()}.
+<<echo=FALSE>>=
 aqua <- read.csv("data/BOD.csv")
-headtail(aqua)   # random six rows, not whole data frame
+@
+<<eval=FALSE>>=
+aqua <- read.csv("BOD.csv")
+@
+\vspace{-8pt}
+<<>>=
+headtail(aqua)   # 1st and last 3 rows, not whole data frame
 @
 
-\defn{Stacked Data}{Data where the quantitative measurements of two groups are ``stacked'' on top of each other and a second variable is used to record to which group the measurement belongs.}
+\defn{Stacked Data}{Data where the quantitative measurements of two groups are ``stacked'' on top of each other and a second variable is used to record to which population (or group) the measurement belongs.}
 
 \vspace{-12pt}
-\warn{Stacked data is the preferred format for two-sample data because each vector corresponds to a variable and each row corresponds to only one individual.}
+\warn{Stacked data is the preferred format for two-sample data because each column corresponds to a variable and each row corresponds to only one individual.}
 
 \subsection{Levene's Test}
-Before conducting a 2-sample t-test, the assumption of equal variances must be tested with a Levene's test.  The \R{leveneTest()} function\footnote{This function is found in the \R{car} package which is loaded automatically when the \R{NCStats} package is loaded.} is used to perform the Levene's test.  The first argument to this function is a model formula of the type \R{response}\verb"~"\R{factor} where \R{response} represents the vector containing the quantitative measurements and \R{factor} represents the vector containing the categorical grouping variable.  In addition, the data frame in which the response and factor variables can be found must be entered into the \R{data=} argument\footnote{The data must be entered in ``stacked format.''}.  The results from the Levene's test for the aquaculture data are found with
-
+Before conducting a 2-sample t-test, the assumption of equal variances must be tested with a Levene's test, which is conducted with \R{levenesTest()}.  The first argument to this function is a model formula of the type \R{response}\verb"~"\R{factor}, where \R{response} represents the variable that contains the quantitative measurements and \R{factor} represents the variable that contains the categorical groups.  In addition, the data.frame in which the \R{response} and \R{factor} variables are found is given to \R{data=}.  The very large p-value (=\Sexpr{kPvalue(leveneTest(BOD~src,data=aqua)[1,"Pr(>F)"],include.p=FALSE,digits=2)}) in the BOD example indicates that the variances can be considered to be equal.
 <<>>=
-leveneTest(BOD~src,data=aqua)
+levenesTest(BOD~src,data=aqua)
 @
 
-In this case, the very large p-value (=\Sexpr{kPvalue(leveneTest(BOD~src,data=aqua)[1,"Pr(>F)"],include.p=FALSE,digits=2)}) indicates that the variances can be considered equal.
+\warn{A Levene's test requires that the \R{NCStats} package is loaded.}
 
-\warn{A Levene's test requires that the \R{NCStats} package is loaded with \R{library(NCStats)}.}
-
-\subsection{The Test}
-A 2-sample t-test is constructed in R with \R{t.test()}.  The first argument to \R{t.test()} should be a model formula of the type \R{response}\verb"~"\R{factor}; i.e., this is the exact some formula used for \R{leveneTest()}.  As with \R{leveneTest()}, a \R{data=} argument must be specified.  Finally, the following arguments should be specified when conducting a 2-sample t-test with \R{t.test()}
+\subsection{The Test} \label{sect:RtTest}
+A 2-sample t-test is constructed in R with \R{t.test()}, with the exact same \R{response}\verb"~"\R{factor} formula used in \R{levenesTest()} as the first argument (and the corresponding data.frame in \R{data=}).  Additionally, the following arguments may be specified when conducting a 2-sample t-test with \R{t.test()}:
 \begin{itemize}
-  \item \R{var.equal}: A logical value indicating whether the two population variances should be considered to be equal or not.  If \R{var.equal=TRUE} then the pooled sample variance is calculated and used in the standard error.  The default value is to assume unequal variances; thus, this argument must typically be set.
-  \item \R{mu}: The specific value of the null hypothesis.  In the two-sample case this is the hypothesized difference among the population means.  The default value is $0$ and, thus, this argument does not usually have to be specified.
-  \item \R{alternative}: A character string indicating whether the alternative hypothesis is ``two.sided'' (i.e., the ``not equals'' situation), ``greater'', or ``less.''  The default is ``two.sided.''  Also note that only the first letter of the string must be identified.
+  \item \R{var.equal}: A logical value that indicates whether the two population variances should be considered to be equal or not.  If \R{var.equal=TRUE}, then the pooled sample variance is calculated and used in the standard error.  The default value is to assume unequal variances; thus, this argument must typically be set.
+  \item \R{mu}: The specific value of the null hypothesis.  In the two-sample case, this is the hypothesized difference among the population means.  The default value is $0$ and, thus, this argument does not usually have to be specified.
+  \item \R{alternative}: A character string that indicates whether the alternative hypothesis is \R{"two.sided"} (i.e., the ``not equals'' situation), \R{"greater"}, or \R{"less"}.  The default is \R{"two.sided"}.
   \item \R{conf.level}: The proportional level of confidence to be used when constructing the confidence interval for $\mu_{1}-\mu_{2}$.
 \end{itemize}
 
 \warn{The \R{var.equal=TRUE} argument must be used in \R{t.test()} if one is to assume equal variances.  This is NOT the default setting in R.}
 
-Finally, if the order of the levels of the grouping factor was not set upon creation, then R defaults to an alphabetical order.  This results in the mean of the level with a name later in the alphabet being subtracted from the mean of the level with a name earlier in the alphabet.  Thus, in this situation, the default 2-sample t-test will be performed by subtracting the \var{outlet} mean from the \var{inlet} mean, which may be opposite of the way the hypotheses were set up.  If this is the case, then either (i) the order of the groups in the hypotheses must be reversed (i.e., $H_{A}:\mu_{out}-\mu_{in}>0$ is the same as $H_{A}:\mu_{in}-\mu_{out}<0$) or (ii) the order of the levels of the grouping factor must be explicitly set with \R{factor()}.  For example, the \var{outlet} level can become the first level if the \var{src} grouping factor is modified with
-
+Finally, if the order of the levels of the grouping factor was not set upon creation, then R defaults to an alphabetical order.  This results in the mean for the alphabetically-second population being subtracted from the mean of the alphabetically-first populations.  Thus, in this situation, the default 2-sample t-test subtracts the \var{outlet} mean from the \var{inlet} mean, which may be opposite of the way the hypotheses were set up.  If this is the case, then either (i) the order of the groups in the hypotheses must be reversed (i.e., $H_{A}:\mu_{out}-\mu_{in}>0$ is the same as $H_{A}:\mu_{in}-\mu_{out}<0$) or (ii) the order of the levels of the grouping factor must be explicitly set with \R{factor()}.  For example, a new variable (\R{fsrc}) is created below where \var{outlet} is forced to be the first level.
 <<>>=
 aqua$fsrc <- factor(aqua$src,levels=c("outlet","inlet"))
 levels(aqua$fsrc)
 @
 
-The results for the 2-sample t-test of the aquaculture data are obtained, using the new level ordering, with
+When using \R{factor()} one must be very careful to type the level names exactly as they appear in the original variable.  For example, if \R{levels=c("Outler","Inlet")} had been used, then the \var{fsrc} variable would contain only \R{<NA>} values, which is Rs way of saying ``not available.''  In other words, a variable with nothing in it would have been created.
 
-<<echo=-2>>=
-t.test(BOD~fsrc,data=aqua,var.equal=TRUE)   # default alt & conf.level
+\warn{When assigning the order of the levels of a factor variable, take care to use level names exactly as they appeared in the original variable.}
+
+The \R{factor()} function is also used to tell R to treat a particular variable as a factor variable.  For example, suppose that the researchers had entered the numbers 1 and 2 for the \var{src} variable.  By default, this variable would be treated as numeric rather than as a factor with levels.  Including the original variable name in \R{factor()} and assigning it to a new variable will force R to treat the new variable as a factor.
+
+\warn{Factor variables that were labeled with numbers must be specifically told to be treated as a factor variable with \R{factor()}.}
+
+<<echo=FALSE>>=
 t1 <- t.test(BOD~fsrc,data=aqua,var.equal=TRUE)
 @
 
-From these results it is seen that the difference between the means at the outlet and the inlet is \Sexpr{round(t1$estimate[1],3)}-\Sexpr{round(t1$estimate[2],3)} = \Sexpr{round(t1$estimate[1]-t1$estimate[2],3)}, the test statistic is \Sexpr{round(t1$statistic,3)} with \Sexpr{t1$parameter} df, and the p-value is \Sexpr{kPvalue(t1$p.value,include.p=FALSE)}.  Thus, there does appear to be a significant difference between the mean BOD of water at the inlet and water at the outlet to the aquaculture tanks.
+Thus, the 2-sample t-test of the aquaculture data, using the new level ordering and assuming equal variances (per the Levene's Test results above), is computed below. From these results it is seen that the difference between the means at the outlet and the inlet is \Sexpr{round(t1$estimate[1],3)}-\Sexpr{round(t1$estimate[2],3)} = \Sexpr{round(t1$estimate[1]-t1$estimate[2],3)}, the test statistic is \Sexpr{round(t1$statistic,3)} with \Sexpr{t1$parameter} df, and the p-value is \Sexpr{kPvalue(t1$p.value,include.p=FALSE)}.  Thus, there does appear to be a significant difference between the mean BOD of water at the inlet and water at the outlet to the aquaculture tanks.
+<<>>=
+t.test(BOD~fsrc,data=aqua,var.equal=TRUE)   # default alt & conf.level
+@
 
 
 \section{Models}
-Many hypothesis tests can be cast in a framework of competing models.  The two-sample t-test will be cast in such a framework here in order to illustrate the general properties of this framework for application to the linear models of interest in this course.  This conceptualization of a two-sample t-test will, thus, serve as the conceptual foundation for all other work with linear models.
+Many hypothesis tests can be cast in a framework of competing models.  The two-sample t-test will be cast as competing models in this section to illustrate the general properties of this framework for application to other linear models.  This conceptualization will serve as the conceptual foundation for all other linear models in this book.
 
-The null and alternative hypotheses can each be related to a model.  The model corresponding to the null hypothesis is called the \emph{simple} model and the model corresponding to the alternative hypothesis is called the \emph{full} model\footnote{Note that the only simple and full model used in this foundational development are sometimes called the \emph{ultimate simple} and \emph{ultimate full} models because there can be no model simpler than just using a grand mean and there can be no model more complicated then using a separate mean for each group.  There will be other ``simple'' and ``full'' models throughout these notes, but when the words ``ultimate simple'' and ``ultimate full'' model are used then reference is made to these two specific models.}.  In the two-sample t-test, the null hypothesis represents the situation of no difference between the group means.  Thus, a single mean, $\mu$, would represent both groups.  In contrast, the alternative hypothesis implies that some difference exists between the two groups.  Thus, each group must be represented by a separate mean.  With these concepts, the simple and full models for a two-sample t-test are written as
+The null and alternative hypotheses can each be related to a model.  The null hypothesis corresponds to the \emph{simple} model, whereas the alternative hypothesis corresponds to the \emph{full} model.\footnote{Note that the only simple and full model used in this foundational development are sometimes called the \emph{ultimate simple} and \emph{ultimate full} models because there can be no model simpler than just using a grand mean and there can be no model more complicated then using a separate mean for each group.  There will be other ``simple'' and ``full'' models throughout these notes, but when the words ``ultimate simple'' and ``ultimate full'' model are used then reference is made to these two specific models.}  In the two-sample t-test, the null hypothesis represents the situation of no difference between population means.  Thus, a single mean, $\mu$, would represent both populations.  In contrast, the alternative hypothesis implies that a difference exists between the means of the two populations.  Thus, each population must be represented by a separate mean (e.g., $\mu_{1}$ and $\mu_{2}$).  With this, the simple and full models for a two-sample t-test are
 \[ \begin{split}
    simple&: \mu_{i} = \mu \\
    full&: \mu_{i} = \mu_{i} \\
 \end{split} \]
-where $\mu_{i}$ represents the population mean of the $i$th group and $\mu$ (with no subscript) represents an overall or \emph{grand} mean for both groups combined.  Thus, the simple model says that there is one mean -- the grand mean, $\mu$ -- that adequately represents each group; whereas the full model says that each group is represented by a separate mean.  These models are visually represented in \figref{fig:LM2TModels}.  The simple model is called ``simple'' because it has fewer parameters (i.e., one mean) then the full model (i.e., as many means as groups).
+where $i$ represents the $i$th group (i.e, would be replaced with ``1'' or ``2''), $\mu_{i}$ represents the population mean of the $i$th group, and $\mu$ (with no subscript) represents an \emph{grand} mean for both groups combined.  Thus, the simple model says that there is one mean -- the grand mean, $\mu$ -- that adequately represents each group; whereas the full model says that each group is represented by a separate mean.  These models are visually represented in \figref{fig:LM2TModels}.  The simple model is called ``simple'' because it has fewer parameters (i.e., one mean) than the full model (i.e., as many means as groups).
 
-<<LM2TModels, echo=FALSE, fig.cap="Biological oxygen demand measurements at two locations -- an inlet and an outlet.  The horizontal line on the left graph represents the simple model of a grand mean for both groups.  The two horizontal lines on the right graph represent the full model of separate means for each group.",fig.pos="!h">>=
-aqua <- read.csv("data/BOD.csv")
-aqua$src <- factor(aqua$src)
-plot(BOD~as.numeric(src),data=aqua,xlab="Source",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
+<<LM2TModels, echo=FALSE, fig.cap="Biological oxygen demand (BOD) measurements at two locations -- an inlet and an outlet.  The red horizontal line represents the simple model of a grand mean for both groups.  The two blue horizontal lines represent the full model of separate means for each group.",fig.pos="!h">>=
+plot(BOD~as.numeric(src),data=aqua,pch=21,bg=col2rgbt("gray50",1/2),
+     xlab="Locations",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
 axis(1,at=c(1,2),labels=c("Inlet","Outlet"))
 abline(h=mean(aqua$BOD),col="red",lwd=2)
-
 mns <- with(aqua,tapply(BOD,src,mean))
-plot(BOD~as.numeric(src),data=aqua,xlab="Source",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
-axis(1,at=c(1,2),labels=c("Inlet","Outlet"))
 lines(c(0.8,1.2),c(mns[1],mns[1]),col="blue",lwd=2)
 lines(c(1.8,2.2),c(mns[2],mns[2]),col="blue",lwd=2)
 @
 
-\warn{The model in the null hypothesis always has fewer parameters and is thus called the ``simple'' model.  The model in the alternative hypothesis always has more parameters and is thus called the ``full'' model.}
+\warn{The null hypothesis model always has fewer parameters and is thus called the ``simple'' model.  The alternative hypothesis model always has more parameters and is thus called the ``full'' model.}
 
 \vspace{-12pt}
-\warn{The simple model in a two-sample t-test represents a flat line at the overall mean of the response variable.  The full model in a two-sample t-test represents a separate line at the mean of the response variable for both groups.}
+\warn{The simple model in a two-sample t-test represents a flat line at the grand mean of the response variable.  The full model in a two-sample t-test represents a separate line at the means of the response variable for both groups.}
+
 
 \section{Sum-of-Squares}
 When comparing two competing models in statistics, an attempt is made to determine if the simple model fits the data ``as well as'' the full model.  It is important to note that the full model will always fit the data, at least somewhat, better.  Therefore, it must be determined whether the full model fits the data enough better to warrant the use of the extra parameter(s).  In other words, if the full model does not fit significantly better, then the added complexity of the full model is not warranted.  So, a measure that allows the comparison of how well two models fit the data relative to how many parameters are in each model is needed.  An initial step in the computation of this measure is developed in this section.
 
-The general lack-of-fit of a model is measured by computing the residuals of the individual observations using predicted values derived from the model in question.  Models with relatively small residuals, in some total sense, are considered ``good'' models.  However, because the residuals will always sum to zero, the overall measure of model lack-of-fit is found by summing the square of the residuals\footnote{It is assumed that you are generally familiar with the concept of ``minimizing sum-of-squares to identify the best model'' by being exposed to the basics of linear regression in your introductory statistics course}.  Very generally then, the sum of squared residuals will have this form
+The general lack-of-fit of a model is measured by computing the residuals of the individual observations using predicted values derived from the model in question.  Models with relatively small residuals, in some total sense, are considered ``good'' models.  However, because the residuals will always sum to zero, the overall measure of model lack-of-fit is found by summing the square of the residuals.\footnote{It is assumed that you are generally familiar with the concept of ``minimizing sum-of-squares to identify the best model'' by being exposed to the basics of linear regression in your introductory statistics course}  Very generally then, the sum of squared residuals will have this form
 \begin{equation} \label{eqn:GeneralSS}
   \text{Sum of Squared Residuals} = \Sum_{i=1}^{n}\left(Observed-Predicted\right)^2
 \end{equation}
@@ -152,46 +162,47 @@ where $n$ is the number of individuals.
 \vspace{-12pt}
 \warn{An overall measure of the lack-of-fit of a model is the sum of the squared residuals computed using that model.}
 
-Some notation must be defined before this general formula can be made more specific.  Let $Y$ represent a generic response variable\footnote{Note that this is a little different then what was likely done in your introductory statistics course where $X$ usually represented a generic variable.  It is common in advanced statistics to call $Y$ the generic response variable as the response variable is usually plotted on the y-axis.}.  Furthermore, let $Y_{ij}$ be the measurement of the response variable for the $j$th individual in the $i$th group.  Thus, $j$ is an index for individuals within a group and $i$ is an index for groups.  For example, $Y_{23}$, is the measurement of the response variable on the third individual in the second group.  The number of individuals in group $i$ is depicted by $n_{i}$.  The sample mean of the individuals in the $i$th group is depicted with $\bar{Y}_{i\cdot}$ and is computed for each group separately as\footnote{Note that it is common practice to put a dot where the subscript that was summed across would be.  In this example, the individuals within a group were summed, or summing was across the $j$ index, thus the $j$ is replaced with a dot.}
+Some notation must be defined before this general formula can be made more specific.  Let $Y$ represent a generic response variable.\footnote{Note that this is a little different then what was likely done in your introductory statistics course where $X$ usually represented a generic variable.  It is common in advanced statistics to call $Y$ the generic response variable as the response variable is usually plotted on the y-axis.}  Furthermore, let $Y_{ij}$ be the measurement of the response variable for the $j$th individual in the $i$th group.  Thus, $j$ is an index for individuals within a group and $i$ is an index for groups.  For example, $Y_{23}$, is the measurement of the response variable on the third individual in the second group.  The number of individuals in group $i$ is depicted by $n_{i}$.  The sample mean of the individuals in the $i$th group is $\bar{Y}_{i\cdot}$ and is computed for each group separately as\footnote{Note that it is common practice to put a dot where the subscript that was summed across would be.  In this example, the individuals within a group were summed, or summing was across the $j$ index, thus the $j$ is replaced with a dot.}
 \[ \bar{Y}_{i\cdot}= \frac{\Sum_{j=1}^{n_{i}}Y_{ij}}{n_{i}} \]
-The $\bar{Y}_{i\cdot}$ are called ``group means'' or, sometimes, ``treatment means.''  Finally, $\bar{Y}_{\cdot\cdot}$ represents the grand or overall mean of all individuals in the study and is computed once as
+The $\bar{Y}_{i\cdot}$ are called ``group means'' or, sometimes, ``treatment means.''  Finally, $\bar{Y}_{\cdot\cdot}$ represents the grand or overall mean of all individuals in the study and is computed as
 \[ \bar{Y}_{\cdot\cdot}= \frac{\Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}Y_{ij}}{n} \]
-where, again, $n$ represents all individuals in the study and is, thus,
+where $I$ represents the total number of groups ($=2$ for a two-sample t-test) and, again, $n$ represents all individuals in the study and is thus
 \[ n = \Sum_{i=1}^{I}n_{i} \]
-and $I$ represents the total number of groups ($=2$ for a two-sample t-test).
 
-With these symbols and \eqref{eqn:GeneralSS}, the overall lack-of-fit for the simple model is measured by calculating the residuals with predictions made from the grand mean of the response variable\footnote{Recall that the simple model states that one mean, the grand mean, represents all treatment groups.} (i.e., $\bar{Y}_{\cdot\cdot}$).  Thus, the overall lack-of-fit for the simple model is measured by
+With these symbols and \eqnref{eqn:GeneralSS}, the overall lack-of-fit for the simple model is measured by calculating the residuals with predictions made from the grand mean\footnote{Recall that the simple model states that one mean, the grand mean, represents all treatment groups.} of the response variable (i.e., $\bar{Y}_{\cdot\cdot}$).  Thus, the overall lack-of-fit for the simple model is measured by
 
 \begin{equation} \label{eqn:SStotal}
   SS_{Total} = \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2}
 \end{equation}
 
-The sum-of-square residuals, or just sum-of-squares ($SS$) for short, for this particular simple model (i.e., using  $\bar{Y}_{\cdot\cdot}$) is called the total SS, or $SS_{Total}$, because it is the basis of the measure of the ``total'' variability in the response variable\footnote{It will be shown in \sectref{sec:MS} that dividing \eqref{eqn:SStotal} by $n-1$ will result in $s_{Y}^{2}$ - the sample variance of the response variable $Y$.}.
+The sum-of-square residuals, or just sum-of-squares ($SS$) for short, for this particular simple model (i.e., using  $\bar{Y}_{\cdot\cdot}$) is called the total SS, or $SS_{Total}$, because it is the basis of the measure of the ``total'' variability in the response variable.\footnote{It will be shown in \sectref{sec:MS} that dividing \eqnref{eqn:SStotal} by $n-1$ will result in $s_{Y}^{2}$ - the sample variance of the response variable $Y$.}
 
 \warn{The $SS_{Total}$ measures the lack-of-fit of the simplest model using a single common mean to represent each group.}
 
-The overall lack-of-fit for the full model is measured by calculating the residuals with predictions computed using separate means for each group\footnote{Recall that the full model states that a separate mean is used for each group.} (i.e., $\bar{Y}_{i\cdot}$).  Thus, the overall lack-of-fit of the full model is measured by
+The overall lack-of-fit for the full model is measured by calculating the residuals with predictions computed using separate group means\footnote{Recall that the full model states that a separate mean is used for each group.} (i.e., $\bar{Y}_{i\cdot}$).  Thus, the overall lack-of-fit of the full model is measured by
 
 \begin{equation} \label{eqn:SSwithin}
   SS_{Within} = \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}
 \end{equation}
 
-The sum-of-squares for this full model (i.e., using  $\bar{Y}_{i\cdot}$) is called the within-SS, or $SS_{Within}$, because it measures the lack-of-fit of individuals \textbf{within} each group from the mean for that group.  In other words, it measures the SS of individuals \textbf{within} each group and then combines this measure for all groups to form one overall SS of individuals within groups\footnote{Recall that a major assumption of a two-sample t-test is that the variance is the same for each group.  If the variance is the same for each group then there is really only one variance to estimate.  Thus, the estimates from separate groups are pooled together to form this single estimate.  You will see in \sectref{sec:MS} that dividing $SS_{Within}$ by $n-I$ provides this pooled estimate of the common variance.}.
+The sum-of-squares for this full model (i.e., using  $\bar{Y}_{i\cdot}$) is called $SS_{Within}$ because it measures the lack-of-fit of individuals \textbf{within} each group from the mean for that group.  In other words, it measures the SS of individuals \textbf{within} each group and then combines this measure for all groups to form one overall SS of individuals within groups.\footnote{Recall that a major assumption of a two-sample t-test is that the variance is the same for each group.  If the variance is the same for each group then there is really only one variance to estimate.  Thus, the estimates from separate groups are pooled together to form this single estimate.  You will see in \sectref{sec:MS} that dividing $SS_{Within}$ by $n-I$ provides this pooled estimate of the common variance.}
 
 \warn{The $SS_{Within}$ measures the lack-of-fit of the fullest model using a separate mean to represent each group.}
 
-It is very important to understand the critical but seemingly subtle difference between \eqref{eqn:SStotal} and \eqref{eqn:SSwithin} (i.e., using $\bar{Y}_{\cdot\cdot}$ versus using $\bar{Y}_{i\cdot}$).  A close examination of \figref{fig:LM2TResiduals} shows that $SS_{Total}$ is the sum of the squared residuals computed from each individual (i.e., dot) to the long horizontal line at the grand mean on the left graph.  $SS_{Within}$, on the other hand, is the sum of the squared residuals computed from each individual within a group to the short horizontal lines at each group mean in the right graph.  These two sums-of-squares measure two completely different SS; i.e., lacks-of-fit for two very different models for the data!
+It is very important to understand the critical difference between \eqnref{eqn:SStotal} and \eqnref{eqn:SSwithin} (i.e., using $\bar{Y}_{\cdot\cdot}$ versus using $\bar{Y}_{i\cdot}$).  A close examination of \figref{fig:LM2TResiduals} shows that $SS_{Total}$ is the sum of the squared residuals computed from each individual (i.e., dot) to the long horizontal line at the grand mean on the left graph.  $SS_{Within}$, on the other hand, is the sum of the squared residuals computed from each individual within a group to the short horizontal lines at each group mean in the right graph.  These two sums-of-squares measure two completely different SS; i.e., lacks-of-fit for two different models for the data!
 
-<<LM2TResiduals, echo=FALSE, fig.cap="Biological oxygen demand measurements at two locations -- an inlet and an outlet -- with the simple model (Left) and full model (Right) shown.  In addition, residuals for each model are shown on the respective graphs.  Note that the points were slightly horizontally ``jittered'' so that each residual could be seen.">>=
+<<LM2TResiduals, echo=FALSE, fig.cap="Biological oxygen demand (BOD) measurements at two locations -- an inlet and an outlet -- with the simple model (Left) and full model (Right) shown.  In addition, residuals for each model are shown on the respective graphs.  Note that the points were horizontally ``jittered'' so that each residual could be seen.">>=
 aqua$j.src <- jitter(as.numeric(aqua$src),0.5)
-plot(BOD~j.src,data=aqua,xlab="Source",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
+plot(BOD~j.src,data=aqua,pch=21,bg=col2rgbt("gray50",1/2),
+     xlab="Locations",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
 axis(1,at=c(1,2),labels=c("Inlet","Outlet"))
 abline(h=mean(aqua$BOD),col="red",lwd=2)
 for (i in 1:length(aqua$j.src)) {
  lines(c(aqua$j.src[i],aqua$j.src[i]),c(aqua$BOD[i],mean(aqua$BOD)),lty=2,col="red")
 }
 
-plot(BOD~j.src,data=aqua,xlab="Source",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
+plot(BOD~j.src,data=aqua,pch=21,bg=col2rgbt("gray50",1/2),
+     xlab="Locations",ylab="BOD",xlim=c(0.5,2.5),xaxt="n")
 axis(1,at=c(1,2),labels=c("Inlet","Outlet"))
 lines(c(0.8,1.2),c(mns[1],mns[1]),col="blue",lwd=2)
 lines(c(1.8,2.2),c(mns[2],mns[2]),col="blue",lwd=2)
@@ -211,12 +222,14 @@ A residual is a measure of how ``far off'' a particular model is from a particul
 \vspace{-12pt}
 \warn{$SS_{Total}$ measures the lack-of-fit of the simple model.  $SS_{Within}$ measures the lack-of-fit of the full model.}
 
+\vspace{-12pt}
 \subsection*{Partitioning SS}
-It can be shown algebraically \apprefp{app:ProofSSPartition} that $SS_{Total}$ can be separated into two parts.  Specifically, these parts are,
+\vspace{-12pt}
+It can be shown algebraically \apprefp{app:ProofSSPartition} that $SS_{Total}$ can be separated into two parts.
 \begin{equation} \label{eqn:SSPartitionSpecific}
   \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2} = \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2} + \Sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}
 \end{equation}
-It can be immediately seen that the first term on the right-hand side is $SS_{Within}$.  Thus,
+The first term on the right-hand side is $SS_{Within}$.  Thus,
 \[ SS_{Total} = SS_{Within} + \Sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2} \]
 The remaining term on the right-hand side is called $SS_{Among}$.  Thus,
 \begin{equation} \label{eqn:SSamong}
@@ -227,21 +240,23 @@ and $SS_{Total}$ thus partitions into two generic parts,
   SS_{Total} = SS_{Within} + SS_{Among}
 \end{equation}
 
-The $SS_{Among}$ is a critically important statistic in the comparison of two statistical models because it represents the difference in lack-of-fit for the simple model and the lack-of-fit for the full model; i.e., $SS_{Among}=$ $SS_{Total}-$ $SS_{Within}$.  In fact, the $SS_{Among}$ represents the improvement in lack-of-fit that is achieved by using the full model as compared to the simple model.  Thus, $SS_{Among}$, represents a measure of how much ``better'' the full model represents the data as compared to the simple model.  In this example, $SS_{Among}$ is a measure of how much the fit is improved by using separate means for each group rather than a common grand mean.
+$SS_{Among}$ is a critically important statistic in the comparison of two statistical models because it represents the difference in lack-of-fit for the simple model and the lack-of-fit for the full model; i.e., $SS_{Among}=$ $SS_{Total}-$ $SS_{Within}$.  In fact, $SS_{Among}$ represents the improvement in lack-of-fit that is achieved by using the full model as compared to the simple model.  Thus, $SS_{Among}$, represents a measure of how much ``better'' the full model represents the data as compared to the simple model.  In this example, $SS_{Among}$ is a measure of how much the fit is improved by using separate means for each group rather than a common grand mean.
 
+\vspace{-8pt}
 \warn{The lack-of-fit from using the simple model (i.e., $SS_{Total}$) can be partitioned into two parts -- the lack-of-fit from using the full model and the improvement in lack-of-fit that was gained by using the full model over the simple model.}
 
-\vspace{-12pt}
+\vspace{-14pt}
 \warn{The within SS ($SS_{Within}$) is the measure of the lack-of-fit when using the full model.}
 
-\vspace{-12pt}
+\vspace{-14pt}
 \warn{The among SS ($SS_{Among}$) is the measure of the improvement in lack-of-fit from using the full over the simple model.}
 
-Visually \figrefp{fig:LM2TVisualSS}, the $SS_{Among}$ is the difference between the total vertical spread in individuals regardless of the group (i.e., $SS_{Total}$) and the average vertical distance among individuals within the groups (i.e., $SS_{Within}$).  Alternatively, the $SS_{Among}$ can be visualized as the total vertical spread\footnote{Necessarily re-scaled to represent the sample size within each group.} among the horizontal lines representing the different group means \figrefp{fig:LM2TVisualSS}.
+Visually, the $SS_{Among}$ is the difference between the total vertical spread in individuals regardless of the group (i.e., $SS_{Total}$) and the average vertical distance among individuals within the groups (i.e., $SS_{Within}$).  Alternatively, the $SS_{Among}$ can be visualized as the total vertical spread\footnote{Necessarily re-scaled to represent the sample size within each group.} among the horizontal lines representing the different group means \figrefp{fig:LM2TVisualSS}.
 
-<<LM2TVisualSS, echo=FALSE, fig.cap="Biological oxygen demand measurements at two locations -- an inlet and an outlet -- with the simple model (solid red line) and full model (solid blue line) shown.  In addition, representations of $SS_{Total}$ and $SS_{Within}$ are shown on the left and $SS_{Among}$ is shown on the right.">>=
+<<LM2TVisualSS, echo=FALSE, fig.cap="Biological oxygen demand (BOD) measurements at two locations -- an inlet and an outlet -- with the simple model (solid red line) and full model (solid blue line) shown.  In addition, representations of $SS_{Total}$, $SS_{Within}$, and $SS_{Among}$ are shown.">>=
 # Plot with ultimate simple and full models depicted
-plot(BOD~as.numeric(src),data=aqua,xlab="Source",ylab="BOD",xlim=c(0.5,3.25),xaxt="n")
+plot(BOD~as.numeric(src),data=aqua,pch=21,bg=col2rgbt("gray50",1/2),
+     xlab="Locations",ylab="BOD",xlim=c(0,2.75),xaxt="n")
 axis(1,at=c(1,2),labels=c("Inlet","Outlet"))
 # model lines
 lines(c(0.8,2.2),rep(mean(aqua$BOD),2),col="red",lwd=2)
@@ -249,44 +264,36 @@ lines(c(0.8,1.2),c(mns[1],mns[1]),col="blue",lwd=2)
 lines(c(1.8,2.2),c(mns[2],mns[2]),col="blue",lwd=2)
 # SSWithin lines 1
 rng.in <- range(aqua$BOD[aqua$src=="inlet"])
-lines(c(1,2.5),rep(rng.in[1],2),col="blue",lty=2)
-lines(c(1,2.5),rep(rng.in[2],2),col="blue",lty=2)
-lines(rep(2.5,2),rng.in,col="blue",lty=2)
-text(2.65,mean(rng.in),expression(SS[Within]),srt=90,col="blue")
+lines(c(1,0.7),rep(rng.in[1],2),col="blue",lty=2)
+lines(c(1,0.7),rep(rng.in[2],2),col="blue",lty=2)
+lines(rep(0.7,2),rng.in,col="blue",lty=2)
+text(0.45,mean(rng.in),expression(SS[Within]),srt=90,col="blue")
 # SSWithin lines 2
 rng.out <- range(aqua$BOD[aqua$src=="outlet"])
-lines(c(2,2.5),rep(rng.out[1],2),col="blue",lty=2)
-lines(c(2,2.5),rep(rng.out[2],2),col="blue",lty=2)
-lines(rep(2.5,2),rng.out,col="blue",lty=2)
-text(2.65,mean(rng.out),expression(SS[Within]),srt=90,col="blue")
+lines(c(2,0.7),rep(rng.out[1],2),col="blue",lty=2)
+lines(c(2,0.7),rep(rng.out[2],2),col="blue",lty=2)
+lines(rep(0.7,2),rng.out,col="blue",lty=2)
+text(0.45,mean(rng.out),expression(SS[Within]),srt=90,col="blue")
 # SSTotal lines
 rng.bod <- range(aqua$BOD)
-lines(c(1,3),rep(rng.bod[1],2),col="red",lty=2)
-lines(c(2,3),rep(rng.bod[2],2),col="red",lty=2)
-lines(rep(3,2),rng.bod,col="red",lty=2)
-text(3.15,mean(rng.bod),expression(SS[Total]),srt=90,col="red")
-
-# SSAmong Graph
-plot(BOD~as.numeric(src),data=aqua,xlab="Source",ylab="BOD",xlim=c(0.5,3.25),xaxt="n")
-axis(1,at=c(1,2),labels=c("Inlet","Outlet"))
-# model lines
-lines(c(0.8,2.2),rep(mean(aqua$BOD),2),col="red",lwd=2)
-lines(c(0.8,1.2),c(mns[1],mns[1]),col="blue",lwd=2)
-lines(c(1.8,2.2),c(mns[2],mns[2]),col="blue",lwd=2)
-# SSAmong lines
+lines(c(1,0.2),rep(rng.bod[1],2),col="red",lty=2)
+lines(c(2,0.2),rep(rng.bod[2],2),col="red",lty=2)
+lines(rep(0.2,2),rng.bod,col="red",lty=2)
+text(0.05,mean(rng.bod),expression(SS[Total]),srt=90,col="red")
+# SSAmong Lines
 lines(c(1,2.5),rep(mns[1],2),lty=2)
 lines(c(2,2.5),rep(mns[2],2),lty=2)
 lines(rep(2.5,2),mns,lty=2)
 text(2.65,mean(mns),expression(SS[Among]),srt=90)
 @
 
-It seems intuitive that $SS_{Among}$ can be used to judge which model fits the data ``better''  because it seems reasonable that if $SS_{Among}$ is greater than 0 then the full model is ``better'' than the simple model.  However, $SS_{Among}$ is always greater than 0 because the full model is always at least somewhat ``better'' then the simple model.  Furthermore, $SS_{Among}$ (and all other SS) is a statistic that is subject to sampling variability.  Therefore, two issues must be addressed before $SS_{Among}$ can be used to actually compare two models.  First, because a more complex model always fits better than a less complex model, the complexity of a model (i.e., the number of parameters) must be incorporated into the calculations.  Second, the issue of sampling variability must be addressed.  These issues are taken up in the following two sections.
+It seems intuitive that $SS_{Among}$ can be used to judge which model fits the data ``better''  because it seems reasonable that if $SS_{Among}$ is greater than 0 then the full model is ``better'' than the simple model.  However, $SS_{Among}$ is always greater than 0 because the full model is always at least somewhat ``better'' then the simple model.  Furthermore, $SS_{Among}$ (and all other SS) is a statistic that is subject to sampling variability.  The issues of model complexity (i.e., the number of parameters) and sampling variability are addressed in the following two sections.
 
 \warn{The $SS_{Among}$ measures ``how much better'' a full model fits the data as compared to a simple model.  However, $SS_{Among}$ cannot be effectively used to compare the full and simple models because it is always greater than 0 and is subject to sampling variability.}
 
 
 \section{Mean Squares} \label{sec:MS}
-The SS are not true measures of variability -- they must be divided by their corresponding degrees-of-freedom (df) to be a variance.  When a SS is divided by the corresponding df it is called a mean-square.  Mean-squares are also true variances.
+The SS are not true measures of variability -- they must be divided by their corresponding degrees-of-freedom (df) to be a variance.  When a SS is divided by the corresponding df it is called a mean-square.  Thus, mean-squares are true variances.
 
 \warn{Mean-squares are equal to SS divided by df.  Mean-squares are variances.}
 
@@ -299,7 +306,7 @@ and the variance about the full model is thus measured by
   MS_{Within} = \frac{SS_{Within}}{df_{Within}} = \frac{\Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}}{n-I} = s_{p}^{2}
 \end{equation}
 
-From \eqref{eqn:MSTotal} and \eqref{eqn:MSWithin}, it is evident that the total df is equal to $n-1$ and the within df is equal to $n-I$.  Furthermore, the df partition in the same way that the SS partition.  Thus,
+From \eqnref{eqn:MSTotal} and \eqnref{eqn:MSWithin}, it is evident that the total df is equal to $n-1$ and the within df is equal to $n-I$.  Furthermore, the df partition in the same way that the SS partition.  Thus,
 \[ \begin{split}
   df_{Total} &= df_{Within} + df_{Among} \\
   n-1 &= n-I + df_{Among} \\
@@ -315,51 +322,49 @@ Thus, the calculation of $MS_{Among}$,
 
 rectifies the first issue with $SS_{Among}$ identified above; i.e., the number of parameters in the models must be taken into account in the calculations.  Furthermore, $MS_{Among}$ can be interpreted as the variance around the simple model that is explained by the full model.
 
-\warn{($MS_{Among}$) represent the variability int he simple model that is explained by using the full model.}
+\warn{$MS_{Among}$ represent the variability in the simple model that is explained by using the full model.}
 
 \subsection*{Sources of Variability in Variances}
-The $MS_{Total}$ is a measure of the total natural variability in the response variable -- i.e., the variability of the response variable among individuals without regard to any other (explanatory) variable(s).  So, $MS_{Total}$ measures the maximum variability in the response variable.  If, for example, the response variable is BOD measurements then $MS_{Total}$ is a measure of the total and maximum amount of variability evident in BOD among individuals\footnote{This concept is illustrated by $SS_{Total}$ in \figref{fig:LM2TVisualSS}}.
+The $MS_{Total}$ is a measure of the total natural variability in the response variable -- i.e., the variability of the response variable among individuals without regard to any other (explanatory) variable(s).  So, $MS_{Total}$ measures the maximum variability in the response variable.  For example, $MS_{Total}$ is a measure of the total and maximum amount of variability evident in BOD among individuals.\footnote{This concept is illustrated by $SS_{Total}$ in \figref{fig:LM2TVisualSS}}
 
 \warn{The $MS_{Total}$ measures the variability in the simplest model, which is the grand mean of the response variable.  Thus, $MS_{Total}$ measures the maximum total variability in the response variable.}
 
-The total variability just discussed may arise from three different causes.  First, some portion of the total variability is caused by natural variability among individuals.  Second, some of this variability may be caused by differences in the means of the two groups.  This difference in means, in turn, may be caused by two sources.  First, differences in sample means may simply be a result of sampling variability.  Second, differences in sample means may be reflective of real differences between the population means.
+The total variability in the response variable may be a result of differences among individuals (i.e., natural variability) or differences among sample means.  Differences among sample means may be random (i.e., sampling variability) or real (i.e., means differ among populations). These sources of variability are measured by $MS_{Within}$ and $MS_{Among}$.  $MS_{Within}$ is a measure of the natural variability within each group and, thus, is unaffected by different means between the groups.  $MS_{Among}$, on the other hand, is computed from the differences in group sample means and, thus, is a measure of the variability between or among group means.\footnote{Note that the word ``between'' is used for comparing two groups whereas the word ``among'' is used for comparing more that two groups.  The word ``among'' is more general and will be used throughout these notes, regardless of how many groups are being compared.}  $MS_{Among}$ is affected by both sampling variability and any real differences between the population means.  In the next section, sampling variability is accounted for such that a measure of the real differences among groups will remain.  This real difference forms the basis of a hypothesis test for determining which model best ``fits'' the data.
 
 \warn{The total variability in the response variable may result from three sources -- (1) natural variability, (2) sampling variability, or (3) real differences in population means.}
-
-These three sources of variability are separately contained within $MS_{Within}$ and $MS_{Among}$.  The $MS_{Within}$ is a measure of the natural variability within each group and, thus, is unaffected by different means between the groups.  The $MS_{Among}$, on the other hand, is computed from the differences in group sample means and, thus, is a measure of the variability between- or among-group means\footnote{Note that the word ``between'' is used for comparing two groups whereas the word ``among'' is used for comparing more that two groups.  The word ``among'' is more general and will be used throughout these notes, regardless of how many groups are being compared.}.  The $MS_{Among}$ is affected by both sampling variability and any real differences between the population means of the two groups.  In the next section, the effect of sampling variability will be adjusted for and, thus, a measure of the real differences among groups will remain.  This real difference will form the basis of a hypothesis test for determining which model best ``fits'' the data.
 
 
 \section{F-test}\label{sec:Ftest}
 \subsection{Overall}
-The issue with sampling variability is rectified by comparing the variability explained by the full model to the variability unexplained by the full model.  In other words, the explained variability will be ``scaled'' by the amount of unexplained variability from the full model.  This calculation looks like the following (the F will be explained shortly)
+The issue with sampling variability is rectified by comparing the variability explained by the full model to the variability unexplained by the full model.  In other words, the explained variability is ``scaled'' by the unexplained variability (the $F$ will be explained shortly).
 \begin{equation}\label{eqn:FGeneral}
   F = \frac{MS_{Among}}{MS_{Within}}
 \end{equation}
 
-If this ratio is ``large'' then that signifies that a great deal more variability was explained by the full model then was unexplained by the full model.  In this case, the conclusion would be that the full model fits the data significantly better than the simple model, even considering the increased complexity of the full model.
+If this ratio is ``large,'' then a great deal more variability was explained than was unexplained by the full model and one would conclude that the full model fits the data significantly better than the simple model, even considering the increased complexity of the full model.
 
-The question now becomes ``when is the ratio in \eqref{eqn:FGeneral} considered large enough to reject the simple model and conclude that the full model is significantly better?''  This question can be answered by realizing that the F computed in \eqref{eqn:FGeneral} is a test statistic that follows a so-called F distribution.
+The question now becomes ``when is the ratio in \eqnref{eqn:FGeneral} considered large enough to reject the simple model and conclude that the full model is significantly better?''  This question can be answered by realizing that $F$ computed in \eqnref{eqn:FGeneral} is a test statistic that follows an $F$ distribution.
 
-An F-distribution occurs whenever the ratio of two variances is calculated.  An F distribution \figrefp{fig:Fpvalue} is right-skewed, with the exact shape of the distribution dictated by two separate degrees-of-freedom -- called the numerator and denominator degrees-of-freedom, respectively.  The numerator df is equal to the df used in the calculation of $MS_{Among}$.  The denominator df is equal to the df used in the calculation of $MS_{Within}$.  With an F distribution, the p-value is always computed as the area under the F-distribution curve to the right of the observed value of the F statistic \figrefp{fig:Fpvalue}.   P-values for F test statistics will generally be calculated by software\footnote{However, if F is computed by hand then the \R{distrib()} function with the \R{distrib="f"}, \R{df1=}, \R{df2=}, and \R{lower.tail=FALSE} arguments in R can be used to calculate the corresponding p-value.  Also note that tables exist for F distributions but the computer is much more efficient and more precise.}.
+An $F$-distribution occurs whenever the ratio of two variances is calculated.  An $F$ distribution \figrefp{fig:Fpvalue} is right-skewed, with the exact shape of the distribution dictated by two separate degrees-of-freedom -- called the numerator and denominator degrees-of-freedom, respectively.  The numerator df is equal to the df used in $MS_{Among}$.  The denominator df is equal to the df used in $MS_{Within}$.  The p-value is always computed as the area under the $F$-distribution curve to the right of the observed $F$ statistic \figrefp{fig:Fpvalue}.\footnote{If $F$ is computed by hand, then \R{distrib()} with \R{distrib="f"}, \R{df1=}, \R{df2=}, and \R{lower.tail=FALSE} may be used to calculate the corresponding p-value.}
 
 <<Fpvalue, echo=FALSE, fig.cap="Example F-distribution showing the p-value if the observed F test statistic was 2.5.", fig.pos="!h">>=
 distrib(2.5,df1=3,df2=15,distrib="f",lower.tail=FALSE,show.ans=FALSE,main="",xlab="F",ylab="Density",yaxt=NULL)
 @
 
-\warn{An F test statistic that follows an F-distribution arises whenever the ratio of two variances is computed.}
+\warn{An $F$ test statistic that follows an $F$-distribution arises whenever the ratio of two variances is computed.}
 
 \vspace{-12pt}
-\warn{The exact F-distribution is dictated by so-called numerator and denominator df.}
+\warn{The exact $F$-distribution is dictated by so-called numerator and denominator df.}
 
 \vspace{-12pt}
-\warn{The p-value from an F-distribution is always computed as the area in the upper-tail.}
+\warn{The p-value from an $F$-distribution is always computed as the area in the upper-tail.}
 
-If the computed p-value is less than $\alpha$, then the conclusion is made that the variability explained by the full model is significantly greater than the variability left unexplained by the full model.  In other words, the null hypothesis is rejected in favor of the alternative hypothesis and it is concluded that the full model is significantly better than the simple model.  In the case of a two-sample t-test, this conclusion also means that the mean value of the response variable differs between groups.
+If the computed p-value is less than $\alpha$, then it is concluded that the variability explained by the full model is significantly greater than the variability left unexplained by the full model.  In other words, the null hypothesis is rejected in favor of the alternative hypothesis and it is concluded that the full model is significantly better than the simple model.  In the case of a two-sample t-test, this means that the mean value of the response variable differs between the two populations.
 
-\warn{A p-value computed from an F test statistic that is less than $\alpha$ indicates that the full model is significantly ``better'' then the simple model, even after taking into account the increased complexity of the full model and sampling variability.}
+\warn{A p-value computed from an $F$ test statistic that is less than $\alpha$ indicates that the full model is significantly ``better'' then the simple model, even after taking into account the increased complexity of the full model and sampling variability.}
 
 \subsection{General}
-The F test shown in \eqref{eqn:FGeneral} is specific to comparing the ultimate full and ultimate simple models.  It will be shown in later chapters that these are not the only two full and simple models that will be compared.  Thus, a more general formula for the F-test is
+The $F$ test shown in \eqnref{eqn:FGeneral} is specific to comparing the ultimate full and ultimate simple models.  It will be shown in later chapters that these are not the only two full and simple models that will be compared.  Thus, a more general formula for the $F$-test statistic is
 
 \begin{equation} \label{eqn:FModelGeneral}
   F = \frac{\frac{RSS_{Simple}-RSS_{Full}}{df_{Simple}-df_{Full}}}{\frac{RSS_{Ultimate Full}}{df_{Ultimate Full}}} = \frac{\frac{RSS_{Simple}-RSS_{Full}}{df_{Simple}-df_{Full}}}{RMS_{Ultimate Full}}
@@ -367,8 +372,9 @@ The F test shown in \eqref{eqn:FGeneral} is specific to comparing the ultimate f
 
 where $RSS$ is $SS_{residual}$ and $RMS$ is $MS_{residual}$ from fitting the model.  In the discussions of the previous section, the $RSS$ was measured by $SS_{Within}$; the $RSS$ notation is a bit more general.
 
+
 \section{ANOVA Table}
-The degrees-of-freedom (df), sum-of-squares (SS), mean-squares (MS), F test statistic (F), and corresponding p-value are summarized in what is called an analysis of variance, or ANOVA, table (e.g., \tabref{tab:ANOVABOD1}).  The ANOVA table contains rows that correspond to the different sources of variability that were discussed above: among\footnote{Labeled as the factor variable in most statistical software packages including R -- that variable was called \var{src} in this example.}, within\footnote{Labeled as residuals in R and error in other statistical software packages.}, and total.  The df and SS are shown for each source of variability.  The MS is shown for the within and among sources but generally not for the total because the MS for within and among sources do not sum to the MS for total (the SS and df partition, but the MS do not!).
+The degrees-of-freedom (df), sum-of-squares (SS), mean-squares (MS), $F$ test statistic (F), and corresponding p-value are summarized in an analysis of variance, or ANOVA, table (e.g., \tabref{tab:ANOVABOD1}).  The ANOVA table contains rows that correspond to the different sources of variability that were discussed above: among,\footnote{Labeled as the factor variable in most statistical software packages including R -- that variable was called \var{src} in this example.} within,\footnote{Labeled as residuals in R and error in other statistical software packages.} and total.  The df and SS are shown for each source of variability.  The MS is shown for the within and among sources, but generally not for the total because the MS for within and among sources do not sum to the MS for total (the SS and df partition, but the MS do not!).
 
 \begin{table}[h]
   \centering
@@ -381,28 +387,28 @@ Total     19 25.2764
   \end{Verbatim}
 \end{table}
 
-The results in \tabref{tab:ANOVABOD1} indicate that $H_{0}$ should be rejected (i.e., F-test p-value $<0.0005$).  Thus, the full model fits the data significantly better than the simple model even given the difference in complexity between the two models and sampling variability.  Therefore, there is a significant difference in the mean BOD between the two locations.
+The results in \tabref{tab:ANOVABOD1} indicate that $H_{0}$ should be rejected (i.e., $F$-test p-value $<0.0005$).  Thus, the full model fits the data significantly better than the simple model even given the difference in complexity between the two models and sampling variability.  Therefore, there is a significant difference in the mean BOD between the two locations.
 
-In addition to the primary objective of comparing the full and simple models, several items of interest can be identified from an analysis of variance table.  Using \tabref{tab:ANOVABOD1} as an example, note the following items:
+In addition to the primary objective of comparing the full and simple models, several items of interest can be identified from an ANOVA table.  Using \tabref{tab:ANOVABOD1} as an example, note the following items:
 \begin{Enumerate}
-  \item The variance within groups is equal to $MS_{Within}$ (e.g., $MS_{Residuals}=0.2556$ in this case).  This is analogous to $s_{p}^{2}$ from the two-sample t-test (in fact, it is exactly equal to $s_{p}^{2}$, if there are only two groups as is the case here).
+  \item The variance within groups is equal to $MS_{Within}$ (e.g., $MS_{Residuals}=0.2556$ in this case).  This is analogous to $s_{p}^{2}$ from the two-sample t-test (in fact, it is exactly equal to $s_{p}^{2}$, if there are only two groups, as is the case here).
   \item The common variance about the mean ($s_{Y}^{2}$) is given by $MS_{Total}$ (e.g., $=\frac{25.2764}{19}=1.3303$ in this case).
 \end{Enumerate}
 
-\section{One More Look at MS and F-test}
-Recall from your introductory statistics course that a sampling distribution is the distribution of a statistic from all possible samples.  For example, the Central Limit Theorem states that the distribution of the sample means is approximately normal, centered on $\mu$, with a standard error of $\frac{\sigma}{\sqrt{n}}$ as long as assumptions about the sample size are met.  Further recall that the sampling distribution of the sample means is centered on $\mu$ because the sample mean is an unbiased estimator of $\mu$.  Similarly, it is also known that the center of the sampling distribution of $s^{2}$ is equal to $\sigma^{2}$ because $s^{2}$ is an unbiased estimate of $\sigma^{2}$.
+\section{One More Look at MS and $F$-test}
+Recall from your introductory statistics course that a sampling distribution is the distribution of a statistic from all possible samples.  For example, the Central Limit Theorem states that the distribution of sample means is approximately normal, centered on $\mu$, with a standard error of $\frac{\sigma}{\sqrt{n}}$ as long as assumptions about the sample size are met.  Further recall that the sampling distribution of the sample means is centered on $\mu$ because the sample mean is an unbiased estimator of $\mu$.  Similarly, it is also known that the center of the sampling distribution of $s^{2}$ is equal to $\sigma^{2}$ because $s^{2}$ is an unbiased estimate of $\sigma^{2}$.
 
-The $MS_{Within}$ and $MS_{Among}$ are statistics just as $\bar{x}$ and $s^{2}$ are statistics.  Thus, $MS_{Within}$ and $MS_{Among}$ are subject to sampling variability and have sampling distributions.  It can be shown\footnote{This derivation is beyond the scope of these notes.} that the center of the sampling distribution of $MS_{Within}$ is $\sigma^{2}$ and the center of the sampling distribution of $MS_{Among}$ is
+$MS_{Within}$ and $MS_{Among}$ are statistics just as $\bar{x}$ and $s^{2}$ are statistics.  Thus, $MS_{Within}$ and $MS_{Among}$ are subject to sampling variability and have sampling distributions.  It can be shown\footnote{This derivation is beyond the scope of this book.} that the center of the sampling distribution of $MS_{Within}$ is $\sigma^{2}$ and the center of the sampling distribution of $MS_{Among}$ is
 \[ \sigma^{2} + \frac{1}{I-1}\Sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2} \]
 
 Thus, $MS_{Among}$ consists of two ``sources'' of variability.  The first source ($\sigma^{2}$) is the natural variability that exists among individuals.  The second source $\left(\frac{1}{I-1}\Sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2}\right)$ is related to differences among the group means.  Therefore, if the group means are all equal -- i.e., $\mu_{1}=\mu_{2}=\cdots=\mu_{I}=\mu$ -- then the second source of variability is equal to zero and $MS_{Among}$ will equal $MS_{Within}$.  As soon as the groups begin to differ, the second source of variability will be greater than 0 and $MS_{Among}$ will be greater than $MS_{Within}$.
 
-From this, it follows that if the null hypothesis of equal population means is true (i.e., one mean fits all groups) then the center of the sampling distribution of both $MS_{Within}$ and $MS_{Among}$ is $\sigma^{2}$.  Therefore, if the null hypothesis is true, then the F test-statistic is expected to be equal to 1, on average, which will always result in a large p-value and a DNR $H_{0}$ conclusion.  However, if the null hypothesis is false (i.e., separate means are needed for all groups), then the center of the sampling distribution of $MS_{Within}$ is $\sigma^{2}$ but the center of the sampling distribution of $MS_{Among}$ is $\sigma^{2} +$ ``something'' where the ``something'' is greater than 0 and gets larger as the means become ``more different.''  Thus, if the null hypothesis is false then the F test-statistic is expected to be greater than 1 and will get larger as the null hypothesis gets ``more false.''  This analysis of sampling distribution theory illustrates once again that (1) $MS_{Among}$ consists of multiple sources of variability and (2) ``large'' values of the F test-statistic indicate that the null hypothesis is incorrect.
+From this, it follows that if the null hypothesis of equal population means is true (i.e., one mean fits all groups), then the center of the sampling distribution of both $MS_{Within}$ and $MS_{Among}$ is $\sigma^{2}$.  Therefore, if the null hypothesis is true, then the $F$ test-statistic is expected to be equal to 1, on average, which will always result in a large p-value and a DNR $H_{0}$ conclusion.  However, if the null hypothesis is false (i.e., separate means are needed for all groups), then the center of the sampling distribution of $MS_{Within}$ is $\sigma^{2}$ but the center of the sampling distribution of $MS_{Among}$ is $\sigma^{2} +$ ``something,'' where the ``something'' is greater than 0 and gets larger as the means become ``more different.''  Thus, if the null hypothesis is false then the $F$ test-statistic is expected to be greater than 1 and will get larger as the null hypothesis gets ``more false.''  This analysis of sampling distribution theory illustrates once again that (1) $MS_{Among}$ consists of multiple sources of variability and (2) ``large'' values of the $F$ test-statistic indicate that the null hypothesis is incorrect.
 
 
 \section{Two-Sample t-Test Revisited: Using Linear Models}
-The models for a two-sample t-test can be fit and assessed with \R{lm()}.  This function requires the same type of formula for its first argument -- \R{response}\verb"~"\R{factor} -- and a data frame in the \R{data=} argument as described for \R{t.test()} in \sectref{sect:2tTest}.  The results of \R{lm()} should be assigned to an object so that specific results can be selectively extracted.  For example, the ANOVA table results can be extracted by sending the saved \R{lm()} object to \R{anova()}.  In addition, coefficient results\footnote{The coefficient results will be discussed in more detail in \chapref{chap:LMANOVA1}.} can be obtained by sending the saved \R{lm()} object to \R{summary()} and \R{confint()}.  Thus, results from the aquaculture data are obtained with
-
+\vspace{-14pt}
+The models for a two-sample t-test can be fit and assessed with \R{lm()}.  This function requires the same type of formula for its first argument -- \R{response}\verb"~"\R{factor} -- and a data.frame in the \R{data=} argument as described for \R{t.test()} in \sectref{sect:2tTest}.  The results of \R{lm()} should be assigned to an object so that specific results can be selectively extracted.  For example, the ANOVA table results are extracted from the \R{lm()} object with \R{anova()}.  In addition, coefficient results\footnote{The coefficient results will be discussed in more detail in \chapref{chap:LMANOVA1}.} can be extracted with \R{summary()} and \R{confint()}.
 <<>>=
 aqua.lm <- lm(BOD~src,data=aqua)
 anova(aqua.lm)
@@ -410,48 +416,49 @@ summary(aqua.lm)
 confint(aqua.lm)
 @
 
-From these results, note that the p-value in the ANOVA table is the same as that computed from \R{t.test()} and that the coefficient for the \var{srcoutlet} term is the same as the difference in the group means computed with \R{t.test()}.  Also note that the F test statistics in the ANOVA table is exactly the square of the t test statistic from \R{t.test()}.  This last observation stems from the fact that an F with 1 numerator and $v$ denominator degrees-of-freedom is exactly the square of a t with $v$ degrees-of-freedom.  Thus, from this simple example, it is seen that the exact same results for a two-sample t-test are obtained whether the analysis is completed in the ``traditional'' manner (i.e., with \R{t.test()}) or with competing models (i.e., using \R{lm()}).  This concept will be extended in subsequent chapters.
+From these results, note that the p-value in the ANOVA table is the same as that computed from \R{t.test()} and that the coefficient for the \var{srcoutlet} term is the same as the difference in the group means computed with \R{t.test()}.  Also note that the $F$ test statistics in the ANOVA table is exactly the square of the t test statistic from \R{t.test()}.  This last observation stems from the fact that an $F$ with 1 numerator and $v$ denominator degrees-of-freedom is exactly the square of a t with $v$ degrees-of-freedom.  Thus, from this simple example, it is seen that the exact same results for a two-sample t-test are obtained whether the analysis is completed in the ``traditional'' manner (i.e., with \R{t.test()}) or with competing models (i.e., using \R{lm()}).  This concept will be extended in subsequent chapters.
 
-\newpage
+
 \begin{hwsection}{All questions below should be answered with complete sentences and with all work shown.  Your answers should be typed with hand calculations included as a hand-written appendix.  All figures and tables should be properly labeled and referred to.}
 
-  \item \label{hwprob:LMFoundWhich} \textbf{[12 pts]} For each question below decide which type of analysis (e.g., one-way ANOVA, two-way ANOVA, simple linear regression, indicator variable regression, or logistic regression) should be used and why.  Your answer to ``why'' should include stating what the response variable is, what the explanatory variable is, and what type of variable each variable is.  Hint: use \tabref{tab:LMTypes}.
+  \item \label{hwprob:LMFoundWhich} For each question below decide which type of analysis (e.g., one-way ANOVA, two-way ANOVA, simple linear regression, indicator variable regression, or logistic regression) should be used and why.  Your answer to ``why'' should include stating what the response variable is, what the explanatory variable is, and what type of variable each variable is.  Hint: use \tabref{tab:LMTypes}.
     \begin{Enumerate}
-      \item A student explored the relationship between the number of calories and number of carbohydrates (in g) for all items found on a Starbucks menu\footnote{This and the ``batting average'', ``anthropometry'', and ``chicks weight'' examples are essentially from the \href{http://www.openintro.org/stat/index.php}{Open Intro Statistics book}.}.
+      \item A student explored the relationship between the number of calories and number of carbohydrates (in g) for all items found on a Starbucks menu.\footnote{This and the ``batting average'', ``anthropometry'', and ``chicks weight'' examples are essentially from the \href{http://www.openintro.org/stat/index.php}{Open Intro Statistics book}.}
       \item Researchers want to determine if the mean batting average (a numerical measure representing the proportion of hits per attempts) differs among positions (outfield, catcher, first-base, second-base, short-stop, third-base, and designated hitter) for major leagues baseball players.
-      \item A director of education wanted to predict whether or not a student would pass a certifying exam on the first attempt from knowing a students' grade-point-average in classes related to the subject matter of the exam.
+      \item A director of education wants to use a students' grade-point-average in classes related to the subject matter of a certifying exam to predict whether or not a student would pass that exam on the first attempt.
       \item Researchers studying anthropometry collected body girth measurements and skeletal diameter measurements, as well as age, weight, height, and sex for 507 physically active individuals.  In one aspect of their research, the researchers wanted to determine if the effect of body weight on hip girth differed between males and females.
-      \item Researchers want to determine if the body temperature of snails is affected by the color (light, intermediate, or dark) of the intertidal rock which the snail inhabits and whether the snail was found individually, in small groups (2-5 individuals), or larger groups (5+ individuals)\footnote{This example basically comes from \href{http://www.biology.hawaii.edu/301L/Spring/Labmanual/Lab 5 - Intertidal Ecology 11.pdf}{these notes}.}.
-      \item An experiment was created to compare the effectiveness of the various feed supplements on the growth rate of chickens.  Newly hatched chicks were randomly allocated into six groups, and each group was given a different feed supplement.  The chicks' weights in grams after six weeks was recorded.  Interest was in determining if chick weight differed among the various feed types.
+      \item Researchers want to determine if the body temperature of snails is affected by the color (light, intermediate, or dark) of the intertidal rock which the snail inhabits and whether the snail was found individually, in small groups (2-5 individuals), or larger groups (5+ individuals).\footnote{This example basically comes from \href{http://www.biology.hawaii.edu/301L/Spring/Labmanual/Lab 5 - Intertidal Ecology 11.pdf}{these notes}.}
+      \item An experiment was created to compare the effectiveness of various feed supplements on the growth rate of chickens.  Newly hatched chicks were randomly allocated into six groups, and each group was given a different feed supplement.  The chicks' weights (in grams) after six weeks was recorded.  Interest was in determining if chick weight differed among the various feed types.
     \end{Enumerate}
 
-\turnpage{144}
+\turnpage{14}
 
-  \item \label{hwprob:LMFoundFishDiet} \textbf{[15 pts]} \cite{KnappFitzgerald1989} randomly assigned 14 male volunteers with high blood pressure to one of two diets for four weeks: a fish oil diet and a standard oil diet.  They measured diastolic blood (DBP) pressure of each individual at the beginning and end of the period and reported the REDUCTIONS in diastolic blood pressures shown in the data table below (note that negative numbers mean the DBP rose over the course of the study).
+  \item \label{hwprob:LMFoundFishDiet} \cite{KnappFitzgerald1989} randomly assigned 14 male volunteers with high blood pressure to one of two diets (fish oil or standard oil) for four weeks.  They measured diastolic blood (DBP) pressure of each individual at the beginning and end of the period.  The REDUCTIONS in DBP are shown below (negative numbers mean the DBP increased during the study).
 
 \begin{center}
   \begin{tabular}{l|lllllll}
     \hline\hline
-    \widen{-1}{5}{Diet} & \multicolumn{7}{c}{Results} \\
+    \widen{-1}{5}{Diet} & \multicolumn{7}{c}{Reductions in DBP} \\
     \hline
-    \widen{-1}{5}{Fish} & \multicolumn{1}{c}{8} & \multicolumn{1}{c}{12} & \multicolumn{1}{c}{10} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{14} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} \\
+    \widen{-1}{5}{Fish} & 8 & 12 & 10 & 2 & 14 & 0 & 0 \\
     \hline
-    \widen{-1}{5}{Standard} & \multicolumn{1}{c}{-6} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{1} & \multicolumn{1}{c}{2} & \multicolumn{1}{c}{-3} & \multicolumn{1}{c}{-4} & \multicolumn{1}{c}{2} \\
+    \widen{-1}{5}{Standard} & -6 & 0 & 1 & 2 & -3 & -4 & 2 \\
     \hline\hline
   \end{tabular}
 \end{center}
 
-Enter these data, in \emph{stacked format} (see \sectref{sect:DataStacked}), into a tab-delimited text file (likely need to enter the data into Excel first and then save as a tab-delimited text file) and then load into R.  Use the data in R to answer the questions below.
+Use R to construct results from these data to answer the questions below.  Make sure to refer to tables and figures, as appropriate, in support of your answers.
 
-    \begin{Enumerate}
-      \item Compute tabular results for these data using a two-sample t-test. [Hint: use \R{t.test()} with formula, \R{data=}, and \R{var.equal=TRUE} arguments.]
-      \item Compute tabular results for these data using the linear models approach [Hint: use \R{lm()} with formula and \R{data=} arguments.  Show the tabular results from the \R{anova()} and \R{summary()}.]
-      \item How do the p-values from the two-sample t-test, ANOVA table, and the slope in the coefficients table compare?  What is the overall conclusion about the group means from these p-values?
-      \item How does the mean of the ``first'' group in the two-sample t-test compare to one of the coefficients from the linear model?  Explain why this relationship occurs (you will need to discuss how factors are coded in R and how an intercept is defined).
-      \item How does the difference in means from the two-sample t-test compare to one of the coefficients from the linear model.  Explain why this relationship occurs (you will need to discuss how factors are coded in R and how a slope is defined).
-      \item How does the df from the two-sample t-test compare to one of the df in the ANOVA table.  Explain why this relationship occurs (you will need to discuss how these df are computed).
-      \item How does the two-sample t-test test statistic compare to the F test statistic in the ANOVA table.
-      \item Use the formula for the t-test statistic (i.e., \ref{eqn:2tTestStat}) and the results for the t-test test statistic from R to ``back-compute'' a value for $s_{p}^{2}$ (note that this algebraic manipulation needs to be done by hand -- show your work).  What value in the ANOVA table does your result equal?
-    \end{Enumerate}
+\begin{Enumerate}
+  \item Create a table of appropriate results from using \R{t.test()}.
+  \item Create a table of appropriate results from using \R{anova()} with an \R{lm()} object.
+  \item Create a table of appropriate results from using \R{summary()} with an \R{lm()} object.
+  \item How do the p-values from the two-sample t-test, ANOVA table, and the \textit{slope} in the coefficients table compare?  What is the overall conclusion about the group means from these p-values?
+  \item How does the mean of the ``first'' group in the two-sample t-test compare to either of the coefficients from the linear model?  Explain why this relationship occurs (you will need to discuss how factors are coded in R and how an intercept is defined).
+  \item How does the difference in means from the two-sample t-test compare to either of the coefficients from the linear model.  Explain why this relationship occurs (you will need to discuss how factors are coded in R and how a slope is defined).
+  \item How does the df from the two-sample t-test compare to the df in the ANOVA table.  Explain why this relationship occurs (you will need to discuss how these df are computed).
+  \item How does the two-sample t-test test statistic compare to the $F$ test statistic in the ANOVA table.
+  \item Use the formula for the t-test statistic (i.e., \eqnref{eqn:2tTestStat}) and the results for the t-test test statistic from R to ``back-compute'' a value for $s_{p}^{2}$ (note that this algebraic manipulation needs to be done by hand -- show your work).  What value in the ANOVA table does your result equal?
+\end{Enumerate}
 
 \end{hwsection}
