@@ -353,7 +353,7 @@ Significance letters can also be added to these plots with \R{addSigLetters()}.
 
 
 \section{Assumptions}
-The assumptions for a two-way ANOVA are the same as they were for the one-way ANOVA (see \sectref{sect:OWAAssumptions}). Thus, the assumptions are checked in R in the same manner as described previously (i.e., \R{leveneTest()}, \R{adtest()}, \R{residPlot()}, histogram of residuals, and \R{outlierTest()}).
+The assumptions for a two-way ANOVA are the same as they were for the one-way ANOVA (see \sectref{sect:OWAAssumptions}). Thus, the assumptions are checked in R in the same manner as described previously (i.e., \R{levenesTest()}, \R{adtest()}, \R{residPlot()}, histogram of residuals, and \R{outlierTest()}).
 
 
 \section{Example Analyses} \label{sec:ANOVA2Examples}
@@ -385,7 +385,7 @@ A single clutch of \emph{R. blairi} eggs were collected from a Liberty, MO pond.
 
 \subsubsection*{Exploratory Data Analysis and Assumption Checking}
 <<echo=FALSE>>=
-tad.lev <- leveneTest(tad.lm1)
+tad.lev <- levenesTest(tad.lm1)
 @
 
 There appears to be within- and among-group independence as there would be no relationship between or effect of one container on any other container.  Variances among the treatments appear to be non-constant (Levene's  \Sexpr{kPvalue(tad.lev[1,"Pr(>F)"])}).  The residual plot from the initial fit of the ANOVA also indicates a slight non-constant variance (i.e., larger variances associated with higher body masses; \figref{fig:TWATadpolePlot1}).  It is evident that the assumption of equal variances is not met and a transformation should be considered.
@@ -442,7 +442,7 @@ It can be concluded that the different UV-B light intensities and tadpole densit
 > Tadpoles$density <- factor(Tadpoles$density)
 > boxplot(mass~density+uvb,data=Tadpoles,ylab="Body Mass (g)")
 > tad.lm1 <- lm(mass~uvb*density,data=Tadpoles)
-> leveneTest(tad.lm1)
+> levenesTest(tad.lm1)
 > residPlot(tad.lm1)
 > outlierTest(tad.lm1)
 > transChooser(tad.lm1)
@@ -492,7 +492,7 @@ Twelve rats were randomly selected for each type of rat (i.e., normal rats and r
 \subsubsection*{Exploratory Data Analysis and Assumption Checking}
 <<echo=FALSE>>=
  nak.lm1 <- lm(activity~site*strain,data=nak)
- nak.lev <- leveneTest(nak.lm1)
+ nak.lev <- levenesTest(nak.lm1)
  nak.ad <- adTest(nak.lm1$residuals)
  nak.out <- outlierTest(nak.lm1)
 @
@@ -543,7 +543,7 @@ Strictly speaking, causal inferences cannot be made from this study because the 
 > NAKATPase$strain <- factor(NAKATPase$strain)
 > boxplot(activity~site+strain,data=NAKATPase,ylab="Na-K-ATPase Activity")
 > nak.lm1 <- lm(activity~site*strain,data=NAKATPase)
-> leveneTest(nak.lm1)
+> levenesTest(nak.lm1)
 > adTest(nak.lm1$residuals)
 > residPlot(nak.lm1,cex.main=0.8,loess=F)
 > outlierTest(nak.lm1)
@@ -573,7 +573,7 @@ The following is a template for a process of fitting a two-way ANOVA model.  Thi
   \item Fit the untransformed ultimate full (i.e., both main effects and the interaction effect) model [\R{lm()}].
   \item Check the assumptions of the fit of the model.
     \begin{Itemize}
-      \item Check equality of variances with a Levene's test [\R{leveneTest()}] and residual plot [\R{residPlot()}].
+      \item Check equality of variances with a Levene's test [\R{levenesTest()}] and residual plot [\R{residPlot()}].
       \item Check normality of residuals with a Anderson-Darling test [\R{adTest()}] and histogram of residuals [\R{residPlot()}].
       \item Check for outliers with an outlier test [\R{outlierTest{}}], residual plot, and histogram of residuals.
     \end{Itemize}

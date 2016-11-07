@@ -5,8 +5,26 @@
 \input{c:/aaaWork/zGnrlLatex/BookPreamble}
 \hypersetup{pdftitle = MTH207 Notes}
 \input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+\usepackage{multirow}
 
 \begin{document}
+<<echo=FALSE, eval=FALSE>>=
+## Run this manually (Ctrl-Alt-C) after compiling to make no_print version
+fn <- "Biometry"
+dir <- "C:/aaaWork/Web/GitHub/NCMTH207/book/"
+eng <- paste0(dir,"pdftk.exe")
+inp <- paste0(dir,fn,".pdf")
+out <- paste0("output ",dir,fn,"_noPrint.pdf")
+pw <- paste("owner_pw mth107")
+( tmp <- paste(eng,inp,out,pw,"verbose") )
+system(tmp,show.output.on.console=TRUE)
+
+## Removes intermediate files from the directory
+tmp <- list.files(dir)
+tmp <- tmp[grepl(fn,tmp)]
+tmp <- tmp[!grepl(".pdf",tmp) & !grepl(".rnw",tmp)]
+file.remove(paste0(dir,tmp))
+@
 <<setup,echo=FALSE,include=FALSE>>=
 ## load knitr helper materials
 source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
