@@ -164,7 +164,7 @@ The fit of the logistic regression model is seen using \R{fitPlot()} with the sa
 
 <<BtlFitPlot, fig.width=4, out.width='.45\\linewidth', fig.cap="Plot of the binary outcome variable versus the concentration of calcium disulfide with the probability of death (blue pluses) calculated at every five units of concentration and the fitted logistic regression model superimposed (in red).  Note that darker points have more individuals over-plotted at that coordinate.">>=
 par(mar=c(3.5,3.5,1,3), mgp=c(2,0.75,0),las=1,tcl=-0.2)
-fitPlot(glm1,breaks=seq(45,80,5),xlim=c(45,80),main="")
+fitPlot(glm1,breaks=seq(45,80,5),xlim=c(45,80))
 @
 
 Confidence intervals based on normal theory are obtained by submitting the saved \R{glm} object to \R{confint()}.  For example,
