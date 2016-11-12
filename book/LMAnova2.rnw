@@ -21,15 +21,13 @@ set_parent('Biometry.Rnw')
 \minitoc
 \newpage
 
-\lettrine{I}{n contrast to a one-way ANOVA} (see \chapref{chap:LMANOVA1}), a two-way ANOVA allows the simultaneous determination of whether differences in the mean of a quantitative variable differs according to the levels of two factor variables or an interaction between the two.  For example, consider the following situations,
+\lettrine{I}{n contrast to a one-way ANOVA} (see \chapref{chap:LMANOVA1}), a two-way ANOVA allows the simultaneous determination of whether differences in the mean of a quantitative variable differs according to the levels of two factor variables or an interaction between the two.  For example, consider the following situations where the effect of two factor explanatory variables on a quantitative response variable is being examined:
 \begin{Itemize}
-  \item Interest is in determining the effect of UV-B light intensity and tadpole density on the growth of plains leopard frog (\emph{Rana blairi}) tadpoles \citep{Smithetal2000}.
-  \item Interest is in whether the monoterpene levels in Douglas firs (\emph{Pseudotsuga menziesii}) differ depending on exposure to ambient or elevated levels of CO$_{2}$ and ambient or elevated levels of temperature \citep{Snowetal2003}.
-  \item Interest is in whether mean microcystin-LR concentration (a common cyanotoxin) differed by time (days) and exposure type to duckweed (\emph{Lemna gibba}) (control (no exposure), direct exposure, or indirect exposure) \citep{LeBlancetal2005}.
-  \item Interest is in determining if the level of Na-K-ATPase activity differs among locations of the kidney and between normal and hypertensive rats \citep{Gargetal1985}.
+  \item Interest is in determining the effect of UV-B light intensity and tadpole density on mean growth of plains leopard frog (\emph{Rana blairi}) tadpoles \citep{Smithetal2000}.
+  \item Interest is in whether mean monoterpene levels in Douglas firs (\emph{Pseudotsuga menziesii}) differ depending on exposure to ambient or elevated levels of CO$_{2}$ and ambient or elevated levels of temperature \citep{Snowetal2003}.
+  \item Interest is in whether mean microcystin-LR concentration (a common cyanotoxin) differed by time (days) and exposure type (control (no exposure), direct exposure, or indirect exposure) to duckweed (\emph{Lemna gibba}) \citep{LeBlancetal2005}.
+  \item Interest is in determining if the mean Na-K-ATPase activity level differs among locations of the kidney and between normal and hypertensive rats \citep{Gargetal1985}.
 \end{Itemize}
-
-In each of these situations the effect of two factor explanatory variables on a quantitative response variable is being studied.  Thus, a two-way ANOVA would be used to analyze the data in each of these situations.
 
 The theory and application of two-way ANOVAs are discussed in this chapter.  The presentation here depends heavily on the foundational material discussed in Chapters \ref{chap:LMFoundations} and \ref{chap:LMANOVA1}.
 
@@ -37,8 +35,8 @@ The theory and application of two-way ANOVAs are discussed in this chapter.  The
 \section{Manipulating Two Factors}
 It is both possible and advantageous to manipulate more than one factor at a time to determine the effect of those factors on the response variable.  For example, an experimenter may manipulate both the density of tadpoles and the level of exposure to UV-B light to determine the effect of both of these explanatory variables on the growth of tadpoles.  The design of such an experiment and why it is beneficial to simultaneously manipulate two factors, as compared to varying each of these factors alone in two separate experiments, is examined in this section.
 
-\subsection*{Designing}
-The key principle to designing two-factor experiments is that each level of each factor must be combined with each level of the other factor to form treatments.  For example, suppose that interest is in the impact of two different UV-B light intensity levels (simply called ``High'' and ``Low'') and the density of tadpoles (1, 2, and 4 individuals per tank) on the growth of tadpoles.  In this example, the levels of density must be completely ``crossed'' with the levels of UV-B light intensity to form six treatments for the tadpoles.  The specific treatments would be High-1, High-2, High-4, Low-1, Low-2, and Low-4.  The crossing of the two factors can best be shown with the simple schematic shown in \tabref{tab:TWATadpoleDesign1}.
+\subsection*{Design}
+The key principle to designing two-factor experiments is that each level of each factor must be combined with each level of the other factor to form treatments.  For example, suppose that interest is in the impact of two different UV-B light intensity levels (simply called ``High'' and ``Low'') and the density of tadpoles (1, 2, and 4 individuals per tank) on the growth of tadpoles.  In this example, the levels of density must be completely ``crossed'' with the levels of UV-B light intensity to form six treatments for the tadpoles.  The specific treatments would be ``High-1'', ``High-2'', ``High-4'', ``Low-1'', ``Low-2'', and ``Low-4'' \tabrefp{tab:TWATadpoleDesign1}.
 
 \begin{table}[h]
   \centering
@@ -55,7 +53,7 @@ The key principle to designing two-factor experiments is that each level of each
     \widen{-1}{6}{} & 40,90,89,22,79, & 43,54,82,20,12, & 17,60,47,70,11, \\
     \widen{-1}{6}{Low} & 53,32,77,56,3, & 85,61,76,15,69, & 59,75,81,64,88, \\
     \widen{-1}{6}{} & 42,87,63,48,9 & 44,33,35,41,28 & 23,66,2,52,14 \\
-    \hline\hline
+    \hline
   \end{tabular}
 \end{table}
 
@@ -78,27 +76,30 @@ Before discussing the advantages of a two-factor experiment as compared to singl
   \end{tabular}
 \end{table}
 
-There are two major advantages of a two-factor experiment as compared to two OFAT experiments.  First, the two-factor experiment allocates the individuals more efficiently then the two OFAT experiments.  For example, in the two-factor design of the tadpole experiment, all 90 individuals are used to identify differences among the light intensities \textbf{AND} all 90 individuals are used to identify differences among the densities of tadpoles.  However, in the OFAT experiments, only 44 individuals\footnote{One individual was not used in order to have equal numbers of individuals in each treatment.} are used to identify differences among the light intensities and only 45 individuals are used to identify differences among the tadpole densities.  This efficiency in allocation of individuals effectively leads to an increased sample size for determining the effect of any one factor.  An increased sample size means more statistical power\footnote{Recall that statistical power is the probability of correctly rejecting a false null hypothesis or, alternatively, correctly identifying a difference in means when one really exists.} and, relatedly, the ability to correctly identify smaller effect sizes\footnote{In this context an effect size is the difference in two means.  Thus, the ability to detect a smaller effect size means that there is a higher chance of identifying a difference among means that are relatively close together.}.  Alternatively, the increased efficiency means that the same power and detectable effect size can be obtained with a smaller sample size and, thus, smaller costs.
+\subsection*{Design}
+There are two major advantages of a two-factor experiment as compared to two separate OFAT experiments.  First, the two-factor experiment allocates the individuals more efficiently than the two OFAT experiments.  For example, in the two-factor design of the tadpole experiment, all 90 individuals are used to identify differences among the light intensities \textbf{AND} all 90 individuals are used to identify differences among the densities of tadpoles.  However, in the OFAT experiments, only 44 individuals\footnote{One individual was not used in order to have equal numbers of individuals in each treatment.} are used to identify differences among the light intensities and only 45 individuals are used to identify differences among the tadpole densities.  This efficiency in allocation of individuals effectively leads to an increased sample size for determining the effect of any one factor.  An increased sample size means more statistical power\footnote{Recall that statistical power is the probability of correctly rejecting a false null hypothesis or, alternatively, correctly identifying a difference in means when one really exists.} and, relatedly, the ability to correctly identify smaller effect sizes.\footnote{In this context an effect size is the difference in two means.  Thus, the ability to detect a smaller effect size means that there is a higher chance of identifying a difference among means that are relatively close together.}  Alternatively, the increased efficiency means that the same power and detectable effect size can be obtained with a smaller sample size and, thus, lower costs.
 
 \warn{One advantage of two-factor experiments is that individuals are allocated to treatments more efficiently.  The more efficient use of individuals results in increased power and increased ability to detect small effect sizes.  Alternatively, the more efficient use of individuals allows the researcher to use smaller sample sizes to obtain the same power and detectability of effect sizes.}
 
-Two-factor experiments are also advantageous in that they allow the researcher to identify if an interaction exists between the two factors.  An interaction among factors is said to exist if the effect of one factor on the response variable depends on the level of the other factor.  For example, if the growth rate of the tadpoles increases from the 1 to the 2 to the 4 tadpole densities in the low light intensity treatments but decreases from the 1 to the 2 to the 4 tadpole densities in the high light intensity treatments (\figref{fig:TWAHypoInteraction}-Left) then an interaction among the density of tadpoles and UV-B light level intensities is said to exist.  However, if the pattern among tadpole densities is the same in both the low and high density levels (\figref{fig:TWAHypoInteraction}-Right) then no interaction exists among the factors.
+Two-factor experiments are also advantageous in that they allow the researcher to identify if an interaction exists between the two factors.  An interaction among factors is said to exist if the effect of one factor on the response variable depends on the level of the other factor.  For example, if the growth rate of the tadpoles increases from the 1 to the 2 to the 4 tadpole densities in the low light intensity treatments but decreases from the 1 to the 2 to the 4 tadpole densities in the high light intensity treatments (\figref{fig:TWAHypoInteraction}-Left), then an interaction between the density of tadpoles and UV-B light level intensities is said to exist.  However, if the pattern among tadpole densities is the same in both the low and high density levels (\figref{fig:TWAHypoInteraction}-Right), then no interaction exists between the factors.
 
 \defn{Interaction Effect}{when the effect of one factor on the response variable is significantly different among the levels of the other factor.}
 
 \vspace{-12pt}
-\warn{Another advantage of two-factor experiments is that interactions among factors can be detected.}
+\warn{Another advantage of two-factor experiments is that an interaction between factors can be detected.}
 
 <<TWAHypoInteraction, echo=FALSE, fig.cap="Interaction plot (mean growth rate for each treatment connected within the UV-B light intensity levels) for the tadpole experiment illustrating a hypothetical interaction effect (Left) and a lack of an interaction effect (Right).",fig.pos="h">>=
  dens <- factor(c(1,2,4))
  grow.1 <- c(1,3,4);  grow.2 <- c(3,1.5,1);  grow.3 <- c(4,2.4,1.9)
  # interaction
-  plot(as.numeric(dens),grow.1,type="o",xlab="Tadpole Density",ylab="Body Mass (g)",yaxt="n",xaxt="n",ylim=c(0.5,4.5),xlim=c(0.75,3.5),lwd=2,pch=19)
+  plot(as.numeric(dens),grow.1,type="o",xlab="Tadpole Density",ylab="Body Mass (g)",
+       yaxt="n",xaxt="n",ylim=c(0.5,4.5),xlim=c(0.75,3.5),lwd=2,pch=19)
   axis(1,1:3,levels(dens))
   lines(as.numeric(dens),grow.2,type="o",lwd=2,col="blue",pch=19)
   text(3,grow.1[3],"Low",pos=4); text(3,grow.2[3],"High",pos=4,col="blue")
  # no interaction
-  plot(as.numeric(dens),grow.3,type="o",xlab="Tadpole Density",ylab="Body Mass (g)",yaxt="n",xaxt="n",ylim=c(0.5,4.5),xlim=c(0.75,3.5),lwd=2,pch=19)
+  plot(as.numeric(dens),grow.3,type="o",xlab="Tadpole Density",ylab="Body Mass (g)",
+       yaxt="n",xaxt="n",ylim=c(0.5,4.5),xlim=c(0.75,3.5),lwd=2,pch=19)
   axis(1,1:3,levels(dens))
   lines(as.numeric(dens),grow.2,type="o",lwd=2,col="blue",pch=19)
   text(3,grow.3[3],"Low",pos=4); text(3,grow.2[3],"High",pos=4,col="blue")
@@ -107,9 +108,11 @@ Two-factor experiments are also advantageous in that they allow the researcher t
 
 \section{Analytical Foundation}
 \subsection{Terminology}
-Some terminology must be developed before discussing the objective criteria for determining the significance of effects.  The tadpole growth experiment \tabrefp{tab:TWATadpoleDesign1} was an experiment with two factors: UV-B light intensity with two levels (High and Low) and the density of tadpoles with three levels (1, 2, and 4 tadpoles).  The combination of these two factors created six treatments with 15 individuals or replicates per treatment\footnote{These terms are not defined specifically here as it is assumed that you were introduced to basic experimental design terms in your introductory statistics course.}.
+Some terminology must be developed before discussing the objective criteria for determining the significance of effects.  The tadpole growth experiment \tabrefp{tab:TWATadpoleDesign1} was an experiment with two factors: UV-B light intensity with two levels (High and Low) and the density of tadpoles with three levels (1, 2, and 4 tadpoles).  The combination of these two factors created six treatments with 15 individuals or replicates per treatment.\footnote{These terms are not defined specifically here as it is assumed that you were introduced to basic experimental design terms in your introductory statistics course.}
 
-With the schematic arrangement of this experiment shown in \tabref{tab:TWATadpoleDesign1}, one of the factors can be generically labeled as the row factor (i.e, UV-B light intensity in this example) and the other factor can be generically labeled as the column factor (i.e., tadpole density).  With this, $r$ is defined as the number of levels of the row factor (i.e., $r=2$ in this example) and $i$ is an index for the rows (i.e., $i=1...r$).  Similarly, $c$ is defined as the number of levels of the column factor (i.e., $c=3$) and $j$ is an index for the columns (i.e., $j=1...c$).  As was the case in this example and for the sake of simplicity, let's only consider the situation where the same number of replicates are used per treatment\footnote{An experiment where each treatment has the same number of replicates is called a balanced design.}.  With this consideration, $n$ is defined as the number of replicates per treatment and $k$ is an index for the individuals within a treatment (i.e., $k=1...n$).  With these definitions, the response variable recorded on the $k$th individual in the treatment defined by the $i$th level of the row factor and the $j$th level of the column factor is given by $Y_{ijk}$.  Similarly, the mean response for the $i$th level of the row factor and the $j$th level of the column factor is given by $\overline{Y}_{ij\cdot}$, the mean response for the $i$th level of the row factor is given by $\overline{Y}_{i\cdot\cdot}$, the mean response for the $j$th level of the column factor is given by $\overline{Y}_{\cdot j\cdot}$, and the mean response regardless of level of any factor is given by $\overline{Y}_{\cdot\cdot\cdot}$.  The $\overline{Y}_{ij\cdot}$ are called \emph{treatment means} or \emph{group means}, the $\overline{Y}_{i\cdot\cdot}$ and $\overline{Y}_{\cdot j\cdot}$ are called \emph{level means}, and the $\overline{Y}_{\cdot\cdot\cdot}$ is called the \emph{grand mean}.
+With the schematic arrangement of this experiment shown in \tabref{tab:TWATadpoleDesign1}, one of the factors can be generically labeled as the row factor (i.e, UV-B light intensity in this example) and the other factor can be generically labeled as the column factor (i.e., tadpole density).  With this, $r$ is defined as the number of levels of the row factor (i.e., $r=2$ in this example) and $i$ is an index for the rows (i.e., $i=1, ..., r$).  Similarly, $c$ is defined as the number of levels of the column factor (i.e., $c=3$) and $j$ is an index for the columns (i.e., $j=1, ..., c$).  As was the case in this example, and for the sake of simplicity, let's only consider the situation where the same number of replicates are used per treatment.\footnote{An experiment where each treatment has the same number of replicates is called a balanced design.}  With this consideration, $n$ is defined as the number of replicates per treatment and $k$ is an index for the individuals within a treatment (i.e., $k=1, ..., n$).
+
+With these definitions, the response variable recorded on the $k$th individual in the treatment defined by the $i$th level of the row factor and the $j$th level of the column factor is given by $Y_{ijk}$.  Similarly, the mean response for the $i$th level of the row factor and the $j$th level of the column factor is given by $\overline{Y}_{ij\cdot}$, the mean response for the $i$th level of the row factor is given by $\overline{Y}_{i\cdot\cdot}$, the mean response for the $j$th level of the column factor is given by $\overline{Y}_{\cdot j\cdot}$, and the mean response regardless of level of any factor is given by $\overline{Y}_{\cdot\cdot\cdot}$.  The $\overline{Y}_{ij\cdot}$ are called \emph{treatment means} or \emph{group means}, the $\overline{Y}_{i\cdot\cdot}$ and $\overline{Y}_{\cdot j\cdot}$ are called \emph{level means}, and the $\overline{Y}_{\cdot\cdot\cdot}$ is called the \emph{grand mean}.
 
 \defn{Treatment Mean}{The mean for a particular treatment, $\overline{Y}_{ij\cdot}$}
 
@@ -120,7 +123,7 @@ With the schematic arrangement of this experiment shown in \tabref{tab:TWATadpol
 \defn{Grand Mean}{The mean for all individuals, $\overline{Y}_{\cdot\cdot\cdot}$}
 
 \subsection{Models \& SS}
-As with the one-way ANOVA, the two-way ANOVA begins as an analysis of two models.  As usual, the full model is the model with a separate mean for each treatment group and the simple model is the model with a single common mean for each treatment group.  In essence, the full model says that each treatment mean should be modeled by a separate mean \tabrefp{tab:TWAMeansFull}, whereas the simple model says that each treatment mean should be modeled by a common mean \tabrefp{tab:TWAMeansSimple}.  As in the one-way ANOVA, the goal is to determine which of these models best fits the data.
+As with the one-way ANOVA, the two-way ANOVA begins as an analysis of two models.  As usual, the full model uses a separate mean for each treatment group and the simple model uses a single common mean for each treatment group.  In essence, the full model says that each treatment mean should be modeled by a separate mean \tabrefp{tab:TWAMeansFull}, whereas the simple model says that each treatment mean should be modeled by a common mean \tabrefp{tab:TWAMeansSimple}.  As in the one-way ANOVA, the goal is to determine which of these models best fits the data.
 
 \begin{table}
   \centering
@@ -152,7 +155,7 @@ As with the one-way ANOVA, the two-way ANOVA begins as an analysis of two models
   \end{tabular}
 \end{table}
 
-The first step in this process is the calculation of sums-of-squares.  The $SS_{Total}$ eventually leads (when converted to $MS_{Total}$) to a measure of the variability not explained by the simple model and, thus, is computed by summing the squared residuals about the simple model, or\footnote{It is easiest to read a series of sums in a formula such as this from left-to-right.  In this formula for example, one can see that the residuals are summed across the individuals within each treatment first (i.e., the $k$ index is summed first), then across all columns (i.e., the $j$ index is summed second), and then across all rows.  In other words, the residuals are summed within each cell of the table representing the experiment, then these sums are summed for each column, and then these column sums are summed across the rows to get one final sum.}
+The first step in this process is the calculation of sums-of-squares.  The $SS_{Total}$ eventually leads (when converted to $MS_{Total}$) to a measure of the variability not explained by the simple model and, thus, is computed by summing the squared residuals about the simple model, or\footnote{It is easiest to read a series of sums in a formula such as this from right-to-left.  In this formula for example, one can see that the residuals are summed across the individuals within each treatment first (i.e., the $k$ index is summed first), then across all columns (i.e., the $j$ index is summed second), and then across all rows.  In other words, the residuals are summed within each cell of the table representing the experiment, then these sums are summed for each column, and then these column sums are summed across the rows to get one final sum.}
 \[
   SS_{Total} = \Sum_{i=1}^{r}\Sum_{j=1}^{c}\Sum_{k=1}^{n}\left(Y_{ijk}-\overline{Y}_{\cdot\cdot\cdot}\right)^{2}
 \]
@@ -168,7 +171,7 @@ The $SS_{among}$ is usually found by subtraction (i.e., $SS_{Total}-SS_{Within}$
 \]
 Thus, $SS_{among}$ is a measure of the variability that was not explained by the simple model that was explained by the full model.
 
-In a two-way ANOVA, the $SS_{Among}$ could be ``large'' (indicating a significant difference among the treatment means) because of large differences between the levels of the row factor, the column factor, the interaction of the row and column factors, or sampling variability.  Thus, just as $SS_{Total}$ was partitioned into parts (i.e., into $SS_{Among}$ and $SS_{Within}$), the $SS_{Among}$ can be partitioned into a part due to differences in the levels of the row factor, a part due to differences in the levels of the column factor, and a part due to differences in the interaction among the row and column factors.  In other words,
+In a two-way ANOVA, the $SS_{Among}$ could be ``large'' (indicating a significant difference among the treatment means) because of large differences between the levels of the row factor, the column factor, the interaction of the row and column factors, or sampling variability.  Thus, just as $SS_{Total}$ was partitioned into parts (i.e., into $SS_{Among}$ and $SS_{Within}$), the $SS_{Among}$ can be partitioned into parts due to differences in the levels of the row factor, differences in the levels of the column factor, and differences in the interaction among the row and column factors.  In other words,
 \begin{equation} \label{eqn:SSAmongPartition1}
   SS_{Among} = SS_{Row} + SS_{Column} + SS_{Interaction}
 \end{equation}
@@ -190,9 +193,9 @@ When these sum-of-squares are converted into mean-squares, they represent the am
 
 
 \subsection{Understanding the Main Effect SS}
-Differences among treatment means can be attributable to either of the two factor variables or the interaction between these two variables.  If the differences are due to the interaction between the two factor variables then a so-called ``interaction effect'' on the response variable exists.  However, \emph{if an interaction effect does not exist} and the differences is due to one of the factor variables then a so-called ``main effect'' on the response variable exists.  Thus, a main effect suggests that that factor variable has an effect on the response variable regardless of the value of the other factor variable.
+Differences among treatment means can be attributable to either of the two factor variables or the interaction between these two variables.  If the differences are due to the interaction between the two factor variables then a so-called ``interaction effect'' on the response variable exists.  However, \emph{if an interaction effect does not exist} and the differences is due to one of the factor variables, then a ``main effect'' on the response variable exists.  Thus, a main effect suggests that that factor variable has an effect on the response variable regardless of the value of the other factor variable.
 
-The main effect sums-of-squares identified with \eqref{eqn:SSAmongPartition1} and \eqref{eqn:SSAmongPartition2} above can best be understood by comparing the formulas to a symbolic table of means \tabrefp{tab:TWAMeansAllSymb}.  For example, $SS_{Row}$ is computed by summing the residuals of the row marginal means (i.e., right most column; $\overline{Y}_{i\cdot\cdot}$) from the grand mean (i.e., $\overline{Y}_{\cdot\cdot\cdot}$) and then, to ensure that all individuals were accounted for in the calculation, multiplying by the number of individuals used to compute the row marginal means (i.e., $cn$).  If the means in the marginal row column are very different, then $SS_{Row}$ will become large.  Because large differences in row marginal means indicates a main effect of the row factor, then large values of $SS_{Row}$ will indicate a main effect of the row factor.  A similar argument can be made for the $SS_{Column}$ calculation.
+The main effect sums-of-squares identified with Equations \eqref{eqn:SSAmongPartition1} and \eqref{eqn:SSAmongPartition2} can best be understood by comparing the formulas to a symbolic table of means \tabrefp{tab:TWAMeansAllSymb}.  For example, $SS_{Row}$ is computed by summing the residuals of the row marginal means (i.e., right most column; $\overline{Y}_{i\cdot\cdot}$) from the grand mean (i.e., $\overline{Y}_{\cdot\cdot\cdot}$) and then, to ensure that all individuals were accounted for in the calculation, multiplying by the number of individuals used to compute the row marginal means (i.e., $cn$).  If the means in the marginal row column are very different, then $SS_{Row}$ will become large.  Because large differences in row marginal means indicate a main effect of the row factor, then large values of $SS_{Row}$ will indicate a main effect of the row factor.  A similar argument can be made for the $SS_{Column}$ calculation.
 
 \begin{table}[h]
   \centering
@@ -207,11 +210,11 @@ The main effect sums-of-squares identified with \eqref{eqn:SSAmongPartition1} an
     \widen{-1}{6}{Low} & $\overline{Y}_{21\cdot}$ & $\overline{Y}_{22\cdot}$ & $\overline{Y}_{23\cdot}$ & $\overline{Y}_{1\cdot\cdot}$ \\
     \hline\hline
     \widen{-1}{6}{} & $\overline{Y}_{\cdot 1\cdot}$ & $\overline{Y}_{\cdot 2\cdot}$ & $\overline{Y}_{\cdot 3\cdot}$ & $\overline{Y}_{\cdot\cdot\cdot}$ \\
-    \hline\hline
+    \hline
   \end{tabular}
 \end{table}
 
-The mean table shown in \tabref{tab:TWATadpoleMeansAll} are the actual results for the tadpole experiment.  Differences among the two marginal means for the UV-B light intensity (e.g., 0.858 and 1.045) are relatively slight and, thus, are indicative of a slight UV-B light intensity main effect.  The relatively larger differences among the three marginal means for the tadpole densities (1.270, 0.816, and 0.768) are indicative of a stronger density main effect.  The marginal means can also be plotted \figrefp{fig:TWATadpoleEffectsMain} to see the main effects\footnote{In later sections we develop objective measures of the size of main and interaction effects.}.
+The mean table shown in \tabref{tab:TWATadpoleMeansAll} are the actual results for the tadpole experiment.  Differences among the two marginal means for the UV-B light intensity (e.g., 0.858 and 1.045) are relatively slight and, thus, are indicative of a slight UV-B light intensity main effect.  The relatively larger differences among the three marginal means for the tadpole densities (1.270, 0.816, and 0.768) are indicative of a stronger density main effect.  The marginal means can also be plotted \figrefp{fig:TWATadpoleEffectsMain} to see the main effects.\footnote{In later sections, objective measures of the size of main and interaction effects are developed.}
 
 \begin{table}[h]
   \centering
@@ -226,7 +229,7 @@ The mean table shown in \tabref{tab:TWATadpoleMeansAll} are the actual results f
     \widen{-1}{6}{Low} & $1.476$ & $0.872$ & $0.786$ & $1.045$ \\
     \hline\hline
     \widen{-1}{6}{} & $1.270$ & $0.816$ & $0.767$ & $0.951$ \\
-    \hline\hline
+    \hline
   \end{tabular}
 \end{table}
 
@@ -239,19 +242,19 @@ The mean table shown in \tabref{tab:TWATadpoleMeansAll} are the actual results f
  fitPlot(tad.lm1,which="uvb",lwd=2,cex=1.25,xlab="UV-B Light Intensity",ylab="Body Mass (g)",ylim=c(0.75,1.3),interval=FALSE)
 @
 
-The main effects can only be interpreted if the interaction effect does not exist.  This stems from the fact that, by definition, if an interaction effect exists, then the effect of one factor on the response variable depends on the level of the other factor.  Thus, a ``main effect'' differs depending on the level of the other ``main effect'' factor.  Therefore, the interpretations discussed in this section should only be made when it has already been determined that an interaction effect does not exist.
+Main effects can only be interpreted if the interaction effect does not exist.  This is because if an interaction effect exists, then the effect of one factor on the response variable depends on the level of the other factor.  Thus, a ``main effect'' differs depending on the level of the other ``main effect'' factor.  Therefore, the interpretations discussed in this section should only be made when it has already been determined that an interaction effect does not exist.
 
 \warn{The interpretation of main effects should only be made if an interaction effect does NOT exist.}
 
 \subsection{ANOVA Table}
-As is known from the one-way ANOVA, the $SS$ are not sufficient for making conclusions and they must be converted to $MS$ with the use of the $df$.  The $MS$ are then used to compute appropriate F test statistics and p-values.  First, the $df$, with the exception of the $df_{Interaction}$, are computed rather intuitively.  The total, among, and within $df$ are the same as with the one way ANOVA, namely
+As is known from the one-way ANOVA disucssion that $SS$ are not sufficient for making conclusions and they must be converted to $MS$ with the use of the $df$.  The $MS$ are then used to compute appropriate F test statistics and p-values.  First, with the exception of the $df_{Interaction}$, $df$ are computed rather intuitively.  The total, among, and within $df$ are the same as with the one way ANOVA, namely
 \begin{Itemize}
   \item $df_{Total}$ = total number of individuals - 1 = $rcn-1$
   \item $df_{Within}$ = total number of individuals - number of treatment groups = $rcn - rc = rc(n-1)$
   \item $df_{Among}$ = total number of treatment groups - 1 = $rc-1$
 \end{Itemize}
 
-The $df_{Among}$ can be partitioned as the $SS_{Among}$ was partitioned; namely, the $df_{Among} = df_{Row} + df_{Column} + df_{Interaction}$, where
+As $SS_{Among}$ was partitioned, $df_{Among} = df_{Row} + df_{Column} + df_{Interaction}$, where
 \begin{Itemize}
   \item $df_{Row}$ = number of levels of the row factor - 1 = $r-1$
   \item $df_{Column}$ = number of levels of the column factor - 1 = $c-1$
@@ -260,7 +263,7 @@ The $df_{Among}$ can be partitioned as the $SS_{Among}$ was partitioned; namely,
 
 The $MS$ are computed exactly as before, i.e., $MS = \frac{SS}{df}$.  Thus, $MS_{Row} = \frac{SS_{Row}}{df_{Row}}$ and represents the variability in the response variable that \textbf{IS} explained by the different levels of the row factor.  Similarly, $MS_{Column}$ represents the variability in the response variable that \textbf{IS} explained by the different levels of the column factor.
 
-Finally, the significance of a particular effect is defined by computing the ratio of the variability explained by that effect to the variability among individuals within each treatment group.  In other words, an F test statistic is created by dividing the corresponding $MS$ by the $MS_{Within}$ to determine the significance of a particular main or interaction effect.  For example, the F test statistic for determining the significance of the row factor is $\frac{MS_{Row}}{MS_{Within}}$.  This F test statistic will have $df_{Row}$ numerator df and $df_{Within}$ denominator df.
+Finally, the significance of a particular effect is defined by computing the ratio of the variability explained by that effect to the variability among individuals within each treatment group.  In other words, an F test statistic is created by dividing the corresponding $MS$ by $MS_{Within}$ to determine the significance of a particular main or interaction effect.  For example, the F test statistic for determining the significance of the row factor is $\frac{MS_{Row}}{MS_{Within}}$.  This F test statistic will have $df_{Row}$ numerator df and $df_{Within}$ denominator df.
 
 All results just discussed are succinctly summarized in an ANOVA table \tabrefp{tab:ANOVA2waySymb}.
 
@@ -281,6 +284,7 @@ All results just discussed are succinctly summarized in an ANOVA table \tabrefp{
 \end{table}
 
 \subsection{Interpreting the ANOVA Table}
+\vspace{-12pt}
 ``Small'' p-values in the ANOVA table are indicative of significant effects.  For example, a small p-value in the ``row'' row would indicate a significant ``row'' factor main effect.  Similarly, a small p-value in the ``interaction'' row would indicate a significant ``interaction'' between the ``row'' and ``column'' factors.
 
 The main effects can NOT and should NOT be determined if there is a significant interaction effect.  By definition, a significant interaction effect indicates that the effect of one factor depends on the level of the other factor.  Thus, an ANOVA table should be read up from the bottom to the top; i.e., first determine if there is a significant interaction effect.  Example interpretations are illustrated in \sectref{sec:ANOVA2Examples}.
@@ -291,59 +295,79 @@ If there is a significant main effect in the absence of a significant interactio
 
 
 \subsection{Two-way ANOVA in R}
+\vspace{-12pt}
 \subsubsection*{Model \& ANOVA}
-A two-way ANOVA can be fit in R with \R{lm()} similarly to fitting a one-way ANOVA.  The only real difference between fitting the two-way rather than the one-way ANOVA is that the formula entered as the first argument is slightly more complicated for the two-way ANOVA.  If an interaction term is to be fit in the two-way ANOVA then the model is of the form \R{response}$\sim$\R{factor1*factor2}.  In other words, the entire model can be formed by simply identifying the interaction term because R will automatically include the main factors as terms in the model.  The same model could also be declared with a formula of the form \R{response}$\sim$\R{factor1+factor2+factor1:factor2}\footnote{Note that the actual interaction term is indicated by separating the main effect names by a colon.}.  For example, the two-way ANOVA model with an interaction term for the tadpole example is fit with
-
-<<>>=
+\vspace{-12pt}
+The only difference between fitting a two-way rather than a one-way ANOVA is that the formula entered as the first argument in \R{lm()} is slightly more complicated.  If an interaction term is to be fit in the two-way ANOVA, then the formula is of the form \R{response}$\sim$\R{factor1*factor2}.  In other words, the entire model can be formed by simply identifying the interaction term because R will automatically include the main factors as terms in the model.  The same model could also be declared with a formula of the form \R{response}$\sim$\R{factor1+factor2+factor1:factor2}.\footnote{Note that the actual interaction term is indicated by separating the main effect names by a colon.}  The \R{lm()} result should be assigned to an object to allow further analysis.
+<<eval=FALSE>>=
 tad <- read.csv("data/Tadpoles.csv")
+@
+\vspace{-14pt}
+<<>>=
 tad$uvb <- factor(tad$uvb,levels=c("Low","High"))  # re-order levels
 tad$density <- factor(tad$density)                 # force numeric values to be levels
 tad.lm1 <- lm(mass~uvb*density,data=tad)
 @
 
-As with the \R{lm()} implementation for the one-way ANOVA, the result should be assigned to an object to allow further analysis.  The ANOVA table is obtained with \R{anova()}.  For example,
-
+The ANOVA table is extracted from this object with \R{anova()}. These results indicate that the interaction effect is insignificant (\Sexpr{kPvalue(anova(tad.lm1)["uvb:density","Pr(>F)"])}).  Because the interaction term is insignificant, the main effects can be interpreted.  The density main effect is strongly significant (\Sexpr{kPvalue(anova(tad.lm1)["density","Pr(>F)"])}) and the UV-B main effect is only weakly significant (\Sexpr{kPvalue(anova(tad.lm1)["uvb","Pr(>F)"])}).
 <<>>=
 anova(tad.lm1)
 @
 
-These results indicate that the interaction effect is insignificant (\Sexpr{kPvalue(anova(tad.lm1)["uvb:density","Pr(>F)"])}).  Because the interaction term is insignificant, the main effects can be interpreted.  The density main effect is strongly significant (\Sexpr{kPvalue(anova(tad.lm1)["density","Pr(>F)"])}) and the UV-B main effect is only weakly significant (\Sexpr{kPvalue(anova(tad.lm1)["uvb","Pr(>F)"])}).
-
 \subsubsection*{Multiple Comparisons}
-The Tukey HSD procedure can be applied to either of the two main effects with \R{glht()}.  As described for a one-way ANOVA, this function requires a saved \R{lm} object as the first argument and a \R{mcp()} function as the second argument.  The factor for which to make the comparisons should be used in \R{mcp()}.  For example, the Tukey HSD results for the highly significant density main effect in the tadpole example are obtained with
-
-<<echo=-4, warning=FALSE>>=
+\vspace{-12pt}
+<<echo=FALSE, results='hide', warning=FALSE>>=
 tad.mc1 <- glht(tad.lm1,mcp(density="Tukey"))
-summary(tad.mc1)
-confint(tad.mc1)
 tad.ci <- confint(tad.mc1)
 @
 
-These results indicate that mean mass at a density of 1 tadpole is significantly higher than the mean mass at densities of either 2 or 4 tadpoles.  There is no difference in mean mass between the 2 and 4 tadpole densities.  Furthermore, mean mass is between \Sexpr{formatC(-1*tad.ci$confint["2 - 1","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*tad.ci$confint["2 - 1","lwr"],format="f",digits=3)} higher at a density of 1 then at a density of 2 tadpoles and between \Sexpr{formatC(-1*tad.ci$confint["4 - 1","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*tad.ci$confint["4 - 1","lwr"],format="f",digits=3)} higher at a density of 1 then at a density of 4 tadpoles.
+The Tukey HSD procedure can be applied to either of the two main effects with \R{glht()}.  As described for a one-way ANOVA, this function requires a saved \R{lm()} object as the first argument and a \R{mcp()} function as the second argument.  The factor for which to make the comparisons should be used in \R{mcp()}.  For example, the Tukey HSD results for the highly significant density main effect in the tadpole example are extracted below.  These results indicate that mean mass at a density of 1 tadpole is significantly higher than the mean mass at densities of either 2 or 4 tadpoles.  There is no difference in mean mass between the 2 and 4 tadpole densities.  Furthermore, mean mass is between \Sexpr{formatC(-1*tad.ci$confint["2 - 1","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*tad.ci$confint["2 - 1","lwr"],format="f",digits=3)} g higher at a density of 1 then at a density of 2 tadpoles and between \Sexpr{formatC(-1*tad.ci$confint["4 - 1","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*tad.ci$confint["4 - 1","lwr"],format="f",digits=3)} g higher at a density of 1 then at a density of 4 tadpoles.
 
-Tukey's procedure should NOT be applied to the main effects if a significant interaction term has been found.  In this example, multiple comparisons among the levels of each main factor are appropriate.  However, if an interaction term was significant then multiple comparisons must be made between each group defined by the levels of the two factors.  This is most easily accomplished by creating a new variable that represents the levels of groups, fitting a one-way ANOVA using this new variable as the single factor, and then using the multiple comparison technique.  It is not needed in this example, but for illustrative purposes, the Tukey's procedure is applied to the interaction term in the tadpole data with
+<<eval=FALSE>>=
+tad.mc1 <- glht(tad.lm1,mcp(density="Tukey"))
+summary(tad.mc1)
+@
+\vspace{-14pt}
+<<echo=FALSE>>=
+kGLHT(tad.mc1)
+@
+\vspace{-8pt}
+<<eval=FALSE>>=
+confint(tad.mc1)
+@
+\vspace{-14pt}
+<<echo=FALSE>>=
+kGLHT(tad.mc1,type="confidence")
+@
 
-<<>>=
+Tukey's procedure should NOT be applied to the main effects if a significant interaction term has been found.  In this example, multiple comparisons among the levels of each main factor are appropriate.  However, if an interaction term was significant, then multiple comparisons must be made between each group defined by the combined levels of the two factors.  This is most easily accomplished by creating a new variable that represents the levels of groups, fitting a one-way ANOVA using this new variable as the single factor, and then using the multiple comparison technique.  It is not needed in this example, but for illustrative purposes, the Tukey's procedure is applied to the interaction term in the tadpole data as follows.
+
+<<results='hide'>>=
 tad$grps <- tad$uvb:tad$density     # create single-factor interaction variable
 tad.lm2 <- lm(mass~grps,data=tad)   # fit new one-way ANOVA model
 tad.mc2 <- glht(tad.lm2,mcp(grps="Tukey"))
 summary(tad.mc2)
 @
-
-\subsubsection*{Interaction Plot}
-An interaction plot plots the means for each combination of the levels of the two factors.  The means at the same level of one of the factor variables (i.e., the one NOT shown on the x-axis) are connected with lines.  The interaction plot is an efficient method for visualizing the presence or absence of interactions in a two-way ANOVA.  In the absence of an interaction effect, the interaction plot is still a good method for visualizing main effects.
-
-An interaction plot is created with \R{fitPlot()}\footnote{This function is basically a wrapper function for the \R{interaction.plot()} function in the base R \R{stats} package.}.  This function requires a saved two-way ANOVA \R{lm} object as its first argument.  Which factor variable is plotted on the x-axis can be changed by including a \R{change.order=TRUE} argument.  For large number of treatments the confidence intervals shown in the graph may need to be turned off with the \R{interval=FALSE} argument to create a plot that is easier to interpret.  The interaction plot for the tadpole data shown in \figref{fig:TWATadpolePlot2} was created with
-
-<<TWATadpolePlot2, fig.width=3.5, fig.height=3.5, par1=TRUE, fig.cap="Interaction plot of treatment means from raw tadpole body mass data.", fig.pos="h">>=
-fitPlot(tad.lm1,change.order=TRUE)
+\vspace{-14pt}
+<<echo=FALSE>>=
+kGLHT(tad.mc2)
 @
 
-Significance letters can be added to interaction plots with \R{addSigLetters()} as shown for a one-way ANOVA.  As the order of the letters must be entered correctly in this function it should be noted that means are plotted in the same order as the levels of the connected factor within the levels of the x-axis factor first.  You will likely use a great deal of trial-and-error to get the significance letters placed properly.
+\subsubsection*{Interaction Plot}
+\vspace{-12pt}
+An interaction plot plots the means for each combination of the levels of the two factors \figrefp{fig:TWATadpolePlot2}.  The means at the same level of one of the factor variables (i.e., the one NOT shown on the x-axis) are connected with lines.  The interaction plot is an efficient method for visualizing the presence or absence of interactions in a two-way ANOVA.  In the absence of an interaction effect, the interaction plot is still a good method for visualizing main effects.
+
+An interaction plot is created with \R{fitPlot()}.  This function requires a saved two-way ANOVA \R{lm()} object as its first argument.  Which factor variable is plotted on the x-axis can be changed by including a \R{change.order=TRUE} argument.  I prefer the factor with more levels to be the factor ploted on the x-axis.  For large number of treatments the confidence intervals shown in the graph may need to be turned off with the \R{interval=FALSE} argument to create a plot that is easier to interpret.
+
+<<TWATadpolePlot2, fig.width=3.5, fig.height=3.5, par1=TRUE, fig.cap="Interaction plot of treatment means from raw tadpole body mass data.", fig.pos="h">>=
+fitPlot(tad.lm1,change.order=TRUE,xlab="Tadpole Density",ylab="Body Mass (g)")
+@
+
+Significance letters may be added to interaction plots with \R{addSigLetters()} as shown for a one-way ANOVA.  When enter the siginificance letters, note that the means are plotted by the levels of the connected factor within the levels of the x-axis factor (in this example the means would be plotted as ``Low-1'', ``Low-2'', ``Low-4'', ``High-'', ``High-2'', ``High-4'').  You will likely need to use trial-and-error to get the significance letters placed properly.
 
 \subsubsection*{Main Effect Plot}
-In situations where the interaction effect is not significant it may be more appropriate to construct a plot of the group means for each of the main factors that were significant.  This plot is called a \emph{main effects plot} and can be constructed by including the name of the main effect variable within quotes in the \R{which=} argument in \R{fitPlot()}.  For example, main effect plots similar to those shown in \figref{fig:TWATadpoleEffectsMain} are constructed with
-
+\vspace{-12pt}
+In situations where the interaction effect is not significant it may be more appropriate to construct a \emph{main effects plot} of group means for each significant main factor \figrefp{fig:TWATadpoleEffectsMain}.  These plots are constructed by including the name of the main effect variable within quotes in \R{which=} in \R{fitPlot()}.
 <<eval=FALSE>>=
 fitPlot(tad.lm1,which="density",xlab="Tadpole Density",ylab="Body Mass (g)")
 fitPlot(tad.lm1,which="uvb",xlab="UV-B Light Intensity",ylab="Body Mass (g)")
@@ -353,15 +377,19 @@ Significance letters can also be added to these plots with \R{addSigLetters()}.
 
 
 \section{Assumptions}
-The assumptions for a two-way ANOVA are the same as they were for the one-way ANOVA (see \sectref{sect:OWAAssumptions}). Thus, the assumptions are checked in R in the same manner as described previously (i.e., \R{levenesTest()}, \R{adtest()}, \R{residPlot()}, histogram of residuals, and \R{outlierTest()}).
+\vspace{-12pt}
+The assumptions for a two-way ANOVA are the same as for a one-way ANOVA. Thus, assumptions are checked in R in the same manner as described in \sectref{sect:OWAAssumptions} (i.e., \R{levenesTest()}, \R{adtest()}, \R{residPlot()}, histogram of residuals, and \R{outlierTest()}).
 
 
 \section{Example Analyses} \label{sec:ANOVA2Examples}
+\vspace{-12pt}
 \subsection{Tadpoles: UV-B Light Intensity \& Density}
+\vspace{-12pt}
 \subsubsection*{Introduction}
-In organisms with complex life cycles, each stage - embryo, larva, and adult - often has unique ecological requirements, and the performance of each stage can influence the performance of other stages.  Changes in UV-B light intensity levels caused by changes in the ozone layer may be affecting some amphibian species.  Little work has been done to examine the effect of UV-B levels on the different stages of amphibians.
+\vspace{-12pt}
+In organisms with complex life cycles, each stage - embryo, larva, and adult - often has unique ecological requirements, and the performance of each stage can influence the performance of other stages.  Changes in UV-B light intensity levels caused by changes in the ozone layer may affect some amphibian species.  Little work has been done to examine the effect of UV-B levels on the different stages of amphibians.
 
-\cite{Smithetal2000} designed an experiment to determine the effect of different intensities of UV-B light and different tadpole densities on the body mass (i.e., an indicator of growth) of plains leopard frogs (\emph{Rana blairi}).  Primarily, the scientists hypothesized that the body mass of the tadpoles would be lower at higher UV-B light intensities.  However, they also were concerned that the effect of the UV-B light on tadpole growth might be affected by the density of tadpoles (i.e., an interaction effect\footnote{The scientists did not necessarily hypothesize that an interaction effect would exist but they wanted to make sure to detect one if it did because that would alter their conclusions about the effect of UV-B light intensity.}).  Secondarily, they hypothesized that tadpole growth would be lower at higher densities.  Thus, the statistical hypotheses to be examined were
+\cite{Smithetal2000} designed an experiment to determine the effect of different intensities of UV-B light and different tadpole densities on the body mass (i.e., an indicator of growth) of plains leopard frogs (\emph{Rana blairi}).  Primarily, the scientists hypothesized that the body mass of the tadpoles would be lower at higher UV-B light intensities.  However, they were also concerned that the effect of UV-B light on tadpole growth might be affected by the density of tadpoles (i.e., an interaction effect).\footnote{The scientists did not necessarily hypothesize that an interaction effect would exist but they wanted to make sure to detect one if it did because that would alter their conclusions about the effect of UV-B light intensity.}  Secondarily, they hypothesized that tadpole growth would be lower at higher densities.  Thus, the statistical hypotheses to be examined were
 
 \[ \begin{split}
    H_{0}&: \text{``no UV-B light intensity effect''}: \mu_{Low} = \mu_{High} \\
@@ -381,22 +409,27 @@ In organisms with complex life cycles, each stage - embryo, larva, and adult - o
 where the subscripts identify the levels of each factor (specifically defined below).
 
 \subsubsection*{Data Collection}
+\vspace{-12pt}
 A single clutch of \emph{R. blairi} eggs were collected from a Liberty, MO pond.  The eggs were divided into 36 groups of 20-30 eggs each.  These groups of eggs were randomly allocated to either high or low UV-B treatments.  The eggs were examined after eight days.  Hatchlings from this portion of the experiment were then used in a further experiment to determine the effect of density on body mass.  Thus, 15 ``containers'' were constructed that held 1, 2, or 4 hatchlings for each UV-B exposure.  Thus, there were six treatments in this experiment from the two levels of UV-B exposure and three levels of density.  Each tadpole was randomly selected for placement in one of the treatment ``containers.''  Experimental containers were filled with 450 ml of deionized water, the water was changed every three days, and the tadpoles were fed a constant ration of crushed algal flakes.  After a total of 95 days, the tadpoles were removed from the experimental containers, blotted dry, and weighed to the nearest 0.001 g with an electronic balance.
 
+\vspace{-6pt}
 \subsubsection*{Exploratory Data Analysis and Assumption Checking}
+\vspace{-12pt}
 <<echo=FALSE>>=
 tad.lev <- levenesTest(tad.lm1)
 @
 
-There appears to be within- and among-group independence as there would be no relationship between or effect of one container on any other container.  Variances among the treatments appear to be non-constant (Levene's  \Sexpr{kPvalue(tad.lev[1,"Pr(>F)"])}).  The residual plot from the initial fit of the ANOVA also indicates a slight non-constant variance (i.e., larger variances associated with higher body masses; \figref{fig:TWATadpolePlot1}).  It is evident that the assumption of equal variances is not met and a transformation should be considered.
+There appears to be within- and among-group independence as there would be no relationship between or effect of one container on any other container.  Variances among the treatments appear to be non-constant (Levene's  \Sexpr{kPvalue(tad.lev[1,"Pr(>F)"])}).  The residual plot from the initial fit of the ANOVA also indicates a slight non-constant variance \figrefp{fig:TWATadpolePlot1}.  It is evident that the assumption of equal variances is not met and a transformation should be considered.
 
 <<TWATadpolePlot1, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) from initial two-way ANOVA fit (Right).",fig.pos="h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
  residPlot(tad.lm1)
 @
 \vspace{9pt}
-No transformation was found that simultaneously resulted in all assumptions being met.  Therefore, the data will not be transformed.  In addition, the removal of two potential outliers (the largest and significant (Bonferroni p=0.0160) Studentized residual belonged to observation three in the 1:High group) in the two ``one'' density treatments \figrefp{fig:TWATadpolePlot1} did not result in equal variances.  Thus, the original raw data without any individuals removed will be analyzed but the reader is cautioned that the results may be slightly misleading because of the assumption violations.
+No transformation was found that simultaneously resulted in all assumptions being met.  Therefore, the data will not be transformed.  In addition, the removal of two potential outliers (the largest and significant (Bonferroni p=0.0160) Studentized residual belonged to observation three in the 1:High group) in the two ``one'' density treatments \figrefp{fig:TWATadpolePlot1} did not result in equal variances.  Thus, the original raw data without any individuals removed will be analyzed but the reader is cautioned that the results may be misleading because of the assumption violations.
 
+\vspace{-6pt}
 \subsubsection*{Results}
+\vspace{-12pt}
 The complete raw data were examined with a two-way ANOVA.  There was no evidence for an interaction effect (\Sexpr{kPvalue(anova(tad.lm1)["uvb:density","Pr(>F)"])}; \tabref{tab:TWATadpoleANOVA}; \figref{fig:TWATadpolePlot2}); thus, the main effects can be interpreted directly.  There appears to be a significant difference in mean tadpole body mass among the different densities (\Sexpr{kPvalue(anova(tad.lm1)["density","Pr(>F)"])}; \tabref{tab:TWATadpoleANOVA}).  There is also weak evidence of a difference between the two levels of UV-B light intensity (\Sexpr{kPvalue(anova(tad.lm1)["uvb","Pr(>F)"])}; \tabref{tab:TWATadpoleANOVA}).
 
 \begin{table}[h]
@@ -407,19 +440,17 @@ kANOVA(tad.lm1)
 @
 \end{table}
 
-Effect sizes for all pairs of levels are shown in \tabref{tab:TWATadpoleTukey}.  The mean body mass of tadpoles at a density of 1 tadpole was significantly higher than the mean body mass of tadpoles at densities of 2 and 4 tadpoles (\tabref{tab:TWATadpoleTukey}; \figref{fig:TWATadpoleEffectsMain2}).  Mean tadpole body mass was not significantly different at densities of 2 and 4 tadpoles (\tabref{tab:TWATadpoleTukey}; \figref{fig:TWATadpoleEffectsMain2}).  Finally, the mean tadpole density was also significant higher in the low UVB light intensities as compared to the high UVB light intensities.
+Effect sizes for all pairs of levels are shown in \tabref{tab:TWATadpoleTukey}.  The mean body mass of tadpoles at a density of 1 tadpole was significantly higher than the mean body mass of tadpoles at densities of 2 and 4 tadpoles (\tabref{tab:TWATadpoleTukey}; \figref{fig:TWATadpoleEffectsMain2}).  Mean tadpole body mass was not significantly different at densities of 2 and 4 tadpoles (\tabref{tab:TWATadpoleTukey}; \figref{fig:TWATadpoleEffectsMain2}).  Finally, the mean tadpole density was weakly, but not significantly, higher in the low than high UV-B light intensities.
 
 \begin{table}[h]
   \centering
   \caption{Tukey confidence intervals (95\%) for differences in pairs of means between levels of UV-B light intensity and tadpole density.}\label{tab:TWATadpoleTukey}
 <<echo=FALSE, warning=FALSE, background="white">>=
 tad.mc2 <- glht(tad.lm1,mcp(uvb="Tukey"))
-tad.mc2a <- kGLHT(tad.mc2,type="confidence")
-tad.mc2b <- matrix(tad.mc2a,nrow=1)
-rownames(tad.mc2b) <- "High - Low"
-colnames(tad.mc2b) <- names(tad.mc2a)
-tad.mc2b
-kGLHT(tad.mc1,type="confidence")
+tmp <- rbind(kGLHT(tad.mc2,type="confidence"),
+             kGLHT(tad.mc1,type="confidence"))
+rownames(tmp)[1] <- "High - Low"
+tmp
 @
 \end{table}
 
@@ -431,19 +462,20 @@ kGLHT(tad.mc1,type="confidence")
 @
 
 \subsubsection*{Conclusion}
+\vspace{-12pt}
 There is some support for the researcher's hypothesis that the body mass of tadpoles (i.e., growth rate) would be lower if the embryos were exposed to higher UV-B light intensities.  While the tadpole body mass declined significantly when density increased from 1 to 2 tadpoles, but not from 2 to 4 tadpoles, there was no indication that the effect of UV-B light intensity differed depending on the density of tadpoles.  In other words, the mean body mass of tadpoles was slightly lower at high UV-B light intensities for all densities examined.
 
 It can be concluded that the different UV-B light intensities and tadpole densities caused the differences in tadpole body mass because the individual containers of tadpoles were randomly allocated to treatment groups (or, alternatively, the tadpoles were randomly allocated to containers) and all other variables were controlled.  However, the inferences cannot be extended to a general population of containers of tadpoles because the 90 containers of tadpoles used in the experiment were not randomly chosen from the population of containers of tadpoles (or, alternatively, the tadpoles all came from one cluster of eggs).
 
 \subsubsection*{Appendix -- R commands}
+\vspace{-12pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
 > Tadpoles <- read.csv("data/Tadpoles.csv")
 > Tadpoles$uvb <- factor(Tadpoles$uvb,levels=c("Low","High"))
 > Tadpoles$density <- factor(Tadpoles$density)
-> boxplot(mass~density+uvb,data=Tadpoles,ylab="Body Mass (g)")
 > tad.lm1 <- lm(mass~uvb*density,data=Tadpoles)
-> levenesTest(tad.lm1)
 > residPlot(tad.lm1)
+> levenesTest(tad.lm1)
 > outlierTest(tad.lm1)
 > transChooser(tad.lm1)
 > anova(tad.lm1)
@@ -453,9 +485,11 @@ It can be concluded that the different UV-B light intensities and tadpole densit
 > tad.mc1d <- glht(tad.lm1,mcp(density="Tukey"))
 > summary(tad.mc1d)
 > confint(tad.mc1d)
-> fitPlot(tad.lm1,which="density",xlab="Tadpole Density",ylab="Body Mass (g)")
+> fitPlot(tad.lm1,which="density",ylim=c(0.75,1.3),interval=FALSE,
+          xlab="Tadpole Density",ylab="Body Mass (g)")
 > addSigLetters(tad.lm1,which="density",lets=c("a","b","b"),pos=c(4,1,3))
-> fitPlot(tad.lm1,which="uvb",xlab="UV-B Light Intensity",ylab="Body Mass (g)")
+> fitPlot(tad.lm1,which="uvb",ylim=c(0.75,1.3),interval=FALSE,
+          xlab="UV-B Light Intensity",ylab="Body Mass (g)")
 > addSigLetters(tad.lm1,which="uvb",lets=c("a","a"),pos=c(3,3))
 \end{Verbatim}
 
@@ -465,7 +499,7 @@ It can be concluded that the different UV-B light intensities and tadpole densit
 <<echo=FALSE>>=
  nak <- read.csv("data/NAKATPase.csv")
 @
-Sodium (Na) plays an important role in the genesis of high blood pressure, and the kidney is the principal organ that regulates the amount of sodium in the body.  The kidney contains an enzyme, Na-K-ATPase, which is essential for maintaining proper sodium levels.  If the enzyme does not function properly, then high blood pressure may result.  The activity of this enzyme has been studied in whole kidneys, even though the kidney is known to contain many functionally distinct sites.  To see whether any particular site of Na-K-ATPase activity was abnormal in hypertension, or whether this enzyme was uniformly abnormal throughout the kidney, \cite{Gargetal1985} studied Na-K-ATPase activity at different sites along the nephrons of normal rats and specially bred rats which spontaneously develop hypertension.  The sites in the kidney examined by Garg et al. were the distal collecting tubule (DCT), cortical collecting duct (CCD), and outer medullary collecting duct (OMCD).
+Sodium (Na) plays an important role in the genesis of high blood pressure, and the kidney is the principal organ that regulates the amount of sodium in the body.  The kidney contains an enzyme, Na-K-ATPase, which is essential for maintaining proper sodium levels.  If the enzyme does not function properly, then high blood pressure may result.  The activity of this enzyme has been studied in whole kidneys, even though the kidney is known to contain many functionally distinct sites.  To see whether any particular site of Na-K-ATPase activity was abnormal with hypertension, or whether this enzyme was uniformly abnormal throughout the kidney, \cite{Gargetal1985} studied Na-K-ATPase activity at different sites along the nephrons of normal rats and specially bred rats which spontaneously develop hypertension.  The sites in the kidney examined by Garg et al. were the distal collecting tubule (DCT), cortical collecting duct (CCD), and outer medullary collecting duct (OMCD).
 
 The researchers hypothesized that the level of Na-K-ATPase would be depressed at all sites in the rats with hypertension.  This translates to the authors expecting a rat type effect but not an interaction effect.  The authors were also interested in determining if there was a significant difference in the level of Na-K-ATPase activity at the different sites.  Thus, the statistical hypotheses to be examined were
 
@@ -487,7 +521,7 @@ The researchers hypothesized that the level of Na-K-ATPase would be depressed at
 where the subscripts identify the levels of each factor (specifically defined above).
 
 \subsubsection*{Data Collection}
-Twelve rats were randomly selected for each type of rat (i.e., normal rats and rats with hypertension) from all rats available in the author's laboratory.  The site of the kidney (DCT, CCD, or OMCD) where the Na-K-ATPase activity ($pmol\cdot(min\cdot mm)^{-1}$) was recorded on a rat was also randomly selected so that measurements at each location were recorded from four rats.
+Twelve rats were randomly selected for each type of rat (i.e., normal rats and rats with hypertension) from all rats available in the author's laboratory.  The site of the kidney (DCT, CCD, or OMCD) where the Na-K-ATPase activity ($pmol\cdot(min\cdot mm)^{-1}$) was recorded on a rat was also randomly selected so that measurements at each location were recorded from four rats.\footnote{A better design would have measured the Na-K-ATPase activity at all three sites from the same rates.  However, this would have violated the independence assumption and required other methods (repeated-measures or mixed-models) to analyze the data.}
 
 \subsubsection*{Exploratory Data Analysis and Assumption Checking}
 <<echo=FALSE>>=
@@ -497,7 +531,7 @@ Twelve rats were randomly selected for each type of rat (i.e., normal rats and r
  nak.out <- outlierTest(nak.lm1)
 @
 
-There does not appear to be any among-groups dependence because only one site was studied for each rat.  There also does not appear to be any within-group dependence because the rats were randomly selected for inclusion in each treatment (although there may be some question about independence in the original pool of available rats).  Variances among the treatments appear to be constant (Levene's \Sexpr{kPvalue(nak.lev[1,"Pr(>F)"])}).  The residuals from the initial model fit also appear to be normally distributed (Anderson-Darling \Sexpr{kPvalue(nak.ad$p.value)}).  Finally, the residual plot also indicates homoscedasticity with one individual appearing to have a large residual (\figref{fig:TWANaKPlot1}-Left).  However, the Bonferroni-adjusted p-value for this individual is \Sexpr{kPvalue(nak.out$bonf.p,include.p=FALSE)} indicating that it is not a significant outlier.  The raw data will be examined with a two-way ANOVA because the assumptions have been adequately met.
+There does not appear to be any among-groups dependence because only one site was studied for each rat.  There also does not appear to be any within-group dependence because the rats were randomly selected for inclusion in each treatment (although there may be some question about independence in the original pool of available rats).  Variances among the treatments appear to be constant (Levene's \Sexpr{kPvalue(nak.lev[1,"Pr(>F)"])}).  The residuals from the initial model fit also appear to be normally distributed (Anderson-Darling \Sexpr{kPvalue(nak.ad$p.value)}).  Finally, the residual plot also indicates homoscedasticity with one individual appearing to have a large residual (\figref{fig:TWANaKPlot1}-Left).  However, the Bonferroni-adjusted p-value for this individual is \Sexpr{kPvalue(nak.out$bonf.p,include.p=FALSE)}, which indicates that it is not a significant outlier.  The raw data will be examined with a two-way ANOVA without transformation because the assumptions have been adequately met.
 
 <<TWANaKPlot1, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) from initial two-way ANOVA of Na-K-ATPase activity for each treatment.", fig.pos="h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
 residPlot(nak.lm1)
@@ -538,14 +572,11 @@ Strictly speaking, causal inferences cannot be made from this study because the 
 \newpage
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> NAKATPase <- read.csv("data/NAKATPase.csv")
-> NAKATPase$site <- factor(NAKATPase$site)
-> NAKATPase$strain <- factor(NAKATPase$strain)
-> boxplot(activity~site+strain,data=NAKATPase,ylab="Na-K-ATPase Activity")
+> NAKATPase <- read.csv("NAKATPase.csv")
 > nak.lm1 <- lm(activity~site*strain,data=NAKATPase)
 > levenesTest(nak.lm1)
 > adTest(nak.lm1$residuals)
-> residPlot(nak.lm1,cex.main=0.8,loess=F)
+> residPlot(nak.lm1,cex.main=0.8,loess=FALSE)
 > outlierTest(nak.lm1)
 > anova(nak.lm1)
 > NAKATPase$group <- NAKATPase$site:NAKATPase$strain
@@ -562,7 +593,7 @@ Strictly speaking, causal inferences cannot be made from this study because the 
 
 \turnpage{80}
 \section{Summary Process}
-The following is a template for a process of fitting a two-way ANOVA model.  This template can be used initially to get a feel for how to proceed but should not be considered as a concrete process for all models.
+The following is a template for a process of fitting a two-way ANOVA model.  Consider this process as you learn to fit one-way ANOVA models, but don't consider this to be a concrete process for all models.
 
 \vspace{-10pt}
 \begin{Enumerate}
@@ -604,7 +635,7 @@ The following is a template for a process of fitting a two-way ANOVA model.  Thi
 \turnpage{48}
 \begin{hwsection}{All questions below (except where noted) should be typed, refer to tables of output, be answered with complete sentences, and include an appendix of R commands.}
 \vspace{-12pt}
-  \item \label{hwprob:LMANOVA23} \textbf{[6 pts]} For each horizontal pair of graphs below determine which effects (i.e., row factor main, column factor main, or interaction effects) are illustrated.  Provide a short explanation for each of your answers.  [NOTE: for each horizontal pair of graphs there are three levels of each factor -- some levels may appear to be missing because of overlap with other levels.]
+  \item \label{hwprob:LMANOVA23} For each horizontal pair of graphs below determine which effects (i.e., row factor main, column factor main, or interaction effects) are illustrated.  Provide a short explanation for each of your answers.  [NOTE: for each horizontal pair of graphs there are three levels of each factor -- some levels may appear to be missing because of overlap with other levels.]
 
 <<TWAHW1, echo=FALSE, results='hide', include=FALSE, fig.width=7, fig.height=3.5>>=
 rf <- rep(c("A","B","C"),times=3)
@@ -639,7 +670,7 @@ interaction.plot(cf,rf,r3,yaxt="n",type="p",pch=15:17,legend=FALSE,add=TRUE)
       \end{Enumerate}
 
 \clearpage
-  \item \label{hwprob:LMANOVA22} \textbf{[15 pts]} An experiment was conducted at a large university to determine whether two different instructional methods for teaching a beginning statistics course would yield different levels of achievement.  One instructional method involved using a self-instructional format, including a sequence of slide-tape presentations.  The other method utilized the standard lecture format.  The 100 students who registered for the course were randomly assigned to one of four sections, 25 per section, corresponding to the combinations of one of the two methods with one of two instructors (A and B).  The summarized results from identical final exams in the four sections are
+  \item \label{hwprob:LMANOVA22} An experiment was conducted at a large university to determine whether two different instructional methods for teaching a beginning statistics course would yield different levels of achievement.  One instructional method involved using a self-instructional format, including a sequence of slide-tape presentations.  The other method utilized the standard lecture format.  The 100 students who registered for the course were randomly assigned to one of four sections, 25 per section, corresponding to the combinations of one of the two methods with one of two instructors (A and B).  The summarized results from identical final exams in the four sections are
 
     \begin{Verbatim}
         Variable   Treatment     N       Mean     Median      StDev
@@ -672,7 +703,7 @@ Use these result to complete the ANOVA table below.  Recreate the table and show
       \end{center}
 
 \turnpage{200}
-  \item \label{hwprob:LMANOVA2Crayfish} \textbf{[15 pts]} \cite{NystromGraneli1997} examined the importance of intraspecific competition for food as a factor regulating survival, growth, and fecundity in noble crayfish (\emph{Astacus astacus}).  In one aspect of their research they examined factors that increased the risk of predation.  In this part of their study, the authors assumed that the number of active crayfish (i.e., not in shelters) was an indicator of the risk of predation (i.e., the crayfish are out of their shelters and are thus more vulnerable).  The authors hypothesized that the risk of predation would be greater if the level of competition was high.  The authors created two levels of competition by regulating how much food the crayfish received (with the assumption being that competition is greater with lesser food).  The two feeding regimes were labeled as FED meaning that the crayfish were fed \emph{ad libitum} and UNFED meaning that they were fed slightly less than a maintenance ration.  In addition, the authors hypothesized that the crayfish would be more active near dusk.  Thus, they also included a time of day factor that had three levels:  1200 (noon), 1700, and 1900.  The authors had a large number of crayfish available to them for this experiment.  They randomly assigned groups of 50 crayfish to each treatment.  After an acclimatization period for the crayfish, the authors recorded the number of crayfish that were active (i.e., not in shelters) in each treatment.  The results of their observations are shown in the data table below.
+  \item \label{hwprob:LMANOVA2Crayfish} \cite{NystromGraneli1997} examined the importance of intraspecific competition for food as a factor regulating survival, growth, and fecundity in noble crayfish (\emph{Astacus astacus}).  In one aspect of their research they examined factors that increased the risk of predation.  In this part of their study, the authors assumed that the number of active crayfish (i.e., not in shelters) was an indicator of the risk of predation (i.e., the crayfish are out of their shelters and are thus more vulnerable).  The authors hypothesized that the risk of predation would be greater if the level of competition was high.  The authors created two levels of competition by regulating how much food the crayfish received (with the assumption being that competition is greater with lesser food).  The two feeding regimes were labeled as FED meaning that the crayfish were fed \emph{ad libitum} and UNFED meaning that they were fed slightly less than a maintenance ration.  In addition, the authors hypothesized that the crayfish would be more active near dusk.  Thus, they also included a time of day factor that had three levels:  1200 (noon), 1700, and 1900.  The authors had a large number of crayfish available to them for this experiment.  They randomly assigned groups of 50 crayfish to each treatment.  After an acclimatization period for the crayfish, the authors recorded the number of crayfish that were active (i.e., not in shelters) in each treatment.  The results of their observations are shown below.
 
     \begin{center}
       \begin{tabular}{|c|c|c|c|c|c|c|c|cccccc|}
@@ -693,6 +724,8 @@ Use these result to complete the ANOVA table below.  Recreate the table and show
         \hline
       \end{tabular}
     \end{center}
+
+Load these data into R to answer these questions.
 
     \begin{Enumerate}
       \item Thoroughly check the assumptions for a two-way ANOVA with the original data.  If necessary, transform the data to meet the assumptions of a two-way ANOVA.  If transformed then prove that the assumptions are met on the transformed scale.  [\emph{For simplicity, do not remove any outliers from the data set.  Also, it may not be possible to find a transformation where all assumptions are met.  Thus, try to find the transformation where the critical assumptions are met.  You may check your chosen transformation with me before continuing.}]
