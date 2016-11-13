@@ -470,27 +470,27 @@ It can be concluded that the different UV-B light intensities and tadpole densit
 \subsubsection*{Appendix -- R commands}
 \vspace{-12pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> Tadpoles <- read.csv("data/Tadpoles.csv")
-> Tadpoles$uvb <- factor(Tadpoles$uvb,levels=c("Low","High"))
-> Tadpoles$density <- factor(Tadpoles$density)
-> tad.lm1 <- lm(mass~uvb*density,data=Tadpoles)
-> residPlot(tad.lm1)
-> levenesTest(tad.lm1)
-> outlierTest(tad.lm1)
-> transChooser(tad.lm1)
-> anova(tad.lm1)
-> tad.mc1u <- glht(tad.lm1,mcp(uvb="Tukey"))
-> summary(tad.mc1u)
-> confint(tad.mc1u)
-> tad.mc1d <- glht(tad.lm1,mcp(density="Tukey"))
-> summary(tad.mc1d)
-> confint(tad.mc1d)
-> fitPlot(tad.lm1,which="density",ylim=c(0.75,1.3),interval=FALSE,
+Tadpoles <- read.csv("data/Tadpoles.csv")
+Tadpoles$uvb <- factor(Tadpoles$uvb,levels=c("Low","High"))
+Tadpoles$density <- factor(Tadpoles$density)
+tad.lm1 <- lm(mass~uvb*density,data=Tadpoles)
+residPlot(tad.lm1)
+levenesTest(tad.lm1)
+outlierTest(tad.lm1)
+transChooser(tad.lm1)
+anova(tad.lm1)
+tad.mc1u <- glht(tad.lm1,mcp(uvb="Tukey"))
+summary(tad.mc1u)
+confint(tad.mc1u)
+tad.mc1d <- glht(tad.lm1,mcp(density="Tukey"))
+summary(tad.mc1d)
+confint(tad.mc1d)
+fitPlot(tad.lm1,which="density",ylim=c(0.75,1.3),interval=FALSE,
           xlab="Tadpole Density",ylab="Body Mass (g)")
-> addSigLetters(tad.lm1,which="density",lets=c("a","b","b"),pos=c(4,1,3))
-> fitPlot(tad.lm1,which="uvb",ylim=c(0.75,1.3),interval=FALSE,
+addSigLetters(tad.lm1,which="density",lets=c("a","b","b"),pos=c(4,1,3))
+fitPlot(tad.lm1,which="uvb",ylim=c(0.75,1.3),interval=FALSE,
           xlab="UV-B Light Intensity",ylab="Body Mass (g)")
-> addSigLetters(tad.lm1,which="uvb",lets=c("a","a"),pos=c(3,3))
+addSigLetters(tad.lm1,which="uvb",lets=c("a","a"),pos=c(3,3))
 \end{Verbatim}
 
 
@@ -572,22 +572,22 @@ Strictly speaking, causal inferences cannot be made from this study because the 
 \newpage
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> NAKATPase <- read.csv("NAKATPase.csv")
-> nak.lm1 <- lm(activity~site*strain,data=NAKATPase)
-> levenesTest(nak.lm1)
-> adTest(nak.lm1$residuals)
-> residPlot(nak.lm1,cex.main=0.8,loess=FALSE)
-> outlierTest(nak.lm1)
-> anova(nak.lm1)
-> NAKATPase$group <- NAKATPase$site:NAKATPase$strain
-> nak.lm2 <- lm(activity~group,data=NAKATPase)
-> nak.mc2 <- glht(nak.lm2,mcp(group="Tukey"))
-> summary(nak.mc2)
-> confint(nak.mc2)
-> fitPlot(nak.lm1,change.order=TRUE,interval=FALSE,ylab="Na-K-ATPase Activity",
-+   xlab="Strain",ylim=c(0,70),legend="topleft",cex.leg=.75)
-> addSigLetters(nak.lm1,change.order=TRUE,lets=c("a","b","a","a","c","a"),
-+   pos=c(2,2,2,4,4,4))
+NAKATPase <- read.csv("NAKATPase.csv")
+nak.lm1 <- lm(activity~site*strain,data=NAKATPase)
+levenesTest(nak.lm1)
+adTest(nak.lm1$residuals)
+residPlot(nak.lm1,cex.main=0.8,loess=FALSE)
+outlierTest(nak.lm1)
+anova(nak.lm1)
+NAKATPase$group <- NAKATPase$site:NAKATPase$strain
+nak.lm2 <- lm(activity~group,data=NAKATPase)
+nak.mc2 <- glht(nak.lm2,mcp(group="Tukey"))
+summary(nak.mc2)
+confint(nak.mc2)
+fitPlot(nak.lm1,change.order=TRUE,interval=FALSE,ylab="Na-K-ATPase Activity",
+        xlab="Strain",ylim=c(0,70),legend="topleft",cex.leg=.75)
+addSigLetters(nak.lm1,change.order=TRUE,lets=c("a","b","a","a","c","a"),
+              pos=c(2,2,2,4,4,4))
 \end{Verbatim}
 
 

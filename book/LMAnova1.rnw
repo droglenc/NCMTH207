@@ -272,16 +272,16 @@ From these results, the experimenter might want to re-run the experiment for den
 
 \subsubsection*{Appendix -- R Commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> TomatoNematode <- read.csv("TomatoNematode.csv")
-> TomatoNematode$density <- factor(TomatoNematode$density)
-> boxplot(growth~density,data=TomatoNematode,xlab="Nematode Density",ylab="Growth (inches)")
-> tn.lm <- lm(growth~density,data=TomatoNematode)
-> levenesTest(tn.lm)
-> adTest(tn.lm$residuals)
-> residPlot(tn.lm)
-> outlierTest(tn.lm)
-> anova(tn.lm)
-> fitPlot(tn.lm,xlab="Nematode Density",ylab="Growth (inches)")
+TomatoNematode <- read.csv("TomatoNematode.csv")
+TomatoNematode$density <- factor(TomatoNematode$density)
+boxplot(growth~density,data=TomatoNematode,xlab="Nematode Density",ylab="Growth (inches)")
+tn.lm <- lm(growth~density,data=TomatoNematode)
+levenesTest(tn.lm)
+adTest(tn.lm$residuals)
+residPlot(tn.lm)
+outlierTest(tn.lm)
+anova(tn.lm)
+fitPlot(tn.lm,xlab="Nematode Density",ylab="Growth (inches)")
 \end{Verbatim}
 
 \subsection{Moose-Pines I} \label{sect:OWAEx2A}
@@ -364,18 +364,18 @@ It can be concluded that the different treatments caused the differences in tree
 \subsubsection*{Appendix -- R Commands}
 \vspace{-8pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> MooseBrowse <- read.csv("MooseBrowse.csv")
-> MooseBrowse$treat <- factor(MooseBrowse$treat,
+MooseBrowse <- read.csv("MooseBrowse.csv")
+MooseBrowse$treat <- factor(MooseBrowse$treat,
    levels=c("Control","Fertilized","Clipped","Shaded"))
-> Summarize(height~treat,data=MooseBrowse)
-> hist(height~treat,data=MooseBrowse,xlab="Treatment",ylab="Tree Height (cm)")
-> mb.lm <- lm(height~treat,data=MooseBrowse)
-> levenesTest(mb.lm)
-> adTest(mb.lm$residuals)
-> residPlot(mb.lm)
-> outlierTest(mb.lm)
-> anova(mb.lm)
-> fitPlot(mb.lm,xlab="Treatment",ylab="Tree Height (cm)")
+Summarize(height~treat,data=MooseBrowse)
+hist(height~treat,data=MooseBrowse,xlab="Treatment",ylab="Tree Height (cm)")
+mb.lm <- lm(height~treat,data=MooseBrowse)
+levenesTest(mb.lm)
+adTest(mb.lm$residuals)
+residPlot(mb.lm)
+outlierTest(mb.lm)
+anova(mb.lm)
+fitPlot(mb.lm,xlab="Treatment",ylab="Tree Height (cm)")
 \end{Verbatim}
 
 
@@ -515,11 +515,11 @@ addSigLetters(tn.lm,c("a","a","b","b"),pos=c(2,4,2,4))
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> tn.mc <- glht(tn.lm, mcp(density="Tukey"))
-> summary(tn.mc)
-> confint(tn.mc)
-> fitPlot(tn.lm,xlab="Treatment",ylab="Tree Height (cm)")
-> addSigLetters(tn.lm,lets=c("a","a","b","b"),pos=c(2,4,2,4))
+tn.mc <- glht(tn.lm, mcp(density="Tukey"))
+summary(tn.mc)
+confint(tn.mc)
+fitPlot(tn.lm,xlab="Treatment",ylab="Tree Height (cm)")
+addSigLetters(tn.lm,lets=c("a","a","b","b"),pos=c(2,4,2,4))
 \end{Verbatim}
 
 \subsection{Moose-Pines II}
@@ -546,11 +546,11 @@ addSigLetters(mb.lm,c("bc","c","a","b"),pos=c(2,4,2,4))
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> mb.mc <- glht(mb.lm, mcp(treat="Tukey"))
-> summary(mb.mc)
-> confint(mb.mc)
-> fitPlot(mb.lm,xlab="Treatment",ylab="Tree Height (cm)")
-> addSigLetters(mb.lm,lets=c("bc","c","a","b"),pos=c(2,4,2,4))
+mb.mc <- glht(mb.lm, mcp(treat="Tukey"))
+summary(mb.mc)
+confint(mb.mc)
+fitPlot(mb.lm,xlab="Treatment",ylab="Tree Height (cm)")
+addSigLetters(mb.lm,lets=c("bc","c","a","b"),pos=c(2,4,2,4))
 \end{Verbatim}
 
 
@@ -679,13 +679,13 @@ Another option for choosing a possible power transformation is to rely on theory
 A power transformation can be carried out by raising the variable to the given power with the \R{\^} symbol.  A square-root transformation can also be used by including the variable in \R{sqrt()}.  A natural log transformation is accomplished by including the variable in \R{log()}.  The arcsine square root transformation requires the combined efforts of \R{asin()} and \R{sqrt()}.  The results of the transforming function should be assigned to a new object.  The following are examples of creating a transformed variable from a generic variable called $Y$:
 
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm]
-> sqrt.y <- Y^(1/2)       # square-root
-> sqrt.y <- sqrt(Y)       # also square-root
-> ln.y <- log(Y)          # natural log
-> cubert.y <- Y^(1/3)     # cube-root
-> inv.y <- Y^(-1)         # inverse
-> inv2.y <- 1/Y           # also inverse
-> asin.y <- asin(sqrt(Y)) # arcsine square-root
+sqrt.y <- Y^(1/2)       # square-root
+sqrt.y <- sqrt(Y)       # also square-root
+ln.y <- log(Y)          # natural log
+cubert.y <- Y^(1/3)     # cube-root
+inv.y <- Y^(-1)         # inverse
+inv2.y <- 1/Y           # also inverse
+asin.y <- asin(sqrt(Y)) # arcsine square-root
 \end{Verbatim}
 
 
@@ -784,23 +784,23 @@ The four methods produced significantly different mean square-root peak discharg
 \subsubsection*{Appendix -- R commands}
 \vspace{-12pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> PeakDischarge <- read.csv("PeakDischarge.csv")
-> PeakDischarge$method <- factor(PeakDischarge$method)
-> pd.lm <- lm(discharge~method,data=PeakDischarge)
-> levenesTest(pd.lm)
-> residPlot(pd.lm)
-> transChooser(pd.lm)
-> PeakDischarge$sqrtdis <- sqrt(PeakDischarge$discharge)
-> pd.lm1 <- lm(sqrtdis~method,data=PeakDischarge)
-> levenesTest(pd.lm1)
-> adTest(pd.lm1$residuals)
-> residPlot(pd.lm1)
-> outlierTest(pd.lm1)
-> anova(pd.lm1)
-> pd.mc1 <- glht(pd.lm1,mcp(method="Tukey"))
-> summary(pd.mc1)
-> fitPlot(pd.lm1,xlab="Method",ylab="sqrt(Peak Discharge)")
-> addSigLetters(pd.lm1,c("a","b","c","d"),pos=c(2,4,2,4))
+PeakDischarge <- read.csv("PeakDischarge.csv")
+PeakDischarge$method <- factor(PeakDischarge$method)
+pd.lm <- lm(discharge~method,data=PeakDischarge)
+levenesTest(pd.lm)
+residPlot(pd.lm)
+transChooser(pd.lm)
+PeakDischarge$sqrtdis <- sqrt(PeakDischarge$discharge)
+pd.lm1 <- lm(sqrtdis~method,data=PeakDischarge)
+levenesTest(pd.lm1)
+adTest(pd.lm1$residuals)
+residPlot(pd.lm1)
+outlierTest(pd.lm1)
+anova(pd.lm1)
+pd.mc1 <- glht(pd.lm1,mcp(method="Tukey"))
+summary(pd.mc1)
+fitPlot(pd.lm1,xlab="Method",ylab="sqrt(Peak Discharge)")
+addSigLetters(pd.lm1,c("a","b","c","d"),pos=c(2,4,2,4))
 \end{Verbatim}
 
 

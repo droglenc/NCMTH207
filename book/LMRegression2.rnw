@@ -866,7 +866,7 @@ The original data contained four possums from Victoria that appeared unusual rel
 
 \newpage
 \section{Summary Process}
-The following is a template for a process of fitting a one-way IVR model.  This template can be used initially to get a feel for how to proceed but should not be considered as a concrete process for all models.
+The following is a template for a process of fitting a one-way IVR model.  Consider this process as you learn to fit one-way ANOVA models, but don't consider this to be a concrete process for all models.
 
 \begin{Enumerate}
   \item Perform a thorough EDA.
