@@ -916,7 +916,7 @@ predictionPlot(lt.lm2,data.frame(tl=new),interval="prediction")
 \subsection{Forest Allometrics}
 \subsubsection*{Introduction}
 <<echo=FALSE>>=
-tm <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/TreesMiombo.csv")
+tm <- read.csv("data/TreesMiombo.csv")
 tm <- filterD(tm,!outlier)
 tm$logDBH <- log(tm$DBH)
 tm$logAGB <- log(tm$AGB)
