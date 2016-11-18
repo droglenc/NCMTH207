@@ -506,10 +506,9 @@ The actual coefficient values are useful, however, because they are estimates of
 
 \section{Multiple Comparisons} \label{sect:IVRMultComparisons}
 \subsubsection*{Comparing Slopes}
-To motivate the topics of this section, consider a change in the intent for the mirex concentration in salmon data.  Suppose that interest is in determining if the relationship between mirex concentration in the tissue and the weight of the salmon differs among the six collection years, rather than between the two species.  The following initial commands were used to partially address this interest by performing the parallel lines test and, if appropriate, the equal-intercepts test.\footnote{The second line is used to convert \var{year} from a numeric to a factor variable.}
+To motivate the topics of this section, consider a change in the intent for the mirex concentration in salmon data.  Suppose that interest is in determining if the relationship between mirex concentration in the tissue and the weight of the salmon differs among the six collection years, rather than between the two species.  The following code was used to partially address this interest by performing the parallel lines test and, if appropriate, the equal-intercepts test.\footnote{The second line is used to convert \var{year} from a numeric to a factor variable.}
 
 <<>>=
-data(Mirex)
 Mirex$year <- factor(Mirex$year)
 mirex.lma <- lm(mirex~weight*year,data=Mirex)
 anova(mirex.lma)
@@ -518,18 +517,15 @@ anova(mirex.lma)
 The interaction term p-value (\Sexpr{kPvalue(anova(mirex.lma)["weight:year","Pr(>F)"])}) provides very strong evidence that the six lines are not parallel.  Because the lines are not parallel, the equal-intercepts test (second line of output) was not interpreted.  The next question after a result such as this is to ask which lines have different slopes -- does just one line have a different slope, do all lines have different slopes, etc.  An examination of the fitted-line plot for this model \figrefp{fig:IVRSalmonYearFittedLinePlot} suggests that the first four years have similar slopes, 1996 has a shallower slope, and 1999 has an even shallower slope.  However, it is impossible to determine which slopes are significantly different from this graph.
 
 <<IVRSalmonYearFittedLinePlot, echo=FALSE, fig.cap="Fitted line plot for the salmon mirex concentration by year linear model results.", fig.pos="h">>=
- fitPlot(mirex.lma,legend="topleft",main="")
+fitPlot(mirex.lma,legend="topleft",ylim=c(0,0.55),cex.leg=0.75)
 @
 
-One method for identifying \textbf{\emph{some}} differences is to examine the t-tests for the interaction term coefficients.  It should be noted that examination of these tests is appropriate in this case because the interaction terms are added at the ``end of the model'' and their interpretation ``after all other variables are in the model'' is exactly as was intended.  Thus, for example, the coefficient test results for the ultimate model fit to these data are
-
+One method for identifying \textbf{\emph{some}} differences is to examine the t-tests for the interaction term coefficients.  It should be noted that examination of these tests is appropriate in this case because the interaction terms are added at the ``end of the model'' and their interpretation ``after all other variables are in the model'' is exactly as was intended.  The last two p-values in this list suggest that the slope for 1996 and the slope for 1999 are significantly different from the slope for 1977, the reference year.  The three p-values prior to the last two indicate that the slopes for 1982, 1986, and 1992 are not significantly different from the slope for 1977.
 <<>>=
 summary(mirex.lma)
 @
 
-The last two p-values in this list suggest that the slope for 1996 and the slope for 1999 are significantly different from the slope for 1977, the reference year.  The three p-values prior to the last two indicate that the slopes for 1982, 1986, and 1992 are not significantly different from the slope for 1977.
-
-While these results are useful for comparing slopes to 1977, they do not allow comparison of slopes between any pair of years that does not include 1977.  For example, it is impossible from these results to determine if the slopes for 1982 and 1986 differ.  Slope comparisons to other reference years can be obtained by changing the reference level for \var{year} with the \R{levels=} argument in \R{factor()}.  However, this is a tedious process because the reference level would have to be changed multiple times to obtain tests for all possible pairs of years.\footnote{The number of models that would need to be fit (or the number of ``re-levelings'') that are required is one less than the number of groups in the analysis.}
+While these results are useful for comparing slopes to 1977, they do not allow comparison of slopes between any pair of years that does not include 1977.  For example, it is impossible from these results to determine if the slopes for 1982 and 1986 differ.  Slope comparisons to other reference years can be obtained by changing the reference level for \var{year}.\footnote{Using \R{levels=} in \R{factor()}.}  However, this is a tedious process because the reference level would have to be changed multiple times to obtain tests for all possible pairs of years.\footnote{The number of models that would need to be fit (or the number of ``re-levelings'') that are required is one less than the number of groups in the analysis.}
 
 In addition to the tedium of ``re-leveling'' to see all possible comparison pairs, this process is also subject to inflation of the experimentwise error rate due to the ``multiple comparisons problem'' (see \sectref{sect:MultComp}).  Unfortunately, a method such as Tukey's HSD method does not exist for comparing multiple slopes.  Thus, a generic multiple comparison method must be used.
 
@@ -548,7 +544,7 @@ In recent years, the concept of controlling the ``false discovery rate'' (FDR) r
 \vspace{-12pt}
 \warn{Methods that control the ``false discover rate'' rather than the ``experimentwise error rate'' are more powerful than Bonferroni or sequential Bonferroni methods of multiple comparisons.}
 
-The Bonferroni, sequential Bonferroni, or FDR methods work by multiplying the individual comparison p-values by a factor greater than 1.  This ``adjusted p-value'' is then compared to the desired $\alpha$ for the desired experimentwise error rate or false discovery rate.  For example, the following results summarize the comparisons of all slopes among all pairs of groups in the mirex concentration by year analysis using the FDR control method
+The Bonferroni, sequential Bonferroni, or FDR methods work by multiplying the individual comparison p-values by a factor greater than 1.  This ``adjusted p-value'' is then compared to the desired $\alpha$ for the desired experimentwise error rate or false discovery rate.  For example, the following results summarize the comparisons of all slopes among all pairs of groups in the mirex concentration by year analysis using the FDR control method.
 
 <<echo=FALSE, background='white'>>=
 print(data.frame(compSlopes(mirex.lma)$comparisons),row.names=FALSE)
@@ -557,7 +553,7 @@ print(data.frame(compSlopes(mirex.lma)$comparisons),row.names=FALSE)
 These results (in the \var{adj.p} column) indicate that the slopes for 1977, 1982, 1986, and 1992 are all equal, the slopes for 1996 and 1999 are significantly lower than the slopes for the other four years, and the slopes from 1996 and 1999 are equal.  Thus, it appears that the slope between mirex concentration in the tissue and fish weight remained constant from 1977 to 1992, declined significantly in 1996, and remained lower in 1999.
 
 \subsubsection*{Comparing Intercepts}
-If the lines are all parallel among the groups but the intercepts are different, then the same multiple comparisons problem is encountered.  However, in this instance the differences among all pairs of intercepts can be analyzed with a slight modification of Tukey's HSD method.  The modification is that Tukey's procedure must be constructed with the so-called \emph{adjusted values}.  The adjusted values in an IVR with parallel lines are the original observed values of the response variable adjusted as if all individuals had the exact same value of the covariate.  Typical common values to be used for the covariate are 0 and the mean of the covariate.
+If the lines are all parallel among groups but the intercepts are different, then the same multiple comparisons problem is encountered.  However, the differences among all pairs of intercepts can be analyzed with a slight modification of Tukey's HSD method.  The modification is that Tukey's procedure must be constructed with the \emph{adjusted values}.  The adjusted values in an IVR with parallel lines are the original observed values of the response variable adjusted as if all individuals had the exact same value of the covariate.  Typical common values to be used for the covariate are 0 and the mean of the covariate.
 
 A conceptual visualization of this ``adjustment'' process is to fit the parallel lines model to the observed data (\figref{fig:IVRAdjustedValues}-Top Left), imagine tilting the fitted line plot from this model fit such that the fitted lines have a slope of zero (\figref{fig:IVRAdjustedValues}-Top Right), and then ``compressing'' all of the points left-to-right so that they are all centered on $X=0$ or $X=\overline{X}$ (\figref{fig:IVRAdjustedValues}-Bottom Left).  A one-way ANOVA model is then used to determine if the means of the adjusted values are different (\figref{fig:IVRAdjustedValues}-Bottom Right).\footnote{The results of this one-way ANOVA model should indicate a significant difference among mean adjusted values if the equal-intercepts hypothesis was rejected.}  More importantly, Tukey's HSD method can then be applied to the adjusted data to determine which adjusted means and, hence which intercepts, are significantly different.
 
@@ -566,7 +562,7 @@ par(mar=c(3.5,3.5,1,1), mgp=c(2.5,0.5,0),mfrow=c(2,2),las=1,tcl=-0.2)
 Mirex1 <- Subset(Mirex, year!="1996" & year!="1999")
 mirex1.lmb <- lm(mirex~weight+year,data=Mirex1)
 clrs <- chooseColors("jet",4)
-fitPlot(mirex1.lmb,main="",legend="topleft",ylab="Mirex Concentration",xlab="Weight",
+fitPlot(mirex1.lmb,legend="topleft",ylab="Mirex Concentration",xlab="Weight",
         pch=21,col=clrs,lty=1)
 Mirex1$adjmirex <- predict(mirex1.lmb,data.frame(weight=rep(0,length(Mirex1$weight)),
                                                  year=Mirex1$year))+mirex1.lmb$residuals
@@ -584,34 +580,33 @@ points(1:4,mns,pch=95,col=clrs,cex=3)
 @
 \vspace{9pt}
 As an example analysis of the intercepts, consider the mirex concentration data JUST for the four years from 1977 to 1992 (the years for which the lines were parallel).  This reduced data set is obtained from the larger data set with,
-
 <<>>=
-Mirex1 <- Subset(Mirex, year!="1996" & year!="1999")
+Mirex1 <- filterD(Mirex,!year %in% c("1996","1999"))
 @
-
-The parallel line test and equal-intercepts tests for this reduced data set are obtained with,
-
+<<echo=FALSE>>=
+mirex1.lma <- lm(mirex~weight*year,data=Mirex1)
+@
+The parallel line test and equal-intercepts tests for this reduced data set are obtained below.  The interaction term p-value (\Sexpr{kPvalue(anova(mirex1.lma)["weight:year","Pr(>F)"],digits=3)}) confirms the conclusion that the slopes for these four years are all equal.  The indicator variable p-value (\Sexpr{kPvalue(anova(mirex1.lma)["year","Pr(>F)"],digits=3)}) indicates that at least one pair of the intercepts for these four years are different.
 <<>>=
 mirex1.lma <- lm(mirex~weight*year,data=Mirex1)
 anova(mirex1.lma)
 @
 
-The interaction term p-value (\Sexpr{kPvalue(anova(mirex1.lma)["weight:year","Pr(>F)"],digits=3)}) confirms the conclusion that the slopes for these four years are all equal.  The indicator variable p-value (\Sexpr{kPvalue(anova(mirex1.lma)["year","Pr(>F)"],digits=3)}) indicates that at least one pair of the intercepts for these four years are different.  The results from the Tukey HSD method applied to the adjusted data are
+The results from the Tukey HSD method applied to the adjusted data are shown below.  These results suggest that the intercept for 1977 is significantly higher than the intercepts for the other three years. The intercepts for the other three years are all statistically equal.
 
 <<echo=FALSE, background='white', warning=FALSE>>=
 print(data.frame(compIntercepts(mirex1.lma)$comparisons),row.names=FALSE)
 @
 
-These results suggest that the intercept for 1977 is significantly higher than the intercepts for the other three years. The intercepts for the other three years are all statistically equal.  These results, combined with the parallel line test from above, suggest that the regression of mirex concentration on fish weight is coincident for 1982, 1986, and 1992.  In addition, the adjusted mean mirex concentration in 1977 is higher than the adjusted mean mirex concentration in 1982, 1986, and 1992 for all salmon weight values.  Thus, the \emph{relationship} between mirex concentration and salmon weight did not change from 1977 to the following three years but the mirex concentrations declined significantly no matter the weight of the fish.
+Thus, these results suggest that the regression of mirex concentration on fish weight is coincident for 1982, 1986, and 1992.  In addition, the adjusted mean mirex concentration in 1977 is higher than the adjusted mean mirex concentration in 1982, 1986, and 1992 for all salmon weight values.  Thus, the \emph{relationship} between mirex concentration and salmon weight did not change from 1977 to the following three years but the mirex concentrations declined significantly no matter the weight of the fish.
 
 \subsubsection*{Multiple Comparisons in R}
-The table of results for comparing all possible pairs of slopes can be obtained by submitting the saved \R{lm()} object containing the ultimate full model to \R{compSlopes()}.  This function defaults to using the preferred \R{"fdr"} method.\footnote{Oher methods of control can be used by changing the \R{control=} argument to one of \R{"bonferroni"}, \R{"holm"}, \R{"hochberg"}, or \R{"hommel"}.}  The desired level at which to control the experimentwise error or the false discovery rate can be changed by including a decimal value in the \R{alpha=} argument.  The FDR control results for the mirex concentration by year example shown above were obtained with
-
+The results from comparing all possible pairs of slopes is obtained by submitting the saved \R{lm()} object containing the ultimate full model to \R{compSlopes()}.  This function defaults to using the preferred \R{"fdr"} method.\footnote{Oher methods of control can be used by changing the \R{control=} argument to one of \R{"bonferroni"}, \R{"holm"}, \R{"hochberg"}, or \R{"hommel"}.}  The desired level at which to control the experimentwise error or the false discovery rate can be changed by including a decimal value in the \R{alpha=} argument.  The FDR control results for the mirex concentration by year example shown above were obtained with the code below.
 <<eval=FALSE>>=
 compSlopes(mirex.lma)
 @
 
-If the lines are found to be parallel and there is some difference in the intercepts then the specific differences in intercepts can be found by submitting the saved \R{lm()} object to \R{compIntercepts()}.\footnote{The \R{lm()} object should not contain an interaction term as testing the intercepts is only appropriate on parallel lines.  However, \R{compIntercepts()} will adjust, though a warning will be issued, to using a model without an interaction term if a model with an interaction term is supplied.}  This function converts the observed data to adjusted values, fits the required one-way ANOVA model, and then uses Tukey's procedure to identify any differences in adjusted values.  The Tukey HSD results shown above for the mirex concentration example for the four years between 1977 and 1992 were obtained with
+If the lines are found to be parallel and there is some difference in the intercepts, then the specific differences in intercepts can be found by submitting the saved \R{lm()} object to \R{compIntercepts()}.\footnote{The \R{lm()} object should not contain an interaction term as testing the intercepts is only appropriate on parallel lines.  However, \R{compIntercepts()} will adjust, though a warning will be issued, to using a model without an interaction term if a model with an interaction term is supplied.}  This function converts the observed data to adjusted values, fits the required one-way ANOVA model, and then uses Tukey's procedure to identify any differences in adjusted values.  The Tukey HSD results shown above for the mirex concentration example for the four years between 1977 and 1992 were obtained as shown below.\footnote{The same results could be extracted from the ultimate full model as \R{compIntercepts()} will identify the interaction term and then fit the model without it before testing the intercepts.}
 
 <<eval=FALSE>>=
 mirex1.lmb <- lm(mirex~weight+year,data=Mirex1)
@@ -627,7 +622,7 @@ The assumptions for an IVR are the same as those for an SLR -- independence, lin
 \vspace{-12pt}
 \warn{Methods for assessing the assumptions for an IVR are the same as the methods use for an SLR.}
 
-The only point of note for these analyses is that the assumptions should be assessed on the ultimate full model.  If the assumptions are not met on the ultimate full model then transformations for the response and the covariate\footnote{If the covariate is transformed then any interaction terms with the covariate should be recreated using the transformed covariate.} should be considered such that a transformed version of the ultimate full model meets the assumptions.\footnote{The methods and rules for transforming these variables in an IVR are the same as those used for an SLR (see \sectref{sect:SLRTransformations}).}  Once an ultimate full model is found where all of the assumptions are met, then it is assumed that all of the assumptions will be met for any model that is a nested subset of the ultimate full model.  In other words, the assumptions do not need to be re-checked if non-significant explanatory variables are removed from the ultimate model.
+The only point of note for these analyses is that the assumptions should be assessed on the ultimate full model.  If the assumptions are not met on the ultimate full model, then transformations for the response and the covariate\footnote{If the covariate is transformed then any interaction terms with the covariate should be recreated using the transformed covariate.} should be considered such that a transformed version of the ultimate full model meets the assumptions.\footnote{The methods and rules for transforming these variables in an IVR are the same as those used for an SLR (see \sectref{sect:SLRTransformations}).}  Once an ultimate full model is found where all of the assumptions are met, then it is assumed that all assumptions will be met for any model that is a nested subset of the ultimate full model.  In other words, the assumptions do not need to be re-checked if non-significant explanatory variables are removed from the ultimate model.
 
 \warn{The assumptions are assessed for the ultimate full model.}
 
@@ -636,12 +631,17 @@ The only point of note for these analyses is that the assumptions should be asse
 
 
 \section{Example Analyses}
+\vspace{-12pt}
 \subsection{Crab Claws}
+\vspace{-9pt}
 \subsubsection*{Introduction}
+\vspace{-9pt}
 As part of a study of the effects of predatory intertidal crab species on snail populations, \cite{YamadaBoulding1998} measured the mean closing forces and the propodus heights of the claws on several individuals of three species of crabs -- \emph{Hemigrapsus nudus}, \emph{Lophopanopeus bellus}, and \emph{Cancer productus}.  In one part of their research they hypothesized that the closing force of claws of species that were mollusc specialists (\emph{Lophopanopeus bellus} and \emph{Cancer productus}) would be greater than the closing force of claws of species that were mollusc generalists (\emph{Hemigrapsus nudus}).  The closing force would be adjusted for the size of the claw because of a suspected positive relationship between the size of the claw and the closing force.
 
+\vspace{-6pt}
 \subsubsection*{Data Collection}
-Claw closing forces were measured with an \emph{in vivo} ``calibration device'' that consisted of a piece of heavy wire bent into an $\mho$ shape and a strain gauge glued to a piece of 0.76 mm steel shimstock and hot-melt glued to the straight edge of the wire.  A linear relationship was found between the force exerted on the calibrating device by known weights and the output of the Wheatstone bridge containing the device's strain gauge.  Claw closing forces were measured by positioning the mid-dactyl and mid-propodus fingers of crab's claws into the upper and lower wire loops of the strain gauge and waiting for the crab to ``attack'' so that it closed its claw and pulled the loops together.  Crabs were selected from the three species possessing propodus heights between 4.5 and 13 mm.  Both right and left claws of 11-15 individuals per species were measured repeatedly and the highest reading per crab was recorded.
+\vspace{-9pt}
+Claw closing forces were measured with an \emph{in vivo} ``calibration device'' that consisted of a piece of heavy wire bent into an $\mho$ shape and a strain gauge glued to a piece of 0.76 mm steel shimstock and hot-melt glued to the straight edge of the wire.  A linear relationship was found between the force exerted on the calibrating device by known weights and the output of the Wheatstone bridge containing the device's strain gauge.  Claw closing forces were measured by positioning the mid-dactyl and mid-propodus fingers of a crab's claws into the upper and lower wire loops of the strain gauge and waiting for the crab to ``attack'' so that it closed its claw and pulled the loops together.  Crabs were selected from the three species possessing propodus heights between 4.5 and 13 mm.  Both right and left claws of 11-15 individuals per species were measured repeatedly and the highest reading per crab was recorded.
 
 The data file to be analyzed consists of the following variables and their meanings:
 \begin{Itemize}
@@ -649,17 +649,19 @@ The data file to be analyzed consists of the following variables and their meani
   \item \var{propodus}: measurement of claw propodus height (mm).
   \item \var{force}: measurement of claw closing force.
 \end{Itemize}
-In the models, \var{spec} will be converted to indicator variables of the form \var{spechn} and \var{speclb}.  In addition, interaction variables between \var{propodus} and the indicator variables from \var{spec} will be constructed.
+In the models, \var{spec} will be converted to indicator variables of the form \var{spechn} (=1 if \emph{Hemigrapsus nudus}, =0 otherwise) and \var{speclb} (=1 if \emph{Lophopanopeus bellus}, =0 otherwise).  In addition, interaction variables between \var{propodus} and the indicator variables from \var{spec} will be constructed.
 
+\vspace{-6pt}
 \subsubsection*{EDA \& Assumption Checking}
+\vspace{-9pt}
 <<echo=FALSE>>=
- CrabClaw <- read.csv("data/CrabClaw.csv")
- crab.lm1 <- lm(force~propodus*spec,data=CrabClaw)
- crab.ad1 <- adTest(crab.lm1$residuals)
- CrabClaw$sqrt.force <- sqrt(CrabClaw$force)
- crab.lm2 <- lm(sqrt.force~propodus*spec,data=CrabClaw)
- crab.ad2 <- adTest(crab.lm2$residuals)
- crab.out2 <- outlierTest(crab.lm2)
+CrabClaw <- read.csv("data/CrabClaw.csv")
+crab.lm1 <- lm(force~propodus*spec,data=CrabClaw)
+crab.ad1 <- adTest(crab.lm1$residuals)
+CrabClaw$sqrt.force <- sqrt(CrabClaw$force)
+crab.lm2 <- lm(sqrt.force~propodus*spec,data=CrabClaw)
+crab.ad2 <- adTest(crab.lm2$residuals)
+crab.out2 <- outlierTest(crab.lm2)
 @
 The initial ultimate full model fit to these data was
 \[ \mu_{force|propodus,spec} = \alpha + \beta_{1}propodus  + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
@@ -669,8 +671,8 @@ The fit of this model exhibited a small heteroscedasticity \figrefp{fig:IVRCrabR
 \[ \mu_{sqrt(force)|\cdots} = \alpha + \beta_{1}propodus + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
 
 <<IVRCrabResidPlot, echo=FALSE, fig.cap="Residual plots (Left) and histograms of residuals (Right) from the fit of the ultimate model on the untransformed data (Top) and the transformed data (Bottom).", fig.pos="h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
-residPlot(crab.lm1)
-residPlot(crab.lm2)
+residPlot(crab.lm1,legend="bottomleft",cex.leg=0.75)
+residPlot(crab.lm2,cex.leg=0.75)
 @
 
 \subsubsection*{Results}
@@ -693,8 +695,8 @@ compSlopes(crab.lm2)
 \end{table}
 
 <<echo=FALSE>>=
- CrabClaw1 <- Subset(CrabClaw,spec!="hn")
- crab2.lm1 <- lm(sqrt.force~propodus*spec,data=CrabClaw1)
+CrabClaw1 <- filterD(CrabClaw,spec!="hn")
+crab2.lm1 <- lm(sqrt.force~propodus*spec,data=CrabClaw1)
 @
 The \emph{Hemigrapsus nudus} crabs were removed from the data set to determine if the intercepts of the parallel relationships between the square root of closing force and propodus height differed between the \emph{Cancer productus} and \emph{Lophopanopeus bellus} crabs.  These results confirmed that these two species have equal slopes (\Sexpr{kPvalue(anova(crab2.lm1)["propodus:spec","Pr(>F)"])}; \tabref{tab:IVRCrabTests2}) and that they have equal-intercepts (\Sexpr{kPvalue(anova(crab2.lm1)["spec","Pr(>F)"])}; \tabref{tab:IVRCrabTests2}).  A visual of the model fit is shown in \figref{fig:IVRCrabFittedLinePlot1}.
 
@@ -707,7 +709,7 @@ kANOVA(crab2.lm1)
 \end{table}
 
 <<IVRCrabFittedLinePlot1, echo=FALSE, fig.cap="Fitted line plot from the fit of the ultimate model on the transformed data.", fig.pos="h">>=
- fitPlot(crab.lm2,main="",legend="topleft",xlab="Propodus Height",ylab="Sqrt(Closing Force)")
+fitPlot(crab.lm2,legend="topleft",xlab="Propodus Height",ylab="Sqrt(Closing Force)")
 @
 
 \subsubsection*{Conclusion}
@@ -715,7 +717,7 @@ These results indicate that the relationship between square root closing force a
 
 \subsubsection*{Appendix -- R commands}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
-> CrabClaw <- read.csv("data/CrabClaw.csv")
+> CrabClaw <- read.csv("CrabClaw.csv")
 > crab.lm1 <- lm(force~propodus*spec,data=CrabClaw)
 > adTest(crab.lm1$residuals)
 > outlierTest(crab.lm1)
@@ -726,39 +728,42 @@ These results indicate that the relationship between square root closing force a
 > adTest(crab1.lm1$residuals)
 > outlierTest(crab1.lm1)
 > residPlot(crab1.lm1)
-> fitPlot(crab1.lm1,main="",legend="topleft",xlab="Propodus Height",ylab="Sqrt(Closing Force)")
+> fitPlot(crab1.lm1,legend="topleft",xlab="Propodus Height",ylab="Sqrt(Closing Force)")
 > anova(crab1.lm1)
 > compSlopes(crab1.lm1)
-> CrabClaw1 <- Subset(CrabClaw,spec!="hn")
+> CrabClaw1 <- filterD(CrabClaw,spec!="hn")
 > crab2.lm1 <- lm(sqrt.force~propodus*spec,data=CrabClaw1)
 > anova(crab2.lm1)
 \end{Verbatim}
 
 
 \subsection{Possum Morphometrics}
+\vspace{-9pt}
 \subsubsection*{Introduction}
+\vspace{-9pt}
 Many Australian mammals, from a wide range of taxonomic groups, exhibit variation in external morphology throughout their geographic distributions.  A notable example is the common brushtail possum (\emph{Trichosurus vulpecula}), which is characterized by marked changes in coat color and body size throughout its distribution in Australia.  Variations in the closely related mountain brushtail possum (\emph{Trichosurus caninus}) have been relatively unstudied.  \cite{Lindenmayeretal1995} reported on the results of a study of the external morphology of the mountain brushtail possum from throughout its known geographic range.  One aspect of their study was to determine if the relationship between the total length and foot length of a possum differed between possums captured near Victoria and those captured elsewhere.
 
 \subsubsection*{Data Collection}
+\vspace{-9pt}
 \cite{Lindenmayeretal1995} examined morphometric measurements on each of 104 mountain brushtail possums (\emph{Trichosurus caninus gilby}), trapped at seven sites from Southern Victoria to central Queensland in October and November 1993.\footnote{These data are from \R{data(possum)} in the \R{DAAG} package.}  Possums were trapped in large wire cage traps baited with apple.  A total of 50 traps was used at each site.  All animals captured were sedated with ``Zoletil'' to facilitate the collection of a range of morphometric measurements.  Animals were released at the point of capture when recovery was complete.  Several morphometric measurements were made but only the following variables will be used in this analysis:
 \begin{Itemize}
   \item \var{Pop}: a factor with levels \var{Vic} for capture near Victoria and \var{other} for capture near New South Wales or Queensland.
   \item \var{totlngth}: measurement of the total length of the animal (cm).
   \item \var{footlgth}: measurement of the length of the food (mm).
 \end{Itemize}
-The \var{Pop} variable will be ``re-leveled'' so that possums captured near Victoria will serve as the reference group.  In addition, in the models, \var{Pop} will be converted to an indicator variable of the form \var{Popother} and an interaction variable between \var{footlgth} and the indicator variable will be constructed.
-
-The foot length measurement was missing for one individual (original observation 41) in the original data file.  Because of this, this individual was removed from data file for all subsequent analyses.
+The \var{Pop} variable will be ``re-leveled'' so that possums captured near Victoria will serve as the reference group.  In addition, in the models, \var{Pop} will be converted to an indicator variable of the form \var{Popother} (=1 if not from Victoria, =0 if from Victoria) and an interaction variable between \var{footlgth} and the indicator variable will be constructed.  Individual 41 was removed from this analysis because the the foot length measurement was missing.
 
 \subsubsection*{EDA \& Assumption Checking}
+\vspace{-9pt}
 <<echo=FALSE>>=
- library(DAAG)
- data(possum)
- possum$Pop <- factor(possum$Pop,levels=c("Vic","other"))
- possum1 <- Subset(possum,!is.na(totlngth) & !is.na(footlgth),select=c("Pop","totlngth","footlgth"))
- pos.lm1 <- lm(totlngth~footlgth*Pop,data=possum1)
- pos.ad1 <- adTest(pos.lm1$residuals)
- pos.out1 <- outlierTest(pos.lm1)
+library(DAAG)
+data(possum)
+possum$Pop <- factor(possum$Pop,levels=c("Vic","other"))
+possum1 <- Subset(possum,!is.na(totlngth) & !is.na(footlgth),
+                  select=c("Pop","totlngth","footlgth"))
+pos.lm1 <- lm(totlngth~footlgth*Pop,data=possum1)
+pos.ad1 <- adTest(pos.lm1$residuals)
+pos.out1 <- outlierTest(pos.lm1)
 @
 The initial ultimate full model fit to these data was
 \[ \mu_{totlngth|footlgth,Pop} = \alpha + \beta_{1}footlgth + \delta_{1}Popother + \gamma_{1}Popother*footlgth  \]
@@ -766,17 +771,18 @@ The initial ultimate full model fit to these data was
 The fit of this model is largely linear and homoscedastic \figrefp{fig:IVROpRFLP1} with approximately normal residuals (Anderson-Darling \Sexpr{kPvalue(pos.ad1$p)}) and no detectable outliers (outlier test \Sexpr{kPvalue(pos.out1$bonf.p)}).  However, there are several points that ``stand out'' from the main cluster \figrefp{fig:IVROpRFLP1} -- individual 31 had a total length much longer than would be expected given its foot length, individuals 39 and 43 each had total lengths much shorter than would be expected given their foot lengths, and individual 41 had a foot length and total length shorter than most of the individuals from Victoria.  It should be noted that all of these individuals are from Victoria and that three of the individuals are the shortest three possums recorded (in terms of total length).  It is impossible to tell if any of these points are in error; however, it is possible that they have a heavy influence on the fitted line for Victoria.  The combined influence of these points will be examined in the results.
 
 <<IVROpRFLP1, echo=FALSE, fig.cap="Residual plot (Left) and fitted line plot (Right) from the fit of the ultimate model on the untransformed possum data.  Four individuals discussed during assumption checking are highlighted.", fig.pos="h">>=
- residPlot(pos.lm1,inclHist=FALSE)
- highlight(rstudent(pos.lm1)~pos.lm1$fitted.values,pts=c(31,39,41,43),col="black")
- fitPlot(pos.lm1,main="",xlab="Foot Length",ylab="Total Length",legend="topleft")
- highlight(possum1$totlngth~possum1$footlgth,pts=c(31,39,41,43),col="black")
+residPlot(pos.lm1,inclHist=FALSE)
+highlight(rstudent(pos.lm1)~pos.lm1$fitted.values,pts=c(31,39,41,43),col="black")
+fitPlot(pos.lm1,xlab="Foot Length",ylab="Total Length",legend="topleft")
+highlight(possum1$totlngth~possum1$footlgth,pts=c(31,39,41,43),col="black")
 @
 
 \subsubsection*{Results}
+\vspace{-9pt}
 <<echo=FALSE>>=
 pos.lm2 <- lm(totlngth~footlgth+Pop,data=possum1)
 @
-Possums from Victoria and possums from other locations had similar slopes for the relationship between total length and foot length (parallel lines test \Sexpr{kPvalue(anova(pos.lm1)["footlgth:Pop","Pr(>F)"])}; \tabref{tab:IVROpTest1}).  The estimated common slope represents an average \Sexpr{formatC(confint(pos.lm2)["footlgth",1],format="f",digits=2)} to \Sexpr{formatC(confint(pos.lm2)["footlgth",2],format="f",digits=2)} cm increase in total length for a 1 mm increase in foot length.  Assuming parallel lines, the relationship between total length and foot length for possums from Victoria and those from other areas had different intercepts (equal-intercepts test \Sexpr{kPvalue(anova(pos.lm1)["Pop","Pr(>F)"])}; \tabref{tab:IVROpTest1}).  Thus, the mean total length adjusted to a common foot length was between \Sexpr{formatC(-1*confint(pos.lm2)["Popother",2],format="f",digits=2)} and \Sexpr{formatC(-1*confint(pos.lm2)["Popother",1],format="f",digits=2)} cm less for possums from other locations than for possums from Victoria.
+Possums from Victoria and possums from other locations had similar slopes for the relationship between total length and foot length (parallel lines test \Sexpr{kPvalue(anova(pos.lm1)["footlgth:Pop","Pr(>F)"])}; \tabref{tab:IVROpTest1}).  The estimated common slope represents an average \Sexpr{formatC(confint(pos.lm2)["footlgth",1],format="f",digits=2)} to \Sexpr{formatC(confint(pos.lm2)["footlgth",2],format="f",digits=2)} cm increase in total length for a 1 mm increase in foot length.  Assuming parallel lines, the relationship between total length and foot length for possums from Victoria and those from other areas had different intercepts (equal-intercepts test \Sexpr{kPvalue(anova(pos.lm1)["Pop","Pr(>F)"])}; \tabref{tab:IVROpTest1}).  Thus, the mean total length adjusted to a common foot length was between \Sexpr{formatC(confint(pos.lm2)["Popother",1],format="f",digits=2)} and \Sexpr{formatC(confint(pos.lm2)["Popother",2],format="f",digits=2)} cm less for possums from other locations than for possums from Victoria.
 
 \begin{table}[h]
   \centering
@@ -796,21 +802,22 @@ can be used to predict the total length of an possum given a measurement of the 
   \caption{Predicted total lengths, for the reduced model using all observations, for possums from both locations with foot lengths of 65 and 70 mm.}\label{tab:IVROpPreds1}
 <<echo=FALSE, background="white">>=
 fls <- c(65,65,70,70)
-p1 <- predict(pos.lm2,data.frame(footlgth=fls,Pop=c("Vic","other","Vic","other")))
-print(data.frame(footlgth=fls,p1),row.names=FALSE)
+tmp <- data.frame(footlgth=fls,Pop=c("Vic","other","Vic","other"))
+p1 <- predict(pos.lm2,tmp)
+print(data.frame(tmp,p1),row.names=FALSE)
 @
 \end{table}
 
 <<echo=FALSE>>=
- possum2 <- possum1[-c(31,39,41,43),]
- pos.lm3 <- lm(totlngth~footlgth*Pop,data=possum2)
+possum2 <- possum1[-c(31,39,41,43),]
+pos.lm3 <- lm(totlngth~footlgth*Pop,data=possum2)
 @
 
 Removal of the four individuals identified in assumption checking did not change the overall result of a parallel relationship ($p=0.4072$) with unequal-intercepts ($p<0.00005$; \figref{fig:IVROpFLP2}).  However, the common slope was estimated to be slightly (though likely not significantly) steeper at between 0.70 and 1.20 cm increase in total length for a 1 mm increase in foot length.  In addition, the difference in adjusted mean total lengths decreased slightly (though not significantly) to between 4.36 and 6.82 cm.  These results did not substantially alter the predictions for the 65 and 70 mm foot length individuals \tabrefp{tab:IVROpPreds2}.
 
 <<IVROpFLP2, echo=FALSE, fig.scap="Fitted line plot from the fit of the ultimate model on the untransformed possum data with the four observation removed from the analysis.",fig.cap="Fitted line plot from the fit of the ultimate model on the untransformed possum data with the four observation flagged in \\figref{fig:IVROpRFLP1} removed from the analysis.  The dashed line represents the fitted line with the four individuals not removed.", fig.pos="h">>=
- fitPlot(pos.lm1,main="",xlab="Foot Length",ylab="Total Length",legend="topleft")
- abline(coef=c(coef(pos.lm3)[1],coef(pos.lm3)[2]),lty=2,lwd=2,col="blue")
+fitPlot(pos.lm1,xlab="Foot Length",ylab="Total Length",legend="topleft")
+abline(coef=c(coef(pos.lm3)[1],coef(pos.lm3)[2]),lty=2,lwd=2,col="blue")
 @
 
 \begin{table}[h]
@@ -841,7 +848,7 @@ The original data contained four possums from Victoria that appeared unusual rel
 > outlierTest(op2.lm1)
 > residPlot(op2.lm1,inclHist=FALSE)
 > highlight(rstudent(op2.lm1)~op2.lm1$fitted.values,pts=c(31,39,41,43),col="black")
-> fitPlot(op2.lm1,main="",xlab="Foot Length",ylab="Total Length",legend="topleft")
+> fitPlot(op2.lm1,xlab="Foot Length",ylab="Total Length",legend="topleft")
 > highlight(totlngth~footlgth,data=possum1,pts=c(31,39,41,43),col="black")
 > anova(op2.lm1)
 > op2.lm2 <- lm(totlngth~footlgth+Pop,data=possum1)
@@ -853,7 +860,7 @@ The original data contained four possums from Victoria that appeared unusual rel
 > adTest(op3.lm1$residuals)
 > outlierTest(op3.lm1)
 > residPlot(op3.lm1)
-> fitPlot(op3.lm1,main="",xlab="Foot Length",ylab="Total Length",legend="topleft")
+> fitPlot(op3.lm1,xlab="Foot Length",ylab="Total Length",legend="topleft")
 > anova(op3.lm1)
 > op3.lm2 <- lm(totlngth~footlgth+Pop)
 > compIntercepts(op3.lm2)
@@ -896,7 +903,7 @@ The following is a template for a process of fitting a one-way IVR model.  Consi
     \end{Itemize}
   \item Interpret the F-test for the factor variable on the ANOVA table from the fit of the ultimate full model (i.e., equal-intercepts test).
     \begin{Itemize}
-      \item If the intercepts are NOT equal then determine which mean adjusted values (i.e., intercepts) are different [\R{compIntercepts()}].  SKIP to last step
+      \item If the intercepts are NOT equal then determine which mean adjusted values (i.e., intercepts) are different [\R{compIntercepts()}].
       \item If the intercepts are equal (i.e., coincident lines) then continue with next step.
     \end{Itemize}
   \item Interpret the F-test for the covariate on the ANOVA table from the fit of the ultimate full model to determine if there is a significant relationship between the response and the covariate.
@@ -909,7 +916,7 @@ The following is a template for a process of fitting a one-way IVR model.  Consi
 
 
 \section{ANCOVA}
-Analysis of covariance (ANCOVA) is a term that is used to describe linear models that contain both factor and quantitative explanatory variables \citep{Fox1997}.  Traditionally, the term ANCOVA has been restricted to the situation where it is assumed that the regression of the response on the explanatory variable has the same slope among levels of the factor variable.  With this definition, the ANCOVA model is a subset of the more general IVR models constructed in the previous sections of this chapter.  You should be aware when reading the literature because some authors use ANCOVA in the same way that IVR is used in this book.  However, in this book, an IVR will refer to all models that have both factor and quantitative explanatory models and ANCOVA will refer to all IVR models where it is assumed that the regression slopes are equal.\footnote{That is, the model does not contain an interaction term among indicator variables and the quantitative explanatory variable.}
+Analysis of covariance (ANCOVA) is a term that is used to describe linear models that contain both factor and quantitative explanatory variables \citep{Fox1997}.  Traditionally, the term ANCOVA has been restricted to the situation where it is assumed that the regression of the response on the explanatory variable has the same slope among levels of the factor variable.  With this definition, the ANCOVA model is a subset of the more general IVR models constructed in the previous sections of this chapter.  You should be aware when reading the literature because some authors use ANCOVA in the same way that IVR is used in this book.  However, in this book, an IVR will refer to all models that have both factor and quantitative explanatory models and ANCOVA will refer to all IVR models where it is assumed that the slopes are equal.\footnote{That is, the model does not contain an interaction term among indicator variables and the quantitative explanatory variable.}
 
 \defn{ANCOVA model}{A subset of IVR models where the submodels have equal slopes.}
 
@@ -920,7 +927,7 @@ The derivation of the name -- analysis of covariance -- seems to stem from the f
 \vspace{-12pt}
 \warn{An ANCOVA tests for difference in means of the response variable among levels of the factor variable after adjusting for the relationship between the response variable and the covariate.}
 
-The process of an ANCOVA consists of two steps already discussed in previous sections.  First, it must be shown with a parallel lines test (see \sectref{sect:IVRPartialFTests}) that the slopes for all groups are equal.  If not, a strictly defined ANCOVA cannot be completed.  Second, if it is shown that the groups have parallel lines, then an equal-intercepts test (see \sectref{sect:IVRPartialFTests}) must be used to determine if the level means of the response variable adjusted for the covariate are all equal or not.  If not, then a Tukey's HSD test can be conducted to determine which adjusted means are significantly different.  The traditional ANCOVA uses means of the response variable that are adjusted to the mean of the covariate.\footnote{The value that the response variables are adjusted to is not important when looking at the differences.  However, it may be important when presenting summaries (e.g., the mean) of the adjusted values.  To adjust the values to the mean of the covariate the \R{common.cov=} argument in the \R{compIntercepts()} function should be set to \R{mean(x)}, where $x$ is replaced with the name of the covariate.}  The possum example above is an example of an ANCOVA because it was shown that the lines had equal slopes, whereas the crab example above is not an example of an ANCOVA because the regression slopes were unequal.
+The process of an ANCOVA consists of two steps already discussed in previous sections.  First, it must be shown with a parallel lines test (see \sectref{sect:IVRPartialFTests}) that the slopes for all groups are equal.  If not, a strictly defined ANCOVA cannot be completed.  Second, if it is shown that the groups have parallel lines, then an equal-intercepts test (see \sectref{sect:IVRPartialFTests}) is used to determine if the level means of the response variable adjusted for the covariate are all equal or not.  If not, then a Tukey's HSD test is conducted to determine which adjusted means are significantly different.  The traditional ANCOVA uses means of the response variable that are adjusted to the mean of the covariate.\footnote{The value that the response variables are adjusted to is not important when looking at the differences.  However, it may be important when presenting summaries (e.g., the mean) of the adjusted values.  To adjust the values to the mean of the covariate the \R{common.cov=} argument in the \R{compIntercepts()} function should be set to \R{mean(x)}, where $x$ is replaced with the name of the covariate.}  The possum example above is an example of an ANCOVA because it was shown that the lines had equal slopes, whereas the crab example above is not an example of an ANCOVA because the slopes were unequal.
 
 \warn{A traditional ANCOVA requires that all groups in the data have equal slopes.}
 
@@ -930,12 +937,14 @@ The process of an ANCOVA consists of two steps already discussed in previous sec
 The ANCOVA works on the premise that if the relationship between the response variable and the covariate is represented by parallel lines for the groups, then the difference between the groups adjusted for this relationship is represented by the difference in intercepts between the groups.  In other words, if the groups have parallel lines but different intercepts, then the difference in the intercepts is a constant difference at all values of the covariate; thus, the difference in intercepts is the difference in the value of the response variable adjusted to any value of the covariate.
 
 \subsection{ANCOVA in ecology}
+\vspace{-9pt}
 An ANCOVA may be appropriate in any situation where the relationship between a quantitative explanatory variable and the quantitative response variable is thought to increase the variance of the response variable and, thus, mask real differences among the groups or to cause a separation among the groups that is not due to the groups themselves.  For example, researchers studying the effect of a treatment on the weight gain (i.e., response) of an animal may be worried that the initial size of the animals (i.e., covariate) results in an increase in variance of the weight gain.  In another example, researchers examining the number of eggs produced by a species of fish (i.e., response) in two lakes may be concerned that the observed difference in number of eggs is a result of one lake having larger fish (i.e., size is the covariate) than the other lake, rather than a ``real'' difference in number of eggs between the lakes.  Concerns such as these are so common in ecological and biological research that many researchers will compute a ratio of the response variable to the covariate\footnote{The use of ratios will be discussed in subsequent examples.  However, the use of ratios has been criticized or the use of ANCOVA is superior to ratios by \cite{LeCren1951}, \cite{Atchleyetal1976}, \cite{PackardBoardman1988}, \cite{Jacksonetal1990}, \cite{RaubenheimerSimpson1992}, \cite{Albrechtetal1993}, \cite{GarciaBerthouetal1993}, \cite{Raubenheimer1995}, \cite{BeaupreDunham1995}, and FISHERIES BOOK.} or construct residuals from a common line regression\footnote{The use of residuals was popularized by \cite{Jakob1996} but has been convincingly criticized by \cite{Maxwelletal1985}, \cite{HayesShonkwiler1996}, \cite{Smith1999}, and \cite{GarciaBerthoud2001}.} before using a one-way ANOVA to test for differences among the treatments or groups.  The fallacy of creating these ratios and the advantage of properly using an ANCOVA (or an IVR in general) is illustrated in this section with these two hypothetical situations.
 
 \subsubsection*{Hypothetical Problem I}
-Suppose that a researcher was interested in the effect of two temperatures on the mean weight gain of a particular type of fish.  Specifically, this researcher tested the following alternative hypothesis: $H_{A}: \mu_{8}\neq\mu_{10}$ where the subscripts represent temperatures.  The researcher measured the weight of each fish before the experiment began (hereafter, called initial body weight) so that fish of the same general size could be ``paired.''  One of each ``pair'' of fish was then randomly allocated to the $8^{o}$C treatment and the other was allocated to the $10^{o}$C treatment.  There were nine fish in each treatment for a total of 18 fish in the experiment.  After a prescribed period of time the weight gain of each fish was recorded (i.e., difference in weight from the beginning to the end of the experimental period).
+\vspace{-9pt}
+Suppose that a researcher was interested in the effect of two temperatures on the mean weight gain of a particular type of fish.  Specifically, this researcher tested the following alternative hypothesis: $H_{A}: \mu_{8}\neq\mu_{10}$, where the subscripts represent temperatures.  The researcher measured the weight of each fish before the experiment began (hereafter, called initial body weight) so that fish of the same general size could be ``paired.''  One of each ``pair'' of fish was then randomly allocated to the $8^{o}$C treatment and the other was allocated to the $10^{o}$C treatment.  There were nine fish in each treatment for a total of 18 fish in the experiment.  After a prescribed period of time the weight gain of each fish was recorded (i.e., difference in weight from the beginning to the end of the experimental period).
 
-It may seem reasonable that the effect of initial weight was ``handled'' by pairing fish of comparable size at the beginning of the experiment.  If this is believed, then the analyst would likely proceed with a one-way ANOVA.\footnote{A two-sample t-test would also work in this situation because there are only two treatments.  Recall, thought, that it was shown in the \chapref{chap:LMANOVA1} that a one-way ANOVA for two groups is the same as a two-sample t-test.}  A means plot (\figref{fig:IVRANCOVAEx1Plot1}-Left) and the one-way ANOVA \tabrefp{tab:IVRANCOVAEx1Res1} both indicate that there is no significant difference in weight gain between the two treatments.  However, if weight gain is plotted against initial weight (\figref{fig:IVRANCOVAEx1Plot1}-Right) then it is immediately seen that the fish in the $8^{o}$C treatment always gained more weight then the paired fish at the $10^{o}$C treatment.  Thus, the conclusion of no effect of temperature from the initial ANOVA analysis does not fit the intuitive conclusion made from examining the data in \figref{fig:IVRANCOVAEx1Plot1}-Right.
+It may seem reasonable that the effect of initial weight was ``handled'' by pairing fish of comparable size at the beginning of the experiment.  If this is believed, then the analyst would likely proceed with a one-way ANOVA.\footnote{A two-sample t-test would also work in this situation because there are only two treatments.  Recall, though, that it was shown in the \chapref{chap:LMANOVA1} that a one-way ANOVA for two groups is the same as a two-sample t-test.}  A means plot (\figref{fig:IVRANCOVAEx1Plot1}-Left) and the one-way ANOVA \tabrefp{tab:IVRANCOVAEx1Res1} both indicate that there is no significant difference in weight gain between the two treatments.  However, if weight gain is plotted against initial weight (\figref{fig:IVRANCOVAEx1Plot1}-Right), then it is immediately seen that the fish in the $8^{o}$C treatment always gained more weight then the paired fish at the $10^{o}$C treatment.  Thus, the conclusion of no effect of temperature from the initial ANOVA analysis does not fit the intuitive conclusion made from examining the data in \figref{fig:IVRANCOVAEx1Plot1}-Right.
 
 \begin{table}[h]
   \centering
@@ -950,7 +959,7 @@ It may seem reasonable that the effect of initial weight was ``handled'' by pair
 
 <<IVRANCOVAEx1Plot1, echo=FALSE, fig.cap="Means plot for the mean weight gain by temperature treatment (Left) and scatterplot of weight gain versus initial weight by temperature treatment (Right).", fig.pos="h">>=
  grp.levs <- levels(d$group)
- fitPlot(lma,xlab="Temperature Treatment",ylab="Weight Gain",ylim=c(20,37),main="")
+ fitPlot(lma,xlab="Temperature Treatment",ylab="Weight Gain",ylim=c(20,37))
  plot(wt.gain~wt.init,data=d,pch=19,col=as.numeric(d$group),xlab="Initial Weight",ylab="Weight Gain",ylim=c(20,37))
  legend("topleft",legend=grp.levs,pch=19,col=c("black","red"))
 @
@@ -963,9 +972,9 @@ showed that the submodel regression lines were parallel (parallel lines test p=0
 <<IVRANCOVAEx1Plot2, echo=FALSE, warning=FALSE, fig.cap="Fitted line plot for the regression of weight gain on initial weight by temperature treatment (Left) and means plot for the adjusted mean weight gain (at the mean initial weight) by temperature treatment (Right).", fig.pos="h">>=
  lm2 <- lm(wt.gain~wt.init+group,data=d)
  adj <- compIntercepts(lm2,common.cov=mean(d$wt.init))
- fitPlot(lm2,xlab="Initial Weight",ylab="Weight Gain",cex.main=0.8,legend="topleft",ylim=c(20,37),main="",col=c("black","red"))
+ fitPlot(lm2,xlab="Initial Weight",ylab="Weight Gain",cex.main=0.8,legend="topleft",ylim=c(20,37),col=c("black","red"))
  lm2a <- lm(adj$adjvals~group,data=d)
- fitPlot(lm2a,xlab="Temperature Treatment",ylab="Adjusted Weight Gain",ylim=c(20,37),main="")
+ fitPlot(lm2a,xlab="Temperature Treatment",ylab="Adjusted Weight Gain",ylim=c(20,37))
 @
 \vspace{9pt}
 This example illustrates how the inclusion of a ``strong'' covariate can mask the effects of a significant but ``weak'' factor variable.  In the initial analysis using just a one-way ANOVA on the weight gain variable, the increased variability due to the initial weight of the fish was not acknowledged and was thus left in the ``unexplained'' residual variability (i.e., $MS_{Residual}=32.63$; \tabref{tab:IVRANCOVAEx1Res1}).  The variability explained by the temperature treatment ($MS_{group}=14.04$; \tabref{tab:IVRANCOVAEx1Res1}) was very small relative to the unexplained variability and, thus, the temperature treatment was not considered significant.  However, when this large source of variability was explained by including the covariate in the ANCOVA, then the ``unexplained'' residual variability decreases dramatically (i.e., $MS_{Residual}=2.35$; \tabref{tab:IVRANCOVAEx1Res2}).  The variability explained by the temperature treatment remains the same but it now ``appears'' very large because the amount of variability unexplained is relatively small.  Thus, the temperature treatment becomes significant after the effect of initial weight on weight gain has been removed because the unexplained variability was significantly reduced.  In other words, in this example, the use of the ANCOVA helped identify a significant treatment effect that was masked by the increased variability due to the relationship between the response variable and a (previously ignored) covariate.  The reduction in residual variability can also be seen by the relatively ``tight'' confidence intervals for the adjusted means in \figref{fig:IVRANCOVAEx1Plot2}-Right relative to those for the unadjusted means in \figref{fig:IVRANCOVAEx1Plot1}-Left.
@@ -994,7 +1003,7 @@ As mentioned previously, some researchers will attempt to remove the effect of t
 \subsubsection*{Hypothetical Problem II}
 In this example, suppose that a researcher was interested in determining if the gonad weight (g) differed between the same species of fish from two different locations.  In particular, the researcher tested the following statistical hypotheses: $H_{A}: \mu_{A}\neq\mu_{B}$ where the subscripts represent locations.  The researcher measured the body weight with the gonads removed (called somatic weight) and the gonad weight of nine randomly selected fish from each location.
 
-A one-way ANOVA provides strong evidence for a difference in gonad weight between the two lakes (\tabref{tab:IVRANCOVAEx2Res1}; \figref{fig:IVRANCOVAEx2Plot1}-Left).  However, a plot of gonad weight versus somatic weight (\figref{fig:IVRANCOVAEx2Plot1}-Right) indicates that there is also a very strong difference in somatic weight between the two locations; indeed every fish at location B is larger then every fish at location A.  It is also clear from this plot that there is a very strong relationship between gonad weight and somatic weight.  Thus, it may be possible that the observed difference in gonad weight is mostly due to the differences observed in the somatic weight covariate.
+A one-way ANOVA provides strong evidence for a difference in gonad weight between the two lakes (\tabref{tab:IVRANCOVAEx2Res1}; \figref{fig:IVRANCOVAEx2Plot1}-Left).  However, a plot of gonad weight versus somatic weight (\figref{fig:IVRANCOVAEx2Plot1}-Right) indicates that there is also a very strong difference in somatic weight between the two locations; indeed every fish at location B is larger then every fish at location A.  It is also clear from this plot that there is a very strong relationship between gonad weight and somatic weight.  Thus, it may be possible that the observed difference in gonad weight is mostly due to the differences in the somatic weight covariate.
 
 \begin{table}[h]
   \centering
@@ -1011,7 +1020,7 @@ A one-way ANOVA provides strong evidence for a difference in gonad weight betwee
 \end{table}
 
 <<IVRANCOVAEx2Plot1, echo=FALSE, fig.cap="Means plot for the mean gonad weight by location (Left) and scatterplot of gonad weight versus somatic weight by location (Right).", fig.pos="h">>=
- fitPlot(lma,xlab="Location",ylab="Gonad Weight",main="",ylim=c(22,56))
+ fitPlot(lma,xlab="Location",ylab="Gonad Weight",ylim=c(22,56))
  plot(wt.gonad~wt.somat,data=d,pch=19,col=as.numeric(d$loc),xlab="Somatic Weight",ylab="Gonad Weight",ylim=c(22,56))
  legend("topleft",legend=loc.levs,pch=19,col=c("black","red"))
 @
@@ -1019,12 +1028,12 @@ A one-way ANOVA provides strong evidence for a difference in gonad weight betwee
 The results from fitting the model
 \[ \mu_{wt.gonad|\cdots}=\alpha+\beta_{1}wt.somat+\delta_{1}locB+\gamma_{1}wt.somat*locB \]
 
-showed that the submodel regression lines were parallel (parallel lines test p=0.8486) and the intercepts were equal (equal-intercepts test p=0.9309).  Thus, in this example, the two locations are fit by the same regression line (\figref{fig:IVRANCOVAEx2Plot2}-Left).  This result also indicates that the mean gonad weight adjusted to a common somatic weight does NOT differ between the two locations (\figref{fig:IVRANCOVAEx2Plot2}-Right).  The difference observed in the observed gonad weights was due to the difference in somatic weights and the strong relationship between gonad weight and somatic weight.
+showed that the submodel regression lines were parallel (parallel lines test p=0.8486) and the intercepts were equal (equal-intercepts test p=0.9309).  Thus, in this example, the two locations are fit by the same regression line (\figref{fig:IVRANCOVAEx2Plot2}-Left).  This result also indicates that the mean gonad weight adjusted to a common somatic weight does NOT differ between the two locations (\figref{fig:IVRANCOVAEx2Plot2}-Right).  The difference observed in the observed gonad weights WAS due to the difference in somatic weights and the strong relationship between gonad weight and somatic weight.
 
 <<IVRANCOVAEx2Plot2, echo=FALSE, fig.cap="Fitted line plot for the regression of gonad weight on somatic weight by location (Left) and means plot for the adjusted mean gonad gain (at the mean somatic weight) by location (Right).", fig.pos="h">>=
- fitPlot(lm2,xlab="Somatic Weight",ylab="Gonad Weight",cex.main=0.8,legend="topleft",ylim=c(22,56),main="",col=c("black","red"))
+ fitPlot(lm2,xlab="Somatic Weight",ylab="Gonad Weight",cex.main=0.8,legend="topleft",ylim=c(22,56),col=c("black","red"))
  lm2a <- lm(adj$adjvals~loc,data=d)
- fitPlot(lm2a,xlab="Location",ylab="Adjusted Gonad Weight",ylim=c(22,56),main="")
+ fitPlot(lm2a,xlab="Location",ylab="Adjusted Gonad Weight",ylim=c(22,56))
 @
 
 This example illustrates how the inclusion of a ``strong'' covariate and a significant difference in the covariate among groups can make the ``weak'' effect of a factor variable appear significant.  In the case of the one-way ANOVA analysis, the variability that can be explained by the covariate was included in both the ``explained'' variability of the \var{loc} variable and the ``unexplained'' residual variability.  The portion included in the \var{loc} variable was very large making that variable appear very significant.  However, when the covariate was included in the ANCOVA analysis it was revealed that the SS due to the \var{loc} variable was negligible (=0.02; \tabref{tab:IVRANCOVAEx2Res2}).  Thus, nearly all of the SS attributable to \var{loc} in the one-way ANOVA results was really attributable to the covariate of somatic weight.  In other words, the use of the ANCOVA in this example helped properly attribute the cause of explained variability.
