@@ -30,9 +30,9 @@ Use these result to complete the ANOVA table below. This question can be hand-wr
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
 **Among**  |    |    |    |    |
-&nbsp;  **Instructor**  |    |    |    |    |
-&nbsp;  **Method**  |    |    |    |    |
-&nbsp;  **Instructor:Method**  |    |    |    |    |
+&nbsp;&nbsp; **Instructor**  |    |    |    |    |
+&nbsp;&nbsp; **Method**  |    |    |    |    |
+&nbsp;&nbsp; **Instructor:Method**  |    |    |    |    |
 **Within** |    |    |    | -  | -
 **Total**  |    | 20227.3 | -  | -  | -
 
