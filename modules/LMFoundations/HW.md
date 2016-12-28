@@ -13,14 +13,14 @@ css: "/css/modules.css"
 
 ----
 
-## Sea Level Rise Rate
-<img src="../zimgs/sea-level-rise.jpg" alt="Sea Level Rise" class="img-right">
+## Fish Oil and Blood Pressure
+<img src="../zimgs/fish-oil.jpg" alt="Fish Oil" class="img-right">
 
-Knapp and Fitzgerald (1989) randomly assigned 14 male volunteers with high blood pressure to receive one of two diets (fish oil or standard oil) for four weeks.  They measured diastolic blood (DBP) pressure of each individual at the beginning and end of the four weeks, with the goal to determine by how much the DBP had reduced (if at all). The **reductions** in DBP are shown below. [*Note that negative numbers mean the DBP increased during the study.*]
+[Knapp and Fitzgerald (1989)](https://www.ncbi.nlm.nih.gov/pubmed/2648152) randomly assigned 14 male volunteers with high blood pressure to receive one of two diets (fish oil or standard oil) for four weeks.  They measured diastolic blood (DBP) pressure of each individual at the beginning and end of the four weeks, with the goal to determine by how much the DBP had reduced (if at all). The **reductions** in DBP are shown below. [*Note that negative numbers mean the DBP increased during the study.*]
 
 <pre>
-Fish Diet -- 8, 12, 10, 2, 14, 0, 0
-Standard Diet -6, 0, 1, 2, -3, -4, 2
+Fish Oil -- 8, 12, 10, 2, 14, 0, 0
+Standard Oil -6, 0, 1, 2, -3, -4, 2
 </pre>
 
 1. Construct a table of results from `t.test()`. [*Note that an appropriately labeled table is the answer for this and the next two questions. You do not need a complete sentence here.*]
