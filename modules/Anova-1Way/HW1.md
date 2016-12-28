@@ -17,12 +17,11 @@ css: "/css/modules.css"
 
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
-**Among**  |    |    |    |    | -
-**Within** | 24 | 35088 |    | - | -
+**Among**  |    |    |    | &nbsp;&nbsp;&nbsp; |
+**Within** | 24 | 35088 | &nbsp;&nbsp;&nbsp; | - | -
 **Total**  | 31 | 70907 | - | - | -
 
 1. Complete the missing cells in the following ANOVA table. Show your work. [*Note that you do not need R for this, beyond using* `distrib()` *to computed the p-value.*]
-
 1. How many groups were in this analysis?
 1. How many individuals were in this analysis?
 1. What is the estimate of the pooled variance among individuals in each group?
