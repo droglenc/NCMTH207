@@ -7,10 +7,12 @@ title: Resources
 1. [Feedback / Suggestions](https://www.suggestionox.com/r/W16-207){:target="_blank"}
 1. [Homework Answer Keys](homework-keys)
 
-## Learning Assistance Videos (pwd="NCStats")
-1. [Accessing on-line data files](https://vimeo.com/user45324800/ncstats-preparedatawebpage)
-1. Enter Your Own Data -- [with Excel](https://vimeo.com/user45324800/ncstats-preparedataexcel) or [without Excel](https://vimeo.com/user45324800/ncstats-preparedatatextfile)
-1. [Load Data into RStudio](https://vimeo.com/user45324800/ncstats-loadcsvrstudio)
+## Learning Assistance
+1. Videos (pwd="NCStats")
+  1. [Accessing on-line data files](https://vimeo.com/user45324800/ncstats-preparedatawebpage)
+  1. Enter Your Own Data -- [with Excel](https://vimeo.com/user45324800/ncstats-preparedataexcel) or [without Excel](https://vimeo.com/user45324800/ncstats-preparedatatextfile)
+  1. [Load Data into RStudio](https://vimeo.com/user45324800/ncstats-loadcsvrstudio)
+1. [Full Book](../book/Biometry_noPrint.PDF)
 
 ## Computer
 1. [**Data Files** (on GitHub)](https://github.com/droglenc/NCData){:target="_blank"}
