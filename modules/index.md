@@ -17,7 +17,7 @@ title: Lecture Materials
         <li><a href="../book/1_Biometry.pdf">Reading</a></li>
         <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="LMFoundations/RHO.html"><img src="../img/web.png"></a> <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
-        <li>Homework Assignment -- <a href="LMFoundations/HW.html">1</a></li>
+        <li>Homework Assignment -- <a href="LMFoundations/HW1.html">#1</a> / <a href="LMFoundations/HW2.html">#2</a></li>
       </ul>
       </div>
     </div>
