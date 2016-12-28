@@ -19,8 +19,8 @@ css: "/css/modules.css"
 [Knapp and Fitzgerald (1989)](https://www.ncbi.nlm.nih.gov/pubmed/2648152){:target="_blank"} randomly assigned 14 male volunteers with high blood pressure to receive one of two diets (fish oil or standard oil) for four weeks.  They measured diastolic blood pressure (DBP) of each individual at the beginning and end of the four weeks, with the goal to determine by how much the DBP had reduced (if at all) over the four weeks. The **reductions** in DBP are shown below. [*Note that negative numbers mean the DBP increased during the study.*]
 
 <pre>
-Fish Oil: 8, 12, 10, 2, 14, 0, 0
-Standard Oil: -6, 0, 1, 2, -3, -4, 2
+Fish Oil:      8, 12, 10, 2, 14,  0, 0
+Standard Oil: -6,  0,  1, 2, -3, -4, 2
 </pre>
 
 1. Construct a table of 2-Sample t-Test results (use `t.test()`). [*Note that an appropriately labeled table is the answer for this and the next two questions. You do not need a complete sentence for these questions.*]
