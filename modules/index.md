@@ -53,7 +53,7 @@ title: Lecture Materials
         <li><a href="../book/3_Biometry.pdf">Reading</a></li>
         <li><a href="Anova-2Way/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="Anova-2Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-2Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-2Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
-      </ul>
+        <li>Homework Assignment -- <a href="Anova-2Way/HW1.html">#1</a> / <a href="Anova-2Way/HW2.html">#2</a> /  <a href="Anova-2Way/HW3.html">#3</a>      </ul>
       </div>
     </div>
   </div>

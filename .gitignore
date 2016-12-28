@@ -12,6 +12,7 @@ book/*.synctex.gz
 book/Biometry.pdf
 book/*.aux
 book/*.bbl
+book/*.blg
 book/*.brf
 book/*.idx
 book/*.ilg
