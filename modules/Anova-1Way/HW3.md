@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework #3
+title: Homework 3
 subtitle: 1-Way ANOVA
 css: "/css/modules.css"
 ---
@@ -25,7 +25,7 @@ Carcinoma: 10.2, 9.2, 9.6, 53.8, 15.8
 </pre>
 
 1. Assess the independence assumption.
-1. Thoroughly (\textit{use all possible options}) test the equal variances assumption.
+1. Thoroughly (*use all possible options*) test the equal variances assumption.
 1. Thoroughly test the normality assumption.
 1. Thoroughly test the outliers assumption.
 
@@ -36,6 +36,6 @@ Continue with the data from above but with the outlier removed. **You must remov
 
 1. Test, at the 5% level, if the mean tetrahydrocortisone level differs among patients with the different causes of Cushing's Syndrome.
 1. If a difference in means was identified, then use an appropriate method to determine which groups differed significantly from each other. [*Note: Provide complete tabular AND graphical support for your answer.*]
-1. For any differences identified above, provide an appropriate statement describing the amount of difference (use CIs) between the group means. [*Note: Make sure you refer to tabular results.]
+1. For any differences identified above, provide an appropriate statement describing the amount of difference (use CIs) between the group means. [*Note: Make sure you refer to tabular results.*]
 
 ----

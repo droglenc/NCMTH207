@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework #4
+title: Homework 4
 subtitle: 1-Way ANOVA
 css: "/css/modules.css"
 ---
