@@ -38,28 +38,29 @@ ylbl <- "Mean of Response"
 rlbl <- "Row Factor"
 clbl <- "Column Factor"
 ylmt <- c(-1,5)
+pchs <- 15:17
 ```
 
-```{r TWAHW1, echo=FALSE, results='hide', fig.width=7, fig.height=3.5}
-par(mar=c(3.5,3.5,1,1), mgp=c(2,0.5,0),mfrow=c(1,2),las=1,tcl=-0.2)
-interaction.plot(rf,cf,r1,yaxt="n",pch=1:3,legend=FALSE,ylab=ylbl,xlab=rlbl,ylim=ylmt,lwd=2)
-interaction.plot(rf,cf,r1,yaxt="n",type="p",pch=15:17,legend=FALSE,add=TRUE)
-interaction.plot(cf,rf,r1,yaxt="n",pch=1:3,legend=FALSE,ylab=ylbl,xlab=clbl,ylim=ylmt,lwd=2)
-interaction.plot(cf,rf,r1,yaxt="n",type="p",pch=15:17,legend=FALSE,add=TRUE)
+```{r TWAHW1, echo=FALSE, results='hide', fig.show='hold'}
+par(mar=c(3.5,3.5,1,1), mgp=c(2,0.5,0),las=1,tcl=-0.2,yaxt="n")
+interaction.plot(rf,cf,r1,type="o",pch=pchs,lwd=2,legend=FALSE,
+                 ylab=ylbl,xlab=rlbl,ylim=ylmt)
+interaction.plot(cf,rf,r1,type="o",pch=pchs,lwd=2,legend=FALSE,
+                 ylab=ylbl,xlab=clbl,ylim=ylmt)
 ```
 
-```{r TWAHW2, echo=FALSE, results='hide', fig.width=7, fig.height=3.5}
-par(mar=c(3.5,3.5,1,1), mgp=c(2,0.5,0),mfrow=c(1,2),las=1,tcl=-0.2)
-interaction.plot(rf,cf,r2,yaxt="n",pch=1:3,legend=FALSE,ylab=ylbl,xlab=rlbl,ylim=ylmt,lwd=2)
-interaction.plot(rf,cf,r2,yaxt="n",type="p",pch=15:17,legend=FALSE,add=TRUE)
-interaction.plot(cf,rf,r2,yaxt="n",pch=1:3,legend=FALSE,ylab=ylbl,xlab=clbl,ylim=ylmt,lwd=2)
-interaction.plot(cf,rf,r2,yaxt="n",type="p",pch=15:17,legend=FALSE,add=TRUE)
+```{r TWAHW2, echo=FALSE, results='hide', fig.show='hold'}
+par(mar=c(3.5,3.5,1,1), mgp=c(2,0.5,0),las=1,tcl=-0.2,yaxt="n")
+interaction.plot(rf,cf,r2,type="o",pch=pchs,lwd=2,legend=FALSE,
+                 ylab=ylbl,xlab=rlbl,ylim=ylmt)
+interaction.plot(cf,rf,r2,type="o",pch=pchs,lwd=2,legend=FALSE,
+                 ylab=ylbl,xlab=clbl,ylim=ylmt)
 ```
 
-```{r TWAHW3, echo=FALSE, results='hide', fig.width=7, fig.height=3.5}
-par(mar=c(3.5,3.5,1,1), mgp=c(2,0.5,0),mfrow=c(1,2),las=1,tcl=-0.2)
-interaction.plot(rf,cf,r3,yaxt="n",pch=1:3,legend=FALSE,ylab=ylbl,xlab=rlbl,ylim=ylmt,lwd=2)
-interaction.plot(rf,cf,r3,yaxt="n",type="p",pch=15:17,legend=FALSE,add=TRUE)
-interaction.plot(cf,rf,r3,yaxt="n",pch=1:3,legend=FALSE,ylab=ylbl,xlab=clbl,ylim=ylmt,lwd=2)
-interaction.plot(cf,rf,r3,yaxt="n",type="p",pch=15:17,legend=FALSE,add=TRUE)
+```{r TWAHW3, echo=FALSE, results='hide', fig.show='hold'}
+par(mar=c(3.5,3.5,1,1), mgp=c(2,0.5,0),las=1,tcl=-0.2,yaxt="n")
+interaction.plot(rf,cf,r3,type="o",pch=pchs,lwd=2,legend=FALSE,
+                 ylab=ylbl,xlab=rlbl,ylim=ylmt)
+interaction.plot(cf,rf,r3,type="o",pch=pchs,lwd=2,legend=FALSE,
+                 ylab=ylbl,xlab=clbl,ylim=ylmt)
 ```
