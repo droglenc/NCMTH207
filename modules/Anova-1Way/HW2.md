@@ -21,7 +21,7 @@ Many species of cuckoos are brood parasites where the females lay their eggs in 
 1. Interpret the meaning of each coefficients from fitting the One-Way ANOVA linear model. [*Hint: Show results from* `summary()`.]
 1. Interpret the meaning of each coefficient's p-value.
 1. Show how each degrees-of-freedom in the ANOVA table was calculated. [*Note: Make sure to show the ANOVA table produced by* `r anova()`.]
-1. Interpret the mean of each mean-square in the ANOVA table, include the mean-square that is usually not presented in the ANOVA table.
+1. Interpret the meaning of each mean-square in the ANOVA table, include the mean-square that is usually not presented in the ANOVA table.
 1. Interpret the F test statistic in the ANOVA table.
 1. Is there evidence, at the 5% level, for a difference in the mean lengths of cuckoo eggs among the three bird species?  Explain.
 1. If there is evidence of a difference in mean length of cuckoo eggs among the three bird species, then identify which pairs of means are likely different.
