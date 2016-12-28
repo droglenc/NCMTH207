@@ -18,7 +18,7 @@ css: "/css/modules.css"
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
 **Among**  |    |    |    | &nbsp;&nbsp;&nbsp; |
-**Within** | 24 | 35088 | &nbsp;&nbsp;&nbsp; | - | -
+**Within** | 24 | 35088 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | - | -
 **Total**  | 31 | 70907 | - | - | -
 
 1. Complete the missing cells in the following ANOVA table. Show your work. [*Note that you do not need R for this, beyond using* `distrib()` *to computed the p-value.*]
