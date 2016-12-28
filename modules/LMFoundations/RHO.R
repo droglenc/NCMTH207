@@ -31,4 +31,4 @@ fitPlot(lm1,xlab="Sex",ylab="Absolute Error",main="")
 anova(lm1)
 
 
-# Script created at 2016-12-27 22:06:05
+# Script created at 2016-12-27 22:08:42

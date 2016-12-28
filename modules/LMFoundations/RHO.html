@@ -30,13 +30,13 @@ css: "/css/modules.css"
 </div>
 <div id="two-sample-t-test-traditional-method" class="section level2">
 <h2>Two-Sample t-Test (Traditional Method)</h2>
-<pre class="r"><code>&gt; hist(abserr~fsex,data=sdir,xlab=&quot;Absolute Error&quot;,breaks=seq(0,200,25),col=&quot;gray90&quot;)
-&gt; Summarize(abserr~fsex,data=sdir,digits=2)</code></pre>
+<pre class="r"><code>&gt; hist(abserr~fsex,data=sdir,xlab=&quot;Absolute Error&quot;,breaks=seq(0,200,25),col=&quot;gray90&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+<pre class="r"><code>&gt; Summarize(abserr~fsex,data=sdir,digits=2)</code></pre>
 <pre><code>    fsex  n mean    sd min    Q1 median    Q3 max
 1   male 30 37.6 38.49   3 11.50   22.5 58.75 167
 2 female 30 55.8 48.26   3 15.75   35.0 88.25 176</code></pre>
 <pre class="r"><code>&gt; levenesTest(abserr~fsex,data=sdir)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
 <pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
       Df F value Pr(&gt;F)
 group  1  2.1692 0.1462
