@@ -14,7 +14,7 @@ css: "/css/modules.css"
 ----
 
 ## X-Rated Movies
-<img src="../zimgs/pronghorn_antelope.jpg" alt="Pronghorn Antelope" class="img-right">
+<img src="../zimgs/x-rate-movie.jpg" alt="X-rated Movie" class="img-right">
 The General Sociological Survey (GSS) is a very large survey that has been administered 25 times since 1972.  The basic purposes of the GSS are to gather data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviors, and attributes; to examine the structure and functioning of society in general as well as the role played by relevant subgroups; to compare the United States to other societies in order to place American society in comparative perspective and develop crossnational models of human society; and to make high-quality data easily accessible to scholars, students, policy makers, and others, with minimal cost and waiting.  One question that was asked in the most recent GSS was "Have you watched an x-rated movie in the last year?"  The respondent's answer to this question (Yes or No) and age are recorded in XMovieAge.csv ([download](https://raw.githubusercontent.com/droglenc/NCData/master/XMovieAge.csv), [meta](https://github.com/droglenc/NCData/blob/master/XMovieAge_meta.txt)). Use these **for only individuals 95-years-old or younger) to answer the following questions.
 
 1. Comment on the adequacy of fit of this logistic regression model (i.e., from a `fitPlot()`). [*Note: Make sure that you use enough breaks to adequately characterize the change in proportions.*]
