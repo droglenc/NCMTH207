@@ -37,7 +37,7 @@ library(NCStats)
 ```
 
 ## Background
-[Sholl *et al.* (2000)](http://www.sciencedirect.com/science/article/pii/S0272494499901469) examined the relative sense of direction for female and male subjects.  Specifically, 30 male and 30 female subjects were taken to an unfamiliar wooded park and given spatial orientation tests, including being asked to point to the south.  The absolute pointing error (in degrees away from due south) was recorded.  The results are in `SexDirection.csv`.  Use these results to test, at the 5% level, if males have a better sense of direction than females?
+[Sholl *et al.* (2000)](http://www.sciencedirect.com/science/article/pii/S0272494499901469){:target="_blank"} examined the relative sense of direction for female and male subjects.  Specifically, 30 male and 30 female subjects were taken to an unfamiliar wooded park and given spatial orientation tests, including being asked to point to the south.  The absolute pointing error (in degrees away from due south) was recorded.  The results are in `SexDirection.csv`.  Use these results to test, at the 5% level, if males have a better sense of direction than females?
 
 ```{r}
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LMFoundations")
