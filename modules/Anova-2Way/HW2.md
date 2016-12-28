@@ -25,7 +25,7 @@ Score      LectA        25      75.45      75.15      14.76
            SelfB        25      80.70      79.15      14.20
 </pre>
 
-Use these result to complete the ANOVA table below. This question can be hand-written, but clearly show your work for all calculations.  No functions, beyond using `distrib()` to calculate p-values, will be useful for these calculations.
+Use these result to complete the ANOVA table below. This question can be hand-written, but clearly show your work for all calculations.
 
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
@@ -36,4 +36,13 @@ Source     | df | SS | MS | F  | p-value
 **Within** |    |    |    | -  | -
 **Total**  |    | 20227.3 | -  | -  | -
 
+\ 
+
+**Hints:**
+
+1. No functions, beyond using `distrib()` to calculate p-values, will be useful for these calculations.
+1. I suggest computing appropriate df first, followed by SS.
+1. I suggest constructing a 2x2 table of treatment means and then appending group means and the grand mean. A "pooled" mean can be computed as the mean of means if the sample sizes in the groups being pooled are equal.
+1. Examine the equations for the SS and determine which ones of these you can compute from the table of means. Compute these and get the others using simple addition and subtraction (from principles of how SS partition).
+1. 
 ----
