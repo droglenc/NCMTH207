@@ -14,7 +14,7 @@ title: Lecture Materials
     <div id="collapseLMF" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="../book/1_Biometry.pdf">Reading</a></li>
+        <li><a href="../book/1_Biometry.pdf" target="_blank">Reading</a></li>
         <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="LMFoundations/RHO.html"><img src="../img/web.png"></a> <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="LMFoundations/HW1.html">#1</a> / <a href="LMFoundations/HW2.html">#2</a></li>
@@ -32,7 +32,7 @@ title: Lecture Materials
     <div id="collapseAOV1" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="../book/2_Biometry.pdf">Reading</a></li>
+        <li><a href="../book/2_Biometry.pdf" target="_blank">Reading</a></li>
         <li><a href="Anova-1Way/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="Anova-1Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-1Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-1Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="Anova-1Way/HW1.html">#1</a> / <a href="Anova-1Way/HW2.html">#2</a> /  <a href="Anova-1Way/HW3.html">#3</a> / <a href="Anova-1Way/HW4.html">#4</a></li>
@@ -50,7 +50,7 @@ title: Lecture Materials
     <div id="collapseAOV2" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="../book/3_Biometry.pdf">Reading</a></li>
+        <li><a href="../book/3_Biometry.pdf" target="_blank">Reading</a></li>
         <li><a href="Anova-2Way/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="Anova-2Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-2Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-2Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="Anova-2Way/HW1.html">#1</a> / <a href="Anova-2Way/HW2.html">#2</a> /  <a href="Anova-2Way/HW3.html">#3</a></li>
@@ -68,7 +68,7 @@ title: Lecture Materials
     <div id="collapseSLR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="../book/4_Biometry.pdf">Reading</a></li>
+        <li><a href="../book/4_Biometry.pdf" target="_blank">Reading</a></li>
         <li><a href="SLRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="SLRegression/RHO.html"><img src="../img/web.png"></a> <a href="SLRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="SLRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="SLRegression/HW1.html">#1</a> / <a href="SLRegression/HW2.html">#2</a> / <a href="SLRegression/HW3.html">#3</a> / <a href="SLRegression/HW4.html">#4</a> / <a href="SLRegression/HW5.html">#5</a></li>
@@ -86,7 +86,7 @@ title: Lecture Materials
     <div id="collapseIVR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="../book/5_Biometry.pdf">Reading</a></li>
+        <li><a href="../book/5_Biometry.pdf" target="_blank">Reading</a></li>
         <li><a href="IVRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="IVRegression/RHO.html"><img src="../img/web.png"></a> <a href="IVRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="IVRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li><a href="IVRegression/CE1.html">Class Exercise</a></li>
@@ -105,7 +105,7 @@ title: Lecture Materials
     <div id="collapseLogisticR" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="../book/6_Biometry.pdf">Reading</a></li>
+        <li><a href="../book/6_Biometry.pdf" target="_blank">Reading</a></li>
         <li><a href="LogisticRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="LogisticRegression/RHO.html"><img src="../img/web.png"></a> <a href="LogisticRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LogisticRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="LogisticRegression/HW1.html">#1</a> / <a href="LogisticRegression/HW2.html">#2</a></li> 
