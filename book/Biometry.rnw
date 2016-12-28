@@ -6,6 +6,7 @@
 \hypersetup{pdftitle = MTH207 Notes}
 \input{c:/aaaWork/zGnrlLatex/JustRPreamble}
 \usepackage{multirow}
+\renewcommand{\chaptername}{Module}
 
 \begin{document}
 <<echo=FALSE, eval=FALSE>>=
