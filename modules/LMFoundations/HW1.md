@@ -27,8 +27,8 @@ For each question below decide which type of analysis (e.g., one-way ANOVA, two-
 
 ### Footnotes
 
-<b id="f1">1</b> This example is essentially from the \href{http://www.openintro.org/stat/index.php}{Open Intro Statistics book}. [↩](#a1)
+<b id="f1">1</b> This example is essentially from the [Open Intro Statistics book](http://www.openintro.org/stat/index.php). [↩](#a1)
 
-<b id="f2">2</b> This example is essentially from \href{http://www.biology.hawaii.edu/301L/Spring/Labmanual/Lab 5 - Intertidal Ecology 11.pdf}{these notes}. [↩](#a2)
+<b id="f2">2</b> This example is essentially from [these notes](http://www.biology.hawaii.edu/301L/Spring/Labmanual/Lab 5 - Intertidal Ecology 11.pdf). [↩](#a2)
 
 ----
