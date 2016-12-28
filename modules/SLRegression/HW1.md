@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Homework 3
-subtitle: 2-Way ANOVA
+title: Homework 1
+subtitle: Simple Linear Regression
 css: "/css/modules.css"
 ---
 
@@ -46,7 +46,7 @@ F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
           fit      lwr      upr
 [1,] ________ 65.95557 ________
 </pre>
-<br />  
+<br />
 
 1. Fill in all blank cells in the results. [*Note: Your answer to this question can be hand-written but make sure to show your work in the order that you solved the blanks.*]
 1. Write the equation of the best fit line in terms of the recorded variables.
