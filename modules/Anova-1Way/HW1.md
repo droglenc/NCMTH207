@@ -15,7 +15,7 @@ css: "/css/modules.css"
 
 ## ANOVA Tables I
 
-<div style="text-align:center">
+\ 
 
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
@@ -23,7 +23,7 @@ Source     | df | SS | MS | F  | p-value
 **Within** | 24 | 35088 |  | - | -
 **Total**  | 31 | 70907 | - | - | -
 
-</div>
+\ 
 
 1. Complete the missing cells in the following ANOVA table. Show your work. [*Note that you do not need R for this, beyond using* `distrib()` *to computed the p-value.*]
 1. How many groups were in this analysis?
