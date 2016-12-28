@@ -14,8 +14,8 @@ css: "/css/modules.css"
 ----
 
 ## Regression Results
-<img src="../zimgs/smallmouth-eats-crayfish.jpg" alt="Smallmouth and Crayfish" class="img-right">
-Pierce (1948) attempted to determine if temperature could be predicted from the frequency of chirps by a cricket. In a classic study, he recorded the number of chirps in 15 seconds by a cricket (CHIRPS) and the temperature (<sup>o</sup>F) the cricket was held at (TEMP). A total of 15 crickets were recorded. The results were analyzed in R, with the partial set of results shown below.
+<img src="../zimgs/striped-ground-cricket.jpg" alt="Striped Ground Cricket" class="img-right">
+[Pierce (1948)](http://www.hup.harvard.edu/catalog.php?isbn=9780674420663){:target="_blank"} mechanically measured the frequency (the number of wing vibrations per second) of [chirps (or pulses of sound) made by a Striped Ground Cricket](http://songsofinsects.com/crickets/striped-ground-cricket){:target="_blank"}, at various ground temperatures. Because crickets are ectotherms (cold-blooded), the rate of their physiological processes and their overall metabolism are influenced by temperature. Consequently, Pierce believed that temperature would have an effect on chirp frequency (among other things). In his classic study, he recorded the number of chirps in 15 seconds (CHIRPS) and the ground temperature (<sup>o</sup>F; TEMP) for crickets. The results were analyzed in R, with the partial set of results shown below.
 
 <pre>
 > summary(cricket)
@@ -46,9 +46,10 @@ F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
           fit      lwr      upr
 [1,] ________ 65.95557 ________
 </pre>
+<br />  
 
 1. Fill in all blank cells in the results. [*Note: Your answer to this question can be hand-written but make sure to show your work in the order that you solved the blanks.*]
 1. Write the equation of the best fit line in terms of the recorded variables.
-1. Is there a significant relationship between temperature and number of chirps? Explain.
+1. Was Pierce's hypothesis supported by these data? Explain.
 
 ----

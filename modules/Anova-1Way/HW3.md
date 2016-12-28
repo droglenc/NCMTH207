@@ -16,7 +16,7 @@ css: "/css/modules.css"
 ## Cushing's Syndrome I
 <img src="../zimgs/cushings-syndrome.png" alt="Cushings Syndrome" class="img-right">
 
-[Cushing's syndrome](http://www.mayoclinic.org/diseases-conditions/cushing-syndrome/home/ovc-20197169) is a condition in which the adrenal cortex overproduces cortisol. Patients suffering from Cushing's syndrome were divided into three groups based on the cause of the syndrome: adenoma, bilateral hyperplasia, and carcinoma. The level of tetrahydrocortisone in the urine of each patient was recorded for each individual with these causes, as shown below. Load these data into R to answer the questions below.
+[Cushing's syndrome](http://www.mayoclinic.org/diseases-conditions/cushing-syndrome/home/ovc-20197169){:target="_blank"} is a condition in which the adrenal cortex overproduces cortisol. Patients suffering from Cushing's syndrome were divided into three groups based on the cause of the syndrome: adenoma, bilateral hyperplasia, and carcinoma. The level of tetrahydrocortisone in the urine of each patient was recorded for each individual with these causes, as shown below. Load these data into R to answer the questions below.
 
 <pre>
 Adenoma: 3.1, 3.0, 1.9, 3.8, 4.1, 1.9
