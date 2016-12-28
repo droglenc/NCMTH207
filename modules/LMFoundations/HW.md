@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework Assignment
+title: Homework
 subtitle: Linear Models Foundations
 css: "/css/modules.css"
 ---
