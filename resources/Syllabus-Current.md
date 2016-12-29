@@ -11,7 +11,7 @@ css: /css/syllabus.css
 * [Instructor](#instructor) and [Tutors](#tutors)
 * [Grading](#grading) -- [Quizzes](#quizzes), [Homework](#homework), [Portfolio](#portfolio)
 * [Classroom Conduct and Academic Integrity](#classroom-conduct-and-academic-integrity)
-* [Accomodations](#accomodations)
+* [Accomodations](#accommodations)
 
 ----
 
@@ -46,7 +46,7 @@ Mon, Wed, Fri 900-950; Thurs 1200-1300<br>By Appointment</td></tr>
 ## Tutors
 
 <table class="tutors" width="60%">
-<tr><th"><img src=".jpg"></th></tr>
+<tr><th><img src="../img/DerekOgle1.jpg"></th></tr>
 <tr><th>Elaine Gallenberg</th></tr>
 <tr style="vertical-align:top"><td>TBA</td></tr>
 <tr style="vertical-align:top"><td>TBD</td></tr>
