@@ -68,7 +68,7 @@ An overall percentage score will be computed from the items and associated weigh
 <th><a href="#quizzes">Q5</A></th>
 <th><a href="#quizzes">Q6</A></th>
 <th><a href="#homework">HW</a></th>
-<th><a href="#final-portfolio">Portfolio</A></th></tr>
+<th><a href="#portfolio">Portfolio</A></th></tr>
 
 <tr><th>Weight</th>
 <th>10%</th><th>10%</th><th>10%</th><th>10%</th>
@@ -106,7 +106,7 @@ A one-hour quiz will be given approximately one week after the completion of [a 
 ### Homework
 Several homework assignments will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** homework assignments are **due at the beginning of the class period on the assigned due date** (announced in class and on the [Dates page](Dates-Current){:target="_blank"}). Assignments not handed in at the beginning of the class period will be considered late. Late assignments will not be accepted. The lowest approximately 20% of homework grades will be excluded when computing your overall grade.
 
-Each homework assigment is worth 10 points and will be graded in two parts.  The first part is an assessment of completeness and formatting (each assignment should follow [the expectations outlined here](hwformat)) according to the following rubric.
+Each homework assigment is worth 10 points and will be graded in two parts.  The first part is an assessment of completeness and formatting (each assignment should follow [the expectations outlined here](hwformat){:target="_blank"}) according to the following rubric.
 
 <div class="container-fluid">
   <table class="table table-bordered">
@@ -125,48 +125,52 @@ The second part, also worth 5 points, is an assessment of the quality of the wor
 
 
 ### Portfolio
-The portfolio project serves as the capstone experience for the course and allows you flexibility to demonstrate working knowledge of the major topics of the course.  In general, the portfolio will consist of a thorough analysis of data using four (cannot use any topic more than once) of the following major topics in the course: (I) One-Way ANOVA (*must have more than two groups and cannot be a subset of your Two-Way ANOVA*), (II) Two-Way ANOVA, (III) Simple Linear Regression (*cannot be a subset of your Indicator Variable Regression*), (IV) Indicator Variable Regression, or (V) Logistic Regression.  You can also propose an alternative topic for my approval.
+The portfolio project serves as the capstone experience for the course and allows you flexibility to demonstrate working knowledge of the major topics of the course.  The portfolio will consist of a thorough analysis of data using four (cannot use any topic more than once) of the major topics in the course: (I) One-Way ANOVA (*must have more than two groups and cannot be a subset of your Two-Way ANOVA*), (II) Two-Way ANOVA, (III) Simple Linear Regression (*cannot be a subset of your Indicator Variable Regression*), (IV) Indicator Variable Regression, and (V) Logistic Regression.  You can also propose an alternative topic for my approval.
 
-For each topic you must gather and appropriately analyze data.  The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source.  The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting (primarily to you, but also in general).  **Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me in the eighth week (see [Dates page](Dates-Current.html){:target="_blank"}) that briefly describes the data that you will use, the types (i.e., quantitative or categorical) of response and explanatory variable(s), the question to be asked or hypotheses to be tested with the data, and which topic you will use to answer the question.  The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio.  *I strongly urge you to discuss your initial proposal with me before turning it in.*
+For each topic you must gather and appropriately analyze data. The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source. The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting (primarily to you, but also to me).
 
-For each topic you will write a report with the following sections:
+**Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me (see [Dates page](Dates-Current.html){:target="_blank"}) that briefly describes the data that you will use (including your source for the data), the question to be asked or hypotheses to be tested with the data, the response and explanatory variables, the types (i.e., quantitative or categorical) of those variable(s), which topic you will use to answer the question, and why you will use that topic.  The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio.  *I strongly urge you to discuss your initial proposal with me before turning it in.*
+
+For the final portfolio paper, you will write a report for each data set/topic with the following sections:
 
 * Introduction: thoroughly describe background information needed to understand the data, why the data are important, why you are interested in the data, what the objectives of the study were (i.e., the research and statistical hypotheses), and what you expect to see and why.
 * Methods: thoroughly describe the methodology you (or the authors) used to collect and you used to analyze the data.  Specifically note your sample size, possibly by groups if appropriate.
-* Assumptions: describe all assumption checking and, if necessary, data transformations (you must both demonstrate that a transformatino is needed and that it accomplished meeting the assumptions).
+* Assumptions: describe all assumption checking and, if necessary, data transformations (you must both demonstrate that a transformation is needed and that it accomplished meeting the assumptions).
 * Results: describe the results of your analysis.
-    * For one-way ANOVA ... provide an omnibus test, multiple comparisons results, specific differences if they exist, and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
-    * For two-way ANOVA ... provide an omnibus test or tests, multiple comparisons results, specific differences if they exist, and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
-    * For simple linear regression ... provide an omnibus test, specifically interpret the slope, an appropriate prediction, and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
-    * For indicator variable regression ... provide an omnibus test or tests, specifically interpret differences in slopes and intercepts, specifically interpret slopes and intercepts, predictions that demonstrate your results, and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
+    * For one-way ANOVA ... provide an omnibus test, multiple comparisons results, specific interpretation of differences if they exist, and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
+    * For two-way ANOVA ... provide an omnibus test or tests, multiple comparisons results, specif interpretation of differences if they exist, and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
+    * For simple linear regression ... provide an omnibus test, specific interpretretation of the slope, an appropriate prediction (with interpretation), and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
+    * For indicator variable regression ... provide an omnibus test or tests, specific interpretretation of differences in slopes and intercepts, specific interpretretation of slopes and intercepts, predictions (with interpretations) that demonstrate your results, and an appropriate plot that demonstrates your results.  Back-transform results as appropriate.
+    * For logistic regression ... provide an omnibus test, specific interpretation of the slope and back-transformed slope, predictions (with interpretations) of log(odds), odds, and probabilities, and an appropriate plot that demosntrates your results.
 * Discussion: describe how what you found relates to your objectives and hypotheses (and reasoning) from the introduction.  Suggest where further research in this area should go from here.
 * Works cited: list of references (if any) used to support your project.
 
-It is possible that all four analyses can be conducted from the same large data set.  Thus, it is possible to have a single introduction and single methods section describing the data collection, but separate methods for analysis, assumption checking, results, and discussion.  Alternatively, if different data sets are used for each topic, then separate introductions, methods, assumption checking, results, and discussion will be required.  The final portfolio should be typed, grammatically correct, and refer to supporting graphics and tables.  The final portfolio is due during the last week of classes (see [Dates page](Dates-Current.html){:target="_blank"}).
+It is possible that all four analyses can be conducted from the same large data set.  Thus, it is possible to have a single introduction and single methods section describing the data collection, but separate methods for analysis, assumption checking, results, and discussion.  Alternatively, if different data sets are used for each topic, then separate introduction, method, assumption checking, result, and discussion sections will be required.  The final portfolio should be typed, grammatically correct, and refer to supporting figures and tables.  The final portfolio is due during the last week of classes (see [Dates page](Dates-Current.html){:target="_blank"}).
+
 
 ### Incomplete Grades
+Under [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades"), an incomplete grade will be given ONLY under extreme circumstances beyond your control, such as a major illness.  An incomplete grade will be given ONLY if you have successfully completed the entire course except for the final exam.
 
-Under Northland College policy, an incomplete grade will be given ONLY under extreme circumstances beyond your control, such as a major illness.  An incomplete grade will be given ONLY if you have successfully completed the entire course except for the final exam.
+----
 
-## Participation and Conduct
-For most students, achievement is strongly positively related to attendance.  I will take attendance each day but attendance will not factor into your final grade with the following exception.  At the end of the semester I may, at my discretion, decide to eliminate one or more of your homework or exam grades.  Your attendance record will be one item considered when I make this decision.
+## Classroom Conduct and Academic Integrity
 
-<img class="img-right" src="../img/studying.jpg">
+Your conduct in class should revolve around the idea of being respectful of all others in the class.  Adhering to the following behaviors should be considered the minimum requirements to being respectful of others:
 
-As a general rule-of-thumb ([here](http://www.collegeparents.org/members/resources/articles/your-college-student-investing-enough-time-studying){:target="_blank"}, [here](http://classroom.synonym.com/ratio-studying-class-time-college-1075.html){:target="_blank"}, [here](https://www.usu.edu/asc/idea_sheets/pdf/estimate_study_hours.pdf){:target="_blank"}, and [here](http://collegelife.about.com/od/academiclife/f/How-Much-Time-Should-I-Spend-Studying-In-College.htm){:target="_blank"}, among many), students are expected to spend between 2-3 hours of time outside of class for each hour in class.  This course meets for 5 hours per week and, thus, I expect between 10 and 15 hours of time outside of class will be dedicated to preparing for class, completing homework and other assessments, and studying for exams.  I fully believe that the work required for this course can be completed within this expected amount of time, **if that time is quality-time** (i.e., without distraction).
-
-If you feel that you are spending an inordinate amount of time on some assignments because you are "stuck," then start your assignments early so that you can stop (and do other things) and make plans to see [me](#instructor) for help.
-
-Your conduct in class should revolve around the idea of being respectful of all others in the class.  Adhering to the following policies should be considered the minimum requirements to being respectful of others:
-
-* Arrive to class on time.  If you arrive late, then take the first available seat as quietly as possible.
-* Do not bring friends, children, pets, meals, or anything else to class that should not be there.
-* Turn off and store out-of-sight cell phones and other electronic devices (use of a personal laptop for work related to class is permitted).
-* Do not use the college or personal computers for other than assigned tasks.
+* Arrive to class on time.  If you arrive late, then take the first available seat as quietly as possible.  If you need to leave early, then please sit near the exit.
+* You are expected to attend the entire class period.  Leaving class early defeats the purpose of the class period, does not take advantage of resources (i.e., the professor) that can significantly help your learning, and does not build statistical stamina.
+* Turn off and store out-of-sight cell phones and other electronic devices
+* Turn your computer on immediately so that you can promptly begin the daily quiz.
+* Computer use is limited to class work.
+* If you choose to use your own computer, then please sit as far forward in class as possible.
 * Do not engage in side discussions while I or others are speaking to the entire class.
+*	Do not sleep in class -- this behavior is rude and distracting to others (especially the professor).
+* Unpack before and pack after class -- opening and closing  backpacks, rustling of papers or jackets is disruptive and disrespectful to others.
 * Do not use disrespectful language when addressing others.
 
-You will be asked to leave class if your behavior is disrespectful of others. 
+Finally, note that the [College's Academic Integrity Statement & Policy](https://my.northland.edu/student-policies/academic-policies/#academic-integrity){:target="_blank"} will be followed in this course.  Please make sure that you are familiar with its content.
 
-## Accomodations
-Students in need of academic accommodation should contact [Kathleen Skoraczewski](mailto:kskoraczewski@northland.edu), Campus Counselor	and Disabilities Service Coordinator, ext. 1369, Ponzio Center Rm. 232.
+----
+
+## Accommodations
+It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law.  *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course.  *If you have not yet established services* through OAR, but have a condition that requires accommodations (e.g., attention, learning, vision, hearing, mental, physical, or other health related concern), you should contact OAR (Ponzio 231 or 715-682-1387) or [Donna Jones-Ilsley, Coordinator of Student Accessibility Resources](mailto:djones-ilsley@northland.edu).
