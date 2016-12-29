@@ -9,7 +9,7 @@ css: /css/syllabus.css
 
 * Class [Description](#description) and [Learning Outcomes](#learning-outcomes)
 * [Instructor](#instructor) and [Tutors](#tutors)
-* [Grading](#grading) -- [Homework](#homework), [Exams](#exams), [Final Portfolio](#final-portfolio)
+* [Grading](#grading) -- [Quizzes](#quizzes), [Homework](#homework), [Portfolio](#portfolio)
 * [Participation and Conduct](#participation-and-conduct)
 * [Accomodations](#accomodations)
 
@@ -54,7 +54,6 @@ Mon, Wed, Fri 900-950; Thurs 1200-1300<br>By Appointment</td></tr>
 
 
 ## Grading
-
 An overall percentage score will be computed from the items and associated weights listed in the table below. To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed.  To project your future grade, also include percentages for future assessments. [*It is your responsibility to track your scores on the individual assessments.*]
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
@@ -100,18 +99,32 @@ Lowest possible final letter grades will be assigned by comparing your overall p
 </table>
 
 
+### Quizzes
+A one-hour quiz will be given approximately one week after the completion of [a module](../modules/){:target="_blank"}. Approximate dates for the quizzes are on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to take a missed quize without my prior approval. The final quiz will not be given early.
+
+
 ### Homework
+Several homework assignments will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** homework assignments are **due at the beginning of the class period on the assigned due date** (announced in class and on the [Dates page](Dates-Current){:target="_blank"}). Assignments not handed in at the beginning of the class period will be considered late. Late assignments will not be accepted. The lowest approximately 20% of homework grades will be excluded when computing your overall grade.
 
-Several homework assignments will be assigned per major course topic.  Grading of each assignment will be described on the assignment sheet.  Completed homework assignments will be due at the beginning of the class period on dates announced when the homework was assigned.  Assignments will be accepted up to one day late but will be reduced by 50% of the worth of the assignment.  Assignments not handed in at the beginning of the class period will be considered one day late.  **If there is any indication, whether I can confirm it or not, that you have not worked alone on your homework, then you will receive a 0 for that homework and will be warned of further penalties for subsequent offenses.**
+Each homework assigment is worth 10 points and will be graded in two parts.  The first part is an assessment of completeness and formatting (each assignment should follow [the expectations outlined here](hwformat)) according to the following rubric.
 
-*Not all homework problems will be graded for content, some will be graded only for completeness (you will be responsible for checking content with an [on-line answer key](index.html)).*
+<div class="container-fluid">
+  <table class="table table-bordered">
+  <thead>
+    <tr class="info"><th>0-1 points</th><th>2-4 points</th><th>5 points</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Very few questions answered completely.</td><td>Most questions answered completely. <a href="hwformat.html" target="_blank">Format for homework</a> may not have been followed.</td><td>All questions answered completely. <a href="hwformat.html" target="_blank">Format for homework</a> followed exactly.</td></tr>
+  </tbody>
+  </table>
+</div>
 
-### Exams
+The second part, also worth 5 points, is an assessment of the quality of the work.  In this part, only some (approximately half) of the questions will be assessed.  Answer keys will be [posted online](homework-keys) so that you may check your work.
 
-Exams dates are shown on the [Dates page](Dates-Current.html){:target="_blank"}.  Make-up exams will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to make up an exam missed without my prior approval.  The final exam will not be given early.
+**If there is any indication, whether I can confirm it or not, that you have not worked alone on your homework, then you will receive a 0 for that homework and will be warned of further penalties for subsequent offenses.**
 
-### Final Portfolio
 
+### Portfolio
 The portfolio project serves as the capstone experience for the course and allows you flexibility to demonstrate working knowledge of the major topics of the course.  In general, the portfolio will consist of a thorough analysis of data using four (cannot use any topic more than once) of the following major topics in the course: (I) One-Way ANOVA (*must have more than two groups and cannot be a subset of your Two-Way ANOVA*), (II) Two-Way ANOVA, (III) Simple Linear Regression (*cannot be a subset of your Indicator Variable Regression*), (IV) Indicator Variable Regression, or (V) Logistic Regression.  You can also propose an alternative topic for my approval.
 
 For each topic you must gather and appropriately analyze data.  The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source.  The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting (primarily to you, but also in general).  **Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me in the eighth week (see [Dates page](Dates-Current.html){:target="_blank"}) that briefly describes the data that you will use, the types (i.e., quantitative or categorical) of response and explanatory variable(s), the question to be asked or hypotheses to be tested with the data, and which topic you will use to answer the question.  The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio.  *I strongly urge you to discuss your initial proposal with me before turning it in.*
