@@ -12,9 +12,9 @@ function roundDec(x, dcml)  {
 //**  Sets weights for assessment components                                      **
 //**********************************************************************************
 function get_wghts() {
-  HW_WT = 0.25;
-  MT1_WT = 0.15;	MT2_WT = 0.15;	FNL_WT = 0.15;
-  PROJ_WT = 0.30;
+  Q1_WT = 0.1;	Q2_WT = 0.1;	Q3_WT = 0.1;
+  Q4_WT = 0.1;	Q5_WT = 0.1;	Q6_WT = 0.1;
+  HW_WT = 0.1;  PROJ_WT = 0.3;
 }
 
 //**********************************************************************************
@@ -38,25 +38,40 @@ function find_grade(form, pts, outof) {
 function calc_grade(form) {
 	get_wghts();
 	pts = 0; outof=0;
+	temp = form.Q1_SC.value;
+	if (temp!=="") {
+		if (temp > 1) {temp=temp/100};
+		pts += Q1_WT*temp;	outof += Q1_WT;
+	}
+	temp = form.Q2_SC.value;
+	if (temp!=="") {
+		if (temp > 1) {temp=temp/100};
+		pts += Q2_WT*temp;	outof += Q2_WT;
+	}
+	temp = form.Q3_SC.value;
+	if (temp!=="") {
+		if (temp > 1) {temp=temp/100};
+		pts += Q3_WT*temp;	outof += Q3_WT;
+	}
+	temp = form.Q4_SC.value;
+	if (temp!=="") {
+		if (temp > 1) {temp=temp/100};
+		pts += Q4_WT*temp;	outof += Q4_WT;
+	}
+	temp = form.Q5_SC.value;
+	if (temp!=="") {
+		if (temp > 1) {temp=temp/100};
+		pts += Q5_WT*temp;	outof += Q5_WT;
+	}
+	temp = form.Q6_SC.value;
+	if (temp!=="") {
+		if (temp > 1) {temp=temp/100};
+		pts += Q6_WT*temp;	outof += Q6_WT;
+	}
 	temp = form.HW_SC.value;
 	if (temp!=="") {
 		if (temp > 1) {temp=temp/100};
 		pts += HW_WT*temp;	outof += HW_WT;
-	}
-	temp = form.MT1_SC.value;
-	if (temp!=="") {
-		if (temp > 1) {temp=temp/100};
-		pts += MT1_WT*temp;	outof += MT1_WT;
-	}
-	temp = form.MT2_SC.value;
-	if (temp!=="") {
-		if (temp > 1) {temp=temp/100};
-		pts += MT2_WT*temp;	outof += MT2_WT;
-	}
-	temp = form.FNL_SC.value;
-	if (temp!=="") {
-		if (temp > 1) {temp=temp/100};
-		pts += FNL_WT*temp;	outof += FNL_WT;
 	}
 	temp = form.PROJ_SC.value;
 	if (temp!=="") {

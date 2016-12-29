@@ -7,7 +7,7 @@ css: /css/syllabus.css
 
 <SCRIPT SRC="../js/grader.js"></SCRIPT>
 
-* Class [Description](#description) and [Learning Outcomes](#learning-outcomes)
+* Class [Description](#description), [Importance](#importance), and [Learning Outcomes](#learning-outcomes)
 * [Instructor](#instructor) and [Tutors](#tutors)
 * [Grading](#grading) -- [Homework](#homework), [Exams](#exams), [Final Portfolio](#final-portfolio)
 * [Participation and Conduct](#participation-and-conduct)
@@ -18,6 +18,10 @@ css: /css/syllabus.css
 ## Description
 
 Linear models including one- and two-way ANOVA with post-hoc multiple comparisons and transformations, simple and multiple linear regression including transformations and indicator variables, and logistic regression; and basic principles of sample and experimental design.  The theoretical constructs of all topics will be developed and applied to real-life or realistic situations in the life and natural sciences.  Prerequisite: [MTH107](http://derekogle.com/NCMTH107/).  4 Credits.
+
+## Importance
+
+Statistics is central to scientific inquiry because hypotheses are generated from exploratory data analyses of existing or preliminary data and hypotheses are objectively tested with inferential statistical methods.  As such, understanding statistics is a major component of understanding how to conduct and interpret scientific research.  Understanding statistics includes knowing how to properly collect data ("design") and how to properly analyze data so that appropriate conclusions can be made ("analysis").  In this course you will learn (1) how to properly design a variety of studies that are commonly used in natural and social science fields and (2) how to properly analyze the data collected from those studies.  Throughout the course you will focus on the generalities of major concepts so that your knowledge will extend beyond the specific situations examined in class.  In addition, because the communication of results is critical to success as a researcher, you will also focus on correct report writing.
 
 ## Learning Outcomes
 
@@ -34,59 +38,46 @@ At the end of this class you will be able to ...
 
 ## Instructor
 
-<table class="tutors" width="60%">
-<tr><th><a href="http://derekogle.com" target="_blank">Dr. Derek H. Ogle</a><br>Professor of Mathematical Sciences<br> & Natural Resources</th></tr>
-<tr><th><img src="../img/DerekOgle1.jpg"></th></tr>
-<tr style="vertical-align:top"><td>CSE228; 682-1300<br><a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
-<a href="https://www.suggestionox.com/r/W16-107">Feedback / Suggestions</a></td></tr>
-<tr style="vertical-align:top"><td>Office Hours:<br>
-Mon, Wed, Fri 900-950; Thurs 1200-1300<br>By Appointment</td></tr>
-</table>
+<img class="img-right" src="../img/DerekOgle1.jpg">
+
+<ul>
+  <li><a href="http://derekogle.com" target="_blank">Dr. Derek H. Ogle</a><br>Professor of Mathematical Sciences<br> & Natural Resources</li>
+  <li>CSE239; 682-1300; <a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
+<a href="https://www.suggestionox.com/r/W16-207">Feedback / Suggestions</a></li>
+  <li>Office Hours: Tues 12-1p; Thurs 10-11a; Fri 3-4p</li>
+</ul>
 
 ## Tutors
 
-<table class="tutors" width="60%">
-<tr><th"><img src=".jpg"></th></tr>
-<tr><th>Elaine Gallenberg</th></tr>
-<tr style="vertical-align:top"><td>TBA</td></tr>
-<tr style="vertical-align:top"><td>TBD</td></tr>
-</table>
-
+* None.
 
 ## Grading
 
-An overall percentage score will be computed from the items and associated weights listed in the table below. To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed.  To project your future grade, also include percentages for future assessments. [*It is your responsibility to track your scores on the individual assessments.*]
+An overall percentage score will be computed from the items and associated weights listed in the table below.  A specific description for each item is given further below.  You can also use this table to compute your current or projected future grade.  To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed.  To project your future grade, also include percentages for future assessments.  [*It is your responsibility to track your scores on the individual assessments.*]
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
 
 <form name="GRADECALC">
 <table class="grader">
 <tr><th></th>
-<th><a href="#quizzes">Q1</A></th>
-<th><a href="#quizzes">Q2</A></th>
-<th><a href="#quizzes">Q3</A></th>
-<th><a href="#quizzes">Q4</A></th>
-<th><a href="#quizzes">Q5</A></th>
-<th><a href="#quizzes">Q6</A></th>
 <th><a href="#homework">HW</a></th>
+<th><a href="#exams">MT1</A></th>
+<th><a href="#exams">MT2</A></th>
+<th><a href="#exams">Final</A></th>
 <th><a href="#final-portfolio">Portfolio</A></th></tr>
 
 <tr><th>Weight</th>
-<th>10%</th><th>10%</th><th>10%</th><th>10%</th>
-<th>10%</th><th>10%</th><th>10%</th><th>30%</th></tr>
+<th>25%</th><th>15%</th><th>15%</th><th>15%</th><th>30%</th></tr>
 
 <tr><th>Percent</th>
-<td><input type="text" name="Q1_SC" size="3" tabindex="2" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q2_SC" size="3" tabindex="3" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q3_SC" size="3" tabindex="4" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q4_SC" size="3" tabindex="5" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q5_SC" size="3" tabindex="6" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q6_SC" size="3" tabindex="7" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="HW_SC" size="3" tabindex="8" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="PROJ_SC" size="3" tabindex="9" onchange="calc_grade(this.form)"></td></tr>
+<td><input type="text" name="HW_SC" size="3" tabindex="2" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="MT1_SC" size="3" tabindex="4" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="MT2_SC" size="3" tabindex="5" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="FNL_SC" size="3" tabindex="6" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="PROJ_SC" size="3" tabindex="7" onchange="calc_grade(this.form)"></td></tr>
 
-<tr><th colspan="5">Overall Percentage: <input type="text" name="SCORE" size="4"></th>
-<th colspan="4">Projected Grade: <input type="text" name="GRADE" size="2"></th></tr>
+<tr><th colspan="3">Overall Percentage: <input type="text" name="SCORE" size="4"></th>
+<th colspan="3">Projected Grade: <input type="text" name="GRADE" size="2"></th></tr>
 </table>
 </form>
 
