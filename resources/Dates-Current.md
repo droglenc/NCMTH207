@@ -6,7 +6,7 @@ css: /css/syllabus.css
 
 ## Homework Due Dates
 <dl class="dl-horizontal">
-<dt>XX-Jan</dt><dd><a href="../modules/LMFoundation/HW1">Foundations HW 1</a></dd>
+<dt>13-Jan</dt><dd><a href="../modules/LMFoundation/HW1">Foundations HW 1</a></dd>
 </dl>
 
 <!---
@@ -58,3 +58,15 @@ css: /css/syllabus.css
 <dt>17-Feb</dt><dd>NO CLASS (Dr. Ogle at AFS Conference)</dd>
 --->
 </dl>
+
+<style>
+dl dt {
+float:left;
+clear:both;
+width:50%;
+}
+dl dd {
+float:left;
+width:50%;
+}
+</style>
