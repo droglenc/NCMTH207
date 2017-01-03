@@ -60,12 +60,13 @@ css: /css/syllabus.css
 </dl>
 
 <style>
-dl dt {
+dl-horizontal dt {
 float:left;
 clear:both;
 width:50%;
+white-space:normal;
 }
-dl dd {
+dl-horizontal dd {
 float:left;
 width:50%;
 }
