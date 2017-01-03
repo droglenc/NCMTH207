@@ -46,10 +46,10 @@ Mon, Wed, Fri 900-950; Thurs 1200-1300<br>By Appointment</td></tr>
 ## Tutors
 
 <table class="tutors" width="60%">
-<tr><th><img src="../img/DerekOgle1.jpg"></th></tr>
+<tr><th><img src="../img/Lainey_Biometry_Pic.png"></th></tr>
 <tr><th>Elaine Gallenberg</th></tr>
-<tr style="vertical-align:top"><td>TBA</td></tr>
-<tr style="vertical-align:top"><td>TBD</td></tr>
+<tr style="vertical-align:top"><td>Th 10a-12n (CSE236)<br>Tu 1-3p; W 4-6p (DEX (Mead Hall)</td></tr>
+<tr style="vertical-align:top"><td>I am a senior majoring in Natural Resources and Biology with a minor in math. On campus, I am a member of Environmental Council and Nordic Ski Club. I work for Northland Volunteer Program, Phonathon, and am a math tutor. I live in the Finer Things Apartment theme house. In addition to Biometry, I enjoy running, skiing, birding, and music.</td></tr>
 </table>
 
 
