@@ -32,12 +32,12 @@ css: /css/syllabus.css
 
 ## Exam or Other Due Dates
 <dl class="dl-horizontal">
-<dt>1-Feb (Approximate)</dt><dd>First Quiz</dd>
-<dt>15-Feb (Approximate)</dt><dd>Second Quiz</dd>
-<dt>1-Mar (Approximate)</dt><dd>Third Quiz</dd>
+<dt>1-Feb (Approx.)</dt><dd>First Quiz</dd>
+<dt>15-Feb (Approx.)</dt><dd>Second Quiz</dd>
+<dt>1-Mar (Approx.)</dt><dd>Third Quiz</dd>
 <dt>3-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
-<dt>24-Mar (Approximate)</dt><dd>Fourth Quiz</dd>
-<dt>7-Apr (Approximate)</dt><dd>Fifth Quiz</dd>
+<dt>24-Mar (Approx.)</dt><dd>Fourth Quiz</dd>
+<dt>7-Apr (Approx.)</dt><dd>Fifth Quiz</dd>
 <dt>19-Apr</dt><dd>Sixth Quiz</dd>
 <dt>21-Apr (noon)</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a></dd>
 </dl>
@@ -58,16 +58,3 @@ css: /css/syllabus.css
 <dt>17-Feb</dt><dd>NO CLASS (Dr. Ogle at AFS Conference)</dd>
 --->
 </dl>
-
-<style>
-dl-horizontal dt {
-float:left;
-clear:both;
-width:50%;
-white-space:normal;
-}
-dl-horizontal dd {
-float:left;
-width:50%;
-}
-</style>
