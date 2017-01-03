@@ -54,7 +54,7 @@ Mon, Wed, Fri 900-950; Thurs 1200-1300<br>By Appointment</td></tr>
 
 
 ## Grading
-An overall percentage score will be computed from the items and associated weights listed in the table below. To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed.  To project your future grade, also include percentages for future assessments. [*It is your responsibility to track your scores on the individual assessments.*]
+An overall percentage score will be computed from the items and associated weights listed in the table below. To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed.  To project your future grade, also include percentages for future assessments. Put highest two quiz grades in "Q1" and "Q2" and lowest two quiz grades in "Q5" and "Q6". [*It is your responsibility to track your scores on the individual assessments.*]
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
 
@@ -71,8 +71,8 @@ An overall percentage score will be computed from the items and associated weigh
 <th><a href="#portfolio">Portfolio</A></th></tr>
 
 <tr><th>Weight</th>
-<th>10%</th><th>10%</th><th>10%</th><th>10%</th>
-<th>10%</th><th>10%</th><th>10%</th><th>30%</th></tr>
+<th>13%</th><th>13%</th><th>10%</th><th>10%</th>
+<th>7%</th><th>7%</th><th>10%</th><th>30%</th></tr>
 
 <tr><th>Percent</th>
 <td><input type="text" name="Q1_SC" size="3" tabindex="2" onchange="calc_grade(this.form)"></td>
@@ -100,7 +100,7 @@ Lowest possible final letter grades will be assigned by comparing your overall p
 
 
 ### Quizzes
-A one-hour quiz will be given approximately one week after the completion of [a module](../modules/){:target="_blank"}. Approximate dates for the quizzes are on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to take a missed quize without my prior approval. The final quiz will not be given early.
+A one-hour quiz will be given approximately one week after the completion of [a module](../modules/){:target="_blank"}. Approximate dates for the quizzes are on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition.  You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#grading)).
 
 
 ### Homework
