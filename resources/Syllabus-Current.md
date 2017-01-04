@@ -38,7 +38,7 @@ At the end of this class you will be able to ...
 <tr><th><a href="http://derekogle.com" target="_blank">Dr. Derek H. Ogle</a><br>Professor of Mathematical Sciences<br> & Natural Resources</th></tr>
 <tr><th><img src="../img/DerekOgle1.jpg"></th></tr>
 <tr style="vertical-align:top"><td>CSE228; 682-1300<br><a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
-<a href="https://www.suggestionox.com/r/W17-207">Feedback / Suggestions</a></td></tr>
+<a href="https://www.suggestionox.com/r/W17-207" target="_blank">Feedback / Suggestions</a></td></tr>
 <tr style="vertical-align:top"><td>Office Hours:<br>
 Mon, Wed, Fri 900-950; Thurs 1200-1300<br>By Appointment</td></tr>
 </table>
@@ -160,7 +160,6 @@ Your conduct in class should revolve around the idea of being respectful of all 
 * Arrive to class on time.  If you arrive late, then take the first available seat as quietly as possible.  If you need to leave early, then please sit near the exit.
 * You are expected to attend the entire class period.  Leaving class early defeats the purpose of the class period, does not take advantage of resources (i.e., the professor) that can significantly help your learning, and does not build statistical stamina.
 * Turn off and store out-of-sight cell phones and other electronic devices
-* Turn your computer on immediately so that you can promptly begin the daily quiz.
 * Computer use is limited to class work.
 * If you choose to use your own computer, then please sit as far forward in class as possible.
 * Do not engage in side discussions while I or others are speaking to the entire class.
