@@ -108,7 +108,7 @@ title: Lecture Materials
         <li><a href="../book/6_Biometry.pdf" target="_blank">Reading</a></li>
         <li><a href="LogisticRegression/PPT.pptx">Slides</a></li>
         <li>Handouts -- <a href="LogisticRegression/RHO.html"><img src="../img/web.png"></a> <a href="LogisticRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LogisticRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
-        <li>Homework Assignment -- <a href="LogisticRegression/HW1.html">#1</a> / <a href="LogisticRegression/HW2.html">#2</a></li> 
+        <li>Homework Assignment -- <a href="LogisticRegression/HW1.html">#1</a> / <a href="LogisticRegression/HW2.html">#2</a> / <a href="LogisticRegression/HW3.html">#3</a></li> 
       </ul>
       </div>
     </div>
