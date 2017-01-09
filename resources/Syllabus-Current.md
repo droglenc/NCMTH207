@@ -40,7 +40,7 @@ At the end of this class you will be able to ...
 <tr style="vertical-align:top"><td>CSE228; 682-1300<br><a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
 <a href="https://www.suggestionox.com/r/W17-207" target="_blank">Feedback / Suggestions</a></td></tr>
 <tr style="vertical-align:top"><td>Office Hours:<br>
-Mon, Wed, Fri 900-950; Thurs 1200-1300<br>By Appointment</td></tr>
+Mon, Wed, Fri 900-950; Tues 1200-1300<br>By Appointment</td></tr>
 </table>
 
 ## Tutors
