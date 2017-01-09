@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework 1
+title: Homework 2
 subtitle: Indicator Variable Regression
 css: "/css/modules.css"
 ---
