@@ -6,7 +6,7 @@ css: /css/syllabus.css
 
 ## Homework Due Dates
 <dl class="dl-horizontal">
-<dt>13-Jan</dt><dd><a href="../modules/LMFoundation/HW1">Foundations HW 1</a></dd>
+<dt>17-Jan</dt><dd><a href="../modules/LMFoundation/HW1">Foundations HW 1</a></dd>
 </dl>
 
 <!---

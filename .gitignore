@@ -1,6 +1,7 @@
 ## Stuff that should not be public
 Year_Specific/
 book/HW/
+zzzOld/
 
 ## Book materials that do not need to be in the repo
 book/cache/
