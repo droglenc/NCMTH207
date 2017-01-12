@@ -20,7 +20,7 @@ For each question below decide which type of analysis (e.g., one-way ANOVA, two-
 1. Researchers want to determine if the mean batting average (a numerical measure representing the proportion of hits per attempts) differs among positions (outfield, infield, and designated hitter) for major leagues baseball players.<sup id="a1">[1](#f1)</sup>
 1. A director of education wants to use a students' grade-point-average in classes related to the subject matter of a certifying exam to predict whether or not a student would pass that exam on the first attempt.
 1. Researchers studying anthropometry collected body girth measurements and skeletal diameter measurements, as well as age, weight, height, and sex for 507 physically active individuals.  In one aspect of their research, they wanted to determine if the relationship between body weight and hip girth differed between males and females.<sup id="a1">[1](#f1)</sup>
-1. Researchers want to determine if the body temperature of snails is affected by the color (light, intermediate, or dark) of the intertidal rock which the snail inhabits and whether the snail was found individually, in small groups (2-5 individuals), or large groups (5+ individuals).<sup id="a2">[2](#f2)</sup>
+1. Researchers want to determine if the body temperature of snails is affected by the color (light, intermediate, or dark) of the intertidal rock which the snail inhabits and whether the snail was found individually, in small groups (2-5 individuals), or large groups (>5 individuals).
 1. An experiment was created to compare the effectiveness of various feed supplements on the growth rate of chickens.  Newly hatched chicks were randomly allocated into six groups, and each group was given a different feed supplement.  The chicks' weights (in grams) after six weeks was recorded.  Interest was in determining if mean chick weight differed among the various feed types.<sup id="a1">[1](#f1)</sup>
 
 ----
@@ -28,7 +28,5 @@ For each question below decide which type of analysis (e.g., one-way ANOVA, two-
 ### Footnotes
 
 <b id="f1"><sup>1</sup></b> This example is essentially from the [Open Intro Statistics book](http://www.openintro.org/stat/index.php){:target="_blank"}. [↩](#a1)
-
-<b id="f2"><sup>2</sup></b> This example is essentially from [these notes](http://www.biology.hawaii.edu/301L/Spring/Labmanual/Lab 5 - Intertidal Ecology 11.pdf){:target="_blank"}. [↩](#a2)
 
 ----
