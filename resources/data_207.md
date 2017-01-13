@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Data for MTH107
+title: Data for MTH207
 ---
 
 * Bacteria -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Bacteria.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Bacteria_meta.txt)
