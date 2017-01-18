@@ -1,0 +1,130 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = NRS207 HW Key - 5.1 & 5.2}
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\begin{document}
+
+<<echo=FALSE, eval=FALSE>>=
+## Run this manually (Ctrl-Alt-C) after compiling PDF to remove
+## the ability to print the PDF
+fn <- "HW5_1_2"
+dir <- "C:/aaaWork/Web/GitHub/NCMTH207/book/"
+eng <- paste0(dir,"pdftk.exe")
+inp <- paste0(dir,"HW/",fn,".pdf")
+out <- paste0("output ",dir,"HW/",fn,"_noPrint.pdf")
+pw <- paste("owner_pw mth207")
+( tmp <- paste(eng,inp,out,pw,"verbose") )
+system(tmp,show.output.on.console=TRUE)
+
+## Removes intermediate files from the directory
+tmp <- list.files(paste0(dir,"HW/"))
+tmp <- tmp[grepl(fn,tmp)]
+tmp <- tmp[!grepl(".pdf",tmp) & !grepl(".rnw",tmp)]
+file.remove(paste0(dir,"HW/",tmp))
+@
+
+<<echo=FALSE, message=FALSE>>=
+library(knitr)
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+library(NCStats)
+library(multcomp)
+@
+
+\section*{Question 5.1}
+  \begin{enumerate}
+    \item The indicator variable is named \var{TAME} where $TAME=1$ if the pronghorn is in the ``tame'' group and $TAME=0$ if it is in the ``diet-curtailed'' group.
+    \item The full model is $\mu_{GROWTH} = \alpha + \beta_{1}TIME + \delta_{1}TAME + \gamma_{1}TAME*TIME$
+    \item The submodels for both groups are shown in the table below
+\begin{center}
+  \begin{tabular}{||c|c|l||}
+    \hline
+      \widen{-3}{8}{Group} & \var{Tame=} & Submodel ($\mu_{GROWTH}=$)\\
+    \hline
+      \widen{-2}{7}{Diet-curtailed}& 0 & $=\alpha+\beta_{1}TIME$ \\
+    \hline
+      \widen{-2}{7}{Tame}& 1 & $=(\alpha+\delta_{1})+(\beta_{1}+\gamma_{1})TIME$ \\
+    \hline
+  \end{tabular}
+\end{center}
+    \item Interpretations of the coefficients are listed below.
+      \begin{Itemize}
+        \item $\alpha$ is the intercept of diet-curtailed (reference) group
+        \item $\beta_{1}$ is the slope of diet-curtailed (reference) group
+        \item $\delta_{1}$ is the difference in intercept of tame and diet-curtailed groups (i.e., tame-dietcurtailed)
+        \item $\gamma_{1}$ is the difference in slopes of tame and diet-curtailed groups (i.e., tame-dietcurtailed)
+      \end{Itemize}
+    \item The models for the ``parallel lines test'' are shown below
+\[ \begin{split}
+  H_{O}&: \mu_{GROWTH|\cdots} = \alpha+\beta_{1}TIME+\delta_{1}TAME \\
+  H_{A}&: \mu_{GROWTH|\cdots} = \alpha+\beta_{1}TIME+\delta_{1}TAME+\gamma_{1}TAME*TIME \\
+\end{split} \]
+    \item The models for the ``equal-intercepts test'' (assuming parallele lines) are shown below
+\[ \begin{split}
+  H_{O}&: \mu_{GROWTH|\cdots} = \alpha+\beta_{1}TIME \\
+  H_{A}&: \mu_{GROWTH|\cdots} = \alpha+\beta_{1}TIME+\delta_{1}TAME \\
+\end{split} \]
+  \end{enumerate}
+
+\vspace{144pt}
+\begin{center}
+\textbf{[Turn the Page]}
+\end{center}
+\newpage
+\section*{Question 5.2}
+  \begin{enumerate}
+    \item The three required indicator variables are shown below
+      \begin{Itemize}
+        \item $FOUR=1$ if in the ``four-day starved'' group, $FOUR= 0$ otherwise
+        \item $EIGHT=1$ if in the ``eight-day starved'' group, $EIGHT=0$ otherwise
+        \item $STEEN=1$ if in the ``sixteen-day starved'' group, $STEEN=0$ otherwise
+      \end{Itemize}
+    \item  The full model is
+
+\[ \begin{split}
+\mu_{stomvol} &= \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
+              &+ \gamma_{1}FOUR*intake + \gamma_{2}EIGHT*intake + \gamma_{3}STEEN*intake \\
+\end{split} \]
+
+    \item The sub-models for all four groups are shown in the table below
+\begin{center}
+  \begin{tabular}{||c|c|c|c|l||}
+    \hline
+      \widen{-3}{8}{Group} & \var{FOUR=} & \var{EIGHT=} & \var{STEEN=} & Submodel ($\mu_{stomvol}=$)\\
+    \hline
+      \widen{-2}{7}{1-day starved} & 0 & 0 & 0 & $=\alpha+\beta_{1}intake$ \\
+    \hline
+      \widen{-2}{7}{4-day starved} & 1 & 0 & 0 & $=(\alpha+\delta_{1})+(\beta_{1}+\gamma_{1})intake$ \\
+    \hline
+      \widen{-2}{7}{8-day starved} & 0 & 1 & 0 & $=(\alpha+\delta_{2})+(\beta_{1}+\gamma_{2})intake$ \\
+    \hline
+      \widen{-2}{7}{16-day starved} & 0 & 0 & 1 & $=(\alpha+\delta_{3})+(\beta_{1}+\gamma_{3})intake$ \\
+    \hline
+  \end{tabular}
+\end{center}
+    \item Interpretations of the coefficients are listed below.
+      \begin{Itemize}
+        \item $\alpha$ is the intercept of the 1-day starved (reference) group
+        \item $\beta_{1}$ is the slope of the 1-day starved (reference)group
+        \item $\delta_{1}$ is the difference in the intercepts of the 4-day and 1-day starved groups
+        \item $\gamma_{1}$ is the difference in the slopes of the 4-day and 1-day starved groups
+        \item $\delta_{2}$ is the difference in the intercepts of the 8-day and 1-day starved groups
+        \item $\gamma_{2}$ is the difference in the slopes of the 8-day and 1-day starved groups
+        \item $\delta_{3}$ is the difference in the intercepts of the 16-day and 1-day starved groups
+        \item $\gamma_{3}$ is the difference in the slopes of the 16-day and 1-day starved groups
+      \end{Itemize}
+    \item Models for the ``parallel lines test'' are shown below
+\[ \begin{split}
+  H_{O}: \mu_{stomvol} &= \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
+  H_{A}: \mu_{stomvol} &= \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
+  &+ \gamma_{1}FOUR*intake + \gamma_{2}EIGHT*intake + \gamma_{3}STEEN*intake \\
+\end{split} \]
+    \item Models for the ``equal-intercepts test'' (assuming parallel lines) are shown below
+\[ \begin{split}
+  H_{O}&: \mu_{stomvol} = \alpha + \beta_{1}intake \\
+  H_{A}&: \mu_{stomvol} = \alpha + \beta_{1}intake + \delta_{1}FOUR  + \delta_{2}EIGHT + \delta_{3}STEEN \\
+\end{split} \]
+  \end{enumerate}
+
+\end{document}

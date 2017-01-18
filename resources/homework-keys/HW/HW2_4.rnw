@@ -1,0 +1,98 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = NRS207 HW Key - 2.4}
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\begin{document}
+
+<<echo=FALSE, eval=FALSE>>=
+## Run this manually (Ctrl-Alt-C) after compiling PDF to remove
+## the ability to print the PDF
+fn <- "HW2_4"
+dir <- "C:/aaaWork/Web/GitHub/NCMTH207/book/"
+eng <- paste0(dir,"pdftk.exe")
+inp <- paste0(dir,"HW/",fn,".pdf")
+out <- paste0("output ",dir,"HW/",fn,"_noPrint.pdf")
+pw <- paste("owner_pw mth207")
+( tmp <- paste(eng,inp,out,pw,"verbose") )
+system(tmp,show.output.on.console=TRUE)
+
+## Removes intermediate files from the directory
+tmp <- list.files(paste0(dir,"HW/"))
+tmp <- tmp[grepl(fn,tmp)]
+tmp <- tmp[!grepl(".pdf",tmp) & !grepl(".rnw",tmp)]
+file.remove(paste0(dir,"HW/",tmp))
+@
+
+<<echo=FALSE, message=FALSE>>=
+library(knitr)
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+library(NCStats)
+@
+
+\section*{Question 2.4}
+<<echo=FALSE, results="hide">>=
+cuc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv")
+lm1 <- lm(length~species,data=cuc)
+c1 <- coef(lm1)
+s1 <- summary(lm1)
+@
+  \begin{Enumerate}
+     \item The \R{anova()} results for the one-way ANOVA are shown in \tabref{tab:LMAnovaCuckoo1}.
+\begin{table}[!h]
+  \centering
+  \caption{Analysis of variance table for the egg length by bird species.}\label{tab:LMAnovaCuckoo1}
+<<echo=FALSE>>=
+kANOVA(lm1)
+@
+\end{table}
+       \begin{Itemize}
+         \item $df_{Residuals}$, or $df_{Within}$, is one less than the number of groups (host bird species; $I=3$) in the analysis.
+         \item $df_{species}$, or $df_{Among}$, is the total number of cuckoo eggs ($n=44$) minus the total number of groups ($I=3$) in the analysis.
+         \item $MS_{Residuals}$, or $MS_{Within}$, is the variability in cuckoo egg length around the mean cuckoo egg length of each host bird species group or the variability unexplained by using a separate mean for each group (i.e., the full model).
+         \item $MS_{species}$, or $MS_{Among}$, is the variability that is explained by using separate means (full model) that was not explained when only one mean (simple model) was used to represent all three groups.
+         \item The F test statistic is the ratio of the variability explained by using separate means to the variability not explained by using a single mean to represent all three groups.  Alternatively, the F test statistic is the ratio of the variability among means to the variability among individuals within groups.
+       \end{Itemize}
+
+     \vspace{12pt}
+     \item The \R{summary()} results of the one-way ANOVA are shown in \tabref{tab:LMAnovaCuckoo2}.
+\begin{table}[!h]
+  \centering
+  \caption{Coefficients from the one-way ANOVA fit of egg length by bird species.}\label{tab:LMAnovaCuckoo2}
+<<echo=FALSE>>=
+kREG(lm1)
+@
+\end{table}
+       \begin{Itemize}
+         \item The ``Intercept'' coefficient is the sample mean cuckoo egg length in the pipet (reference group) nests.  Thus, the mean length of cuckoo eggs in the pipet nests is \Sexpr{formatC(c1[1],format="f",digits=2)} mm.
+         \item The ``speciesSparrow'' estimate is the difference in the sample mean cuckoo egg length in the sparrow and pipet nests.  In this case, the mean cuckoo egg length in the sparrow nests is \Sexpr{formatC(c1[2],format="f",digits=2)} mm longer than the mean cuckoo egg length in the pipet nests.
+         \item The ``speciesWagtail'' estimate is the difference in the sample mean cuckoo egg length in the wagtail and pipet nests.  In this case, the mean cuckoo egg length in the wagtial nests is \Sexpr{formatC(-1*c1[3],format="f",digits=2)} mm \emph{shorter} than the mean cuckoo egg length in the pipet nests.
+         \item  The ``intercept'' p-value is used to determine if the mean cuckoo egg length in the pipet (reference group) nests differs from zero.   In this case, a \Sexpr{kPvalue(s1$coefficients[1,"Pr(>|t|)"])} suggests that the mean length of cuckoo eggs in pipet nests is different from zero.
+         \item  The ``speciesSparrow'' p-value is used to determine if the difference in the mean cuckoo egg length in the sparrow and pipet nests is different from zero.  In this case, a \Sexpr{kPvalue(s1$coefficients[2,"Pr(>|t|)"])} suggests that this difference is not different than zero, suggesting that there is no difference in the mean cuckoo egg length between the sparrow and pipet nests.
+         \item  The ``speciesWagtail'' p-value is used to determine if the difference in the mean cuckoo egg length in the wagtail and pipet nests is different from zero.  In this case, \Sexpr{kPvalue(s1$coefficients[3,"Pr(>|t|)"])} suggests that this difference in not different than zero suggesting that there is no difference in the mean cuckoo egg length between the wagtail and pipet nests.
+       \end{Itemize}
+
+      \vspace{12pt}
+      \item No, the overall p-value (\Sexpr{kPvalue(anova(lm1)[1,"Pr(>F)"])}) \tabrefp{tab:LMAnovaCuckoo1} is greater than 0.05.  There is no statistical difference in mean cuckoo length among the three species of host birds.
+      \item Not needed because no difference was identified.
+    \end{Enumerate}
+
+\section*{Notes from Professor}
+\begin{Itemize}
+  \item When asked to assess differences among ``all'' group means then you must use the overall p-value found in the ANOVA table.  The p-values found in the coefficients table do not answer this question because these p-values do not tell all pairs.
+  \item Don't say ``the groups differ'' or the ``the mean differs among groups.''  Be explicit ... say ``the mean length of cuckoo eggs differs among the three host species nests.''
+  \item Don't say ``first group'' or ``second group'' when those groups have specific names.  For example, say ``the intercept represents the mean length of cuckoo eggs inf the tree pipet group.''
+\end{Itemize}
+
+\vspace{12pt}
+R commands
+<<eval=FALSE>>=
+cuc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv")
+lm1 <- lm(length~species,data=cuc)
+anova(lm1)
+summary(lm1)
+confint(lm1)
+@
+
+\end{document}

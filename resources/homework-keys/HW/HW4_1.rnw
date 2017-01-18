@@ -1,0 +1,86 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = NRS207 HW Key - 4.1}
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\begin{document}
+
+<<echo=FALSE, eval=FALSE>>=
+## Run this manually (Ctrl-Alt-C) after compiling PDF to remove
+## the ability to print the PDF
+fn <- "HW4_1"
+dir <- "C:/aaaWork/Web/GitHub/NCMTH207/book/"
+eng <- paste0(dir,"pdftk.exe")
+inp <- paste0(dir,"HW/",fn,".pdf")
+out <- paste0("output ",dir,"HW/",fn,"_noPrint.pdf")
+pw <- paste("owner_pw mth207")
+( tmp <- paste(eng,inp,out,pw,"verbose") )
+system(tmp,show.output.on.console=TRUE)
+
+## Removes intermediate files from the directory
+tmp <- list.files(paste0(dir,"HW/"))
+tmp <- tmp[grepl(fn,tmp)]
+tmp <- tmp[!grepl(".pdf",tmp) & !grepl(".rnw",tmp)]
+file.remove(paste0(dir,"HW/",tmp))
+@
+
+<<echo=FALSE, message=FALSE>>=
+library(knitr)
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+library(NCStats)
+library(multcomp)
+@
+
+\section*{Question 4.1}
+  \begin{Enumerate}
+    \item Results in table below.
+  \begin{Verbatim}[formatcom=\color{blue},xleftmargin=5mm,commandchars=\\\{\}]
+\textcolor{red}{> summary(cricket)}
+       chirps            temp
+ Min.   :14.0   Min.   :69.00
+ 1st Qu.:15.5   1st Qu.:75.50
+ Median :16.0   Median :81.00
+ Mean   :16.6   Mean   :_80.13_
+ Max.   :20.0   Max.   :93.00
+ StDev  : 1.7   StDev  : 6.72
+
+\textcolor{red}{> lm1 <- lm(temp~chirps)}
+\textcolor{red}{> summary(lm1)}
+Call: lm(formula = temp ~ chirps)
+Coefficients:
+            Estimate Std. Error t value  Pr(>|t|)
+(Intercept)  26.7420   _10.1807_  2.627  0.020917
+chirps       _3.2163_    0.6102  _5.271_ 0.000151
+
+Residual standard error: 3.936 on 13 degrees of freedom
+Multiple R-Squared: 0.6812,     Adjusted R-squared: 0.6567
+F-statistic: 27.78 on 1 and 13 DF,  p-value: _0.0001513_
+
+\textcolor{red}{> predict(lm1,data.frame(chirps=15),interval="c")}
+           fit        lwr       upr
+[1,] _74.98717_ _71.94262_ 78.03173
+
+\textcolor{red}{> predict(lm1,data.frame(chirps=15),interval="p")}
+           fit        lwr       upr
+[1,] _74.98717_  65.95557 _84.01879_
+\end{Verbatim}
+
+\vspace{12pt}
+    \item The equation of the best-fit line is Temp = 26.742+3.2163Chirps.
+    \item Yes, the p-value for testing that the slope is equal to zero is very small (p=0.0002) leading to a conclusion that the slope is different than zero implying a significant relationship.
+  \end{Enumerate}
+
+\vspace{12pt}
+\section*{Notes from the Professor}
+\begin{Itemize}
+  \item The SE for the intercept is equal to the intercept divided by the t-value for the intercept.
+  \item The p-value below the coefficient results is exactly the same as the slope p-value.
+  \item The slope is equal to $r\frac{s_{temp}}{s_{chirps}}$ where $r$ is the square root of the $r^{2}$ value.
+  \item The slope t-value is the slope value divided by the SE of the slope.
+  \item The slope and intercept values can be used to find the two fitted values (under the \R{predict()} results).
+  \item The lower value in the first predict can be found by finding the difference between the fitted value and the upper value and subtracting this from the fitted value.  In other words, the fitted value must be exactly between the lower and upper confidence intervals.  A similar thought process can be used to find the upper value of the prediction interval.
+  \item The intercept is equal to the mean temp minus the slope times the mean number of chirps.  This relationship can be solved for the mean number of chirps to fill in the mean number of chirps item.
+\end{Itemize}
+
+\end{document}

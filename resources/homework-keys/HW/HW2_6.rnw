@@ -1,0 +1,110 @@
+\documentclass{article}
+\input{c:/aaaWork/zGnrlLatex/GnrlPreamble}
+\input{c:/aaaWork/zGnrlLatex/justRPreamble}
+\hypersetup{pdftitle = NRS207 HW Key - 2.6}
+\renewcommand{\theenumi}{\alph{enumi}}    % changes enumerates from numbers to letters
+
+\begin{document}
+
+<<echo=FALSE, eval=FALSE>>=
+## Run this manually (Ctrl-Alt-C) after compiling PDF to remove
+## the ability to print the PDF
+fn <- "HW2_6"
+dir <- "C:/aaaWork/Web/GitHub/NCMTH207/book/"
+eng <- paste0(dir,"pdftk.exe")
+inp <- paste0(dir,"HW/",fn,".pdf")
+out <- paste0("output ",dir,"HW/",fn,"_noPrint.pdf")
+pw <- paste("owner_pw mth207")
+( tmp <- paste(eng,inp,out,pw,"verbose") )
+system(tmp,show.output.on.console=TRUE)
+
+## Removes intermediate files from the directory
+tmp <- list.files(paste0(dir,"HW/"))
+tmp <- tmp[grepl(fn,tmp)]
+tmp <- tmp[!grepl(".pdf",tmp) & !grepl(".rnw",tmp)]
+file.remove(paste0(dir,"HW/",tmp))
+@
+
+<<echo=FALSE, message=FALSE>>=
+library(knitr)
+source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
+library(NCStats)
+library(multcomp)
+@
+
+\section*{Question 2.6}
+<<echo=FALSE, results="hide">>=
+d <- data.frame(cause=factor(c(rep("Adenoma",6),rep("BiHyper",10),rep("Carcinoma",5)),
+                             levels= c("Adenoma","BiHyper","Carcinoma")),
+                uth=c(3.1,3,1.9,3.8,4.1,1.9,8.3,3.8,3.9,7.8,9.1,15.4,
+                      7.7,6.5,5.7,13.6,10.2,9.2,9.6,53.8,15.8) )
+d2 <- d[-20,]
+lm2 <- lm(uth~cause,data=d2)
+aov2 <- anova(lm2)
+@
+
+  \begin{Enumerate}
+      \item The mean UTH is significantly different among the three groups (\Sexpr{kPvalue(aov2[1,"Pr(>F)"])}; \tabref{tab:LMAnovaUTH1}).
+\begin{table}[!h]
+  \centering
+  \caption{Analysis of variance table for the UTH values by syndrome type with the 20th individual removed.}\label{tab:LMAnovaUTH1}
+<<echo=FALSE>>=
+kANOVA(lm2)
+@
+\end{table}
+
+<<echo=FALSE, results="hide">>=
+mc2 <- glht(lm2,mcp(cause="Tukey"))
+mc2p <- kGLHT(mc2)
+@
+      \item It appears that the mean UTH for the adenoma group is significantly different from the mean UTH for both the bilateral hyperplasia (\Sexpr{kPvalue(mc2p[1,"p value"])}; \tabref{tab:LMMultCompUTH2}) and carcinoma (\Sexpr{kPvalue(mc2p[2,"p value"])}; \tabref{tab:LMMultCompUTH2}) groups and that the mean UTH for the bilateral hyperplasia and carcinoma groups are NOT statistically different (\Sexpr{kPvalue(mc2p[3,"p value"])}; \tabref{tab:LMMultCompUTH2}).  These results are shown visually in \figref{fig:uthfitplot3}.
+
+\begin{table}[!h]
+  \centering
+  \caption{Tukey's multiple comparison results for the UTH values by syndrome type with the 20th individual removed.}\label{tab:LMMultCompUTH2}
+<<echo=FALSE>>=
+mc2p
+@
+\end{table}
+<<label=uthfitplot3, echo=FALSE, message=FALSE, fig.cap="Plot of mean (with 95\\% CI) UTH level by syndrome type with the 20th individual removed.  Different letters indicate means that are significantly different.", fig.pos="h">>=
+fitPlot(lm2,xlab="Cause",ylab="Urine Tetrahydrocortisone Level")
+addSigLetters(lm2,c("a","b","b"),pos=c(2,2,4))
+@
+
+<<echo=FALSE, results="hide">>=
+mc2c <- kGLHT(mc2,type="c")
+@
+      \item The mean of the bilateral hyperplasia group is between \Sexpr{formatC(mc2c[1,"lwr"],format="f",digits=2)} and \Sexpr{formatC(mc2c[1,"upr"],format="f",digits=2)} units greater than the mean for the adenoma group \tabrefp{tab:LMMultCompUTH3}.  The mean for the carcinoma group is between \Sexpr{formatC(mc2c[2,"lwr"],format="f",digits=2)} and \Sexpr{formatC(mc2c[2,"upr"],format="f",digits=2)} units greater than the mean for the adenoma group \tabrefp{tab:LMMultCompUTH3}.  The means for the bilateral hyperplasia and carcinoma groups are not statistically different.
+
+\begin{table}[!h]
+  \centering
+  \caption{Tukey's confidence interval results for the difference in mean UTH values by syndrome type with the 20th individual removed.}\label{tab:LMMultCompUTH3}
+<<echo=FALSE>>=
+mc2c
+@
+\end{table}
+
+  \end{Enumerate}
+
+\vspace{48pt}
+R commands
+<<eval=FALSE>>=
+library(NCStats)
+library(multcomp)
+# the next four lines is just an alternative way to enter the data
+#   using read.table() is easier and more efficient
+d <- data.frame(cause=factor(c(rep("Adenoma",6),rep("BiHyper",10),rep("Carcinoma",5)),
+                             levels= c("Adenoma","BiHyper","Carcinoma")),
+                uth=c(3.1,3,1.9,3.8,4.1,1.9,8.3,3.8,3.9,7.8,9.1,15.4,
+                      7.7,6.5,5.7,13.6,10.2,9.2,9.6,53.8,15.8) )
+d2 <- d[-20,]
+lm2 <- lm(uth~cause,data=d2)
+anova(lm2)
+mc2 <- glht(lm2,mcp(cause="Tukey"))
+summary(mc2)
+confint(mc2)
+fitPlot(lm2,xlab="Cause",ylab="Urine Tetrahydrocortisone Level")
+addSigLetters(lm2,c("a","b","b"),pos=c(2,2,4))
+@
+
+\end{document}
