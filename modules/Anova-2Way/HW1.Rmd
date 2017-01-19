@@ -10,27 +10,26 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-# Renders an HTML file for the webpage ... however, there are a couple of wayward
-#   <div>s and <hr>s and <p> (last two related to HW format note) that should be
-#   manually deleted from the HTML page.
+# Renders an HTML file for the webpage ... however, there are a
+# couple of wayward <div>s and <hr>s and <p> (last two related
+# to HW format note) that should be manually deleted from the HTML page.
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way/")
 source("../../rhelpers/rhelpers.R")
 modHTML("HW1")
 ```
 
-<div class="alert alert-warning">
-<strong>Note</strong> Your answers to the questions below should follow the <a href="../../resources/hwformat" target="_blank">expectations for homework found here</a>.
-</div>
-
 ----
 
+<div class="alert alert-warning">
+  <strong>Note</strong> Your answers to the questions below should follow the <a href="../../resources/hwformat" target="_blank">expectations for homework found here</a>. Due date is on the <a href="../../resources/Dates-Current" target="_blank">Dates page.</a>
+</div>
 
 ----
 
 ## Visualizing Main and Interaction Effects
 For each horizontal pair of graphs below determine which effects (i.e., row factor main, column factor main, or interaction effects) are illustrated. Provide a short explanation for each of your answers (i.e., how did you come to your conclusions). [*Note: For each horizontal pair of graphs there are three levels of each factor -- some levels may appear to be missing because they overlap with other levels. Make sure that you make an explicity statement of an effect or not effect for each main and the interaction effect.*]
 
-```{r TWAHWSetup, echo=FALSE, results='hide'}
+```{r TWAHWSetup, echo=FALSE, results='hide',message=FALSE}
 library(FSA)
 rf <- rep(c("A","B","C"),times=3)
 cf <- rep(c("I","II","III"),each=3)
