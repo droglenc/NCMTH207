@@ -6,26 +6,11 @@ css: /css/syllabus.css
 
 ## Homework Due Dates
 <dl class="dl-horizontal">
-<dt>17-Jan</dt><dd><a href="../modules/LMFoundation/HW1">Foundations HW 1</a></dd>
+<dt>25-Jan</dt><dd><a href="../modules/LMFoundation/HW2">Foundations HW 2</a></dd>
 </dl>
 
 <!---
-<dt>13-Apr</dt><dd>HW 6.2 & 6.3</dd>
-<dt>8-Apr</dt><dd>HW 6.1</dd>
-<dt>30-Mar</dt><dd>HW 5.3</dd>
-<dt>18-Mar</dt><dd>HW 5.1-5.2</dd>
-<dt>16-Mar</dt><dd>HW 4.4-4.6</dd>
-<dt>7-Mar</dt><dd>HW 4.1-4.3</dd>
-<dt>26-Feb</dt><dd>HW 3.3</dd>
-<dt>22-Feb</dt><dd>HW 3.2</dd>
-<dt>17-Feb</dt><dd>HW 3.1</dd>
-<dt>10-Feb</dt><dd>HW 2.7</dd>
-<dt>8-Feb</dt><dd>HW 2.6</dd>
-<dt>5-Feb</dt><dd>HW 2.5</dd>
-<dt>3-Feb</dt><dd>HW 2.4</dd>
-<dt>1-Feb</dt><dd>HW 2.1-2.3</dd>
-<dt>27-Jan</dt><dd>HW 1.2</dd>
-<dt>20-Jan</dt><dd>HW 1.1</dd>
+<dt>17-Jan</dt><dd><a href="../modules/LMFoundation/HW1">Foundations HW 1</a></dd>
 --->
 
 ---- 
