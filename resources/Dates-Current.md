@@ -6,7 +6,7 @@ css: /css/syllabus.css
 
 ## Homework Due Dates
 <dl class="dl-horizontal">
-<dt>30-Jan</dt><dd><a href="../modules/Anova-1Way/HW1">Foundations HW 1</a></dd>
+<dt>30-Jan</dt><dd><a href="../modules/Anova-1Way/HW1">1-Way ANOVA HW 1</a></dd>
 </dl>
 
 <!---
