@@ -23,6 +23,7 @@ title: Homework Keys
 * [IVR 2](IVRegression_2_noPrint.pdf){:target="_blank"}
 * [Logistic Regression 1](LogisticRegression_1_noPrint.pdf){:target="_blank"}
 * [Logistic Regression 2](LogisticRegression_2_noPrint.pdf){:target="_blank"}
+* [Logistic Regression 3](LogisticRegression_3_noPrint.pdf){:target="_blank"}
 * [](_1_noPrint.pdf){:target="_blank"}
 
 -->
