@@ -8,11 +8,13 @@ css: /css/syllabus.css
 <dl class="dl-horizontal">
 <dt>30-Jan</dt><dd><a href="../modules/Anova-1Way/HW1">1-Way ANOVA HW 1</a></dd>
 <dt>3-Feb</dt><dd><a href="../modules/Anova-1Way/HW2">1-Way ANOVA HW 2</a></dd>
+<dt>8-Feb</dt><dd><a href="../modules/Anova-1Way/HW3">1-Way ANOVA HW 3</a></dd>
 </dl>
 
 <!---
 <dt>17-Jan</dt><dd><a href="../modules/LMFoundation/HW1">Foundations HW 1</a></dd>
 <dt>25-Jan</dt><dd><a href="../modules/LMFoundation/HW2">Foundations HW 2</a></dd>
+<dt>30-Jan</dt><dd><a href="../modules/Anova-1Way/HW1">1-Way ANOVA HW 1</a></dd>
 --->
 
 ---- 
