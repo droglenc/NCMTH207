@@ -6,9 +6,9 @@ css: /css/syllabus.css
 
 ## Homework Due Dates
 <dl class="dl-horizontal">
-<dt>30-Jan</dt><dd><a href="../modules/Anova-1Way/HW1">1-Way ANOVA HW 1</a></dd>
 <dt>3-Feb</dt><dd><a href="../modules/Anova-1Way/HW2">1-Way ANOVA HW 2</a></dd>
 <dt>8-Feb</dt><dd><a href="../modules/Anova-1Way/HW3">1-Way ANOVA HW 3</a></dd>
+<dt>10-Feb</dt><dd><a href="../modules/Anova-1Way/HW4">1-Way ANOVA HW 4</a></dd>
 </dl>
 
 <!---
@@ -22,7 +22,7 @@ css: /css/syllabus.css
 ## Exam or Other Due Dates
 <dl class="dl-horizontal">
 <dt>1-Feb</dt><dd>First Quiz</dd>
-<dt>15-Feb (Approx.)</dt><dd>Second Quiz</dd>
+<dt>15-Feb</dt><dd>Second Quiz</dd>
 <dt>1-Mar (Approx.)</dt><dd>Third Quiz</dd>
 <dt>3-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
 <dt>24-Mar (Approx.)</dt><dd>Fourth Quiz</dd>
