@@ -30,6 +30,6 @@ Am:       8.6, 15.0,  5.5,  4.3, 10.7,  6.2, 11.8
 1. If the assumptions are not met on the original scale then identify an appropriate transformation.  Transform the variable(s) to this scale and test the assumptions again.
 1. Test if the mean (transformed?) algal biovolumes differed among the treatments.
 1. If a difference among treatment means was identified, then use an appropriate method to determine which of the grazers differed significantly **from the control treatment**.
-1. Provide, for the grazer that is **most** different from the control treatment, an appropriate statement describing the difference between the means on the **original scale** (not the transformed scale). [*Hint: You may need to back-transform the results.*]
+1. Provide, for the grazer that is **most** different from the control treatment, an appropriate statement describing the difference between the means (with a CI) on the **original scale** (not the transformed scale). [*Hint: You may need to back-transform the results.*]
       
 ----

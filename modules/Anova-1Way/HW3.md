@@ -32,10 +32,10 @@ Carcinoma:             10.2, 9.2, 9.6, 53.8, 15.8
 ----
 
 ## Cushing's Syndrome II
-Continue with the data from above but with the outlier removed. **You must remove the outlier using R code (not by removing it from the CSV file).** You do not need to check the assumptions again.
+Continue with the data from above but with the outlier removed. **You must remove the outlier using R code (not by removing it from the CSV file).** Do not attempt a transformation with the data and do not check the assumptions again.
 
 1. Test, at the 5% level, if the mean tetrahydrocortisone levels differ among patients with the different causes of Cushing's Syndrome.
-1. If a difference in means was identified, then use an appropriate method to determine which groups differed significantly from each other. [*Note: Provide complete tabular AND graphical support for your answer.*]
-1. For any differences identified above, provide an appropriate statement describing the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results.*]
+1. If a difference in means was identified, then (using an appropriate method) determine which group means differed significantly from each other. [*Notes: Provide complete tabular AND graphical support for your answer. Your graph should clearly articulate which groups differ and which do not.*]
+1. For any differences identified above, provide an appropriate statement describing the amount of difference (use CIs) between the group means. [*Notes: Refer to appropriate tabular results. Clearly identify which group had a larger mean.*]
 
 ----
