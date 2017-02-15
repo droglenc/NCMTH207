@@ -41,46 +41,46 @@ library(multcomp)     # glht()
 
 # Bacteria Example
 ## Background
-What is the optimal temperature (27,35,43<sup>o</sup>C) and concentration (0.6,0.8,1.0,1.2,1.4% by weight) of the nutrient, tryptone, for culturing the *Staphylococcus aureus* bacterium.  Each treatment was repeated twice. The number of bacteria was recorded in millions CFU/mL (CFU=Colony Forming Units).
+What is the optimal temperature (27,35,43C) and concentration (0.6,0.8,1.0,1.2,1.4% by weight) of the nutrient, tryptone, for culturing the *Staphylococcus aureus* bacterium.  Each treatment was repeated twice. The number of bacteria was recorded in millions CFU/mL (CFU=Colony Forming Units).
 
 ```{r message=FALSE}
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way")
 bact <- read.csv("Bacteria.csv")
 str(bact)
-bact$ftemp <- factor(bact$temp)
-bact$fconc <- factor(bact$conc)
+bact$temp <- factor(bact$temp)
+bact$conc <- factor(bact$conc)
 str(bact)
 ```
 
 ## Initial Summaries
 ```{r}
-sumTable(cells~ftemp*fconc,data=bact,FUN=length)
-sumTable(cells~ftemp*fconc,data=bact,FUN=mean,digits=0)
-sumTable(cells~ftemp*fconc,data=bact,FUN=sd,digits=1)
+sumTable(cells~temp*conc,data=bact,FUN=length)
+sumTable(cells~temp*conc,data=bact,FUN=mean,digits=0)
+sumTable(cells~temp*conc,data=bact,FUN=sd,digits=1)
 ```
 
 ## Model Fitting and Summary
 ```{r fig.show="hold", par1=TRUE}
-lm1 <- lm(cells~ftemp*fconc,data=bact)
+lm1 <- lm(cells~temp*conc,data=bact)
 anova(lm1)
-fitPlot(lm1, main="")  # left
+fitPlot(lm1)  # left
 fitPlot(lm1,interval=FALSE,change.order=TRUE,xlab="Concentration (%)",
-        ylab="Mean Number of Cells",legend="topleft", main="")  # right
+        ylab="Mean Number of Cells",legend="topleft")  # right
 ```
 
 ```{r fig.show="hold", par1=TRUE}
-fitPlot(lm1,which="ftemp",ylim=c(60,270),xlab="Temperature (C)",
-        ylab="Mean Number of Cells", main="")  # left
-fitPlot(lm1,which="fconc",ylim=c(60,270),xlab="Concentration (%)",
-        ylab="Mean Number of Cells", main="")  # right
+fitPlot(lm1,which="temp",ylim=c(60,270),xlab="Temperature (C)",
+        ylab="Mean Number of Cells")  # left
+fitPlot(lm1,which="conc",ylim=c(60,270),xlab="Concentration (%)",
+        ylab="Mean Number of Cells")  # right
 ```
 
 ## Multiple Comparisons
 ```{r par1=TRUE}
-bact.mc1 <- glht(lm1,mcp(fconc="Tukey"))
+bact.mc1 <- glht(lm1,mcp(conc="Tukey"))
 summary(bact.mc1)
-fitPlot(lm1,which="fconc",xlab="Concentration (%)",ylab="Mean Number of Cells",main="")
-addSigLetters(lm1,which="fconc",lets=c("a","a","a","b","a"),pos=c(2,2,4,2,4))
+fitPlot(lm1,which="conc",xlab="Concentration (%)",ylab="Mean Number of Cells")
+addSigLetters(lm1,which="conc",lets=c("a","a","a","b","a"),pos=c(2,2,4,2,4))
 ```
 
 ----
