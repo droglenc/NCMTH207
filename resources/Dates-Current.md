@@ -26,7 +26,7 @@ css: /css/syllabus.css
 <dl class="dl-horizontal">
 <dt>15-Feb</dt><dd>Second Quiz</dd>
 <dt>3-Mar (Approx.)</dt><dd>Third Quiz</dd>
-<dt>6-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
+<dt>3-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
 <dt>24-Mar (Approx.)</dt><dd>Fourth Quiz</dd>
 <dt>7-Apr (Approx.)</dt><dd>Fifth Quiz</dd>
 <dt>19-Apr</dt><dd>Sixth Quiz</dd>
