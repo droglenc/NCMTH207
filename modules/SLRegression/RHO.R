@@ -19,21 +19,21 @@ xlbl <- "Sperm Tail End Piece Length (um)"
 ylbl <- "Fertilization Success"
 
 ( lm1 <- lm(fert.succ~step.len,data=ss) )
-fitPlot(lm1,xlab=xlbl,ylab=ylbl,main="")
+fitPlot(lm1,xlab=xlbl,ylab=ylbl)
 predict(lm1,data.frame(step.len=3.5))
 
 summary(lm1)
 confint(lm1)
-fitPlot(lm1,interval="both",xlab=xlbl,ylab=ylbl,main="")
+fitPlot(lm1,interval="both",xlab=xlbl,ylab=ylbl)
 
 predict(lm1,data.frame(step.len=3.5),interval="confidence")
 predict(lm1,data.frame(step.len=3.5),interval="prediction")
 predictionPlot(lm1,data.frame(step.len=c(3.3,3.5)),interval="prediction",
-               xlab=xlbl,ylab=ylbl,main="")
+               xlab=xlbl,ylab=ylbl)
 
 anova(lm1)
 
-residPlot(lm1,main="")
+residPlot(lm1)
 adTest(lm1$residuals)
 outlierTest(lm1)
 
@@ -41,18 +41,18 @@ petrels <- read.csv("Petrels.csv")
 str(petrels)
 
 lm1 <- lm(weight.loss~weight,data=petrels)
-fitPlot(lm1,xlab="Weight (g)",ylab="Weight Loss (g/g/d)",main="")
+fitPlot(lm1,xlab="Weight (g)",ylab="Weight Loss (g/g/d)")
 
-residPlot(lm1,main="")
+residPlot(lm1)
 
 with(petrels,max(weight)/min(weight))
 transChooser(lm1) # interactive, results not shown
 petrels$log.wt <- log(petrels$weight)
 petrels$log.wtloss <- log(petrels$weight.loss)
 lm2 <- lm(log.wtloss~log.wt,data=petrels)
-fitPlot(lm2,xlab="log Weight (g)",ylab="log Weight Loss (g/g/d)",main="")
+fitPlot(lm2,xlab="log Weight (g)",ylab="log Weight Loss (g/g/d)")
 
-residPlot(lm2,main="")
+residPlot(lm2)
 adTest(lm2$residuals)
 anova(lm2)
 summary(lm2)
@@ -61,4 +61,4 @@ confint(lm2)
 exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
 
 
-# Script created at 2015-12-20 20:51:09
+# Script created at 2017-02-22 11:32:49

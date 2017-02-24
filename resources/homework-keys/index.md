@@ -11,9 +11,9 @@ title: Homework Keys
 * [1-Way ANOVA 4](Anova-1way_4_noPrint.pdf){:target="_blank"}
 * [2-Way ANOVA 1](Anova-2way_1_noPrint.pdf){:target="_blank"}
 * [2-Way ANOVA 2](Anova-2way_2_noPrint.pdf){:target="_blank"}
+* [2-Way ANOVA 3](Anova-2way_3_noPrint.pdf){:target="_blank"}
 
 <!--
-* [2-Way ANOVA 3](Anova-2way_3_noPrint.pdf){:target="_blank"}
 * [Linear Regression 1](SLRegression_1_noPrint.pdf){:target="_blank"}
 * [Linear Regression 2](SLRegression_2_noPrint.pdf){:target="_blank"}
 * [Linear Regression 3](SLRegression_3_noPrint.pdf){:target="_blank"}
