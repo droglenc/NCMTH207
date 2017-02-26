@@ -33,5 +33,6 @@ Load these data into R to answer these questions. [*Note: You will need to force
 1. Are there significant main effects or an interaction effect? [*Note: Provide explicit evidence for each effect.*]
 1. Thoroughly describe specific differences related to significant main or interaction effects (i.e., which groups, if any, differ and by how much).
 1. Construct a plot or plots that depict the differences identified in the previous question.  Note, this plot should have letters that depict which groups are and are not significantly different.
+1. Summarize (ecologically, not statistically) your findings about the actual number of active crayfish and the level of competition and time of day.
 
 ----
