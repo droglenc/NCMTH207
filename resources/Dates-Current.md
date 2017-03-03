@@ -25,8 +25,6 @@ css: /css/syllabus.css
 
 ## Exam or Other Due Dates
 <dl class="dl-horizontal">
-<dt>3-Mar</dt><dd>Third Quiz</dd>
-<dt>3-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit)</a></dd>
 <dt>13-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
 <dt>24-Mar (Approx.)</dt><dd>Fourth Quiz</dd>
 <dt>7-Apr (Approx.)</dt><dd>Fifth Quiz</dd>
@@ -37,6 +35,8 @@ css: /css/syllabus.css
 <!---
 <dt>1-Feb</dt><dd>First Quiz</dd>
 <dt>15-Feb</dt><dd>Second Quiz</dd>
+<dt>3-Mar</dt><dd>Third Quiz</dd>
+<dt>3-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit)</a></dd>
 --->
 
 ---- 
