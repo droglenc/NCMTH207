@@ -7,6 +7,8 @@ css: /css/syllabus.css
 ## Homework Due Dates
 <dl class="dl-horizontal">
 <dt>13-Mar</dt><dd><a href="../modules/SLRegression/HW2">Simple Linear Regression HW 2</a></dd>
+<dt>17-Mar</dt><dd>Simple Linear Regression <a href="../modules/SLRegression/HW3">HW 3</a> & <a href="../modules/SLRegression/HW4">4</a></dd>
+<dt>20-Mar</dt><dd><a href="../modules/SLRegression/HW5">Simple Linear Regression HW 5</a></dd>
 </dl>
 
 <!---
@@ -43,12 +45,12 @@ css: /css/syllabus.css
 
 ## Cancelled Classes
 <dl class="dl-horizontal">
-<dt>6-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
-<dt>8-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
-<dt>10-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
 <dt>14-Apr</dt><dd>NO CLASS (Good Friday)</dd>
 <!---
 <dt>17-Feb</dt><dd>NO CLASS (Dr. Ogle at AFS Conference)</dd>
 <dt>16-Jan</dt><dd>NO CLASS (Please participate in <a href="https://www.northland.edu/event/martin-luther-king-jr-day-2017/" target="_blank">Martin Luther King, Jr. Day Activities</a>)</dd>
+<dt>6-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
+<dt>8-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
+<dt>10-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
 --->
 </dl>
