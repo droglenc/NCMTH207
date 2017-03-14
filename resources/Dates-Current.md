@@ -6,7 +6,6 @@ css: /css/syllabus.css
 
 ## Homework Due Dates
 <dl class="dl-horizontal">
-<dt>13-Mar</dt><dd><a href="../modules/SLRegression/HW2">Simple Linear Regression HW 2</a></dd>
 <dt>17-Mar</dt><dd>Simple Linear Regression <a href="../modules/SLRegression/HW3">HW 3</a> & <a href="../modules/SLRegression/HW4">4</a></dd>
 <dt>20-Mar</dt><dd><a href="../modules/SLRegression/HW5">Simple Linear Regression HW 5</a></dd>
 </dl>
@@ -21,13 +20,13 @@ css: /css/syllabus.css
 <dt>15-Feb</dt><dd><a href="../modules/Anova-2Way/HW1">2-Way ANOVA HW 1</a></dd>
 <dt>17-Feb</dt><dd><a href="../modules/Anova-2Way/HW2">2-Way ANOVA HW 2</a></dd>
 <dt>24-Feb</dt><dd><a href="../modules/Anova-2Way/HW3">2-Way ANOVA HW 3</a></dd>
+<dt>13-Mar</dt><dd><a href="../modules/SLRegression/HW2">Simple Linear Regression HW 2</a></dd>
 --->
 
 ---- 
 
 ## Exam or Other Due Dates
 <dl class="dl-horizontal">
-<dt>13-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
 <dt>24-Mar (Approx.)</dt><dd>Fourth Quiz</dd>
 <dt>7-Apr (Approx.)</dt><dd>Fifth Quiz</dd>
 <dt>19-Apr</dt><dd>Sixth Quiz</dd>
@@ -39,6 +38,7 @@ css: /css/syllabus.css
 <dt>15-Feb</dt><dd>Second Quiz</dd>
 <dt>3-Mar</dt><dd>Third Quiz</dd>
 <dt>3-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit)</a></dd>
+<dt>13-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
 --->
 
 ---- 
