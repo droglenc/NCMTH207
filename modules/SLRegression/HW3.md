@@ -21,7 +21,7 @@ Students in the Introduction to Environmental Studies course were interested in 
 1. Fully interpret the meaning of each coefficient's p-value.
 1. Fully interpret the meaning of the coefficient of determination.
 1. Fully interpret the meaning of each coefficient's confidence interval. [*Hint: Show results from* `confint()`.]
-1. Show how each degrees-of-freedom in the ANOVA table was calculated. Include the degrees-of-freedom that R does not report. [*Note: Make sure to show the ANOVA table produced by* `r anova()`.]
+1. Show how each degrees-of-freedom in the ANOVA table was calculated. Include the degrees-of-freedom that R does not report. [*Note: Make sure to show the ANOVA table produced by* `anova()`.]
 1. Interpret the meaning of each mean-square in the ANOVA table, include the mean-square that is usually not presented in the ANOVA table.
 1. Interpret the F test statistic in the ANOVA table.
 1. Is there evidence, at the 5% level, for a relationship between mpg and the horsepower of a car? Explain.
