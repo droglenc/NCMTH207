@@ -3,8 +3,9 @@ layout: page
 title: "Indicator Variable Regression"
 subtitle: R Handout
 author: "Derek H. Ogle"
-css: "/css/modules.css"
+css: /css/modules.css
 ---
+</div>
 
 
 <hr />
@@ -32,8 +33,8 @@ css: "/css/modules.css"
 <div id="fitting-the-linear-model" class="section level2">
 <h2>Fitting the Linear Model</h2>
 <pre class="r"><code>&gt; lm1 &lt;- lm(fert.succ~step.len*mat,data=ss)
-&gt; residPlot(lm1,legend=FALSE,main=&quot;&quot;,pch=16)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="576" /></p>
+&gt; residPlot(lm1,legend=FALSE,loess=FALSE)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
 <pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
 <pre><code>Anderson-Darling normality test with x 
 A = 0.1784, p-value = 0.8932</code></pre>
@@ -63,14 +64,14 @@ F-statistic: 24.78 on 3 and 7 DF,  p-value: 0.0004207 </code></pre>
 step.len           15.72132  44.41036
 matParr           -90.15097  38.82930
 step.len:matParr  -11.11233  27.42328</code></pre>
-<pre class="r"><code>&gt; fitPlot(lm1,interval=&quot;confidence&quot;,xlab=xlbl,ylab=ylbl,legend=&quot;topleft&quot;,main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="288" /></p>
+<pre class="r"><code>&gt; fitPlot(lm1,interval=&quot;confidence&quot;,xlab=xlbl,ylab=ylbl,legend=&quot;topleft&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" width="288" /></p>
 <pre class="r"><code>&gt; ( nd &lt;- data.frame(step.len=c(3.4,3.7),mat=c(&quot;Adult&quot;,&quot;Parr&quot;)) )</code></pre>
 <pre><code>  step.len   mat
 1      3.4 Adult
 2      3.7  Parr</code></pre>
-<pre class="r"><code>&gt; predictionPlot(lm1,nd,interval=&quot;confidence&quot;,legend=&quot;topleft&quot;,main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-6-2.png" title="" alt="" width="288" /></p>
+<pre class="r"><code>&gt; predictionPlot(lm1,nd,interval=&quot;confidence&quot;,legend=&quot;topleft&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-6-2.png" width="288" /></p>
 <pre><code>  obs step.len   mat      fit      lwr      upr
 1   1      3.4 Adult 16.45483 11.94067 20.96899
 2   2      3.7  Parr 29.98900 23.25902 36.71899</code></pre>
@@ -121,8 +122,8 @@ Residuals  9  171.58   19.06                 </code></pre>
 <div id="model-fitting-and-analysis" class="section level2">
 <h2>Model Fitting and Analysis</h2>
 <pre class="r"><code>&gt; lm1 &lt;- lm(ed~dw*species,data=FED)
-&gt; residPlot(lm1,main=&quot;&quot;,legend=FALSE,pch=16)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="576" /></p>
+&gt; residPlot(lm1,legend=FALSE)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
 <pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
 <pre><code>Anderson-Darling normality test with x 
 A = 0.353, p-value = 0.4549</code></pre>
@@ -157,12 +158,12 @@ Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
 4    weakfish 303.7943 262.4567 345.1318       0     0
 3 stripedbass 311.8110 275.6128 348.0092       0     0
 2    bluefish 362.5000 327.4355 397.5645       0     0</code></pre>
-<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;,main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="288" /></p>
+<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-10-1.png" width="288" /></p>
 </div>
 <div id="follow-up-model-fitting-and-analysis" class="section level2">
 <h2>Follow-Up Model Fitting and Analysis</h2>
-<pre class="r"><code>&gt; FED1 &lt;- Subset(FED,species!=&quot;bayanchovy&quot;)
+<pre class="r"><code>&gt; FED1 &lt;- filterD(FED,species!=&quot;bayanchovy&quot;)
 &gt; lm2 &lt;- lm(ed~dw*species,data=FED1)
 &gt; anova(lm2)</code></pre>
 <pre><code>Analysis of Variance Table
@@ -209,10 +210,12 @@ Mean ed when dw=0</code></pre>
 Mean ed when dw=      20</code></pre>
 <pre><code>   bluefish stripedbass    weakfish 
    3821.790    4453.188    4328.265 </code></pre>
-<pre class="r"><code>&gt; fitPlot(lm2,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;,main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="288" /></p>
+<pre class="r"><code>&gt; fitPlot(lm2,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-11-1.png" width="288" /></p>
 </div>
 </div>
+
+
 
 
 </div>
@@ -220,9 +223,13 @@ Mean ed when dw=      20</code></pre>
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
