@@ -17,13 +17,11 @@ title: Homework Keys
 * [Linear Regression 3](SLRegression_3_noPrint.pdf){:target="_blank"}
 * [Linear Regression 4](SLRegression_4_noPrint.pdf){:target="_blank"}
 * [Linear Regression 5](SLRegression_5_noPrint.pdf){:target="_blank"}
+* [IVR 1](IVRegression_1_noPrint.pdf){:target="_blank"}
 
 <!--
-* [IVR 1](IVRegression_1_noPrint.pdf){:target="_blank"}
 * [IVR 2](IVRegression_2_noPrint.pdf){:target="_blank"}
 * [Logistic Regression 1](LogisticRegression_1_noPrint.pdf){:target="_blank"}
 * [Logistic Regression 2](LogisticRegression_2_noPrint.pdf){:target="_blank"}
 * [Logistic Regression 3](LogisticRegression_3_noPrint.pdf){:target="_blank"}
-* [](_1_noPrint.pdf){:target="_blank"}
-
 -->
