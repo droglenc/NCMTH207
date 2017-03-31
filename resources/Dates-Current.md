@@ -6,7 +6,6 @@ css: /css/syllabus.css
 
 ## Homework Due Dates
 <dl class="dl-horizontal">
-<dt>31-Mar</dt><dd><a href="../modules/IVRegression/HW2">Indicator Variable Regression HW 2</a></dd>
 </dl>
 
 <!---
@@ -23,6 +22,7 @@ css: /css/syllabus.css
 <dt>17-Mar</dt><dd>Simple Linear Regression <a href="../modules/SLRegression/HW3">HW 3</a> & <a href="../modules/SLRegression/HW4">4</a></dd>
 <dt>20-Mar</dt><dd><a href="../modules/SLRegression/HW5">Simple Linear Regression HW 5</a></dd>
 <dt>28-Mar</dt><dd><a href="../modules/IVRegression/HW1">Indicator Variable Regression HW 1</a></dd>
+<dt>31-Mar</dt><dd><a href="../modules/IVRegression/HW2">Indicator Variable Regression HW 2</a></dd>
 --->
 
 ---- 
