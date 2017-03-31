@@ -14,6 +14,7 @@ source("c:/aaaWork/zGnrlLatex/knitr_setup.R")
 <<results='hide', message=FALSE, warning=FALSE>>=
 library(NCStats)
 library(plotrix)  #histStack()
+library(car)      #boot.case()
 @
 
 \vspace{-16pt}
@@ -73,10 +74,10 @@ confint(glm1)
 <<>>=
 x1 <- c(3,4)                  # purposely pick two canine10 values 1 unit apart
 ( p1 <- predict(glm1,data.frame(canine10=x1)) )
-p1[2]-p1[1]
+p1[[2]]-p1[[1]]
 exp(-11.112)                  # back-transformed 'slope' from summary() above
 ( bp1 <- exp(p1) )
-bp1[2]/bp1[1]
+bp1[[2]]/bp1[[1]]
 @
 
 \subsection{Predicting Probabilities}
@@ -90,10 +91,10 @@ predict(glm1,data.frame(canine10=c(3,3.4)),type="response")
 <<>>=
 ( cfs <- coef(glm1) )
 p <- 0.5    # canine tooth height where subspecies ratio is 50/50
-( x <- (log(p/(1-p))-cfs[1])/cfs[2] )
+( x <- (log(p/(1-p))-cfs[[1]])/cfs[[2]] )
 predict(glm1,data.frame(canine10=x),type="response")    # test the answer
 p <- 0.9    # length where 90% are semotus, 10% are cinereus
-(log(p/(1-p))-cfs[1])/cfs[2]
+(log(p/(1-p))-cfs[[1]])/cfs[[2]]
 @
 
 \newpage
@@ -102,9 +103,8 @@ p <- 0.9    # length where 90% are semotus, 10% are cinereus
 bc1 <- bootCase(glm1)      # bootstrapping, be patient!
 head(bc1)
 confint(bc1)
-hist(bc1,breaks=15)
 predProb <- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
-predProb(3,coef(glm1)[1],coef(glm1)[2])
+predProb(3,coef(glm1)[[1]],coef(glm1)[[2]])
 p3 <- predProb(3,bc1[,1],bc1[,2])
 head(p3)
 quantile(p3,c(0.025,0.975))
