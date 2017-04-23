@@ -29,9 +29,6 @@ css: /css/syllabus.css
 
 ## Exam or Other Due Dates
 <dl class="dl-horizontal">
-<dt>5-Apr</dt><dd>Fifth Quiz</dd>
-<dt>19-Apr</dt><dd>Sixth Quiz</dd>
-<dt>21-Apr (noon)</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a></dd>
 </dl>
 
 <!---
@@ -41,18 +38,22 @@ css: /css/syllabus.css
 <dt>3-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit)</a></dd>
 <dt>13-Mar</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></dd>
 <dt>24-Mar</dt><dd>Fourth Quiz</dd>
+<dt>5-Apr</dt><dd>Fifth Quiz</dd>
+<dt>19-Apr</dt><dd>Sixth Quiz</dd>
+<dt>21-Apr (noon)</dt><dd><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a></dd>
+
 --->
 
 ---- 
 
 ## Cancelled Classes
 <dl class="dl-horizontal">
-<dt>14-Apr</dt><dd>NO CLASS (Good Friday)</dd>
 <!---
 <dt>17-Feb</dt><dd>NO CLASS (Dr. Ogle at AFS Conference)</dd>
 <dt>16-Jan</dt><dd>NO CLASS (Please participate in <a href="https://www.northland.edu/event/martin-luther-king-jr-day-2017/" target="_blank">Martin Luther King, Jr. Day Activities</a>)</dd>
 <dt>6-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
 <dt>8-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
 <dt>10-Mar</dt><dd>NO CLASS (Mid-Session Break)</dd>
+<dt>14-Apr</dt><dd>NO CLASS (Good Friday)</dd>
 --->
 </dl>
