@@ -1,26 +1,34 @@
 \documentclass[10pt,openany]{book}
 
-%\usepackage{animate}
-%\input{c:/aaaWork/zGnrlLatex/BookPreamble_HC}   % use for the hard-copy version
 \input{c:/aaaWork/zGnrlLatex/BookPreamble}
-\hypersetup{pdftitle = MTH207 Notes}
+\hypersetup{pdftitle = MTH207 Notes,bookmarksdepth=0}
 \input{c:/aaaWork/zGnrlLatex/JustRPreamble}
+\usepackage{animate}
 \usepackage{multirow}
+%\usepackage{titlesec}
+%\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+%\titlespacing\subsection{-3pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+%\titlespacing\subsubsection{-3pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 \renewcommand{\chaptername}{Module}
 
 \begin{document}
 <<echo=FALSE, eval=FALSE>>=
-## Run this manually (Ctrl-Alt-C) after compiling to make no_print version
+## Run this manually (Ctrl-Alt-C) after compiling to split at bookmarks
 fn <- "Biometry"
 dir <- "C:/aaaWork/Web/GitHub/NCMTH207/book/"
-eng <- paste0(dir,"pdftk.exe")
-inp <- paste0(dir,fn,".pdf")
-out <- paste0("output ",dir,fn,"_noPrint.pdf")
-pw <- paste("owner_pw mth107")
-( tmp <- paste(eng,inp,out,pw,"verbose") )
+# this uses the sejda-console program ... use sejda-console -h for help
+eng <- "c:/apps/sejda-console/bin/sejda-console splitbybookmarks"
+# set input filename
+inp <- paste0("-f ",dir,fn,".pdf")
+# sets bookmark level to split at
+ins <- "-l 1 --discardOutline"
+# set output directory and prefix for filenames to the name of the bookmark
+out <- paste("-o",dir,"-p [BOOKMARK_NAME] --overwrite")
+# put it all together and run
+( tmp <- paste(eng,inp,ins,out) )
 system(tmp,show.output.on.console=TRUE)
 
-## Removes intermediate files from the directory
+## Removes intermediate files from the directory ... just looks cleaner
 tmp <- list.files(dir)
 tmp <- tmp[grepl(fn,tmp)]
 tmp <- tmp[!grepl(".pdf",tmp) & !grepl(".rnw",tmp)]
@@ -38,8 +46,8 @@ rqrd <- c("NCStats","FSA","car","DAAG","multcomp")
 for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
 @
 
-  \frontmatter
-    \include{FMatter}
+%  \frontmatter
+%    \include{FMatter}
 
   \mainmatter
 <<child-Foundations, child='LMFoundations.Rnw', eval=TRUE>>=
@@ -55,19 +63,19 @@ for (i in 1:length(rqrd)) library(rqrd[i],character.only=TRUE)
 <<child-Logistic, child='LMLogistic.Rnw',       eval=TRUE>>=
 @
 
-    \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{part}{Appendix}            %Add a TOC entry
-    \addtocontents{toc}{\setcounter{tocdepth}{0}}    %so appendices not in TOC
-    \chapter*{Appendices}
-    \appendix
-      \include{Proofs}
+%    \cleardoublepage
+%    \phantomsection
+%    \addcontentsline{toc}{part}{Appendix}            %Add a TOC entry
+%    \addtocontents{toc}{\setcounter{tocdepth}{0}}    %so appendices not in TOC
+%    \chapter*{Appendices}
+%    \appendix
+%      \include{Proofs}
 
-  \backmatter
-%BIBLIOGRAPHY -----------------------------------------------------------------------
-    \cleardoublepage
-    \phantomsection
-    \addcontentsline{toc}{part}{Bibliography}        %Add a TOC entry
-    \bibliography{c:/aaaWork/zGnrlLatex/DHO_Bib}     %make the bibliography
+%  \backmatter
+%BIBLIOGRAPHY ----------------------------------------------------------
+%    \cleardoublepage
+%    \phantomsection
+%    \addcontentsline{toc}{part}{Bibliography}        %Add a TOC entry
+%    \bibliography{c:/aaaWork/zGnrlLatex/DHO_Bib}     %make the bibliography
 
 \end{document}
