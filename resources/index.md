@@ -3,17 +3,14 @@ layout: page
 title: Resources
 ---
 
-## Administrative
 1. [Feedback / Suggestions](https://www.surveymonkey.com/r/F7S7GNJ){:target="_blank"}
 1. [Homework Answer Keys](homework-keys)
-
-## Computer
 1. **Data** (video pwd is "NCStats")
-    * [Data Files](data_207){:target="_blank"}
+    * [Data Files](data_207)
     * [Access on-line data](https://vimeo.com/user45324800/ncstats-getdatawebpage){:target="_blank"} (*but use data page above*)
     * Enter Your Own Data -- [with Excel](https://vimeo.com/user45324800/ncstats-preparedataexcel){:target="_blank"} or [without Excel](https://vimeo.com/user45324800/ncstats-preparedatatextfile){:target="_blank"}
     * [Load Data into RStudio](https://vimeo.com/user45324800/ncstats-loadcsvrstudio){:target="_blank"}
-1. **Software Installation Links**
+1. **Software Installation**
     * R -- [Windows](http://derekogle.com/IFAR/supplements/installations/InstallRWin.html){:target="_blank"} / [Mac OS](http://derekogle.com/IFAR/supplements/installations/InstallRMac.html){:target="_blank"}
     * RStudio -- [Windows](http://derekogle.com/IFAR/supplements/installations/InstallRStudioWin.html){:target="_blank"} / [Mac OS](http://derekogle.com/IFAR/supplements/installations/InstallRStudioMac.html){:target="_blank"}
     * [NCStats](https://github.com/droglenc/NCStats#installation){:target="_blank"}
