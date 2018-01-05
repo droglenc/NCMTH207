@@ -17,10 +17,10 @@ Note that some of the more distant dates are subject to change.
 <!---
 --->
 <tr><td>W 10-Jan</td>
-    <td><a href="Syllabus-Current">Syllabus</a></td>
+    <td><a href="../book/Foundations.pdf">Foundations Intro</a><br><a href="Syllabus-Current">Syllabus</a></td>
     <td>--</td></tr>
 <tr><td>F 12-Jan</td>
-    <td></td>
+    <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
