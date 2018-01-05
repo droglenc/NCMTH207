@@ -78,6 +78,8 @@ Note that some of the more distant dates are subject to change.
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 12-Feb</td>
+    <td></td>
+    <td>--</td></tr>
 <tr><td>T 13-Feb</td>
     <td></td>
     <td>--</td></tr>
