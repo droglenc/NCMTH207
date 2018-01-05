@@ -17,7 +17,7 @@ Note that some of the more distant dates are subject to change.
 <!---
 --->
 <tr><td>W 10-Jan</td>
-    <td><a href="../book/Foundations.pdf">Foundations Intro</a><br><a href="Syllabus-Current">Syllabus</a></td>
+    <td><a href="../book/Foundations.pdf">Foundations Intro &para;</a><br><a href="Syllabus-Current">Syllabus</a></td>
     <td>--</td></tr>
 <tr><td>F 12-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
@@ -27,18 +27,18 @@ Note that some of the more distant dates are subject to change.
 <tr><td>M 15-Jan</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
 <tr><td>T 16-Jan</td>
-    <td></td>
-    <td>--</td></tr>
+    <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
+    <td><a href="../modules/LMFoundations/HW1.html">Foundations HW #1</a></td></tr>
 <tr><td>W 17-Jan</td>
-    <td></td>
+    <td><a href="../book/Foundations.pdf">Foundations &sect;1.2-1.4</a></td>
     <td>--</td></tr>
 <tr><td>F 19-Jan</td>
-    <td></td>
+    <td><a href="../book/Foundations.pdf">Foundations &sect;1.5-1.6</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 22-Jan</td>
-    <td></td>
+    <td><a href="../book/Foundations.pdf">Foundations</a></td>
     <td>--</td></tr>
 <tr><td>T 23-Jan</td>
     <td></td>
