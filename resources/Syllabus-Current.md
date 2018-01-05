@@ -8,7 +8,7 @@ css: /css/syllabus.css
 <SCRIPT SRC="../js/grader.js"></SCRIPT>
 
 * Class [Description](#description) and [Learning Outcomes](#learning-outcomes)
-* [Instructor](#instructor) and [Tutors](#tutors)
+* [Instructor](#instructor)
 * [Grading](#grading) -- [Quizzes](#quizzes), [Homework](#homework), [Portfolio](#portfolio)
 * [Classroom Conduct and Academic Integrity](#classroom-conduct-and-academic-integrity)
 * [Accommodations](#accommodations)
@@ -38,18 +38,9 @@ At the end of this class you will be able to ...
 <tr><th><a href="http://derekogle.com" target="_blank">Dr. Derek H. Ogle</a><br>Professor of Mathematical Sciences<br> & Natural Resources</th></tr>
 <tr><th><img src="../img/DerekOgle1.jpg"></th></tr>
 <tr style="vertical-align:top"><td>CSE228; 682-1300<br><a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
-<a href="https://www.suggestionox.com/r/W17-207" target="_blank">Feedback / Suggestions</a></td></tr>
+<a href="https://www.surveymonkey.com/r/KC87PJW" target="_blank">Anonymous Feedback / Suggestions</a></td></tr>
 <tr style="vertical-align:top"><td>Office Hours:<br>
-Mon, Wed, Fri 900-950; Tues 1200-1300<br>By Appointment</td></tr>
-</table>
-
-## Tutors
-
-<table class="tutors" width="75%">
-<tr><th><img src="../img/Lainey_Biometry_Pic.png"></th></tr>
-<tr><th>Elaine ("Lainey") Gallenberg</th></tr>
-<tr style="vertical-align:top"><td>Office Hours:<br><i>Biometry</i>: Thurs 10a-12n (CSE236)<br><i>Gen Math</i>: Tues 1-3p; Wed 4-6p (DEX (Mead Hall))</td></tr>
-<tr style="vertical-align:top"><td>I am a senior majoring in Natural Resources and Biology with a minor in math. On campus, I am a member of Environmental Council and Nordic Ski Club. I work for Northland Volunteer Program, Phonathon, and am a math tutor. I live in the Finer Things Apartment theme house. In addition to Biometry, I enjoy running, skiing, birding, and music.</td></tr>
+MWF 900-950; WF 1500-1600<br>By Appointment</td></tr>
 </table>
 
 
@@ -100,7 +91,7 @@ Lowest possible final letter grades will be assigned by comparing your overall p
 
 
 ### Quizzes
-A one-hour quiz will be given approximately one week after the completion of [a module](../modules/){:target="_blank"}. Approximate dates for the quizzes are on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#grading)).
+Six one-hour quizzes will be given on the approximate dates shown on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#grading)).
 
 
 ### Homework
@@ -121,13 +112,13 @@ Each homework assignment is worth 10 points and will be graded in two parts. The
 
 The second part, also worth 5 points, is an assessment of the quality of the work. In this part, only some (approximately half) of the questions will be assessed. Answer keys will be [posted online](homework-keys) so that you may check your work.
 
-**If there is any indication, whether I can confirm it or not, that you have not worked alone on your homework, then you will receive a 0 for that homework and will be warned of further penalties for subsequent offenses.**
+I am fine with you working together on assignments; however, I will not tolerate simply copying someone else's answer. If you work together, than actually work together to solve the problem.
 
 
 ### Portfolio
 The portfolio project serves as the capstone experience for the course and allows you flexibility to demonstrate working knowledge of the major topics of the course. The portfolio will consist of a thorough analysis of data using four (cannot use any topic more than once) of the major topics in the course: (I) One-Way ANOVA (*must have more than two groups and cannot be a subset of your Two-Way ANOVA*), (II) Two-Way ANOVA, (III) Simple Linear Regression (*cannot be a subset of your Indicator Variable Regression*), (IV) Indicator Variable Regression, and (V) Logistic Regression. You can also propose an alternative topic for my approval.
 
-For each topic you must gather and appropriately analyze data. The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal articles (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet sources, or any other reliable source. The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting (primarily to you, but also to me).
+For each topic you must gather and appropriately analyze data. The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal article (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet source, or any other reliable source. The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting (primarily to you, but also to me).
 
 **Finding appropriate data may be the hardest part of the portfolio.**  Thus, you must submit an initial proposal to me (see [Dates page](Dates-Current.html){:target="_blank"}) that briefly describes the data that you will use (including your source for the data), the question to be asked or hypotheses to be tested with the data, the response and explanatory variables, the types (i.e., quantitative or categorical) of those variable(s), which topic you will use to answer the question, and why you will use that topic. The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio. *I strongly urge you to discuss your initial proposal with me before turning it in.*
 

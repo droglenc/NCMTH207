@@ -114,7 +114,8 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>F 2-Mar</td>
-    <td colspan="2"><span style="color:red">Third Quiz</span></td></tr>
+    <td><span style="color:red">Third Quiz</span></td>
+    <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit or to redo)</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 5-Mar</td>
@@ -135,7 +136,7 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>W 14-Mar</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></td></tr>
 <tr><td>F 16-Mar</td>
     <td></td>
     <td>--</td></tr>
