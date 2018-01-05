@@ -20,40 +20,39 @@ Note that some of the more distant dates are subject to change.
     <td><a href="Syllabus-Current">Syllabus</a></td>
     <td>--</td></tr>
 <tr><td>F 12-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 15-Jan</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
 <tr><td>T 16-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>W 17-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>F 19-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 22-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>T 23-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>W 24-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>F 26-Jan</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 29-Jan</td>
-    <td></td>
-    <td>--</td></tr>
+    <td colspan="2"><span style="color:coral">NO CLASS (Dr. Ogle at AFS Meeting)</span></td></tr>
 <tr><td>T 30-Jan</td>
     <td colspan="2"><span style="color:red">First Quiz</span></td></tr>
 <tr><td>W 31-Jan</td>
@@ -65,7 +64,7 @@ Note that some of the more distant dates are subject to change.
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 5-Feb</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>T 6-Feb</td>
     <td></td>
@@ -79,20 +78,20 @@ Note that some of the more distant dates are subject to change.
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 12-Feb</td>
-    <td></td>
-    <td>--</td></tr>
 <tr><td>T 13-Feb</td>
-    <td colspan="2"><span style="color:red">Second Quiz</span></td></tr>
-<tr><td>W 14-Feb</td>
     <td></td>
     <td>--</td></tr>
+<tr><td>W 14-Feb</td>
+    <td colspan="2"><span style="color:red">Second Quiz</span></td></tr>
 <tr><td>F 16-Feb</td>
     <td></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 19-Feb</td>
-<tr><td>M 20-Feb</td>
+    <td></td>
+    <td>--</td></tr>
+<tr><td>T 20-Feb</td>
     <td></td>
     <td>--</td></tr>
 <tr><td>W 21-Feb</td>
@@ -107,13 +106,13 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 27-Feb</td>
-    <td colspan="2"><span style="color:red">Third Quiz</span></td></tr>
+    <td></td>
+    <td>--</td></tr>
 <tr><td>W 28-Feb</td>
     <td></td>
     <td>--</td></tr>
 <tr><td>F 2-Mar</td>
-    <td></td>
-    <td>--</td></tr>
+    <td colspan="2"><span style="color:red">Third Quiz</span></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 5-Mar</td>
@@ -133,7 +132,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>W 14-Mar</td>
-    <td>--</td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>F 16-Mar</td>
     <td></td>
@@ -144,13 +143,13 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 20-Mar</td>
-    <td colspan="2"><span style="color:red">Fourth Quiz</span></td></tr>
+    <td></td>
+    <td>--</td></tr>
 <tr><td>W 21-Mar</td>
     <td></td>
     <td>--</td></tr>
 <tr><td>F 23-Mar</td>
-    <td></td>
-    <td>--</td></tr>
+    <td colspan="2"><span style="color:red">Fourth Quiz</span></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 26-Mar</td>
@@ -170,13 +169,13 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 3-Apr</td>
-    <td colspan="2"><span style="color:red">Fifth Quiz</span></td></tr>
-<tr><td>W 4-Apr</td>
-    <td>--</td>
-    <td>--</td></tr>
-<tr><td>F 6-Apr</td>
     <td></td>
     <td>--</td></tr>
+<tr><td>W 4-Apr</td>
+    <td></td>
+    <td>--</td></tr>
+<tr><td>F 6-Apr</td>
+    <td colspan="2"><span style="color:red">Fifth Quiz</span></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 9-Apr</td>
@@ -199,6 +198,6 @@ Note that some of the more distant dates are subject to change.
     <td colspan="2"><span style="color:red">Sixth Quiz</span></td></tr>
 <tr><td>W 18-Apr</td>
     <td colspan="2">--</td></tr>
-<tr><td>F 20-Apr (noon)</td>
-    <td colspan="2"><span style="color:red"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a></span></td></tr>
+<tr><td>F 20-Apr</td>
+    <td colspan="2"><span style="color:red"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
 </table>
