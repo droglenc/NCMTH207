@@ -45,7 +45,7 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>W 24-Jan</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/LMFoundations/HW2.html">Foundations HW #2</a></td></tr>
 <tr><td>F 26-Jan</td>
     <td></td>
     <td>--</td></tr>
