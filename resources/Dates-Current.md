@@ -15,7 +15,6 @@ Note that some of the more distant dates are subject to change.
 <table width="100%">
 <tr><th width="18%">Date</th><th width="36%">Preparation</th><th width="46%">Items Due</th></tr>
 <!---
---->
 <tr><td>W 10-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations Intro &para;</a><br><a href="Syllabus-Current">Syllabus</a></td>
     <td>--</td></tr>
@@ -23,6 +22,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 15-Jan</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
