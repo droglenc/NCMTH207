@@ -60,7 +60,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../modules/Anova-1Way/HW1.html">One-Way ANOVA HW #1</a></td></tr>
 <tr><td>F 2-Feb</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td>
-    <td>--</td></tr>
+    <td><a href="../modules/Anova-1Way/HW2.html">One-Way ANOVA HW #2</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 5-Feb</td>
