@@ -23,7 +23,7 @@ Fish Oil:      8, 12, 10, 2, 14,  0, 0
 Standard Oil: -6,  0,  1, 2, -3, -4, 2
 </pre>
 
-1. Construct a table of 2-Sample t-Test results (use `t.test()`). [*Note that an appropriately labeled table is the answer for this and the next two questions. You do not need a complete sentence for these questions.*]
+1. Construct a table of 2-Sample t-Test results (use `t.test()` and assume that the group variances are equal). [*Note that an appropriately labeled table is the answer for this and the next two questions. You do not need a complete sentence for these questions.*]
 1. Construct an ANOVA table (use `anova()` with an `lm()` object).
 1. Construct a summary of coefficients table (use `summary()` with an `lm()` object).
 1. How do the p-values for the 2-Sample t-Test, the ANOVA table, and the *slope* (in the summary of coefficients table) compare? Explain why this relationship occurs. [*Hint: You will need to discuss the H<sub>0</sub> and H<sub>A</sub> for each p-value and explain how they are equivalent.*]
