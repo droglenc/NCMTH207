@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework 1
+title: Homework 1 (Extra)
 subtitle: 1-Way ANOVA
 css: "/css/modules.css"
 ---
@@ -13,15 +13,13 @@ css: "/css/modules.css"
 
 ----
 
-## ANOVA Table I
+## ANOVA Table III
 
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
-**Among**  |    |    |    |  |
-**Within** | 24 | 35088 |  | - | -
-**Total**  | 31 | 70907 | - | - | -
-
-<br>
+**Among**  |    | 17.25 |      | 1.26 |
+**Within** |    |       | 4.56 | - | -
+**Total**  | 23 |       | -    | - | -
 
 1. Complete the missing cells in the ANOVA table above. Show your work. [*Note that you do not need R for this, beyond using* `distrib()` *to compute the p-value.*]
 1. How many groups were in this analysis?
@@ -29,14 +27,5 @@ Source     | df | SS | MS | F  | p-value
 1. What is the estimate of the pooled variance among individuals in each group?
 1. What is the estimate of the variance among individuals if groups are ignored?
 1. Is there a significant difference among the group means? [*Provide statistical evidence to support your answer*]
-
-----
-
-## ANOVA Table II
-
-A study was conducted that included 54 individuals that were evenly allocated to 6 treatment groups. The authors reported that the variance among all 54 individuals (ignoring group membership) was 47.33 and that the combined variance of individuals in each group was 33.78.
-
-1. Use this information to construct an ANOVA table. Show your work. [*Note that you do not need R for this, beyond using* `distrib()` *to compute the p-value.*]
-2. Is there a significant difference in means among the group means? [*Provide statistical evidence to support your answer*]
 
 ----
