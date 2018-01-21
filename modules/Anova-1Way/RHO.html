@@ -5,6 +5,7 @@ subtitle: R Handout
 author: "Derek H. Ogle"
 css: "/css/modules.css"
 ---
+</div>
 
 
 <hr />
@@ -39,7 +40,7 @@ css: "/css/modules.css"
 
 Response: weight
           Df  Sum Sq Mean Sq F value   Pr(&gt;F)
-water      3 115.043  38.348  10.793 0.001004
+water      3 115.042  38.347  10.793 0.001004
 Residuals 12  42.635   3.553                 </code></pre>
 <pre class="r"><code>&gt; summary(lm1)</code></pre>
 <pre><code>Coefficients:
@@ -53,7 +54,26 @@ Residual standard error: 1.885 on 12 degrees of freedom
 Multiple R-squared: 0.7296, Adjusted R-squared: 0.662 
 F-statistic: 10.79 on 3 and 12 DF,  p-value: 0.001004 </code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Water Treatment (ml)&quot;,ylab=&quot;Weight (g)&quot;,main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="288" /></p>
+</div>
+<div id="checking-the-assumptions" class="section level2">
+<h2>Checking the Assumptions</h2>
+<pre class="r"><code>&gt; levenesTest(lm1)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  3  0.3256 0.8069
+      12               </code></pre>
+<pre class="r"><code>&gt; residPlot(lm1)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+<pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
+<pre><code>Anderson-Darling normality test with x 
+A = 0.4308, p-value = 0.2688</code></pre>
+<pre class="r"><code>&gt; outlierTest(lm1)</code></pre>
+<pre><code>
+No Studentized residuals with Bonferonni p &lt; 0.05
+Largest |rstudent|:
+   rstudent unadjusted p-value Bonferonni p
+8 -2.836044           0.016196      0.25914</code></pre>
 </div>
 <div id="multiple-comparison-tests" class="section level2">
 <h2>Multiple Comparison Tests</h2>
@@ -70,10 +90,10 @@ Fit: lm(formula = weight ~ water, data = rasp)
 Linear Hypotheses:
                Estimate Std. Error t value Pr(&gt;|t|)
 200 - 100 == 0   -0.525      1.333  -0.394  0.97833
-400 - 100 == 0   -5.625      1.333  -4.220  0.00588
-800 - 100 == 0   -5.600      1.333  -4.202  0.00589
-400 - 200 == 0   -5.100      1.333  -3.826  0.01126
-800 - 200 == 0   -5.075      1.333  -3.808  0.01158
+400 - 100 == 0   -5.625      1.333  -4.220  0.00575
+800 - 100 == 0   -5.600      1.333  -4.202  0.00605
+400 - 200 == 0   -5.100      1.333  -3.826  0.01132
+800 - 200 == 0   -5.075      1.333  -3.808  0.01138
 800 - 400 == 0    0.025      1.333   0.019  1.00000
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; confint(rasp.mc)</code></pre>
@@ -85,40 +105,21 @@ Multiple Comparisons of Means: Tukey Contrasts
 
 Fit: lm(formula = weight ~ water, data = rasp)
 
-Quantile = 2.9663
+Quantile = 2.97
 95% family-wise confidence level
  
 
 Linear Hypotheses:
                Estimate lwr     upr    
-200 - 100 == 0 -0.5250  -4.4785  3.4285
-400 - 100 == 0 -5.6250  -9.5785 -1.6715
-800 - 100 == 0 -5.6000  -9.5535 -1.6465
-400 - 200 == 0 -5.1000  -9.0535 -1.1465
-800 - 200 == 0 -5.0750  -9.0285 -1.1215
-800 - 400 == 0  0.0250  -3.9285  3.9785</code></pre>
+200 - 100 == 0 -0.5250  -4.4835  3.4335
+400 - 100 == 0 -5.6250  -9.5835 -1.6665
+800 - 100 == 0 -5.6000  -9.5585 -1.6415
+400 - 200 == 0 -5.1000  -9.0585 -1.1415
+800 - 200 == 0 -5.0750  -9.0335 -1.1165
+800 - 400 == 0  0.0250  -3.9335  3.9835</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Water Treatment (ml)&quot;,ylab=&quot;Weight (g)&quot;,main=&quot;&quot;)
 &gt; addSigLetters(lm1,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;),pos=c(2,4,2,4))</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="288" /></p>
-</div>
-<div id="checking-the-assumptions" class="section level2">
-<h2>Checking the Assumptions</h2>
-<pre class="r"><code>&gt; levenesTest(lm1)</code></pre>
-<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
-      Df F value Pr(&gt;F)
-group  3  0.3256 0.8069
-      12               </code></pre>
-<pre class="r"><code>&gt; residPlot(lm1)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="576" /></p>
-<pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
-<pre><code>Anderson-Darling normality test with x 
-A = 0.4308, p-value = 0.2688</code></pre>
-<pre class="r"><code>&gt; outlierTest(lm1)</code></pre>
-<pre><code>
-No Studentized residuals with Bonferonni p &lt; 0.05
-Largest |rstudent|:
-   rstudent unadjusted p-value Bonferonni p
-8 -2.836044           0.016196      0.25914</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" width="288" /></p>
 <hr />
 </div>
 </div>
@@ -143,7 +144,7 @@ Largest |rstudent|:
 group  8  3.2452 0.003726
       63                 </code></pre>
 <pre class="r"><code>&gt; residPlot(lm2)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="576" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
 <pre class="r"><code>&gt; adTest(lm2$residuals)</code></pre>
 <pre><code>Anderson-Darling normality test with x 
 A = 1.6389, p-value = 0.0002996</code></pre>
@@ -159,7 +160,7 @@ A = 1.6389, p-value = 0.0002996</code></pre>
 group  8  1.5339 0.1636
       63               </code></pre>
 <pre class="r"><code>&gt; residPlot(lm3)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="576" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
 <pre class="r"><code>&gt; adTest(lm3$residuals)</code></pre>
 <pre><code>Anderson-Darling normality test with x 
 A = 0.3323, p-value = 0.5062</code></pre>
@@ -191,18 +192,18 @@ Fit: lm(formula = logab ~ site, data = ben)
 
 Linear Hypotheses:
             Estimate Std. Error t value Pr(&gt;|t|)
-2 - 1 == 0 -0.218435   0.096537  -2.263  0.14551
+2 - 1 == 0 -0.218435   0.096537  -2.263  0.14563
 3 - 1 == 0  0.703189   0.096537   7.284  &lt; 0.001
 4 - 1 == 0  0.453836   0.096537   4.701  &lt; 0.001
 5 - 1 == 0 -0.414859   0.096537  -4.297  &lt; 0.001
 6 - 1 == 0 -0.004238   0.096537  -0.044  1.00000
-7 - 1 == 0  0.140280   0.096537   1.453  0.57984
-8 - 1 == 0 -0.371867   0.096537  -3.852  0.00207
-9 - 1 == 0  0.168668   0.096537   1.747  0.37954
+7 - 1 == 0  0.140280   0.096537   1.453  0.57966
+8 - 1 == 0 -0.371867   0.096537  -3.852  0.00202
+9 - 1 == 0  0.168668   0.096537   1.747  0.37983
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm3,ylab=&quot;Log Abundance&quot;,xlab=&quot;Site&quot;,main=&quot;&quot;)
 &gt; addSigLetters(lm3,lets=c(&quot;&quot;,&quot;&quot;,&quot;***&quot;,&quot;***&quot;,&quot;***&quot;,&quot;&quot;,&quot;&quot;,&quot;***&quot;,&quot;&quot;),pos=c(2,4,2,4,2,2,4,2,4))</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-11-1.png" width="288" /></p>
 <pre class="r"><code>&gt; confint(ben.mc)</code></pre>
 <pre><code>
      Simultaneous Confidence Intervals
@@ -212,36 +213,38 @@ Multiple Comparisons of Means: Dunnett Contrasts
 
 Fit: lm(formula = logab ~ site, data = ben)
 
-Quantile = 2.728
+Quantile = 2.7296
 95% family-wise confidence level
  
 
 Linear Hypotheses:
            Estimate  lwr       upr      
-2 - 1 == 0 -0.218435 -0.481789  0.044920
-3 - 1 == 0  0.703189  0.439834  0.966543
-4 - 1 == 0  0.453836  0.190482  0.717191
-5 - 1 == 0 -0.414859 -0.678214 -0.151505
-6 - 1 == 0 -0.004238 -0.267592  0.259117
-7 - 1 == 0  0.140280 -0.123074  0.403635
-8 - 1 == 0 -0.371867 -0.635222 -0.108513
-9 - 1 == 0  0.168668 -0.094687  0.432023</code></pre>
+2 - 1 == 0 -0.218435 -0.481942  0.045073
+3 - 1 == 0  0.703189  0.439681  0.966696
+4 - 1 == 0  0.453836  0.190329  0.717344
+5 - 1 == 0 -0.414859 -0.678366 -0.151352
+6 - 1 == 0 -0.004238 -0.267745  0.259269
+7 - 1 == 0  0.140280 -0.123227  0.403788
+8 - 1 == 0 -0.371867 -0.635374 -0.108360
+9 - 1 == 0  0.168668 -0.094839  0.432175</code></pre>
 <pre class="r"><code>&gt; exp(confint(ben.mc)$confint)</code></pre>
 <pre><code>       Estimate       lwr       upr
-2 - 1 0.8037761 0.6176041 1.0460683
-3 - 1 2.0201841 1.5522655 2.6291531
-4 - 1 1.5743404 1.2096889 2.0489133
-5 - 1 0.6604332 0.5074625 0.8595157
-6 - 1 0.9957713 0.7651290 1.2959390
-7 - 1 1.1505965 0.8840933 1.4974350
-8 - 1 0.6894457 0.5297551 0.8972739
-9 - 1 1.1837272 0.9095502 1.5405527
+2 - 1 0.8037761 0.6176742 1.0459494
+3 - 1 2.0201841 1.5524418 2.6288545
+4 - 1 1.5743404 1.2098263 2.0486805
+5 - 1 0.6604332 0.5075201 0.8594181
+6 - 1 0.9957713 0.7652159 1.2957918
+7 - 1 1.1505965 0.8841937 1.4972649
+8 - 1 0.6894457 0.5298153 0.8971719
+9 - 1 1.1837272 0.9096535 1.5403777
 attr(,&quot;conf.level&quot;)
 [1] 0.95
 attr(,&quot;calpha&quot;)
-[1] 2.729238</code></pre>
+[1] 2.728062</code></pre>
 </div>
 </div>
+
+
 
 
 </div>
@@ -249,9 +252,13 @@ attr(,&quot;calpha&quot;)
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
@@ -260,7 +267,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

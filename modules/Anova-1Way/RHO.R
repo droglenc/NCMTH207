@@ -23,16 +23,16 @@ anova(lm1)
 summary(lm1)
 fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
 
+levenesTest(lm1)
+residPlot(lm1)
+adTest(lm1$residuals)
+outlierTest(lm1)
+
 rasp.mc <- glht(lm1, mcp(water = "Tukey"))
 summary(rasp.mc)
 confint(rasp.mc)
 fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
 addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4))
-
-levenesTest(lm1)
-residPlot(lm1)
-adTest(lm1$residuals)
-outlierTest(lm1)
 
 ben <- read.csv("BenthicInfaunal.csv")
 ben$site <- factor(ben$site)
@@ -62,4 +62,4 @@ confint(ben.mc)
 exp(confint(ben.mc)$confint)
 
 
-# Script created at 2015-12-20 16:47:23
+# Script created at 2018-01-21 15:35:46

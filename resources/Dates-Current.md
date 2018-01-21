@@ -41,13 +41,13 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Foundations.pdf">Foundations</a></td>
     <td>--</td></tr>
 <tr><td>T 23-Jan</td>
-    <td></td>
+    <td><a href="../modules/LMFoundations/HW2.html">Foundations HW #2</a> (Work Time)</td>
     <td>--</td></tr>
 <tr><td>W 24-Jan</td>
-    <td></td>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.1</a></td>
     <td><a href="../modules/LMFoundations/HW2.html">Foundations HW #2</a></td></tr>
 <tr><td>F 26-Jan</td>
-    <td></td>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.2</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
@@ -56,10 +56,10 @@ Note that some of the more distant dates are subject to change.
 <tr><td>T 30-Jan</td>
     <td colspan="2"><span style="color:red">First Quiz</span></td></tr>
 <tr><td>W 31-Jan</td>
-    <td></td>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td>
     <td>--</td></tr>
 <tr><td>F 2-Feb</td>
-    <td></td>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
