@@ -21,7 +21,7 @@ Source     | df | SS | MS | F  | p-value
 **Within** | 24 | 35088 |  | - | -
 **Total**  | 31 | 70907 | - | - | -
 
-<br>
+&nbsp;
 
 1. Complete the missing cells in the ANOVA table above. Show your work. [*Note that you do not need R for this, beyond using* `distrib()` *to compute the p-value.*]
 1. How many groups were in this analysis?
