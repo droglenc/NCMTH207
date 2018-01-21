@@ -40,3 +40,7 @@ A study was conducted that included 54 individuals that were evenly allocated to
 2. Is there a significant difference in means among the group means? [*Provide statistical evidence to support your answer*]
 
 ----
+
+More practice [is available here](HW1a).
+
+----
