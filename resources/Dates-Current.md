@@ -54,7 +54,7 @@ Note that some of the more distant dates are subject to change.
 <tr><td>M 29-Jan</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Dr. Ogle at AFS Meeting)</span></td></tr>
 <tr><td>T 30-Jan</td>
-    <td colspan="2"><span style="color:red">First Quiz</span><a href="QuizGuides/quiz_1.html">Study Guide</a></td></tr>
+    <td colspan="2"><span style="color:red">First Quiz</span> (<a href="QuizGuides/quiz_1.html">Study Guide</a>)</td></tr>
 <tr><td>W 31-Jan</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.2</a></td>
     <td><a href="../modules/Anova-1Way/HW1.html">One-Way ANOVA HW #1</a></td></tr>
