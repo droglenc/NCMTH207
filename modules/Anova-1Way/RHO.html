@@ -9,12 +9,10 @@ css: "/css/modules.css"
 
 
 <hr />
-<div id="initialization" class="section level2">
-<h2>Initialization</h2>
-<pre class="r"><code>&gt; library(NCStats)
+<pre class="r"><code>&gt; # Load Packages
+&gt; library(NCStats)
 &gt; library(multcomp)     # glht()</code></pre>
 <hr />
-</div>
 <div id="raspberry-example" class="section level1">
 <h1>Raspberry Example</h1>
 <div id="background" class="section level2">
@@ -90,10 +88,10 @@ Fit: lm(formula = weight ~ water, data = rasp)
 Linear Hypotheses:
                Estimate Std. Error t value Pr(&gt;|t|)
 200 - 100 == 0   -0.525      1.333  -0.394  0.97833
-400 - 100 == 0   -5.625      1.333  -4.220  0.00575
-800 - 100 == 0   -5.600      1.333  -4.202  0.00605
-400 - 200 == 0   -5.100      1.333  -3.826  0.01132
-800 - 200 == 0   -5.075      1.333  -3.808  0.01138
+400 - 100 == 0   -5.625      1.333  -4.220  0.00540
+800 - 100 == 0   -5.600      1.333  -4.202  0.00591
+400 - 200 == 0   -5.100      1.333  -3.826  0.01138
+800 - 200 == 0   -5.075      1.333  -3.808  0.01175
 800 - 400 == 0    0.025      1.333   0.019  1.00000
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; confint(rasp.mc)</code></pre>
@@ -105,22 +103,23 @@ Multiple Comparisons of Means: Tukey Contrasts
 
 Fit: lm(formula = weight ~ water, data = rasp)
 
-Quantile = 2.97
+Quantile = 2.9659
 95% family-wise confidence level
  
 
 Linear Hypotheses:
                Estimate lwr     upr    
-200 - 100 == 0 -0.5250  -4.4835  3.4335
-400 - 100 == 0 -5.6250  -9.5835 -1.6665
-800 - 100 == 0 -5.6000  -9.5585 -1.6415
-400 - 200 == 0 -5.1000  -9.0585 -1.1415
-800 - 200 == 0 -5.0750  -9.0335 -1.1165
-800 - 400 == 0  0.0250  -3.9335  3.9835</code></pre>
+200 - 100 == 0 -0.5250  -4.4780  3.4280
+400 - 100 == 0 -5.6250  -9.5780 -1.6720
+800 - 100 == 0 -5.6000  -9.5530 -1.6470
+400 - 200 == 0 -5.1000  -9.0530 -1.1470
+800 - 200 == 0 -5.0750  -9.0280 -1.1220
+800 - 400 == 0  0.0250  -3.9280  3.9780</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Water Treatment (ml)&quot;,ylab=&quot;Weight (g)&quot;,main=&quot;&quot;)
 &gt; addSigLetters(lm1,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;),pos=c(2,4,2,4))</code></pre>
 <p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" width="288" /></p>
 <hr />
+
 </div>
 </div>
 <div id="benthic-infaunal-example" class="section level1">
@@ -170,6 +169,7 @@ No Studentized residuals with Bonferonni p &lt; 0.05
 Largest |rstudent|:
    rstudent unadjusted p-value Bonferonni p
 20 2.928889           0.004754      0.34229</code></pre>
+
 </div>
 <div id="model-summarization" class="section level2">
 <h2>Model Summarization</h2>
@@ -192,14 +192,14 @@ Fit: lm(formula = logab ~ site, data = ben)
 
 Linear Hypotheses:
             Estimate Std. Error t value Pr(&gt;|t|)
-2 - 1 == 0 -0.218435   0.096537  -2.263  0.14563
+2 - 1 == 0 -0.218435   0.096537  -2.263  0.14538
 3 - 1 == 0  0.703189   0.096537   7.284  &lt; 0.001
 4 - 1 == 0  0.453836   0.096537   4.701  &lt; 0.001
 5 - 1 == 0 -0.414859   0.096537  -4.297  &lt; 0.001
 6 - 1 == 0 -0.004238   0.096537  -0.044  1.00000
-7 - 1 == 0  0.140280   0.096537   1.453  0.57966
-8 - 1 == 0 -0.371867   0.096537  -3.852  0.00202
-9 - 1 == 0  0.168668   0.096537   1.747  0.37983
+7 - 1 == 0  0.140280   0.096537   1.453  0.57979
+8 - 1 == 0 -0.371867   0.096537  -3.852  0.00204
+9 - 1 == 0  0.168668   0.096537   1.747  0.37980
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm3,ylab=&quot;Log Abundance&quot;,xlab=&quot;Site&quot;,main=&quot;&quot;)
 &gt; addSigLetters(lm3,lets=c(&quot;&quot;,&quot;&quot;,&quot;***&quot;,&quot;***&quot;,&quot;***&quot;,&quot;&quot;,&quot;&quot;,&quot;***&quot;,&quot;&quot;),pos=c(2,4,2,4,2,2,4,2,4))</code></pre>
@@ -213,34 +213,34 @@ Multiple Comparisons of Means: Dunnett Contrasts
 
 Fit: lm(formula = logab ~ site, data = ben)
 
-Quantile = 2.7296
+Quantile = 2.7279
 95% family-wise confidence level
  
 
 Linear Hypotheses:
            Estimate  lwr       upr      
-2 - 1 == 0 -0.218435 -0.481942  0.045073
-3 - 1 == 0  0.703189  0.439681  0.966696
-4 - 1 == 0  0.453836  0.190329  0.717344
-5 - 1 == 0 -0.414859 -0.678366 -0.151352
-6 - 1 == 0 -0.004238 -0.267745  0.259269
-7 - 1 == 0  0.140280 -0.123227  0.403788
-8 - 1 == 0 -0.371867 -0.635374 -0.108360
-9 - 1 == 0  0.168668 -0.094839  0.432175</code></pre>
+2 - 1 == 0 -0.218435 -0.481779  0.044910
+3 - 1 == 0  0.703189  0.439845  0.966533
+4 - 1 == 0  0.453836  0.190492  0.717180
+5 - 1 == 0 -0.414859 -0.678203 -0.151515
+6 - 1 == 0 -0.004238 -0.267582  0.259106
+7 - 1 == 0  0.140280 -0.123064  0.403625
+8 - 1 == 0 -0.371867 -0.635211 -0.108523
+9 - 1 == 0  0.168668 -0.094676  0.432012</code></pre>
 <pre class="r"><code>&gt; exp(confint(ben.mc)$confint)</code></pre>
 <pre><code>       Estimate       lwr       upr
-2 - 1 0.8037761 0.6176742 1.0459494
-3 - 1 2.0201841 1.5524418 2.6288545
-4 - 1 1.5743404 1.2098263 2.0486805
-5 - 1 0.6604332 0.5075201 0.8594181
-6 - 1 0.9957713 0.7652159 1.2957918
-7 - 1 1.1505965 0.8841937 1.4972649
-8 - 1 0.6894457 0.5298153 0.8971719
-9 - 1 1.1837272 0.9096535 1.5403777
+2 - 1 0.8037761 0.6175536 1.0461538
+3 - 1 2.0201841 1.5521385 2.6293682
+4 - 1 1.5743404 1.2095900 2.0490809
+5 - 1 0.6604332 0.5074210 0.8595860
+6 - 1 0.9957713 0.7650664 1.2960450
+7 - 1 1.1505965 0.8840210 1.4975575
+8 - 1 0.6894457 0.5297118 0.8973472
+9 - 1 1.1837272 0.9094758 1.5406787
 attr(,&quot;conf.level&quot;)
 [1] 0.95
 attr(,&quot;calpha&quot;)
-[1] 2.728062</code></pre>
+[1] 2.730086</code></pre>
 </div>
 </div>
 

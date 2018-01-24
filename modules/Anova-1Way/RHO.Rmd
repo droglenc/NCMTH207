@@ -30,9 +30,8 @@ source("../../rhelpers/knitr_setup.R")
 ```
 ----
 
-## Initialization
-
 ```{r results='hide', message=FALSE, warning=FALSE}
+# Load Packages
 library(NCStats)
 library(multcomp)     # glht()
 ```
@@ -79,6 +78,8 @@ addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4))
 
 ----
 
+\newpage
+
 # Benthic Infaunal Example
 ## Background
 
@@ -108,6 +109,8 @@ residPlot(lm3)
 adTest(lm3$residuals)
 outlierTest(lm3)
 ```
+
+\newpage
 
 ## Model Summarization
 ```{r message=FALSE, par1=TRUE}

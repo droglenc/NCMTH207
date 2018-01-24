@@ -9,6 +9,7 @@ source("../../rhelpers/knitr_setup.R")
 #=============== .... TO HERE ================================
 #=============================================================
 
+# Load Packages
 library(NCStats)
 library(multcomp)     # glht()
 
@@ -62,4 +63,4 @@ confint(ben.mc)
 exp(confint(ben.mc)$confint)
 
 
-# Script created at 2018-01-21 15:35:46
+# Script created at 2018-01-24 08:48:30
