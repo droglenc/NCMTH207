@@ -74,12 +74,12 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../modules/Anova-1Way/HW3.html">One-Way ANOVA HW #3</a></td></tr>
 <tr><td>F 9-Feb</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/Anova-1Way/HW4.html">One-Way ANOVA HW #4</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 12-Feb</td>
     <td></td>
-    <td><a href="../modules/Anova-1Way/HW4.html">One-Way ANOVA HW #4</a></td></tr>
+    <td>--</td></tr>
 <tr><td>T 13-Feb</td>
     <td></td>
     <td>--</td></tr>
