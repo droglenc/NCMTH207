@@ -73,21 +73,21 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td>
     <td><a href="../modules/Anova-1Way/HW3.html">One-Way ANOVA HW #3</a></td></tr>
 <tr><td>F 9-Feb</td>
-    <td><a href="../book/Two-Way ANOVA.pdf">One-Way ANOVA &sect; 3.1</a></td>
+    <td>Work Day (HW, Quiz, Portfolio)</td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 12-Feb</td>
-    <td><a href="../book/Two-Way ANOVA.pdf">One-Way ANOVA &sect; 3.2</a></td>
+    <td><a href="../book/Two-Way ANOVA.pdf">One-Way ANOVA &sect; 3.1</a></td>
     <td><a href="../modules/Anova-1Way/HW4.html">One-Way ANOVA HW #4</a></td></tr>
 <tr><td>T 13-Feb</td>
     <td colspan="2"><span style="color:red">Second Quiz</span></td></tr>
 <tr><td>W 14-Feb</td>
-    <td></td>
+    <td><a href="../book/Two-Way ANOVA.pdf">One-Way ANOVA &sect; 3.2</a></td>
     <td>--</td></tr>
 <tr><td>F 16-Feb</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/Anova-2Way/HW1.html">Two-Way ANOVA HW #1</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 19-Feb</td>
