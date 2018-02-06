@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Quiz 1 Study Guide
+title: Quiz 2 Study Guide
 css: /css/modules.css
 ---
 
@@ -9,7 +9,7 @@ css: /css/modules.css
 The second quiz (see [dates page](../Dates-Current)) will cover the following material:
 
 1. Complete an incomplete ANOVA table and answer questions from it. This is similar to the [One-Way ANOVA HW #1](../../modules/Anova-1Way/HW1).
-1. Answer questions for an analysis of 1-Way ANOVA data that will require you to reference R output that will be provided. This will be most similar to [One-Way ANOVA HW #4](../../modules/Anova-1Way/HW4). [Here is an example from a previous year’s exam](Q2_Example.pdf). *Note that this is an example only; the actual question will be different than this one.*
+1. Answer questions for an analysis of 1-Way ANOVA data that will require you to reference R output that will be provided. This will be most similar to [One-Way ANOVA HW #4](../../modules/Anova-1Way/HW4), but will have some parts of [One-Way ANOVA HW #3](../../modules/Anova-1Way/HW3). [Here is an example from a previous year’s exam](Q2_Example.pdf). *Note that this is an example only; the actual question will be different than this one.* *Also note that if you turn in your HW #4 early than I will grade it and have it returned to you before the quiz.*
 1. Fully answer short-answer questions from among the following list.
     *	Completely compare and contrast the meanings of MS<sub>Within</sub>, MS<sub>Total</sub>, and MS<sub>Among</sub>. Consider all possible meanings for these terms.
     *	Completely compare and contrast the concepts of a “full” and a “simple” model.
