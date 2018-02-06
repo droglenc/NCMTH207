@@ -81,7 +81,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Two-Way ANOVA.pdf">One-Way ANOVA &sect; 3.1</a></td>
     <td><a href="../modules/Anova-1Way/HW4.html">One-Way ANOVA HW #4</a></td></tr>
 <tr><td>T 13-Feb</td>
-    <td colspan="2"><span style="color:red">Second Quiz</span></td></tr>
+    <td colspan="2"><span style="color:red">Second Quiz</span> (<a href="QuizGuides/quiz_2.html">Study Guide</a>)</td></tr>
 <tr><td>W 14-Feb</td>
     <td><a href="../book/Two-Way ANOVA.pdf">One-Way ANOVA &sect; 3.2</a></td>
     <td>--</td></tr>
