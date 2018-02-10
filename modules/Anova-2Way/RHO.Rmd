@@ -10,27 +10,19 @@ output:
     fig_width: 3
     self_contained: no
   pdf_document:
-    fig_width: 3
-    fig_height: 3
+    fig_width: 2.8
+    fig_height: 2.8
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-#=============================================================
-#=============== IGNORE/DELETE FROM HERE .... ================
 # Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way")
-source("../../rhelpers/rhelpers.R")
+source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/rhelpers.R")
 modHTML("RHO")
 ```
-
 ```{r echo=FALSE, results='hide', message='FALSE'}
-source("../../rhelpers/knitr_setup.R")
-#=============== .... TO HERE ================================
-#=============================================================
+source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/knitr_setup.R")
 ```
 ----
-
-## Initialization
 
 ```{r results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
@@ -49,14 +41,17 @@ bact <- read.csv("Bacteria.csv")
 str(bact)
 bact$temp <- factor(bact$temp)
 bact$conc <- factor(bact$conc)
-str(bact)
+```
+```{r}
+ylbl <- "Mean Number of Cells"
+conclbl <- "Concentration (%)"
+templbl <- "Temperature (C)"
 ```
 
 ## Initial Summaries
 ```{r}
 sumTable(cells~temp*conc,data=bact,FUN=length)
 sumTable(cells~temp*conc,data=bact,FUN=mean,digits=0)
-sumTable(cells~temp*conc,data=bact,FUN=sd,digits=1)
 ```
 
 ## Model Fitting and Summary
@@ -64,22 +59,19 @@ sumTable(cells~temp*conc,data=bact,FUN=sd,digits=1)
 lm1 <- lm(cells~temp*conc,data=bact)
 anova(lm1)
 fitPlot(lm1)  # left
-fitPlot(lm1,interval=FALSE,change.order=TRUE,xlab="Concentration (%)",
-        ylab="Mean Number of Cells",legend="topleft")  # right
+fitPlot(lm1,interval=FALSE,change.order=TRUE,xlab=conclbl,ylab=ylbl,legend="topleft")
 ```
 
 ```{r fig.show="hold", par1=TRUE}
-fitPlot(lm1,which="temp",ylim=c(60,270),xlab="Temperature (C)",
-        ylab="Mean Number of Cells")  # left
-fitPlot(lm1,which="conc",ylim=c(60,270),xlab="Concentration (%)",
-        ylab="Mean Number of Cells")  # right
+fitPlot(lm1,which="temp",ylim=c(60,270),xlab=templbl,ylab=ylbl)  # left
+fitPlot(lm1,which="conc",ylim=c(60,270),xlab=conclbl,ylab=ylbl)
 ```
 
 ## Multiple Comparisons
 ```{r par1=TRUE}
 bact.mc1 <- glht(lm1,mcp(conc="Tukey"))
 summary(bact.mc1)
-fitPlot(lm1,which="conc",xlab="Concentration (%)",ylab="Mean Number of Cells")
+fitPlot(lm1,which="conc",xlab=conclbl,ylab=ylbl)
 addSigLetters(lm1,which="conc",lets=c("a","a","a","b","a"),pos=c(2,2,4,2,4))
 ```
 
@@ -98,10 +90,14 @@ str(sp)
 
 ```{r fig.show='asis', fig.width=6, par1=TRUE}
 lm1 <- lm(phos~soil*topo,data=sp)
-levenesTest(lm1)
-residPlot(lm1)
-adTest(lm1$residuals)
-outlierTest(lm1)
+```
+```{r eval=FALSE}
+transChooser(lm1)
+```
+```{r echo=FALSE, out.width='6.5in'}
+knitr::include_graphics("transChooser.png")
+```
+```{r}
 anova(lm1)
 ```
 
@@ -123,5 +119,5 @@ addSigLetters(lm1,change.order=TRUE,lets=c("a","a","a","ab","a","ab","a","b"),
 ```
 
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2("RHO.Rmd")
+purl2("RHO.Rmd",moreItems=c("source","modHTML","Renders","knitr::include"))
 ```
