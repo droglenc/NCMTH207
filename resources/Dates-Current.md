@@ -83,25 +83,25 @@ Note that some of the more distant dates are subject to change.
 <tr><td>T 13-Feb</td>
     <td colspan="2"><span style="color:red">Second Quiz</span> (<a href="QuizGuides/quiz_2.html">Study Guide</a>)</td></tr>
 <tr><td>W 14-Feb</td>
-    <td></td>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td>
     <td>--</td></tr>
 <tr><td>F 16-Feb</td>
-    <td></td>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
     <td><a href="../modules/Anova-2Way/HW1.html">Two-Way ANOVA HW #1</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 19-Feb</td>
-    <td></td>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
     <td>--</td></tr>
 <tr><td>T 20-Feb</td>
     <td></td>
     <td>--</td></tr>
 <tr><td>W 21-Feb</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/Anova-2Way/HW2.html">Two-Way ANOVA HW #2</a></td></tr>
 <tr><td>F 23-Feb</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/Anova-2Way/HW3.html">Two-Way ANOVA HW #3</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 26-Feb</td>
