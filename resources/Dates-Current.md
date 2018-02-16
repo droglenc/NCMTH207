@@ -75,7 +75,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.1</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 12-Feb</td>
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td>
@@ -89,6 +88,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
     <td><a href="../modules/Anova-2Way/HW1.html">Two-Way ANOVA HW #1</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 19-Feb</td>
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
