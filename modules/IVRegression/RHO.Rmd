@@ -1,65 +1,81 @@
 ---
 title: "Indicator Variable Regression"
+subtitle: R Handout
 author: "Derek H. Ogle"
 layout: page
+css: /css/modules.css
 output:
-  word_document: 
+  pdf_document:
     fig_height: 3
     fig_width: 3
   html_document:
     fig_height: 3
     fig_width: 3
     self_contained: no
-  pdf_document:
-    fig_height: 3
-    fig_width: 3
-subtitle: R Handout
-css: /css/modules.css
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-#=============================================================
-#=============== IGNORE/DELETE FROM HERE .... ================
 # Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression")
-source("../../rhelpers/rhelpers.R")
+source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/rhelpers.R")
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression") ## DELETE
 modHTML("RHO")
 ```
-
 ```{r echo=FALSE, results='hide', message='FALSE'}
-source("../../rhelpers/knitr_setup.R")
-#=============== .... TO HERE ================================
-#=============================================================
+source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/knitr_setup.R")
 ```
+
+\vspace{-18pt}
+
 ----
+
+\vspace{-18pt}
 
 ## Initialization
 
+\vspace{-6pt}
+
 ```{r results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression")
 ```
+
+\vspace{-6pt}
 
 ----
 
+\vspace{-15pt}
+
 # Salmon Sperm Example
+
+\vspace{-9pt}
+
 ## Background
+
+\vspace{-6pt}
+
 [Vladic *et al.* (2002)](http://www.biolreprod.org/content/66/1/98.long) recorded (in `SalmonSperm.csv`) the probability of successful egg fertilization (`fert.success`) and the length of sperm tail end piece (`step.len`).  They asked "Are fertilization success and length of sperm related and does that relationship differ between adult and parr salmon?"
 
 ```{r}
-setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression")
-ss <- read.csv("SalmonSperm.csv")
-ss <- ss[-c(1,10,11),]  # only for class demo purposes
+ss <- read.csv("SalmonSperm.csv")[-c(1,10,11),]  # only for class demo purposes
 str(ss)
 xlbl <- "Sperm Tail End Piece Length (um)"
 ylbl <- "Fertilization Success"
 ```
 
+\vspace{-6pt}
+
 ## Fitting the Linear Model
+
+\vspace{-6pt}
+
 ```{r fig.width=6, par1=TRUE}
 lm1 <- lm(fert.succ~step.len*mat,data=ss)
-residPlot(lm1,legend=FALSE,loess=FALSE)
-adTest(lm1$residuals)
-outlierTest(lm1)
+```
+```{r eval=FALSE}
+transChooser(lm1)
+```
+```{r echo=FALSE, out.width='6in'}
+knitr::include_graphics("transChooser1.png")
 ```
 
 ## Model Exploration and Summarization
@@ -71,15 +87,44 @@ fitPlot(lm1,interval="confidence",xlab=xlbl,ylab=ylbl,legend="topleft")
 predictionPlot(lm1,nd,interval="confidence",legend="topleft")
 ```
 
+
+\vspace{24pt}
+
 ## Lecture Support -- ANOVA Demonstration
-```{r}
+```{r results="hide"}
 lm1 <- lm(fert.succ~step.len*mat,data=ss)
 anova(lm1)
+```
+```{r echo=FALSE}
+tmp <- anova(lm1)
+attr(tmp,"heading") <- NULL
+tmp
+```
+
+\vspace{12pt}
+
+```{r results="hide"}
 lm2 <- lm(fert.succ~step.len+mat,data=ss)
 anova(lm2)
+```
+```{r echo=FALSE}
+tmp <- anova(lm2)
+attr(tmp,"heading") <- NULL
+tmp
+```
+
+\vspace{12pt}
+
+```{r results="hide"}
 lm3 <- lm(fert.succ~step.len,data=ss)
 anova(lm3)
 ```
+```{r echo=FALSE}
+tmp <- anova(lm3)
+attr(tmp,"heading") <- NULL
+tmp
+```
+
 
 # Fish Energy Density Example
 ## Background
@@ -93,30 +138,47 @@ str(FED)
 ## Model Fitting and Analysis
 ```{r fig.width=6, par1=TRUE}
 lm1 <- lm(ed~dw*species,data=FED)
-residPlot(lm1,legend=FALSE)
-adTest(lm1$residuals)
-outlierTest(lm1)
 ```
 
-```{r par1=TRUE}
+```{r eval=FALSE}
+transChooser(lm1)
+```
+```{r echo=FALSE, out.width='6in'}
+knitr::include_graphics("transChooser2.png")
+```
+
+```{r}
 anova(lm1)
+```
+
+\newpage
+
+```{r par1=TRUE}
 compSlopes(lm1)
 fitPlot(lm1,xlab="Dry Weight",ylab="Energy Density",legend="topleft")
 ```
 
 ## Follow-Up Model Fitting and Analysis
 
-```{r par1=TRUE}
+```{r results="hide"}
 FED1 <- filterD(FED,species!="bayanchovy")
 lm2 <- lm(ed~dw*species,data=FED1)
 anova(lm2)
+```
+```{r echo=FALSE}
+tmp <- anova(lm2)
+attr(tmp,"heading") <- NULL
+tmp
+```
+
+```{r par1=TRUE}
 compIntercepts(lm2)
 compIntercepts(lm2,common.cov=0)
-compIntercepts(lm2,common.cov=20)
 fitPlot(lm2,xlab="Dry Weight",ylab="Energy Density",legend="topleft")
 ```
 
 
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2("RHO.Rmd")
+purl2("RHO.Rmd",moreItems=c("source","modHTML","Renders",
+                            "knitr::include","DELETE"))
 ```

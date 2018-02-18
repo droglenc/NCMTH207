@@ -8,20 +8,26 @@ css: /css/modules.css
 </div>
 
 
+
 <hr />
+
 <div id="initialization" class="section level2">
 <h2>Initialization</h2>
-<pre class="r"><code>&gt; library(NCStats)</code></pre>
+
+<pre class="r"><code>&gt; library(NCStats)
+&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression&quot;)</code></pre>
+
 <hr />
+
 </div>
 <div id="salmon-sperm-example" class="section level1">
 <h1>Salmon Sperm Example</h1>
+
 <div id="background" class="section level2">
 <h2>Background</h2>
+
 <p><a href="http://www.biolreprod.org/content/66/1/98.long">Vladic <em>et al.</em> (2002)</a> recorded (in <code>SalmonSperm.csv</code>) the probability of successful egg fertilization (<code>fert.success</code>) and the length of sperm tail end piece (<code>step.len</code>). They asked “Are fertilization success and length of sperm related and does that relationship differ between adult and parr salmon?”</p>
-<pre class="r"><code>&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression&quot;)
-&gt; ss &lt;- read.csv(&quot;SalmonSperm.csv&quot;)
-&gt; ss &lt;- ss[-c(1,10,11),]  # only for class demo purposes
+<pre class="r"><code>&gt; ss &lt;- read.csv(&quot;SalmonSperm.csv&quot;)[-c(1,10,11),]  # only for class demo purposes
 &gt; str(ss)</code></pre>
 <pre><code>&#39;data.frame&#39;:   11 obs. of  3 variables:
  $ step.len : num  2.94 3 3.02 3.17 3.18 3.2 3.27 3.31 3.72 3.84 ...
@@ -29,21 +35,14 @@ css: /css/modules.css
  $ mat      : Factor w/ 2 levels &quot;Adult&quot;,&quot;Parr&quot;: 2 2 1 2 1 1 1 1 2 2 ...</code></pre>
 <pre class="r"><code>&gt; xlbl &lt;- &quot;Sperm Tail End Piece Length (um)&quot;
 &gt; ylbl &lt;- &quot;Fertilization Success&quot;</code></pre>
+
 </div>
 <div id="fitting-the-linear-model" class="section level2">
 <h2>Fitting the Linear Model</h2>
-<pre class="r"><code>&gt; lm1 &lt;- lm(fert.succ~step.len*mat,data=ss)
-&gt; residPlot(lm1,legend=FALSE,loess=FALSE)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
-<pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
-<pre><code>Anderson-Darling normality test with x 
-A = 0.1784, p-value = 0.8932</code></pre>
-<pre class="r"><code>&gt; outlierTest(lm1)</code></pre>
-<pre><code>
-No Studentized residuals with Bonferonni p &lt; 0.05
-Largest |rstudent|:
-   rstudent unadjusted p-value Bonferonni p
-12 2.905895           0.027125      0.29838</code></pre>
+
+<pre class="r"><code>&gt; lm1 &lt;- lm(fert.succ~step.len*mat,data=ss)</code></pre>
+<pre class="r"><code>&gt; transChooser(lm1)</code></pre>
+<p><img src="transChooser1.png" width="6in" /></p>
 </div>
 <div id="model-exploration-and-summarization" class="section level2">
 <h2>Model Exploration and Summarization</h2>
@@ -65,44 +64,38 @@ step.len           15.72132  44.41036
 matParr           -90.15097  38.82930
 step.len:matParr  -11.11233  27.42328</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,interval=&quot;confidence&quot;,xlab=xlbl,ylab=ylbl,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-8-1.png" width="288" /></p>
 <pre class="r"><code>&gt; ( nd &lt;- data.frame(step.len=c(3.4,3.7),mat=c(&quot;Adult&quot;,&quot;Parr&quot;)) )</code></pre>
 <pre><code>  step.len   mat
 1      3.4 Adult
 2      3.7  Parr</code></pre>
 <pre class="r"><code>&gt; predictionPlot(lm1,nd,interval=&quot;confidence&quot;,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-6-2.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-8-2.png" width="288" /></p>
 <pre><code>  obs step.len   mat      fit      lwr      upr
 1   1      3.4 Adult 16.45483 11.94067 20.96899
 2   2      3.7  Parr 29.98900 23.25902 36.71899</code></pre>
+
 </div>
 <div id="lecture-support-anova-demonstration" class="section level2">
 <h2>Lecture Support – ANOVA Demonstration</h2>
 <pre class="r"><code>&gt; lm1 &lt;- lm(fert.succ~step.len*mat,data=ss)
 &gt; anova(lm1)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: fert.succ
-             Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+<pre><code>             Df  Sum Sq Mean Sq F value    Pr(&gt;F)
 step.len      1 1510.23 1510.23 73.0316 5.966e-05
 mat           1    6.11    6.11  0.2953    0.6037
 step.len:mat  1   20.72   20.72  1.0017    0.3502
 Residuals     7  144.75   20.68                  </code></pre>
+
 <pre class="r"><code>&gt; lm2 &lt;- lm(fert.succ~step.len+mat,data=ss)
 &gt; anova(lm2)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: fert.succ
-          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+<pre><code>          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
 step.len   1 1510.23 1510.23 73.0157 2.709e-05
 mat        1    6.11    6.11  0.2952    0.6017
 Residuals  8  165.47   20.68                  </code></pre>
+
 <pre class="r"><code>&gt; lm3 &lt;- lm(fert.succ~step.len,data=ss)
 &gt; anova(lm3)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: fert.succ
-          Df  Sum Sq Mean Sq F value   Pr(&gt;F)
+<pre><code>          Df  Sum Sq Mean Sq F value   Pr(&gt;F)
 step.len   1 1510.23 1510.23  79.219 9.35e-06
 Residuals  9  171.58   19.06                 </code></pre>
 </div>
@@ -121,18 +114,9 @@ Residuals  9  171.58   19.06                 </code></pre>
 </div>
 <div id="model-fitting-and-analysis" class="section level2">
 <h2>Model Fitting and Analysis</h2>
-<pre class="r"><code>&gt; lm1 &lt;- lm(ed~dw*species,data=FED)
-&gt; residPlot(lm1,legend=FALSE)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
-<pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
-<pre><code>Anderson-Darling normality test with x 
-A = 0.353, p-value = 0.4549</code></pre>
-<pre class="r"><code>&gt; outlierTest(lm1)</code></pre>
-<pre><code>
-No Studentized residuals with Bonferonni p &lt; 0.05
-Largest |rstudent|:
-    rstudent unadjusted p-value Bonferonni p
-20 -2.492888           0.015711           NA</code></pre>
+<pre class="r"><code>&gt; lm1 &lt;- lm(ed~dw*species,data=FED)</code></pre>
+<pre class="r"><code>&gt; transChooser(lm1)</code></pre>
+<p><img src="transChooser2.png" width="6in" /></p>
 <pre class="r"><code>&gt; anova(lm1)</code></pre>
 <pre><code>Analysis of Variance Table
 
@@ -142,6 +126,7 @@ dw          1 170693154 170693154 1858.966 &lt; 2.2e-16
 species     3  10592036   3530679   38.452 1.258e-13
 dw:species  3   4105617   1368539   14.904 3.002e-07
 Residuals  56   5142008     91822                   </code></pre>
+
 <pre class="r"><code>&gt; compSlopes(lm1)</code></pre>
 <pre><code>Multiple Slope Comparisons (using the &#39;holm&#39; adjustment)</code></pre>
 <pre><code>              comparison      diff    95% LCI   95% UCI p.unadj   p.adj
@@ -159,17 +144,14 @@ Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
 3 stripedbass 311.8110 275.6128 348.0092       0     0
 2    bluefish 362.5000 327.4355 397.5645       0     0</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-10-1.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-20-1.png" width="288" /></p>
 </div>
 <div id="follow-up-model-fitting-and-analysis" class="section level2">
 <h2>Follow-Up Model Fitting and Analysis</h2>
 <pre class="r"><code>&gt; FED1 &lt;- filterD(FED,species!=&quot;bayanchovy&quot;)
 &gt; lm2 &lt;- lm(ed~dw*species,data=FED1)
 &gt; anova(lm2)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: ed
-           Df    Sum Sq   Mean Sq  F value    Pr(&gt;F)
+<pre><code>           Df    Sum Sq   Mean Sq  F value    Pr(&gt;F)
 dw          1 104962559 104962559 838.6208 &lt; 2.2e-16
 species     2   2583571   1291785  10.3210 0.0003476
 dw:species  2    556352    278176   2.2225 0.1247887
@@ -198,20 +180,8 @@ Mean ed when dw=26.10526</code></pre>
 Mean ed when dw=0</code></pre>
 <pre><code>   bluefish stripedbass    weakfish 
   -2752.451   -2121.053   -2245.976 </code></pre>
-<pre class="r"><code>&gt; compIntercepts(lm2,common.cov=20)</code></pre>
-<pre><code>Warning: Removed an interaction term from &#39;mdl&#39; (i.e., assumed
- parallel lines) to test intercepts.</code></pre>
-<pre><code>Tukey HSD on means adjusted assuming parallel lines</code></pre>
-<pre><code>            comparison      diff   95% LCI  95% UCI        p.adj
-1 stripedbass-bluefish  631.3980  291.1082 971.6878 0.0001843341
-2    weakfish-bluefish  506.4749  144.5318 868.4180 0.0044160914
-3 weakfish-stripedbass -124.9231 -480.8922 231.0461 0.6693967026</code></pre>
-<pre><code>
-Mean ed when dw=      20</code></pre>
-<pre><code>   bluefish stripedbass    weakfish 
-   3821.790    4453.188    4328.265 </code></pre>
 <pre class="r"><code>&gt; fitPlot(lm2,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-11-1.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-23-1.png" width="288" /></p>
 </div>
 </div>
 
@@ -238,7 +208,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
