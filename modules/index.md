@@ -16,7 +16,7 @@ title: Lecture Materials
       <ul>
         <li><a href="../book/Foundations.pdf" target="_blank">Reading</a></li>
         <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
-        <li>Handouts -- <a href="LMFoundations/RHO.html"><img src="../img/web.png"></a> <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+        <li>Handouts -- <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="LMFoundations/HW1.html">#1</a> / <a href="LMFoundations/HW2.html">#2</a></li>
       </ul>
       </div>
@@ -34,7 +34,7 @@ title: Lecture Materials
       <ul>
         <li><a href="../book/One-Way ANOVA.pdf" target="_blank">Reading</a></li>
         <li><a href="Anova-1Way/PPT.pptx">Slides</a></li>
-        <li>Handouts -- <a href="Anova-1Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-1Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-1Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+        <li>Handouts -- <a href="Anova-1Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-1Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="Anova-1Way/HW1.html">#1</a> / <a href="Anova-1Way/HW2.html">#2</a> /  <a href="Anova-1Way/HW3.html">#3</a> / <a href="Anova-1Way/HW4.html">#4</a></li>
       </ul>
       </div>
