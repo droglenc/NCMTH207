@@ -5,59 +5,60 @@ subtitle: R Handout
 author: "Derek H. Ogle"
 css: /css/modules.css
 ---
+</div>
+
 
 
 <hr />
+
 <div id="initialization" class="section level2">
 <h2>Initialization</h2>
+
 <pre class="r"><code>&gt; library(NCStats)
 &gt; library(plotrix)  #histStack()
-&gt; library(car)      #bootCase()</code></pre>
+&gt; library(car)      #bootCase()
+&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression&quot;)</code></pre>
+
 <hr />
+
 </div>
 <div id="bat-morphology-example" class="section level1">
 <h1>Bat Morphology Example</h1>
+
 <div id="background" class="section level2">
 <h2>Background</h2>
-<p>Researchers measured tthe canine tooth height (among other things) from two subspecies of bats () found in Hawaii. Their primary question was to determine if canine tooth height differed between the subspecies and, more importantly to them, could the canine tooth height be used to predict the subspecies of bat.</p>
-<pre class="r"><code>&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression&quot;)
-&gt; bat &lt;- read.csv(&quot;Batmorph.csv&quot;)
+
+<p>Researchers measured (among other things) the canine tooth height (cm) from two subspecies of Hoary bats (<em>Lasiurus cinereus cinereus</em> and <em>Lasiurus cinereus semotus</em>) found in Hawaii. Their primary question was to determine if canine tooth height differed between the subspecies and, more importantly to them, could the canine tooth height be used to predict the subspecies of bat.</p>
+<pre class="r"><code>&gt; bat &lt;- read.csv(&quot;Batmorph.csv&quot;)[,c(&quot;subsp&quot;,&quot;canine&quot;)]  # for class demo purposes only
 &gt; str(bat)</code></pre>
-<pre><code>&#39;data.frame&#39;:   118 obs. of  7 variables:
- $ subsp      : Factor w/ 2 levels &quot;cinereus&quot;,&quot;semotus&quot;: 2 2 2 2 2 2 2 2 2 2 ...
- $ bodymass   : num  19.5 16.2 17 16.5 14.3 ...
- $ skulllength: num  1.6 1.55 1.56 1.56 1.53 ...
- $ canine     : num  0.326 0.308 0.291 0.287 0.301 0.305 0.277 0.313 0.289 0.293 ...
- $ coronoid   : num  0.303 0.282 0.292 0.303 0.279 0.284 0.286 0.281 0.278 0.28 ...
- $ wingspan   : num  0.358 0.358 0.359 0.353 0.351 0.361 0.351 0.363 0.34 0.365 ...
- $ hab        : Factor w/ 3 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;: 1 1 1 1 1 1 1 1 2 2 ...</code></pre>
-<pre class="r"><code>&gt; bat$canine10 &lt;- bat$canine*10
-&gt; xlbl &lt;- &quot;Canine Tooth Height (x10,mm)&quot;
+<pre><code>&#39;data.frame&#39;:   118 obs. of  2 variables:
+ $ subsp : Factor w/ 2 levels &quot;cinereus&quot;,&quot;semotus&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+ $ canine: num  0.326 0.308 0.291 0.287 0.301 0.305 0.277 0.313 0.289 0.293 ...</code></pre>
+<pre class="r"><code>&gt; bat$canine &lt;- bat$canine*10  # convert cm to mm
+&gt; xlbl &lt;- &quot;Canine Tooth Height (mm)&quot;
 &gt; ylbl &lt;- &quot;Subspecies Code&quot;</code></pre>
+
 </div>
 <div id="explorations" class="section level2">
 <h2>Explorations</h2>
-<pre class="r"><code>&gt; hist(canine10~subsp,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
-       xlab=xlbl,nrow=2,ncol=1)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="288" /></p>
-<pre class="r"><code>&gt; histStack(canine10~subsp,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
-            col=&quot;gray.colors&quot;,xlab=xlbl,right=FALSE)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-5-2.png" title="" alt="" width="288" /></p>
-<pre class="r"><code>&gt; plotBinResp(subsp~canine10,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
+
+<pre class="r"><code>&gt; hist(canine~subsp,data=bat,w=0.1,xlim=c(2.6,3.8),ymax=20,xlab=xlbl,nrow=2,ncol=1)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="288" height="3in" /></p>
+<pre class="r"><code>&gt; plotBinResp(subsp~canine,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
               xlab=xlbl,ylab=ylbl)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" width="336" /></p>
 </div>
 <div id="model-fitting-and-examination" class="section level2">
 <h2>Model Fitting and Examination</h2>
-<pre class="r"><code>&gt; glm1 &lt;- glm(subsp~canine10,data=bat,family=binomial)
-&gt; fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlab=xlbl,ylab=ylbl,main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="288" /></p>
+<pre class="r"><code>&gt; glm1 &lt;- glm(subsp~canine,data=bat,family=binomial)
+&gt; fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlab=xlbl,ylab=ylbl)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" width="336" /></p>
 <pre class="r"><code>&gt; summary(glm1)</code></pre>
 <pre><code>
 Coefficients:
             Estimate Std. Error z value Pr(&gt;|z|)
 (Intercept)   35.516      6.428   5.525 3.29e-08
-canine10     -11.112      2.005  -5.543 2.97e-08
+canine       -11.112      2.005  -5.543 2.97e-08
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -70,94 +71,98 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>                2.5 %   97.5 %
 (Intercept)  24.21685 49.66132
-canine10    -15.52430 -7.58941</code></pre>
+canine      -15.52430 -7.58941</code></pre>
 </div>
 <div id="lecture-support-interpretation-of-slope" class="section level2">
 <h2>Lecture Support – Interpretation of Slope</h2>
-<pre class="r"><code>&gt; x1 &lt;- c(3,4)                  # purposely pick two canine10 values 1 unit apart
-&gt; ( p1 &lt;- predict(glm1,data.frame(canine10=x1)) )</code></pre>
+
+<pre class="r"><code>&gt; x1 &lt;- c(3,4)                  # purposely pick two canine values 1 unit apart
+&gt; ( p1 &lt;- predict(glm1,data.frame(canine=x1)) )</code></pre>
 <pre><code>        1         2 
  2.179940 -8.931994 </code></pre>
-<pre class="r"><code>&gt; p1[2]-p1[1]</code></pre>
-<pre><code>        2 
--11.11193 </code></pre>
+<pre class="r"><code>&gt; p1[[2]]-p1[[1]]</code></pre>
+<pre><code>[1] -11.11193</code></pre>
 <pre class="r"><code>&gt; exp(-11.112)                  # back-transformed &#39;slope&#39; from summary() above</code></pre>
 <pre><code>[1] 1.493206e-05</code></pre>
 <pre class="r"><code>&gt; ( bp1 &lt;- exp(p1) )</code></pre>
 <pre><code>           1            2 
 8.8457728416 0.0001320944 </code></pre>
-<pre class="r"><code>&gt; bp1[2]/bp1[1]</code></pre>
-<pre><code>           2 
-1.493306e-05 </code></pre>
+<pre class="r"><code>&gt; bp1[[2]]/bp1[[1]]</code></pre>
+<pre><code>[1] 1.493306e-05</code></pre>
 </div>
 <div id="predicting-probabilities" class="section level2">
 <h2>Predicting Probabilities</h2>
-<pre class="r"><code>&gt; ( p2 &lt;- predict(glm1,data.frame(canine10=c(3,3.4))) )</code></pre>
+
+<pre class="r"><code>&gt; ( p2 &lt;- predict(glm1,data.frame(canine=c(3,3.4))) )</code></pre>
 <pre><code>        1         2 
  2.179940 -2.264834 </code></pre>
 <pre class="r"><code>&gt; exp(p2)/(1+exp(p2))</code></pre>
 <pre><code>         1          2 
 0.89843357 0.09407761 </code></pre>
-<pre class="r"><code>&gt; predict(glm1,data.frame(canine10=c(3,3.4)),type=&quot;response&quot;)</code></pre>
+<pre class="r"><code>&gt; predict(glm1,data.frame(canine=c(3,3.4)),type=&quot;response&quot;)</code></pre>
 <pre><code>         1          2 
 0.89843357 0.09407761 </code></pre>
 </div>
 <div id="x-for-a-certain-proportion" class="section level2">
 <h2>X for a Certain Proportion</h2>
+
 <pre class="r"><code>&gt; ( cfs &lt;- coef(glm1) )</code></pre>
-<pre><code>(Intercept)    canine10 
+<pre><code>(Intercept)      canine 
    35.51574   -11.11193 </code></pre>
 <pre class="r"><code>&gt; p &lt;- 0.5    # canine tooth height where subspecies ratio is 50/50
-&gt; ( x &lt;- (log(p/(1-p))-cfs[1])/cfs[2] )</code></pre>
-<pre><code>(Intercept) 
-    3.19618 </code></pre>
-<pre class="r"><code>&gt; predict(glm1,data.frame(canine10=x),type=&quot;response&quot;)    # test the answer</code></pre>
-<pre><code>(Intercept) 
-        0.5 </code></pre>
+&gt; ( x &lt;- (log(p/(1-p))-cfs[[1]])/cfs[[2]] )</code></pre>
+<pre><code>[1] 3.19618</code></pre>
+<pre class="r"><code>&gt; predict(glm1,data.frame(canine=x),type=&quot;response&quot;)    # test the answer</code></pre>
+<pre><code>  1 
+0.5 </code></pre>
 <pre class="r"><code>&gt; p &lt;- 0.9    # length where 90% are semotus, 10% are cinereus
-&gt; (log(p/(1-p))-cfs[1])/cfs[2]</code></pre>
-<pre><code>(Intercept) 
-   2.998444 </code></pre>
+&gt; (log(p/(1-p))-cfs[[1]])/cfs[[2]]</code></pre>
+<pre><code>[1] 2.998444</code></pre>
 </div>
 <div id="bootstrapping" class="section level2">
 <h2>Bootstrapping</h2>
+
 <pre class="r"><code>&gt; bc1 &lt;- bootCase(glm1)      # bootstrapping, be patient!
 &gt; head(bc1)</code></pre>
-<pre><code>     (Intercept)   canine10
-[1,]    47.63420 -14.748328
-[2,]    42.07082 -13.054643
-[3,]    27.77390  -8.869351
-[4,]    31.33596  -9.864708
-[5,]    39.55912 -12.234736
-[6,]    41.28284 -12.840528</code></pre>
+<pre><code>     (Intercept)     canine
+[1,]    31.57963  -9.866443
+[2,]    28.61082  -8.985827
+[3,]    45.06471 -14.299363
+[4,]    28.74218  -9.096601
+[5,]    35.70038 -11.226708
+[6,]    44.16679 -13.669932</code></pre>
 <pre class="r"><code>&gt; confint(bc1)</code></pre>
 <pre><code>              95% LCI   95% UCI
-(Intercept)  26.88953 52.688428
-canine10    -16.50715 -8.470158</code></pre>
-<pre class="r"><code>&gt; #hist(bc1,breaks=15)
+(Intercept)  26.60648 49.073371
+canine      -15.40517 -8.316331</code></pre>
+<pre class="r"><code>&gt; # hist(bc1,breaks=15)
 &gt; predProb &lt;- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
 &gt; predProb(3,coef(glm1)[1],coef(glm1)[2])</code></pre>
 <pre><code>(Intercept) 
   0.8984336 </code></pre>
 <pre class="r"><code>&gt; p3 &lt;- predProb(3,bc1[,1],bc1[,2])
 &gt; head(p3)</code></pre>
-<pre><code>[1] 0.9673657 0.9481860 0.7623938 0.8509199 0.9455720 0.9405459</code></pre>
+<pre><code>[1] 0.8787130 0.8393418 0.8972115 0.8103638 0.8829074 0.9591836</code></pre>
 <pre class="r"><code>&gt; quantile(p3,c(0.025,0.975))</code></pre>
 <pre><code>     2.5%     97.5% 
-0.8129323 0.9688198 </code></pre>
+0.8138595 0.9622783 </code></pre>
 <pre class="r"><code>&gt; predX &lt;- function(p,alpha,beta1) (log(p/(1-p))-alpha)/beta1
 &gt; x50 &lt;- predX(0.5,bc1[,1],bc1[,2])
 &gt; head(x50)</code></pre>
-<pre><code>[1] 3.229803 3.222671 3.131447 3.176572 3.233345 3.215042</code></pre>
+<pre><code>[1] 3.200711 3.183994 3.151519 3.159661 3.179951 3.230945</code></pre>
 <pre class="r"><code>&gt; quantile(x50,c(0.025,0.975))</code></pre>
 <pre><code>    2.5%    97.5% 
-3.150347 3.243366 </code></pre>
+3.151533 3.242513 </code></pre>
+<hr />
+
 </div>
 </div>
 <div id="solar-panel-offer-data" class="section level1">
 <h1>Solar Panel Offer Data</h1>
+
 <div id="background-1" class="section level2">
 <h2>Background</h2>
+
 <p>Households were asked if they would accept an offer to put solar panels on the roof of their house if they would receive a 50% subsidy from the state. Demographic variables for each household such as income, size, monthly mortgage payment, and age of the head of household were also recorded. The researchers had three primary questions:</p>
 <ul>
 <li>At what income will 25% of households accept?</li>
@@ -174,11 +179,13 @@ canine10    -16.50715 -8.470158</code></pre>
  $ famsize  : int  4 3 2 4 2 3 1 5 3 2 ...</code></pre>
 <pre class="r"><code>&gt; xlbl &lt;- &quot;Family Income (1000s)&quot;
 &gt; ylbl &lt;- &quot;Response to Offer&quot;</code></pre>
+
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
+
 <pre class="r"><code>&gt; plotBinResp(takeoffer~income,data=sp,xlab=xlbl,ylab=ylbl,breaks=seq(25,135,5))</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-13-1.png" title="" alt="" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-13-1.png" width="288" /></p>
 <pre class="r"><code>&gt; glm2 &lt;- glm(takeoffer~income,data=sp,family=binomial)
 &gt; summary(glm2)</code></pre>
 <pre><code>
@@ -195,11 +202,10 @@ AIC: 17.035
 
 Number of Fisher Scoring iterations: 8</code></pre>
 <pre class="r"><code>&gt; fitPlot(glm2,xlab=xlbl,ylab=ylbl,breaks=seq(25,135,5),main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-13-2.png" title="" alt="" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-13-2.png" width="288" /></p>
 <pre class="r"><code>&gt; p &lt;- 0.25
-&gt; (log(p/(1-p))-coef(glm2)[1])/coef(glm2)[2]</code></pre>
-<pre><code>(Intercept) 
-   58.92646 </code></pre>
+&gt; (log(p/(1-p))-coef(glm2)[[1]])/coef(glm2)[[2]]</code></pre>
+<pre><code>[1] 58.92646</code></pre>
 <pre class="r"><code>&gt; predict(glm2,data.frame(income=80),type=&quot;response&quot;)</code></pre>
 <pre><code>        1 
 0.9569831 </code></pre>
@@ -207,14 +213,20 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 
 
+
+
 </div>
 
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
@@ -223,7 +235,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
