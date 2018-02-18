@@ -1,19 +1,7 @@
-#=============================================================
-#=============== IGNORE/DELETE FROM HERE .... ================
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
-source("../../rhelpers/rhelpers.R")
-modHTML("RHO")
-
-source("../../rhelpers/knitr_setup.R")
-#=============== .... TO HERE ================================
-#=============================================================
-
 library(NCStats)
-
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
-ss <- read.csv("SalmonSperm.csv")
-ss <- ss[-c(1,10,11),]  # only for class demo purposes
+
+ss <- read.csv("SalmonSperm.csv")[-c(1,10,11),]  # only for class demo purposes
 str(ss)
 xlbl <- "Sperm Tail End Piece Length (um)"
 ylbl <- "Fertilization Success"
@@ -33,9 +21,7 @@ predictionPlot(lm1,data.frame(step.len=c(3.3,3.5)),interval="prediction",
 
 anova(lm1)
 
-residPlot(lm1)
-adTest(lm1$residuals)
-outlierTest(lm1)
+transChooser(lm1)
 
 petrels <- read.csv("Petrels.csv")
 str(petrels)
@@ -43,22 +29,19 @@ str(petrels)
 lm1 <- lm(weight.loss~weight,data=petrels)
 fitPlot(lm1,xlab="Weight (g)",ylab="Weight Loss (g/g/d)")
 
-residPlot(lm1)
+transChooser(lm1)
 
-with(petrels,max(weight)/min(weight))
-transChooser(lm1) # interactive, results not shown
 petrels$log.wt <- log(petrels$weight)
 petrels$log.wtloss <- log(petrels$weight.loss)
 lm2 <- lm(log.wtloss~log.wt,data=petrels)
 fitPlot(lm2,xlab="log Weight (g)",ylab="log Weight Loss (g/g/d)")
 
-residPlot(lm2)
-adTest(lm2$residuals)
 anova(lm2)
 summary(lm2)
 confint(lm2)
-( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),interval="confidence") )
+( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),
+                          interval="confidence") )
 exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
 
 
-# Script created at 2017-02-22 11:32:49
+# Script created at 2018-02-18 11:01:13

@@ -84,9 +84,9 @@ Linear Hypotheses:
 1.4 - 0.6 == 0     28.5       27.7   1.029  0.83817
 1 - 0.8 == 0       54.0       27.7   1.950  0.33499
 1.2 - 0.8 == 0    161.5       27.7   5.831  &lt; 0.001
-1.4 - 0.8 == 0     25.5       27.7   0.921  0.88451
-1.2 - 1 == 0      107.5       27.7   3.881  0.01096
-1.4 - 1 == 0      -28.5       27.7  -1.029  0.83817
+1.4 - 0.8 == 0     25.5       27.7   0.921  0.88452
+1.2 - 1 == 0      107.5       27.7   3.881  0.01087
+1.4 - 1 == 0      -28.5       27.7  -1.029  0.83818
 1.4 - 1.2 == 0   -136.0       27.7  -4.910  0.00149
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,which=&quot;conc&quot;,xlab=conclbl,ylab=ylbl)
@@ -123,13 +123,13 @@ soil:topo  3 11390.8  3796.9  4.8814 0.0134826
 Residuals 16 12445.3   777.8                  </code></pre>
 <pre class="r"><code>&gt; sp$comb &lt;- sp$soil:sp$topo
 &gt; view(sp)</code></pre>
-<pre><code>        soil    topo phos            comb
-3      shale  valley  185    shale:valley
-6      shale   north  100     shale:north
-10     shale hilltop   83   shale:hilltop
-12     shale hilltop   14   shale:hilltop
-18 sandstone   north   24 sandstone:north
-19 sandstone   south   28 sandstone:south</code></pre>
+<pre><code>        soil    topo phos              comb
+2      shale  valley  172      shale:valley
+4      shale   north   78       shale:north
+13 sandstone  valley   19  sandstone:valley
+15 sandstone  valley   25  sandstone:valley
+19 sandstone   south   28   sandstone:south
+23 sandstone hilltop   21 sandstone:hilltop</code></pre>
 <pre class="r"><code>&gt; lm1a &lt;- lm(phos~comb,data=sp)
 &gt; anova(lm1a)</code></pre>
 <pre><code>Analysis of Variance Table
@@ -150,34 +150,34 @@ Fit: lm(formula = phos ~ comb, data = sp)
 
 Linear Hypotheses:
                                           Estimate Std. Error t value Pr(&gt;|t|)
-sandstone:north - sandstone:hilltop == 0     1.667     22.772   0.073    1.000
-sandstone:south - sandstone:hilltop == 0    19.333     22.772   0.849    0.987
-sandstone:valley - sandstone:hilltop == 0   -4.000     22.772  -0.176    1.000
-shale:hilltop - sandstone:hilltop == 0       4.667     22.772   0.205    1.000
-shale:north - sandstone:hilltop == 0        53.333     22.772   2.342    0.330
-shale:south - sandstone:hilltop == 0        57.333     22.772   2.518    0.256
-shale:valley - sandstone:hilltop == 0      120.000     22.772   5.270    &lt;0.01
-sandstone:south - sandstone:north == 0      17.667     22.772   0.776    0.992
-sandstone:valley - sandstone:north == 0     -5.667     22.772  -0.249    1.000
-shale:hilltop - sandstone:north == 0         3.000     22.772   0.132    1.000
-shale:north - sandstone:north == 0          51.667     22.772   2.269    0.365
-shale:south - sandstone:north == 0          55.667     22.772   2.445    0.285
-shale:valley - sandstone:north == 0        118.333     22.772   5.196    &lt;0.01
-sandstone:valley - sandstone:south == 0    -23.333     22.772  -1.025    0.963
-shale:hilltop - sandstone:south == 0       -14.667     22.772  -0.644    0.997
-shale:north - sandstone:south == 0          34.000     22.772   1.493    0.800
-shale:south - sandstone:south == 0          38.000     22.772   1.669    0.706
-shale:valley - sandstone:south == 0        100.667     22.772   4.421    &lt;0.01
-shale:hilltop - sandstone:valley == 0        8.667     22.772   0.381    1.000
-shale:north - sandstone:valley == 0         57.333     22.772   2.518    0.255
-shale:south - sandstone:valley == 0         61.333     22.772   2.693    0.194
-shale:valley - sandstone:valley == 0       124.000     22.772   5.445    &lt;0.01
-shale:north - shale:hilltop == 0            48.667     22.772   2.137    0.434
-shale:south - shale:hilltop == 0            52.667     22.772   2.313    0.345
-shale:valley - shale:hilltop == 0          115.333     22.772   5.065    &lt;0.01
-shale:south - shale:north == 0               4.000     22.772   0.176    1.000
-shale:valley - shale:north == 0             66.667     22.772   2.928    0.131
-shale:valley - shale:south == 0             62.667     22.772   2.752    0.176
+sandstone:north - sandstone:hilltop == 0     1.667     22.772   0.073  1.00000
+sandstone:south - sandstone:hilltop == 0    19.333     22.772   0.849  0.98683
+sandstone:valley - sandstone:hilltop == 0   -4.000     22.772  -0.176  1.00000
+shale:hilltop - sandstone:hilltop == 0       4.667     22.772   0.205  1.00000
+shale:north - sandstone:hilltop == 0        53.333     22.772   2.342  0.32990
+shale:south - sandstone:hilltop == 0        57.333     22.772   2.518  0.25474
+shale:valley - sandstone:hilltop == 0      120.000     22.772   5.270  0.00150
+sandstone:south - sandstone:north == 0      17.667     22.772   0.776  0.99218
+sandstone:valley - sandstone:north == 0     -5.667     22.772  -0.249  1.00000
+shale:hilltop - sandstone:north == 0         3.000     22.772   0.132  1.00000
+shale:north - sandstone:north == 0          51.667     22.772   2.269  0.36534
+shale:south - sandstone:north == 0          55.667     22.772   2.445  0.28487
+shale:valley - sandstone:north == 0        118.333     22.772   5.196  0.00173
+sandstone:valley - sandstone:south == 0    -23.333     22.772  -1.025  0.96344
+shale:hilltop - sandstone:south == 0       -14.667     22.772  -0.644  0.99746
+shale:north - sandstone:south == 0          34.000     22.772   1.493  0.80039
+shale:south - sandstone:south == 0          38.000     22.772   1.669  0.70559
+shale:valley - sandstone:south == 0        100.667     22.772   4.421  0.00794
+shale:hilltop - sandstone:valley == 0        8.667     22.772   0.381  0.99992
+shale:north - sandstone:valley == 0         57.333     22.772   2.518  0.25579
+shale:south - sandstone:valley == 0         61.333     22.772   2.693  0.19419
+shale:valley - sandstone:valley == 0       124.000     22.772   5.445  0.00109
+shale:north - shale:hilltop == 0            48.667     22.772   2.137  0.43407
+shale:south - shale:hilltop == 0            52.667     22.772   2.313  0.34374
+shale:valley - shale:hilltop == 0          115.333     22.772   5.065  0.00217
+shale:south - shale:north == 0               4.000     22.772   0.176  1.00000
+shale:valley - shale:north == 0             66.667     22.772   2.928  0.13127
+shale:valley - shale:south == 0             62.667     22.772   2.752  0.17610
 (Adjusted p values reported -- single-step method)</code></pre>
 <pre class="r"><code>&gt; glhtSig(spint.mc)</code></pre>
 <pre><code>[1] &quot;shale:valley - sandstone:hilltop&quot; &quot;shale:valley - sandstone:north&quot;  

@@ -52,7 +52,7 @@ title: Lecture Materials
       <ul>
         <li><a href="../book/Two-Way ANOVA.pdf" target="_blank">Reading</a></li>
         <li><a href="Anova-2Way/PPT.pptx">Slides</a></li>
-        <li>Handouts -- <a href="Anova-2Way/RHO.html"><img src="../img/web.png"></a> <a href="Anova-2Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-2Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+        <li>Handouts -- </a> <a href="Anova-2Way/RHO.pdf"><img src="../img/pdf.png"></a> <a href="Anova-2Way/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="Anova-2Way/HW1.html">#1</a> / <a href="Anova-2Way/HW2.html">#2</a> /  <a href="Anova-2Way/HW3.html">#3</a></li>
         </ul>
       </div>
@@ -70,7 +70,7 @@ title: Lecture Materials
       <ul>
         <li><a href="../book/Simple Linear Regression.pdf" target="_blank">Reading</a></li>
         <li><a href="SLRegression/PPT.pptx">Slides</a></li>
-        <li>Handouts -- <a href="SLRegression/RHO.html"><img src="../img/web.png"></a> <a href="SLRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="SLRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+        <li>Handouts -- <a href="SLRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="SLRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
         <li>Homework Assignment -- <a href="SLRegression/HW1.html">#1</a> / <a href="SLRegression/HW2.html">#2</a> / <a href="SLRegression/HW3.html">#3</a> / <a href="SLRegression/HW4.html">#4</a> / <a href="SLRegression/HW5.html">#5</a></li>
       </ul>
       </div>

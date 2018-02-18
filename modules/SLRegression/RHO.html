@@ -3,25 +3,31 @@ layout: page
 title: "Simple Linear Regression"
 subtitle: R Handout
 author: "Derek H. Ogle"
-css: "/css/modules.css"
+css: /css/modules.css
 ---
 </div>
 
 
+
 <hr />
+
 <div id="initialization" class="section level2">
 <h2>Initialization</h2>
-<pre class="r"><code>&gt; library(NCStats)</code></pre>
+
+<pre class="r"><code>&gt; library(NCStats)
+&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression&quot;)</code></pre>
+
 <hr />
+
 </div>
 <div id="salmon-sperm-example" class="section level1">
 <h1>Salmon Sperm Example</h1>
+
 <div id="background" class="section level2">
 <h2>Background</h2>
+
 <p><a href="http://www.biolreprod.org/content/66/1/98.long">Vladic <em>et al.</em> (2002)</a> recorded (in <code>SalmonSperm.csv</code>) the probability of successful egg fertilization (<code>fert.success</code>) and the length of sperm tail end piece (<code>step.len</code>). They asked “Are fertilization success and length of sperm related?”</p>
-<pre class="r"><code>&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression&quot;)
-&gt; ss &lt;- read.csv(&quot;SalmonSperm.csv&quot;)
-&gt; ss &lt;- ss[-c(1,10,11),]  # only for class demo purposes
+<pre class="r"><code>&gt; ss &lt;- read.csv(&quot;SalmonSperm.csv&quot;)[-c(1,10,11),]  # only for class demo purposes
 &gt; str(ss)</code></pre>
 <pre><code>&#39;data.frame&#39;:   11 obs. of  3 variables:
  $ step.len : num  2.94 3 3.02 3.17 3.18 3.2 3.27 3.31 3.72 3.84 ...
@@ -29,9 +35,11 @@ css: "/css/modules.css"
  $ mat      : Factor w/ 2 levels &quot;Adult&quot;,&quot;Parr&quot;: 2 2 1 2 1 1 1 1 2 2 ...</code></pre>
 <pre class="r"><code>&gt; xlbl &lt;- &quot;Sperm Tail End Piece Length (um)&quot;
 &gt; ylbl &lt;- &quot;Fertilization Success&quot;</code></pre>
+
 </div>
 <div id="lecture-support-i-model-fitting-and-simple-predictions" class="section level2">
 <h2>Lecture Support I – Model Fitting and Simple Predictions</h2>
+
 <pre class="r"><code>&gt; ( lm1 &lt;- lm(fert.succ~step.len,data=ss) )</code></pre>
 <pre><code>Coefficients:
 (Intercept)     step.len  
@@ -74,6 +82,7 @@ step.len      25.81336  43.40619</code></pre>
 </div>
 <div id="lecture-support-iii-model-comparisons" class="section level2">
 <h2>Lecture Support III – Model Comparisons</h2>
+
 <pre class="r"><code>&gt; anova(lm1)</code></pre>
 <pre><code>Analysis of Variance Table
 
@@ -84,23 +93,17 @@ Residuals  9  171.58   19.06                 </code></pre>
 </div>
 <div id="lecture-support-iv-assumption-checking" class="section level2">
 <h2>Lecture Support IV – Assumption Checking</h2>
-<pre class="r"><code>&gt; residPlot(lm1)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
-<pre class="r"><code>&gt; adTest(lm1$residuals)</code></pre>
-<pre><code>Anderson-Darling normality test with x 
-A = 0.4022, p-value = 0.2962</code></pre>
-<pre class="r"><code>&gt; outlierTest(lm1)</code></pre>
-<pre><code>
-No Studentized residuals with Bonferonni p &lt; 0.05
-Largest |rstudent|:
-   rstudent unadjusted p-value Bonferonni p
-12 3.717896          0.0058892     0.064781</code></pre>
+
+<pre class="r"><code>&gt; transChooser(lm1)</code></pre>
+<p><img src="transChooser1.png" width="6in" /></p>
 </div>
 </div>
 <div id="petrels-example" class="section level1">
 <h1>Petrels Example</h1>
+
 <div id="background-1" class="section level2">
 <h2>Background</h2>
+
 <p><a href="http://www.jstor.org/stable/4318?seq=1#page_scan_tab_contents">Croxall (1982)</a> examined the weight loss of adult petrels during periods of egg incubation. He examined 13 species but some had measurements for both sexes such that 19 measurements are found in <code>Petrels.csv</code>. For each measurement the mean initial weight (g) and mean weight lost (g/g/d) were recorded. Determine if the mean initial weight significant explains variability in mean weight lost.</p>
 <pre class="r"><code>&gt; petrels &lt;- read.csv(&quot;Petrels.csv&quot;)
 &gt; str(petrels)</code></pre>
@@ -109,27 +112,24 @@ Largest |rstudent|:
  $ sex        : Factor w/ 4 levels &quot;both&quot;,&quot;female&quot;,..: 3 2 3 2 3 2 3 2 1 3 ...
  $ weight     : int  10577 9022 3922 3694 3751 3624 3305 3000 2996 668 ...
  $ weight.loss: num  0.0087 0.0096 0.013 0.011 0.01 0.012 0.011 0.0125 0.0109 0.0128 ...</code></pre>
+
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
+
 <pre class="r"><code>&gt; lm1 &lt;- lm(weight.loss~weight,data=petrels)
 &gt; fitPlot(lm1,xlab=&quot;Weight (g)&quot;,ylab=&quot;Weight Loss (g/g/d)&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-11-1.png" width="288" /></p>
-<pre class="r"><code>&gt; residPlot(lm1)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
-<pre class="r"><code>&gt; with(petrels,max(weight)/min(weight))</code></pre>
-<pre><code>[1] 251.8333</code></pre>
-<pre class="r"><code>&gt; ## transChooser(lm1) # interactive, results not shown
-&gt; petrels$log.wt &lt;- log(petrels$weight)
+<p><img src="RHO_files/figure-html/unnamed-chunk-12-1.png" width="288" /></p>
+<pre class="r"><code>&gt; transChooser(lm1)</code></pre>
+
+<p><img src="transChooser2.png" width="5.66in" /></p>
+<p><img src="transChooser3.png" width="5.65in" /></p>
+<p><img src="transChooser4.png" width="5.65in" /></p>
+<pre class="r"><code>&gt; petrels$log.wt &lt;- log(petrels$weight)
 &gt; petrels$log.wtloss &lt;- log(petrels$weight.loss)
 &gt; lm2 &lt;- lm(log.wtloss~log.wt,data=petrels)
 &gt; fitPlot(lm2,xlab=&quot;log Weight (g)&quot;,ylab=&quot;log Weight Loss (g/g/d)&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-13-1.png" width="288" /></p>
-<pre class="r"><code>&gt; residPlot(lm2)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
-<pre class="r"><code>&gt; adTest(lm2$residuals)</code></pre>
-<pre><code>Anderson-Darling normality test with x 
-A = 0.3881, p-value = 0.3514</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-17-1.png" width="2.35in" /></p>
 <pre class="r"><code>&gt; anova(lm2)</code></pre>
 <pre><code>Analysis of Variance Table
 
@@ -150,7 +150,8 @@ F-statistic: 140.6 on 1 and 17 DF,  p-value: 1.204e-09 </code></pre>
 <pre><code>                 2.5 %     97.5 %
 (Intercept) -2.1516113 -1.3164546
 log.wt      -0.3961507 -0.2764885</code></pre>
-<pre class="r"><code>&gt; ( p.log.wtloss &lt;- predict(lm2,data.frame(log.wt=log(5000)),interval=&quot;confidence&quot;) )</code></pre>
+<pre class="r"><code>&gt; ( p.log.wtloss &lt;- predict(lm2,data.frame(log.wt=log(5000)),
+                            interval=&quot;confidence&quot;) )</code></pre>
 <pre><code>        fit       lwr       upr
 1 -4.598532 -4.746569 -4.450495</code></pre>
 <pre class="r"><code>&gt; exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)</code></pre>
@@ -182,7 +183,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

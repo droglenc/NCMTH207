@@ -5,18 +5,19 @@ subtitle: R Handout
 author: "Derek H. Ogle"
 css: "/css/modules.css"
 output:
+  pdf_document:
+    fig_width: 2.8
+    fig_height: 2.8
   html_document:
     fig_height: 3
     fig_width: 3
     self_contained: no
-  pdf_document:
-    fig_width: 2.8
-    fig_height: 2.8
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
+# Renders an appropriate PDF file for the webpage
 source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/rhelpers.R")
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way") ## DELETE
 modHTML("RHO")
 ```
 ```{r echo=FALSE, results='hide', message='FALSE'}
@@ -119,5 +120,6 @@ addSigLetters(lm1,change.order=TRUE,lets=c("a","a","a","ab","a","ab","a","b"),
 ```
 
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2("RHO.Rmd",moreItems=c("source","modHTML","Renders","knitr::include"))
+purl2("RHO.Rmd",moreItems=c("source","modHTML","Renders",
+                            "knitr::include","DELETE"))
 ```
