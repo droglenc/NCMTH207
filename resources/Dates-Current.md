@@ -97,24 +97,24 @@ Note that some of the more distant dates are subject to change.
     <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 21-Feb</td>
-    <td></td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1 &amp; 4.2</a></td>
     <td><a href="../modules/Anova-2Way/HW2.html">Two-Way ANOVA HW #2</a></td></tr>
 <tr><td>F 23-Feb</td>
-    <td></td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.2</a></td>
     <td><a href="../modules/Anova-2Way/HW3.html">Two-Way ANOVA HW #3</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 26-Feb</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>T 27-Feb</td>
     <td><span style="color:red">Third Quiz</span></td>
     <td>--</td></tr>
 <tr><td>W 28-Feb</td>
-    <td></td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td>
     <td>--</td></tr>
 <tr><td>F 2-Mar</td>
-    <td></td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5 &amp; 4.6</a></td>
     <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit or to redo)</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
@@ -129,10 +129,10 @@ Note that some of the more distant dates are subject to change.
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 12-Mar</td>
-    <td></td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5 &amp; 4.6</a></td>
     <td>--</td></tr>
 <tr><td>T 13-Mar</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 14-Mar</td>
     <td></td>
