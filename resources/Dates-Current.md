@@ -94,7 +94,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
     <td>--</td></tr>
 <tr><td>T 20-Feb</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 21-Feb</td>
     <td></td>
@@ -108,13 +108,13 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 27-Feb</td>
-    <td></td>
+    <td><span style="color:red">Third Quiz</span></td>
     <td>--</td></tr>
 <tr><td>W 28-Feb</td>
     <td></td>
     <td>--</td></tr>
 <tr><td>F 2-Mar</td>
-    <td><span style="color:red">Third Quiz</span></td>
+    <td></td>
     <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit or to redo)</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
@@ -146,13 +146,13 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 20-Mar</td>
-    <td></td>
-    <td>--</td></tr>
+    <td colspan="2"><span style="color:red">Fourth Quiz</span></td></tr>
 <tr><td>W 21-Mar</td>
     <td></td>
     <td>--</td></tr>
 <tr><td>F 23-Mar</td>
-    <td colspan="2"><span style="color:red">Fourth Quiz</span></td></tr>
+    <td></td>
+    <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 26-Mar</td>
@@ -172,13 +172,13 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 3-Apr</td>
-    <td></td>
-    <td>--</td></tr>
+    <td colspan="2"><span style="color:red">Fifth Quiz</span></td></tr>
 <tr><td>W 4-Apr</td>
     <td></td>
     <td>--</td></tr>
 <tr><td>F 6-Apr</td>
-    <td colspan="2"><span style="color:red">Fifth Quiz</span></td></tr>
+    <td></td>
+    <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 9-Apr</td>
