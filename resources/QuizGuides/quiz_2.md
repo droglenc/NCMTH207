@@ -19,7 +19,7 @@ The second quiz (see [dates page](../Dates-Current)) will cover the following ma
     *	List the assumptions of a one-way ANOVA and thoroughly describe how you would test each one (describe hypotheses and tests for each as appropriate).
     *	Mathematically show that the difference in two means of a log-transformed variable becomes a RATIO of two means on the original scale. You do not need complete sentences for this question but you should mathematically show each step in the proof.
 
-The exam is closed book and closed notes, you will not need to use R (but will need to be able to interpret results provided from R), you should bring a calculator and a pencil (exams written in pen will not be accepted), and be prepared to write neatly.
+The quiz is closed book and closed notes, you will not need to use R (but will need to be able to interpret results provided from R), you should bring a calculator and a pencil (exams written in pen will not be accepted), and be prepared to write neatly.
 
 Please let me know if you have any questions. Thanks.
 

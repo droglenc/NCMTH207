@@ -108,7 +108,7 @@ Note that some of the more distant dates are subject to change.
     <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>T 27-Feb</td>
-    <td><span style="color:red">Third Quiz</span></td>
+    <td><span style="color:red">Third Quiz</span> (<a href="QuizGuides/quiz_3.html">Study Guide</a>)</td>
     <td>--</td></tr>
 <tr><td>W 28-Feb</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td>
