@@ -102,7 +102,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.2</a></td>
     <td><a href="../modules/Anova-2Way/HW3.html">Two-Way ANOVA HW #3</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 26-Feb</td>
     <td>Work Day</td>
@@ -127,6 +126,7 @@ Note that some of the more distant dates are subject to change.
 <tr><td>M 9-Mar</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Mid-Session)</span></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 12-Mar</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5 &amp; 4.6</a></td>
