@@ -146,7 +146,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4</a></td>
     <td>--</td></tr>
 <tr><td>T 20-Mar</td>
-    <td colspan="2"><span style="color:red">Fourth Quiz</span></td></tr>
+    <td colspan="2"><span style="color:red">Fourth Quiz</span> (<a href="QuizGuides/quiz_4.html">Study Guide</a>)</td></tr>
 <tr><td>W 21-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4</a></td>
     <td>--</td></tr>
