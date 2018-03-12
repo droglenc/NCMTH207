@@ -139,7 +139,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></td></tr>
 <tr><td>F 16-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.1-5.3</a></td>
-    <td><a href="../modules/SLRegression/HW4.html">SLR HW#4</a> &amp; <a href="../modules/SLRegression/HW4.html">SLR HW#5</a></td></tr>
+    <td><a href="../modules/SLRegression/HW4.html">SLR HW#4</a> &amp; <a href="../modules/SLRegression/HW5.html">SLR HW#5</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 19-Mar</td>
