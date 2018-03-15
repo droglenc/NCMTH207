@@ -10,6 +10,7 @@ title: Resources
     * [Access on-line data](https://vimeo.com/user45324800/ncstats-getdatawebpage){:target="_blank"} (*but use data page above*)
     * Enter Your Own Data -- [with Excel](https://vimeo.com/user45324800/ncstats-preparedataexcel){:target="_blank"} or [without Excel](https://vimeo.com/user45324800/ncstats-preparedatatextfile){:target="_blank"}
     * [Load Data into RStudio](https://vimeo.com/user45324800/ncstats-loadcsvrstudio){:target="_blank"}
+    * [Extract Data from a Scatterplot](digitizing)
 1. **Software Installation**
     * R -- [Windows](http://derekogle.com/IFAR/supplements/installations/InstallRWin.html){:target="_blank"} / [Mac OS](http://derekogle.com/IFAR/supplements/installations/InstallRMac.html){:target="_blank"}
     * RStudio -- [Windows](http://derekogle.com/IFAR/supplements/installations/InstallRStudioWin.html){:target="_blank"} / [Mac OS](http://derekogle.com/IFAR/supplements/installations/InstallRStudioMac.html){:target="_blank"}
