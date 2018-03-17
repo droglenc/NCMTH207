@@ -152,7 +152,7 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>F 23-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.5</a></td>
-    <td>--</td></tr>
+    <td><a href="../modules/IVRegression/HW1.html">IVR HW#1</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 26-Mar</td>
@@ -163,7 +163,7 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>W 28-Mar</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/IVRegression/HW2.html">IVR HW#2</a></td></tr>
 <tr><td>F 30-Mar</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Good Friday)</span></td></tr>
 <tr><td></td><td></td><td></td></tr>
@@ -172,7 +172,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 3-Apr</td>
-    <td colspan="2"><span style="color:red">Fifth Quiz</span></td></tr>
+    <td colspan="2"><span style="color:red">Fifth Quiz</span> (<a href="QuizGuides/quiz_5.html">Study Guide</a>)</td></tr>
 <tr><td>W 4-Apr</td>
     <td></td>
     <td>--</td></tr>
