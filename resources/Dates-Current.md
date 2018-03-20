@@ -156,10 +156,10 @@ Note that some of the more distant dates are subject to change.
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 26-Mar</td>
-    <td></td>
+    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.5</a></td>
     <td>--</td></tr>
 <tr><td>T 27-Mar</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 28-Mar</td>
     <td></td>
