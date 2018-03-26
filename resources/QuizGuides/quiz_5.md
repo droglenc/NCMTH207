@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Quiz 4 Study Guide
+title: Quiz 5 Study Guide
 css: /css/modules.css
 ---
 
