@@ -22,10 +22,10 @@ fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlab=xlbl,ylab=ylbl)
 summary(glm1)
 confint(glm1)
 
-x1 <- c(3,4)                  # purposely pick two canine values 1 unit apart
+x1 <- c(3,4)                # purposely picked two canine values 1 unit apart
 ( p1 <- predict(glm1,data.frame(canine=x1)) )
 p1[[2]]-p1[[1]]
-exp(-11.112)                  # back-transformed 'slope' from summary() above
+exp(-11.112)                # back-transformed 'slope' from summary() above
 ( bp1 <- exp(p1) )
 bp1[[2]]/bp1[[1]]
 
@@ -43,7 +43,6 @@ p <- 0.9    # length where 90% are semotus, 10% are cinereus
 bc1 <- bootCase(glm1)      # bootstrapping, be patient!
 head(bc1)
 confint(bc1)
-# hist(bc1,breaks=15)
 predProb <- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
 predProb(3,coef(glm1)[1],coef(glm1)[2])
 p3 <- predProb(3,bc1[,1],bc1[,2])
@@ -69,4 +68,4 @@ p <- 0.25
 predict(glm2,data.frame(income=80),type="response")
 
 
-# Script created at 2018-02-18 13:49:16
+# Script created at 2018-04-03 08:27:01
