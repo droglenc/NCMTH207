@@ -185,10 +185,10 @@ Note that some of the more distant dates are subject to change.
     <td>Logistic Regression</td>
     <td>--</td></tr>
 <tr><td>T 10-Apr</td>
-    <td>Logistic Regression</td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 11-Apr</td>
-    <td>Work Day</td>
+    <td>Logistic Regression</td>
     <td>--</td></tr>
 <tr><td>F 13-Apr</td>
     <td>Work Day</td>
