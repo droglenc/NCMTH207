@@ -198,7 +198,7 @@ Note that some of the more distant dates are subject to change.
 <tr><td>M 16-Apr</td>
     <td colspan="2">Work Day</td></tr>
 <tr><td>T 17-Apr</td>
-    <td colspan="2"><span style="color:red">Sixth Quiz</span></td></tr>
+    <td colspan="2"><span style="color:red">Sixth Quiz</span> (<a href="QuizGuides/quiz_6.html">Study Guide</a>)</td></tr>
 <tr><td>W 18-Apr</td>
     <td colspan="2">Work Day</td></tr>
 <tr><td>F 20-Apr</td>
