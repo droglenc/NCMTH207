@@ -179,7 +179,6 @@ Note that some of the more distant dates are subject to change.
     <td>Logistic Regression</td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 9-Apr</td>
     <td>Logistic Regression</td>
@@ -203,4 +202,5 @@ Note that some of the more distant dates are subject to change.
     <td colspan="2">Work Day</td></tr>
 <tr><td>F 20-Apr</td>
     <td colspan="2"><span style="color:red"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
+--->
 </table>
