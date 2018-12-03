@@ -96,50 +96,7 @@ As you adjust to the rigors of college life, you may struggle a bit in your clas
 ## Grading
 
 <img class="img-right" src="../img/grading.jpg">
-An overall percentage score will be computed from the items and associated weights listed in the table below. To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed. To project your future grade, also include percentages for future assessments. Put highest two quiz grades in "Q1" and "Q2" and lowest two quiz grades in "Q5" and "Q6". [*It is your responsibility to track your scores on the individual assessments.*]
-
-<!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
-
-<form name="GRADECALC">
-<table class="grader">
-<tr><th></th>
-<th><a href="#quizzes">Q1</A></th>
-<th><a href="#quizzes">Q2</A></th>
-<th><a href="#quizzes">Q3</A></th>
-<th><a href="#quizzes">Q4</A></th>
-<th><a href="#quizzes">Q5</A></th>
-<th><a href="#quizzes">Q6</A></th>
-<th><a href="#homework">HW</a></th>
-<th><a href="#portfolio">Portfolio</A></th></tr>
-
-<tr><th>Weight</th>
-<th>13%</th><th>13%</th><th>10%</th><th>10%</th>
-<th>7%</th><th>7%</th><th>10%</th><th>30%</th></tr>
-
-<tr><th>Percent</th>
-<td><input type="text" name="Q1_SC" size="3" tabindex="2" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q2_SC" size="3" tabindex="3" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q3_SC" size="3" tabindex="4" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q4_SC" size="3" tabindex="5" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q5_SC" size="3" tabindex="6" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q6_SC" size="3" tabindex="7" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="HW_SC" size="3" tabindex="8" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="PROJ_SC" size="3" tabindex="9" onchange="calc_grade(this.form)"></td></tr>
-
-<tr><th colspan="5">Overall Percentage: <input type="text" name="SCORE" size="4"></th>
-<th colspan="4">Projected Grade: <input type="text" name="GRADE" size="2"></th></tr>
-</table>
-</form>
-
-Lowest possible final letter grades will be assigned by comparing your overall percentage score (rounded to a whole number) to the values shown below:
-
-<table class="tg">
-  <tr><td></td><td>A 92-100</td><td>A- 90-91</td></tr>
-  <tr><td>B+ 87-89</td><td>B  82-86</td><td>B- 80-81</td></tr>
-  <tr><td>C+ 77-79</td><td>C  70-76</td><td></td></tr>
-  <tr><td>D+ 67-69</td><td>D  60-66</td><td>F   0-59</td></tr>
-</table>
-
+You will have several opportunities, each described below, to show what you have learned in this course. An overall grade will be computed from these items as shown in the <a href="#overall-grade">Overall Grade section</a> further below.
 
 ### Quizzes
 Six one-hour quizzes will be given on the approximate dates shown on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#grading)).
@@ -191,8 +148,57 @@ For the final portfolio paper, you will write a report for each data set/topic w
 It is possible that all four analyses can be conducted from the same large data set. Thus, it is possible to have a single introduction and single data collection methods section, but separate data analysis methods, assumption checking, results, and discussion sections. Alternatively, if different data sets are used for each topic, then separate introduction, data collection methods, data analysis methods, assumption checking, results, and discussion sections will be required. The final portfolio should be typed, grammatically correct, and refer to supporting figures and tables. The final portfolio is due during the last week of classes (see [Dates page](Dates-Current.html){:target="_blank"}).
 
 
-### Incomplete Grades
-Under [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades"), an incomplete grade will be given ONLY under extreme circumstances beyond your control, such as a major illness. An incomplete grade will be given ONLY if you have successfully completed the entire course except for the final exam.
+### Overall Grade
+
+An overall percentage score will be computed from the items and associated weights listed in the table below. To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed. To project your future grade, also include percentages for future assessments. Put highest two quiz grades in "Q1" and "Q2" and lowest two quiz grades in "Q5" and "Q6". [*It is your responsibility to track your scores on the individual assessments.*]
+
+<!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
+
+<form name="GRADECALC">
+<table class="grader">
+<tr><th></th>
+<th><a href="#quizzes">Q1</A></th>
+<th><a href="#quizzes">Q2</A></th>
+<th><a href="#quizzes">Q3</A></th>
+<th><a href="#quizzes">Q4</A></th>
+<th><a href="#quizzes">Q5</A></th>
+<th><a href="#quizzes">Q6</A></th>
+<th><a href="#homework">HW</a></th>
+<th><a href="#portfolio">Portfolio</A></th></tr>
+
+<tr><th>Weight</th>
+<th>13%</th><th>13%</th><th>10%</th><th>10%</th>
+<th>7%</th><th>7%</th><th>10%</th><th>30%</th></tr>
+
+<tr><th>Percent</th>
+<td><input type="text" name="Q1_SC" size="3" tabindex="2" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="Q2_SC" size="3" tabindex="3" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="Q3_SC" size="3" tabindex="4" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="Q4_SC" size="3" tabindex="5" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="Q5_SC" size="3" tabindex="6" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="Q6_SC" size="3" tabindex="7" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="HW_SC" size="3" tabindex="8" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="PROJ_SC" size="3" tabindex="9" onchange="calc_grade(this.form)"></td></tr>
+
+<tr><th colspan="5">Overall Percentage: <input type="text" name="SCORE" size="4"></th>
+<th colspan="4">Projected Grade: <input type="text" name="GRADE" size="2"></th></tr>
+</table>
+</form>
+
+Lowest possible final letter grades will be assigned by comparing your overall percentage score (rounded to a whole number) to the values shown below:
+
+<table class="tg">
+  <tr><td></td><td>A 92-100</td><td>A- 90-91</td></tr>
+  <tr><td>B+ 87-89</td><td>B  82-86</td><td>B- 80-81</td></tr>
+  <tr><td>C+ 77-79</td><td>C  70-76</td><td></td></tr>
+  <tr><td>D+ 67-69</td><td>D  60-66</td><td>F   0-59</td></tr>
+</table>
+
+An incomplete grade will be given ONLY under extreme circumstances beyond your control, such as a major illness, and will ONLY be given if you have successfully completed the entire course except for the final exam. This is in accordance with [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades").
+
+#### Note About Midterm Grades
+I will submit a "midterm grade" for you approximately half-way through the semester. It is important to note that this grade will include only about 1/3rd of the items that will be included in your overall final grade. You should also know that I will assign the "worst possible" letter grade that I can for your midterm grade. I do this for two reasons. First, I believe that it is better to know the worst rather than the best-case scenario at that point of the semester. Second, the material at the end of the semester is a little more difficult than the material at the beginning of the semester. So, if your midterm grade is lower than you would like, you will have ample opportunity to improve it. Of course, see me if you have questions about how you can do that.
+
 
 ----
 
@@ -200,21 +206,27 @@ Under [Northland College policy](https://my.northland.edu/student-policies/acade
 
 <img class="img-right" src="../img/cell-cheat.jpg">
 
-Your conduct in class should revolve around the idea of being respectful of all others in the class. Adhering to the following behaviors should be considered the minimum requirements to being respectful of others:
+My intent is to create a classroom environment where solid learning of Statistics can occur. One part of this environment is a well-organized course structure built upon relevant learning resources and interesting realistic exercises. Another part is my availability to assist you in learning from these resources and exercises. A third part in creating that environment is your conduct within it. My expectations of you are that you will fully participate in the course (see above) and be respectful of all others in the class. At a minimum, I expect you to adhere to the following behaviors:
 
-* Arrive to class on time. If you arrive late, then take the first available seat as quietly as possible. If you need to leave early, then please sit near the exit.
-* You are expected to attend the entire class period. Leaving class early defeats the purpose of the class period, does not take advantage of resources (i.e., the professor) that can significantly help your learning, and does not build statistical stamina.
-* Turn off and store out-of-sight cell phones and other electronic devices
-* Computer use is limited to class work.
-* If you choose to use your own computer, then please sit as far forward in class as possible.
-* Do not engage in side discussions while I or others are speaking to the entire class.
-*	Do not sleep in class -- this behavior is rude and distracting to others (especially the professor).
-* Unpack before and pack after class -- opening and closing  backpacks, rustling of papers or jackets is disruptive and disrespectful to others.
-* Do not use disrespectful language when addressing others.
+* Please arrive to class on time. If you arrive late, then take the first available seat as quietly as possible. If you need to leave early, then please sit near the exit.
+* Please attend the entire class period. Leaving class early defeats the purpose of the class period, does not take advantage of resources (i.e., the professor) that can significantly help your learning, and does not build statistical stamina. Please take care of your personal needs (e.g., using the restroom) before class so that you can stay focused for the entire class period.
+* Please turn your computer on immediately so that you can promptly begin the daily preparation check.
+* Please limit computer use to class work.
+* Please **do not use your own computer** during class unless you clear it with me at the beginning of the semester.
+* Please turn off and store out-of-sight cell phones and other electronic devices.
+* Please **do not listen to music** (or otherwise wear ear buds) during class.
+* Please do not engage in side discussions while I or others are speaking to the entire class.
+*	Please do not sleep in class -- this behavior is rude and distracting to others (especially the professor).
+* Please do not use disrespectful language when addressing others.
 
 Finally, note that the [College's Academic Integrity Statement & Policy](https://my.northland.edu/student-policies/academic-policies/#academic-integrity){:target="_blank"} will be followed in this course. Please make sure that you are familiar with its content.
 
 ----
 
-## Accommodations
-It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law. *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course. *If you have not yet established services* through OAR, but have a condition that requires accommodations (e.g., attention, learning, vision, hearing, mental, physical, or other health related concern), you should contact OAR (Ponzio 231 or 715-682-1387) or [Donna Jones-Ilsley, Coordinator of Student Accessibility Resources](mailto:djones-ilsley@northland.edu).
+### Footnotes
+
+[^email]: While I am pretty open-minded and not much of a stickler when it comes to e-mail etiquette, some professors are. And it is always better to send an appropriate rather than an inappropriate e-mail. [Here](https://www.scribendi.com/advice/how_to_email_a_professor.en.html) and [here](https://www.insidehighered.com/views/2015/04/16/advice-students-so-they-dont-sound-silly-emails-essay) are some good suggestions for e-mailing professors.
+
+[^1]: I believe the research (e.g., [here](http://www.medicaldaily.com/why-using-pen-and-paper-not-laptops-boosts-memory-writing-notes-helps-recall-concepts-ability-268770){:target="_blank"}, [here](http://www.pbs.org/wgbh/nova/next/body/taking-notes-by-hand-could-improve-memory-wt/){:target="_blank"}, and [here](http://www.lifehack.org/articles/featured/writing-and-remembering-why-we-remember-what-we-write.html){:target="_blank"}) that suggests that you are more likely to remember concepts if you hand-write those concepts down, rather than copy-and-pasting or typing the text.
+
+[^2]: General advice for how much time should be spent outside of class for each hour inside of class can be found, among many, [here](https://www.collegeparentcentral.com/2010/02/is-your-college-student-investing-enough-time-studying/){:target="_blank"}, [here](http://classroom.synonym.com/ratio-studying-class-time-college-1075.html){:target="_blank"}, [here](https://www.usu.edu/asc/studysmart/pdf/estimating_study_hours.pdf){:target="_blank"}, and [here](http://collegelife.about.com/od/academiclife/f/How-Much-Time-Should-I-Spend-Studying-In-College.htm){:target="_blank"}.
