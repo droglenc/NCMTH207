@@ -32,10 +32,9 @@ What you learn in this <strong>Biometry</strong> class will help you answer thes
 ## Syllabus Contents
 
 * Class [Description](#description) and [Learning Outcomes](#learning-outcomes)
-* [Instructor](#instructor)
-* [Grading](#grading) -- [Quizzes](#quizzes), [Homework](#homework), [Portfolio](#portfolio)
+* [Assistance](#assistance) -- [Instructor](#instructor--Derek-Ogle), [Tutors](#tutors), [Accommodations](#accommodations), and [Academic Alerts](#academic-alerts)
+* Grading -- [Quizzes](#quizzes), [Homework](#homework), [Portfolio](#portfolio), [Overall Grade](#overall--grade)
 * [Classroom Conduct and Academic Integrity](#classroom-conduct-and-academic-integrity)
-* [Accommodations](#accommodations)
 
 ----
 
