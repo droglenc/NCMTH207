@@ -12,14 +12,14 @@ css: /css/syllabus.css
   <figcaption><span style="font-size:50%;">From <a href="https://autodesk.typepad.com/bimtoolbox/2015/01/structural-modelling-requirements-for-quantification.html" target="_blank">BIM Toolbox</a></span></figcaption>
 </figure>
 
-<br>
-
 <div class="BigQuestions">
 <ul>
   <li>Are two variables related?</li>
   <li>Does the mean differ among groups?</li>
   <li>Can I develop a useful model for making predictions</li>
 </ul>
+
+<br>
 
 What you learn in this <strong>Biometry</strong> class will help you answer these questions.
 
@@ -39,11 +39,13 @@ What you learn in this <strong>Biometry</strong> class will help you answer thes
 
 ----
 
-## Description
+## Catalog Description
 
 Linear models including one- and two-way ANOVA with post-hoc multiple comparisons and transformations, simple and multiple linear regression including transformations and indicator variables, and logistic regression; and basic principles of sample and experimental design. The theoretical constructs of all topics will be developed and applied to real-life or realistic situations in the life and natural sciences. Prerequisite: [MTH107](http://derekogle.com/NCMTH107/). 4 Credits.
 
 ## Learning Outcomes
+
+<img class="img-right" src="../img/outcomes.jpg" alt="Outcomes">
 
 At the end of this class you will be able to ...
 
