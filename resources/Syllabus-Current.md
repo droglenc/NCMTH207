@@ -58,19 +58,44 @@ At the end of this class you will be able to ...
 1. compare and contrast the advantages and limitations of one-factor and two-factor experimental designs; and
 1. write a concise, detailed, accurate, and interesting paper explaining the design and interpreting the results of a statistical analysis.
 
-## Instructor
 
-<table class="tutors" width="75%">
-<tr><th><a href="http://derekogle.com" target="_blank">Dr. Derek H. Ogle</a><br>Professor of Mathematical Sciences<br> & Natural Resources</th></tr>
-<tr><th><img src="../img/DerekOgle1.jpg"></th></tr>
-<tr style="vertical-align:top"><td>CSE228; 682-1300<br><a href="mailto:dogle@northland.edu">dogle@northland.edu</a><br>
-<a href="https://www.surveymonkey.com/r/F7S7GNJ" target="_blank">Anonymous Feedback / Suggestions</a></td></tr>
-<tr style="vertical-align:top"><td>Office Hours:<br>
-MWF 900-950; WF 1500-1600<br>By Appointment</td></tr>
-</table>
+## Assistance
 
+<img class="img-right" src="../img/help.jpg">
+A variety of opportunities for out-of-class assistance and in-class accomodations are provided. Please read about these opportunities below and use them throughout the semester as appropriate. Here are some quotes about asking for help (from [BurnishedChaos.com](https://burnishedchaos.com/quotes-about-asking-for-help/){:target="_blank"}).
+
+* *Never apologise for asking for what you need, if you don't ask - the answer will always be no.* - Rachel Wolchin
+* *Asking for other's guidance helps you see what you may not be able to see. It's always important to check your ego and ask for help.* - Ken Blanchard
+* *The only mistake you can make is not asking for help.* - Sandeep Jauhar
+* *You don't have to do it all by yourself.* - Elizabeth Dehn 
+* *Sometimes the only answer people are looking for when they ask for help is that they won't have to face the problem alone.* - Mark Amend
+* *I think the hardest part to get to is asking for help or reaching out to other people and being honest with yourself.* - Mary-Kate Olsen
+
+
+### Instructor -- Derek Ogle
+
+<img class="img-right" src="../img/DerekOgle1.jpg">
+I am committed to your doing well in this course and see it as my responsibility to help you as much as possible both in and out of the designated class period. Thus, you may call (715-682-1300), e-mail (<a href="mailto:dogle@northland.edu">dogle@northland.edu</a>)[^email], or visit me in my office (CSE228) for help. I will make every effort to be available during office hours from 1230-230 on Monday, Wednesday, and Friday. I will also be available any time that my door is open. Finally, you may also send me <a href="https://www.surveymonkey.com/r/KC87PJW" target="_blank">anonymous feedback, suggestions, or questions</a>. Please don't hesitate to see or contact me if you have any questions regarding this course.
+
+### Tutors
+
+<img class="img-right" src="../img/Emily_F17.jpg">
+
+We are fortunated to have Emily Mader serve as a statistics tutor this year. Emily is a mathematics major and physics minor who took this course last year. Thus, she is very familiar with the content and organization of this course. Emily also participated last summer in a research experience related to statistics. Emily will be available to tutor Biometry on XXX. In addition, she may be able to help during her times scheduled to tutor Introductory Statistics and Mathematics (see tutor hours posted around the building). Emily's tutor hours will be held in the Dexter Library. In addition to their tutor hours, please don't forget my availability as described above.
+
+
+### Accommodations
+I want to create an inclusive and accessible learning environment for those of you that have a condition that may require special accommodations (e.g., attention, learning, vision, hearing, mental, physical, or other health-related concern). *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course. If you have a condition that requires accommodations but *you have not yet established services* through OAR, then you should contact Jennifer Newago as soon as possible (Ponzio 230, x1387, or <a href="mailto:accomodations@northland.edu">accomodations@northland.edu</a>). Reasonable accommodations are established through an interactive process between you, me, and OAR. It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law. <a href="https://my.northland.edu/life/be-healthy/accommodations/">More information is available here.</a>
+
+
+### Academic Alerts
+As you adjust to the rigors of college life, you may struggle a bit in your classes and benefit from working with a professional on your organization, motivation, and stress level. If I observe that you are struggling with this course early in the semester then I may file an "Academic Alert" about you. If this happens, you will receive an e-mail from me that explains steps that you can take to improve your performance in the class. We can certainly also meet to further discuss these steps. In addition, our Academic Success Coordinator, Gina Kirsten, will receive the alert and will likely reach out to you to set up a time to further discuss ways to improve in the class. Academic Alerts are not punitive, they are simply an attempt to help you get back on track in this class as soon as possible.
+
+----
 
 ## Grading
+
+<img class="img-right" src="../img/grading.jpg">
 An overall percentage score will be computed from the items and associated weights listed in the table below. To compute your current grade, enter your percentage scores in the boxes for assessments that have been completed. To project your future grade, also include percentages for future assessments. Put highest two quiz grades in "Q1" and "Q2" and lowest two quiz grades in "Q5" and "Q6". [*It is your responsibility to track your scores on the individual assessments.*]
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
