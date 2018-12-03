@@ -7,6 +7,30 @@ css: /css/syllabus.css
 
 <SCRIPT SRC="../js/grader.js"></SCRIPT>
 
+<div class="BigQuestions">
+<ul>
+  <li>Are two variables related?</li>
+  <li>Does the mean differ among groups?</li>
+  <li>Can I develop a useful model for making predictions</li>
+</ul>
+
+<figure>
+  <img src="../img/data.jpg" alt="Data cartoon">
+  <figcaption><span style="font-size:50%;">From <a href="https://autodesk.typepad.com/bimtoolbox/2015/01/structural-modelling-requirements-for-quantification.html" target="_blank">BIM Toolbox</a></span></figcaption>
+</figure>
+
+<br>
+
+What you learn in this <strong>Biometry</strong> class will help you answer these questions.
+
+<p style="margin-bottom:2cm;"></p>
+
+</div>
+
+----
+
+## Syllabus Contents
+
 * Class [Description](#description) and [Learning Outcomes](#learning-outcomes)
 * [Instructor](#instructor)
 * [Grading](#grading) -- [Quizzes](#quizzes), [Homework](#homework), [Portfolio](#portfolio)
