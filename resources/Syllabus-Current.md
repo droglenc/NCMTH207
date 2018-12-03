@@ -71,6 +71,9 @@ A variety of opportunities for out-of-class assistance and in-class accomodation
 * *Sometimes the only answer people are looking for when they ask for help is that they won't have to face the problem alone.* - Mark Amend
 * *I think the hardest part to get to is asking for help or reaching out to other people and being honest with yourself.* - Mary-Kate Olsen
 
+<img class="img-right" src="../img/studying.jpg" alt="Studying Hours">
+
+As a general rule-of-thumb[^2], you are expected to spend 2-3 hours of time outside of class for each hour in class. This course meets for 4.5 hours per week and, thus, you should dedicate between 9 and 13.5 hours of time outside of class preparing for class, completing review and class exercises, and studying for exams. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If you feel that you are spending an inordinate amount of time on some exercises or preparations because you are "stuck," then start your work earlier so that you can stop (and do other things) and make plans to see [me](#instructor--derek-ogle) or the [tutors](#tutors) for help.
 
 ### Instructor -- Derek Ogle
 
