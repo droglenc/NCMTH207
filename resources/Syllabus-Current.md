@@ -129,6 +129,9 @@ I am fine with you working together on assignments; however, I will not tolerate
 
 
 ### Portfolio
+
+<img class="img-right" src="../img/portfolio.png">
+
 The portfolio project serves as the capstone experience for the course and allows you flexibility to demonstrate working knowledge of the major topics of the course. The portfolio will consist of a thorough analysis of data using four (cannot use any topic more than once) of the major topics in the course: (I) One-Way ANOVA (*must have more than two groups and cannot be a subset of your Two-Way ANOVA*), (II) Two-Way ANOVA, (III) Simple Linear Regression (*cannot be a subset of your Indicator Variable Regression*), (IV) Indicator Variable Regression, and (V) Logistic Regression. You can also propose an alternative topic for my approval.
 
 For each topic you must gather and appropriately analyze data. The data can originate from your original research, another class (but cannot be exactly like an assignment for the other class), journal article (you may have to recreate the data from a graphic or table – see me for help with this), reputable internet source, or any other reliable source. The data should be real, should be able to be analyzed with one of the five topics from this class, and should be interesting (primarily to you, but also to me).
