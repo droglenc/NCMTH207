@@ -91,6 +91,9 @@ I want to create an inclusive and accessible learning environment for those of y
 
 
 ### Academic Alerts
+
+<img class="img-right" src="../img/alert.jpg">
+
 As you adjust to the rigors of college life, you may struggle a bit in your classes and benefit from working with a professional on your organization, motivation, and stress level. If I observe that you are struggling with this course early in the semester then I may file an "Academic Alert" about you. If this happens, you will receive an e-mail from me that explains steps that you can take to improve your performance in the class. We can certainly also meet to further discuss these steps. In addition, our Academic Success Coordinator, Gina Kirsten, will receive the alert and will likely reach out to you to set up a time to further discuss ways to improve in the class. Academic Alerts are not punitive, they are simply an attempt to help you get back on track in this class as soon as possible.
 
 ----
@@ -101,11 +104,11 @@ As you adjust to the rigors of college life, you may struggle a bit in your clas
 You will have several opportunities, each described below, to show what you have learned in this course. An overall grade will be computed from these items as shown in the <a href="#overall-grade">Overall Grade section</a> further below.
 
 ### Quizzes
-Six one-hour quizzes will be given on the approximate dates shown on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#grading)).
+Six one-hour quizzes will be given on the approximate dates shown on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#overall--grade)).
 
 
 ### Homework
-Several homework assignments will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** homework assignments are **due at the beginning of the class period on the assigned due date** (announced in class and on the [Dates page](Dates-Current){:target="_blank"}). Assignments not handed in at the beginning of the class period will be considered late. Late assignments will not be accepted. The lowest approximately 20% of homework grades will be excluded when computing your overall grade.
+Several homework assignments will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** homework assignments are **due at the beginning of the class period on the assigned due date** (announced in class and on the [Dates page](Dates-Current){:target="_blank"}). Assignments not handed in at the beginning of the class period will be considered late. Late assignments will not be accepted. **If you meet with me in my office before the end of the second week of class, the lowest approximately 20% of homework grades will be excluded** when computing your overall grade.
 
 Each homework assignment is worth 10 points and will be graded in two parts. The first part is an assessment of completeness and formatting (each assignment should follow [the expectations outlined here](hwformat){:target="_blank"}) according to the following rubric.
 
@@ -199,7 +202,7 @@ Lowest possible final letter grades will be assigned by comparing your overall p
 An incomplete grade will be given ONLY under extreme circumstances beyond your control, such as a major illness, and will ONLY be given if you have successfully completed the entire course except for the final exam. This is in accordance with [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades").
 
 #### Note About Midterm Grades
-I will submit a "midterm grade" for you approximately half-way through the semester. It is important to note that this grade will include only about 1/3rd of the items that will be included in your overall final grade. You should also know that I will assign the "worst possible" letter grade that I can for your midterm grade. I do this for two reasons. First, I believe that it is better to know the worst rather than the best-case scenario at that point of the semester. Second, the material at the end of the semester is a little more difficult than the material at the beginning of the semester. So, if your midterm grade is lower than you would like, you will have ample opportunity to improve it. Of course, see me if you have questions about how you can do that.
+I will submit a "midterm grade" for you approximately half-way through the semester. At that time I will submit the "worst possible" letter grade that I can for your midterm grade. I do this for two reasons. First, I believe that it is better to know the worst rather than the best-case scenario at that point of the semester. Second, you will have completed only about 1/3rd of the graded items by that point of the semester. If your midterm grade is lower than you would like, you will have ample opportunity to improve it. Of course, see me if you have questions about how you can do that.
 
 
 ----
