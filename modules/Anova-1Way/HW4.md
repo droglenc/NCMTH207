@@ -18,10 +18,10 @@ css: "/css/modules.css"
 
 Acid mine drainage is formed when water percolates into mines and oxidizes sulfide ores, generating sulfuric acid, which in turn mobilizes many different metals, including iron.  In coal mining districts of the northeast, iron oxide from acid mine drainage stains many streams a brilliant orange. Reclamation projects (including sealing mine shafts and re-contouring and re-vegetating open-pit mines) have been used to reduce the severity of acid mine drainage. In one study, researchers recorded iron concentrations (mg/L) in 120 unique streams in coal-mining districts of Ohio, grouped according to land use in their basins: unmined, reclaimed (mined and later reclaimed), and abandoned (mined but never reclaimed). For a frame of reference, federal drinking water standards for color and taste permit iron concentrations up to 0.3 mg/l in drinking water. Load the **AcidMineDrainage.csv** data into R and answer the questions below. [*Note: please use* `factor()` *with* `levels=` *as shown in Section 1.1.3 of the first reading to change the order of groups to "Unmined" followed by "Reclaimed" and then "Abandoned".*]
 
-1. Test the assumptions of a One-way ANOVA model.
+1. Test the assumptions of a one-way ANOVA model.
 1. If the assumptions are not met on the original scale then identify an appropriate transformation. Transform the variable(s) to this scale and test the assumptions again.
 1. Test if the mean (transformed?) iron levels differed among the mine types.
-1. If a difference among in means among mine types was identified, then use an appropriate method to determine which of the mine types differed significantly.
+1. If a difference in means among mine types was identified, then use an appropriate method to determine which of the mine types differed significantly.
 1. Provide an appropriate statement that describes the difference in means (with a CI) on the **original scale** (not the transformed scale) for the two mine types that are **most** different. [*Hint: You may need to back-transform the results.*]
 
 ----
