@@ -16,13 +16,13 @@ css: "/css/modules.css"
 ## ANOVA Table
 <img src="../zimgs/cattails.jpg" alt="Cattails" class="img-right">
 
-A study was conducted to determine if the mean density of non-native cattail plants differed between two years, two habitats ("near" and "far" from a road), or the interaction between year and habitat. The researchers collected informaton at 25 sampling sites within each year and habitat combination. The summarized density of cattails in each year and habitat are shown below.
+A study was conducted to determine if the mean density of non-native cattail plants differed between two years, two habitats ("near" and "far" from a road), or the interaction between year and habitat. The researchers collected information at 25 sampling sites within each year and habitat combination. The summarized density of cattails in each year and habitat are shown below.
 
 <pre>
-Response  Year  Habitat      n       Mean     Median      StDev
-Density   2015    far      25      75.45      75.15      14.76
+Response  Year  Habitat       n       Mean     Median      StDev
+Density   2015    far        25      75.45      75.15      14.76
                   near       25      74.46      74.48      13.25
-          2016    far      25      83.98      79.97      13.59
+          2016    far        25      83.98      79.97      13.59
                   near       25      80.70      79.15      14.20
 </pre>
 
