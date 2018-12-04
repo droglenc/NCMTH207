@@ -13,10 +13,17 @@ css: "/css/modules.css"
 
 ----
 
-## Iron and Mining
-<img src="../zimgs/Iron_Mining.jpg" alt="Iron Mining" class="img-right">
+## Temperature and Turtle Hatchings
+<img src="../zimgs/Sea_Turtles.jpg" alt="Sea Turtles" class="img-right">
 
-Acid mine drainage is formed when water percolates into mines and oxidizes sulfide ores, generating sulfuric acid, which in turn mobilizes many different metals, including iron.  In coal mining districts of the northeast, iron oxide from acid mine drainage stains many streams a brilliant orange. Reclamation projects (including sealing mine shafts and re-contouring and re-vegetating open-pit mines) have been used to reduce the severity of acid mine drainage. In one study, researchers recorded iron concentrations (mg/L) in 120 unique streams in coal-mining districts of Ohio, grouped according to land use in their basins: unmined, reclaimed (mined and later reclaimed), and abandoned (mined but never reclaimed). For a frame of reference, federal drinking water standards for color and taste permit iron concentrations up to 0.3 mg/l in drinking water. Load the **AcidMineDrainage.csv** data into R and answer the questions below.
+It is widely reported that climate change is having a profound impact on the functioning of ecosystems. Species abundances and distributions are shifting due to the changing environment. The breeding phenology of migratory species is also changing in response to environmental change. Furthermore, climate change-induced habitat loss puts species at risk of extinction when no alternative adequate habitat is available. The risk of climate change is particularly pronounced for marine ectotherms as they conform more closely to thermal tolerance limits than terrestrial ecotherms and, in particular, species whose biology and phenology are intimately linked to temperature. To examine the effect of sand temperature on the phenology of sea turtules, researchers recorded the number of days for eggs to hatch at four different temperatures. These results of their study are below. Load these data into R and answer the questions below.
+
+<pre>
+15C: 37 43 45 54 56 65 62 73 74 75
+20C: 30 31 34 35 35 47 53 54 63 64
+25C: 21 23 48 52 52 54 54 61 62 65
+30C: 13 16 19 11 12 18 21 23 29 39
+</pre>
 
 1. Thoroughly assess the independence assumption.
 1. Thoroughly (*use all possible options*) test the equal variances assumption.
@@ -25,10 +32,10 @@ Acid mine drainage is formed when water percolates into mines and oxidizes sulfi
 
 ----
 
-## Iron and Mining II
+## Temperature and Turtle Hatchings II
 Continue with the data from above. Please do not attempt a transformation with these data and do not check the assumptions again.
 
-1. Test, at the 5% level, if the mean iron levels differed among land use (or mine) types.
+1. Test, at the 5% level, if the mean time to hatching differed among th four temperatures.
 1. If a difference in means was identified, then (using an appropriate method) determine which group means differed significantly from each other. [*Note: Provide complete tabular AND graphical support for your answer. Your graph should clearly articulate which groups differ and which do not.*]
 1. For all differences in means identified above, provide an appropriate statement that describes the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results. Clearly identify which group had a larger mean.*]
 
