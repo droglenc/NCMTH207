@@ -13,16 +13,10 @@ css: "/css/modules.css"
 
 ----
 
-## Cushing's Syndrome I
-<img src="../zimgs/cushings-syndrome.png" alt="Cushings Syndrome" class="img-right">
+## Iron and Mining
+<img src="../zimgs/Iron_Mining.jpg" alt="Iron Mining" class="img-right">
 
-[Cushing's syndrome](http://www.mayoclinic.org/diseases-conditions/cushing-syndrome/home/ovc-20197169){:target="_blank"} is a condition in which the adrenal cortex overproduces cortisol. Patients suffering from Cushing's syndrome were categorized into three groups by the cause of the syndrome: adenoma, bilateral hyperplasia, and carcinoma. The level of tetrahydrocortisone in the urine (UTH) of each patient was recorded for each individual. Load the UTH and cause data below into R and answer the questions below.
-
-<pre>
-Adenoma:                3.1, 3.0, 1.9,  3.8,  4.1,  1.9
-Bilateral hyperplasia:  8.3, 3.8, 3.9,  7.8,  9.1, 15.4, 7.7, 6.5, 5.7, 13.6
-Carcinoma:             10.2, 9.2, 9.6, 53.8, 15.8
-</pre>
+Acid mine drainage is formed when water percolates into mines and oxidizes sulfide ores, generating sulfuric acid, which in turn mobilizes many different metals, including iron.  In coal mining districts of the northeast, iron oxide from acid mine drainage stains many streams a brilliant orange. Reclamation projects (including sealing mine shafts and re-contouring and re-vegetating open-pit mines) have been used to reduce the severity of acid mine drainage. In one study, researchers recorded iron concentrations (mg/L) in 120 unique streams in coal-mining districts of Ohio, grouped according to land use in their basins: unmined, reclaimed (mined and later reclaimed), and abandoned (mined but never reclaimed). For a frame of reference, federal drinking water standards for color and taste permit iron concentrations up to 0.3 mg/l in drinking water. Load the **AcidMineDrainage.csv** data into R and answer the questions below.
 
 1. Thoroughly assess the independence assumption.
 1. Thoroughly (*use all possible options*) test the equal variances assumption.
@@ -31,10 +25,10 @@ Carcinoma:             10.2, 9.2, 9.6, 53.8, 15.8
 
 ----
 
-## Cushing's Syndrome II
-Continue with the data from above but with the outlier removed. **You must remove the outlier using R code (not by removing it from the CSV file).** Do not attempt a transformation with these data and do not check the assumptions again.
+## Iron and Mining II
+Continue with the data from above. Please do not attempt a transformation with these data and do not check the assumptions again.
 
-1. Test, at the 5% level, if the mean tetrahydrocortisone level differs among patients with different causes of Cushing's Syndrome.
+1. Test, at the 5% level, if the mean iron levels differed among land use (or mine) types.
 1. If a difference in means was identified, then (using an appropriate method) determine which group means differed significantly from each other. [*Note: Provide complete tabular AND graphical support for your answer. Your graph should clearly articulate which groups differ and which do not.*]
 1. For all differences in means identified above, provide an appropriate statement that describes the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results. Clearly identify which group had a larger mean.*]
 

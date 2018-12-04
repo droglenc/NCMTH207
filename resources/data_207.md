@@ -3,6 +3,7 @@ layout: page
 title: Data for MTH207
 ---
 
+* AcidMineDrainage -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage_meta.txt)
 * Bacteria -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Bacteria.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Bacteria_meta.txt)
 * Batmorph -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph_meta.txt)
 * Batmorph2 -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph2.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph2_meta.txt)
