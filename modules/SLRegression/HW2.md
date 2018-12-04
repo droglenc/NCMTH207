@@ -41,7 +41,7 @@ Climate scientists often need to understand the relationship between different c
 
 1. Is there a significant relationship between average monthly precipitation and average monthly high temperature for Ashland, WI? If so, specifically describe that relationship (with appropriate interval)?
 1. Interpret the value of the intercept (with appropriate interval) from your regression model and comment on whether is is proper to interpret this value.
-1. Predict (with appropriate interval) the mean average monthly precipitation if the average monthly high temperature is 10C.
-1. Predict (with appropriate interval) the average monthly precipitation if the average monthly high temperature is 10C.
+1. Predict (with appropriate interval) the mean average monthly precipitation if the average monthly high temperature is 10<sup>o</sup>C.
+1. Predict (with appropriate interval) the average monthly precipitation if the average monthly high temperature is 10<sup>o</sup>C.
 
 ----
