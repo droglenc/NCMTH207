@@ -10,100 +10,88 @@ css: /css/modules.css
 
 
 <hr />
+<div id="laysan-teal-monitoring" class="section level1">
+<h1>Laysan Teal Monitoring</h1>
 
-<div id="initialization" class="section level2">
-<h2>Initialization</h2>
-
+<p>Monitoring the abundance of animal populations can be expensive. Researchers often attempt to find methods for accurately predicting abundance from simple and inexpensive metrics. In one study, <a href="https://wildfowl.wwt.org.uk/index.php/wildfowl/article/viewFile/2664/1781">Reynolds <em>et al.</em> (2017)</a> compared the abundance of Laysan Teal (<em>Anas laysanensis</em>) as estimated from the time-intensive Lincoln-Petersen mark-resight method to the maximum annual observed count of Laysan Teal made bi-monthly on Midway Atoll. They wanted to determine if there was a significantly positive relationship between the mark-resight abundance estimate and the maximum annual count, and if that relationship differed between the breeding and non-breeding seasons.</p>
 <pre class="r"><code>&gt; library(NCStats)
 &gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression&quot;)</code></pre>
+<pre class="r"><code>&gt; df &lt;- read.csv(&quot;LaysanTeal.csv&quot;)
+&gt; str(df)</code></pre>
+<pre><code>&#39;data.frame&#39;:   12 obs. of  3 variables:
+ $ max.count  : int  75 130 281 309 340 213 274 284 276 361 ...
+ $ mr.estimate: int  502 459 647 844 879 374 376 409 582 492 ...
+ $ season     : Factor w/ 2 levels &quot;breeding&quot;,&quot;non-breeding&quot;: 1 1 1 1 1 2 2 2 2 2 ...</code></pre>
+<pre class="r"><code>&gt; xlbl &lt;- &quot;Maximum Count&quot;
+&gt; ylbl &lt;- &quot;Lincoln-Petersen Abundance&quot;</code></pre>
 
-<hr />
-
-</div>
-<div id="salmon-sperm-example" class="section level1">
-<h1>Salmon Sperm Example</h1>
-
-<div id="background" class="section level2">
-<h2>Background</h2>
-
-<p><a href="http://www.biolreprod.org/content/66/1/98.long">Vladic <em>et al.</em> (2002)</a> recorded (in <code>SalmonSperm.csv</code>) the probability of successful egg fertilization (<code>fert.success</code>) and the length of sperm tail end piece (<code>step.len</code>). They asked “Are fertilization success and length of sperm related and does that relationship differ between adult and parr salmon?”</p>
-<pre class="r"><code>&gt; ss &lt;- read.csv(&quot;SalmonSperm.csv&quot;)[-c(1,10,11),]  # only for class demo purposes
-&gt; str(ss)</code></pre>
-<pre><code>&#39;data.frame&#39;:   11 obs. of  3 variables:
- $ step.len : num  2.94 3 3.02 3.17 3.18 3.2 3.27 3.31 3.72 3.84 ...
- $ fert.succ: num  3 2.2 7 7 13.5 10.4 6.7 12.8 37.8 30 ...
- $ mat      : Factor w/ 2 levels &quot;Adult&quot;,&quot;Parr&quot;: 2 2 1 2 1 1 1 1 2 2 ...</code></pre>
-<pre class="r"><code>&gt; xlbl &lt;- &quot;Sperm Tail End Piece Length (um)&quot;
-&gt; ylbl &lt;- &quot;Fertilization Success&quot;</code></pre>
-
-</div>
 <div id="fitting-the-linear-model" class="section level2">
 <h2>Fitting the Linear Model</h2>
 
-<pre class="r"><code>&gt; lm1 &lt;- lm(fert.succ~step.len*mat,data=ss)</code></pre>
+<pre class="r"><code>&gt; lm1 &lt;- lm(mr.estimate~max.count*season,data=df)</code></pre>
 <pre class="r"><code>&gt; transChooser(lm1)</code></pre>
-<p><img src="transChooser1.png" width="6in" /></p>
-</div>
-<div id="model-exploration-and-summarization" class="section level2">
-<h2>Model Exploration and Summarization</h2>
-<pre class="r"><code>&gt; summary(lm1)</code></pre>
-<pre><code>Coefficients:
-                 Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)       -85.769     20.266  -4.232  0.00388
-step.len           30.066      6.066   4.956  0.00164
-matParr           -25.661     27.273  -0.941  0.37809
-step.len:matParr    8.155      8.148   1.001  0.35022
-
-Residual standard error: 4.547 on 7 degrees of freedom
-Multiple R-squared: 0.9139, Adjusted R-squared: 0.877 
-F-statistic: 24.78 on 3 and 7 DF,  p-value: 0.0004207 </code></pre>
-<pre class="r"><code>&gt; confint(lm1)</code></pre>
-<pre><code>                      2.5 %    97.5 %
-(Intercept)      -133.68997 -37.84811
-step.len           15.72132  44.41036
-matParr           -90.15097  38.82930
-step.len:matParr  -11.11233  27.42328</code></pre>
-<pre class="r"><code>&gt; fitPlot(lm1,interval=&quot;confidence&quot;,xlab=xlbl,ylab=ylbl,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-8-1.png" width="288" /></p>
-<pre class="r"><code>&gt; ( nd &lt;- data.frame(step.len=c(3.4,3.7),mat=c(&quot;Adult&quot;,&quot;Parr&quot;)) )</code></pre>
-<pre><code>  step.len   mat
-1      3.4 Adult
-2      3.7  Parr</code></pre>
-<pre class="r"><code>&gt; predictionPlot(lm1,nd,interval=&quot;confidence&quot;,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-8-2.png" width="288" /></p>
-<pre><code>  obs step.len   mat      fit      lwr      upr
-1   1      3.4 Adult 16.45483 11.94067 20.96899
-2   2      3.7  Parr 29.98900 23.25902 36.71899</code></pre>
-
+<p><img src="transChooser1lt.png" width="6in" /></p>
 </div>
 <div id="lecture-support-anova-demonstration" class="section level2">
 <h2>Lecture Support – ANOVA Demonstration</h2>
-<pre class="r"><code>&gt; lm1 &lt;- lm(fert.succ~step.len*mat,data=ss)
+<pre class="r"><code>&gt; lm1 &lt;- lm(mr.estimate~max.count*season,data=df)
 &gt; anova(lm1)</code></pre>
-<pre><code>             Df  Sum Sq Mean Sq F value    Pr(&gt;F)
-step.len      1 1510.23 1510.23 73.0316 5.966e-05
-mat           1    6.11    6.11  0.2953    0.6037
-step.len:mat  1   20.72   20.72  1.0017    0.3502
-Residuals     7  144.75   20.68                  </code></pre>
+<pre><code>                 Df Sum Sq Mean Sq F value   Pr(&gt;F)
+max.count         1  83421   83421 10.6370 0.011503
+season            1 190750  190750 24.3225 0.001147
+max.count:season  1    359     359  0.0457 0.835991
+Residuals         8  62740    7843                 </code></pre>
 
-<pre class="r"><code>&gt; lm2 &lt;- lm(fert.succ~step.len+mat,data=ss)
+<pre class="r"><code>&gt; lm2 &lt;- lm(mr.estimate~max.count+season,data=df)
 &gt; anova(lm2)</code></pre>
-<pre><code>          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
-step.len   1 1510.23 1510.23 73.0157 2.709e-05
-mat        1    6.11    6.11  0.2952    0.6017
-Residuals  8  165.47   20.68                  </code></pre>
+<pre><code>          Df Sum Sq Mean Sq F value    Pr(&gt;F)
+max.count  1  83421   83421  11.899 0.0072813
+season     1 190750  190750  27.207 0.0005521
+Residuals  9  63099    7011                  </code></pre>
 
-<pre class="r"><code>&gt; lm3 &lt;- lm(fert.succ~step.len,data=ss)
+<pre class="r"><code>&gt; lm3 &lt;- lm(mr.estimate~max.count,data=df)
 &gt; anova(lm3)</code></pre>
-<pre><code>          Df  Sum Sq Mean Sq F value   Pr(&gt;F)
-step.len   1 1510.23 1510.23  79.219 9.35e-06
-Residuals  9  171.58   19.06                 </code></pre>
+<pre><code>          Df Sum Sq Mean Sq F value  Pr(&gt;F)
+max.count  1  83421   83421  3.2862 0.09994
+Residuals 10 253849   25385                </code></pre>
+
+</div>
+<div id="model-exploration-and-summarization" class="section level2">
+<h2>Model Exploration and Summarization</h2>
+<pre class="r"><code>&gt; fitPlot(lm1,interval=&quot;confidence&quot;,xlab=xlbl,ylab=ylbl,legend=&quot;topleft&quot;,cex.leg=0.7)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-14-1.png" width="288" /></p>
+<pre class="r"><code>&gt; summary(lm1)</code></pre>
+<pre><code>Coefficients:
+                              Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                   324.6130    94.4805   3.436  0.00888
+max.count                       1.5048     0.3779   3.982  0.00405
+seasonnon-breeding           -323.9986   187.8052  -1.725  0.12278
+max.count:seasonnon-breeding    0.1355     0.6336   0.214  0.83599
+
+Residual standard error: 88.56 on 8 degrees of freedom
+Multiple R-squared: 0.814,  Adjusted R-squared: 0.7442 
+F-statistic: 11.67 on 3 and 8 DF,  p-value: 0.002718 </code></pre>
+<pre class="r"><code>&gt; confint(lm1)</code></pre>
+<pre><code>                                    2.5 %     97.5 %
+(Intercept)                   106.7406493 542.485322
+max.count                       0.6333927   2.376185
+seasonnon-breeding           -757.0781733 109.081017
+max.count:seasonnon-breeding   -1.3255575   1.596583</code></pre>
+<pre class="r"><code>&gt; ( nd &lt;- data.frame(max.count=c(250,250),season=c(&quot;breeding&quot;,&quot;non-breeding&quot;)) )</code></pre>
+<pre><code>  max.count       season
+1       250     breeding
+2       250 non-breeding</code></pre>
+<pre class="r"><code>&gt; predictionPlot(lm1,nd,interval=&quot;confidence&quot;,xlab=xlbl,ylab=ylbl,ylim=c(300,900),
+                 legend=&quot;topleft&quot;,cex.leg=0.7)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-14-2.png" width="288" /></p>
+<pre><code>  obs max.count       season      fit      lwr      upr
+1   1       250     breeding 700.8101 607.3089 794.3114
+2   2       250 non-breeding 410.6898 304.4186 516.9610</code></pre>
+
 </div>
 </div>
-<div id="fish-energy-density-example" class="section level1">
-<h1>Fish Energy Density Example</h1>
-<div id="background-1" class="section level2">
-<h2>Background</h2>
+<div id="fish-energy-density" class="section level1">
+<h1>Fish Energy Density</h1>
 <p><a href="http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281995%29124%3C0347%3AEEDOF%3E2.3.CO%3B2">Hartman and Brandt (1995)</a> examined the relationship between energy density and percent dry weight for four species of fish – Bay Ancovy (<em>Anchoa mitchilli</em>), Bluefish (<em>Pomatomus saltatrix</em>), Striped Bass (<em>Morone saxatilis</em>), and Weakfish (<em>Cynoscion regalis</em>). They wanted to describe the relationship between these two variables and determine if there were any differences among species.</p>
 <pre class="r"><code>&gt; FED &lt;- read.csv(&quot;FishEnergyDensity.csv&quot;)
 &gt; str(FED)</code></pre>
@@ -111,17 +99,13 @@ Residuals  9  171.58   19.06                 </code></pre>
  $ species: Factor w/ 4 levels &quot;bayanchovy&quot;,&quot;bluefish&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
  $ dw     : int  39 34 34 32 31 30 30 29 26 25 ...
  $ ed     : int  10000 9000 8500 8100 7500 7100 7700 6100 5900 5500 ...</code></pre>
-</div>
 <div id="model-fitting-and-analysis" class="section level2">
 <h2>Model Fitting and Analysis</h2>
 <pre class="r"><code>&gt; lm1 &lt;- lm(ed~dw*species,data=FED)</code></pre>
 <pre class="r"><code>&gt; transChooser(lm1)</code></pre>
 <p><img src="transChooser2.png" width="6in" /></p>
 <pre class="r"><code>&gt; anova(lm1)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: ed
-           Df    Sum Sq   Mean Sq  F value    Pr(&gt;F)
+<pre><code>           Df    Sum Sq   Mean Sq  F value    Pr(&gt;F)
 dw          1 170693154 170693154 1858.966 &lt; 2.2e-16
 species     3  10592036   3530679   38.452 1.258e-13
 dw:species  3   4105617   1368539   14.904 3.002e-07
@@ -143,8 +127,8 @@ Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
 4    weakfish 303.7943 262.4567 345.1318       0     0
 3 stripedbass 311.8110 275.6128 348.0092       0     0
 2    bluefish 362.5000 327.4355 397.5645       0     0</code></pre>
-<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-20-1.png" width="288" /></p>
+<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;,cex.leg=0.8)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-21-1.png" width="288" /></p>
 </div>
 <div id="follow-up-model-fitting-and-analysis" class="section level2">
 <h2>Follow-Up Model Fitting and Analysis</h2>
@@ -180,8 +164,8 @@ Mean ed when dw=26.10526</code></pre>
 Mean ed when dw=0</code></pre>
 <pre><code>   bluefish stripedbass    weakfish 
   -2752.451   -2121.053   -2245.976 </code></pre>
-<pre class="r"><code>&gt; fitPlot(lm2,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-23-1.png" width="288" /></p>
+<pre class="r"><code>&gt; fitPlot(lm2,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;,cex.leg=0.8)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-24-1.png" width="288" /></p>
 </div>
 </div>
 

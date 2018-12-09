@@ -24,42 +24,25 @@ modHTML("RHO")
 source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/knitr_setup.R")
 ```
 
-\vspace{-18pt}
+\vspace{-21pt}
 
 ----
 
-\vspace{-18pt}
+# Laysan Teal Monitoring
 
-## Initialization
+\vspace{-3pt}
 
-\vspace{-6pt}
+Monitoring the abundance of animal populations can be expensive. Researchers often attempt to find methods for accurately predicting abundance from simple and inexpensive metrics. In one study, [Reynolds *et al.* (2017)](https://wildfowl.wwt.org.uk/index.php/wildfowl/article/viewFile/2664/1781) compared the abundance of Laysan Teal (*Anas laysanensis*) as estimated from the time-intensive Lincoln-Petersen mark-resight method to the maximum annual observed count of Laysan Teal made bi-monthly on Midway Atoll. They wanted to determine if there was a significantly positive relationship between the mark-resight abundance estimate and the maximum annual count, and if that relationship differed between the breeding and non-breeding seasons.
 
 ```{r results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression")
 ```
-
-\vspace{-6pt}
-
-----
-
-\vspace{-15pt}
-
-# Salmon Sperm Example
-
-\vspace{-9pt}
-
-## Background
-
-\vspace{-6pt}
-
-[Vladic *et al.* (2002)](http://www.biolreprod.org/content/66/1/98.long) recorded (in `SalmonSperm.csv`) the probability of successful egg fertilization (`fert.success`) and the length of sperm tail end piece (`step.len`).  They asked "Are fertilization success and length of sperm related and does that relationship differ between adult and parr salmon?"
-
 ```{r}
-ss <- read.csv("SalmonSperm.csv")[-c(1,10,11),]  # only for class demo purposes
-str(ss)
-xlbl <- "Sperm Tail End Piece Length (um)"
-ylbl <- "Fertilization Success"
+df <- read.csv("LaysanTeal.csv")
+str(df)
+xlbl <- "Maximum Count"
+ylbl <- "Lincoln-Petersen Abundance"
 ```
 
 \vspace{-6pt}
@@ -69,30 +52,18 @@ ylbl <- "Fertilization Success"
 \vspace{-6pt}
 
 ```{r fig.width=6, par1=TRUE}
-lm1 <- lm(fert.succ~step.len*mat,data=ss)
+lm1 <- lm(mr.estimate~max.count*season,data=df)
 ```
 ```{r eval=FALSE}
 transChooser(lm1)
 ```
 ```{r echo=FALSE, out.width='6in'}
-knitr::include_graphics("transChooser1.png")
+knitr::include_graphics("transChooser1lt.png")
 ```
-
-## Model Exploration and Summarization
-```{r message=FALSE, par1=TRUE}
-summary(lm1)
-confint(lm1)
-fitPlot(lm1,interval="confidence",xlab=xlbl,ylab=ylbl,legend="topleft")
-( nd <- data.frame(step.len=c(3.4,3.7),mat=c("Adult","Parr")) )
-predictionPlot(lm1,nd,interval="confidence",legend="topleft")
-```
-
-
-\vspace{24pt}
 
 ## Lecture Support -- ANOVA Demonstration
 ```{r results="hide"}
-lm1 <- lm(fert.succ~step.len*mat,data=ss)
+lm1 <- lm(mr.estimate~max.count*season,data=df)
 anova(lm1)
 ```
 ```{r echo=FALSE}
@@ -104,7 +75,7 @@ tmp
 \vspace{12pt}
 
 ```{r results="hide"}
-lm2 <- lm(fert.succ~step.len+mat,data=ss)
+lm2 <- lm(mr.estimate~max.count+season,data=df)
 anova(lm2)
 ```
 ```{r echo=FALSE}
@@ -116,7 +87,7 @@ tmp
 \vspace{12pt}
 
 ```{r results="hide"}
-lm3 <- lm(fert.succ~step.len,data=ss)
+lm3 <- lm(mr.estimate~max.count,data=df)
 anova(lm3)
 ```
 ```{r echo=FALSE}
@@ -125,9 +96,21 @@ attr(tmp,"heading") <- NULL
 tmp
 ```
 
+\vspace{54pt}
 
-# Fish Energy Density Example
-## Background
+## Model Exploration and Summarization
+```{r message=FALSE, par1=TRUE}
+fitPlot(lm1,interval="confidence",xlab=xlbl,ylab=ylbl,legend="topleft",cex.leg=0.7)
+summary(lm1)
+confint(lm1)
+( nd <- data.frame(max.count=c(250,250),season=c("breeding","non-breeding")) )
+predictionPlot(lm1,nd,interval="confidence",xlab=xlbl,ylab=ylbl,ylim=c(300,900),
+               legend="topleft",cex.leg=0.7)
+```
+
+\newpage
+
+# Fish Energy Density
 [Hartman and Brandt (1995)](http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281995%29124%3C0347%3AEEDOF%3E2.3.CO%3B2) examined the relationship between energy density and percent dry weight for four species of fish -- Bay Ancovy (*Anchoa mitchilli*), Bluefish (*Pomatomus saltatrix*), Striped Bass (*Morone saxatilis*), and Weakfish (*Cynoscion regalis*).  They wanted to describe the relationship between these two variables and determine if there were any differences among species.
 
 ```{r}
@@ -147,15 +130,20 @@ transChooser(lm1)
 knitr::include_graphics("transChooser2.png")
 ```
 
-```{r}
+```{r results="hide"}
 anova(lm1)
+```
+```{r echo=FALSE}
+tmp <- anova(lm1)
+attr(tmp,"heading") <- NULL
+tmp
 ```
 
 \newpage
 
 ```{r par1=TRUE}
 compSlopes(lm1)
-fitPlot(lm1,xlab="Dry Weight",ylab="Energy Density",legend="topleft")
+fitPlot(lm1,xlab="Dry Weight",ylab="Energy Density",legend="topleft",cex.leg=0.8)
 ```
 
 ## Follow-Up Model Fitting and Analysis
@@ -174,7 +162,7 @@ tmp
 ```{r par1=TRUE}
 compIntercepts(lm2)
 compIntercepts(lm2,common.cov=0)
-fitPlot(lm2,xlab="Dry Weight",ylab="Energy Density",legend="topleft")
+fitPlot(lm2,xlab="Dry Weight",ylab="Energy Density",legend="topleft",cex.leg=0.8)
 ```
 
 
