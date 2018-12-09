@@ -24,81 +24,66 @@ modHTML("RHO")
 source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/knitr_setup.R")
 ```
 
-\vspace{-18pt}
+\vspace{-12pt}
 
 ----
 
-\vspace{-18pt}
+\vspace{-12pt}
 
-## Initialization
+# Oak Gall Wasps
 
 \vspace{-6pt}
 
+[Prior and Hellman (2010)](http://www.esapubs.org/archive/ecol/E091/232/appendix-C.htm) investigated the impact of invasive Oak Gall Wasps (*Neuroterus saltatorius*) on a native butterfly. They hoped to use the amount of damage shown on oak leaves as a surrogate for the density of the wasps' galls. To examine this they recorded the density of wasp galls (number per leaf) and the percentage leaf damage for ten trees. Is leaf damage a reliable predictor of wasp gall density?
 ```{r results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
 ```
 
-\vspace{-6pt}
-
-----
-
-\vspace{-18pt}
-
-# Salmon Sperm Example
-
-\vspace{-12pt}
-
-## Background
-
-\vspace{-6pt}
-
-[Vladic *et al.* (2002)](http://www.biolreprod.org/content/66/1/98.long) recorded (in `SalmonSperm.csv`) the probability of successful egg fertilization (`fert.success`) and the length of sperm tail end piece (`step.len`).  They asked "Are fertilization success and length of sperm related?"
+\vspace{-4pt}
 
 ```{r}
-ss <- read.csv("SalmonSperm.csv")[-c(1,10,11),]  # only for class demo purposes
-str(ss)
-xlbl <- "Sperm Tail End Piece Length (um)"
-ylbl <- "Fertilization Success"
+df <- read.csv("galls.csv")
+str(df)
+xlbl <- "Percentage of Leaf Damage"
+ylbl <- "Wasp Gall Density"
 ```
-
-\vspace{-9pt}
 
 ## Lecture Support I -- Model Fitting and Simple Predictions
 
-\vspace{-6pt}
-
 ```{r message=FALSE, par1=TRUE}
-( lm1 <- lm(fert.succ~step.len,data=ss) )
+( lm1 <- lm(density~damage,data=df) )
 fitPlot(lm1,xlab=xlbl,ylab=ylbl)
-predict(lm1,data.frame(step.len=3.5))
+predict(lm1,data.frame(damage=35))
 ```
 
 ## Lecture Support II -- Sampling Variability
 ```{r par1=TRUE}
 summary(lm1)
 confint(lm1)
-fitPlot(lm1,interval="both",xlab=xlbl,ylab=ylbl)
+fitPlot(lm1,interval="both",ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
 ```
 
 ```{r par1=TRUE}
-predict(lm1,data.frame(step.len=3.5),interval="confidence")
-predict(lm1,data.frame(step.len=3.5),interval="prediction")
-predictionPlot(lm1,data.frame(step.len=c(3.3,3.5)),interval="prediction",
-               xlab=xlbl,ylab=ylbl)
+predict(lm1,data.frame(damage=35),interval="confidence")
+predict(lm1,data.frame(damage=35),interval="prediction")
+predictionPlot(lm1,data.frame(damage=c(13,35)),interval="confidence",
+               ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
 ```
 
 ## Lecture Support III -- Model Comparisons
 
-\vspace{-6pt}
-
-```{r}
+```{r results="hide"}
 anova(lm1)
 ```
+```{r echo=FALSE}
+tmp <- anova(lm2)
+attr(tmp,"heading") <- NULL
+tmp
+```
+
 
 ## Lecture Support IV -- Assumption Checking
-
-\vspace{-6pt}
 
 ```{r eval=FALSE}
 transChooser(lm1)
@@ -107,14 +92,11 @@ transChooser(lm1)
 knitr::include_graphics("transChooser1.png")
 ```
 
+\newpage
 
-# Petrels Example
+# Petrels
 
-\vspace{-12pt}
-
-## Background
-
-\vspace{-9pt}
+\vspace{-3pt}
 
 [Croxall (1982)](http://www.jstor.org/stable/4318?seq=1#page_scan_tab_contents) examined the weight loss of adult petrels during periods of egg incubation.  He examined 13 species but some had measurements for both sexes such that 19 measurements are found in `Petrels.csv`.  For each measurement the mean initial weight (g) and mean weight lost (g/g/d) were recorded.  Determine if the mean initial weight significant explains variability in mean weight lost.
 
@@ -124,11 +106,9 @@ str(petrels)
 ```
 
 
-\vspace{-12pt}
-
 ## Analysis
 
-\vspace{-6pt}
+\vspace{-3pt}
 
 ```{r par1=TRUE}
 lm1 <- lm(weight.loss~weight,data=petrels)

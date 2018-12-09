@@ -1,25 +1,29 @@
 library(NCStats)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
 
-ss <- read.csv("SalmonSperm.csv")[-c(1,10,11),]  # only for class demo purposes
-str(ss)
-xlbl <- "Sperm Tail End Piece Length (um)"
-ylbl <- "Fertilization Success"
+df <- read.csv("galls.csv")
+str(df)
+xlbl <- "Percentage of Leaf Damage"
+ylbl <- "Wasp Gall Density"
 
-( lm1 <- lm(fert.succ~step.len,data=ss) )
+( lm1 <- lm(density~damage,data=df) )
 fitPlot(lm1,xlab=xlbl,ylab=ylbl)
-predict(lm1,data.frame(step.len=3.5))
+predict(lm1,data.frame(damage=35))
 
 summary(lm1)
 confint(lm1)
-fitPlot(lm1,interval="both",xlab=xlbl,ylab=ylbl)
+fitPlot(lm1,interval="both",ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
 
-predict(lm1,data.frame(step.len=3.5),interval="confidence")
-predict(lm1,data.frame(step.len=3.5),interval="prediction")
-predictionPlot(lm1,data.frame(step.len=c(3.3,3.5)),interval="prediction",
-               xlab=xlbl,ylab=ylbl)
+predict(lm1,data.frame(damage=35),interval="confidence")
+predict(lm1,data.frame(damage=35),interval="prediction")
+predictionPlot(lm1,data.frame(damage=c(13,35)),interval="confidence",
+               ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
 
 anova(lm1)
+
+tmp <- anova(lm2)
+attr(tmp,"heading") <- NULL
+tmp
 
 transChooser(lm1)
 
@@ -44,4 +48,4 @@ confint(lm2)
 exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
 
 
-# Script created at 2018-02-18 11:01:13
+# Script created at 2018-12-08 20:23:30
