@@ -114,7 +114,7 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>F 1-Mar</td>
     <td></td>
-    <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance for extra credit or to redo)</a></td></tr>
+    <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance to redo)</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 4-Mar</td>
@@ -136,9 +136,9 @@ Note that some of the more distant dates are subject to change.
 <tr><td>W 13-Mar</td>
     <td></td>
     <td>--</td></tr>
-<tr><td>F 14-Mar</td>
+<tr><td>F 15-Mar</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 18-Mar</td>
