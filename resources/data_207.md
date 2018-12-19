@@ -46,3 +46,4 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [datahub.com](https://old.datahub.io/dataset): Lots of open-source datasets (will likely need to search to find something of interest).
 * [sports-reference.com](https://www.sports-reference.com/): A group of sites providing basic statistics and resources for sports fans.
 * [MLB.com](https://www.mlb.com/): Lots of data on major league baseball.
+* [Forest Service Data Catalog](https://www.fs.usda.gov/rds/archive/Catalog): A list of data files from the USDA Forest Service.
