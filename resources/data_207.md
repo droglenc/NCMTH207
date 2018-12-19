@@ -24,10 +24,14 @@ The following data files are used in the module readings or homework problems.
 
 The following sources may be useful for locating data for [your portfolio](Syllabus-Current#portfolio).
 
-* [NTL-LTER](https://lter.limnology.wisc.edu/data): A variety of primarily aquatics-related datasets from the North Temperate Lakes Long-Term Ecological Research site in Northern Wisconsin.
-* [Christmas Bird Count](http://netapp.audubon.org/CBCObservation/): A large database of annual counts of many bird species at many locations for many years.
+* [LTER Data Portal](https://portal.lternet.edu/nis/home.jsp#): A comprehensive search engine for data from all NSF Long-Term Ecological Research sites.
+    * [NTL-LTER](https://lter.limnology.wisc.edu/data): A variety of primarily aquatics-related datasets from the North Temperate Lakes Long-Term Ecological Research site in Northern Wisconsin.
 * [DRYAD](http://www.datadryad.org/): An international repository of data underlying scientific and medical publications.
-* [figshare](https://figshare.com/): [*Use search and then set "type" to "Dataset."*]
+* [figshare](https://figshare.com/): A repository for research output [*Use search and then set "type" to "Dataset."*]
+* [dataverse](https://dataverse.harvard.edu/): A Harvard arhive to share research data from many fields.
+* [Data is Plural Archive](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0): A structured archive a data stories mentioned in the Data is Plural e-newsletter.
+* [Christmas Bird Count](http://netapp.audubon.org/CBCObservation/): A large database of annual counts of many bird species at many locations for many years.
+* [ORNL DAAC](https://daac.ornl.gov/): A wide variety of "Earth data" at the Oak Ridge National Laboratoroy Distributed Active Archive Center.
 * [U.S. Census data](https://www.census.gov/): Data from the U.S. Census Bureau.
 * [areavibes.com](https://www.areavibes.com/): Find a wealth of information about each city that you select (you will have to drill down a bit to get the actual data).
 * [GasBuddy.com](https://www.gasbuddy.com/): Search for current gas prices for any U.S. city.
@@ -47,3 +51,5 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [sports-reference.com](https://www.sports-reference.com/): A group of sites providing basic statistics and resources for sports fans.
 * [MLB.com](https://www.mlb.com/): Lots of data on major league baseball.
 * [Forest Service Data Catalog](https://www.fs.usda.gov/rds/archive/Catalog): A list of data files from the USDA Forest Service.
+* [Open Units](https://www.getthedata.com/open-units): Open dataset containing units of alcohol in branded drinks in a variety of standard servings.
+
