@@ -6,7 +6,7 @@ css: /css/modules.css
 
 ----
 
-One fairly simple way to gather simple linear regression or indicator variable regression data for [your portfolio](syllabus#portfolio) is to find a scatterplot with data of interest to you and then extract the data for each point from the plot. The steps below describe how to use the **digitize** package in R to capture the points on the following scatterplot and save them to a CSV file. This is also demonstrated in [this video](https://vimeo.com/307333906).
+One fairly simple way to gather simple linear regression or indicator variable regression data for [your portfolio](syllabus#portfolio) is to find a scatterplot with data of interest to you and then extract the data for each point from the plot. The steps below describe how to use the **digitize** package in R to capture the points on the following scatterplot and save them to a CSV file. This is also demonstrated in [this video](https://vimeo.com/307333906){:target="_blank"}.
 
 <img src="ScatterPlot.png">
 
