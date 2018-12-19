@@ -3,6 +3,8 @@ layout: page
 title: Data for MTH207
 ---
 
+## Data for Homework
+
 The following data files are used in the module readings or homework problems.
 
 * AcidMineDrainage -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage_meta.txt)
@@ -21,6 +23,12 @@ The following data files are used in the module readings or homework problems.
 * SoilPhosphorous -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/SoilPhosphorous.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/SoilPhosphorous_meta.txt)
 * SolarOffer -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/SolarOffer.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/SolarOffer_meta.txt)
 * XMovieAge -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/XMovieAge.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/XMovieAge_meta.txt)
+
+<br>
+
+----
+
+## Possible Sources of Portfolio Data
 
 The following sources may be useful for locating data for [your portfolio](Syllabus-Current#portfolio).
 
