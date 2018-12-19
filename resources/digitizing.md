@@ -6,6 +6,10 @@ css: /css/modules.css
 
 ----
 
+One fairly simple way to gather simple linear regression or indicator variable regression data for [your portfolio](syllabus#portfolio) is to find a scatterplot with data of interest to you and then extract the data for each point from the plot. The steps below describe how to use the **digitize** package in R to capture the points on the following scatterplot and save them to a CSV file.
+
+<img src="ScatterPlot.png">
+
 1. Save an image of the scatterplot as a PNG, JPG, or BMP file.
 1. Load the **digitize** package with `library(digitize)`. [*If you have not done so previously, you may need to install the **digitize** package by selecting the `Packages` tab in the lower-right pane of RStudio, then the `Install` button, then type `digitize` in the ensuing dialog box, and press `Install`.*]
 1. Set the working directory to where the image file is located with `setwd()`.
