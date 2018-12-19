@@ -54,7 +54,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 29-Jan</td>
-    <td colspan="2"><span style="color:red">First Quiz</span> (<a href="QuizGuides/quiz_1.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">First Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 30-Jan</td>
     <td></td>
     <td>--</td></tr>
@@ -81,7 +81,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 12-Feb</td>
-    <td colspan="2"><span style="color:red">Second Quiz</span> (<a href="QuizGuides/quiz_2.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">Second Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 13-Feb</td>
     <td></td>
     <td>--</td></tr>
@@ -107,7 +107,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 26-Feb</td>
-    <td><span style="color:red">Third Quiz</span> (<a href="QuizGuides/quiz_3.html">Study Guide</a>)</td>
+    <td><span style="color:red">Third Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td>
     <td>--</td></tr>
 <tr><td>W 27-Feb</td>
     <td></td>
@@ -145,7 +145,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 19-Mar</td>
-    <td colspan="2"><span style="color:red">Fourth Quiz</span> (<a href="QuizGuides/quiz_4.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">Fourth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 20-Mar</td>
     <td></td>
     <td>--</td></tr>
@@ -172,7 +172,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 2-Apr</td>
-    <td colspan="2"><span style="color:red">Fifth Quiz</span> (<a href="QuizGuides/quiz_5.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">Fifth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 3-Apr</td>
     <td></td>
     <td>--</td></tr>
@@ -199,7 +199,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 16-Apr</td>
-    <td colspan="2"><span style="color:red">Sixth Quiz</span> (<a href="QuizGuides/quiz_6.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">Sixth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 17-Apr</td>
     <td colspan="2"><span style="color:red"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
 <tr><td>F 19-Apr</td>
