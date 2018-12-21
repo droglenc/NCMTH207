@@ -39,6 +39,7 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [dataverse](https://dataverse.harvard.edu/): A Harvard arhive to share research data from many fields.
 * [Data is Plural Archive](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0): A structured archive a data stories mentioned in the Data is Plural e-newsletter.
 * [Christmas Bird Count](http://netapp.audubon.org/CBCObservation/): A large database of annual counts of many bird species at many locations for many years.
+* [Journal of Fish and Wildlife Management](http://fwspubs.org/): Most (all?) articles published in this journal contain the raw data as supplemental information that appears to be open-source. If you find data here that sounds interesting to you but you can not access then let me know.
 * [ORNL DAAC](https://daac.ornl.gov/): A wide variety of "Earth data" at the Oak Ridge National Laboratoroy Distributed Active Archive Center.
 * [U.S. Census data](https://www.census.gov/): Data from the U.S. Census Bureau.
 * [areavibes.com](https://www.areavibes.com/): Find a wealth of information about each city that you select (you will have to drill down a bit to get the actual data).
