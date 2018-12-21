@@ -61,3 +61,4 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [Forest Service Data Catalog](https://www.fs.usda.gov/rds/archive/Catalog): A list of data files from the USDA Forest Service.
 * [Open Units](https://www.getthedata.com/open-units): Open dataset containing units of alcohol in branded drinks in a variety of standard servings.
 * [GDP by County](https://www.bea.gov/news/2018/prototype-gross-domestic-product-county-2012-2015): Gross domestic product data by U.S. county distributed by the Bureau of Economic Analysis (BEA).
+* [UMESC Fisheries](https://www.umesc.usgs.gov/data_library/fisheries/fish1_query.shtml): A database of fisheries information provided by the Upper Midwest Environmental Science Center of the U.S. Geological Survey. This is largely related to data from the Mississippi R.
