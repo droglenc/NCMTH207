@@ -19,7 +19,7 @@ set_parent('Biometry.Rnw')
 \minitoc
 \newpage
 
-\lettrine{T}{hree types of linear models}, characterized by the type of response variable and type(s) of explanatory variables considered, will be considered in this book. The first major type are the ``ANalysis Of VAriance'' or ANOVA models. ANOVA models are characterized by a quantitative response variable and factor (categorical) explanatory variables \tabrefp{tab:LMTypes}. One-way ANOVAs consider only one factor explanatory variable, whereas two-way ANOVAs consider two factor explanatory variables.
+\lettrine{T}{hree types of linear models}, characterized by the type of response variable and type(s) of explanatory variables, will be considered in this book. The first major type is the ``ANalysis Of VAriance'' or ANOVA models. ANOVA models are characterized by a quantitative response variable and categorical(factor or grouping) explanatory variables \tabrefp{tab:LMTypes}. One-way ANOVAs have only one categorical explanatory variable, whereas two-way ANOVAs have two categorical explanatory variables.
 
 \begin{table}[h]
   \centering
@@ -41,15 +41,15 @@ set_parent('Biometry.Rnw')
   \end{tabular}
 \end{table}
 
-The second major type of linear model to be considered is linear regression, which are characterized by quantitative response and explanatory variables \tabrefp{tab:LMTypes}. Simple linear regression (SLR) occurs when only one explanatory variable is considered, whereas multiple linear regression considers multiple explanatory variables. Multiple quantitative explanatory variables will not be explored here. However, the third major type of linear model is indicator variable regression (IVR), which is a multiple regression with one quantitative and one or more factor explanatory variables \tabrefp{tab:LMTypes}. Note that the ANalysis of COVAriance (ANCOVA) model is a special case of indicator variable regression.
+The second major type of linear model to be considered is linear regression, which are characterized by quantitative response and explanatory variables \tabrefp{tab:LMTypes}. Simple linear regression (SLR) occurs when only one explanatory variable is considered, whereas multiple linear regression considers multiple explanatory variables. Multiple quantitative explanatory variables will not be explored here. However, the third major type of linear model is indicator variable regression (IVR), which is a multiple regression with one quantitative and one or more categorical (factor or grouping) explanatory variables \tabrefp{tab:LMTypes}. The ANalysis of COVAriance (ANCOVA) model is a special case of indicator variable regression.
 
 The fourth major type of linear model to be considered is logistic regression, where the response variable is categorical and the explanatory variables are generally quantitative \tabrefp{tab:LMTypes}.\footnote{Though categorical explanatory variables may be considered in a manner similar to indicator variable regression models.}
 
-The remainder of this module is devoted to reviewing basic concepts from your introductory statistics course and developing a common general framework that can be used to analyze all four types of linear models described above. Thus, this module serves as the theoretical foundation for Modules \ref{chap:LMANOVA1}-\ref{chap:LMLogistic}.
+The remainder of this module is devoted to reviewing basic concepts from your introductory statistics course to develop a common framework that can be used to analyze all four types of these linear models. Thus, this module serves as the theoretical foundation for Modules \ref{chap:LMANOVA1}-\ref{chap:LMLogistic}.
 
 
 \section{Two-Sample t-Test Review} \label{sect:2tTest}
-A two-sample t-test is an statistical method for comparing the means of a quantitative variable between two populations represented by two independent samples. The specific details of a two-sample t-test are covered in most introductory statistics courses.\footnote{Thus, it is assumed that you have a working knowledge of a two-sample t-test.}  Specifically, the null hypothesis is $H_{0}:\mu_{1}=\mu_{2}$ where the subscripts represent the two populations. This hypothesis is tested with the t test statistic,\footnote{Under the assumptions of independent and normally distributed ``errors'' and equal variances between the two groups.}
+A two-sample t-test is a statistical method for comparing the means of a quantitative variable between two populations represented by two independent samples. The specific details of a two-sample t-test are covered in most introductory statistics courses.\footnote{Thus, it is assumed that you have a working knowledge of a two-sample t-test.}  Specifically, the null hypothesis is $H_{0}:\mu_{1}=\mu_{2}$, where the subscripts represent the two populations. This hypothesis is tested with the t test statistic,\footnote{Under the assumptions of independent and normally distributed ``errors'' and equal variances between the two groups.}
 
 \begin{equation} \label{eqn:2tTestStat}
    t=\frac{\bar{x}_{1}-\bar{x}_{2}-0}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}}
@@ -62,7 +62,7 @@ where the pooled sample variance, $s_{p}^{2}$, is a measure of the common varian
 Methods for analyzing a two-sample t-test in R are briefly summarized in the next three subsections.
 
 \subsection{Data Format} \label{sect:DataStacked}
-The data for a 2-sample t-test must be entered in stacked format. In stacked format, the measurements are in one vector (i.e., column) and a label for the populations is in another vector (column). If both vectors are in a data frame,\footnote{This will most likely be the case as this data will most likely be read from an external data file.} then each row corresponds to the measurement and population of a single individual. The data for this example are read from the \dfile{BOD.csv} (\href{https://github.com/droglenc/NCData/blob/master/BOD.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/BOD_meta.txt}{meta}) file below\footnote{These data can be downloaded from the class webpage by right-clicking on "download" and saving to your computer. The working directory should then be set to where this file is located on your computer. The data are then read into R with \R{read.csv()}. It is assumed that you remember this procedure from your introduction to R.} and several rows are displayed with \R{headtail()}.
+The data for a 2-sample t-test must be entered in stacked format. In stacked format, the measurements are in one column (or vector) and a label for the populations is in another column. Each row of the data.frame corresponds to the measurement and population of a single individual. The data for the example below are the biological oxygen demands at the inlet and outlet to an aquaculture facilty. These data are read from the \dfile{BOD.csv} (\href{https://github.com/droglenc/NCData/blob/master/BOD.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/BOD_meta.txt}{meta}) file below\footnote{These data can be downloaded from the class webpage by right-clicking on "download" and saving to your computer. The working directory should then be set to where this file is located on your computer. The data are then read into R with \R{read.csv()}. It is assumed that you remember this procedure from your introduction to R.} and several rows are displayed with \R{headtail()}.
 <<echo=FALSE>>=
 aqua <- read.csv("data/BOD.csv")
 @
@@ -74,41 +74,40 @@ aqua <- read.csv("BOD.csv")
 headtail(aqua)   # 1st and last 3 rows, not whole data frame
 @
 
-\defn{Stacked Data}{Data where the quantitative measurements of two groups are ``stacked'' on top of each other and a second variable is used to record to which population (or group) the measurement belongs.}
+\defn{Stacked Data}{Data where the quantitative measurements of two groups are ``stacked'' on top of each other and a second variable is used to record to which group (or population) the measurement belongs.}
 
 \vspace{-12pt}
 \warn{Stacked data is the preferred format for two-sample data because each column corresponds to a variable and each row corresponds to only one individual.}
 
 \subsection{Levene's Test}
-Before conducting a 2-sample t-test, the assumption of equal variances must be tested with a Levene's test, which is conducted with \R{levenesTest()}. The first argument to this function is a model formula of the type \R{response}\verb"~"\R{factor}, where \R{response} represents the variable that contains the quantitative measurements and \R{factor} represents the variable that contains the categorical groups. In addition, the data.frame in which the \R{response} and \R{factor} variables are found is given to \R{data=}. The very large p-value (=\Sexpr{kPvalue(leveneTest(BOD~src,data=aqua)[1,"Pr(>F)"],include.p=FALSE,digits=2)}) in the BOD example indicates that the variances can be considered to be equal.
+Before conducting a 2-sample t-test, the assumption of equal variances must be tested with Levene's test. The first argument to \R{levenesTest()} is a model formula of the type \R{response}\verb"~"\R{factor}, where \R{response} represents the variable that contains the quantitative measurements and \R{factor} represents the variable that contains the categorical groups. In addition, the data.frame in which the \R{response} and \R{factor} variables are found is given to \R{data=}. The very large p-value (=\Sexpr{kPvalue(leveneTest(BOD~src,data=aqua)[1,"Pr(>F)"],include.p=FALSE,digits=2)}) in the BOD example indicates that the variances can be considered to be equal.
 <<>>=
 levenesTest(BOD~src,data=aqua)
 @
 
-\warn{A Levene's test requires that the \R{NCStats} package is loaded.}
+\warn{A Levene's test requires the \R{NCStats} package to be loaded.}
 
 \subsection{The Test} \label{sect:RtTest}
-A 2-sample t-test is constructed in R with \R{t.test()}, with the exact same \R{response}\verb"~"\R{factor} formula used in \R{levenesTest()} as the first argument (and the corresponding data.frame in \R{data=}). Additionally, the following arguments may be specified when conducting a 2-sample t-test with \R{t.test()}:
+A 2-sample t-test is constructed in R with \R{t.test()}, with the exact same \R{response}\verb"~"\R{factor} formula used in \R{levenesTest()} as the first argument and the corresponding data.frame in \R{data=}. Additionally, the following arguments may be specified:
 \begin{itemize}
-  \item \R{var.equal}: A logical value that indicates whether the two population variances should be considered to be equal or not. If \R{var.equal=TRUE}, then the pooled sample variance is calculated and used in the standard error. The default value is to assume unequal variances; thus, this argument must typically be set.
-  \item \R{mu}: The specific value of the null hypothesis. In the two-sample case, this is the hypothesized difference among the population means. The default value is $0$ and, thus, this argument does not usually have to be specified.
+  \item \R{var.equal}: A logical that indicates whether the two population variances should be considered equal or not. If \R{var.equal=TRUE}, then the pooled sample variance is calculated and used in the standard error. The default value is to NOT assume unequal variances; thus, \R{var.equal=TRUE} must typically be set.
   \item \R{alternative}: A character string that indicates whether the alternative hypothesis is \R{"two.sided"} (i.e., the ``not equals'' situation), \R{"greater"}, or \R{"less"}. The default is \R{"two.sided"}.
-  \item \R{conf.level}: The proportional level of confidence to be used when constructing the confidence interval for $\mu_{1}-\mu_{2}$.
+  \item \R{conf.level}: The proportional level of confidence to be used when constructing the confidence interval for $\mu_{1}-\mu_{2}$. The default is \R{0.95}.
 \end{itemize}
 
-\warn{The \R{var.equal=TRUE} argument must be used in \R{t.test()} if one is to assume equal variances. This is NOT the default setting in R.}
+\warn{The \R{var.equal=TRUE} argument must be used in \R{t.test()} to assume equal variances. This is NOT the default setting in R.}
 
-Finally, if the order of the levels of the grouping factor was not set upon creation, then R defaults to an alphabetical order. This results in the mean for the alphabetically-second population being subtracted from the mean of the alphabetically-first populations. Thus, in this situation, the default 2-sample t-test subtracts the \var{outlet} mean from the \var{inlet} mean, which may be opposite of the way the hypotheses were set up. If this is the case, then either (i) the order of the groups in the hypotheses must be reversed (i.e., $H_{A}:\mu_{out}-\mu_{in}>0$ is the same as $H_{A}:\mu_{in}-\mu_{out}<0$) or (ii) the order of the levels of the grouping factor must be explicitly set with \R{factor()}. For example, a new variable (\R{fsrc}) is created below where \var{outlet} is forced to be the first level.
+Finally, the order of levels of the grouping factor is alphabetical by default. This results in the mean for the alphabetically-second population being subtracted from the mean of the alphabetically-first populations. In this example, the default 2-sample t-test would subtract the \var{outlet} mean from the \var{inlet} mean. If this is opposite of the way the hypotheses were set up, then either (i) the order of the groups in the hypotheses must be reversed (i.e., $H_{A}:\mu_{out}-\mu_{in}>0$ is the same as $H_{A}:\mu_{in}-\mu_{out}<0$) or (ii) the order of the levels of the grouping factor must be explicitly set with \R{factor()}. For example, \var{outlet} is forced to be the first level in (\R{src}) below.
 <<>>=
 aqua$fsrc <- factor(aqua$src,levels=c("outlet","inlet"))
 levels(aqua$fsrc)
 @
 
-When using \R{factor()} one must be very careful to type the level names exactly as they appear in the original variable. For example, if \R{levels=c("Outler","Inlet")} had been used, then the \var{fsrc} variable would contain only \R{<NA>} values, which is Rs way of saying ``not available.''  In other words, a variable with nothing in it would have been created.
+When using \R{factor()}, be very careful to type the level names exactly as they appear in the original variable. For example, if \R{levels=c("Outer","Inlet")} had been used, then the \var{src} variable would contain only \R{<NA>} values, which is Rs way of saying ``not available.''  In other words, a variable with nothing in it would have been created.
 
 \warn{When assigning the order of the levels of a factor variable, take care to use level names exactly as they appeared in the original variable.}
 
-The \R{factor()} function is also used to tell R to treat a particular variable as a factor variable. For example, suppose that the researchers had entered the numbers 1 and 2 for the \var{src} variable. By default, this variable would be treated as numeric rather than as a factor with levels. Including the original variable name in \R{factor()} and assigning it to a new variable will force R to treat the new variable as a factor.
+The \R{factor()} function is also used to tell R to treat a particular variable as a factor variable. For example, suppose that the researcher had entered the numbers 1 and 2 for the \var{src} variable. By default, this variable would be treated as numeric rather than as a factor with levels. Including the original variable name in \R{factor()} and assigning it to a new variable will force R to treat the new variable as a factor.
 
 \warn{Factor variables that were labeled with numbers must be specifically told to be treated as a factor variable with \R{factor()}.}
 
@@ -116,21 +115,21 @@ The \R{factor()} function is also used to tell R to treat a particular variable 
 t1 <- t.test(BOD~fsrc,data=aqua,var.equal=TRUE)
 @
 
-Thus, the 2-sample t-test of the aquaculture data, using the new level ordering and assuming equal variances (per the Levene's Test results above), is computed below. From these results it is seen that the difference between the means at the outlet and the inlet is \Sexpr{round(t1$estimate[1],3)}-\Sexpr{round(t1$estimate[2],3)} = \Sexpr{round(t1$estimate[1]-t1$estimate[2],3)}, the test statistic is \Sexpr{round(t1$statistic,3)} with \Sexpr{t1$parameter} df, and the p-value is \Sexpr{kPvalue(t1$p.value,include.p=FALSE)}. Thus, there does appear to be a significant difference between the mean BOD of water at the inlet and water at the outlet to the aquaculture tanks.
+The 2-sample t-test of the BOD data, using the new level ordering and assuming equal variances (per the Levene's Test results above), is computed below. From these results it is seen that the difference between the sample means at the outlet and the inlet is \Sexpr{round(t1$estimate[1],3)}-\Sexpr{round(t1$estimate[2],3)} = \Sexpr{round(t1$estimate[1]-t1$estimate[2],3)}, the test statistic is \Sexpr{round(t1$statistic,3)} with \Sexpr{t1$parameter} df, and the p-value is \Sexpr{kPvalue(t1$p.value,include.p=FALSE)}. Thus, there does appear to be a significant difference between the population mean BOD of water at the inlet and outlet to the aquaculture facility. Furthermore, one is 95\% confident that the mean BOD at the outlet is between \Sexpr{round(t1$conf.int[[1]],3)} and \Sexpr{round(t1$conf.int[[2]],3)} greater than the mean BOD at the inlet.
 <<>>=
-t.test(BOD~fsrc,data=aqua,var.equal=TRUE)   # default alt & conf.level
+t.test(BOD~fsrc,data=aqua,var.equal=TRUE)   # uses default alt= & conf.level=
 @
 
 
 \section{Models}
-Many hypothesis tests can be cast in a framework of competing models. The two-sample t-test will be cast as competing models in this section to illustrate the general properties of this framework for application to other linear models. This conceptualization will serve as the conceptual foundation for all other linear models in this book.
+Many hypothesis tests, including the two-sample t-test, can be cast in a framework of competing models. This conceptualization for the two-sample t-test in this secton will serve as the conceptual foundation for all other linear models in this course.
 
-The null and alternative hypotheses can each be related to a model. The null hypothesis corresponds to the \emph{simple} model, whereas the alternative hypothesis corresponds to the \emph{full} model.\footnote{Note that the only simple and full model used in this foundational development are sometimes called the \emph{ultimate simple} and \emph{ultimate full} models because there can be no model simpler than just using a grand mean and there can be no model more complicated then using a separate mean for each group. There will be other ``simple'' and ``full'' models throughout these notes, but when the words ``ultimate simple'' and ``ultimate full'' model are used then reference is made to these two specific models.}  In the two-sample t-test, the null hypothesis represents the situation of no difference between population means. Thus, a single mean, $\mu$, would represent both populations. In contrast, the alternative hypothesis implies that a difference exists between the means of the two populations. Thus, each population must be represented by a separate mean (e.g., $\mu_{1}$ and $\mu_{2}$). With this, the simple and full models for a two-sample t-test are
+The null and alternative hypotheses are each related to a model. The null hypothesis corresponds to the \emph{simple} model, whereas the alternative hypothesis corresponds to the \emph{full} model.\footnote{Note that the only simple and full model used in this foundational development are sometimes called the \emph{ultimate simple} and \emph{ultimate full} models because there can be no model simpler than just using a grand mean and there can be no model more complicated then using a separate mean for each group. There will be other ``simple'' and ``full'' models throughout this course, but when the words ``ultimate simple'' and ``ultimate full'' model are used then reference is made to these two specific models.}  In the two-sample t-test, the null hypothesis represents the situation of no difference between population means. Thus, a single mean, $\mu$, would represent both populations. In contrast, the alternative hypothesis implies that a difference exists between the two population means. Thus, each population must be represented by a separate mean (e.g., $\mu_{1}$ and $\mu_{2}$). With this, the simple and full models for a two-sample t-test are
 \[ \begin{split}
    simple&: \mu_{i} = \mu \\
    full&: \mu_{i} = \mu_{i} \\
 \end{split} \]
-where $i$ represents the $i$th group (i.e, would be replaced with ``1'' or ``2''), $\mu_{i}$ represents the population mean of the $i$th group, and $\mu$ (with no subscript) represents an \emph{grand} mean for both groups combined. Thus, the simple model says that there is one mean -- the grand mean, $\mu$ -- that adequately represents each group; whereas the full model says that each group is represented by a separate mean. These models are visually represented in \figref{fig:LM2TModels}. The simple model is called ``simple'' because it has fewer parameters (i.e., one mean) than the full model (i.e., as many means as groups).
+where $i$ represents the $i$th group (i.e, would be replaced with ``1'' or ``2''), $\mu_{i}$ represents the population mean of the $i$th group, and $\mu$ (with no subscript) represents the \emph{grand} mean for both groups combined. Thus, the simple model says that there is one mean -- the grand mean, $\mu$ -- that adequately represents each group; whereas the full model says that each group is represented by a separate mean. These models are visually represented in \figref{fig:LM2TModels}. The simple model is called ``simple'' because it has fewer parameters (i.e., one mean) than the full model (i.e., as many means as groups).
 
 <<LM2TModels, echo=FALSE, fig.cap="Biological oxygen demand (BOD) measurements at two locations -- an inlet and an outlet. The red horizontal line represents the simple model of a grand mean for both groups. The two blue horizontal lines represent the full model of separate means for each group.",fig.pos="!h">>=
 plot(BOD~as.numeric(src),data=aqua,pch=21,bg=col2rgbt("gray50",1/2),
@@ -162,7 +161,7 @@ where $n$ is the number of individuals.
 \vspace{-12pt}
 \warn{An overall measure of the lack-of-fit of a model is the sum of the squared residuals computed using that model.}
 
-Some notation must be defined before this general formula can be made more specific. Let $Y$ represent a generic response variable.\footnote{Note that this is a little different then what was likely done in your introductory statistics course where $X$ usually represented a generic variable. It is common in advanced statistics to call $Y$ the generic response variable as the response variable is usually plotted on the y-axis.}  Furthermore, let $Y_{ij}$ be the measurement of the response variable for the $j$th individual in the $i$th group. Thus, $j$ is an index for individuals within a group and $i$ is an index for groups. For example, $Y_{23}$, is the measurement of the response variable on the third individual in the second group. The number of individuals in group $i$ is depicted by $n_{i}$. The sample mean of the individuals in the $i$th group is $\bar{Y}_{i\cdot}$ and is computed for each group separately as\footnote{Note that it is common practice to put a dot where the subscript that was summed across would be. In this example, the individuals within a group were summed, or summing was across the $j$ index, thus the $j$ is replaced with a dot.}
+Some notation must be defined before this general formula can be made more specific. Let $Y$ represent a generic response variable.\footnote{Note that this is a little different then what was likely done in your introductory statistics course where $X$ usually represented a generic variable. It is common in advanced statistics to call $Y$ the generic response variable as the response variable is usually plotted on the y-axis.}  Furthermore, let $Y_{ij}$ be the measurement of the response variable for the $j$th individual in the $i$th group. Thus, $j$ is an index for individuals within a group and $i$ is an index for groups. For example, $Y_{23}$, is the measurement of the response variable on the third individual in the second group. The number of individuals in group $i$ is depicted by $n_{i}$. The sample mean of the individuals in the $i$th group is $\bar{Y}_{i\cdot}$ and is computed separately for each group as\footnote{Note that it is common practice to put a dot where the subscript that was summed across would be. In this example, the individuals within a group were summed, or summing was across the $j$ index, thus the $j$ is replaced with a dot.}
 \[ \bar{Y}_{i\cdot}= \frac{\Sum_{j=1}^{n_{i}}Y_{ij}}{n_{i}} \]
 The $\bar{Y}_{i\cdot}$ are called ``group means'' or, sometimes, ``treatment means.''  Finally, $\bar{Y}_{\cdot\cdot}$ represents the grand or overall mean of all individuals in the study and is computed as
 \[ \bar{Y}_{\cdot\cdot}= \frac{\Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}Y_{ij}}{n} \]
@@ -175,11 +174,11 @@ With these symbols and \eqnref{eqn:GeneralSS}, the overall lack-of-fit for the s
   SS_{Total} = \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2}
 \end{equation}
 
-The sum-of-square residuals, or just sum-of-squares ($SS$) for short, for this particular simple model (i.e., using  $\bar{Y}_{\cdot\cdot}$) is called the total SS, or $SS_{Total}$, because it is the basis of the measure of the ``total'' variability in the response variable.\footnote{It will be shown in \sectref{sec:MS} that dividing \eqnref{eqn:SStotal} by $n-1$ will result in $s_{Y}^{2}$ - the sample variance of the response variable $Y$.}
+The sum-of-square residuals, or sum-of-squares ($SS$) for short, for this particular simple model (i.e., using  $\bar{Y}_{\cdot\cdot}$) is called the total SS, or $SS_{Total}$, because it is the basis of the measure of the ``total'' variability in the response variable.\footnote{It will be shown in \sectref{sec:MS} that dividing \eqnref{eqn:SStotal} by $n-1$ will result in $s_{Y}^{2}$ - the sample variance of the response variable $Y$.}
 
 \warn{The $SS_{Total}$ measures the lack-of-fit of the simplest model using a single common mean to represent each group.}
 
-The overall lack-of-fit for the full model is measured by calculating the residuals with predictions computed using separate group means\footnote{Recall that the full model states that a separate mean is used for each group.} (i.e., $\bar{Y}_{i\cdot}$). Thus, the overall lack-of-fit of the full model is measured by
+The overall lack-of-fit for the full model is measured by calculating the residuals with predictions computed using separate group means (i.e., $\bar{Y}_{i\cdot}$).\footnote{Recall that the full model states that a separate mean is used for each group.} Thus, the overall lack-of-fit of the full model is measured by
 
 \begin{equation} \label{eqn:SSwithin}
   SS_{Within} = \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}
@@ -225,7 +224,7 @@ A residual is a measure of how ``far off'' a particular model is from a particul
 \vspace{-12pt}
 \subsection*{Partitioning SS}
 \vspace{-12pt}
-It can be shown algebraically \apprefp{app:ProofSSPartition} that $SS_{Total}$ can be separated into two parts.
+It can be shown algebraically that $SS_{Total}$ can be separated into two parts.
 \begin{equation} \label{eqn:SSPartitionSpecific}
   \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2} = \Sum_{i=1}^{I}\Sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2} + \Sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}
 \end{equation}
@@ -251,7 +250,7 @@ $SS_{Among}$ is a critically important statistic in the comparison of two statis
 \vspace{-14pt}
 \warn{The among SS ($SS_{Among}$) is the measure of the improvement in lack-of-fit from using the full over the simple model.}
 
-Visually, the $SS_{Among}$ is the difference between the total vertical spread in individuals regardless of the group (i.e., $SS_{Total}$) and the average vertical distance among individuals within the groups (i.e., $SS_{Within}$). Alternatively, the $SS_{Among}$ can be visualized as the total vertical spread\footnote{Necessarily re-scaled to represent the sample size within each group.} among the horizontal lines representing the different group means \figrefp{fig:LM2TVisualSS}.
+Visually, $SS_{Among}$ is the difference between the total vertical spread in individuals regardless of the group (i.e., $SS_{Total}$) and the average vertical distance among individuals within the groups (i.e., $SS_{Within}$). Alternatively, the $SS_{Among}$ can be visualized as the total vertical spread\footnote{Necessarily re-scaled to represent the sample size within each group.} among the horizontal lines representing the different group means \figrefp{fig:LM2TVisualSS}.
 
 <<LM2TVisualSS, echo=FALSE, fig.cap="Biological oxygen demand (BOD) measurements at two locations -- an inlet and an outlet -- with the simple model (solid red line) and full model (solid blue line) shown. In addition, representations of $SS_{Total}$, $SS_{Within}$, and $SS_{Among}$ are shown.">>=
 # Plot with ultimate simple and full models depicted
@@ -408,12 +407,20 @@ From this, it follows that if the null hypothesis of equal population means is t
 
 \section{Two-Sample t-Test Revisited: Using Linear Models}
 \vspace{-14pt}
-The models for a two-sample t-test can be fit and assessed with \R{lm()}. This function requires the same type of formula for its first argument -- \R{response}\verb"~"\R{factor} -- and a data.frame in the \R{data=} argument as described for \R{t.test()} in \sectref{sect:2tTest}. The results of \R{lm()} should be assigned to an object so that specific results can be selectively extracted. For example, the ANOVA table results are extracted from the \R{lm()} object with \R{anova()}. In addition, coefficient results\footnote{The coefficient results will be discussed in more detail in \modref{chap:LMANOVA1}.} can be extracted with \R{summary()} and \R{confint()}.
+The models for a two-sample t-test can be fit and assessed with \R{lm()}. This function requires the same type of formula for its first argument -- \R{response}\verb"~"\R{factor} -- and a data.frame in the \R{data=} argument as described for \R{t.test()} in \sectref{sect:2tTest}. The results of \R{lm()} should be assigned to an object so that specific results can be selectively extracted. For example, the ANOVA table results are extracted from the \R{lm()} object with \R{anova()}. In addition, coefficient results\footnote{The coefficient results will be discussed in more detail in \modref{chap:LMANOVA1}.} can be extracted with \R{coef()}, \R{confint()}, and \R{summary()}. Note that I like to ``column-bind'' the coefficients and confidence intervals together for a more succinct representation.
 <<>>=
 aqua.lm <- lm(BOD~src,data=aqua)
 anova(aqua.lm)
+cbind(ests=coef(aqua.lm),confint(aqua.lm))
 summary(aqua.lm)
-confint(aqua.lm)
 @
 
-From these results, note that the p-value in the ANOVA table is the same as that computed from \R{t.test()} and that the coefficient for the \var{srcoutlet} term is the same as the difference in the group means computed with \R{t.test()}. Also note that the $F$ test statistics in the ANOVA table is exactly the square of the t test statistic from \R{t.test()}. This last observation stems from the fact that an $F$ with 1 numerator and $v$ denominator degrees-of-freedom is exactly the square of a t with $v$ degrees-of-freedom. Thus, from this simple example, it is seen that the exact same results for a two-sample t-test are obtained whether the analysis is completed in the ``traditional'' manner (i.e., with \R{t.test()}) or with competing models (i.e., using \R{lm()}). This concept will be extended in subsequent modules.
+From these results, note:
+
+\begin{Itemize}
+  \item The p-value in the ANOVA table is the same as that computed from \R{t.test()}.
+  \utem The coefficient for \var{srcoutlet} is the same as the difference in the group means computed with \R{t.test()}.
+  \item The $F$ test statistics in the ANOVA table equals the square of the t test statistic from \R{t.test()}. This is because an $F$ with 1 numerator and $v$ denominator df exactly equals the square of a $t$ with $v$ df.
+\end{Itemize}
+
+Thus, the exact same results for a two-sample t-test are obtained whether the analysis is completed in the ``traditional'' manner (i.e., with \R{t.test()}) or with competing models (i.e., using \R{lm()}). This concept will be extended in subsequent modules.
