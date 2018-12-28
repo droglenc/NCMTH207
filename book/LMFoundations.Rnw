@@ -80,7 +80,7 @@ headtail(aqua)   # 1st and last 3 rows, not whole data frame
 \warn{Stacked data is the preferred format for two-sample data because each column corresponds to a variable and each row corresponds to only one individual.}
 
 \subsection{Levene's Test}
-Before conducting a 2-sample t-test, the assumption of equal variances must be tested with Levene's test. The first argument to \R{levenesTest()} is a model formula of the type \R{response}\verb"~"\R{factor}, where \R{response} represents the variable that contains the quantitative measurements and \R{factor} represents the variable that contains the categorical groups. In addition, the data.frame in which the \R{response} and \R{factor} variables are found is given to \R{data=}. The very large p-value (=\Sexpr{kPvalue(leveneTest(BOD~src,data=aqua)[1,"Pr(>F)"],include.p=FALSE,digits=2)}) in the BOD example indicates that the variances can be considered to be equal.
+Before conducting a 2-sample t-test, the assumption of equal variances must be tested with Levene's test. The first argument to \R{levenesTest()} is a model formula of the type \R{response}\verb"~"\R{factor}, where \R{response} represents the variable that contains the quantitative measurements and \R{factor} represents the variable that contains the categorical groups. In addition, the data.frame in which the \R{response} and \R{factor} variables are found is given to \R{data=}. The very large p-value (=\Sexpr{kPvalue(leveneTest(BOD~src,data=aqua)[1,"Pr(>F)"],include.p=FALSE,digits=3)}) in the BOD example indicates that the variances can be considered to be equal.
 <<>>=
 levenesTest(BOD~src,data=aqua)
 @
@@ -115,7 +115,7 @@ The \R{factor()} function is also used to tell R to treat a particular variable 
 t1 <- t.test(BOD~fsrc,data=aqua,var.equal=TRUE)
 @
 
-The 2-sample t-test of the BOD data, using the new level ordering and assuming equal variances (per the Levene's Test results above), is computed below. From these results it is seen that the difference between the sample means at the outlet and the inlet is \Sexpr{round(t1$estimate[1],3)}-\Sexpr{round(t1$estimate[2],3)} = \Sexpr{round(t1$estimate[1]-t1$estimate[2],3)}, the test statistic is \Sexpr{round(t1$statistic,3)} with \Sexpr{t1$parameter} df, and the p-value is \Sexpr{kPvalue(t1$p.value,include.p=FALSE)}. Thus, there does appear to be a significant difference between the population mean BOD of water at the inlet and outlet to the aquaculture facility. Furthermore, one is 95\% confident that the mean BOD at the outlet is between \Sexpr{round(t1$conf.int[[1]],3)} and \Sexpr{round(t1$conf.int[[2]],3)} greater than the mean BOD at the inlet.
+The 2-sample t-test of the BOD data, using the new level ordering and assuming equal variances (per the Levene's Test results above), is computed below. From these results it is seen that the difference between the sample means at the outlet and the inlet is \Sexpr{round(t1$estimate[1],3)}-\Sexpr{round(t1$estimate[2],3)} = \Sexpr{round(t1$estimate[1]-t1$estimate[2],3)}, the test statistic is \Sexpr{round(t1$statistic,3)} with \Sexpr{t1$parameter} df, and the p-value is \Sexpr{kPvalue(t1$p.value,include.p=FALSE,digits=3)}. Thus, there does appear to be a significant difference between the population mean BOD of water at the inlet and outlet to the aquaculture facility. Furthermore, one is 95\% confident that the mean BOD at the outlet is between \Sexpr{round(t1$conf.int[[1]],3)} and \Sexpr{round(t1$conf.int[[2]],3)} greater than the mean BOD at the inlet.
 <<>>=
 t.test(BOD~fsrc,data=aqua,var.equal=TRUE)   # uses default alt= & conf.level=
 @
@@ -419,7 +419,7 @@ From these results, note:
 
 \begin{Itemize}
   \item The p-value in the ANOVA table is the same as that computed from \R{t.test()}.
-  \utem The coefficient for \var{srcoutlet} is the same as the difference in the group means computed with \R{t.test()}.
+  \item The coefficient for \var{srcoutlet} is the same as the difference in the group means computed with \R{t.test()}.
   \item The $F$ test statistics in the ANOVA table equals the square of the t test statistic from \R{t.test()}. This is because an $F$ with 1 numerator and $v$ denominator df exactly equals the square of a $t$ with $v$ df.
 \end{Itemize}
 

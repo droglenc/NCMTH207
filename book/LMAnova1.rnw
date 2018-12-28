@@ -51,7 +51,7 @@ where $I$ is the total number of groups identified by the factor variable. From 
 
 Thus, a rejection of the null hypothesis in favor of this alternative hypothesis is a statement that \textit{some} difference in group means exists. It does not clearly indicate which group means differ. Methods to identify which group means differ are in \sectref{sect:MultComp}.
 
-The simple and full models for the one-way ANOVA are the same as those for the two-sample t-test, except that there are $I>2$ means in the full model \figrefp{fig:LM1AOVModels}. Thus, $SS_{total}$, $SS_{within}, and $SS_{among} are computed using the same formulas -- i.e., Equations \eqref{eqn:SStotal}, \eqref{eqn:SSwithin}, and \eqref{eqn:SSamong} -- except to note that $I>2$. The degrees-of-freedom are computed similarly -- i.e., $df_{Within}=n-I$ and $df_{Among}=I-1$. The MS, $F$, and p-value are also computed the same.\footnote{The MS, $F$, and p-value are computed the same in nearly every ANOVA table encountered in this class.}
+The simple and full models for the one-way ANOVA are the same as those for the two-sample t-test, except that there are $I>2$ means in the full model \figrefp{fig:LM1AOVModels}. Thus, $SS_{total}$, $SS_{within}$, and $SS_{among}$ are computed using the same formulas -- i.e., Equations \eqref{eqn:SStotal}, \eqref{eqn:SSwithin}, and \eqref{eqn:SSamong} -- except to note that $I>2$. The degrees-of-freedom are computed similarly -- i.e., $df_{Within}=n-I$ and $df_{Among}=I-1$. The MS, $F$, and p-value are also computed the same.\footnote{The MS, $F$, and p-value are computed the same in nearly every ANOVA table encountered in this class.}
 
 <<LM1AOVModels, echo=FALSE, fig.cap="Immunoglobulin concentrations in Virginia opossums sampled from different seasons. The red horizontal line represents the simple model of a grand mean for both groups. The three blue horizontal lines represent the full model of separate means for each group.",fig.pos="!h">>=
 opp <- read.csv("data/Opposums.csv")
@@ -97,9 +97,12 @@ Recall that the levels of a factor variable are ordered alphabetically by defaul
 <<echo=FALSE>>=
 opp.lm <- lm(imm~season,data=opp)
 opp.aov <- anova(opp.lm)
+opp.lev <- levenesTest(opp.lm)
+opp.ad <- adTest(opp.lm$residuals)
+opp.out <- outlierTest(opp.lm)
 @
 
-A one-way ANOVA model is fit with \R{lm()} exactly as described for a two-sample t-test in \sectref{sect:RtTest}.\footnote{The \R{aov()} function can also be used. However, \R{aov()} calls \R{lm()} to make the calculations. For this reason, and the fact that \R{lm()} is more general and can be used for a wider variety of situations, only \R{lm()} is discussed here.}  For example, the very small p-value (\Sexpr{kPvalue(opp.aov[1,"Pr(>F)"])}) below indicates that the full model of a separate mean for each group fits the data ``better'' than the simple model of one common mean. Thus, there is a significant difference in mean immunoglobulin level between at least one pair of the three seasons.
+A one-way ANOVA model is fit with \R{lm()} exactly as described for a two-sample t-test in \sectref{sect:RtTest}.\footnote{The \R{aov()} function can also be used. However, \R{aov()} calls \R{lm()} to make the calculations. For this reason, and the fact that \R{lm()} is more general and can be used for a wider variety of situations, only \R{lm()} is discussed here.}  For example, the very small p-value (\Sexpr{kPvalue(opp.aov[1,"Pr(>F)"],digits=3)}) below indicates that the full model of a separate mean for each group fits the data ``better'' than the simple model of one common mean. Thus, there is a significant difference in mean immunoglobulin level between at least one pair of the three seasons.
 <<>>=
 opp.lm <- lm(imm~season,data=opp)
 anova(opp.lm)
@@ -174,48 +177,28 @@ This method of testing for outliers is ``dangerous'' because the researcher will
 
 
 \subsection{Assumption Checking in R}
-\subsubsection*{Equal Variances}
-The equal variances assumptions is tested with \R{levenesTest()} which requires a model formula\footnote{As illustrated for the two-sample t-test.} or an object from \R{lm} as its only argument. These results indicate that the variances among the three seasons appear to be equal (\Sexpr{kPvalue(levenesTest(opp.lm)[1,"Pr(>F)"],digits=2)}). Thus, the equal variances assumption of the one-way ANOVA has been met.
-<<>>=
-levenesTest(opp.lm)
+\vspace{-12pt}
+All plots and tests of assumptions can be completed by submitting the saved \R{lm} object to \R{transChooser()}. A residual plot and histogram of residuals will be produced. In RStudio, a "gear icon" will appear in the upper-left corner of this plot. Open this gear icon and select "Use Boxplot for Residuals" and, to show the assumptions tests results, "Show Test Results." With this the p-values from the Levene's, Anderson-Darling, and outlier tests\footnote{Note that significant outliers, as identified with \R{outlierTest()}, will be marked with the observation number on the default residual plot from \R{residPlot()}.} will be shown on the plot \figrefp{fig:LM1AOVResidPlot}.\footnote{Note that the individual tests can be constructed with \R{levenesTest()}, \R{adTest()}, and \R{outlierTest()} and the residual plot can be constructed with \R{residPlot()}.}
+<<eval=FALSE>>=
+transChooser(opp.lm)
 @
 
-The equal variances assumption can also be visually assessed with a residual boxplot. The residual plot is constructed with \R{residPlot()} using the \R{lm()} object.\footnote{Raw residuals are used b default in \R{residPlot()}. Studentized residuals may be used by icluding \R{type="standardized"} in \R{residPlot()}.}  The residual boxplot shown in \figref{fig:LM1AOVResidPlot}-Left indicates approximately equal variances among the three groups because the ``box'' heights among seasons are ``roughly'' equal. Again, note that the Levene's test result is the definitive answer about equal variances in this instance.
-<<LM1AOVResidPlot, fig.cap="Residual plot (Left) and histogram of residuals (Right) for the one-way ANOVA of immunoglobulin concentrations in Virginia opossums sampled from different seasons.",fig.pos="!h",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
-residPlot(opp.lm)
-@
+Thus, in this example, it appears that the variances among the three seasons are equal (\Sexpr{kPvalue(opp.lev[1,"Pr(>F)"],digits=3)}),\footnote{Note also that the ``box'' heights in \figref{fig:LM1AOVResidPlot}-Left are ``roughly'' equal, but that the Levene's test result is the definitive answer about equal variances in this instance.} the residuals are not non-normal (\Sexpr{kPvalue(opp.ad$p.value,digits=3)}) or strongly skewed, and there were no significant outliers (\Sexpr{kPvalue(opp.out$bonf.p,digits=3)}).\footnote{ndividual 19 had an absolute value of the Studentized residual of \Sexpr{formatC(opp.out$rstudent,format="f",digits=3)} and a Bonferroni-adjusted \Sexpr{kPvalue(opp.out$bonf.p,digits=3)}. Note that R will not show p-values greater than 1 and returns an \R{NA} instead. There is also a note at the beginning of this output that shows that no Bonferroni p-value is $<$ 1. This adjusted p-value is much greater than $\alpha$ and, thus, there is no indication of an outlier in these data.} Therefore, the assumptions of a one-way ANOVA have been met for these data.
 
-\subsubsection*{Normality}
-<<echo=FALSE>>=
-opp.ad <- adTest(opp.lm$residuals)
-@
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{FigsStatic/LM1AOVResidPlot.jpg}
+  \caption{Residual plot (Left) and histogram of residuals (Right) for the one-way ANOVA of immunoglobulin concentrations in Virginia opossums sampled from different seasons.}\label{fig:LM1AOVResidPlot}
+\end{figure}
 
-The Anderson-Darling normality test is performed by providing the vector of residuals from the saved \R{lm()} object to \R{adTest()}, as demonstrated below. The resulting p-value (\Sexpr{kPvalue(opp.ad$p.value)}) indicates that there is only weak evidence that the residuals are not normally distributed.
-<<>>=
-adTest(opp.lm$residuals)
-@
-
-With weak evidence it is a good idea to construct a histogram of residuals to determine if there is any indication for strong skewness or, more likely, an outlier. The histogram of residuals was constructed with \R{residPlot()} above and is in \figref{fig:LM1AOVResidPlot}-Right. This histogram indicates a slight left-skewness in the residuals, but no strong evidence for an extreme skew or any outliers. The normality assumption can reasonably be said to have been met based on the results of the Anderson-Darling test and this histogram.
-
-\subsubsection*{Outliers}
-<<echo=FALSE>>=
-opp.out <- outlierTest(opp.lm)
-@
-
-The Bonferroni adjusted p-value for the most extreme Studentized residual is computed with \R{outlierTest()}, which requires the saved \R{lm()} object as its only argument. With these data, individual 19 had an absolute value of the Studentized residual of \Sexpr{formatC(opp.out$rstudent,format="f",digits=3)} and a Bonferroni-adjusted \Sexpr{kPvalue(opp.out$bonf.p)}.\footnote{Note that R will not show p-values greater than 1 and returns an \R{NA} instead. There is also a note at the beginning of this output that shows that no Bonferroni p-value is $<$ 1.}  This adjusted p-value is much greater than $\alpha$ and, thus, there is no indication of an outlier in these data.
-<<>>=
-outlierTest(opp.lm)
-@
-
-Note that significant outliers, as identified with \R{outlierTest()}, will be marked with the observation number on the default residual plot from \R{residPlot()}.
 
 
 \section{Example Analyses I}
+\vspace{-12pt}
 \subsection{Tomatoes-Nematodes I} \label{sect:OWAEx1A}
-\subsubsection*{Introduction}
 <<echo=FALSE>>=
- TomatoNematode <- read.csv("data/TomatoNematode.csv")
- TomatoNematode$density <- factor(TomatoNematode$density)
+TomatoNematode <- read.csv("data/TomatoNematode.csv")
+TomatoNematode$density <- factor(TomatoNematode$density)
 @
 
 Nematodes are microscopic worms found in soil that may negatively affect the growth of plants through their trophic dynamics. Tomatoes are a commercially important plant species that may be negatively affected by high densities of nematodes in culture situations.
@@ -229,9 +212,11 @@ A science fair student designed an experiment to determine the effect of increas
 where the subscripts identify densities of nematodes (see below).
 
 \subsubsection*{Data Collection}
+\vspace{-12pt}
 The student had 16 pots of a homogeneous soil type in which he ``stocked'' a known density of nematodes. The densities of nematodes used were 0, 1000, 5000, or 10000 nematodes per pot. The density of nematodes to be stocked in each pot was randomly assigned. After stocking the pots with nematodes, tomato seedlings, which had been selected to be as nearly identical in size and health as possible, were transplanted into each pot. The exact pot that a seedling was transplanted into was again randomly selected. Each pot was placed under a growing light in the same laboratory and allowed to grow for six weeks. Watering regimes and any other handling necessary during the six weeks was kept the same as possible among the pots. After six weeks, the plants were removed from the growing conditions and the growth of the seedling (in cm) from the beginning of the experiment was recorded.
 
 \subsubsection*{Exploratory Data Analysis and Assumption Checking}
+\vspace{-12pt}
 It appears that tomato seedling growth may differ among nematode densities, with growth apparently suppressed at the two highest densities \figrefp{fig:OWAEx1Plot1}. The dispersion among individuals appears to be similar among the four groups \figrefp{fig:OWAEx1Plot1}.
 
 <<OWAEx1Plot1, echo=FALSE, fig.cap="Boxplot of tomato seedling growth at each nematode density.", fig.pos="!h">>=
@@ -240,16 +225,21 @@ boxplot(growth~density,data=TomatoNematode,xlab="Nematode Density",ylab="Growth 
 
 <<echo=FALSE>>=
 tn.lm <- lm(growth~density,data=TomatoNematode)
+tn.lev <- levenesTest(tn.lm)
 tn.out <- outlierTest(tn.lm)
+tn.ad <- adTest(tn.lm$residuals)
 @
-Individuals appear to be independent in this experiment because there does not appear to be any connection among pots either within (this assumes that the pots were randomly placed in the laboratory) or among treatments. Variances among the treatments appear to be approximately constant (Levene's \Sexpr{kPvalue(levenesTest(tn.lm)[1,"Pr(>F)"])}; \figref{fig:OWAEx1Plot2}-Left). Anderson-Darling normality tests on the residuals of the initial model fit indicates that the residuals are normally distributed (\Sexpr{kPvalue(adTest(tn.lm$residuals)$p.value)}) and the histogram does not indicate any major problems (\figref{fig:OWAEx1Plot2}-Right). There does not appear to be any major outliers in the data \figrefp{fig:OWAEx1Plot1}. One individual in the 0 nematode group had a Studentized residuals of \Sexpr{formatC(tn.out$rstudent,format="f",digits=4)} but with a Bonferroni p-value of \Sexpr{kPvalue(tn.out$bonf.p,include.p=FALSE)}, it was not considered to be an outlier. The analysis will proceed because the major assumptions of the one-way ANOVA have been met.
+Individuals appear to be independent in this experiment because there does not appear to be any connection among pots either within (this assumes that the pots were randomly placed in the laboratory) or among treatments. Variances among the treatments appear to be approximately equal (Levene's \Sexpr{kPvalue(tn.lev[1,"Pr(>F)"],digits=3)}; \figref{fig:OWAEx1Plot2}-Left), the residuals appear to be approximately normally distributed (Anderson-Darling \Sexpr{kPvalue(tn.ad$p.value,digits=3)}) and the histogram does not indicate any major skewness (\figref{fig:OWAEx1Plot2}-Right), and there does not appear to be any major outliers in the data (outlier test \Sexpr{kPvalue(tn.out$bonf.p,digits=3)}; \figref{fig:OWAEx1Plot2}). The analysis will proceed because the major assumptions of the one-way ANOVA have been met.
 
-<<OWAEx1Plot2, echo=FALSE, fig.cap="Boxplot (Left) and histogram (Right) of residuals from the initial fit of the one-way ANOVA model to the tomato seedling growth at each nematode density.",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
-residPlot(tn.lm)
-@
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{FigsStatic/OWAEx1Plot2.jpg}
+  \caption{Boxplot (Left) and histogram (Right) of residuals from the initial fit of the one-way ANOVA model to the tomato seedling growth at each nematode density.}\label{fig:OWAEx1Plot2}
+\end{figure}
 
 \subsubsection*{Results}
-There appears to be a significant difference in mean tomato seedling growth among the four treatments (\Sexpr{kPvalue(anova(tn.lm)[1,"Pr(>F)"])}; \tabref{tab:OWAEx1ANOVA}). The plot of each treatment mean with 95\% confidence intervals indicates that the mean growth at the two lowest nematode densities probably are not different and the mean growth at the two highest nematode densities probably are not different, but the mean growth at the two lowest nematode densities are different from the two highest nematode densities \figrefp{fig:OWAEx1Means1}.\footnote{Objective methods for determining which treatment means are significantly different are discussed in \sectref{sect:MultComp}.}
+\vspace{-12pt}
+There appears to be a significant difference in mean tomato seedling growth among the four treatments (\Sexpr{kPvalue(anova(tn.lm)[1,"Pr(>F)"],digits=3)}; \tabref{tab:OWAEx1ANOVA}). The plot of each treatment mean with 95\% confidence intervals indicates that the mean growth at the two lowest nematode densities probably are not different and the mean growth at the two highest nematode densities probably are not different, but the mean growth at the two lowest nematode densities are different from the two highest nematode densities \figrefp{fig:OWAEx1Means1}.\footnote{Objective methods for determining which treatment means are significantly different are discussed in \sectref{sect:MultComp}.}
 
 \begin{table}[h]
   \centering
@@ -264,6 +254,7 @@ fitPlot(tn.lm,xlab="Nematode Density",ylab="Growth (inches)")
 @
 
 \subsubsection*{Conclusion}
+\vspace{-12pt}
 The student's hypothesis was generally supported; however, it does not appear that tomato seedling growth is negatively affected for all increases in nematode density. For example, seedling growth declined for an increase in nematode density from 1000 to 5000 per pot but not for increases from 0 to 1000 nematodes per pot or from 5000 to 10000 nematodes per pot.
 
 It can be concluded that the different nematode densities caused the differences in tomato seedling growth because the individual seedlings were randomly allocated to treatment groups and all other variables were controlled. However, the inferences cannot be extended to a general population of tomatoes because the 16 seedlings used in the experiment were not randomly chosen from the population of seedlings.
@@ -271,15 +262,13 @@ It can be concluded that the different nematode densities caused the differences
 From these results, the experimenter might want to re-run the experiment for densities between 1000 and 5000 nematodes per pot in an attempt to find a ``critical'' nematode density below which there is very little affect on growth and above which there is a significant negative affect on growth.
 
 \subsubsection*{Appendix -- R Commands}
+\vspace{-12pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
 TomatoNematode <- read.csv("TomatoNematode.csv")
 TomatoNematode$density <- factor(TomatoNematode$density)
 boxplot(growth~density,data=TomatoNematode,xlab="Nematode Density",ylab="Growth (inches)")
 tn.lm <- lm(growth~density,data=TomatoNematode)
-levenesTest(tn.lm)
-adTest(tn.lm$residuals)
-residPlot(tn.lm)
-outlierTest(tn.lm)
+transChooser(tn.lm)
 anova(tn.lm)
 fitPlot(tn.lm,xlab="Nematode Density",ylab="Growth (inches)")
 \end{Verbatim}
@@ -307,7 +296,7 @@ A total of 140 unbrowsed trees that were approximately 1.4 m in height were spec
    H_{A}&:\text{``At least one pair of means is different''}
 \end{split} \]
 
-One-way ANOVA will be used to identify if any significant differences exist among the means of the treatment groups.
+One-way ANOVA will be used to identify if any significant differences exist among the treatment means.
 
 
 \vspace{-12pt}
@@ -323,8 +312,8 @@ print(Summarize(height~treat,data=MooseBrowse),row.names=FALSE)
 @
 \end{table}
 
-<<OWAEx2Plot1, echo=FALSE, fig.width=7, fig.height=7,out.width='.7\\linewidth', fig.cap="Histograms of Scots pine height for four treatment groups.">>=
-hist(height~treat,data=MooseBrowse,xlab="Height (cm)")
+<<OWAEx2Plot1, echo=FALSE, fig.width=7, fig.height=2.5,out.width='.7\\linewidth', fig.cap="Histograms of Scots pine height for four treatment groups.">>=
+hist(height~treat,data=MooseBrowse,xlab="Height (cm)",ncol=4,nrow=1)
 @
 
 <<echo=FALSE>>=
@@ -334,18 +323,22 @@ mb.ad <- adTest(mb.lm$residuals)
 mb.out <- outlierTest(mb.lm)
 @
 
-The random allocation of trees to the treatments and the realization that applying the treatment to any one tree has no affect on any other tree implies that there is independence both within a treatment and among treatments. Variances among the treatments may be non-constant (Levene's \Sexpr{kPvalue(mb.lev[1,"Pr(>F)"])}). However, the residual plot (\figref{fig:OWAEx2Plot2}-Left) does not indicate any extreme differences in variances and no transformation (see \sectref{sect:AOVTransformations}) appeared to correct this problem. The residuals from the initial model fit appear to be approximately normal (Anderson-Darling \Sexpr{kPvalue(mb.ad$p.value)}). None of the individuals appeared to be significant outliers as the largest absolute value Studentized residual was \Sexpr{formatC(mb.out$rstudent,format="f",digits=3)} with a Bonferroni-adjusted p-value of \Sexpr{kPvalue(mb.out$bonf.p,include.p=FALSE)}. Thus, the analysis will continue with a one-way ANOVA as the assumptions either appear to be met, are not grossly unmet, or no reasonable solution to the problems exists.
+The random allocation of trees to the treatments and the realization that applying the treatment to any one tree has no affect on any other tree implies that there is independence both within a treatment and among treatments. Variances among the treatments may be non-constant (Levene's \Sexpr{kPvalue(mb.lev[1,"Pr(>F)"],digits=3)}), though the residual plot (\figref{fig:OWAEx2Plot2}-Left) does not indicate any extreme differences in variances and no transformation (see \sectref{sect:AOVTransformations}) corrected this problem. The residuals from the initial model fit appear to be approximately normal (Anderson-Darling \Sexpr{kPvalue(mb.ad$p.value,digits=3)}). None of the individuals appeared to be a significant outlier (outlier test \Sexpr{kPvalue(mb.out$bonf.p,digits=3)}). The one-way ANOVA analysis will continue as the assumptions either appear to be met, are not grossly unmet, or no reasonable solution to the problems exists.
 
-<<OWAEx2Plot2, echo=FALSE, fig.cap="Boxplot (Left) and histogram (Right) of residuals from the initial fit of the one-way ANOVA model to the Scots pines heights at each treatment level.",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
-residPlot(mb.lm)
-@
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{FigsStatic/OWAEx2Plot2.jpg}
+  \caption{Boxplot (Left) and histogram (Right) of residuals from the initial fit of the one-way ANOVA model to the Scots pines heights at each treatment level.}\label{fig:OWAEx2Plot2}
+\end{figure}
 
 \subsubsection*{Results}
-There appears to be a significant difference in mean tree growth among the four treatments (\Sexpr{kPvalue(anova(mb.lm)[1,"Pr(>F)"])}; \tabref{tab:OWAEx2ANOVA}). Plots for each treatment group indicate that mean height for the clipped treatment is lower than the mean height in all other treatments, the mean height in the fertilized treatment may be greater than the mean height in all other treatments, and the mean heights in the shaded and control groups do not differ \figrefp{fig:OWAEx2Means1}.
+\vspace{-12pt}
+There appears to be a significant difference in mean tree growth among the four treatments (\Sexpr{kPvalue(anova(mb.lm)[1,"Pr(>F)"],digits=3)}; \tabref{tab:OWAEx2ANOVA}). Plots for each treatment group indicate that mean height for the clipped treatment is lower than mean height in all other treatments, mean height in the fertilized treatment may be greater than mean height in all other treatments, and mean heights in the shaded and control groups do not differ \figrefp{fig:OWAEx2Means1}.
 
 \begin{table}[h]
   \centering
   \caption{ANOVA results for tree growth for four treatments.}\label{tab:OWAEx2ANOVA}
+\vspace{-12pt}
 <<echo=FALSE, background='white'>>=
 kANOVA(mb.lm)
 @
@@ -355,14 +348,16 @@ kANOVA(mb.lm)
 fitPlot(mb.lm,xlab="Treatment",ylab="Tree Height (cm)")
 @
 
+\vspace{-12pt}
 \subsubsection*{Conclusion}
+\vspace{-12pt}
 The clipped treatment resulted in significantly lower growth of Scots pine. The fertilized treatment may have produced slightly taller trees than the control group.
 
 It can be concluded that the different treatments caused the differences in tree growth because the individual trees were randomly allocated to treatment groups and all other variables were controlled. However, the inferences cannot be extended to a general population of trees because the 140 trees used in the experiment were not randomly chosen from the population of trees.
 
-\vspace{-8pt}
+\vspace{-12pt}
 \subsubsection*{Appendix -- R Commands}
-\vspace{-8pt}
+\vspace{-12pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
 MooseBrowse <- read.csv("MooseBrowse.csv")
 MooseBrowse$treat <- factor(MooseBrowse$treat,
@@ -370,30 +365,31 @@ MooseBrowse$treat <- factor(MooseBrowse$treat,
 Summarize(height~treat,data=MooseBrowse)
 hist(height~treat,data=MooseBrowse,xlab="Treatment",ylab="Tree Height (cm)")
 mb.lm <- lm(height~treat,data=MooseBrowse)
-levenesTest(mb.lm)
-adTest(mb.lm$residuals)
-residPlot(mb.lm)
-outlierTest(mb.lm)
+transChooser(mb.lm)
 anova(mb.lm)
 fitPlot(mb.lm,xlab="Treatment",ylab="Tree Height (cm)")
 \end{Verbatim}
 
 
+\vspace*{6pt}
 \section{Multiple Comparisons} \label{sect:MultComp}
+\vspace{-12pt}
 A significant result (i.e., reject $H_{0}$) in a one-way ANOVA indicates that the means of at least one pair of groups differ. At this time, it is not known whether all means are different, two means are equivalent but different from all other means, all means are equivalent except for one pair, or any other possible combination of equivalencies and differences. Thus, once a significant overall result is obtained in a one-way ANOVA, specific follow-up analyses are needed to identify which pairs of means are significantly different.
 
 \warn{A one-way ANOVA only indicates that at least one pair of means differ. Follow-up analyses are required to specifically determine which pairs of means are different.}
 
+\vspace{-12pt}
 \subsection{The Problem}
-The most obvious solution for identifying which pairs of means are different is to perform multiple 2-sample t-tests on all pairs of groups. Unfortunately, this seemingly simple answer has at least two major difficulties. First, the number of 2-sample t-tests needed increases dramatically with increasing numbers of groups \tabrefp{tab:MCProblem}. Second, the probability of incorrectly concluding that at least one pair of means differs when no pairs actually differ increases dramatically with increasing numbers of groups \tabrefp{tab:MCProblem}. Of these two difficulties, the second is much more problematic and needs to be better understood.
+\vspace{-12pt}
+The most obvious solution for identifying which pairs of means are different is to perform multiple two-sample t-tests on all pairs of groups. Unfortunately, this seemingly simple answer has at least two major difficulties. First, the number of two-sample t-tests needed increases dramatically with increasing numbers of groups \tabrefp{tab:MCProblem}. Second, the probability of incorrectly concluding that at least one pair of means differs when no pairs actually differ increases dramatically with increasing numbers of groups \tabrefp{tab:MCProblem}. Of these two difficulties, the second is much more problematic and needs to be better understood.
 
-\begin{table}[hb]
+\begin{table}[ht]
   \centering
   \caption{Relationship between the number of groups in an analysis, the number of pairs of means that would need to be tested and the experiment-wise error rate for two different rejection criteria.}\label{tab:MCProblem}
   \begin{tabular}{cccc}
     \hline\hline
-     & \widen{0}{5}{Number of} &  &  \\
-    \widen{-2}{0}{Groups} & Pairs to Test & $\alpha=0.05$ & $\alpha=0.10$ \\
+    \widen{0}{5}{Groups} & Pairs to Test &  &  \\
+    \widen{-2}{0}{(I)} & (k) & $\alpha=0.05$ & $\alpha=0.10$ \\
     \hline
     \widen{0}{5}{2} & 1 & 0.05 & 0.10 \\
     \widen{0}{0}{3} & 3 & 0.1426 & 0.2710 \\
@@ -404,12 +400,12 @@ The most obvious solution for identifying which pairs of means are different is 
   \end{tabular}
 \end{table}
 
-In any one comparison of two means the probability that one will incorrectly conclude that the means are different when they are actually not different is $\alpha$. This incorrect conclusion is called a Type I error and $\alpha$ is called the \emph{individual-wise Type I error rate} because it relates to one individual comparison of a pair of means.
+In any one comparison of two means the probability of incorrectly concluding that the means are different when they are actually not different is $\alpha$. This incorrect conclusion is called a Type I error and $\alpha$ is called the \emph{individual-wise Type I error rate} because it relates to only one comparison of a pair of means.
 
 \defn{Individual-wise error rate}{The probability of a Type I error in a single comparison of two means. The individual-wise error rate is set at $\alpha$.}
 
 \vspace{-12pt}
-\warn{A Type I error is rejecting the $H_{0}$ when the $H_{0}$ is actually true. In a two-sample t-test, a Type I error is concluding that the two means are significantly different when in fact they are not.}
+\warn{A Type I error is rejecting $H_{0}$ when $H_{0}$ is actually true. In a two-sample t-test, a Type I error is concluding that two means are significantly different when in fact they are not.}
 
 If three pairs of means are simultaneously compared, as would happen if there were three groups \tabrefp{tab:MCProblem}, then the probability that at least one decision for a pair of these means will be incorrect increases. The probability that \textbf{at least} one Type I error occurs in simultaneous comparisons is called the \emph{experiment-wise error rate} because it involves all comparisons in the experiment at hand. It is very important that you notice the words \emph{at least} in the previous sentences. In three comparisons, the incorrect conclusion could be for the first pair, the second pair, the third pair, the first and second pair, the first and third pair, the second and third pair, or all three pairs!!  Because of this, the experiment-wise error rate is computed as the complement of the probability of no errors, or $1-(1-\alpha)^{k}$, where $k$ is the number of paired comparisons to be made.
 
@@ -421,12 +417,13 @@ In \tabref{tab:MCProblem}, it is evident that, with $\alpha=0.05$ and six treatm
 \warn{The experiment-wise error rate increases dramatically with increasing numbers of treatment groups.}
 
 \subsection{Correction Methods}
-The statistical literature is full of various methods that have been designed to attempt to control the experiment-wise error rates. For simplicity, only three methods will be considered in this book. The Tukey-Kramer honestly significantly different (i.e., Tukey's HSD) method controls the experiment-wise error rate at a desired level (i.e., $\alpha$) when the group sample sizes are the same and is slightly conservative if the group sample sizes are different. The Tukey's HSD method is the preferred multiple comparison method when all pairs of means are being compared. Dunnet's method is used to compare all groups to a specific control group. Dunnet's method does not make all pairwise comparisons, which increases statistical power compared to the Tukey's HSD method when comparing to a control group. Thus, even though both methods control the experiment-wise error rate, Dunnet's method should be used over the Tukey's HSD method when comparisons are made to a specific control group because the Dunnet's method will have higher statistical power (i.e., greater probability of identifying a true difference in means). The third method to control experimentwise error rates is discussed in \modref{chap:LMRegression2}.
+\vspace{-12pt}
+The statistical literature is full of various methods that have been designed to attempt to control the experiment-wise error rates. For simplicity, only three methods will be considered in this book. The Tukey-Kramer honestly significantly different (i.e., Tukey's HSD) method controls the experiment-wise error rate at a desired level (i.e., $\alpha$) when the group sample sizes are the same and is slightly conservative if the group sample sizes are different. The Tukey's HSD method is the preferred multiple comparison method when all pairs of means are being compared. Dunnet's method is used to compare all groups to a specific control group. Dunnet's method does not make all pairwise comparisons, which increases statistical power (i.e., greater probability of identifying a true difference in means) compared to the Tukey's HSD method when comparing to a control group. Thus, even though both methods control the experiment-wise error rate, Dunnet's method should be used over the Tukey's HSD method when comparisons are made to a specific control group. The third method to control experimentwise error rates is discussed in \modref{chap:LMRegression2}.
 
-\warn{Use Tukey's HSD multiple comparison method when comparing all pairwise means.}
+\warn{Use Tukey's HSD method when comparing all pairwise means.}
 
 \vspace{-12pt}
-\warn{Use Dunnett's multiple comparison method when comparing all means to a single control group.}
+\warn{Use Dunnett's method when comparing all means to a single control group.}
 
 \subsection{Multiple Comparisons in R}
 \subsubsection*{Tukey's HSD}
@@ -435,7 +432,7 @@ opp.mc <- glht(opp.lm,mcp(season="Tukey"))
 opp.ci <- confint(opp.mc)
 @
 
-Tukey's HSD procedure is applied using \R{glht()} from the \R{multcomp} package. This function requires a saved \R{lm()} object as its first argument and the \R{mcp()} function as its second argument. The factor to be considered must be ``set equal'' to \R{"Tukey"} in \R{mcp()} to obtain Tukey's HSD correction. The result of \R{glht()} should be assigned to an object that is then submitted to \R{summary()} to extract the adjusted p-values for all comparisons or \R{confint()} to find the confidence intervals for all pairs of differences. For example, the results for the immunoglobulin opossum data confirm that February and November and May and November are significantly different whereas February and May are not significantly different.\footnote{This result is ``obtained'' by comparing the adjusted p-values to $\alpha$ or by noting which confidence intervals for the differences in means do not contain zero.}  In fact, the mean immunoglobulin concentrations for opossums sampled in November appears to be between \Sexpr{formatC(-1*opp.ci$confint["nov - feb","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*opp.ci$confint["nov - feb","lwr"],format="f",digits=3)} lower than for opossums sampled in February and between \Sexpr{formatC(-1*opp.ci$confint["nov - may","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*opp.ci$confint["nov - may","lwr"],format="f",digits=3)} lower than for opossums sampled in May.\footnote{The results from \R{summary()} and \R{confint()} on a \R{glht()} object is overly verbose. Thus, the results have been condensed for printing in this book.}
+Tukey's HSD procedure is applied using \R{glht()} from the \R{multcomp} package. This function requires a saved \R{lm()} object as its first argument and the \R{mcp()} function as its second argument. The factor to be considered must be ``set equal'' to \R{"Tukey"} in \R{mcp()} to obtain Tukey's HSD correction. The results of \R{glht()} should be assigned to an object that is then submitted to \R{summary()} to extract the adjusted p-values for all comparisons or \R{confint()} to find the confidence intervals for the differences in means for all pairs of groups. For example, the results for the opossum data confirm that mean immunoglobulin for February and November and May and November are significantly different, whereas February and May are not significantly different.\footnote{This result is ``obtained'' by comparing the adjusted p-values to $\alpha$ or by noting which confidence intervals for the differences in means do not contain zero.} In fact, the mean immunoglobulin concentrations for opossums sampled in November appears to be between \Sexpr{formatC(-1*opp.ci$confint["nov - feb","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*opp.ci$confint["nov - feb","lwr"],format="f",digits=3)} lower than for opossums sampled in February and between \Sexpr{formatC(-1*opp.ci$confint["nov - may","upr"],format="f",digits=3)} and \Sexpr{formatC(-1*opp.ci$confint["nov - may","lwr"],format="f",digits=3)} lower than for opossums sampled in May.\footnote{The results from \R{summary()} and \R{confint()} on a \R{glht()} object is overly verbose. Thus, the results have been condensed for printing in this book.}
 <<eval=FALSE>>=
 opp.mc <- glht(opp.lm,mcp(season="Tukey"))
 summary(opp.mc)
@@ -465,7 +462,7 @@ kGLHT(opp.mc2,"hypothesis")
 <<eval=FALSE>>=
 confint(opp.mc2)
 @
-\vspace{-14pt}
+\vspace{-20pt}
 <<echo=FALSE>>=
 kGLHT(opp.mc2,"confidence")
 @
@@ -484,18 +481,23 @@ kGLHT(opp.mc3,"hypothesis")
 
 Note that using the Dunnett's procedure is unwarranted in this example -- it is used here for the sole purpose of illustrating the method.
 
+\vspace{-6pt}
 \subsubsection*{Graphing Significance Results}
-Multiple comparison results are often reported as "significance letters" on a plot of group means (usually with corresponding confidence intervals). Significance letters are assigned such that group means with the same letter are considered statistically the same (i.e., insignificant) and group means with different letters are considered statistically different (i.e., significant). The Tukey HSD results for the opossum immunoglobulin data from above indicated that February and May should have the same letter (e.g., ``a'') and November should have a different letter (e.g., ``b'').
+\vspace{-12pt}
+Multiple comparison results are often reported as "significance letters" on a plot of group means (usually with corresponding confidence intervals). Significance letters are assigned such that group means with the same letter are considered statistically the same (i.e., insignificant) and group means with different letters are considered statistically different (i.e., significant). The Tukey HSD results for the opossum data from above indicated that February and May should have the same letter (e.g., ``a'') and November should have a different letter (e.g., ``b'').
 
 The plot of the group means is constructed with \R{fitPlot()} as illustrated previously. Significance letters are added to this plot with \R{addSigLetters()}. The first argument to \R{addSigLetters()} is the saved \R{lm()} object. The \R{lets=} argument is a character vector containing the letters to be placed next to each group mean, in the order that the group means are plotted. The \R{pos=} argument contains a numeric vector of positions that describe the position the letter should be placed relative to the point, with \R{1}=``below'', \R{2}=``left-of'', \R{3}=``above'', and \R{4}=``right-of''.\footnote{Note that the numbers are clockwise around the point beginning below the point.}  Finding ``good'' \R{pos} values may take some trial-and-error. \figref{fig:OWAEx1Means3} was constructed with the code below.
 
+\vspace{-6pt}
 <<OWAEx1Means3, fig.cap="Mean tomato seedling growth with 95\\% confidence interval at each nematode density from the initial fit of the one-way ANOVA model. Means with the same letter are not significantly different.">>=
 fitPlot(opp.lm,xlab="Season",ylab="Immunoglobulin level")
 addSigLetters(opp.lm,lets=c("a","a","b"),pos=c(2,4,4))
 @
 
 \section{Example Analyses II}
+\vspace{-12pt}
 \subsection{Tomatoes-Nematodes II}
+\vspace{-12pt}
 In \sectref{sect:OWAEx1A} the growth of tomato plants relative to the density of nematodes was examined. The one-way ANOVA results indicated that there was a significant difference in mean plant growth among the four densities of nematodes examined. Tukey's HSD procedure is used here to determine which pairs of groups means differ.
 
 It appears that mean growth at densities 0 and 1000 are not significantly different, 0 and 5000 are different, 0 and 10000 are different, 1000 and 5000 are different, 1000 and 10000 are different, and 5000 and 10000 are not different (\tabref{tab:OWAEx1HSD}, \figref{fig:OWAEx1Means2}).\footnote{Recall that two means are considered different if the adjusted p-value is less than $\alpha$.}
@@ -503,6 +505,7 @@ It appears that mean growth at densities 0 and 1000 are not significantly differ
 \begin{table}[h]
   \centering
   \caption{Tukey's multiple comparisons for the Tomato - Nematode data.}\label{tab:OWAEx1HSD}
+\vspace{-12pt}
 <<echo=FALSE, background='white'>>=
 kGLHT(summary(glht(tn.lm, mcp(density="Tukey"))))
 @
@@ -514,6 +517,7 @@ addSigLetters(tn.lm,c("a","a","b","b"),pos=c(2,4,2,4))
 @
 
 \subsubsection*{Appendix -- R commands}
+\vspace{-12pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
 tn.mc <- glht(tn.lm, mcp(density="Tukey"))
 summary(tn.mc)
@@ -523,17 +527,23 @@ addSigLetters(tn.lm,lets=c("a","a","b","b"),pos=c(2,4,2,4))
 \end{Verbatim}
 
 \subsection{Moose-Pines II}
+\vspace{-12pt}
 This example is a follow-up analysis to the second example in \sectref{sect:OWAEx2A}. Only those sections that would be modified to include multiple comparison results are shown here. Thus, a full analysis would be a combination of what was shown in \sectref{sect:OWAEx2A} and what is shown here.
 
+\vspace{-6pt}
 \subsubsection*{Data Collection}
+\vspace{-12pt}
 One-way ANOVA will be used to identify if significant differences exist among the means of the treatment groups. If a significant difference is identified, then Tukey's HSD method will be used to determine which pairs of treatment means are different.\footnote{Dunnett's method is not used here, even though there is a control group, because interest is in comparing all pairs of treatments, not just all pairs of treatments with the control group.}
 
+\vspace{-6pt}
 \subsubsection*{Results}
-There appears to be a significant difference in mean tree growth among the four treatments (\Sexpr{kPvalue(anova(mb.lm)[1,"Pr(>F)"])}; \tabref{tab:OWAEx2ANOVA}). Trees in the clipped treatment are significantly shorter then trees in the other three treatments \tabrefp{tab:OWAEx2HSD}. The trees in the shaded treatment are shorter than trees in the fertilized treatment but statistically similar to trees in the control treatment \tabrefp{tab:OWAEx2HSD}. Trees in the control treatment are statistically similar to trees in both the shaded and fertilized treatments \tabrefp{tab:OWAEx2HSD}.\footnote{This result for the shaded, control, and fertilized treatments is a fairly common occurrence - i.e., the middle of the ordered treatments is statistically similar to both the treatment just bigger and the treatment just smaller, but the two treatments on the ends are statistical different. So, sometimes the results lead to confusing but ultimately correct statements such as --- ``the control treatment is equal to both the shaded and fertilized treatments but the shaded and fertilized treatments are different.''}  The results of this analysis are summarized in \figref{fig:OWAEx2Means2}.
+\vspace{-12pt}
+There appears to be a significant difference in mean tree growth among the four treatments (\Sexpr{kPvalue(anova(mb.lm)[1,"Pr(>F)"],digits=3)}; \tabref{tab:OWAEx2ANOVA}). Trees in the clipped treatment are significantly shorter then trees in the other three treatments \tabrefp{tab:OWAEx2HSD}. The trees in the shaded treatment are shorter than trees in the fertilized treatment but statistically similar to trees in the control treatment \tabrefp{tab:OWAEx2HSD}. Trees in the control treatment are statistically similar to trees in both the shaded and fertilized treatments \tabrefp{tab:OWAEx2HSD}.\footnote{This result for the shaded, control, and fertilized treatments is a fairly common occurrence - i.e., the middle of the ordered treatments is statistically similar to both the treatment just bigger and the treatment just smaller, but the two treatments on the ends are statistical different. So, sometimes the results lead to confusing but ultimately correct statements such as --- ``the control treatment is equal to both the shaded and fertilized treatments but the shaded and fertilized treatments are different.''}  The results of this analysis are summarized in \figref{fig:OWAEx2Means2}.
 
 \begin{table}[h]
   \centering
   \caption{Tukey's adjusted confidence intervals for mean tree growth for four treatments. Note that the output was modified to save space.}\label{tab:OWAEx2HSD}
+\vspace{-12pt}
 <<echo=FALSE, background='white'>>=
 kGLHT(summary(glht(mb.lm, mcp(treat="Tukey"))))
 @
@@ -544,7 +554,9 @@ fitPlot(mb.lm,xlab="Treatment",ylab="Tree Height (cm)")
 addSigLetters(mb.lm,c("bc","c","a","b"),pos=c(2,4,2,4))
 @
 
+\vspace{-6pt}
 \subsubsection*{Appendix -- R commands}
+\vspace{-12pt}
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm,commandchars=\\\{\}]
 mb.mc <- glht(mb.lm, mcp(treat="Tukey"))
 summary(mb.mc)
@@ -555,10 +567,12 @@ addSigLetters(mb.lm,lets=c("bc","c","a","b"),pos=c(2,4,2,4))
 
 
 \section{Transformations} \label{sect:AOVTransformations}
+\vspace{-12pt}
 If the assumptions of a one-way ANOVA are violated, then the results of the one-way ANOVA are inappropriate. Fortunately, if the equality of variances or normality assumptions are violated, then corrective measures can usually be taken so that appropriate results can be obtained. The most common corrective measure is to transform the response variable to a scale where the variances among treatment groups are equal and the individuals within treatment groups are normally distributed.
 
 Besides the obvious reason related to assumption violations, Fox (1997) gave four arguments for why data that is skewed or shows a non-constant variance should be transformed:
 
+\vspace{-12pt}
 \begin{Itemize}
   \item Highly skewed distributions are difficult to examine because most of the observations are confined to a small part of the range of the data.
   \item Apparently outlying individuals in the direction of the skew are brought in towards the main body of the data when the distribution is made more symmetric. In contrast, unusual values in the direction opposite to the skew can be hidden prior to transforming the data.
@@ -662,30 +676,32 @@ The common transformations listed in \tabref{tab:CommonTranformations} are order
 You should also note that it is possible to ``combine'' one of the common powers with the inverse transformation to create a larger array of inverse transformations. For example, a $\lambda$ of -0.5 could be considered an inverse square-root transformation. These types of transformations are common but less common than those listed in \tabref{tab:CommonTranformations}.
 
 \subsubsection{Finding A Power Transformation}
-Power transformations require non-negative and non-zero data. Violations of this restriction can be rectified by adding an amount to all values of the response variable such that the all values become positive. In addition, power transformations are not effective if the range of values of the response variable is narrow.\footnote{In effect, the power transformation is basically linear over short ranges and, thus, is not effective.}  In general, Fox (1997) suggests that if the ratio of the maximum to minimum value of the response variable is less than five, then you should consider subtracting a value just smaller than the minimum value to shift the entire distribution of values closer to zero. These values used to ``shift'' the distribution are commonly called \emph{start} values.
+Power transformations require non-negative and non-zero data. Violations of this restriction can be rectified by adding an amount to all values of the response variable such that the all values become positive. In addition, power transformations are not effective if the range of values of the response variable is narrow.\footnote{In effect, the power transformation is basically linear over short ranges and, thus, is not effective.}
+
+%In general, Fox (1997) suggests that if the ratio of the maximum to minimum value of the response variable is less than five, then you should consider subtracting a value just smaller than the minimum value to shift the entire distribution of values closer to zero. These values used to ``shift'' the distribution are commonly called \emph{start} values.
 
 \warn{A positive value should be added to each value of the response variable if a power transformation is to be used and the response variable contains zeroes or negative values.}
 
-\vspace{-10pt}
-\warn{A negative value may be added to each value of the response variable if a power transformation is to be used and the ratio of maximum to minimum value of the response variable is less than five.}
+%\vspace{-10pt}
+%\warn{A negative value may be added to each value of the response variable if a power transformation is to be used and the ratio of maximum to minimum value of the response variable is less than five.}
 
-There are several methods for identifying the power transformation that is most likely to correct problems with assumptions for a one-way ANOVA.\footnote{Box and Cox (1964) provided a statistical and graphical method for identifying the appropriate power transformation for the response variable. The details of this method are beyond the scope of this class but, in general, the method searches for a $\lambda$ that minimizes the RSS (or $SS_{within}$). A slightly modified Box and Cox approach is implemented in R by sending a \R{lm} object to \R{boxcox()} from the \R{MASS} package.}  One simple method is trial-and-error -- i.e., trying various powers until one is found where the assumptions of the model are most closely met. This trial-and-error method is tedious but is made more efficient with the use of \R{transChooser()}. This function requires a saved \R{lm()} object from the initial one-way ANOVA model fit as its first argument. In addition, a start value can be included with the \R{starty=} argument. This function then produces a histogram of the residuals of the model and a boxplot of the residuals separated for each group. A slider can then be used to ``try'' various values of $\lambda$ with the histogram and boxplot being updated as $\lambda$ is changed. One can try various values of $\lambda$ until a value is found that provides approximately normal residuals and approximately equal variances. When actually transforming the variable it is best to choose one of the common values of $\lambda$ from \tabref{tab:CommonTranformations} that is closest to the value found by trial-and-error.
+There are several methods for identifying the power transformation that is most likely to correct problems with assumptions for a one-way ANOVA.\footnote{Box and Cox (1964) provided a statistical and graphical method for identifying the appropriate power transformation for the response variable. The details of this method are beyond the scope of this class but, in general, the method searches for a $\lambda$ that minimizes the RSS (or $SS_{within}$). A slightly modified Box and Cox approach is implemented in R by sending a \R{lm} object to \R{boxcox()} from the \R{MASS} package.} One simple method is trial-and-error -- i.e., trying various powers until one is found where the assumptions of the model are most closely met. This trial-and-error method is tedious but is made more efficient with the use of \R{transChooser()}, the same function used previous when assessing the model assumptions. In addition to the saved \R{lm()} object, a start value can be included with the \R{starty=} argument. As before, a histogram of model residuals, a boxplot of the residuals separated for each group, and p-values for the assumption tests are constructed. A slider is in the ``gear box'' that can be used to ``try'' various values of $\lambda$ with the plots and p-values being updated as $\lambda$ is changed. One can try various values of $\lambda$ until a value is found that provides approximately normal residuals and equal variances. When actually transforming the variable it is best to choose one of the common values of $\lambda$ from \tabref{tab:CommonTranformations} that is closest to the value found by trial-and-error.
 
 Another option for choosing a possible power transformation is to rely on theory related to the response variable. As with the special transformations discussed above, power transformations based on theory will generally be well-known by the scientists within a particular field. However, for example, it is common to transform response variables that are areas by taking the square root and those that are volumes with the cube root. In addition, discrete counts are often transformed with the square root.
 
-\warn{Sometimes transformations may be chosen based on known theory regarding the response variable.}
+\warn{Transformations may be chosen based on known theory regarding the response variable.}
 
 \subsection{Creating Transformed Variables in R}
-A power transformation can be carried out by raising the variable to the given power with the \R{\^} symbol. A square-root transformation can also be used by including the variable in \R{sqrt()}. A natural log transformation is accomplished by including the variable in \R{log()}. The arcsine square root transformation requires the combined efforts of \R{asin()} and \R{sqrt()}. The results of the transforming function should be assigned to a new object. The following are examples of creating a transformed variable from a generic variable called $Y$:
+A power transformation can be carried out by raising the variable to the given power with the \R{\^} symbol. A square-root transformation can also be used by including the variable in \R{sqrt()}. A natural log transformation is accomplished by including the variable in \R{log()}. The arcsine square root transformation requires the combined efforts of \R{asin()} and \R{sqrt()}. The results of the transforming function should be assigned to a new object. The following are examples of creating a transformed variable from a generic variable called $Y$ in a generic data.frame called $df$:
 
 \begin{Verbatim}[formatcom=\color{red},xleftmargin=5mm]
-sqrt.y <- Y^(1/2)       # square-root
-sqrt.y <- sqrt(Y)       # also square-root
-ln.y <- log(Y)          # natural log
-cubert.y <- Y^(1/3)     # cube-root
-inv.y <- Y^(-1)         # inverse
-inv2.y <- 1/Y           # also inverse
-asin.y <- asin(sqrt(Y)) # arcsine square-root
+df$sqrt.y <- df$Y^(1/2)       # square-root
+df$sqrt.y <- sqrt(df$Y)       # also square-root
+df$ln.y <- log(df$Y)          # natural log
+df$cubert.y <- df$Y^(1/3)     # cube-root
+df$inv.y <- df$Y^(-1)         # inverse
+df$inv2.y <- 1/df$Y           # also inverse
+df$asin.y <- asin(sqrt(df$Y)) # arcsine square-root
 \end{Verbatim}
 
 
@@ -700,7 +716,7 @@ Care must be taken with interpretations following transformations. A few simple 
 \subsubsection*{Back-Transformation Issues}
 Back-transformation is the process of reversing the results found on the transformed scale to the original scale for ease of interpretation. For example, log transformations are reversed with the exponential function and square root transformations are reversed by squaring the results. Wherever possible, back-transformations should be performed in order to provide results on the original scale of measurement. However, back-transformation must be considered carefully because the back-transformed result may be subject to systematic bias.
 
-It is commonly known that back-transforming the mean value on the log scale underestimates the mean value on the original scale. This observation stems from the fact that the back-transformed mean value from the log scale is equal to the geometric mean\footnote{The geometric mean is defined as the $n$th root of the product of the $n$ values.} of the values on the original scale \apprefp{app:ProofBackTransform1}. The geometric mean is always less than the arithmetic mean\footnote{The arithmetic mean is the sum of all values divided by $n$.} and, thus, the back-transformed mean always underestimates the arithmetic mean from the original scale. A wide variety of ``corrections'' for this back-transformation bias with logarithms have been suggested in the literature. The most common correction, derived from the analysis of normal and log-normal distributional theory, is to multiply the back-transformed value by
+It is commonly known that back-transforming the mean value on the log scale underestimates the mean value on the original scale. This observation stems from the fact that the back-transformed mean value from the log scale is equal to the geometric mean\footnote{The geometric mean is defined as the $n$th root of the product of the $n$ values.} of the values on the original scale. The geometric mean is always less than the arithmetic mean\footnote{The arithmetic mean is the sum of all values divided by $n$.} and, thus, the back-transformed mean always underestimates the arithmetic mean from the original scale. A wide variety of ``corrections'' for this back-transformation bias with logarithms have been suggested in the literature. The most common correction, derived from the analysis of normal and log-normal distributional theory, is to multiply the back-transformed value by
 \[ e^{\frac{MS_{Within}}{2}} \]
 
 Another issue arises when back-transforming differences in means. For example, because the difference in the log of two values is equal to the log of the ratio of the two values, the back-transformed difference in two values becomes the ratio of the two values; i.e.,
@@ -718,6 +734,8 @@ PD <- read.csv("data/PeakDischarge.csv")
 PD$method <- factor(PD$method)
 pd.lm <- lm(discharge~method,data=PD)
 pd.lev <- levenesTest(pd.lm)
+pd.ad <- adTest(pd.lm$residuals)
+pd.out <- outlierTest(pd.lm)
 PD$sqrtdis <- sqrt(PD$discharge)
 pd.lm1 <- lm(sqrtdis~method,data=PD)
 pd.lev1 <- levenesTest(pd.lm1)
@@ -738,26 +756,31 @@ Each estimation method was used six times on the watershed and the resulting dis
 
 \subsubsection*{EDA \& Assumption Checking}
 \vspace{-12pt}
-From the information given, the data do not appear to be independent either within treatments or among treatments (i.e., they are all on the same watershed). This assumption appears to be violated. However, the single watershed is the ``population'' of interest to the engineer. Thus, this form of data collection is not problematic unless the engineer (or you) attempt to make strict inferences to other watersheds. I will proceed with the analysis because of this last statement. The variances among treatments appear to be non-constant (Levene's \Sexpr{kPvalue(pd.lev[1,"Pr(>F)"])}). The residual plot from the initial ANOVA fit also indicates a heteroscedasticity \figrefp{fig:OWAEx3ResidPlot1}. This suggests the need for a transformation.
+From the information given, the data do not appear to be independent either within treatments or among treatments (i.e., they are all on the same watershed). This assumption appears to be violated. However, the single watershed is the ``population'' of interest to the engineer. Thus, this form of data collection is not problematic unless the engineer (or you) attempt to make strict inferences to other watersheds. The variances among treatments appear to be non-constant (Levene's \Sexpr{kPvalue(pd.lev[1,"Pr(>F)"],digits=3)}). The residual plot from the initial ANOVA fit also indicates a heteroscedasticity \figrefp{fig:OWAEx3ResidPlot1}. Even thought the residuals appear normal (Anderson-Darling \Sexpr{kPvalue(pd.ad$p.value,digits=3)}) and there are no significant outliers (outlier test \Sexpr{kPvalue(pd.out$bonf.p,digits=3)}), the unequal variances suggests the need for a transformation.
 
-<<OWAEx3ResidPlot1, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) from the one-way ANOVA on raw peak discharge data.",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
-residPlot(pd.lm)
-@
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{FigsStatic/OWAEx3ResidPlot1.jpg}
+  \caption{Residual plot (Left) and histogram of residuals (Right) from the one-way ANOVA on raw peak discharge data.}\label{fig:OWAEx3ResidPlot1}
+\end{figure}
 
 \vspace{9pt}
-The data were examined with \R{transChooser()} and it was determined that a square root transformation may be appropriate. In fact, the square root transformation appeared to have stabilized the variances (Levene's \Sexpr{kPvalue(pd.lev1[1,"Pr(>F)"])}; \figref{fig:OWAEx3ResidPlot2}) and normalized the residuals (Anderson Darling \Sexpr{kPvalue(pd.ad1$p.value)}). The largest Studentized residual had a very large p-value ($>$1) indicating that no significant outliers were present in these data. Thus, the assumptions of the ANOVA model appeared to have been adequately met on the square-root scale. Thus, the square root transformed data were examined with a one-way ANOVA.
+It was determined, through \R{transChooser()}, that the square root transformation resulted in equal variances (Levene's \Sexpr{kPvalue(pd.lev1[1,"Pr(>F)"],digits=3)}; \figref{fig:OWAEx3ResidPlot2}), normal residuals (Anderson Darling \Sexpr{kPvalue(pd.ad1$p.value,digits=3)}), and no significant outliers (outlier test \Sexpr{kPvalue(pd.out1$bonf.p,digits=3)}). Thus, the assumptions of the ANOVA model appeared to have been adequately met on the square-root scale.
 
-<<OWAEx3ResidPlot2, echo=FALSE, fig.cap="Residual plot (Left) and histogram of residuals (Right) from one-way ANOVA on square root transformed peak discharge data.",fig.width=7, fig.height=3.5, out.width='.8\\linewidth'>>=
- residPlot(pd.lm1)
-@
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5in]{FigsStatic/OWAEx3ResidPlot2.jpg}
+  \caption{Residual plot (Left) and histogram of residuals (Right) from one-way ANOVA on square root transformed peak discharge data.}\label{fig:OWAEx3ResidPlot2}
+\end{figure}
 
 \subsubsection*{Results}
 \vspace{-12pt}
-There appeared to be a significant difference in mean square root peak discharge among the four methods (\Sexpr{kPvalue(anova(pd.lm1)[1,"Pr(>F)"])}; \tabref{tab:OWAEx3Results1}). Tukey's HSD multiple comparison method indicated that no two means were equal \tabrefp{tab:OWAEx3Results2} and, thus, the mean square-root of peak discharge increased significantly at each step from method 1 to  method 4 \figrefp{fig:OWAEx3Means1}.
+There appeared to be a significant difference in mean square root peak discharge among the four methods (\Sexpr{kPvalue(anova(pd.lm1)[1,"Pr(>F)"],digits=3)}; \tabref{tab:OWAEx3Results1}). Tukey's HSD multiple comparison method indicated that no two means were equal \tabrefp{tab:OWAEx3Results2} and, thus, the mean square-root of peak discharge increased significantly at each step from method 1 to  method 4 \figrefp{fig:OWAEx3Means1}.
 
 \begin{table}[h]
   \centering
   \caption{ANOVA results of square-root peak discharge for four methods.}\label{tab:OWAEx3Results1}
+\vspace{-12pt}
 <<echo=FALSE, background='white'>>=
 kANOVA(pd.lm1)
 @
@@ -766,6 +789,7 @@ kANOVA(pd.lm1)
 \begin{table}[h]
   \centering
   \caption{Tukey adjusted p-values for pairwise comparisons of square-root peak discharge for four methods.}\label{tab:OWAEx3Results2}
+\vspace{-12pt}
 <<echo=FALSE, background='white'>>=
 pd.mc <- glht(pd.lm1, mcp(method = "Tukey"))
 kGLHT(pd.mc)
@@ -773,8 +797,8 @@ kGLHT(pd.mc)
 \end{table}
 
 <<OWAEx3Means1, echo=FALSE, fig.cap="Plot of the mean square root transformed peak discharge data with 95\\% confidence intervals and significance notations.">>=
- fitPlot(pd.lm1,xlab="Method",ylab="sqrt(Peak Discharge)")
- addSigLetters(pd.lm1,c("a","b","c","d"),pos=c(2,4,2,4))
+fitPlot(pd.lm1,xlab="Method",ylab="sqrt(Peak Discharge)")
+addSigLetters(pd.lm1,c("a","b","c","d"),pos=c(2,4,2,4))
 @
 
 \subsubsection*{Conclusion}
@@ -787,15 +811,10 @@ The four methods produced significantly different mean square-root peak discharg
 PeakDischarge <- read.csv("PeakDischarge.csv")
 PeakDischarge$method <- factor(PeakDischarge$method)
 pd.lm <- lm(discharge~method,data=PeakDischarge)
-levenesTest(pd.lm)
-residPlot(pd.lm)
 transChooser(pd.lm)
 PeakDischarge$sqrtdis <- sqrt(PeakDischarge$discharge)
 pd.lm1 <- lm(sqrtdis~method,data=PeakDischarge)
-levenesTest(pd.lm1)
-adTest(pd.lm1$residuals)
-residPlot(pd.lm1)
-outlierTest(pd.lm1)
+transChooser(pd.lm1)
 anova(pd.lm1)
 pd.mc1 <- glht(pd.lm1,mcp(method="Tukey"))
 summary(pd.mc1)
@@ -819,11 +838,11 @@ The process of fitting and interpreting linear models is as much an art as it is
       \item Pay close attention to the distributional shape, center, dispersion, and outliers within each level of the factor variable.
     \end{Itemize}
   \item Fit the untransformed ultimate full model [\R{lm()}].
-  \item Check the assumptions of the fit of the untransformed model.
+  \item Check the assumptions of the fit of the untransformed model with \R{transChooser()}.
     \begin{Itemize}
-      \item Check equality of variances with a Levene's test [\R{levenesTest()}] and residual plot [\R{residPlot()}].
-      \item Check normality of residuals with an Anderson-Darling test [\R{adTest()}] and histogram of residuals [\R{residPlot()}].
-      \item Check for outliers with an outlier test [\R{outlierTest()}], residual plot, and histogram of residuals.
+      \item Check equality of variances with a Levene's test and residual plot.
+      \item Check normality of residuals with an Anderson-Darling test and histogram of residuals.
+      \item Check for outliers with an outlier test, residual plot, and histogram of residuals.
     \end{Itemize}
   \item If an assumption or assumptions are violated, then attempt to find a transformation where the assumptions are met.
     \begin{Itemize}
