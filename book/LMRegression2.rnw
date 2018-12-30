@@ -383,7 +383,7 @@ Thus, $RSS_{Simple}$=\Sexpr{formatC(a2["Residuals","Sum Sq"],format="f",digits=3
 
 \[ F = \frac{\frac{\Sexpr{formatC(a2["Residuals","Sum Sq"],format="f",digits=3)}-\Sexpr{formatC(a1["Residuals","Sum Sq"],format="f",digits=3)}}{\Sexpr{a2["Residuals","Df"]}-\Sexpr{a1["Residuals","Df"]}}}{\Sexpr{formatC(a1["Residuals","Mean Sq"],format="f",digits=4)}} = \Sexpr{formatC(F1,format="f",digits=2)} \]
 
-With \Sexpr{a2["Residuals","Df"]-a1["Residuals","Df"]} and \Sexpr{a1["Residuals","Df"]} df, the p-value is \Sexpr{kPvalue(distrib(F1,type="f",df1=a2["Residuals","Df"]-a1["Residuals","Df"],df2=a1["Residuals","Df"],distrib="f",lower.tail=FALSE,plot=FALSE),include.p=FALSE)}.\footnote{The p-value can be computed with \R{distrib()}. In this case, \R{distrib(\Sexpr{formatC(F1,format="f",digits=4)},distrib="f",df1=\Sexpr{a2["Residuals","Df"]-a1["Residuals","Df"]},df2=\Sexpr{a1["Residuals","Df"]},lower.tail=FALSE)}.}  This p-value indicates that the full model does NOT fit the data ``better'' than the simple model and, thus, the lines for the chinook and coho salmon are likely coincident. These results suggest that the chinook and coho salmon have statistically similar slopes and intercepts.
+With \Sexpr{a2["Residuals","Df"]-a1["Residuals","Df"]} and \Sexpr{a1["Residuals","Df"]} df, the p-value is \Sexpr{kPvalue(distrib(F1,type="f",df1=a2["Residuals","Df"]-a1["Residuals","Df"],df2=a1["Residuals","Df"],distrib="f",lower.tail=FALSE,plot=FALSE),include.p=FALSE,digits=3)}.\footnote{The p-value can be computed with \R{distrib()}. In this case, \R{distrib(\Sexpr{formatC(F1,format="f",digits=4)},distrib="f",df1=\Sexpr{a2["Residuals","Df"]-a1["Residuals","Df"]},df2=\Sexpr{a1["Residuals","Df"]},lower.tail=FALSE)}.}  This p-value indicates that the full model does NOT fit the data ``better'' than the simple model and, thus, the lines for the chinook and coho salmon are likely coincident. These results suggest that the chinook and coho salmon have statistically similar slopes and intercepts.
 
 \defn{Coincident Lines Test}{An F test to determine if all groups in an IVR analysis can be described by the exact same regression line.}
 
@@ -410,7 +410,7 @@ Thus, $RSS_{Simple}$=\Sexpr{formatC(a3["Residuals","Sum Sq"],format="f",digits=3
 
 \[ F = \frac{\frac{\Sexpr{formatC(a3["Residuals","Sum Sq"],format="f",digits=3)}-\Sexpr{formatC(a1["Residuals","Sum Sq"],format="f",digits=3)}}{\Sexpr{a3["Residuals","Df"]}-\Sexpr{a1["Residuals","Df"]}}}{\Sexpr{formatC(a1["Residuals","Mean Sq"],format="f",digits=4)}} = \Sexpr{formatC(F2,format="f",digits=2)} \]
 
-With \Sexpr{a3["Residuals","Df"]-a1["Residuals","Df"]} and \Sexpr{a1["Residuals","Df"]} df the p-value is \Sexpr{kPvalue(distrib(F2,type="f",df1=a3["Residuals","Df"]-a1["Residuals","Df"],df2=a1["Residuals","Df"],distrib="f",lower.tail=FALSE,plot=FALSE))}, which provides weak evidence that the full model is ``better'' than the simple model. If an $\alpha$ of 0.05 is being used then one would conclude that the coho and chinook salmon have equal slopes.
+With \Sexpr{a3["Residuals","Df"]-a1["Residuals","Df"]} and \Sexpr{a1["Residuals","Df"]} df the p-value is \Sexpr{kPvalue(distrib(F2,type="f",df1=a3["Residuals","Df"]-a1["Residuals","Df"],df2=a1["Residuals","Df"],distrib="f",lower.tail=FALSE,plot=FALSE),digits=3)}, which provides weak evidence that the full model is ``better'' than the simple model. If an $\alpha$ of 0.05 is being used then one would conclude that the coho and chinook salmon have equal slopes.
 
 \defn{Parallel Lines Test}{An F test to determine if all groups in an IVR analysis can be described by regression lines with the exact same slope.}
 
@@ -458,7 +458,7 @@ The full model in these hypotheses is not the ultimate full model and is actuall
 
 \[ F = \frac{\frac{\Sexpr{formatC(a2["Residuals","Sum Sq"],format="f",digits=3)}-\Sexpr{formatC(a3["Residuals","Sum Sq"],format="f",digits=3)}}{\Sexpr{a2["Residuals","Df"]}-\Sexpr{a3["Residuals","Df"]}}}{\Sexpr{formatC(a1["Residuals","Mean Sq"],format="f",digits=4)}} = \Sexpr{formatC(F3,format="f",digits=2)} \]
 
-With \Sexpr{a2["Residuals","Df"]-a3["Residuals","Df"]} and \Sexpr{a1["Residuals","Df"]} df the p-value is \Sexpr{kPvalue(distrib(F3,df1=a2["Residuals","Df"]-a3["Residuals","Df"],df2=a1["Residuals","Df"],distrib="f",lower.tail=FALSE,plot=FALSE))}. Thus, if the lines are considered to be parallel then there does not appear to be a significant difference between the intercepts for the chinook and coho salmon lines.
+With \Sexpr{a2["Residuals","Df"]-a3["Residuals","Df"]} and \Sexpr{a1["Residuals","Df"]} df the p-value is \Sexpr{kPvalue(distrib(F3,df1=a2["Residuals","Df"]-a3["Residuals","Df"],df2=a1["Residuals","Df"],distrib="f",lower.tail=FALSE,plot=FALSE),digits=3)}. Thus, if the lines are considered to be parallel then there does not appear to be a significant difference between the intercepts for the chinook and coho salmon lines.
 
 The default hypothesis test comparing the ultimate full and ultimate simple models is called the overall F-test. The hypothesis tests that compare a full and a simple model of which at least one is not an ultimate model is called a \emph{partial F-test}. Partial F-tests are very useful for examining hypothesis tests that require combining groups of coefficients (e.g., ``coincident lines'' and ``parallel lines'' tests).
 
@@ -514,7 +514,7 @@ mirex.lma <- lm(mirex~weight*year,data=Mirex)
 anova(mirex.lma)
 @
 
-The interaction term p-value (\Sexpr{kPvalue(anova(mirex.lma)["weight:year","Pr(>F)"])}) provides very strong evidence that the six lines are not parallel. Because the lines are not parallel, the equal-intercepts test (second line of output) was not interpreted. The next question after a result such as this is to ask which lines have different slopes -- does just one line have a different slope, do all lines have different slopes, etc. An examination of the fitted-line plot for this model \figrefp{fig:IVRSalmonYearFittedLinePlot} suggests that the first four years have similar slopes, 1996 has a shallower slope, and 1999 has an even shallower slope. However, it is impossible to determine which slopes are significantly different from this graph.
+The interaction term p-value (\Sexpr{kPvalue(anova(mirex.lma)["weight:year","Pr(>F)"],digits=3)}) provides very strong evidence that the six lines are not parallel. Because the lines are not parallel, the equal-intercepts test (second line of output) was not interpreted. The next question after a result such as this is to ask which lines have different slopes -- does just one line have a different slope, do all lines have different slopes, etc. An examination of the fitted-line plot for this model \figrefp{fig:IVRSalmonYearFittedLinePlot} suggests that the first four years have similar slopes, 1996 has a shallower slope, and 1999 has an even shallower slope. However, it is impossible to determine which slopes are significantly different from this graph.
 
 <<IVRSalmonYearFittedLinePlot, echo=FALSE, fig.cap="Fitted line plot for the salmon mirex concentration by year linear model results.", fig.pos="h">>=
 fitPlot(mirex.lma,legend="topleft",ylim=c(0,0.55),cex.leg=0.75)
@@ -666,7 +666,7 @@ crab.out2 <- outlierTest(crab.lm2)
 The initial ultimate full model fit to these data was
 \[ \mu_{force|propodus,spec} = \alpha + \beta_{1}propodus  + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
 
-The fit of this model exhibited a small heteroscedasticity \figrefp{fig:IVRCrabResidPlot} but approximately normal residuals (Anderson-Darling \Sexpr{kPvalue(crab.ad1$p)}). Possible transformations for the response variable were considered through a trial-and-error method. A square-root transformation of closing force resulted in linearity and homoscedasticity \figrefp{fig:IVRCrabResidPlot}, approximately normal residuals (\Sexpr{kPvalue(crab.ad2$p)}), and no significant outliers (outlier test \Sexpr{kPvalue(crab.out2$bonf.p)}). With the assumptions largely met, this analysis will proceed by fitting the following ultimate full model to all indvidiuals in the data set
+The fit of this model exhibited a small heteroscedasticity \figrefp{fig:IVRCrabResidPlot} but approximately normal residuals (Anderson-Darling \Sexpr{kPvalue(crab.ad1$p,digits=3)}). Possible transformations for the response variable were considered through a trial-and-error method. A square-root transformation of closing force resulted in linearity and homoscedasticity \figrefp{fig:IVRCrabResidPlot}, approximately normal residuals (\Sexpr{kPvalue(crab.ad2$p,digits=3)}), and no significant outliers (outlier test \Sexpr{kPvalue(crab.out2$bonf.p,digits=3)}). With the assumptions largely met, this analysis will proceed by fitting the following ultimate full model to all indvidiuals in the data set
 
 \[ \mu_{sqrt(force)|\cdots} = \alpha + \beta_{1}propodus + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
 
@@ -676,11 +676,12 @@ residPlot(crab.lm2,cex.leg=0.75)
 @
 
 \subsubsection*{Results}
-The parallel lines test indicated that at least two of the three regression lines of the square root of closing force on propodus height by species had different slopes (\Sexpr{kPvalue(anova(crab.lm2)["propodus:spec","Pr(>F)"])}; \tabref{tab:IVRCrabParallelTest}). Post hoc multiple comparisons of all pairs of slopes, controlling the false discovery rate at 0.05, indicated that the slope for \emph{Hemigrapsus nudus} was significantly lower than the slopes for the other two species, which were not significantly different \tabrefp{tab:IVRCrabSlopeComp}. Post hoc multiple comparisons for whether each slope is equal to zero or not indicated that the slopes for \emph{Cancer productus} and \emph{Lophopanopeus bellus} were both significantly greater than zero, whereas the slope for \emph{Hemigrapsus nudus} was not significantly different from zero \tabrefp{tab:IVRCrabSlopeComp}.
+The parallel lines test indicated that at least two of the three regression lines of the square root of closing force on propodus height by species had different slopes (\Sexpr{kPvalue(anova(crab.lm2)["propodus:spec","Pr(>F)"],digits=3)}; \tabref{tab:IVRCrabParallelTest}). Post hoc multiple comparisons of all pairs of slopes, controlling the false discovery rate at 0.05, indicated that the slope for \emph{Hemigrapsus nudus} was significantly lower than the slopes for the other two species, which were not significantly different \tabrefp{tab:IVRCrabSlopeComp}. Post hoc multiple comparisons for whether each slope is equal to zero or not indicated that the slopes for \emph{Cancer productus} and \emph{Lophopanopeus bellus} were both significantly greater than zero, whereas the slope for \emph{Hemigrapsus nudus} was not significantly different from zero \tabrefp{tab:IVRCrabSlopeComp}.
 
 \begin{table}[h]
   \centering
   \caption{ANOVA table for ultimate full model using the transformed crab claw data.}\label{tab:IVRCrabParallelTest}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kANOVA(crab.lm2)
 @
@@ -689,6 +690,7 @@ kANOVA(crab.lm2)
 \begin{table}[h]
   \centering
   \caption{Post hoc multiple comparisons of all pairs of slopes (top) and for comparison of each slope to zero (bottom) for the transformed crab claw data.}\label{tab:IVRCrabSlopeComp}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 compSlopes(crab.lm2)
 @
@@ -698,11 +700,12 @@ compSlopes(crab.lm2)
 CrabClaw1 <- filterD(CrabClaw,spec!="hn")
 crab2.lm1 <- lm(sqrt.force~propodus*spec,data=CrabClaw1)
 @
-The \emph{Hemigrapsus nudus} crabs were removed from the data set to determine if the intercepts of the parallel relationships between the square root of closing force and propodus height differed between the \emph{Cancer productus} and \emph{Lophopanopeus bellus} crabs. These results confirmed that these two species have equal slopes (\Sexpr{kPvalue(anova(crab2.lm1)["propodus:spec","Pr(>F)"])}; \tabref{tab:IVRCrabTests2}) and that they have equal-intercepts (\Sexpr{kPvalue(anova(crab2.lm1)["spec","Pr(>F)"])}; \tabref{tab:IVRCrabTests2}). A visual of the model fit is shown in \figref{fig:IVRCrabFittedLinePlot1}.
+The \emph{Hemigrapsus nudus} crabs were removed from the data set to determine if the intercepts of the parallel relationships between the square root of closing force and propodus height differed between the \emph{Cancer productus} and \emph{Lophopanopeus bellus} crabs. These results confirmed that these two species have equal slopes (\Sexpr{kPvalue(anova(crab2.lm1)["propodus:spec","Pr(>F)"],digits=3)}; \tabref{tab:IVRCrabTests2}) and that they have equal-intercepts (\Sexpr{kPvalue(anova(crab2.lm1)["spec","Pr(>F)"],digits=3)}; \tabref{tab:IVRCrabTests2}). A visual of the model fit is shown in \figref{fig:IVRCrabFittedLinePlot1}.
 
 \begin{table}[h]
   \centering
   \caption{ANOVA results from fitting the ultimate full model on the transformed crab claw data for only the \emph{Cancer productus} and \emph{Lophopanopeus bellus} crabs.}\label{tab:IVRCrabTests2}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kANOVA(crab2.lm1)
 @
@@ -768,7 +771,7 @@ pos.out1 <- outlierTest(pos.lm1)
 The initial ultimate full model fit to these data was
 \[ \mu_{totlngth|footlgth,Pop} = \alpha + \beta_{1}footlgth + \delta_{1}Popother + \gamma_{1}Popother*footlgth  \]
 
-The fit of this model is largely linear and homoscedastic \figrefp{fig:IVROpRFLP1} with approximately normal residuals (Anderson-Darling \Sexpr{kPvalue(pos.ad1$p)}) and no detectable outliers (outlier test \Sexpr{kPvalue(pos.out1$bonf.p)}). However, there are several points that ``stand out'' from the main cluster \figrefp{fig:IVROpRFLP1} -- individual 31 had a total length much longer than would be expected given its foot length, individuals 39 and 43 each had total lengths much shorter than would be expected given their foot lengths, and individual 41 had a foot length and total length shorter than most of the individuals from Victoria. It should be noted that all of these individuals are from Victoria and that three of the individuals are the shortest three possums recorded (in terms of total length). It is impossible to tell if any of these points are in error; however, it is possible that they have a heavy influence on the fitted line for Victoria. The combined influence of these points will be examined in the results.
+The fit of this model is largely linear and homoscedastic \figrefp{fig:IVROpRFLP1} with approximately normal residuals (Anderson-Darling \Sexpr{kPvalue(pos.ad1$p,digits=3)}) and no detectable outliers (outlier test \Sexpr{kPvalue(pos.out1$bonf.p,digits=3)}). However, there are several points that ``stand out'' from the main cluster \figrefp{fig:IVROpRFLP1} -- individual 31 had a total length much longer than would be expected given its foot length, individuals 39 and 43 each had total lengths much shorter than would be expected given their foot lengths, and individual 41 had a foot length and total length shorter than most of the individuals from Victoria. It should be noted that all of these individuals are from Victoria and that three of the individuals are the shortest three possums recorded (in terms of total length). It is impossible to tell if any of these points are in error; however, it is possible that they have a heavy influence on the fitted line for Victoria. The combined influence of these points will be examined in the results.
 
 <<IVROpRFLP1, echo=FALSE, fig.cap="Residual plot (Left) and fitted line plot (Right) from the fit of the ultimate model on the untransformed possum data. Four individuals discussed during assumption checking are highlighted.", fig.pos="h">>=
 residPlot(pos.lm1,inclHist=FALSE)
@@ -782,11 +785,12 @@ highlight(possum1$totlngth~possum1$footlgth,pts=c(31,39,41,43),col="black")
 <<echo=FALSE>>=
 pos.lm2 <- lm(totlngth~footlgth+Pop,data=possum1)
 @
-Possums from Victoria and possums from other locations had similar slopes for the relationship between total length and foot length (parallel lines test \Sexpr{kPvalue(anova(pos.lm1)["footlgth:Pop","Pr(>F)"])}; \tabref{tab:IVROpTest1}). The estimated common slope represents an average \Sexpr{formatC(confint(pos.lm2)["footlgth",1],format="f",digits=2)} to \Sexpr{formatC(confint(pos.lm2)["footlgth",2],format="f",digits=2)} cm increase in total length for a 1 mm increase in foot length. Assuming parallel lines, the relationship between total length and foot length for possums from Victoria and those from other areas had different intercepts (equal-intercepts test \Sexpr{kPvalue(anova(pos.lm1)["Pop","Pr(>F)"])}; \tabref{tab:IVROpTest1}). Thus, the mean total length adjusted to a common foot length was between \Sexpr{formatC(confint(pos.lm2)["Popother",1],format="f",digits=2)} and \Sexpr{formatC(confint(pos.lm2)["Popother",2],format="f",digits=2)} cm less for possums from other locations than for possums from Victoria.
+Possums from Victoria and possums from other locations had similar slopes for the relationship between total length and foot length (parallel lines test \Sexpr{kPvalue(anova(pos.lm1)["footlgth:Pop","Pr(>F)"],digits=3)}; \tabref{tab:IVROpTest1}). The estimated common slope represents an average \Sexpr{formatC(confint(pos.lm2)["footlgth",1],format="f",digits=2)} to \Sexpr{formatC(confint(pos.lm2)["footlgth",2],format="f",digits=2)} cm increase in total length for a 1 mm increase in foot length. Assuming parallel lines, the relationship between total length and foot length for possums from Victoria and those from other areas had different intercepts (equal-intercepts test \Sexpr{kPvalue(anova(pos.lm1)["Pop","Pr(>F)"],digits=3)}; \tabref{tab:IVROpTest1}). Thus, the mean total length adjusted to a common foot length was between \Sexpr{formatC(confint(pos.lm2)["Popother",1],format="f",digits=2)} and \Sexpr{formatC(confint(pos.lm2)["Popother",2],format="f",digits=2)} cm less for possums from other locations than for possums from Victoria.
 
 \begin{table}[h]
   \centering
   \caption{ANOVA results from fitting the ultimate full model on the raw possum morphometric data.}\label{tab:IVROpTest1}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kANOVA(pos.lm1)
 @
@@ -800,6 +804,7 @@ can be used to predict the total length of an possum given a measurement of the 
 \begin{table}[h]
   \centering
   \caption{Predicted total lengths, for the reduced model using all observations, for possums from both locations with foot lengths of 65 and 70 mm.}\label{tab:IVROpPreds1}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 fls <- c(65,65,70,70)
 tmp <- data.frame(footlgth=fls,Pop=c("Vic","other","Vic","other"))
@@ -823,6 +828,7 @@ abline(coef=c(coef(pos.lm3)[1],coef(pos.lm3)[2]),lty=2,lwd=2,col="blue")
 \begin{table}[h]
   \centering
   \caption{Predicted total lengths, for the reduced model with four observations removed, for possums from both locations with foot lengths of 65 and 70 mm.}\label{tab:IVROpPreds2}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 pos.lm4 <- lm(totlngth~footlgth+Pop,data=possum2)
 fls <- c(65,65,70,70)
@@ -949,6 +955,7 @@ It may seem reasonable that the effect of initial weight was ``handled'' by pair
 \begin{table}[h]
   \centering
   \caption{One-way ANOVA results for mean weight gain by temperature treatment.}\label{tab:IVRANCOVAEx1Res1}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
  d <- read.table("Figs/ANCOVA1.txt",header=TRUE)
  d$group <- factor(d$group,levels=c("8C","10C"))
@@ -982,6 +989,7 @@ This example illustrates how the inclusion of a ``strong'' covariate can mask th
 \begin{table}[h]
   \centering
   \caption{One-way ANCOVA results for mean weight gain adjusted by initial weight by temperature treatment.}\label{tab:IVRANCOVAEx1Res2}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kANOVA(lm2)
 @
@@ -1008,6 +1016,7 @@ A one-way ANOVA provides strong evidence for a difference in gonad weight betwee
 \begin{table}[h]
   \centering
   \caption{One-way ANOVA results for mean gonad weight by location.}\label{tab:IVRANCOVAEx2Res1}
+\vspace{-12pt}
 <<echo=FALSE, background="white", warning=FALSE>>=
  loc.levs <- levels(d$loc)
  lma <- lm(wt.gonad~loc,data=d)
@@ -1041,6 +1050,7 @@ This example illustrates how the inclusion of a ``strong'' covariate and a signi
 \begin{table}[h]
   \centering
   \caption{One-way ANCOVA results for mean gonad gain adjusted for somatic weight by location.}\label{tab:IVRANCOVAEx2Res2}
+\vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kANOVA(lm2)
 @
