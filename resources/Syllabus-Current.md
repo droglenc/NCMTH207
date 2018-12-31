@@ -151,6 +151,8 @@ For the final portfolio paper, you will write a report for each data set/topic w
 * Discussion: describe how what you found relates to your objectives and hypotheses (and reasoning) from the introduction. Suggest where further research in this area should go from here.
 * Works cited: list of references (if any) used to support your project.
 
+The **full examples in each module reading provide excellent examples for how each analysis in your portfolio may look**.
+
 It is possible that all four analyses can be conducted from the same large data set. Thus, it is possible to have a single introduction and single data collection methods section, but separate data analysis methods, assumption checking, results, and discussion sections. Alternatively, if different data sets are used for each topic, then separate introduction, data collection methods, data analysis methods, assumption checking, results, and discussion sections will be required. The final portfolio should be typed, grammatically correct, and refer to supporting figures and tables. The due date for the final portfolio is shown on the [Dates page](Dates-Current.html).
 
 
