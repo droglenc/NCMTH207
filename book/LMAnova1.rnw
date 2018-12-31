@@ -823,12 +823,6 @@ addSigLetters(pd.lm1,c("a","b","c","d"),pos=c(2,4,2,4))
 \end{Verbatim}
 
 
-%\vspace{144pt}
-%\begin{center}
-%\textbf{[ TURN THE PAGE ]}
-%\end{center}
-
-%\newpage
 \section{Summary Process}
 The process of fitting and interpreting linear models is as much an art as it is a science. The ``feel'' for fitting these models comes with experience. The following is a process to consider for fitting a one-way ANOVA model. Consider this process as you learn to fit one-way ANOVA models, but don't consider this to be a concrete process for all models.
 

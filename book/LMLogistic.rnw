@@ -26,6 +26,7 @@ set_parent('Biometry.Rnw')
 \defn{Binary Logistic Regression}{A linear model where a binary response variable is examined with a quantitative explanatory variable.}
 
 \section{Logit Transformation}
+\vspace{-12pt}
 <<echo=FALSE>>=
 # Create some random data to be used for demonstrating non-linearity of raw data
 set.seed(3436234)
@@ -87,7 +88,9 @@ and the plot of $logit(p_{i})$ versus the explanatory variable will be linear \f
 
 \clearpage
 \section{Logistic Regression}
+\vspace{-12pt}
 \subsection{The Model}
+\vspace{-12pt}
 The logit transformation is a common transformation for ``linearizing'' the relationship between the probability of ``success'' and the quantitative explanatory variable. The logit transformation is the basis for a logistic regression, such that the logistic regression model is
 
 \begin{equation}\label{eqn:logRegModel}
@@ -97,6 +100,7 @@ The logit transformation is a common transformation for ``linearizing'' the rela
 where $\alpha$ is the ``intercept'' parameter and $\beta_{1}$ is the ``slope'' parameter.
 
 \subsection{Intepreting the Slope Coefficient}
+\vspace{-12pt}
 The slope for any linear regression represents the average change in the response variable for a unit change in the explanatory variable. In logistic regression, this corresponds to the average (additive) change in the log odds of a ``success'' for a unit change in the explanatory variable, or
 
 \[ \begin{split}
@@ -113,6 +117,7 @@ results in a measure of the \textbf{multiplicative} change in the odds of a ``su
 Nearly all software will provide a ``default'' significance test for the slope. This significance test tests $H_{0}:\beta_{1}=0$ versus $H_{A}:\beta_{1}\neq0$. Thus, this significance tests determines, with a one unit increase in the explanatory variable, if the (additive) change in log odds of ``success'' is zero or the (multiplicative) change in odds is one. The probability does not change if the (additive) change in log odds is zero or, equivalently, if the (multiplicative) change in odds is one. Thus, the default hypothesis test for the slope determines if the log odds or the odds of ``success'' is related to the explanatory variable.
 
 \subsection{Predictions}
+\vspace{-12pt}
 Inserting a given value of the explanatory variable into the fitted logistic regression model, i.e., into \eqnref{eqn:logRegModel}, results in a predicted log odds of ``success.''  Back-transforming this result gives a predicted odds of ``success'', i.e.,
 
 \begin{equation} \label{eqn:predOdds}
@@ -132,11 +137,13 @@ The predicted odds equation, \eqnref{eqn:predOdds}, can be algebraically solved 
 \end{equation}
 
 \subsection{Variability Estimates}
+\vspace{-12pt}
 Standard errors or confidence intervals for the parameters of the logistic regression model can be computed with normal distribution theory. However, this theory does not hold for all logistic regression models. In addition, methods for computing confidence intervals for predicted probabilities or for predicted values of $X$ for a particular probability are not well formed. Bootstrapping provides one method for producing confidence intervals for these parameters.
 
 In bootstrapping, $B$ (re)samples of the same size as the original sample are produced with replacement from the original sample. The logistic regression model is fit to each of these new (re)samples and the estimates of interest (i.e., slope, intercept, predicted probability, etc.) are computed each time. The estimates from each (re)sample are then aggregated and an approximate 95\% confidence interval is computed as the values of the estimate that have 2.5\% of all bootstrapped values smaller and greater (i.e., find the bounds that contain the most common 95\% of bootstrapped values). Bootstrap confidence intervals are computer intensive, but provide an interval that does not depend on the shape of the underlying sampling distribution.
 
 \section{Logistic Regression in R}
+\vspace{-12pt}
 Bliss (1935) examined the mortality response of beetles to various concentrations of gaseous carbon disulphide (mg/liter). The concentration and whether or not the beetle survived the exposure to that concentraton was recorded for each beetle and stored in \dfile{Bliss.csv} (\href{https://github.com/droglenc/NCData/blob/master/Bliss.csv}{view}, \href{https://raw.githubusercontent.com/droglenc/NCData/master/Bliss.csv}{download}, \href{https://github.com/droglenc/NCData/blob/master/Bliss_meta.txt}{meta}). The levels for the \var{outcome} variable will be coded as ``0''s and ``1''s in the order that they are listed with \R{levels()}. Thus, ``dead'' will be coded with ``1''s and the proportion of ``successes'' will be the proportion of beetles that were dead at the end of the exposure to gaseous carbon disulphide.
 <<echo=FALSE>>=
 d <- read.csv("data/Bliss.csv")
@@ -195,6 +202,7 @@ hist(bc1,breaks=15,ymax=c(200,200))
 @
 
 \subsection{Predictions}
+\vspace{-12pt}
 The predicted probability of death given a value of the concentration of calcium disulphide is found with \R{predict()}, similar to what was shown in previous modules. The one difference is that if one wants to predict the probability, rather than the log odds, then \R{type="response"} must be included. For example, the predicted probability of death at a concentration of 70 mg/l is computed below.
 <<>>=
 predict(glm1,data.frame(conc=70),type="response")
