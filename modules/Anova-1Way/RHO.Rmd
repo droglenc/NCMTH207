@@ -15,9 +15,7 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-#=============================================================
-#=============== IGNORE/DELETE FROM HERE .... ================
-# Renders an appropriate HTML file for the webpage
+# Renders an appropriate HTML file for the webpage (CTRL-ALT-C)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-1Way")
 source("../../rhelpers/rhelpers.R")
 modHTML("RHO")
@@ -25,23 +23,18 @@ modHTML("RHO")
 
 ```{r echo=FALSE, results='hide', message='FALSE'}
 source("../../rhelpers/knitr_setup.R")
-#=============== .... TO HERE ================================
-#=============================================================
 ```
-----
 
 ```{r results='hide', message=FALSE, warning=FALSE}
-# Load Packages
+options(show.signif.stars=FALSE)
 library(NCStats)
-library(multcomp)     # glht()
+library(multcomp)     # for glht()
 ```
 
 ----
 
 # Raspberry Example
-## Background
-
-A researcher is interested in the effect of irrigation on fruit production by raspberry plants.  The researcher has determined that he will examine the effects of 100 ml (a maintenance amount), 200, 400, and 800 ml of water per pot.  The researcher had 16 identical planting pots available and much more than that number of raspberry plant seedlings.  A square table for growing the plants in a greenhouse was also available.  He had enough time to let the plants mature to the point of producing fruit (i.e. berries) or not.  At the end of this period, the total weight (g) of mature berries was recorded.
+A researcher is interested in the effect of irrigation on fruit production by raspberry plants. The researcher has determined that he will examine the effects of 100 ml (a maintenance amount), 200, 400, and 800 ml of water per pot. The researcher had 16 identical planting pots available and much more than that number of raspberry plant seedlings. A square table for growing the plants in a greenhouse is available. He had enough time to let the plants mature (i.e., produce berries) or not. At the end of this period, the total weight (g) of mature berries was recorded.
 
 ```{r}
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-1Way")
@@ -52,26 +45,53 @@ str(rasp)
 ```
 
 ## Fitting the Linear Model
-```{r par1=TRUE}
+```{r results='hide'}
 lm1 <- lm(weight~water,data=rasp)
 anova(lm1)
-summary(lm1)
-fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
+```
+```{r echo=FALSE}
+kANOVA(lm1)
 ```
 
-## Checking the Assumptions
-```{r fig.show='asis', fig.width=6, par1=TRUE}
-levenesTest(lm1)
-residPlot(lm1)
-adTest(lm1$residuals)
-outlierTest(lm1)
+```{r}
+cbind(Ests=coef(lm1),confint(lm1))
 ```
+
+\newpage
+
+```{r par1=TRUE}
+fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)")
+```
+
+
+## Checking Assumptions
+```{r eval=FALSE}
+transChooser(lm1)
+```
+
+```{r echo=FALSE, out.width="6in"}
+include_graphics("TCRasp1.jpg")
+```
+
+\newpage
 
 ## Multiple Comparison Tests
-```{r par1=TRUE}
+```{r results='hide'}
 rasp.mc <- glht(lm1, mcp(water = "Tukey"))
 summary(rasp.mc)
+```
+```{r echo=FALSE}
+kGLHT(rasp.mc,type="hypothesis")
+```
+
+```{r results='hide'}
 confint(rasp.mc)
+```
+```{r echo=FALSE}
+kGLHT(rasp.mc,type="confidence")
+```
+
+```{r par1=TRUE}
 fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
 addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4))
 ```
@@ -81,9 +101,7 @@ addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4))
 \newpage
 
 # Benthic Infaunal Example
-## Background
-
-Australian researchers were interested in the effect of effluent releases on benthic organisms in the release area.  To examine the effect, the researchers recorded the total abundance of benthic organisms at 8 haphazardly-selected sublocations at each of 8 control locations (thought to have not been impacted by the effluent release) and 1 potentially impacted location.  The results are recorded in `BenthicInfaunal.csv`.  Use these data to determine if the mean abundance of benthic organisms differs between the locations (and, especially, if the impacted location differs from any of the control locations).
+To examine the effect of effluent releases on benthic organisms in the release area, researchers recorded the total abundance of benthic organisms at eight haphazardly-selected sublocations at each of eight control locations (thought to have not been impacted by the effluent release) and one potentially impacted location. Use the data in `BenthicInfaunal.csv` to determine if the mean abundance of benthic organisms differs between the locations (and, especially, if the impacted location differs from any of the control locations).
 
 ```{r}
 ben <- read.csv("BenthicInfaunal.csv")
@@ -92,41 +110,66 @@ str(ben)
 ```
 
 ## Assumption Checking with Possible Transformations
-```{r fig.show='asis', fig.width=6, par1=TRUE}
+```{r}
 lm2 <- lm(abundance~site,data=ben)
-levenesTest(lm2)
-residPlot(lm2)
-adTest(lm2$residuals)
-outlierTest(lm2)
 ```
 
-```{r eval=-1, fig.show='asis', fig.width=6, par1=TRUE}
-transChooser(lm2)  # interactive, result not shown
+```{r eval=FALSE}
+transChooser(lm2)
+```
+```{r echo=FALSE, out.width="6in"}
+include_graphics("TCBenthic1.jpg")
+```
+
+```{r eval=FALSE}
+transChooser(lm2)  # interactively adjust lambdas
+```
+```{r echo=FALSE, out.width="6in"}
+include_graphics("TCBenthic2.jpg")
+```
+
+```{r}
 ben$logab <- log(ben$abundance)
 lm3 <- lm(logab~site,data=ben)
-levenesTest(lm3)
-residPlot(lm3)
-adTest(lm3$residuals)
-outlierTest(lm3)
+```
+
+## Model Summarization
+```{r results='hide'}
+anova(lm3)
+```
+```{r echo=FALSE}
+kANOVA(lm3)
+```
+
+```{r results='hide'}
+ben.mc <- glht(lm3, mcp(site = "Dunnett"))
+summary(ben.mc)
+```
+```{r echo=FALSE}
+kGLHT(ben.mc,type="hypothesis")
 ```
 
 \newpage
 
-## Model Summarization
 ```{r message=FALSE, par1=TRUE}
-anova(lm3)
-ben.mc <- glht(lm3, mcp(site = "Dunnett"))
-summary(ben.mc)
 fitPlot(lm3,ylab="Log Abundance",xlab="Site",main="")
-addSigLetters(lm3,lets=c("","","***","***","***","","","***",""),pos=c(2,4,2,4,2,2,4,2,4))
+addSigLetters(lm3,lets=c("","","*","*","*","","","*",""),pos=c(2,4,2,4,2,2,4,2,4))
 ```
 
-```{r}
+```{r results='hide'}
 confint(ben.mc)
-exp(confint(ben.mc)$confint)
+```
+```{r echo=FALSE}
+kGLHT(ben.mc,type="confidence")
+```
 
+```{r results='hide'}
+exp(confint(ben.mc)$confint)
+```
+```{r echo=FALSE}
+exp(kGLHT(ben.mc,type="confidence"))
 ```
 
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2("RHO.Rmd")
+purl2("RHO.Rmd",moreItems=c("source","modHTML","kGLHT","kANOVA","include_graphics"))
 ```
