@@ -15,45 +15,24 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
+## Renders an appropriate HTML file for the webpage (CTRL-ALT-C)
 source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/rhelpers.R")
-setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression") ## DELETE
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression")
 modHTML("RHO")
 ```
 ```{r echo=FALSE, results='hide', message='FALSE'}
 source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/knitr_setup.R")
 ```
 
-\vspace{-18pt}
-
-----
-
-\vspace{-18pt}
-
-## Initialization
-
-\vspace{-6pt}
-
 ```{r results='hide', message=FALSE, warning=FALSE}
+options(show.signif.stars=FALSE)
 library(NCStats)
-library(plotrix)  #histStack()
-library(car)      #bootCase()
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression")
 ```
 
-\vspace{-6pt}
-
 ----
 
-\vspace{-18pt}
-
 # Bat Morphology Example
-
-\vspace{-12pt}
-
-## Background
-
-\vspace{-8pt}
 
 Researchers measured (among other things) the canine tooth height (cm) from two subspecies of Hoary bats (*Lasiurus cinereus cinereus* and *Lasiurus cinereus semotus*) found in Hawaii. Their primary question was to determine if canine tooth height differed between the subspecies and, more importantly to them, could the canine tooth height be used to predict the subspecies of bat.
 
@@ -65,11 +44,7 @@ xlbl <- "Canine Tooth Height (mm)"
 ylbl <- "Subspecies Code"
 ```
 
-\vspace{-12pt}
-
 ## Explorations
-
-\vspace{-6pt}
 
 ```{r echo=-1, par1=TRUE, fig.width=3,fig.height=4.5,out.height="3in"}
 par(cex=0.8,cex.main=0.8)
@@ -83,18 +58,15 @@ plotBinResp(subsp~canine,data=bat,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),
 ```
 
 ## Model Fitting and Examination
-```{r echo=-1, par1=TRUE, fig.width=3.5}
+```{r echo=-1, par1=TRUE, fig.width=3.5, message=FALSE}
 par(mar=c(3.5,3.5,0.5,3.5))
 glm1 <- glm(subsp~canine,data=bat,family=binomial)
 fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlab=xlbl,ylab=ylbl)
 summary(glm1)
-confint(glm1)
+cbind(Ests=coef(glm1),confint(glm1))
 ```
 
 ## Lecture Support -- Interpretation of Slope
-
-\vspace{-8pt}
-
 ```{r}
 x1 <- c(3,4)                # purposely picked two canine values 1 unit apart
 ( p1 <- predict(glm1,data.frame(canine=x1)) )
@@ -105,9 +77,6 @@ bp1[[2]]/bp1[[1]]
 ```
 
 ## Predicting Probabilities
-
-\vspace{-8pt}
-
 ```{r}
 ( p2 <- predict(glm1,data.frame(canine=c(3,3.4))) )
 exp(p2)/(1+exp(p2))
@@ -115,9 +84,6 @@ predict(glm1,data.frame(canine=c(3,3.4)),type="response")
 ```
 
 ## X for a Certain Proportion
-
-\vspace{-8pt}
-
 ```{r}
 ( cfs <- coef(glm1) )
 p <- 0.5    # canine tooth height where subspecies ratio is 50/50
@@ -128,19 +94,16 @@ p <- 0.9    # length where 90% are semotus, 10% are cinereus
 ```
 
 ## Bootstrapping
-
-\vspace{-8pt}
-
-```{r fig.width=6, par1=TRUE, warning=FALSE}
+```{r fig.width=6, par1=TRUE, warning=FALSE, message=FALSE}
 bc1 <- bootCase(glm1)      # bootstrapping, be patient!
 head(bc1)
 confint(bc1)
-predProb <- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
-predProb(3,coef(glm1)[1],coef(glm1)[2])
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+predProb(3,coef(glm1)[[1]],coef(glm1)[[2]])
 p3 <- predProb(3,bc1[,1],bc1[,2])
 head(p3)
 quantile(p3,c(0.025,0.975))
-predX <- function(p,alpha,beta1) (log(p/(1-p))-alpha)/beta1
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
 x50 <- predX(0.5,bc1[,1],bc1[,2])
 head(x50)
 quantile(x50,c(0.025,0.975))
@@ -148,13 +111,7 @@ quantile(x50,c(0.025,0.975))
 
 ----
 
-\vspace{24pt}
-
 # Solar Panel Offer Data
-
-\vspace{-8pt}
-
-## Background
 
 \vspace{-6pt}
 
@@ -171,11 +128,7 @@ xlbl <- "Family Income (1000s)"
 ylbl <- "Response to Offer"
 ```
 
-\vspace{-12pt}
-
 ## Analysis
-
-\vspace{-8pt}
 
 ```{r echo=-1, par1=TRUE, fig.height=2.4, fig.width=3}
 par(mar=c(3.5,3.5,0.5,3.5))
@@ -189,8 +142,6 @@ predict(glm2,data.frame(income=80),type="response")
 ```
 
 
-
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2("RHO.Rmd",moreItems=c("source","modHTML","Renders",
-                            "knitr::include","DELETE"))
+purl2("RHO.Rmd",moreItems=c("source","modHTML","kGLHT","kANOVA","include_graphics"))
 ```

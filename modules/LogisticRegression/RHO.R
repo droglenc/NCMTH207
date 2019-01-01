@@ -1,6 +1,7 @@
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression")
+
+options(show.signif.stars=FALSE)
 library(NCStats)
-library(plotrix)  #histStack()
-library(car)      #bootCase()
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression")
 
 bat <- read.csv("Batmorph.csv")[,c("subsp","canine")]  # for class demo purposes only
@@ -20,7 +21,7 @@ par(mar=c(3.5,3.5,0.5,3.5))
 glm1 <- glm(subsp~canine,data=bat,family=binomial)
 fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlab=xlbl,ylab=ylbl)
 summary(glm1)
-confint(glm1)
+cbind(Ests=coef(glm1),confint(glm1))
 
 x1 <- c(3,4)                # purposely picked two canine values 1 unit apart
 ( p1 <- predict(glm1,data.frame(canine=x1)) )
@@ -43,12 +44,12 @@ p <- 0.9    # length where 90% are semotus, 10% are cinereus
 bc1 <- bootCase(glm1)      # bootstrapping, be patient!
 head(bc1)
 confint(bc1)
-predProb <- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
-predProb(3,coef(glm1)[1],coef(glm1)[2])
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+predProb(3,coef(glm1)[[1]],coef(glm1)[[2]])
 p3 <- predProb(3,bc1[,1],bc1[,2])
 head(p3)
 quantile(p3,c(0.025,0.975))
-predX <- function(p,alpha,beta1) (log(p/(1-p))-alpha)/beta1
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
 x50 <- predX(0.5,bc1[,1],bc1[,2])
 head(x50)
 quantile(x50,c(0.025,0.975))
@@ -68,4 +69,4 @@ p <- 0.25
 predict(glm2,data.frame(income=80),type="response")
 
 
-# Script created at 2018-04-03 08:27:01
+# Script created at 2019-01-01 10:26:49

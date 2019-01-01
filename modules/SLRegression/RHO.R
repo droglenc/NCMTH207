@@ -1,3 +1,6 @@
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
+
+options(show.signif.stars=FALSE)
 library(NCStats)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
 
@@ -11,19 +14,16 @@ fitPlot(lm1,xlab=xlbl,ylab=ylbl)
 predict(lm1,data.frame(damage=35))
 
 summary(lm1)
-confint(lm1)
-fitPlot(lm1,interval="both",ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
+cbind(Ests=coef(lm1),confint(lm1))
+fitPlot(lm1,ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60),interval="both")
 
 predict(lm1,data.frame(damage=35),interval="confidence")
 predict(lm1,data.frame(damage=35),interval="prediction")
-predictionPlot(lm1,data.frame(damage=c(13,35)),interval="confidence",
-               ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
+
+predictionPlot(lm1,data.frame(damage=c(13,35)),ylab=ylbl,xlab=xlbl,
+               ylim=c(0,2000),xlim=c(0,60),interval="confidence")
 
 anova(lm1)
-
-tmp <- anova(lm2)
-attr(tmp,"heading") <- NULL
-tmp
 
 transChooser(lm1)
 
@@ -41,11 +41,11 @@ lm2 <- lm(log.wtloss~log.wt,data=petrels)
 fitPlot(lm2,xlab="log Weight (g)",ylab="log Weight Loss (g/g/d)")
 
 anova(lm2)
+
 summary(lm2)
-confint(lm2)
-( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),
-                          interval="confidence") )
+cbind(Ests=coef(lm2),confint(lm2))
+( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),interval="confidence") )
 exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
 
 
-# Script created at 2018-12-08 20:23:30
+# Script created at 2018-12-31 13:38:04

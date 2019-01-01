@@ -70,7 +70,7 @@ transChooser(lm1)
 ```
 
 ```{r echo=FALSE, out.width="6in"}
-include_graphics("TCRasp1.jpg")
+knitr::include_graphics("TCRasp1.jpg")
 ```
 
 \newpage
@@ -118,14 +118,14 @@ lm2 <- lm(abundance~site,data=ben)
 transChooser(lm2)
 ```
 ```{r echo=FALSE, out.width="6in"}
-include_graphics("TCBenthic1.jpg")
+knitr::include_graphics("TCBenthic1.jpg")
 ```
 
 ```{r eval=FALSE}
 transChooser(lm2)  # interactively adjust lambdas
 ```
 ```{r echo=FALSE, out.width="6in"}
-include_graphics("TCBenthic2.jpg")
+knitr::include_graphics("TCBenthic2.jpg")
 ```
 
 ```{r}

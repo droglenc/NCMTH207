@@ -15,32 +15,23 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage
+## Renders an appropriate HTML file for the webpage (CTRL-ALT-C)
 source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/rhelpers.R")
-setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression") ## DELETE
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
 modHTML("RHO")
 ```
 ```{r echo=FALSE, results='hide', message='FALSE'}
 source("C:/aaaWork/Web/GitHub/NCMTH207/rhelpers/knitr_setup.R")
 ```
 
-\vspace{-12pt}
-
-----
-
-\vspace{-12pt}
-
 # Oak Gall Wasps
-
-\vspace{-6pt}
 
 [Prior and Hellman (2010)](http://www.esapubs.org/archive/ecol/E091/232/appendix-C.htm) investigated the impact of invasive Oak Gall Wasps (*Neuroterus saltatorius*) on a native butterfly. They hoped to use the amount of damage shown on oak leaves as a surrogate for the density of the wasps' galls. To examine this they recorded the density of wasp galls (number per leaf) and the percentage leaf damage for ten trees. Is leaf damage a reliable predictor of wasp gall density?
 ```{r results='hide', message=FALSE, warning=FALSE}
+options(show.signif.stars=FALSE)
 library(NCStats)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression")
 ```
-
-\vspace{-4pt}
 
 ```{r}
 df <- read.csv("galls.csv")
@@ -48,6 +39,8 @@ str(df)
 xlbl <- "Percentage of Leaf Damage"
 ylbl <- "Wasp Gall Density"
 ```
+
+\vspace{18pt}
 
 ## Lecture Support I -- Model Fitting and Simple Predictions
 
@@ -60,15 +53,20 @@ predict(lm1,data.frame(damage=35))
 ## Lecture Support II -- Sampling Variability
 ```{r par1=TRUE}
 summary(lm1)
-confint(lm1)
-fitPlot(lm1,interval="both",ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
+cbind(Ests=coef(lm1),confint(lm1))
+fitPlot(lm1,ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60),interval="both")
 ```
 
-```{r par1=TRUE}
+```{r}
 predict(lm1,data.frame(damage=35),interval="confidence")
 predict(lm1,data.frame(damage=35),interval="prediction")
-predictionPlot(lm1,data.frame(damage=c(13,35)),interval="confidence",
-               ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))
+```
+
+\newpage
+
+```{r par1=TRUE}
+predictionPlot(lm1,data.frame(damage=c(13,35)),ylab=ylbl,xlab=xlbl,
+               ylim=c(0,2000),xlim=c(0,60),interval="confidence")
 ```
 
 ## Lecture Support III -- Model Comparisons
@@ -77,19 +75,16 @@ predictionPlot(lm1,data.frame(damage=c(13,35)),interval="confidence",
 anova(lm1)
 ```
 ```{r echo=FALSE}
-tmp <- anova(lm2)
-attr(tmp,"heading") <- NULL
-tmp
+kANOVA(lm1)
 ```
-
 
 ## Lecture Support IV -- Assumption Checking
 
 ```{r eval=FALSE}
 transChooser(lm1)
 ```
-```{r echo=FALSE, out.width='6in'}
-knitr::include_graphics("transChooser1.png")
+```{r echo=FALSE, out.width='5.8in'}
+knitr::include_graphics("TCGalls1.jpg")
 ```
 
 \newpage
@@ -114,41 +109,48 @@ str(petrels)
 lm1 <- lm(weight.loss~weight,data=petrels)
 fitPlot(lm1,xlab="Weight (g)",ylab="Weight Loss (g/g/d)")
 ```
+
+\newpage
 ```{r eval=FALSE}
 transChooser(lm1)
 ```
 
 \vspace{-8pt}
 
-```{r echo=FALSE, out.width='5.66in'}
-knitr::include_graphics("transChooser2.png")
+```{r echo=FALSE, out.width='5.1in'}
+knitr::include_graphics("TCPetrels1.jpg")
 ```
 
-```{r echo=FALSE, out.width='5.65in'}
-knitr::include_graphics("transChooser3.png")
+```{r echo=FALSE, out.width='5.1in'}
+knitr::include_graphics("TCPetrels2.jpg")
 ```
 
-```{r echo=FALSE, out.width='5.65in'}
-knitr::include_graphics("transChooser4.png")
+```{r echo=FALSE, out.width='5.1in'}
+knitr::include_graphics("TCPetrels3.jpg")
 ```
 
-```{r par1=TRUE, out.width='2.35in'}
+\newpage
+```{r par1=TRUE}
 petrels$log.wt <- log(petrels$weight)
 petrels$log.wtloss <- log(petrels$weight.loss)
 lm2 <- lm(log.wtloss~log.wt,data=petrels)
 fitPlot(lm2,xlab="log Weight (g)",ylab="log Weight Loss (g/g/d)")
 ```
 
-```{r}
+```{r results='hide'}
 anova(lm2)
+```
+```{r echo=FALSE}
+kANOVA(lm2)
+```
+
+```{r}
 summary(lm2)
-confint(lm2)
-( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),
-                          interval="confidence") )
+cbind(Ests=coef(lm2),confint(lm2))
+( p.log.wtloss <- predict(lm2,data.frame(log.wt=log(5000)),interval="confidence") )
 exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)
 ```
 
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2("RHO.Rmd",moreItems=c("source","modHTML","Renders",
-                            "knitr::include","DELETE"))
+purl2("RHO.Rmd",moreItems=c("source","modHTML","kGLHT","kANOVA","include_graphics"))
 ```

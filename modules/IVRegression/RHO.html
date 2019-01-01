@@ -14,7 +14,8 @@ css: /css/modules.css
 <h1>Laysan Teal Monitoring</h1>
 
 <p>Monitoring the abundance of animal populations can be expensive. Researchers often attempt to find methods for accurately predicting abundance from simple and inexpensive metrics. In one study, <a href="https://wildfowl.wwt.org.uk/index.php/wildfowl/article/viewFile/2664/1781">Reynolds <em>et al.</em> (2017)</a> compared the abundance of Laysan Teal (<em>Anas laysanensis</em>) as estimated from the time-intensive Lincoln-Petersen mark-resight method to the maximum annual observed count of Laysan Teal made bi-monthly on Midway Atoll. They wanted to determine if there was a significantly positive relationship between the mark-resight abundance estimate and the maximum annual count, and if that relationship differed between the breeding and non-breeding seasons.</p>
-<pre class="r"><code>&gt; library(NCStats)
+<pre class="r"><code>&gt; options(show.signif.stars=FALSE)
+&gt; library(NCStats)
 &gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/IVRegression&quot;)</code></pre>
 <pre class="r"><code>&gt; df &lt;- read.csv(&quot;LaysanTeal.csv&quot;)
 &gt; str(df)</code></pre>
@@ -30,7 +31,7 @@ css: /css/modules.css
 
 <pre class="r"><code>&gt; lm1 &lt;- lm(mr.estimate~max.count*season,data=df)</code></pre>
 <pre class="r"><code>&gt; transChooser(lm1)</code></pre>
-<p><img src="transChooser1lt.png" width="6in" /></p>
+<p><img src="TCTeal1.jpg" width="5.5in" /></p>
 </div>
 <div id="lecture-support-anova-demonstration" class="section level2">
 <h2>Lecture Support – ANOVA Demonstration</h2>
@@ -60,23 +61,12 @@ Residuals 10 253849   25385                </code></pre>
 <h2>Model Exploration and Summarization</h2>
 <pre class="r"><code>&gt; fitPlot(lm1,interval=&quot;confidence&quot;,xlab=xlbl,ylab=ylbl,legend=&quot;topleft&quot;,cex.leg=0.7)</code></pre>
 <p><img src="RHO_files/figure-html/unnamed-chunk-14-1.png" width="288" /></p>
-<pre class="r"><code>&gt; summary(lm1)</code></pre>
-<pre><code>Coefficients:
-                              Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)                   324.6130    94.4805   3.436  0.00888
-max.count                       1.5048     0.3779   3.982  0.00405
-seasonnon-breeding           -323.9986   187.8052  -1.725  0.12278
-max.count:seasonnon-breeding    0.1355     0.6336   0.214  0.83599
-
-Residual standard error: 88.56 on 8 degrees of freedom
-Multiple R-squared: 0.814,  Adjusted R-squared: 0.7442 
-F-statistic: 11.67 on 3 and 8 DF,  p-value: 0.002718 </code></pre>
-<pre class="r"><code>&gt; confint(lm1)</code></pre>
-<pre><code>                                    2.5 %     97.5 %
-(Intercept)                   106.7406493 542.485322
-max.count                       0.6333927   2.376185
-seasonnon-breeding           -757.0781733 109.081017
-max.count:seasonnon-breeding   -1.3255575   1.596583</code></pre>
+<pre class="r"><code>&gt; cbind(Ests=coef(lm1),confint(lm1))</code></pre>
+<pre><code>                                     Ests        2.5 %     97.5 %
+(Intercept)                   324.6129857  106.7406493 542.485322
+max.count                       1.5047886    0.6333927   2.376185
+seasonnon-breeding           -323.9985782 -757.0781733 109.081017
+max.count:seasonnon-breeding    0.1355129   -1.3255575   1.596583</code></pre>
 <pre class="r"><code>&gt; ( nd &lt;- data.frame(max.count=c(250,250),season=c(&quot;breeding&quot;,&quot;non-breeding&quot;)) )</code></pre>
 <pre><code>  max.count       season
 1       250     breeding
@@ -92,79 +82,81 @@ max.count:seasonnon-breeding   -1.3255575   1.596583</code></pre>
 </div>
 <div id="fish-energy-density" class="section level1">
 <h1>Fish Energy Density</h1>
-<p><a href="http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281995%29124%3C0347%3AEEDOF%3E2.3.CO%3B2">Hartman and Brandt (1995)</a> examined the relationship between energy density and percent dry weight for four species of fish – Bay Ancovy (<em>Anchoa mitchilli</em>), Bluefish (<em>Pomatomus saltatrix</em>), Striped Bass (<em>Morone saxatilis</em>), and Weakfish (<em>Cynoscion regalis</em>). They wanted to describe the relationship between these two variables and determine if there were any differences among species.</p>
+<p><a href="http://www.tandfonline.com/doi/abs/10.1577/1548-8659%281995%29124%3C0347%3AEEDOF%3E2.3.CO%3B2">Hartman and Brandt (1995)</a> examined the relationship between energy density (J/g wet weight) and percent dry weight for four species of fish – Bay Ancovy (<em>Anchoa mitchilli</em>), Bluefish (<em>Pomatomus saltatrix</em>), Striped Bass (<em>Morone saxatilis</em>), and Weakfish (<em>Cynoscion regalis</em>). They wanted to describe the relationship between these two variables and determine if there were any differences among species.</p>
 <pre class="r"><code>&gt; FED &lt;- read.csv(&quot;FishEnergyDensity.csv&quot;)
 &gt; str(FED)</code></pre>
 <pre><code>&#39;data.frame&#39;:   64 obs. of  3 variables:
  $ species: Factor w/ 4 levels &quot;bayanchovy&quot;,&quot;bluefish&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
  $ dw     : int  39 34 34 32 31 30 30 29 26 25 ...
  $ ed     : int  10000 9000 8500 8100 7500 7100 7700 6100 5900 5500 ...</code></pre>
+<pre class="r"><code>&gt; FED$ed2 &lt;- FED$ed/1000</code></pre>
 <div id="model-fitting-and-analysis" class="section level2">
 <h2>Model Fitting and Analysis</h2>
-<pre class="r"><code>&gt; lm1 &lt;- lm(ed~dw*species,data=FED)</code></pre>
+<pre class="r"><code>&gt; lm1 &lt;- lm(ed2~dw*species,data=FED)</code></pre>
 <pre class="r"><code>&gt; transChooser(lm1)</code></pre>
-<p><img src="transChooser2.png" width="6in" /></p>
+<p><img src="TCFish1.jpg" width="6in" /></p>
 <pre class="r"><code>&gt; anova(lm1)</code></pre>
-<pre><code>           Df    Sum Sq   Mean Sq  F value    Pr(&gt;F)
-dw          1 170693154 170693154 1858.966 &lt; 2.2e-16
-species     3  10592036   3530679   38.452 1.258e-13
-dw:species  3   4105617   1368539   14.904 3.002e-07
-Residuals  56   5142008     91822                   </code></pre>
+<pre><code>           Df  Sum Sq Mean Sq  F value    Pr(&gt;F)
+dw          1 170.693 170.693 1858.966 &lt; 2.2e-16
+species     3  10.592   3.531   38.452 1.258e-13
+dw:species  3   4.106   1.369   14.904 3.002e-07
+Residuals  56   5.142   0.092                   </code></pre>
 
 <pre class="r"><code>&gt; compSlopes(lm1)</code></pre>
 <pre><code>Multiple Slope Comparisons (using the &#39;holm&#39; adjustment)</code></pre>
-<pre><code>              comparison      diff    95% LCI   95% UCI p.unadj   p.adj
-1    bluefish-bayanchovy 208.30952  145.62788 270.99117 0.00000 0.00000
-2 stripedbass-bayanchovy 157.62055   94.29774 220.94336 0.00001 0.00005
-3    weakfish-bayanchovy 149.60379   83.20906 215.99852 0.00003 0.00012
-4   stripedbass-bluefish -50.68898 -101.08569  -0.29227 0.04873 0.10290
-5      weakfish-bluefish -58.70573 -112.91192  -4.49955 0.03430 0.10290
-6   weakfish-stripedbass  -8.01676  -62.96310  46.92958 0.77116 0.77116</code></pre>
+<pre><code>              comparison     diff  95% LCI  95% UCI p.unadj   p.adj
+1    bluefish-bayanchovy  0.20831  0.14563  0.27099 0.00000 0.00000
+2 stripedbass-bayanchovy  0.15762  0.09430  0.22094 0.00001 0.00005
+3    weakfish-bayanchovy  0.14960  0.08321  0.21600 0.00003 0.00012
+4   stripedbass-bluefish -0.05069 -0.10109 -0.00029 0.04873 0.10290
+5      weakfish-bluefish -0.05871 -0.11291 -0.00450 0.03430 0.10290
+6   weakfish-stripedbass -0.00802 -0.06296  0.04693 0.77116 0.77116</code></pre>
 <pre><code>
 Slope Information (using the &#39;holm&#39; adjustment)</code></pre>
-<pre><code>        level   slopes  95% LCI  95% UCI p.unadj p.adj
-1  bayanchovy 154.1905 102.2341 206.1469       0     0
-4    weakfish 303.7943 262.4567 345.1318       0     0
-3 stripedbass 311.8110 275.6128 348.0092       0     0
-2    bluefish 362.5000 327.4355 397.5645       0     0</code></pre>
-<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;,cex.leg=0.8)</code></pre>
+<pre><code>        level  slopes 95% LCI 95% UCI p.unadj p.adj
+1  bayanchovy 0.15419 0.10223 0.20615       0     0
+4    weakfish 0.30379 0.26246 0.34513       0     0
+3 stripedbass 0.31181 0.27561 0.34801       0     0
+2    bluefish 0.36250 0.32744 0.39756       0     0</code></pre>
+<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density (J/kg)&quot;,legend=&quot;topleft&quot;,cex.leg=0.8)</code></pre>
 <p><img src="RHO_files/figure-html/unnamed-chunk-21-1.png" width="288" /></p>
+
 </div>
 <div id="follow-up-model-fitting-and-analysis" class="section level2">
 <h2>Follow-Up Model Fitting and Analysis</h2>
 <pre class="r"><code>&gt; FED1 &lt;- filterD(FED,species!=&quot;bayanchovy&quot;)
-&gt; lm2 &lt;- lm(ed~dw*species,data=FED1)
+&gt; lm2 &lt;- lm(ed2~dw*species,data=FED1)
 &gt; anova(lm2)</code></pre>
-<pre><code>           Df    Sum Sq   Mean Sq  F value    Pr(&gt;F)
-dw          1 104962559 104962559 838.6208 &lt; 2.2e-16
-species     2   2583571   1291785  10.3210 0.0003476
-dw:species  2    556352    278176   2.2225 0.1247887
-Residuals  32   4005150    125161                   </code></pre>
+<pre><code>           Df  Sum Sq Mean Sq  F value    Pr(&gt;F)
+dw          1 104.963 104.963 838.6208 &lt; 2.2e-16
+species     2   2.584   1.292  10.3210 0.0003476
+dw:species  2   0.556   0.278   2.2225 0.1247887
+Residuals  32   4.005   0.125                   </code></pre>
 <pre class="r"><code>&gt; compIntercepts(lm2)</code></pre>
 <pre><code>Warning: Removed an interaction term from &#39;mdl&#39; (i.e., assumed
  parallel lines) to test intercepts.</code></pre>
 <pre><code>Tukey HSD on means adjusted assuming parallel lines</code></pre>
-<pre><code>            comparison      diff   95% LCI  95% UCI        p.adj
-1 stripedbass-bluefish  631.3980  291.1082 971.6878 0.0001843341
-2    weakfish-bluefish  506.4749  144.5318 868.4180 0.0044160914
-3 weakfish-stripedbass -124.9231 -480.8922 231.0461 0.6693967026</code></pre>
+<pre><code>            comparison       diff    95% LCI   95% UCI        p.adj
+1 stripedbass-bluefish  0.6313980  0.2911082 0.9716878 0.0001843341
+2    weakfish-bluefish  0.5064749  0.1445318 0.8684180 0.0044160914
+3 weakfish-stripedbass -0.1249231 -0.4808922 0.2310461 0.6693967026</code></pre>
 <pre><code>
-Mean ed when dw=26.10526</code></pre>
+Mean ed2 when dw=26.10526</code></pre>
 <pre><code>   bluefish stripedbass    weakfish 
-   5828.663    6460.061    6335.138 </code></pre>
+   5.828663    6.460061    6.335138 </code></pre>
 <pre class="r"><code>&gt; compIntercepts(lm2,common.cov=0)</code></pre>
 <pre><code>Warning: Removed an interaction term from &#39;mdl&#39; (i.e., assumed
  parallel lines) to test intercepts.</code></pre>
 <pre><code>Tukey HSD on means adjusted assuming parallel lines</code></pre>
-<pre><code>            comparison      diff   95% LCI  95% UCI        p.adj
-1 stripedbass-bluefish  631.3980  291.1082 971.6878 0.0001843341
-2    weakfish-bluefish  506.4749  144.5318 868.4180 0.0044160914
-3 weakfish-stripedbass -124.9231 -480.8922 231.0461 0.6693967026</code></pre>
+<pre><code>            comparison       diff    95% LCI   95% UCI        p.adj
+1 stripedbass-bluefish  0.6313980  0.2911082 0.9716878 0.0001843341
+2    weakfish-bluefish  0.5064749  0.1445318 0.8684180 0.0044160914
+3 weakfish-stripedbass -0.1249231 -0.4808922 0.2310461 0.6693967026</code></pre>
 <pre><code>
-Mean ed when dw=0</code></pre>
+Mean ed2 when dw=0</code></pre>
 <pre><code>   bluefish stripedbass    weakfish 
-  -2752.451   -2121.053   -2245.976 </code></pre>
-<pre class="r"><code>&gt; fitPlot(lm2,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density&quot;,legend=&quot;topleft&quot;,cex.leg=0.8)</code></pre>
+  -2.752451   -2.121053   -2.245976 </code></pre>
+<pre class="r"><code>&gt; fitPlot(lm2,xlab=&quot;Dry Weight&quot;,ylab=&quot;Energy Density (J/kg)&quot;,legend=&quot;topleft&quot;,cex.leg=0.8)</code></pre>
 <p><img src="RHO_files/figure-html/unnamed-chunk-24-1.png" width="288" /></p>
 </div>
 </div>

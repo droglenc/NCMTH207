@@ -8,15 +8,13 @@ css: "/css/modules.css"
 </div>
 
 
-<hr />
-<pre class="r"><code>&gt; library(NCStats)
-&gt; library(multcomp)     # glht()</code></pre>
+<pre class="r"><code>&gt; options(show.signif.stars=FALSE)
+&gt; library(NCStats)
+&gt; library(multcomp)     # for glht()</code></pre>
 <hr />
 <div id="bacteria-example" class="section level1">
 <h1>Bacteria Example</h1>
-<div id="background" class="section level2">
-<h2>Background</h2>
-<p>What is the optimal temperature (27,35,43C) and concentration (0.6,0.8,1.0,1.2,1.4% by weight) of the nutrient, tryptone, for culturing the <em>Staphylococcus aureus</em> bacterium. Each treatment was repeated twice. The number of bacteria was recorded in millions CFU/mL (CFU=Colony Forming Units).</p>
+<p>What is the optimal temperature (27,35,43C) and concentration (0.6,0.8,1.0,1.2,1.4% by weight) of the nutrient, tryptone, for culturing the <em>Staphylococcus aureus</em> bacterium. Each treatment was repeated twice. The number of bacteria (millions Colony Forming Units (CFU)/mL) was recorded in Bacteria.csv.</p>
 <pre class="r"><code>&gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-2Way&quot;)
 &gt; bact &lt;- read.csv(&quot;Bacteria.csv&quot;)
 &gt; str(bact)</code></pre>
@@ -29,165 +27,143 @@ css: "/css/modules.css"
 <pre class="r"><code>&gt; ylbl &lt;- &quot;Mean Number of Cells&quot;
 &gt; conclbl &lt;- &quot;Concentration (%)&quot;
 &gt; templbl &lt;- &quot;Temperature (C)&quot;</code></pre>
-</div>
 <div id="initial-summaries" class="section level2">
 <h2>Initial Summaries</h2>
-<pre class="r"><code>&gt; sumTable(cells~temp*conc,data=bact,FUN=length)</code></pre>
-<pre><code>   0.6 0.8 1 1.2 1.4
-27   2   2 2   2   2
-35   2   2 2   2   2
-43   2   2 2   2   2</code></pre>
-<pre class="r"><code>&gt; sumTable(cells~temp*conc,data=bact,FUN=mean,digits=0)</code></pre>
-<pre><code>   0.6 0.8   1 1.2 1.4
-27 102 106 160 267 131
-35  88 161 170 230 198
-43 134 166 136 208 164</code></pre>
+<pre class="r"><code>&gt; Summarize(cells~temp*conc,data=bact,digits=0)</code></pre>
+<pre><code>   temp conc n mean sd min  Q1 median  Q3 max
+1    27  0.6 2  102 67  55  79    102 126 150
+2    35  0.6 2   88  8  82  85     88  91  94
+3    43  0.6 2  134 27 115 124    134 144 153
+4    27  0.8 2  106 21  91  98    106 113 120
+5    35  0.8 2  161  7 156 158    161 164 166
+6    43  0.8 2  166 28 146 156    166 176 186
+7    27    1 2  160 37 133 146    160 173 186
+8    35    1 2  170 13 160 165    170 174 179
+9    43    1 2  136  1 135 135    136 136 136
+10   27  1.2 2  267 10 260 264    267 270 274
+11   35  1.2 2  230  9 223 226    230 233 236
+12   43  1.2 2  208 28 189 199    208 218 228
+13   27  1.4 2  131 28 111 121    131 141 151
+14   35  1.4 2  198 29 178 188    198 209 219
+15   43  1.4 2  164 28 144 154    164 173 183</code></pre>
 </div>
 <div id="model-fitting-and-summary" class="section level2">
 <h2>Model Fitting and Summary</h2>
 <pre class="r"><code>&gt; lm1 &lt;- lm(cells~temp*conc,data=bact)
 &gt; anova(lm1)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: cells
-          Df Sum Sq Mean Sq F value    Pr(&gt;F)
+<pre><code>          Df Sum Sq Mean Sq F value    Pr(&gt;F)
 temp       2   1313   656.4  0.8557   0.44473
 conc       4  51596 12899.1 16.8154 2.041e-05
 temp:conc  8  14703  1837.8  2.3958   0.06886
 Residuals 15  11507   767.1                  </code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1)  # left
 &gt; fitPlot(lm1,interval=FALSE,change.order=TRUE,xlab=conclbl,ylab=ylbl,legend=&quot;topleft&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" width="288" /><img src="RHO_files/figure-html/unnamed-chunk-7-2.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" width="288" /><img src="RHO_files/figure-html/unnamed-chunk-9-2.png" width="288" /></p>
 <pre class="r"><code>&gt; fitPlot(lm1,which=&quot;temp&quot;,ylim=c(60,270),xlab=templbl,ylab=ylbl)  # left
 &gt; fitPlot(lm1,which=&quot;conc&quot;,ylim=c(60,270),xlab=conclbl,ylab=ylbl)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-8-1.png" width="288" /><img src="RHO_files/figure-html/unnamed-chunk-8-2.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-10-1.png" width="288" /><img src="RHO_files/figure-html/unnamed-chunk-10-2.png" width="288" /></p>
 </div>
 <div id="multiple-comparisons" class="section level2">
 <h2>Multiple Comparisons</h2>
-<pre class="r"><code>&gt; bact.mc1 &lt;- glht(lm1,mcp(conc=&quot;Tukey&quot;))</code></pre>
-<pre><code>Warning in mcp2matrix(model, linfct = linfct): covariate interactions found -- default
-contrast might be inappropriate</code></pre>
-<pre class="r"><code>&gt; summary(bact.mc1)</code></pre>
-<pre><code>
-     Simultaneous Tests for General Linear Hypotheses
-
-Multiple Comparisons of Means: Tukey Contrasts
-
-
-Fit: lm(formula = cells ~ temp * conc, data = bact)
-
-Linear Hypotheses:
-               Estimate Std. Error t value Pr(&gt;|t|)
-0.8 - 0.6 == 0      3.0       27.7   0.108  0.99996
-1 - 0.6 == 0       57.0       27.7   2.058  0.28720
-1.2 - 0.6 == 0    164.5       27.7   5.939  &lt; 0.001
-1.4 - 0.6 == 0     28.5       27.7   1.029  0.83817
-1 - 0.8 == 0       54.0       27.7   1.950  0.33499
-1.2 - 0.8 == 0    161.5       27.7   5.831  &lt; 0.001
-1.4 - 0.8 == 0     25.5       27.7   0.921  0.88452
-1.2 - 1 == 0      107.5       27.7   3.881  0.01087
-1.4 - 1 == 0      -28.5       27.7  -1.029  0.83818
-1.4 - 1.2 == 0   -136.0       27.7  -4.910  0.00149
-(Adjusted p values reported -- single-step method)</code></pre>
+<pre class="r"><code>&gt; bact.mc1 &lt;- glht(lm1,mcp(conc=&quot;Tukey&quot;))
+&gt; summary(bact.mc1)</code></pre>
+<pre><code>              Estimate Std. Error    t value     p value
+0.8 - 0.6 = 0      3.0   27.69657  0.1083167 0.999964901
+1 - 0.6 = 0       57.0   27.69657  2.0580166 0.287200856
+1.2 - 0.6 = 0    164.5   27.69657  5.9393636 0.000242605
+1.4 - 0.6 = 0     28.5   27.69657  1.0290083 0.838160459
+1 - 0.8 = 0       54.0   27.69657  1.9496999 0.335021470
+1.2 - 0.8 = 0    161.5   27.69657  5.8310469 0.000296171
+1.4 - 0.8 = 0     25.5   27.69657  0.9206916 0.884522412
+1.2 - 1 = 0      107.5   27.69657  3.8813470 0.010935822
+1.4 - 1 = 0      -28.5   27.69657 -1.0290083 0.838177101
+1.4 - 1.2 = 0   -136.0   27.69657 -4.9103553 0.001548588</code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,which=&quot;conc&quot;,xlab=conclbl,ylab=ylbl)
-&gt; addSigLetters(lm1,which=&quot;conc&quot;,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;a&quot;),pos=c(2,2,4,2,4))</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-9-1.png" width="288" /></p>
+&gt; addSigLetters(lm1,which=&quot;conc&quot;,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;a&quot;),pos=c(4,2,4,2,2))</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-13-1.png" width="288" /></p>
 <hr />
+
 </div>
 </div>
 <div id="soil-phosphorous-example" class="section level1">
 <h1>Soil Phosphorous Example</h1>
-<div id="background-1" class="section level2">
-<h2>Background</h2>
-<p>Soil phosphorous is important for the invasion of native vegatation by exotic weeds. Clements (1983) studied the soil phosphorous in the Sydney region (Australia) to determine how soil phosphorous varied with topographical location and soil type. Bushland sites were chosen in Brisbane Waters National Park, Ku-ring-gai Chase National Park and Royal National Park. These areas were relatively unaffected by suburban development, were free from immediate roadside or track effects, and had not been burned for at least two years. Shale-derived and sandstone-derived soils in four topographic locations were examined with three 250 m<sup>2</sup> quadrats in each of the eight combinations of soil type and topography. Cores of soil of 75 mm depth and 25 mm diameter, free from surface litter, were collected from each of five randomly selected points in each quadrat. The five soil samples were pooled and the total soil phosphorous (ppm) was determined for each pooled sample. Determine the effect of soil type and topography on total soil phosphorous level.</p>
+<p>Soil phosphorous is important for the invasion of native vegatation by exotic weeds. Clements (1983) studied the soil phosphorous near Sydney (Australia) to determine how soil phosphorous varied with topographical location and soil type. Bushland sites were chosen in Brisbane Waters National Park, Ku-ring-gai Chase National Park, and Royal National Park as these areas were relatively unaffected by suburban development, were free from immediate roadside or track effects, and had not been burned for at least two years. Shale-derived and sandstone-derived soils in four topographic locations were examined with three 250 m<sup>2</sup> quadrats in each of the eight combinations of soil type and topography. Cores of soil of 75 mm depth and 25 mm diameter, free from surface litter, were collected from each of five randomly selected points in each quadrat. The five soil samples were pooled and the total soil phosphorous (ppm) was determined for each pooled sample. Determine the effect of soil type and topography on total soil phosphorous level.</p>
 <pre class="r"><code>&gt; sp &lt;- read.csv(&quot;SoilPhosphorous.csv&quot;)
 &gt; str(sp)</code></pre>
 <pre><code>&#39;data.frame&#39;:   24 obs. of  3 variables:
  $ soil: Factor w/ 2 levels &quot;sandstone&quot;,&quot;shale&quot;: 2 2 2 2 2 2 2 2 2 2 ...
  $ topo: Factor w/ 4 levels &quot;hilltop&quot;,&quot;north&quot;,..: 4 4 4 2 2 2 3 3 3 1 ...
  $ phos: int  98 172 185 78 77 100 117 54 96 83 ...</code></pre>
-</div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
 <pre class="r"><code>&gt; lm1 &lt;- lm(phos~soil*topo,data=sp)</code></pre>
 <pre class="r"><code>&gt; transChooser(lm1)</code></pre>
-<p><img src="transChooser.png" width="6.5in" /></p>
+<p><img src="TCSoil1.jpg" width="6in" /></p>
 <pre class="r"><code>&gt; anova(lm1)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: phos
-          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+<pre><code>          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
 soil       1 17876.0 17876.0 22.9818 0.0001988
 topo       3  9693.8  3231.3  4.1542 0.0235128
 soil:topo  3 11390.8  3796.9  4.8814 0.0134826
 Residuals 16 12445.3   777.8                  </code></pre>
 <pre class="r"><code>&gt; sp$comb &lt;- sp$soil:sp$topo
-&gt; view(sp)</code></pre>
+&gt; headtail(sp)</code></pre>
 <pre><code>        soil    topo phos              comb
+1      shale  valley   98      shale:valley
 2      shale  valley  172      shale:valley
-4      shale   north   78       shale:north
-13 sandstone  valley   19  sandstone:valley
-15 sandstone  valley   25  sandstone:valley
-19 sandstone   south   28   sandstone:south
-23 sandstone hilltop   21 sandstone:hilltop</code></pre>
+3      shale  valley  185      shale:valley
+22 sandstone hilltop   55 sandstone:hilltop
+23 sandstone hilltop   21 sandstone:hilltop
+24 sandstone hilltop   19 sandstone:hilltop</code></pre>
 <pre class="r"><code>&gt; lm1a &lt;- lm(phos~comb,data=sp)
 &gt; anova(lm1a)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: phos
-          Df Sum Sq Mean Sq F value    Pr(&gt;F)
+<pre><code>          Df Sum Sq Mean Sq F value    Pr(&gt;F)
 comb       7  38961  5565.8  7.1555 0.0005729
 Residuals 16  12445   777.8                  </code></pre>
-<pre class="r"><code>&gt; spint.mc &lt;- glht(lm1a, mcp(comb=&quot;Tukey&quot;))</code></pre>
-<pre class="r"><code>&gt; summary(spint.mc)</code></pre>
-<pre><code>
-     Simultaneous Tests for General Linear Hypotheses
-
-Multiple Comparisons of Means: Tukey Contrasts
-
-
-Fit: lm(formula = phos ~ comb, data = sp)
-
-Linear Hypotheses:
-                                          Estimate Std. Error t value Pr(&gt;|t|)
-sandstone:north - sandstone:hilltop == 0     1.667     22.772   0.073  1.00000
-sandstone:south - sandstone:hilltop == 0    19.333     22.772   0.849  0.98683
-sandstone:valley - sandstone:hilltop == 0   -4.000     22.772  -0.176  1.00000
-shale:hilltop - sandstone:hilltop == 0       4.667     22.772   0.205  1.00000
-shale:north - sandstone:hilltop == 0        53.333     22.772   2.342  0.32990
-shale:south - sandstone:hilltop == 0        57.333     22.772   2.518  0.25474
-shale:valley - sandstone:hilltop == 0      120.000     22.772   5.270  0.00150
-sandstone:south - sandstone:north == 0      17.667     22.772   0.776  0.99218
-sandstone:valley - sandstone:north == 0     -5.667     22.772  -0.249  1.00000
-shale:hilltop - sandstone:north == 0         3.000     22.772   0.132  1.00000
-shale:north - sandstone:north == 0          51.667     22.772   2.269  0.36534
-shale:south - sandstone:north == 0          55.667     22.772   2.445  0.28487
-shale:valley - sandstone:north == 0        118.333     22.772   5.196  0.00173
-sandstone:valley - sandstone:south == 0    -23.333     22.772  -1.025  0.96344
-shale:hilltop - sandstone:south == 0       -14.667     22.772  -0.644  0.99746
-shale:north - sandstone:south == 0          34.000     22.772   1.493  0.80039
-shale:south - sandstone:south == 0          38.000     22.772   1.669  0.70559
-shale:valley - sandstone:south == 0        100.667     22.772   4.421  0.00794
-shale:hilltop - sandstone:valley == 0        8.667     22.772   0.381  0.99992
-shale:north - sandstone:valley == 0         57.333     22.772   2.518  0.25579
-shale:south - sandstone:valley == 0         61.333     22.772   2.693  0.19419
-shale:valley - sandstone:valley == 0       124.000     22.772   5.445  0.00109
-shale:north - shale:hilltop == 0            48.667     22.772   2.137  0.43407
-shale:south - shale:hilltop == 0            52.667     22.772   2.313  0.34374
-shale:valley - shale:hilltop == 0          115.333     22.772   5.065  0.00217
-shale:south - shale:north == 0               4.000     22.772   0.176  1.00000
-shale:valley - shale:north == 0             66.667     22.772   2.928  0.13127
-shale:valley - shale:south == 0             62.667     22.772   2.752  0.17610
-(Adjusted p values reported -- single-step method)</code></pre>
+<pre class="r"><code>&gt; spint.mc &lt;- glht(lm1a, mcp(comb=&quot;Tukey&quot;))
+&gt; summary(spint.mc)</code></pre>
+<pre><code>                                           Estimate Std. Error     t value     p value
+sandstone:north - sandstone:hilltop = 0    1.666667   22.77181  0.07318989 0.999999999
+sandstone:south - sandstone:hilltop = 0   19.333333   22.77181  0.84900274 0.986833866
+sandstone:valley - sandstone:hilltop = 0  -4.000000   22.77181 -0.17565574 0.999999578
+shale:hilltop - sandstone:hilltop = 0      4.666667   22.77181  0.20493170 0.999998784
+shale:north - sandstone:hilltop = 0       53.333333   22.77181  2.34207653 0.330400480
+shale:south - sandstone:hilltop = 0       57.333333   22.77181  2.51773227 0.255347319
+shale:valley - sandstone:hilltop = 0     120.000000   22.77181  5.26967219 0.001541858
+sandstone:south - sandstone:north = 0     17.666667   22.77181  0.77581285 0.992185980
+sandstone:valley - sandstone:north = 0    -5.666667   22.77181 -0.24884563 0.999995366
+shale:hilltop - sandstone:north = 0        3.000000   22.77181  0.13174180 0.999999943
+shale:north - sandstone:north = 0         51.666667   22.77181  2.26888664 0.365284076
+shale:south - sandstone:north = 0         55.666667   22.77181  2.44454238 0.284720097
+shale:valley - sandstone:north = 0       118.333333   22.77181  5.19648230 0.001733635
+sandstone:valley - sandstone:south = 0   -23.333333   22.77181 -1.02465848 0.963469923
+shale:hilltop - sandstone:south = 0      -14.666667   22.77181 -0.64407105 0.997462758
+shale:north - sandstone:south = 0         34.000000   22.77181  1.49307379 0.800285198
+shale:south - sandstone:south = 0         38.000000   22.77181  1.66872953 0.705335229
+shale:valley - sandstone:south = 0       100.666667   22.77181  4.42066945 0.007737227
+shale:hilltop - sandstone:valley = 0       8.666667   22.77181  0.38058744 0.999916217
+shale:north - sandstone:valley = 0        57.333333   22.77181  2.51773227 0.255430029
+shale:south - sandstone:valley = 0        61.333333   22.77181  2.69338801 0.194018538
+shale:valley - sandstone:valley = 0      124.000000   22.77181  5.44532793 0.001094490
+shale:north - shale:hilltop = 0           48.666667   22.77181  2.13714483 0.433572456
+shale:south - shale:hilltop = 0           52.666667   22.77181  2.31280057 0.344200013
+shale:valley - shale:hilltop = 0         115.333333   22.77181  5.06474050 0.002189764
+shale:south - shale:north = 0              4.000000   22.77181  0.17565574 0.999999581
+shale:valley - shale:north = 0            66.666667   22.77181  2.92759566 0.131344588
+shale:valley - shale:south = 0            62.666667   22.77181  2.75193992 0.176550695</code></pre>
 <pre class="r"><code>&gt; glhtSig(spint.mc)</code></pre>
 <pre><code>[1] &quot;shale:valley - sandstone:hilltop&quot; &quot;shale:valley - sandstone:north&quot;  
 [3] &quot;shale:valley - sandstone:south&quot;   &quot;shale:valley - sandstone:valley&quot; 
 [5] &quot;shale:valley - shale:hilltop&quot;    </code></pre>
+<pre class="r"><code>&gt; cld(spint.mc)</code></pre>
+<pre><code>sandstone:hilltop   sandstone:north   sandstone:south  sandstone:valley     shale:hilltop 
+              &quot;a&quot;               &quot;a&quot;               &quot;a&quot;               &quot;a&quot;               &quot;a&quot; 
+      shale:north       shale:south      shale:valley 
+             &quot;ab&quot;              &quot;ab&quot;               &quot;b&quot; </code></pre>
 <pre class="r"><code>&gt; fitPlot(lm1,change.order=TRUE,interval=FALSE,main=&quot;&quot;,ylim=c(20,160),
           ylab=&quot;Mean Phosphorous Level&quot;,xlab=&quot;Topographic Location&quot;,legend=&quot;topleft&quot;)
 &gt; addSigLetters(lm1,change.order=TRUE,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;a&quot;,&quot;ab&quot;,&quot;a&quot;,&quot;ab&quot;,&quot;a&quot;,&quot;b&quot;),
                 pos=c(1,3,1,3,1,1,3,1))</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-16-1.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-26-1.png" width="288" /></p>
 </div>
 </div>
 

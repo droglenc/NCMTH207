@@ -8,16 +8,12 @@ css: /css/modules.css
 </div>
 
 
-
-<hr />
-
 <div id="oak-gall-wasps" class="section level1">
 <h1>Oak Gall Wasps</h1>
-
 <p><a href="http://www.esapubs.org/archive/ecol/E091/232/appendix-C.htm">Prior and Hellman (2010)</a> investigated the impact of invasive Oak Gall Wasps (<em>Neuroterus saltatorius</em>) on a native butterfly. They hoped to use the amount of damage shown on oak leaves as a surrogate for the density of the wasps’ galls. To examine this they recorded the density of wasp galls (number per leaf) and the percentage leaf damage for ten trees. Is leaf damage a reliable predictor of wasp gall density?</p>
-<pre class="r"><code>&gt; library(NCStats)
+<pre class="r"><code>&gt; options(show.signif.stars=FALSE)
+&gt; library(NCStats)
 &gt; setwd(&quot;C:/aaaWork/Web/GitHub/NCMTH207/modules/SLRegression&quot;)</code></pre>
-
 <pre class="r"><code>&gt; df &lt;- read.csv(&quot;galls.csv&quot;)
 &gt; str(df)</code></pre>
 <pre><code>&#39;data.frame&#39;:   10 obs. of  2 variables:
@@ -25,6 +21,7 @@ css: /css/modules.css
  $ density: int  163 326 296 459 115 936 610 1196 1262 1631</code></pre>
 <pre class="r"><code>&gt; xlbl &lt;- &quot;Percentage of Leaf Damage&quot;
 &gt; ylbl &lt;- &quot;Wasp Gall Density&quot;</code></pre>
+
 <div id="lecture-support-i-model-fitting-and-simple-predictions" class="section level2">
 <h2>Lecture Support I – Model Fitting and Simple Predictions</h2>
 <pre class="r"><code>&gt; ( lm1 &lt;- lm(density~damage,data=df) )</code></pre>
@@ -48,11 +45,11 @@ damage        26.822      6.763   3.966  0.00414
 Residual standard error: 323.6 on 8 degrees of freedom
 Multiple R-squared: 0.6628, Adjusted R-squared: 0.6207 
 F-statistic: 15.73 on 1 and 8 DF,  p-value: 0.004144 </code></pre>
-<pre class="r"><code>&gt; confint(lm1)</code></pre>
-<pre><code>                 2.5 %    97.5 %
-(Intercept) -539.05161 447.64595
-damage        11.22529  42.41783</code></pre>
-<pre class="r"><code>&gt; fitPlot(lm1,interval=&quot;both&quot;,ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))</code></pre>
+<pre class="r"><code>&gt; cbind(Ests=coef(lm1),confint(lm1))</code></pre>
+<pre><code>                 Ests      2.5 %    97.5 %
+(Intercept) -45.70283 -539.05161 447.64595
+damage       26.82156   11.22529  42.41783</code></pre>
+<pre class="r"><code>&gt; fitPlot(lm1,ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60),interval=&quot;both&quot;)</code></pre>
 <p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" width="288" /></p>
 <pre class="r"><code>&gt; predict(lm1,data.frame(damage=35),interval=&quot;confidence&quot;)</code></pre>
 <pre><code>       fit     lwr      upr
@@ -60,9 +57,10 @@ damage        11.22529  42.41783</code></pre>
 <pre class="r"><code>&gt; predict(lm1,data.frame(damage=35),interval=&quot;prediction&quot;)</code></pre>
 <pre><code>       fit      lwr      upr
 1 893.0516 102.4161 1683.687</code></pre>
-<pre class="r"><code>&gt; predictionPlot(lm1,data.frame(damage=c(13,35)),interval=&quot;confidence&quot;,
-                 ylab=ylbl,xlab=xlbl,ylim=c(0,2000),xlim=c(0,60))</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-7-1.png" width="288" /></p>
+
+<pre class="r"><code>&gt; predictionPlot(lm1,data.frame(damage=c(13,35)),ylab=ylbl,xlab=xlbl,
+                 ylim=c(0,2000),xlim=c(0,60),interval=&quot;confidence&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-8-1.png" width="288" /></p>
 <pre><code>  obs damage      fit       lwr       upr
 1   1     13 302.9774 -26.88797  632.8428
 2   2     35 893.0516 631.60398 1154.4993</code></pre>
@@ -70,14 +68,14 @@ damage        11.22529  42.41783</code></pre>
 <div id="lecture-support-iii-model-comparisons" class="section level2">
 <h2>Lecture Support III – Model Comparisons</h2>
 <pre class="r"><code>&gt; anova(lm1)</code></pre>
-<pre><code>          Df Sum Sq Mean Sq F value    Pr(&gt;F)
-log.wt     1 6.5113  6.5113  140.65 1.204e-09
-Residuals 17 0.7870  0.0463                  </code></pre>
+<pre><code>          Df  Sum Sq Mean Sq F value   Pr(&gt;F)
+damage     1 1646594 1646594  15.727 0.004144
+Residuals  8  837587  104698                 </code></pre>
 </div>
 <div id="lecture-support-iv-assumption-checking" class="section level2">
 <h2>Lecture Support IV – Assumption Checking</h2>
 <pre class="r"><code>&gt; transChooser(lm1)</code></pre>
-<p><img src="transChooser1.png" width="6in" /></p>
+<p><img src="TCGalls1.jpg" width="5.8in" /></p>
 
 </div>
 </div>
@@ -97,22 +95,21 @@ Residuals 17 0.7870  0.0463                  </code></pre>
 
 <pre class="r"><code>&gt; lm1 &lt;- lm(weight.loss~weight,data=petrels)
 &gt; fitPlot(lm1,xlab=&quot;Weight (g)&quot;,ylab=&quot;Weight Loss (g/g/d)&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-13-1.png" width="288" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-14-1.png" width="288" /></p>
+
 <pre class="r"><code>&gt; transChooser(lm1)</code></pre>
 
-<p><img src="transChooser2.png" width="5.66in" /></p>
-<p><img src="transChooser3.png" width="5.65in" /></p>
-<p><img src="transChooser4.png" width="5.65in" /></p>
+<p><img src="TCPetrels1.jpg" width="5.1in" /></p>
+<p><img src="TCPetrels2.jpg" width="5.1in" /></p>
+<p><img src="TCPetrels3.jpg" width="5.1in" /></p>
+
 <pre class="r"><code>&gt; petrels$log.wt &lt;- log(petrels$weight)
 &gt; petrels$log.wtloss &lt;- log(petrels$weight.loss)
 &gt; lm2 &lt;- lm(log.wtloss~log.wt,data=petrels)
 &gt; fitPlot(lm2,xlab=&quot;log Weight (g)&quot;,ylab=&quot;log Weight Loss (g/g/d)&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-18-1.png" width="2.35in" /></p>
+<p><img src="RHO_files/figure-html/unnamed-chunk-19-1.png" width="288" /></p>
 <pre class="r"><code>&gt; anova(lm2)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: log.wtloss
-          Df Sum Sq Mean Sq F value    Pr(&gt;F)
+<pre><code>          Df Sum Sq Mean Sq F value    Pr(&gt;F)
 log.wt     1 6.5113  6.5113  140.65 1.204e-09
 Residuals 17 0.7870  0.0463                  </code></pre>
 <pre class="r"><code>&gt; summary(lm2)</code></pre>
@@ -124,12 +121,11 @@ log.wt      -0.33632    0.02836 -11.860 1.20e-09
 Residual standard error: 0.2152 on 17 degrees of freedom
 Multiple R-squared: 0.8922, Adjusted R-squared: 0.8858 
 F-statistic: 140.6 on 1 and 17 DF,  p-value: 1.204e-09 </code></pre>
-<pre class="r"><code>&gt; confint(lm2)</code></pre>
-<pre><code>                 2.5 %     97.5 %
-(Intercept) -2.1516113 -1.3164546
-log.wt      -0.3961507 -0.2764885</code></pre>
-<pre class="r"><code>&gt; ( p.log.wtloss &lt;- predict(lm2,data.frame(log.wt=log(5000)),
-                            interval=&quot;confidence&quot;) )</code></pre>
+<pre class="r"><code>&gt; cbind(Ests=coef(lm2),confint(lm2))</code></pre>
+<pre><code>                  Ests      2.5 %     97.5 %
+(Intercept) -1.7340329 -2.1516113 -1.3164546
+log.wt      -0.3363196 -0.3961507 -0.2764885</code></pre>
+<pre class="r"><code>&gt; ( p.log.wtloss &lt;- predict(lm2,data.frame(log.wt=log(5000)),interval=&quot;confidence&quot;) )</code></pre>
 <pre><code>        fit       lwr       upr
 1 -4.598532 -4.746569 -4.450495</code></pre>
 <pre class="r"><code>&gt; exp(p.log.wtloss)*exp(anova(lm2)[2,3]/2)</code></pre>
