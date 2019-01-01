@@ -123,14 +123,14 @@ lines(x,y1i,lwd=2);  lines(x,y2i,lwd=2,col="red")
 Indicator and interaction variables can be used to determine if simple linear regression lines fit to different groups differ among those groups. To illustrate this point, consider a situation with one quantitative response variable ($Y$), one covariate ($X$), and one indicator variable ($Z$) representing a single dichotomous factor variable.\footnote{This situation is exactly the situation that exists for examining the effect of weight on mirex concentration between the two species of salmon.}  In addition, an interaction between the covariate and the indicator variable is constructed. Thus, the generic model fit for these data is
 
 \begin{equation} \label{eqn:IVRModel1}
-  \mu_{Y|X,Z} = \alpha+\beta_{1}X+\delta_{1}Z+\gamma_{1}X*Z
+  \mu_{Y|X,Z} = \alpha+\beta X+\delta_{1}Z+\gamma_{1}X*Z
 \end{equation}
 
 The following symbols should be used for parameters, as was illustrated in this model, to make the interpretation of future models simpler:
 
 \begin{Itemize}
   \item $\alpha$: an overall intercept term.
-  \item $\beta_{1}$: coefficient on the covariate.
+  \item $\beta$: coefficient on the covariate.
   \item $\delta_{i}$: coefficient on the ith indicator variable.
   \item $\gamma_{i}$: coefficient on the interaction between the covariate and the ith indicator variable.
 \end{Itemize}
@@ -142,19 +142,19 @@ The model in \eqnref{eqn:IVRModel1} can be reduced to \emph{submodels} that corr
     \hline
       \widen{-3}{8}{\textbf{Group}}& \textbf{Z=} & \textbf{Submodel ($\mu_{Y|\cdots}=$)}\\
     \hline
-      \widen{-2}{7}{Does NOT Have}& & $=\alpha+\beta_{1}X+\delta_{1}*0+\gamma_{1}*0*X$\\
-      (\emph{Reference}) &\rb{1.5}{0}&\widen{-3}{5}{$=\alpha+\beta_{1}X$}\\
+      \widen{-2}{7}{Does NOT Have}& & $=\alpha+\beta X+\delta_{1}*0+\gamma_{1}*0*X$\\
+      (\emph{Reference}) &\rb{1.5}{0}&\widen{-3}{5}{$=\alpha+\beta X$}\\
     \hline
-      \widen{-2}{7}{}&&$=\alpha+\beta_{1}X+\delta_{1}*1+\gamma_{1}*1*X$\\
-      \widen{-2}{5}{}&&$=\alpha+\beta_{1}X+\delta_{1}+\gamma_{1}X$\\
-      \rb{3}{Does Have}&\rb{3}{1}&\widen{-3}{6}{$=(\alpha+\delta_{1})+(\beta_{1}+\gamma_{1})X$}\\
+      \widen{-2}{7}{}&&$=\alpha+\beta X+\delta_{1}*1+\gamma_{1}*1*X$\\
+      \widen{-2}{5}{}&&$=\alpha+\beta X+\delta_{1}+\gamma_{1}X$\\
+      \rb{3}{Does Have}&\rb{3}{1}&\widen{-3}{6}{$=(\alpha+\delta_{1})+(\beta+\gamma_{1})X$}\\
     \hline
   \end{tabular}
 \end{center}
 
 \warn{Submodels are found by appropriately substituting ``0''s and ``1''s for the indicator variable(s) in the overall IVR model.}
 
-Examination of the simplified submodels for each group shows that each submodel is a linear model. The submodel for the ``Does NOT Have'' group indicates that this group is modeled with a slope of $\beta_{1}$ and an intercept of $\alpha$. In contrast, the submodel for the ``Does Have'' group has a slope of $\beta_{1}+\gamma_{1}$ and an intercept of $\alpha+\delta_{1}$. Furthermore, from
+Examination of the simplified submodels for each group shows that each submodel is a linear model. The submodel for the ``Does NOT Have'' group indicates that this group is modeled with a slope of $\beta$ and an intercept of $\alpha$. In contrast, the submodel for the ``Does Have'' group has a slope of $\beta+\gamma_{1}$ and an intercept of $\alpha+\delta_{1}$. Furthermore, from
 
 \[
   \text{``Does Have'' Intercept} - \text{``Does Not Have'' Intercept} = (\alpha+\delta_{1}) - \alpha = \delta_{1}
@@ -164,41 +164,41 @@ it is seen that $\delta_{1}$ is the difference in intercepts between the ``Does 
 
 \begin{Itemize}
   \item $\alpha$: intercept for the ``Does NOT Have'' group
-  \item $\beta_{1}$: slope for the ``Does NOT Have'' group
+  \item $\beta$: slope for the ``Does NOT Have'' group
   \item $\delta_{1}$: \emph{difference in intercept} between the ``Does Have'' and the ``Does NOT Have''
   \item $\gamma_{1}$: \emph{difference in slope} between the ``Does Have'' and the ``Does NOT Have''
 \end{Itemize}
 
 <<IVRSubmodels, echo=FALSE, fig.scap="Sub-model fits.", fig.scap="IVR fit and parameter meanings.", fig.cap="Representation of two sub-models fit with \\eqnref{eqn:IVRModel1} and the meaning of the parameter estimates. Note that the black line is the ``reference'' sub-model.", fig.pos="h">>=
 par(mar=c(2,2,1,1), mgp=c(0.5,0,0),las=1,tcl=-0.2)
-a <- 2; b1 <- 0.4; d1 <- -1.6; g1 <- 0.45
+a <- 2; b <- 0.4; d1 <- -1.6; g1 <- 0.45
 max.x <- 4
-plot(c(0,max.x),c(a,a+max.x*b1),type="l",lwd=3,
+plot(c(0,max.x),c(a,a+max.x*b),type="l",lwd=3,
      ylim=c(0,max.x),xlim=c(-1.55,max.x),
      xlab="X",ylab="Y",xaxt="n",yaxt="n",cex.lab=1.5) # 1st submodel
-lines(c(0,max.x),c(a+d1,a+d1+(b1+g1)*max.x),
-      type="l",lwd=3,col="blue")                     # 2nd submodel
+lines(c(0,max.x),c(a+d1,a+d1+(b+g1)*max.x),
+      type="l",lwd=3,col="blue")                      # 2nd submodel
 points(0,a,pch=19,cex=1.3)
-text(0,a,expression(alpha),pos=2,cex=1.3)            # 1st intercept (alpha)
+text(0,a,expression(alpha),pos=2,cex=1.3)             # 1st intercept (alpha)
 points(0,a+d1,pch=19,col="blue",cex=1.3)
 text(0,a+d1,expression(alpha+delta[1]),
-     col="blue",pos=2,cex=1.3)                       # 2nd intercept (alpha + delta)
-lines(c(0,1,1),c(a,a,a+b1),lty=3,lwd=3)
-text(1,a+b1/2,expression(beta[1]),pos=4,cex=1.3)     # 1st slope (beta)
-lines(c(0,1,1),c(a+d1,a+d1,a+d1+b1+g1),
-      lty=3,lwd=3,col="blue")                        # 2nd slope (beta + gamma)
-text(1,a+d1+(b1+g1)/2,expression(beta[1]+gamma[1]),
-     col="blue",pos=4,cex=1.3)                       #     label beta+gamma
+     col="blue",pos=2,cex=1.3)                        # 2nd intercept (alpha+delta)
+lines(c(0,1,1),c(a,a,a+b),lty=3,lwd=3)
+text(1,a+b/2,expression(beta),pos=4,cex=1.3)          # 1st slope (beta)
+lines(c(0,1,1),c(a+d1,a+d1,a+d1+b+g1),
+      lty=3,lwd=3,col="blue")                         # 2nd slope (beta+gamma)
+text(1,a+d1+(b+g1)/2,expression(beta+gamma[1]),
+     col="blue",pos=4,cex=1.3)                        #     label beta+gamma
 lines(c(0,0),c(a,a+d1),lwd=3,lty=3,col="red")
 text(0,a+d1/2,expression(delta[1]),
-     col="red",pos=2,cex=1.3)                        # delta distance
-x<- -d1/(b1+g1)                                     # X coord for other second slope
-lines(c(x,x+1,x+1),c(a,a,a+b1),lty=3,lwd=3)
-text(x+1,a+b1/2,expression(beta[1]),pos=4,cex=1.3)  # beta of beta+gamma slope
-lines(c(x+1,x+1),c(a+b1,a+b1+g1),
-      lty=3,lwd=3,col="red")                        # gamma of beta + gamma slope
-text(x+1,a+b1+g1/2,expression(gamma[1]),col="red",pos=4,cex=1.3) #   label gamma
-text(0,-0.35,0,xpd=TRUE,cex=1.25)                                # label x=0
+     col="red",pos=2,cex=1.3)                         # delta distance
+x<- -d1/(b+g1)                                        # X coord for other 2nd slope
+lines(c(x,x+1,x+1),c(a,a,a+b),lty=3,lwd=3)
+text(x+1,a+b/2,expression(beta),pos=4,cex=1.3)        # beta of beta+gamma slope
+lines(c(x+1,x+1),c(a+b,a+b+g1),
+      lty=3,lwd=3,col="red")                          # gamma of beta + gamma slope
+text(x+1,a+b+g1/2,expression(gamma[1]),col="red",pos=4,cex=1.3) #   label gamma
+text(0,-0.35,0,xpd=TRUE,cex=1.25)                     # label x=0
 @
 
 These interpretations show why the ``Does NOT Have'' group is called the reference group. The coefficients in the reference submodel represent the intercept and slope for that group. These coefficients also appear in the other submodels. The additional coefficients in the non-reference group submodels represent differences between the non-reference group and the reference group -- every difference is computed relative to the value for the reference group. Thus, all other coefficients are only meaningful relative to the reference group.
@@ -256,7 +256,7 @@ As a specific example, the following model is used to determine if the relations
 
 \vspace{-6pt}
 \begin{equation} \label{eqn:IVRSalmonModel1}
-  \mu_{mirex|weight,speciescoho} = \alpha+\beta_{1}weight+\delta_{1}speciescoho+\gamma_{1}speciescoho*weight
+  \mu_{mirex|weight,speciescoho} = \alpha+\beta weight+\delta_{1}speciescoho+\gamma_{1}speciescoho*weight
 \end{equation}
 \vspace{-6pt}
 
@@ -267,12 +267,12 @@ The submodels corresponding to each group are found by substituting appropriate 
     \hline
       \widen{-3}{8}{\textbf{Group}} & \var{\textbf{speciescoho}=} & \textbf{Submodel ($\mu_{mirex|\cdots}=$)}\\
     \hline
-      \widen{-2}{7}{Chinook}& & $=\alpha+\beta_{1}weight+\delta_{1}*0+\gamma_{1}*0*weight$ \\
-       (\emph{reference})& \rb{1.5}{0} & \widen{-3}{5}{$=\alpha+\beta_{1}weight$} \\
+      \widen{-2}{7}{Chinook}& & $=\alpha+\beta weight+\delta_{1}*0+\gamma_{1}*0*weight$ \\
+       (\emph{reference})& \rb{1.5}{0} & \widen{-3}{5}{$=\alpha+\beta weight$} \\
     \hline
-      \widen{-2}{7}{}& &$=\alpha+\beta_{1}weight+\delta_{1}*1+\gamma_{1}*1*weight$ \\
-      \widen{-2}{5}{}& &$=\alpha+\beta_{1}weight+\delta_{1}+\gamma_{1}weight$ \\
-      \rb{3}{Coho}& \rb{1.5}{1} &\widen{-3}{6}{$=(\alpha+\delta_{1})+(\beta_{1}+\gamma_{1})weight$} \\
+      \widen{-2}{7}{}& &$=\alpha+\beta weight+\delta_{1}*1+\gamma_{1}*1*weight$ \\
+      \widen{-2}{5}{}& &$=\alpha+\beta weight+\delta_{1}+\gamma_{1}weight$ \\
+      \rb{3}{Coho}& \rb{1.5}{1} &\widen{-3}{6}{$=(\alpha+\delta_{1})+(\beta+\gamma_{1})weight$} \\
     \hline
   \end{tabular}
 \end{center}
@@ -282,14 +282,14 @@ Thus, the interpretation of the coefficients fit with \eqnref{eqn:IVRSalmonModel
 \vspace{-12pt}
 \begin{Itemize}
   \item $\alpha$: intercept for chinook salmon
-  \item $\beta_{1}$: slope for chinook salmon
+  \item $\beta$: slope for chinook salmon
   \item $\delta_{1}$: \emph{difference in intercept} between coho and chinook salmon
   \item $\gamma_{1}$: \emph{difference in slope} between coho and chinook salmon
 \end{Itemize}
 
 \subsubsection*{Fitting Models, Extracting Coefficients, \& Making Predictions in R}
 \vspace{-12pt}
-Fitting the full model used to make comparisons among groups is exceptionally easy to do in R because R automatically creates the required indicator and interaction variables.\footnote{Unfortunately, this ease comes at the cost of the actual model to be fit being somewhat transparent to the user. The underlying structure of the model (e.g., indicator variables) can be viewed by sending the saved \R{lm()} object to \R{model.matrix()}.}  The full model can be fit to the data with a formula argument in \R{lm()} that is similar to what was used for a two-way ANOVA. Specifically, the full model is fit with a formula of the form \R{response}$\sim$\R{covariate*factor}, where \R{response} represents the quantitative response variable, \R{covariate} represents the quantitative explanatory variable, and \R{factor} represents the factor explanatory variable.\footnote{As with two-way ANOVA, this simple declaration, using an asterisk to combine the covariate and the factor variable, is an efficient way to tell R to include both main variables and the interaction term. In other words, the \R{response}$\sim$\R{covariate*factor} code is shorthand for the \R{response}$\sim$\R{covariate+factor+covariate:factor} code.}  Estimates and confidence intervals for the parameters identified above (i.e., $\alpha$, $\beta_{1}$, $\delta_{1}$, and $\gamma_{1}$) are obtained by submitting the saved \R{lm()} object to \R{coef()} and \R{confint()}.
+Fitting the full model used to make comparisons among groups is exceptionally easy to do in R because R automatically creates the required indicator and interaction variables.\footnote{Unfortunately, this ease comes at the cost of the actual model to be fit being somewhat transparent to the user. The underlying structure of the model (e.g., indicator variables) can be viewed by sending the saved \R{lm()} object to \R{model.matrix()}.}  The full model can be fit to the data with a formula argument in \R{lm()} that is similar to what was used for a two-way ANOVA. Specifically, the full model is fit with a formula of the form \R{response}$\sim$\R{covariate*factor}, where \R{response} represents the quantitative response variable, \R{covariate} represents the quantitative explanatory variable, and \R{factor} represents the factor explanatory variable.\footnote{As with two-way ANOVA, this simple declaration, using an asterisk to combine the covariate and the factor variable, is an efficient way to tell R to include both main variables and the interaction term. In other words, the \R{response}$\sim$\R{covariate*factor} code is shorthand for the \R{response}$\sim$\R{covariate+factor+covariate:factor} code.}  Estimates and confidence intervals for the parameters identified above (i.e., $\alpha$, $\beta$, $\delta_{1}$, and $\gamma_{1}$) are obtained by submitting the saved \R{lm()} object to \R{coef()} and \R{confint()}.
 
 As a specific example, consider that the mirex concentration in salmon data consists of these variables:
 \begin{Enumerate}
@@ -308,7 +308,7 @@ ci.m1 <- confint(mirex.lm1)
 Mirex <- read.csv("Mirex.csv")
 @
 
-The model expressed in \eqnref{eqn:IVRSalmonModel1} is then fit and the coefficient estimates and confidence intervals are extracted with \R{coef()} and \R{confint()}.\footnote{The order of the variables should be as discussed previously -- covariate followed by the indicator variable.} Thus, $\hat{\alpha}$=\Sexpr{formatC(cf.m1[1],format="f",digits=4)}, $\hat{\beta}_{1}$=\Sexpr{formatC(cf.m1[2],format="f",digits=4)}, $\hat{\delta}_{1}$=\Sexpr{formatC(cf.m1[3],format="f",digits=4)}, and $\hat{\gamma}_{1}$=\Sexpr{formatC(cf.m1[4],format="f",digits=4)}. Thus, for example, the sample slope for chinook salmon is \Sexpr{formatC(cf.m1[2],format="f",digits=4)} and the sample slope for coho salmon is \Sexpr{formatC(-1*cf.m1[4],format="f",digits=4)} smaller than the sample slope for chinook salmon. Furthermore, one is 95\% confident that $\beta_{1}$ is between \Sexpr{formatC(ci.m1[2,1],format="f",digits=4)} and \Sexpr{formatC(ci.m1[2,2],format="f",digits=4)} and $\gamma_{1}$ is between \Sexpr{formatC(ci.m1[4,1],format="f",digits=4)} and \Sexpr{formatC(ci.m1[4,2],format="f",digits=4)}.
+The model expressed in \eqnref{eqn:IVRSalmonModel1} is then fit and the coefficient estimates and confidence intervals are extracted with \R{coef()} and \R{confint()}.\footnote{The order of the variables should be as discussed previously -- covariate followed by the indicator variable.} Thus, $\hat{\alpha}$=\Sexpr{formatC(cf.m1[1],format="f",digits=4)}, $\hat{\beta}$=\Sexpr{formatC(cf.m1[2],format="f",digits=4)}, $\hat{\delta}_{1}$=\Sexpr{formatC(cf.m1[3],format="f",digits=4)}, and $\hat{\gamma}_{1}$=\Sexpr{formatC(cf.m1[4],format="f",digits=4)}. Thus, for example, the sample slope for chinook salmon is \Sexpr{formatC(cf.m1[2],format="f",digits=4)} and the sample slope for coho salmon is \Sexpr{formatC(-1*cf.m1[4],format="f",digits=4)} smaller than the sample slope for chinook salmon. Furthermore, one is 95\% confident that $\beta$ is between \Sexpr{formatC(ci.m1[2,1],format="f",digits=4)} and \Sexpr{formatC(ci.m1[2,2],format="f",digits=4)} and $\gamma_{1}$ is between \Sexpr{formatC(ci.m1[4,1],format="f",digits=4)} and \Sexpr{formatC(ci.m1[4,2],format="f",digits=4)}.
 <<>>=
 mirex.lm1 <- lm(mirex~weight*species,data=Mirex)
 cbind(Ests=coef(mirex.lm1),confint(mirex.lm1))
@@ -382,8 +382,8 @@ However, most usefully, the hypotheses for the parallel lines test can be writte
 
 \vspace{-12pt}
 \[ \begin{split}
-  H_{O}&: \mu_{mirex|\cdots} = \alpha+\beta_{1}weight+\delta_{1}speciescoho \\
-  H_{A}&: \mu_{mirex|\cdots} = \alpha+\beta_{1}weight+\delta_{1}speciescoho+\gamma_{1}speciescoho*weight \\
+  H_{O}&: \mu_{mirex|\cdots} = \alpha+\beta weight+\delta_{1}speciescoho \\
+  H_{A}&: \mu_{mirex|\cdots} = \alpha+\beta weight+\delta_{1}speciescoho+\gamma_{1}speciescoho*weight \\
 \end{split} \]
 
 Models, and their corresponding hypotheses, can be compared by plugging $SS_{residuals}$ from the competing models into \eqnref{eqn:FModelGeneral} to generate an F test statistic. This F test statistic, similar to all other F test statistics based on model comparisons, is a ratio of the variability that WAS explained by the full model to the variability that was not explained by the full model. A ``large'' F indicates that the full model explains significantly more of the variability in the response variable then the simple model does.
@@ -444,8 +444,8 @@ The model hypotheses for the equal-intercepts test, assuming parallel lines, are
 
 \vspace{-12pt}
 \[ \begin{split}
-  H_{O}&: \mu_{mirex|\cdots} = \alpha+\beta_{1}weight \\
-  H_{A}&: \mu_{mirex|\cdots} = \alpha+\beta_{1}weight+\delta_{1}speciescoho \\
+  H_{O}&: \mu_{mirex|\cdots} = \alpha+\beta weight \\
+  H_{A}&: \mu_{mirex|\cdots} = \alpha+\beta weight+\delta_{1}speciescoho \\
 \end{split} \]
 
 As the full model does not have an interaction term then it clearly states that this test of equal-intercepts follows knowing or testing that the slopes are parallel.
@@ -492,8 +492,6 @@ anova(mirex.lm1)
 
 \subsection{Coefficients t-Tests}
 Most computer programs, including R, construct default hypothesis tests for the coefficients from a model fit. The hypothesis tests about individual model coefficients are constructed in the same manner as described for SLR \modrefp{chap:LMRegression1}. Specifically, these default tests test that a coefficient is not equal to zero with the t test statistic found in \eqnref{eqn:tTestStat}. The test statistics and p-values for the coefficients from fitting \eqnref{eqn:IVRSalmonModel1} are found with \R{summary()}.
-
-\warn{The default t-tests for the model coefficients are used to test $H_{A}:\beta_{i}\neq0$.}
 
 Despite the familiarity and simplicity of these calculations, one must be very careful when interpreting the results. These tests test the significance of a variable in describing the variability of the response variable \emph{after all other explanatory variables have been included in the model.}  In other words, these tests test the importance of a particular explanatory variable adjusted for every other variable in the model. For example, the test of the \var{speciescoho} coefficient in \eqnref{eqn:IVRSalmonModel1} tests whether the intercepts differ between chinook and coho salmon assuming that \var{weight:speciescoho} is in the model. In other words, this test tests whether the intercepts differ assuming that the slopes are unequal. This is problematic because it is testing a ``main effect'' after an interaction effect is in the model. Thus, in general, \textbf{the test statistics and p-values corresponding to the model coefficients are not useful}.
 
@@ -660,7 +658,7 @@ crab.ad2 <- adTest(crab.lm2$residuals)
 crab.out2 <- outlierTest(crab.lm2)
 @
 The initial ultimate full model fit to these data was
-\[ \mu_{force|propodus,spec} = \alpha + \beta_{1}propodus  + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
+\[ \mu_{force|propodus,spec} = \alpha + \beta propodus  + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
 
 The fit of this model exhibited linearity, a slight heteroscedasticity (\figref{fig:IVRCrabResidPlot1}-Right), approximately normal residuals (Anderson-Darling \Sexpr{kPvalue(crab.ad1$p,digits=3)}), and no significant outliers (outlier test \Sexpr{kPvalue(crab.out1$bonf.p,digits=3)}). Possible transformations for the response variable were considered through a trial-and-error method.
 
@@ -674,7 +672,7 @@ A square-root transformation of closing force resulted in linearity, homoscedast
 
 \vspace{-12pt}
 
-\[ \mu_{sqrt(force)|\cdots} = \alpha + \beta_{1}propodus + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
+\[ \mu_{sqrt(force)|\cdots} = \alpha + \beta propodus + \delta_{1}spechn + \delta_{2}speclb + \gamma_{1}spechn*propodus + \gamma_{2}speclb*propodus \]
 
 \begin{figure}[h]
   \centering
@@ -771,7 +769,7 @@ pos.ad1 <- adTest(pos.lm1$residuals)
 pos.out1 <- outlierTest(pos.lm1)
 @
 The initial ultimate full model fit to these data was
-\[ \mu_{totlen|footlen,pop} = \alpha + \beta_{1}footlen + \delta_{1}popother + \gamma_{1}popother*footlen  \]
+\[ \mu_{totlen|footlen,pop} = \alpha + \beta footlen + \delta_{1}popother + \gamma_{1}popother*footlen  \]
 
 The fit of this model is largely linear and homoscedastic \figrefp{fig:IVRPossResidPlot1} with approximately normal residuals (Anderson-Darling \Sexpr{kPvalue(pos.ad1$p,digits=3)}) and no detectable outliers (outlier test \Sexpr{kPvalue(pos.out1$bonf.p,digits=3)}). However, there are several points that ``stand out'' from the main cluster \figrefp{fig:IVRPossResidPlot1} -- individual 31 had a total length much longer than would be expected given its foot length, individuals 39 and 43 each had total lengths much shorter than would be expected given their foot lengths, and individual 41 had a foot length and total length shorter than most of the individuals from Victoria. It should be noted that all of these individuals are from Victoria and that three of the individuals are the shortest three possums recorded (in terms of total length). It is impossible to tell if any of these points are in error; however, it is possible that they have a heavy influence on the fitted line for Victoria. The combined influence of these points will be examined in the results.
 
@@ -799,7 +797,7 @@ kANOVA(pos.lm1)
 \end{table}
 
 The reduced model
-\[ \mu_{totlen|footlen,pop} = \alpha + \beta_{1}footlen + \delta_{1}popother  \]
+\[ \mu_{totlen|footlen,pop} = \alpha + \beta footlen + \delta_{1}popother  \]
 
 can be used to predict the total length of an possum given a measurement of the possum's foot length. For example, predicted total lengths for possums from both locations with foot lengths of 65 and 70 mm are shown in \tabref{tab:IVROpPreds1}.
 
@@ -963,7 +961,7 @@ It may seem reasonable that the effect of initial weight was ``handled'' by pair
 @
 \vspace{9pt}
 The results from fitting the model
-\[ \mu_{wt.gain|\cdots}=\alpha+\beta_{1}wt.init+\delta_{1}group10C+\gamma_{1}group10C*wt.init \]
+\[ \mu_{wt.gain|\cdots}=\alpha+\beta wt.init+\delta_{1}group10C+\gamma_{1}group10C*wt.init \]
 
 showed that the regression lines were parallel (parallel lines test p=0.9235) but the intercepts were not equal (equal-intercepts test p=0.0333; \figref{fig:IVRANCOVAEx1Plot2}-Left). Tukey's HSD test estimated that the intercept for fish in the $10^{o}$C treatment was 1.77 g lower than the intercept for fish in the $8^{o}$C treatment with a 95\% confidence interval of 0.28 to 3.25 g. Because the slopes are equal, one can also conclude that the adjusted means, i.e., the mean weight gain at the mean initial weight, are different by the same amount (\figref{fig:IVRANCOVAEx1Plot2}-Right).
 
@@ -1026,7 +1024,7 @@ A one-way ANOVA provides strong evidence for a difference in gonad weight betwee
 @
 
 The results from fitting the model
-\[ \mu_{wt.gonad|\cdots}=\alpha+\beta_{1}wt.somat+\delta_{1}locB+\gamma_{1}wt.somat*locB \]
+\[ \mu_{wt.gonad|\cdots}=\alpha+\beta wt.somat+\delta_{1}locB+\gamma_{1}wt.somat*locB \]
 
 showed that the submodel regression lines were parallel (parallel lines test p=0.8486) and the intercepts were equal (equal-intercepts test p=0.9309). Thus, in this example, the two locations are fit by the same regression line (\figref{fig:IVRANCOVAEx2Plot2}-Left). This result also indicates that the mean gonad weight adjusted to a common somatic weight does NOT differ between the two locations (\figref{fig:IVRANCOVAEx2Plot2}-Right). The difference observed in the observed gonad weights WAS due to the difference in somatic weights and the strong relationship between gonad weight and somatic weight.
 

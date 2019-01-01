@@ -54,18 +54,18 @@ In SLR, the variable that will be predicted or have its variability explained, i
 Both goals of SLR are accomplished by finding the model\footnote{``Model'' is used here instead of ``line'' because in this class, models other than lines will be fit to some data. However, all models will be fit on a ``scale'' where the form of the relationship between the response and explanatory variable is linear.} that best fits the relationship between the response and explanatory variables.\footnote{It is assumed that you covered the basics of simple linear regression in your introductory statistics course. Thus, parts of this section will be review, although the nomenclature used may differ somewhat.}  When examining statistical regression models, the most common expression for the equation of the best-fit line is
 \vspace{6pt}
 \begin{equation}\label{eqn:SLRpopn}
-  \mu_{Y|X} = \alpha + \beta_{1}X
+  \mu_{Y|X} = \alpha + \beta X
 \end{equation}
 
-where $Y$ represents the response variable, $X$ the explanatory variable, $\alpha$ the y-intercept and $\beta_{1}$ the slope. The left-hand-side (LHS) of \eqnref{eqn:SLRpopn} is read as ``the mean of Y at a given value of X.''   This terminology is used because the best-fit line actually models the mean values of $Y$ at each value of $X$ rather than the individuals themselves. The model in \eqnref{eqn:SLRpopn} is for the population.\footnote{Note that Greek letters are usually reserved for parameters.}  The equation of the best-fit line based on the information in the sample is written as
+where $Y$ represents the response variable, $X$ the explanatory variable, $\alpha$ the y-intercept and $\beta$ the slope. The left-hand-side (LHS) of \eqnref{eqn:SLRpopn} is read as ``the mean of Y at a given value of X.''   This terminology is used because the best-fit line actually models the mean values of $Y$ at each value of $X$ rather than the individuals themselves. The model in \eqnref{eqn:SLRpopn} is for the population.\footnote{Note that Greek letters are usually reserved for parameters.}  The equation of the best-fit line based on the information in the sample is written as
 \begin{equation}\label{eqn:SLRsample}
-  \hat{\mu}_{Y|X} = \hat{\alpha} + \hat{\beta}_{1}X
+  \hat{\mu}_{Y|X} = \hat{\alpha} + \hat{\beta}X
 \end{equation}
-In other words, \eqnref{eqn:SLRpopn} is essentially a parameter (i.e., it represents the population line) and \eqnref{eqn:SLRsample} is a statistic (i.e., it estimates a parameter based only on the information in a sample). Thus,  $\alpha$ and $\beta_{1}$ represent the population y-intercept and slope, respectively; whereas $\hat{\alpha}$ and $\hat{\beta}_{1}$ represent the sample y-intercept and slope.
+In other words, \eqnref{eqn:SLRpopn} is essentially a parameter (i.e., it represents the population line) and \eqnref{eqn:SLRsample} is a statistic (i.e., it estimates a parameter based only on the information in a sample). Thus,  $\alpha$ and $\beta$ represent the population y-intercept and slope, respectively; whereas $\hat{\alpha}$ and $\hat{\beta}$ represent the sample y-intercept and slope.
 
 \subsection{Best-Fit Line}
 \vspace{-12pt}
-The statistics $(\hat{\alpha}, \hat{\beta}_{1})$ in \eqnref{eqn:SLRsample} are determined by finding the values for $(\alpha, \beta_{1})$ that minimize the residual sum-of-squares (RSS). A residual is the difference between an observed value of the response variable for an individual, $y_{i}$, and a predicted value of the response variable based on \eqnref{eqn:SLRpopn} and the individual's value of the explanatory variable, $x_{i}$ \figrefp{fig:SLRResidDemo}. Thus, a residual is $y_{i}-\hat{\mu}_{Y|X=x_{i}}$.
+The statistics $(\hat{\alpha}, \hat{\beta})$ in \eqnref{eqn:SLRsample} are determined by finding the values for $(\alpha, \beta)$ that minimize the residual sum-of-squares (RSS). A residual is the difference between an observed value of the response variable for an individual, $y_{i}$, and a predicted value of the response variable based on \eqnref{eqn:SLRpopn} and the individual's value of the explanatory variable, $x_{i}$ \figrefp{fig:SLRResidDemo}. Thus, a residual is $y_{i}-\hat{\mu}_{Y|X=x_{i}}$.
 
 <<SLRResidDemo, echo=FALSE, fig.cap="Scatterplot with best-fit line illustrating five residuals.", fig.pos="h">>=
 LT <- read.csv("data/LakeTroutEggs.csv")
@@ -86,10 +86,10 @@ for (i in 1:length(lt.sub)) {
 The RSS is the sum of the squares of these residuals, or
 \[ RSS = \Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X=x_{i}}\right)^{2} \]
 It can be shown with calculus that the RSS is minimized with a slope given by
-\[ \hat{\beta}_{1} = r\frac{s_{Y}}{s_{X}} \]
+\[ \hat{\beta} = r\frac{s_{Y}}{s_{X}} \]
 and a y-intercept given by
 \begin{equation}\label{eqn:SLRintercept}
-    \hat{\alpha} = \overline{Y} - \hat{\beta}_{1}\overline{X}
+    \hat{\alpha} = \overline{Y} - \hat{\beta}\overline{X}
 \end{equation}
 
 where $r$ is the sample correlation coefficient, $\overline{Y}$ and $\overline{X}$ are the sample means, and $s_{Y}$ and $s_{X}$ are the sample standard deviations of the response and explanatory variables, respectively.
@@ -126,10 +126,10 @@ fitPlot(lt.lm,ylab="Number of eggs",xlab="Total Length")
 \vspace{-12pt}
 \subsection{Slope \& Intercept}
 \vspace{-12pt}
-Just like every other statistic, $\hat{\alpha}$ and $\hat{\beta}_{1}$ are subject to sampling variability and, thus, have sampling distributions. The sampling distributions of $\hat{\alpha}$ and $\hat{\beta}_{1}$ are normally distributed (if the assumptions of SLR are met; see \sectref{sect:SLRAssumptions}) and unbiased.\footnote{Think back to your introductory statistics course to remind yourself what it means for a statistic to be unbiased.} The standard error of the sample y-intercept is given by
+Just like every other statistic, $\hat{\alpha}$ and $\hat{\beta}$ are subject to sampling variability and, thus, have sampling distributions. The sampling distributions of $\hat{\alpha}$ and $\hat{\beta}$ are normally distributed (if the assumptions of SLR are met; see \sectref{sect:SLRAssumptions}) and unbiased.\footnote{Think back to your introductory statistics course to remind yourself what it means for a statistic to be unbiased.} The standard error of the sample y-intercept is given by
 \[ SE_{\hat{\alpha}} = \sqrt{s^{2}_{Y|X}\left(\frac{1}{n}+\frac{\bar{X}^{2}}{(n-1)s_{X}^{2}}\right)} \]
 and the standard error of the sample slope is given by
-\[ SE_{\hat{\beta}_{1}} = \sqrt{\frac{s^{2}_{Y|X}}{(n-1)s_{X}^{2}}}  \]
+\[ SE_{\hat{\beta}} = \sqrt{\frac{s^{2}_{Y|X}}{(n-1)s_{X}^{2}}}  \]
 where $s^{2}_{Y|X}$ is the variance that measures the natural variability of individuals around the line.\footnote{The best-fit line does not perfectly represent every individual. This statistic measures how individuals scatter around the line.}
 
 \warn{The sample slope and y-intercept are statistics that have sampling distributions and standard errors.}
@@ -138,7 +138,7 @@ More complete results from fitting the SLR model to the lake trout egg data are 
 
 \begin{table}[h]
   \centering
-  \caption{Least-squares regression results for the model $\mu_{eggs|tl} = \alpha + \beta_{1}tl$}\label{tab:SLRLTResults1}
+  \caption{Least-squares regression results for the model $\mu_{eggs|tl} = \alpha + \beta tl$}\label{tab:SLRLTResults1}
 \vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kREG(lt.lm)
@@ -148,22 +148,22 @@ kREG(lt.lm)
 Two common hypothesis tests in SLR are to determine whether or not the population y-intercept or the population slope is equal to a particular value. These hypotheses are written in the typical format as
 \[ \begin{split}
 H_{A}&: \alpha \neq \alpha_{0} \\
-H_{A}&: \beta_{1} \neq \beta_{10}
+H_{A}&: \beta \neq \beta_{0}
 \end{split} \]
-where $\alpha_{0}$ and $\beta_{10}$ represents a specific value for $\alpha$ and $\beta_{1}$. As an example,\footnote{It is assumed that you are familiar with the following test statistic and confidence interval formula from the 1-sample t-test taught in your introductory statistics course.} the hypothesis for the slope is tested with the following test statistic
+where $\alpha_{0}$ and $\beta_{0}$ represents a specific value for $\alpha$ and $\beta$. As an example,\footnote{It is assumed that you are familiar with the following test statistic and confidence interval formula from the 1-sample t-test taught in your introductory statistics course.} the hypothesis for the slope is tested with the following test statistic
 \begin{equation}\label{eqn:tTestStat}
-  t = \frac{\hat{\beta}_{1}-\beta_{10}}{SE_{\hat{\beta}_{1}}}
+  t = \frac{\hat{\beta}-\beta_{0}}{SE_{\hat{\beta}}}
 \end{equation}
 with $df=n-2$. Familiarly, a confidence interval for $\beta$ is constructed with
-\[ \hat{\beta}_{1} \pm t^{*}SE_{\hat{\beta}_{1}} \]
+\[ \hat{\beta} \pm t^{*}SE_{\hat{\beta}} \]
 The test statistic and confidence interval for the intercept test is constructed similarly.
 
 \warn{Hypothesis tests and confidence intervals for the population slope and population y-intercept are performed with the same general formulas for t- test statistics and confidence intervals learned in your introductory statistics course. The major difference being that $df=n-2$.}
 
 As an example, suppose that interest is in determining whether or not a significant portion of the variability in the number of eggs in mature female lake trout can be explained by the total length of the fish. This question translates into a hypothesis to determine if the response and explanatory variable are significantly related. This in turn translates into a simple hypothesis test to determine if the population slope is equal to zero or not.\footnote{You should convince yourself that a test of whether or not the slope is equal to zero, is also a test of whether or not the response and explanatory variable are significantly related}  Thus, the statistical hypotheses to be tested are
 \[ \begin{split}
-H_{0}&: \beta_{1} = 0 \\
-H_{A}&: \beta_{1} \neq 0
+H_{0}&: \beta = 0 \\
+H_{A}&: \beta \neq 0
 \end{split} \]
 
 The test statistic for testing this hypothesis is $t=\frac{22.15-0}{2.35}=9.44$.\footnote{The values used in this test statistic come from \tabref{tab:SLRLTResults1}.}  Thus, with $df=99$, the p-value is exceptionally small and the null hypothesis is soundly rejected resulting in a conclusion that the number of eggs per female is, in fact, significantly related to the length of the female lake trout. A 95\% confidence interval for the population slope gives an estimate of the direction and magnitude of the relationship. A 95\% confidence interval for the slope is $22.15\pm1.984*2.35$ or $(17.50, 26.81)$. Thus, one is 95\% confident that the true change in the mean number of eggs with a one mm increase in total length is between 17.50 and 26.81.
@@ -184,9 +184,9 @@ The information for computing hypothesis tests about the slope and y-intercept (
 confint(lt.lm)
 @
 
-A simultaneous confidence ``region'' for both parameters of an SLR forms an ellipse \figrefp{fig:SLRLTConfEllipse}. The region shown in \figref{fig:SLRLTConfEllipse} is set to contain the point $(\alpha,\beta_{1})$ with 95\% confidence. In other words, one is 95\% confident that \emph{both} $\alpha$ and $\beta_{1}$ are simultaneously contained within the ellipse shown. Interestingly, projections of the extremes of the ellipse onto the ``Intercept'' (i.e., ``X'') and ``slope'' (i.e., ``Y'') axes form univariate 95\% confidence intervals for the intercept and slope parameters, respectively.\footnote{Note how these projections have the same endpoints as the results from \R{confint()}.}
+A simultaneous confidence ``region'' for both parameters of an SLR forms an ellipse \figrefp{fig:SLRLTConfEllipse}. The region shown in \figref{fig:SLRLTConfEllipse} is set to contain the point $(\alpha,\beta)$ with 95\% confidence. In other words, one is 95\% confident that \emph{both} $\alpha$ and $\beta$ are simultaneously contained within the ellipse shown. Interestingly, projections of the extremes of the ellipse onto the ``Intercept'' (i.e., ``X'') and ``slope'' (i.e., ``Y'') axes form univariate 95\% confidence intervals for the intercept and slope parameters, respectively.\footnote{Note how these projections have the same endpoints as the results from \R{confint()}.}
 
-<<SLRLTConfEllipse, echo=FALSE, fig.cap="Confidence ellipse for $\\alpha$ and $\\beta_{1}$ from the regression of number of eggs versus total length for Lake Superior lake trout.", fig.pos="h">>=
+<<SLRLTConfEllipse, echo=FALSE, fig.cap="Confidence ellipse for $\\alpha$ and $\\beta$ from the regression of number of eggs versus total length for Lake Superior lake trout.", fig.pos="h">>=
 ci <- confint(lt.lm)
 confidenceEllipse(lt.lm,Scheffe=TRUE,col="black",lwd=2,xaxt="n",yaxt="n")
 lines(rep(ci[1,2],2),c(0,ci[2,1]),lty=2,col="red",lwd=2)
@@ -201,7 +201,7 @@ axis(2,at=ci[2,],labels=round(ci[2,],1),padj=-1.25,tcl=-1,fg="blue",
 \vspace{3pt}
 Another interesting result illustrated with \figref{fig:SLRLTConfEllipse} is that the regression parameters are highly correlated. In this instance, as the intercept increases the slope decreases. Not all regression parameters are highly correlated, but many are. This may cause some difficulty in some situations; corrections will be addressed in subsequent sections.
 
-The testing of hypotheses comparing the slope and intercept to values other than zero can be efficiently computed with \R{hoCoef()}.\footnote{This function is a very simple function that computes the test statistic as defined in \eqnref{eqn:tTestStat} and then computes the p-value from the t-distribution with the \R{pt()} function.}  This function requires the saved \R{lm()} object as its first argument, a number representing the term in the model to be tested (in SLR, \R{term=1} is the intercept and \R{term=2} is the slope), and the null hypothesized value (i.e., $\alpha_{0}$ or $\beta_{10}$) in \R{bo}. In addition, the direction of the alternative hypothesis can be defined with \R{alt=}. For example, the code below is used to test whether the true slope is greater than 20 eggs (i.e.,  $H_{A}: \beta_{1}>20$). Thus, there is very little evidence (\Sexpr{kPvalue(hoCoef(lt.lm,2,20,alt="greater")[,"p value"],digits=3)}) that the increase in number of eggs for a 1 mm increase in length is significantly greater than 20.\footnote{This is not a surprising result given the confidence interval for the slope computed above.}
+The testing of hypotheses comparing the slope and intercept to values other than zero can be efficiently computed with \R{hoCoef()}.\footnote{This function is a very simple function that computes the test statistic as defined in \eqnref{eqn:tTestStat} and then computes the p-value from the t-distribution with the \R{pt()} function.}  This function requires the saved \R{lm()} object as its first argument, a number representing the term in the model to be tested (in SLR, \R{term=1} is the intercept and \R{term=2} is the slope), and the null hypothesized value (i.e., $\alpha_{0}$ or $\beta_{0}$) in \R{bo}. In addition, the direction of the alternative hypothesis can be defined with \R{alt=}. For example, the code below is used to test whether the true slope is greater than 20 eggs (i.e.,  $H_{A}: \beta >20$). Thus, there is very little evidence (\Sexpr{kPvalue(hoCoef(lt.lm,2,20,alt="greater")[,"p value"],digits=3)}) that the increase in number of eggs for a 1 mm increase in length is significantly greater than 20.\footnote{This is not a surprising result given the confidence interval for the slope computed above.}
 \vspace{-6pt}
 <<>>=
 hoCoef(lt.lm,term=2,bo=20,alt="greater")
@@ -229,7 +229,7 @@ As an example, the linear regression of number of eggs in female lake trout on t
 
 \begin{table}[h]
   \centering
-  \caption{Least-squares regression results for the model $\mu_{eggs|tl} = \alpha + \beta_{1}(tl-\overline{tl})$}\label{tab:SLRLTResults2}
+  \caption{Least-squares regression results for the model $\mu_{eggs|tl} = \alpha + \beta (tl-\overline{tl})$}\label{tab:SLRLTResults2}
 \vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kREG(ltc.lm)
@@ -238,7 +238,7 @@ kREG(ltc.lm)
 
 In general, centering the explanatory variable is not critical unless the interpretation of the intercept term is important. However, a side effect of centering the explanatory variable is that the estimated slope and intercept are then orthogonal -- which, for all practical purposes, means uncorrelated \figrefp{fig:SLRLTConfEllipse2}. This characteristic allows the centering of explanatory variables to have other uses and positive impacts in multiple linear regressions.
 
-<<SLRLTConfEllipse2, echo=FALSE, fig.cap="Confidence ellipse for $\\alpha$ and $\\beta_{1}$ from the regression of number of eggs versus CENTERED total length for Lake Superior lake trout.", fig.pos="h">>=
+<<SLRLTConfEllipse2, echo=FALSE, fig.cap="Confidence ellipse for $\\alpha$ and $\\beta$ from the regression of number of eggs versus CENTERED total length for Lake Superior lake trout.", fig.pos="h">>=
 ci <- confint(ltc.lm)
  confidenceEllipse(ltc.lm,Scheffe=TRUE,col="black",xaxt="n",yaxt="n")
 lines(rep(ci[1,2],2),c(0,coef(ltc.lm)[2]),lty=2,col="red",lwd=2)
@@ -263,7 +263,7 @@ LT$ctl <- LT$tl - mean(LT$tl)
 \subsection{Predicting Mean \& Individual Values}
 \vspace{-12pt}
 One of the major goals of linear regression is to use the best-fit line and a known value of the explanatory variable to predict a future value of the response variable. This prediction is easily made by plugging the known value of the explanatory variable (generically labeled as $x_{0}$) into the equation of the best-fit line for $X$. Generically, this is
-\[ \hat{\mu}_{Y|X=x_{0}} = \hat{\alpha} + \hat{\beta}_{1}x_{0} \]
+\[ \hat{\mu}_{Y|X=x_{0}} = \hat{\alpha} + \hat{\beta}x_{0} \]
 
 For example, the predicted number of eggs for a 700-mm female lake trout is computed by plugging 700 into $\hat{\mu}_{eggs|tl=700}$=\Sexpr{formatC(coef(lt.lm)[1],format="f",digits=2)}+\Sexpr{formatC(coef(lt.lm)[2],format="f",digits=2)}*700 = \Sexpr{formatC(predict(lt.lm,data.frame(tl=700)),format="f",digits=2)} or \Sexpr{formatC(predict(lt.lm,data.frame(tl=700)),format="f",digits=0)} eggs.
 
@@ -357,23 +357,23 @@ and visualized in \figref{fig:SLRLTFittedLinePlot3}. Inasmuch as the results of 
 As with all linear models (see \modref{chap:LMFoundations}), the important hypothesis tests of SLR can be reduced to comparing two models' lack-of-fit to data. Previously it was seen that the hypothesis test to determine if the response and explanatory variable are significantly related is
 
 \[ \begin{split}
-H_{0}&: \beta_{1} = 0 \\
-H_{A}&: \beta_{1} \neq 0
+H_{0}&: \beta = 0 \\
+H_{A}&: \beta \neq 0
 \end{split} \]
 
 This can be written in terms of models as
 
 \[ \begin{split}
 H_{0}&: \mu_{Y|X} = \alpha \\
-H_{A}&: \mu_{Y|X} = \alpha + \beta_{1}X
+H_{A}&: \mu_{Y|X} = \alpha + \beta X
 \end{split} \]
 
 Furthermore, by substituting \eqnref{eqn:SLRintercept} into \eqnref{eqn:SLRsample}, the sample best-fit line can be rewritten as follows
 
-\[ \begin{split} \hat{\mu}_{Y|X} &= \overline{Y} - \hat{\beta}_{1}\overline{X} + \hat{\beta}_{1}X \\
-                                 &= \overline{Y} + \hat{\beta}_{1}\left(X-\overline{X}\right) \end{split} \]
+\[ \begin{split} \hat{\mu}_{Y|X} &= \overline{Y} - \hat{\beta}\overline{X} + \hat{\beta}X \\
+                                 &= \overline{Y} + \hat{\beta}\left(X-\overline{X}\right) \end{split} \]
 
-Thus, if $\hat{\beta}_{1}=0$, then the model reduces to $\hat{\mu}_{Y|X}=\overline{Y}$.
+Thus, if $\hat{\beta}=0$, then the model reduces to $\hat{\mu}_{Y|X}=\overline{Y}$.
 
 Therefore, testing the hypothesis that the slope is equal to zero is equivalent to testing whether the simple model of $\overline{Y}$ (or, equivalently, the constant $\hat{\alpha}$) adequately fits the data versus a more complicated model where a slope is needed \figrefp{fig:SLRModelsVisual}. Said another way, this is the same as testing whether the mean value of $Y$ is the same for all $X$s (i.e., no slope, no relationship) or whether the mean value of $Y$ depends on the value of $X$ (i.e., a slope, there is a relationship).
 
@@ -396,7 +396,7 @@ As expected, this SS is called $SS_{Total}$ because it is the basis of the measu
 
 The lack-of-fit of the full model is computed from the best-fit regression line (\figref{fig:SLRModelsResids}-Right), or
 
-\[ SS_{Residual} = \Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X}\right)^{2} = \Sum_{i=1}^{n}\left(y_{i}-\left(\hat{\alpha}+\hat{\beta}_{1}x_{i}\right)\right)^{2} \]
+\[ SS_{Residual} = \Sum_{i=1}^{n}\left(y_{i}-\hat{\mu}_{Y|X}\right)^{2} = \Sum_{i=1}^{n}\left(y_{i}-\left(\hat{\alpha}+\hat{\beta}x_{i}\right)\right)^{2} \]
 
 This SS is termed $SS_{Residual}$ in SLR, but it is exactly analogous to $SS_{Within}$ from Modules \ref{chap:LMFoundations} and \ref{chap:LMANOVA1}.
 
@@ -461,7 +461,7 @@ As usual, the degrees-of-freedom ($df$), sum-of-squares ($SS$), mean-squares ($M
 
 \begin{table}[h]
   \centering
-  \caption{Analysis of variance table for the regression of $\mu_{eggs|tl} = \alpha + \beta_{1}tl$.}\label{tab:SLRLTANOVA}
+  \caption{Analysis of variance table for the regression of $\mu_{eggs|tl} = \alpha + \beta tl$.}\label{tab:SLRLTANOVA}
 \vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kANOVA(lt.lm)
@@ -477,7 +477,7 @@ In addition to the primary objective of comparing the full and simple models, se
 \begin{Itemize}
   \item The variance of individuals about the regression line ($s_{Y|X}^{2}$) is given by $MS_{Residual}$ (e.g., =\Sexpr{formatC(lt.anova[2,"Mean Sq"],format="f",digits=0)}).
   \item The variance of individuals about the mean ($s_{Y}^{2}$) is given by $MS_{Total}$ (e.g., $SS_{Total}$=\Sexpr{formatC(lt.anova[1,"Sum Sq"],format="f",digits=0)}+\Sexpr{formatC(lt.anova[2,"Sum Sq"],format="f",digits=0)} divided by $df_{Total}$=\Sexpr{formatC(lt.anova[1,"Df"],format="f",digits=0)}+\Sexpr{formatC(lt.anova[2,"Df"],format="f",digits=0)} or \Sexpr{formatC((lt.anova[1,"Sum Sq"]+lt.anova[2,"Sum Sq"])/(lt.anova[1,"Df"]+lt.anova[2,"Df"]),format="f",digits=1)}).
-  \item The F test statistic is equal to the square of the t test statistic from testing $H_{0}:\beta_{1}=0$.\footnote{This is a general rule between the T and F distributions. An F with $1$ numerator df and $\nu$ denominator df is equal to the square of a T with $\nu$ df.}
+  \item The F test statistic is equal to the square of the t test statistic from testing $H_{0}:\beta =0$.\footnote{This is a general rule between the T and F distributions. An F with $1$ numerator df and $\nu$ denominator df is equal to the square of a T with $\nu$ df.}
 \end{Itemize}
 
 \subsubsection*{Regression ANOVA Table in R}
@@ -559,7 +559,7 @@ The first assumption states that the \textbf{means} fall on a straight line, not
 
 The model in \eqnref{eqn:SLRpopn} can be modified to represent each individual (rather than the mean of individuals) by adding an error term ($\epsilon$). Thus, the model to represent individuals is written
 \begin{equation}\label{eqn:SLRpopnErr}
-  Y|X = \alpha + \beta_{1}X + \epsilon
+  Y|X = \alpha + \beta X + \epsilon
 \end{equation}
 From the assumptions (as illustrated in \figref{fig:SLRIdealModel}), the errors will be normally distributed with a mean of 0 (because the line passes through the $\mu_{Y|X}$ and the residuals, or errors, are computed from that point) and a variance of $\sigma^{2}_{Y|X}$. Thus, in shorthand, the $\epsilon\sim N(0,\sigma_{Y|X}$).
 
@@ -823,17 +823,17 @@ In contrast, the slope is an estimate of a rate of change and can only be interp
 
 This interpretation can be illustrated by first looking at the difference in the log-transformed means for a unit change in $X$,
 
-\[log\left(\mu_{Y|X+1}\right)-log\left(\mu_{Y|X}\right) = \left[\alpha+\beta_{1}(X+1)\right] - \left[\alpha+\beta_{1}X\right] = \beta_{1}\]
+\[log\left(\mu_{Y|X+1}\right)-log\left(\mu_{Y|X}\right) = \left[\alpha+\beta (X+1)\right] - \left[\alpha+\beta X\right] = \beta\]
 
-Thus, not surprisingly, on the log-transformed scale a unit change in $X$ results in a $\beta_{1}$ unit change in the natural logarithm mean of $Y$. Now, raise both sides of this equation to the power of $e$ and simplify,
+Thus, not surprisingly, on the log-transformed scale a unit change in $X$ results in a $\beta$ unit change in the natural logarithm mean of $Y$. Now, raise both sides of this equation to the power of $e$ and simplify,
 
 \[ \begin{split}
-  e^{\beta_{1}} &= e^{log(\mu_{Y|X+1})-log(\mu_{Y|X})} \\
-  e^{\beta_{1}} &= e^{log\left(\frac{\mu_{Y|X+1}}{\mu_{Y|X}}\right)} \\
-  e^{\beta_{1}} &= \frac{\mu_{Y|X+1}}{\mu_{Y|X}}
+  e^{\beta} &= e^{log(\mu_{Y|X+1})-log(\mu_{Y|X})} \\
+  e^{\beta} &= e^{log\left(\frac{\mu_{Y|X+1}}{\mu_{Y|X}}\right)} \\
+  e^{\beta} &= \frac{\mu_{Y|X+1}}{\mu_{Y|X}}
 \end{split} \]
 
-Thus, $e^{\beta_{1}}$ does NOT represent the difference in two means, rather it represents the ratio of two means on the original scale.
+Thus, $e^{\beta}$ does NOT represent the difference in two means, rather it represents the ratio of two means on the original scale.
 
 \warn{The value of a slope back-transformed from a natural log transformation represents the ratio of the two means separated by one unit of the explanatory variable on the original scale. In other words, this back-transformed values it he multiplicative change in the mean response for a unit change in the explanatory variable.}
 
@@ -847,7 +847,7 @@ The power transformations discussed above have a tendency to simultaneously ``fi
 
 In this specific situation -- non-linear data with homoscedastic, normal residuals --  it may be appropriate to fit a polynomial regression. A polynomial regression consists of a generic model of the form
 
-\[ \mu_{Y|X}=\alpha+\beta_{1}x +\beta_{2}x^{2}+\beta_{3}x^{3}+\beta_{4}x^{4}+\ldots \]
+\[ \mu_{Y|X}=\alpha+\beta_{1} x +\beta_{2}x^{2}+\beta_{3}x^{3}+\beta_{4}x^{4}+\ldots \]
 
 Generally speaking, the polynomial regression model will have one more term (i.e., highest exponent) than the number of ``turns'' in the data. So, if the form of the relationship looks like a parabola (i.e., one ``turn'') then a model that stops with $X^{2}$ would be tried. If the data has two ``turns'' then a model that stops with $X^{3}$ would be tried. Models with more than three or four terms are rarely used because of their complexity.
 
@@ -860,7 +860,7 @@ fitPlot(pol.lm,lwd=2)
 residPlot(pol.lm,inclHist=FALSE,loess=FALSE)
 @
 
-<<SLRPolynomial2, echo=FALSE, fig.cap="Fitted line plot (Left) and residual plot (Right) for the fit of $\\mu_{Y|X}=\\alpha+\\beta_{1}X+\\beta_{2}X^{2}+\\beta_{3}X^{3}$ to data simulated from a cubic model.", fig.pos="h">>=
+<<SLRPolynomial2, echo=FALSE, fig.cap="Fitted line plot (Left) and residual plot (Right) for the fit of $\\mu_{Y|X}=\\alpha+\\beta_{1} X+\\beta_{2}X^{2}+\\beta_{3}X^{3}$ to data simulated from a cubic model.", fig.pos="h">>=
  pol2.lm <- lm(y~x+I(x^2)+I(x^3),data=pol)
  fitPlot(pol2.lm,lwd=2)
  residPlot(pol2.lm,inclHist=FALSE,loess=FALSE)
@@ -1033,7 +1033,7 @@ fitPlot(tm.lm2)
 
 \begin{table}[h]
   \centering
-  \caption{Summary results for the regression of $\mu_{log(AGB)|log(DBH)} = \alpha + \beta_{1}log(DBH)$.}\label{tab:SLRFCCoef}
+  \caption{Summary results for the regression of $\mu_{log(AGB)|log(DBH)} = \alpha + \beta log(DBH)$.}\label{tab:SLRFCCoef}
 \vspace{-12pt}
 <<echo=FALSE, background="white">>=
 kREG(tm.lm2)
@@ -1042,7 +1042,7 @@ kREG(tm.lm2)
 
 \begin{table}[h]
   \centering
-  \caption{Confidence intervals for parameters in $\mu_{log(AGB)|log(DBH)} = \alpha + \beta_{1}log(DBH)$.}\label{tab:SLRFCCoefCI}
+  \caption{Confidence intervals for parameters in $\mu_{log(AGB)|log(DBH)} = \alpha + \beta log(DBH)$.}\label{tab:SLRFCCoefCI}
 \vspace{-12pt}
 <<echo=FALSE, background="white">>=
 confint(tm.lm2)

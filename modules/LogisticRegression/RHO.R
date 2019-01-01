@@ -69,4 +69,4 @@ p <- 0.25
 predict(glm2,data.frame(income=80),type="response")
 
 
-# Script created at 2019-01-01 10:26:49
+# Script created at 2019-01-01 10:39:43

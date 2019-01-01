@@ -32,8 +32,8 @@ set_parent('Biometry.Rnw')
 set.seed(3436234)
 xmids <- seq(12.5,47.5,2.5)
 alpha <- -7
-beta1 <- 0.235
-pmids <- exp(alpha+beta1*xmids)/(1+exp(alpha+beta1*xmids))
+beta <- 0.235
+pmids <- exp(alpha+beta*xmids)/(1+exp(alpha+beta*xmids))
 fdat <- NULL
 for (i in 1:length(xmids)) {
   fdat <- c(fdat,sample(c("fail","succ"),20,prob=c(1-pmids[i],pmids[i]),replace=TRUE))
@@ -94,46 +94,46 @@ and the plot of $logit(p_{i})$ versus the explanatory variable will be linear \f
 The logit transformation is a common transformation for ``linearizing'' the relationship between the probability of ``success'' and the quantitative explanatory variable. The logit transformation is the basis for a logistic regression, such that the logistic regression model is
 
 \begin{equation}\label{eqn:logRegModel}
-  log\left(\frac{p_{i}}{1-p_{i}}\right) = \alpha + \beta_{1}x_{i}
+  log\left(\frac{p_{i}}{1-p_{i}}\right) = \alpha + \beta x_{i}
 \end{equation}
 
-where $\alpha$ is the ``intercept'' parameter and $\beta_{1}$ is the ``slope'' parameter.
+where $\alpha$ is the ``intercept'' parameter and $\beta$ is the ``slope'' parameter.
 
 \subsection{Intepreting the Slope Coefficient}
 \vspace{-12pt}
 The slope for any linear regression represents the average change in the response variable for a unit change in the explanatory variable. In logistic regression, this corresponds to the average (additive) change in the log odds of a ``success'' for a unit change in the explanatory variable, or
 
 \[ \begin{split}
-\beta_{1} &= log(ODDS(Y|X+1)) - log(ODDS(Y|X+1)) \\
-          &= log\left(\frac{PR(Y|X+1)}{1-PR(Y|X+1)}\right) - log\left(\frac{PR(Y|X)}{1-PR(Y|X)}\right)
+\beta &= log(ODDS(Y|X+1)) - log(ODDS(Y|X+1)) \\
+      &= log\left(\frac{PR(Y|X+1)}{1-PR(Y|X+1)}\right) - log\left(\frac{PR(Y|X)}{1-PR(Y|X)}\right)
 \end{split} \]
 
 where $ODDS(Y|X)$ generically represents the odds of and $PR(Y|X)$ generically represents the probability of $Y$ (the response variable) for a given value of $X$ (the explanatory variable). A change in the log odds is not readily interpretable. However, back-transforming the slope, i.e.,
 
-\[ e^{\beta_{1}} = \frac{ODDS(Y|X+1)}{ODDS(Y|X)} = \frac{\frac{PR(Y|X+1)}{1-PR(Y|X+1)}}{\frac{PR(Y|X)}{1-PR(Y|X)}} \]
+\[ e^{\beta} = \frac{ODDS(Y|X+1)}{ODDS(Y|X)} = \frac{\frac{PR(Y|X+1)}{1-PR(Y|X+1)}}{\frac{PR(Y|X)}{1-PR(Y|X)}} \]
 
-results in a measure of the \textbf{multiplicative} change in the odds of a ``success'' for a unit change in the explanatory variable. For example, $\hat{\beta}_{1}$=0.2 would mean that the log odds of a ``success'' increases by 0.2, on average, for a one unit increase in $X$. The corresponding back-tranformed slope, $e^{0.2}$=\Sexpr{formatC(exp(0.2),format="f",digits=2)}, indicates that the odds of a ``success'' are \Sexpr{formatC(exp(0.2),format="f",digits=2)} \textbf{times} greater for a one unit increase in $X$. The back-transformed slope does not indicate what the odds are, only that the odds are \Sexpr{formatC(exp(0.2),format="f",digits=2)} \textbf{times} greater with an increase of one unit in the explanatory variable.
+results in a measure of the \textbf{multiplicative} change in the odds of a ``success'' for a unit change in the explanatory variable. For example, $\hat{\beta}$=0.2 would mean that the log odds of a ``success'' increases by 0.2, on average, for a one unit increase in $X$. The corresponding back-tranformed slope, $e^{0.2}$=\Sexpr{formatC(exp(0.2),format="f",digits=2)}, indicates that the odds of a ``success'' are \Sexpr{formatC(exp(0.2),format="f",digits=2)} \textbf{times} greater for a one unit increase in $X$. The back-transformed slope does not indicate what the odds are, only that the odds are \Sexpr{formatC(exp(0.2),format="f",digits=2)} \textbf{times} greater with an increase of one unit in the explanatory variable.
 
-Nearly all software will provide a ``default'' significance test for the slope. This significance test tests $H_{0}:\beta_{1}=0$ versus $H_{A}:\beta_{1}\neq0$. Thus, this significance tests determines, with a one unit increase in the explanatory variable, if the (additive) change in log odds of ``success'' is zero or the (multiplicative) change in odds is one. The probability does not change if the (additive) change in log odds is zero or, equivalently, if the (multiplicative) change in odds is one. Thus, the default hypothesis test for the slope determines if the log odds or the odds of ``success'' is related to the explanatory variable.
+Nearly all software will provide a ``default'' significance test for the slope. This significance test tests $H_{0}:\beta=0$ versus $H_{A}:\beta \neq0$. Thus, this significance tests determines, with a one unit increase in the explanatory variable, if the (additive) change in log odds of ``success'' is zero or the (multiplicative) change in odds is one. The probability does not change if the (additive) change in log odds is zero or, equivalently, if the (multiplicative) change in odds is one. Thus, the default hypothesis test for the slope determines if the log odds or the odds of ``success'' is related to the explanatory variable.
 
 \subsection{Predictions}
 \vspace{-12pt}
 Inserting a given value of the explanatory variable into the fitted logistic regression model, i.e., into \eqnref{eqn:logRegModel}, results in a predicted log odds of ``success.''  Back-transforming this result gives a predicted odds of ``success'', i.e.,
 
 \begin{equation} \label{eqn:predOdds}
-  \frac{p_{i}}{1-p_{i}}  = e^{\alpha + \beta_{1}x_{i}}
+  \frac{p_{i}}{1-p_{i}}  = e^{\alpha + \beta x_{i}}
 \end{equation}
 
 The predicted odds equation, \eqnref{eqn:predOdds}, can be algebraically solved for $p_{i}$ to provide a formula for predicting the probability of ``success'', i.e.,
 
 \begin{equation}\label{eqn:predProb}
-  p_{i} = \frac{e^{\alpha + \beta_{1}x_{i}}}{1+e^{\alpha + \beta_{1}x_{i}}}
+  p_{i} = \frac{e^{\alpha + \beta x_{i}}}{1+e^{\alpha + \beta x_{i}}}
 \end{equation}
 
 \eqnref{eqn:predOdds} can also be algebraically solved for $x_{i}$ to provide a formula for the value of $X$ that corresponds to a given probability of ``success'', i.e.,
 
 \begin{equation}\label{eqn:predX}
-  x_{i} = \frac{log\left(\frac{p_{i}}{1-p_{i}}\right) - \alpha}{\beta_{1}}
+  x_{i} = \frac{log\left(\frac{p_{i}}{1-p_{i}}\right) - \alpha}{\beta}
 \end{equation}
 
 \subsection{Variability Estimates}
@@ -209,7 +209,7 @@ predict(glm1,data.frame(conc=70),type="response")
 @
 Unfortunately, confidence intervals for this prediction can not be constructed with \R{predict()}. Bootstrap confidence intervals, however, can be constructed with a bit of work. First, one must create a small function that computes the predicted probability ``by hand'', i.e., code \eqnref{eqn:predProb} with
 <<>>=
-predProb <- function(x,alpha,beta1) exp(alpha+beta1*x)/(1+exp(alpha+beta1*x))
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
 @
 A quick check of this function,
 <<>>=
@@ -225,7 +225,7 @@ Thus, one is 95\% confident that the predicted probability of death for beetles 
 
 A similar process is used to predict the concentration where 50\%, for example, of the beetles will have died (in this case, \eqnref{eqn:predX} must be coded as a function). For example,
 <<echo=-4>>=
-predX <- function(p,alpha,beta1) (log(p/(1-p))-alpha)/beta1
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
 x50 <- predX(0.5,bc1[,1],bc1[,2])
 quantile(x50,c(0.025,0.975))
 ci50 <- quantile(x50,c(0.025,0.975))
