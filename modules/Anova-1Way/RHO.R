@@ -1,4 +1,3 @@
-# Renders an appropriate HTML file for the webpage (CTRL-ALT-C)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-1Way")
 
 options(show.signif.stars=FALSE)
@@ -54,4 +53,4 @@ confint(ben.mc)
 exp(confint(ben.mc)$confint)
 
 
-# Script created at 2018-12-31 11:08:57
+# Script created at 2019-01-01 14:15:23

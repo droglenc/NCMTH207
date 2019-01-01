@@ -1,14 +1,6 @@
-#=============================================================
-#=============== IGNORE/DELETE FROM HERE .... ================
-# Renders an appropriate HTML file for the webpage
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LMFoundations")
-source("../../rhelpers/rhelpers.R")
-modHTML("RHO")
 
-source("../../rhelpers/knitr_setup.R")
-#=============== .... TO HERE ================================
-#=============================================================
-
+options(show.signif.stars=FALSE)
 library(NCStats)
 
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LMFoundations")
@@ -20,15 +12,27 @@ levels(sdir$sex)
 
 hist(abserr~sexmf,data=sdir,xlab="Absolute Error",w=25)
 Summarize(abserr~sexmf,data=sdir,digits=2)
+
 levenesTest(abserr~sexmf,data=sdir)
+
+tmp <- levenesTest(abserr~sexmf,data=sdir)
+attr(tmp,"heading") <- NULL
+tmp
+
 t.test(abserr~sexmf,data=sdir,var.equal=TRUE)
+
+kHtest(t.test(abserr~sexmf,data=sdir,var.equal=TRUE))
+
 t.test(abserr~sex,data=sdir,var.equal=TRUE)
+
+kHtest(t.test(abserr~sex,data=sdir,var.equal=TRUE))
 
 lm1 <- lm(abserr~sexmf,data=sdir)
 summary(lm1)
-confint(lm1)
-fitPlot(lm1,xlab="Sex",ylab="Absolute Error",main="")
+cbind(Ests=coef(lm1),confint(lm1))
+fitPlot(lm1,xlab="Sex",ylab="Absolute Error")
+
 anova(lm1)
 
 
-# Script created at 2017-01-12 15:32:15
+# Script created at 2019-01-01 14:13:10

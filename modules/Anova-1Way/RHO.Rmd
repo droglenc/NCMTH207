@@ -15,7 +15,7 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-# Renders an appropriate HTML file for the webpage (CTRL-ALT-C)
+## Renders an appropriate HTML file for the webpage (CTRL-ALT-C)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/Anova-1Way")
 source("../../rhelpers/rhelpers.R")
 modHTML("RHO")

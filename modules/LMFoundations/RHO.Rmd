@@ -15,9 +15,7 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE}
-#=============================================================
-#=============== IGNORE/DELETE FROM HERE .... ================
-# Renders an appropriate HTML file for the webpage
+## Renders an appropriate HTML file for the webpage (CTRL-ALT-C)
 setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LMFoundations")
 source("../../rhelpers/rhelpers.R")
 modHTML("RHO")
@@ -25,16 +23,19 @@ modHTML("RHO")
 
 ```{r echo=FALSE, results='hide', message='FALSE'}
 source("../../rhelpers/knitr_setup.R")
-#=============== .... TO HERE ================================
-#=============================================================
 ```
 ----
+
+\vspace{24pt}
 
 ## Initialization
 
 ```{r results='hide', message=FALSE, warning=FALSE}
+options(show.signif.stars=FALSE)
 library(NCStats)
 ```
+
+\vspace{24pt}
 
 ## Background
 [Sholl *et al.* (2000)](http://www.sciencedirect.com/science/article/pii/S0272494499901469) examined the relative sense of direction for female and male subjects.  Specifically, 30 male and 30 female subjects were taken to an unfamiliar wooded park and given spatial orientation tests, including being asked to point to the south.  The absolute pointing error (in degrees away from due south) was recorded.  The results are in `SexDirection.csv`.  Use these results to test, at the 5% level, if males have a better sense of direction than females?
@@ -48,27 +49,53 @@ levels(sdir$sexmf)
 levels(sdir$sex)
 ```
 
+\vspace{24pt}
+
 ## Two-Sample t-Test (Traditional Method)
 
 ```{r fig.show='asis', fig.width=6, par1=TRUE}
 hist(abserr~sexmf,data=sdir,xlab="Absolute Error",w=25)
 Summarize(abserr~sexmf,data=sdir,digits=2)
+```
+```{r results='hide'}
 levenesTest(abserr~sexmf,data=sdir)
+```
+```{r echo=FALSE}
+tmp <- levenesTest(abserr~sexmf,data=sdir)
+attr(tmp,"heading") <- NULL
+tmp
+```
+
+```{r results='hide'}
 t.test(abserr~sexmf,data=sdir,var.equal=TRUE)
+```
+```{r echo=FALSE}
+kHtest(t.test(abserr~sexmf,data=sdir,var.equal=TRUE))
+```
+```{r results='hide'}
 t.test(abserr~sex,data=sdir,var.equal=TRUE)
 ```
+```{r echo=FALSE}
+kHtest(t.test(abserr~sex,data=sdir,var.equal=TRUE))
+```
+
+\newpage
 
 ## Two-Sample t-Test (As a Linear Model)
 
 ```{r fig.show='asis', par1=TRUE}
 lm1 <- lm(abserr~sexmf,data=sdir)
 summary(lm1)
-confint(lm1)
-fitPlot(lm1,xlab="Sex",ylab="Absolute Error",main="")
+cbind(Ests=coef(lm1),confint(lm1))
+fitPlot(lm1,xlab="Sex",ylab="Absolute Error")
+```
+```{r results='hide'}
 anova(lm1)
 ```
-
+```{r echo=FALSE}
+kANOVA(lm1)
+```
 
 ```{r echo=FALSE, results="hide", message=FALSE, warnings=FALSE}
-purl2("RHO.Rmd")
+purl2("RHO.Rmd",moreItems=c("source","modHTML","kGLHT","kANOVA","include_graphics"))
 ```

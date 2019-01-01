@@ -9,9 +9,12 @@ css: "/css/modules.css"
 
 
 <hr />
+
 <div id="initialization" class="section level2">
 <h2>Initialization</h2>
-<pre class="r"><code>&gt; library(NCStats)</code></pre>
+<pre class="r"><code>&gt; options(show.signif.stars=FALSE)
+&gt; library(NCStats)</code></pre>
+
 </div>
 <div id="background" class="section level2">
 <h2>Background</h2>
@@ -27,38 +30,35 @@ css: "/css/modules.css"
 <pre><code>[1] &quot;male&quot;   &quot;female&quot;</code></pre>
 <pre class="r"><code>&gt; levels(sdir$sex)</code></pre>
 <pre><code>[1] &quot;female&quot; &quot;male&quot;  </code></pre>
+
 </div>
 <div id="two-sample-t-test-traditional-method" class="section level2">
 <h2>Two-Sample t-Test (Traditional Method)</h2>
-<pre class="r"><code>&gt; hist(abserr~sexmf,data=sdir,xlab=&quot;Absolute Error&quot;,w=25)
-&gt; Summarize(abserr~sexmf,data=sdir,digits=2)</code></pre>
+<pre class="r"><code>&gt; hist(abserr~sexmf,data=sdir,xlab=&quot;Absolute Error&quot;,w=25)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+<pre class="r"><code>&gt; Summarize(abserr~sexmf,data=sdir,digits=2)</code></pre>
 <pre><code>   sexmf  n mean    sd min    Q1 median    Q3 max
 1   male 30 37.6 38.49   3 11.50   22.5 58.75 167
 2 female 30 55.8 48.26   3 15.75   35.0 88.25 176</code></pre>
 <pre class="r"><code>&gt; levenesTest(abserr~sexmf,data=sdir)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
-<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
-      Df F value Pr(&gt;F)
+<pre><code>      Df F value Pr(&gt;F)
 group  1  2.1692 0.1462
       58               </code></pre>
 <pre class="r"><code>&gt; t.test(abserr~sexmf,data=sdir,var.equal=TRUE)</code></pre>
-<pre><code> Two Sample t-test with abserr by sexmf 
-t = -1.6149, df = 58, p-value = 0.1118
-alternative hypothesis: true difference in means is not equal to 0 
+<pre><code>t = -1.6149, df = 58, p-value = 0.1118
 95 percent confidence interval:
  -40.758823   4.358823 
 sample estimates:
   mean in group male mean in group female 
                 37.6                 55.8 </code></pre>
 <pre class="r"><code>&gt; t.test(abserr~sex,data=sdir,var.equal=TRUE)</code></pre>
-<pre><code> Two Sample t-test with abserr by sex 
-t = 1.6149, df = 58, p-value = 0.1118
-alternative hypothesis: true difference in means is not equal to 0 
+<pre><code>t = 1.6149, df = 58, p-value = 0.1118
 95 percent confidence interval:
  -4.358823 40.758823 
 sample estimates:
 mean in group female   mean in group male 
                 55.8                 37.6 </code></pre>
+
 </div>
 <div id="two-sample-t-test-as-a-linear-model" class="section level2">
 <h2>Two-Sample t-Test (As a Linear Model)</h2>
@@ -72,17 +72,14 @@ sexmffemale   18.200     11.270   1.615    0.112
 Residual standard error: 43.65 on 58 degrees of freedom
 Multiple R-squared: 0.04303,    Adjusted R-squared: 0.02653 
 F-statistic: 2.608 on 1 and 58 DF,  p-value: 0.1118 </code></pre>
-<pre class="r"><code>&gt; confint(lm1)</code></pre>
-<pre><code>                2.5 %   97.5 %
-(Intercept) 21.648503 53.55150
-sexmffemale -4.358823 40.75882</code></pre>
-<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Sex&quot;,ylab=&quot;Absolute Error&quot;,main=&quot;&quot;)</code></pre>
-<p><img src="RHO_files/figure-html/unnamed-chunk-6-1.png" width="288" /></p>
+<pre class="r"><code>&gt; cbind(Ests=coef(lm1),confint(lm1))</code></pre>
+<pre><code>            Ests     2.5 %   97.5 %
+(Intercept) 37.6 21.648503 53.55150
+sexmffemale 18.2 -4.358823 40.75882</code></pre>
+<pre class="r"><code>&gt; fitPlot(lm1,xlab=&quot;Sex&quot;,ylab=&quot;Absolute Error&quot;)</code></pre>
+<p><img src="RHO_files/figure-html/unnamed-chunk-12-1.png" width="288" /></p>
 <pre class="r"><code>&gt; anova(lm1)</code></pre>
-<pre><code>Analysis of Variance Table
-
-Response: abserr
-          Df Sum Sq Mean Sq F value Pr(&gt;F)
+<pre><code>          Df Sum Sq Mean Sq F value Pr(&gt;F)
 sexmf      1   4969  4968.6   2.608 0.1118
 Residuals 58 110496  1905.1               </code></pre>
 </div>
@@ -110,7 +107,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
