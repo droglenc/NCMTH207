@@ -65,3 +65,4 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [GDP by County](https://www.bea.gov/news/2018/prototype-gross-domestic-product-county-2012-2015): Gross domestic product data by U.S. county distributed by the Bureau of Economic Analysis (BEA).
 * [UMESC Fisheries](https://www.umesc.usgs.gov/data_library/fisheries/fish1_query.shtml): A database of fisheries information provided by the Upper Midwest Environmental Science Center of the U.S. Geological Survey. This is largely related to data from the Mississippi R.
 * [Incarceration Trends Dataset](https://github.com/vera-institute/incarceration_trends): County-level jail data (1970-) and prison data (1983-).
+* [Monitoring the Future (MTF) Public-Use Datasets](https://www.icpsr.umich.edu/icpsrweb/NAHDAP/series/35/variables): A continuing study of the lifestyles of American youth since 1975.
