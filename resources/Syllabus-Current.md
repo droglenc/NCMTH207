@@ -79,11 +79,11 @@ As a general rule-of-thumb[^2], you are expected to spend 2-3 hours of time outs
 <img class="img-right" src="../img/DerekOgle1.jpg">
 I am committed to your doing well in this course and see it as my responsibility to help you as much as possible both in and out of the designated class period. Thus, you may call (715-682-1300), e-mail (<a href="mailto:dogle@northland.edu">dogle@northland.edu</a>)[^email], or visit me in my office (CSE228) for help. I will make every effort to be available during office hours from 1230-230 on Monday, Wednesday, and Friday. I will also be available any time that my door is open. Finally, you may also send me <a href="https://www.surveymonkey.com/r/KC87PJW" target="_blank">anonymous feedback, suggestions, or questions</a>. Please don't hesitate to see or contact me if you have any questions regarding this course.
 
-### Tutors
+### Tutor
 
 <img class="img-right" src="../img/Emily_F17.jpg">
 
-We are fortunate to have Emily Mader serve as a statistics tutor this year. Emily is a mathematics major and physics minor who took this course last year. Thus, she is very familiar with the content and organization of this course. Emily also participated last summer in a research experience related to statistics. Emily will be available to tutor Biometry on Thursday 5-7p in CSE236 or CSE229. In addition, she may be able to help during her times scheduled to tutor Introductory Statistics and Mathematics (see tutor hours posted around the building). In addition to their tutor hours, please don't forget my availability as described above.
+We are fortunate to have Emily Mader serve as a tutor for Biometry this year. Emily is a mathematics major and physics minor who took this course last year. Thus, she is very familiar with the content and organization of this course. Emily also participated last summer in a research experience related to statistics. Emily will be available to tutor Biometry on Thursday 5-7p in CSE236 or CSE229. In addition, she may be able to help during her times scheduled to tutor Introductory Statistics and Mathematics (see [here](http://derekogle.com/NCMTH107/resources/Syllabus-Current#tutors) and tutor hours posted around the building). In addition to her tutor hours, please don't forget my availability as described above.
 
 
 ### Accommodations
