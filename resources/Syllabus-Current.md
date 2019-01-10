@@ -83,7 +83,7 @@ I am committed to your doing well in this course and see it as my responsibility
 
 <img class="img-right" src="../img/Emily_F17.jpg">
 
-We are fortunate to have Emily Mader serve as a tutor for Biometry this year. Emily is a mathematics major and physics minor who took this course last year. Thus, she is very familiar with the content and organization of this course. Emily also participated last summer in a research experience related to statistics. Emily will be available to tutor Biometry on Thursday 5-7p in CSE236 or CSE229. In addition, she may be able to help during her times scheduled to tutor Introductory Statistics and Mathematics (see [here](http://derekogle.com/NCMTH107/resources/Syllabus-Current#tutors) and tutor hours posted around the building). In addition to her tutor hours, please don't forget my availability as described above.
+We are fortunate to have Emily Mader serve as a tutor for Biometry this year. Emily is a mathematics major and physics minor who took this course last year. Thus, she is very familiar with the content and organization of this course. Emily also participated last summer in a research experience related to statistics. Emily will be available to tutor Biometry on Thursday 3-5p in CSE236 or CSE229. In addition, she may be able to help during her times scheduled to tutor Introductory Statistics and Mathematics (see [here](http://derekogle.com/NCMTH107/resources/Syllabus-Current#tutors) and tutor hours posted around the building). In addition to her tutor hours, please don't forget my availability as described above.
 
 
 ### Accommodations
