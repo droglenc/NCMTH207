@@ -15,6 +15,7 @@ Note that some of the more distant dates are subject to change.
 <table width="100%">
 <tr><th width="18%">Date</th><th width="36%">Preparation</th><th width="46%">Items Due</th></tr>
 
+<!---
 <tr><td>W 9-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations Intro &para;</a><br><a href="Syllabus-Current">Syllabus</a></td>
     <td>--</td></tr>
@@ -22,7 +23,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
-
+--->
 <tr><td>M 14-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
     <td>--</td></tr>
@@ -41,7 +42,7 @@ Note that some of the more distant dates are subject to change.
     <td colspan="2"><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
 <tr><td>T 22-Jan</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/LMFoundations/HW2.html">Foundations HW #2</a></td></tr>
 <tr><td>W 23-Jan</td>
     <td></td>
     <td>--</td></tr>

@@ -23,7 +23,7 @@ Stream A: 8.97 9.12 9.41 8.67 9.94 8.28 7.86 7.51 9.18 7.68
 Stream B: 6.67 5.83 6.84 6.86 5.89 7.42 6.56 5.99 5.33 6.69
 </pre>
 
-Enter these data into R and construct a tables of 2-Sample t-Test results (use `t.test()` and assume that the group variances are equal), ANOVA results (use `anova()` with an `lm()` object), and summary of coefficients (use `summary()` with an `lm()` object). [*Note that you should have three appropriately labeled tables that you will refer to when answering the questions below.*]
+Enter these data into R and construct tables of 2-Sample t-Test results (use `t.test()` and assume that the group variances are equal), ANOVA results (use `anova()` with an `lm()` object), and summary of coefficients (use `summary()` with an `lm()` object). [*Note that you should have three appropriately labeled tables that you will refer to when answering the questions below.*]
 
 1. How do the p-values for the 2-Sample t-Test, the ANOVA table, and the *slope* (in the summary of coefficients table) compare? Explain why this relationship occurs. [*Hint: You will need to discuss the H<sub>0</sub> and H<sub>A</sub> for each p-value and explain how they are equivalent.*]
 1. What overall conclusion about the group means is made from these p-values?
