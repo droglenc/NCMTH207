@@ -42,19 +42,19 @@ Note that some of the more distant dates are subject to change.
 <tr><td>M 21-Jan</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
 <tr><td>T 22-Jan</td>
-    <td></td>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.1</a></td>
     <td>--</td></tr>
 <tr><td>W 23-Jan</td>
-    <td></td>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.2</td>
     <td><a href="../modules/LMFoundations/HW2.html">Foundations HW #2</a></td></tr>
 <tr><td>F 25-Jan</td>
-    <td></td>
-    <td>--</td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</td>
+    <td><a href="../modules/Anova-1Way/HW1.html">One-Way ANOVA HW #1</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 28-Jan</td>
-    <td></td>
-    <td>--</td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</td>
+    <td><a href="../modules/Anova-1Way/HW2.html">One-Way ANOVA HW #2</a></td></tr>
 <tr><td>T 29-Jan</td>
     <td colspan="2"><span style="color:red">First Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 30-Jan</td>
@@ -62,7 +62,7 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>F 1-Feb</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/Anova-1Way/HW3.html">One-Way ANOVA HW #3</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 4-Feb</td>
@@ -70,7 +70,7 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>T 5-Feb</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/Anova-1Way/HW4.html">One-Way ANOVA HW #4</a></td></tr>
 <tr><td>W 6-Feb</td>
     <td></td>
     <td>--</td></tr>
@@ -210,38 +210,7 @@ Note that some of the more distant dates are subject to change.
 </table>
 
 <!---
-<tr><td>W 9-Jan</td>
-    <td><a href="../book/Foundations.pdf">Foundations Intro &para;</a><br><a href="Syllabus-Current">Syllabus</a></td>
-    <td>--</td></tr>
-<tr><td>F 11-Jan</td>
-    <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
-    <td>--</td></tr>
-<tr><td></td><td></td><td></td></tr>
-
-<tr><td>M 14-Jan</td>
-    <td colspan="2"><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
-<tr><td>T 15-Jan</td>
-    <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td>
-    <td><a href="../modules/LMFoundations/HW1.html">Foundations HW #1</a></td></tr>
-<tr><td>W 16-Jan</td>
-    <td><a href="../book/Foundations.pdf">Foundations &sect;1.2-1.4</a></td>
-    <td>--</td></tr>
-<tr><td>F 18-Jan</td>
-    <td><a href="../book/Foundations.pdf">Foundations &sect;1.5-1.6</a></td>
-    <td>--</td></tr>
-<tr><td></td><td></td><td></td></tr>
-
-<tr><td>M 21-Jan</td>
-    <td><a href="../book/Foundations.pdf">Foundations</a></td>
-    <td>--</td></tr>
-<tr><td>T 22-Jan</td>
-    <td><a href="../modules/LMFoundations/HW2.html">Foundations HW #2</a> (Work)</td>
-    <td>--</td></tr>
-<tr><td>W 23-Jan</td>
-    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.1</a></td>
-    <td><a href="../modules/LMFoundations/HW2.html">Foundations HW #2</a></td></tr>
-<tr><td>F 25-Jan</td>
-    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.1</a></td>
+    <td></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
@@ -250,7 +219,7 @@ Note that some of the more distant dates are subject to change.
 <tr><td>T 29-Jan</td>
     <td colspan="2"><span style="color:red">First Quiz</span> (<a href="QuizGuides/quiz_1.html">Study Guide</a>)</td></tr>
 <tr><td>W 30-Jan</td>
-    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.2</a></td>
+    <td></a></td>
     <td><a href="../modules/Anova-1Way/HW1.html">One-Way ANOVA HW #1</a></td></tr>
 <tr><td>F 1-Feb</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td>
