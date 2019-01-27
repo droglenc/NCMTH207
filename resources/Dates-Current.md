@@ -66,17 +66,17 @@ Note that some of the more distant dates are subject to change.
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 4-Feb</td>
-    <td></td>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.1</a></td>
     <td>--</td></tr>
 <tr><td>T 5-Feb</td>
     <td>Work Day</td>
     <td><a href="../modules/Anova-1Way/HW3.html">One-Way ANOVA HW #3</a></td></tr>
 <tr><td>W 6-Feb</td>
-    <td></td>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td>
     <td><a href="../modules/Anova-1Way/HW4.html">One-Way ANOVA HW #4</a></td></tr>
 <tr><td>F 8-Feb</td>
-    <td></td>
-    <td>--</td></tr>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
+    <td><a href="../modules/Anova-2Way/HW1.html">Two-Way ANOVA HW #1</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 11-Feb</td>
