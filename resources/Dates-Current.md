@@ -37,7 +37,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Foundations.pdf">Foundations</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 21-Jan</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
@@ -51,6 +50,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td>
     <td><a href="../modules/Anova-1Way/HW1.html">One-Way ANOVA HW #1</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 28-Jan</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td>
