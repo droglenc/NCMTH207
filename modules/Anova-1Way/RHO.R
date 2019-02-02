@@ -24,7 +24,7 @@ summary(rasp.mc)
 
 confint(rasp.mc)
 
-fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
+fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)")
 addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4))
 
 ben <- read.csv("BenthicInfaunal.csv")
@@ -45,7 +45,7 @@ anova(lm3)
 ben.mc <- glht(lm3, mcp(site = "Dunnett"))
 summary(ben.mc)
 
-fitPlot(lm3,ylab="Log Abundance",xlab="Site",main="")
+fitPlot(lm3,ylab="Log Abundance",xlab="Site")
 addSigLetters(lm3,lets=c("","","*","*","*","","","*",""),pos=c(2,4,2,4,2,2,4,2,4))
 
 confint(ben.mc)
@@ -53,4 +53,4 @@ confint(ben.mc)
 exp(confint(ben.mc)$confint)
 
 
-# Script created at 2019-01-01 14:15:23
+# Script created at 2019-02-02 09:14:12

@@ -92,7 +92,7 @@ kGLHT(rasp.mc,type="confidence")
 ```
 
 ```{r par1=TRUE}
-fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)",main="")
+fitPlot(lm1,xlab="Water Treatment (ml)",ylab="Weight (g)")
 addSigLetters(lm1,lets=c("a","a","b","b"),pos=c(2,4,2,4))
 ```
 
@@ -152,7 +152,7 @@ kGLHT(ben.mc,type="hypothesis")
 \newpage
 
 ```{r message=FALSE, par1=TRUE}
-fitPlot(lm3,ylab="Log Abundance",xlab="Site",main="")
+fitPlot(lm3,ylab="Log Abundance",xlab="Site")
 addSigLetters(lm3,lets=c("","","*","*","*","","","*",""),pos=c(2,4,2,4,2,2,4,2,4))
 ```
 
