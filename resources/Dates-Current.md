@@ -83,7 +83,7 @@ Note that some of the more distant dates are subject to change.
     <td></td>
     <td>--</td></tr>
 <tr><td>T 12-Feb</td>
-    <td colspan="2"><span style="color:red">Second Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">Second Quiz</span> (<a href="QuizGuides/quiz_2.html">Study Guide</a>)</td></tr>
 <tr><td>W 13-Feb</td>
     <td></td>
     <td>--</td></tr>
