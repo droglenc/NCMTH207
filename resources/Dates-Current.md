@@ -77,7 +77,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 11-Feb</td>
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td>
@@ -91,9 +90,10 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
     <td><a href="../modules/Anova-2Way/HW2.html">Two-Way ANOVA HW #2</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 18-Feb</td>
-    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1 &amp; 4.2</a></td>
+    <td></td>
     <td>--</td></tr>
 <tr><td>T 19-Feb</td>
     <td>Work Day</td>
@@ -101,21 +101,21 @@ Note that some of the more distant dates are subject to change.
 <tr><td>W 20-Feb</td>
     <td colspan="2"><span style="color:coral">NO CLASS (WORK ON PORTFOLIO)</span></td></tr>
 <tr><td>F 22-Feb</td>
-    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.2</a></td>
-    <td>--</td></tr>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1 &amp; 4.2</a></td>
+    <td><a href="../modules/Anova-2Way/HW3.html">Two-Way ANOVA HW #3</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 25-Feb</td>
-    <td>Work Day</td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.2</a></td>
     <td>--</td></tr>
 <tr><td>T 26-Feb</td>
     <td><span style="color:red">Third Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td>
     <td>--</td></tr>
 <tr><td>W 27-Feb</td>
-    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>F 1-Mar</td>
-    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5 &amp; 4.6</a></td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td>
     <td><a href="../modules/SLRegression/HW1.html">SLR HW#1</a><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance to redo)</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
@@ -130,7 +130,7 @@ Note that some of the more distant dates are subject to change.
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 11-Mar</td>
-    <td></td>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5 &amp; 4.6</a></td>
     <td>--</td></tr>
 <tr><td>T 12-Mar</td>
     <td></td>
