@@ -93,7 +93,7 @@ Note that some of the more distant dates are subject to change.
 --->
 
 <tr><td>M 18-Feb</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>T 19-Feb</td>
     <td>Work Day</td>
@@ -131,21 +131,21 @@ Note that some of the more distant dates are subject to change.
 
 <tr><td>M 11-Mar</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5 &amp; 4.6</a></td>
-    <td>--</td></tr>
+    <td><a href="../modules/SLRegression/HW2.html">SLR HW#2</a></td></tr>
 <tr><td>T 12-Mar</td>
-    <td></td>
-    <td><a href="../modules/SLRegression/HW2.html">SLR HW#2</a> &amp; <a href="../modules/SLRegression/HW3.html">SLR HW#3</a></td></tr>
+    <td>Work Day</td>
+    <td>--</td></tr>
 <tr><td>W 13-Mar</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/SLRegression/HW3.html">SLR HW#3</a></td></tr>
 <tr><td>F 15-Mar</td>
     <td></td>
-    <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a><br><a href="../modules/SLRegression/HW4.html">SLR HW#4</a> &amp; <a href="../modules/SLRegression/HW5.html">SLR HW#5</a></td></tr>
+    <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a><br><a href="../modules/SLRegression/HW4.html">SLR HW#4</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 18-Mar</td>
     <td></td>
-    <td>--</td></tr>
+    <td><a href="../modules/SLRegression/HW5.html">SLR HW#5</a></td></tr>
 <tr><td>T 19-Mar</td>
     <td colspan="2"><span style="color:red">Fourth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 20-Mar</td>
