@@ -90,7 +90,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td>
     <td><a href="../modules/Anova-2Way/HW2.html">Two-Way ANOVA HW #2</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 18-Feb</td>
     <td>Work Day</td>
@@ -104,6 +103,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1 &amp; 4.2</a></td>
     <td><a href="../modules/Anova-2Way/HW3.html">Two-Way ANOVA HW #3</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 25-Feb</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.2</a></td>
