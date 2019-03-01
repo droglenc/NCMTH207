@@ -103,7 +103,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1 &amp; 4.2</a></td>
     <td><a href="../modules/Anova-2Way/HW3.html">Two-Way ANOVA HW #3</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 25-Feb</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.2</a></td>
@@ -118,6 +117,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td>
     <td><a href="../modules/SLRegression/HW1.html">SLR HW#1</a><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance to redo)</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 4-Mar</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Mid-Session)</span></td></tr>
