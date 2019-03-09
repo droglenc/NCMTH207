@@ -117,7 +117,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td>
     <td><a href="../modules/SLRegression/HW1.html">SLR HW#1</a><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance to redo)</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 4-Mar</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Mid-Session)</span></td></tr>
@@ -128,6 +127,7 @@ Note that some of the more distant dates are subject to change.
 <tr><td>M 8-Mar</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Mid-Session)</span></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 11-Mar</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5 &amp; 4.6</a></td>
