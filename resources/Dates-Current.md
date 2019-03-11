@@ -243,21 +243,21 @@ Note that some of the more distant dates are subject to change.
 <tr><td>T 2-Apr</td>
     <td colspan="2"><span style="color:red">Fifth Quiz</span> (<a href="QuizGuides/quiz_5.html">Study Guide</a>)</td></tr>
 <tr><td>W 3-Apr</td>
-    <td>Logistic Regression</td>
+    <td><a href="../book/Logistic Regression.pdf">Logistic Regression</a></td>
     <td>--</td></tr>
 <tr><td>F 5-Apr</td>
-    <td>Logistic Regression</td>
+    <td><a href="../book/Logistic Regression.pdf">Logistic Regression</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 8-Apr</td>
-    <td>Logistic Regression</td>
+    <td><a href="../book/Logistic Regression.pdf">Logistic Regression</a></td>
     <td>--</td></tr>
 <tr><td>T 9-Apr</td>
     <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 10-Apr</td>
-    <td>Logistic Regression</td>
+    <td><a href="../book/Logistic Regression.pdf">Logistic Regression</a></td>
     <td><a href="../modules/LogisticRegression/HW1.html">Logistic HW#1</a></td></tr>
 <tr><td>F 12-Apr</td>
     <td>Work Day</td>
