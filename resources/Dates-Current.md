@@ -163,42 +163,42 @@ Note that some of the more distant dates are subject to change.
     <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 27-Mar</td>
-    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.6-5.7</a></td>
+    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.9</a></td>
     <td>--</td></tr>
 <tr><td>F 29-Mar</td>
-    <td></td>
+    <td>Work Day</td>
     <td><a href="../modules/IVRegression/HW2.html">IVR HW#2</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 1-Apr</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>T 2-Apr</td>
     <td colspan="2"><span style="color:red">Fifth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 3-Apr</td>
-    <td></td>
+    <td>Logistic Regression</td>
     <td>--</td></tr>
 <tr><td>F 5-Apr</td>
-    <td></td>
+    <td>Logistic Regression</td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 8-Apr</td>
-    <td></td>
+    <td>Logistic Regression</td>
     <td>--</td></tr>
 <tr><td>T 9-Apr</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>W 10-Apr</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>F 12-Apr</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 15-Apr</td>
-    <td></td>
+    <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>T 16-Apr</td>
     <td colspan="2"><span style="color:red">Sixth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
@@ -258,10 +258,10 @@ Note that some of the more distant dates are subject to change.
     <td>--</td></tr>
 <tr><td>W 10-Apr</td>
     <td>Logistic Regression</td>
-    <td>--</td></tr>
+    <td><a href="../modules/LogisticRegression/HW1.html">Logistic HW#1</a></td></tr>
 <tr><td>F 12-Apr</td>
     <td>Work Day</td>
-    <td>--</td></tr>
+    <td><a href="../modules/LogisticRegression/HW2.html">Logistic HW#2</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
 
 <tr><td>M 15-Apr</td>
