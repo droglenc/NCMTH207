@@ -141,7 +141,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.1-5.3</a></td>
     <td><a href="Syllabus-Current.html#portfolio">Portfolio Proposal</a><br><a href="../modules/SLRegression/HW4.html">SLR HW#4</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 18-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.1-5.3</a></td>
@@ -155,6 +154,7 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4-5.5</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 25-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.6-5.7</a></td>
