@@ -174,7 +174,7 @@ Note that some of the more distant dates are subject to change.
     <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>T 2-Apr</td>
-    <td colspan="2"><span style="color:red">Fifth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">Fifth Quiz</span> (<a href="QuizGuides/quiz_5.html">Study Guide</a>)</td></tr>
 <tr><td>W 3-Apr</td>
     <td><a href="../book/Logistic Regression.pdf">Logistic Regression</a></td>
     <td>--</td></tr>
