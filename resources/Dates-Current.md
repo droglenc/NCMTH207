@@ -154,7 +154,6 @@ Note that some of the more distant dates are subject to change.
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4-5.5</a></td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 25-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.6-5.7</a></td>
@@ -169,6 +168,7 @@ Note that some of the more distant dates are subject to change.
     <td>Work Day</td>
     <td><a href="../modules/IVRegression/HW2.html">IVR HW#2</a></td></tr>
 <tr><td></td><td></td><td></td></tr>
+--->
 
 <tr><td>M 1-Apr</td>
     <td>Work Day</td>
