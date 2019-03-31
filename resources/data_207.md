@@ -34,6 +34,7 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 
 * [LTER Data Portal](https://portal.lternet.edu/nis/home.jsp#): A comprehensive search engine for data from all NSF Long-Term Ecological Research sites.
     * [NTL-LTER](https://lter.limnology.wisc.edu/data): A variety of primarily aquatics-related datasets from the North Temperate Lakes Long-Term Ecological Research site in Northern Wisconsin.
+    * [Hubbard Brook](https://portal.lternet.edu/nis/mapbrowse?packageid=knb-lter-hbr.208.2): 50+ years of continuous stream temperature and chemistry data for Hubbard Brook.
 * [DRYAD](http://www.datadryad.org/): An international repository of data underlying scientific and medical publications.
 * [figshare](https://figshare.com/): A repository for research output [*Use search and then set "type" to "Dataset."*]
 * [dataverse](https://dataverse.harvard.edu/): A Harvard arhive to share research data from many fields.
