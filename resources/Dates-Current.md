@@ -201,7 +201,7 @@ Note that some of the more distant dates are subject to change.
     <td>Work Day</td>
     <td>--</td></tr>
 <tr><td>T 16-Apr</td>
-    <td colspan="2"><span style="color:red">Sixth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td colspan="2"><span style="color:red">Sixth Quiz</span> (<a href="QuizGuides/quiz_6.html">Study Guide</a>)</td></tr>
 <tr><td>W 17-Apr</td>
     <td colspan="2"><span style="color:red"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
 <tr><td>F 19-Apr</td>
