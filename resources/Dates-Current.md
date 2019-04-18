@@ -195,7 +195,6 @@ Note that some of the more distant dates are subject to change.
     <td>Work Day</td>
     <td>--</td></tr>
 <tr><td></td><td></td><td></td></tr>
---->
 
 <tr><td>M 15-Apr</td>
     <td>Work Day</td>
@@ -206,6 +205,7 @@ Note that some of the more distant dates are subject to change.
     <td colspan="2"><span style="color:red"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
 <tr><td>F 19-Apr</td>
     <td colspan="2"><span style="color:coral">NO CLASS (Good Friday)</span></td></tr>
+--->
 
 </table>
 
