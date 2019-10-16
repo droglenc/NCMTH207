@@ -74,3 +74,5 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [National Phenology Network](https://www.usanpn.org/data/observational): Phenology data from citizen scientists around the U.S.
 * [R Data Sets](https://vincentarelbundock.github.io/Rdatasets/datasets.html): A compendium of data sets found in R packages.
 * [Snap Chat Ads](https://www.snap.com/en-US/political-ads/): Snapchat has released detailed data about every political ad purchased on its platform in 2018 and 2019. For each ad, the information includes its targeting parameters (age, gender, location, interests, internet service provider, device operating system, and more), the dates the it ran, the amount spent, number of impressions, and a link to the ad itself. 
+* [Palm Traits Database](https://datadryad.org/stash/dataset/doi:10.5061/dryad.ts45225): Species-level functional trait database for palms worldwide.
+* [New York City Squirrels](https://github.com/mine-cetinkaya-rundel/nycsquirrels18): Data from the census of gray squirrels in New York City.
