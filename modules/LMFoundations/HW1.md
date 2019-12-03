@@ -15,9 +15,8 @@ css: "/css/modules.css"
 
 ## Type of Analysis
 
-<div class="w3-panel w3-blue-grey w3-round">
-<h3>Directions</h3>
-<p>For each question below decide which type of analysis (e.g., one-way ANOVA, two-way ANOVA, simple linear regression, indicator variable regression, or logistic regression) should be used and why. Your answer to "why" should include identifying, the response variable, the explanatory variable is, and the type of each variable. [<i>Hint: Use the table in the introduction to the reading.</i>]</p>
+<div class="alert alert-info">
+For each question below decide which type of analysis (e.g., one-way ANOVA, two-way ANOVA, simple linear regression, indicator variable regression, or logistic regression) should be used and why. Your answer to "why" should include identifying, the response variable, the explanatory variable is, and the type of each variable. [<i>Hint: Use the table in the introduction to the reading.</i>]
 </div>
 
 1. A student explored the relationship between the number of calories and number of carbohydrates (in g) for each item on a Starbucks menu.<sup id="a1">[1](#f1)</sup>
