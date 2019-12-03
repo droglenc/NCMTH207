@@ -166,6 +166,8 @@ title: Modules
 </div> 
 
 
+<style>
 .btn-space {
     margin-bottom: 5px;
 }
+</style>
