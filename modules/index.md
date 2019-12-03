@@ -47,10 +47,10 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="Anova-1Way/HW1.html">#1</a></li>
-            <li><a href="Anova-1Way/HW2.html">#2</a></li>
-            <li><a href="Anova-1Way/HW3.html">#3</a></li>
-            <li><a href="Anova-1Way/HW4.html">#4</a></li>
+            <li><a href="Anova-1Way/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/Anova-1way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/Anova-1way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW4.html">#4</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/Anova-1way_4_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
@@ -74,9 +74,9 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="Anova-2Way/HW1.html">#1</a></li>
-            <li><a href="Anova-2Way/HW2.html">#2</a></li>
-            <li><a href="Anova-2Way/HW3.html">#3</a></li>
+            <li><a href="Anova-2Way/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/Anova-2way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-2Way/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/Anova-2way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-2Way/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/Anova-2way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
         </ul>
       </div>
@@ -100,11 +100,11 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="SLRegression/HW1.html">#1</a></li>
-            <li><a href="SLRegression/HW2.html">#2</a></li>
-            <li><a href="SLRegression/HW3.html">#3</a></li>
-            <li><a href="SLRegression/HW4.html">#4</a></li>
-            <li><a href="SLRegression/HW5.html">#5</a></li>
+            <li><a href="SLRegression/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/SLRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/SLRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/SLRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW4.html">#4</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/SLRegression_4_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW5.html">#5</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/SLRegression_5_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
@@ -129,8 +129,8 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="IVRegression/HW1.html">#1</a></li>
-            <li><a href="IVRegression/HW2.html">#2</a></li>
+            <li><a href="IVRegression/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/IVRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="IVRegression/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/IVRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
@@ -154,9 +154,9 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li>Homework Assignment -- <a href="LogisticRegression/HW1.html">#1</a></li>
-            <li><a href="LogisticRegression/HW2.html">#2</a></li>
-            <li><a href="LogisticRegression/HW3.html">#3</a></li>
+            <li><a href="LogisticRegression/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/LogisticRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="LogisticRegression/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/LogisticRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="LogisticRegression/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/LogisticRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
