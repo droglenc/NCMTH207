@@ -15,9 +15,16 @@ title: Lecture Materials
       <div class="panel-body">
       <ul>
         <li><a href="../book/Foundations.pdf" target="_blank">Reading</a></li>
-        <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
-        <li>Handouts -- <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
-        <li>Homework Assignment -- <a href="LMFoundations/HW1.html">#1</a> / <a href="LMFoundations/HW2.html">#2</a></li>
+        <li>Class Materials</li>
+          <ul>
+            <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
+            <li>Handout -- <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+          </ul>
+        <li>Exercises<li>
+          <ol>
+            <li><a href="LMFoundations/HW1.html">Type of Analysis</a></li>
+            <li><a href="LMFoundations/HW2.html">Two-Sample t-Test</a></li>
+          </ol>
       </ul>
       </div>
     </div>
