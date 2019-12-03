@@ -14,13 +14,13 @@ title: Lecture Materials
     <div id="collapseLMF" class="panel-collapse collapse">
       <div class="panel-body">
       <ul>
-        <li><a href="../book/Foundations.pdf" target="_blank">Reading</a></li>
-        <li>Class Materials</li>
+        <li><a href="../book/Foundations.pdf" target="_blank"><b>Reading</b></a></li>
+        <li><b>Class Materials</b></li>
           <ul>
             <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
             <li>Handout -- <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
           </ul>
-        <li>Exercises</li>
+        <li><b>Exercises</b></li>
           <ol>
             <li><a href="LMFoundations/HW1.html">Type of Analysis</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/LMFoundations_1_noPrint.pdf" target="_blank">Answer</a></button></li>
             <li><a href="LMFoundations/HW2.html">Two-Sample t-Test</a> <button type="button" class="btn btn-light btn-sm"><a href="../resources/homework-keys/LMFoundations_2_noPrint.pdf" target="_blank">Answer</a></button></li>
