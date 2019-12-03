@@ -22,8 +22,8 @@ title: Lecture Materials
           </ul>
         <li>Exercises</li>
           <ol>
-            <li><a href="LMFoundations/HW1.html">Type of Analysis</a></li>
-            <li><a href="LMFoundations/HW2.html">Two-Sample t-Test</a></li>
+            <li><a href="LMFoundations/HW1.html">Type of Analysis</a> <button type="button" class="btn btn-info btn-sm"><a href="LMFoundations_1_noPrint.pdf">Answer</a></button></li>
+            <li><a href="LMFoundations/HW2.html">Two-Sample t-Test</a> <button type="button" class="btn btn-info btn-sm"><a href="LMFoundations_2_noPrint.pdf">Answer</a></button></li>
           </ol>
       </ul>
       </div>
