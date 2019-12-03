@@ -20,7 +20,7 @@ title: Lecture Materials
             <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
             <li>Handout -- <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
           </ul>
-        <li>Exercises<li>
+        <li>Exercises</li>
           <ol>
             <li><a href="LMFoundations/HW1.html">Type of Analysis</a></li>
             <li><a href="LMFoundations/HW2.html">Two-Sample t-Test</a></li>
