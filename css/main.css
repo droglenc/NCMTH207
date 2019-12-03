@@ -58,7 +58,16 @@ hr.small {
 
 .main-explain-area {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #FFF;
+  text-shadow: 1px 1px 3px #000;
   padding: 15px inherit;
+  background-image: url('../img/bkg-jumbo.jpg');
+  background-size: cover;
+}
+
+.main-explain-area p {
+  font-weight: 600;
+  font-size: 140%;
 }
 
 .hideme {
