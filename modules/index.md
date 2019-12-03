@@ -1,6 +1,5 @@
 ---
 layout: page
-title: Lecture Materials
 ---
 
 <div class="panel-group" id="accordion">
