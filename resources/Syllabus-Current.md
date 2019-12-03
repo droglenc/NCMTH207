@@ -33,7 +33,7 @@ What you learn in <strong>Biometry</strong> will help with these questions.
 
 * Class [Description](#description) and [Learning Outcomes](#learning-outcomes)
 * [Assistance](#assistance) -- [Instructor](#instructor--Derek-Ogle), [Tutors](#tutors), [Accommodations](#accommodations), and [Academic Alerts](#academic-alerts)
-* Grading -- [Quizzes](#quizzes), [Homework](#homework), [Portfolio](#portfolio), [Overall Grade](#overall--grade)
+* Grading -- [Quizzes](#quizzes), [Exercises](#exercises), [Portfolio](#portfolio), [Overall Grade](#overall--grade)
 * [Expectations](#expectations) -- [Ownership of Lerning](#ownership-of-learning) [Work Outside of Class](#work-outside-of-class), [Classroom Conduct and Academic Integrity](#classroom-conduct-and-academic-integrity)
 
 ----
@@ -98,7 +98,7 @@ Several exercises will be assigned per [module](../modules/){:target="_blank"}. 
     <tr class="info"><th>4 points</th><th>3-1 points</th><th>0 points</th></tr>
   </thead>
   <tbody>
-    <tr><td>All parts of the exercise were completed in full. All steps of the work (e.g., intermediate calculations, R code) are provided. Work was neat, orderly, and followed the <a href="hwformat.html">homework format</a> exactly.</td><td>Some parts of the exercise were either not attempted or were incomplete, all steps were not shown or the work was not as neat and orderly as it should have been or did not follow the <a href="hwformat.html">homework format</a> exactly.</td><td>Very little of the exercise was completed, many steps not shown, substantial amounts of the work was copied from someone else, or work was messy and unorganized or did not follow the <a href="hwformat.html">homework format</a>.</td></tr>
+    <tr><td>All parts of the exercise were completed in full; all steps of the work (e.g., intermediate calculations, R code) are provided; and the work was neat, orderly and followed the <a href="hwformat.html">homework format</a> exactly.</td><td>Some parts of the exercise were either not attempted or were incomplete; all steps were not shown; or the work was not as neat and orderly as it should have been or did not follow the <a href="hwformat.html">homework format</a> exactly.</td><td>Very little of the exercise was completed; many steps not shown; substantial amounts of the work was copied from someone else; or work was messy and unorganized or did not follow the <a href="hwformat.html">homework format</a>.</td></tr>
   </tbody>
   </table>
 </div>
@@ -107,14 +107,14 @@ If you meet with me in my office **before the end of the second week of classes*
 
 ### Portfolio
 <img class="img-right" src="../img/portfolio.png">
-The portfolio will consist of an analysis using four of the major course topics (one-way ANOVA, two-way ANOVA, simple linear regression, indicator variable regression, logistic regression) of real data of interest to you that you have collected. The data may come from your original research or collection, an online data repository or other reputable internet source ([examples here](data_207#possible-sources-of-portfolio-data)), any other reliable source, or extracted from a figure ([example here](digitizing)) or table. **You MAY NOT use data provided to you by another professor, agency, or employer (some exceptions may be made to this rule BUT you MUST clear it with me BEFORE contacting them).** You MAY NOT use data from a textbook. The data must be able to be appropriately analyzed by one of the main topics learned in class and **the one-way ANOVA cannot be a subset of the two-way ANOVA and the simple linear regression cannot be a subset of the indicator variable regression**.
+The portfolio will consist of an analysis using four of the five major course topics (one-way ANOVA, two-way ANOVA, simple linear regression, indicator variable regression, logistic regression) of data of interest to you that you have collected. The data may come from you, an online data repository or other reputable internet source ([examples here](data_207#possible-sources-of-portfolio-data)), any other reliable source, or extracted from a figure ([example here](digitizing)) or table. **You MAY NOT use data provided to you by another professor, agency, or employer (some exceptions may be made to this rule BUT you MUST clear it with me BEFORE contacting them).** You MAY NOT use data from a textbook. The data must be able to be appropriately analyzed by one of the main topics learned in class and **the one-way ANOVA cannot have the same response variable and explanatory variable in the two-way ANOVA and the simple linear regression cannot have the same response variable and equantitative explanatory variable as the indicator variable regression**.
 
 You must submit an initial proposal to me (see [Dates page](Dates-Current.html)) that briefly describes the data that you will use (including your source for the data), the questions to be asked or hypotheses to be tested with the data, the response and explanatory variables, the types (i.e., quantitative or categorical) of those variable(s), which topic you will use to answer the questions or test the hypotheses, and why you will use that topic. Please follow the format shown in [this example proposal](portfolio_proposal_example). The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio. *I strongly urge you to discuss your proposal with me before turning it in.*
 
 For the final portfolio paper, you will write a report for each data set/topic with the following sections:
 
 * Introduction: thoroughly describe background information needed to understand the data, why the data are important, why you are interested in the data, what the objectives of the study were (i.e., the research and statistical hypotheses), and what you expect to see and why.
-* Data Collection Methods: thoroughly describe the methodology you (or the authors) used to collect and you used to analyze the data. Specifically note your sample size, possibly by groups if appropriate.
+* Data Collection Methods: thoroughly describe the methodology you (or the authors) used to collect and you used to analyze the data. Specifically note your sample size, including by group for the one-way ANOVA, two-way ANOVA, and indicator variable regression.
 * Data Analysis Methods: describe which test you used to examine your hypothesis, discuss any follow-up tests (e.g., multiple comparisons), and declare your rejection level.
 * Assumptions: describe all assumption checking and, if necessary, data transformations (you must both demonstrate that a transformation is needed and that it accomplished meeting the assumptions).
 * Results: describe the results of your analysis.
@@ -192,25 +192,20 @@ This course is designed in a way that you will have to actively, rather than pas
 
 * Interact with the course material on a near daily basis (i.e., you will not be able to ignore the class for several days in a row).
 * Multi-task material from multiple modules (i.e., you may be finishing exercises for one module while preparing for class on another module).
-* Prepare for some course content on your own prior to class. See [Preparation Checks](#preparation-checks) section above and [Work Outside of Class](#work-outside-of-class) section below.
+* Prepare for some course content on your own prior to class. See [Work Outside of Class](#work-outside-of-class) section below.
 * Assess your own performance on daily exercises by comparing your answers to an answer key (which will also contain hints related to common mistakes).
-* Do more that what is required to be turned in for a grade (i.e., you will likely need more practice than the few exercises that are turned in for a grade; thus, many more exercises are provided in most modules).
-* Ask for help from me (the professor) both during and outside of class. See [Assistance](#assisstance) section above.
-* Maintain focus for an extended period of time (1.5 h for each class, 2 h for quizzes).
+* Ask for help from me (the professor) both during and outside of class. See [Assistance](#assistance) section above.
+* Maintain focus for an extended period of time (1 h for each class, 2 h for quizzes).
 
 ### Work Outside of Class
-
 <img class="img-right" src="../img/studying.jpg" alt="Studying Hours">
-
 As a general rule-of-thumb[^2], you are expected to spend 2-3 hours of time outside of class for each hour in class. This course meets for 4.5 hours per week and, thus, you should dedicate between 9 and 13.5 hours of time outside of class preparing for class, completing review and class exercises, and studying for quizzes. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you may consider enlisting the aid of apps (e.g., [Forest](https://www.forestapp.cc/)) designed to reduce distractions from devices ... see [here](https://georgehalachev.com/2019/01/15/7-apps-that-will-help-you-beat-procrastination/), [here](https://www.careercontessa.com/advice/best-apps-chronic-procrastinator/), [here](https://highschoolhints.com/6-apps-that-will-stop-your-procrastinating/), or [here](https://remotebliss.com/procrastination-apps/).  
 
 If you feel that you are spending too much time on some exercises or preparations because you are "stuck," then start your work earlier so that you can stop (and do other things) and make plans to see [me](#instructor--derek-ogle) or the [tutors](#tutors) for help.
 
 
 ### Classroom Conduct and Academic Integrity
-
 <img class="img-right" src="../img/cell-cheat.jpg" alt="Conduct and Integrity">
-
 My intent is to create a classroom environment where solid learning of statistics can occur. One part of this environment is a well-organized course structure built upon relevant learning resources and interesting realistic exercises. Another part is my availability to assist you in learning from these resources and exercises. A third part is your conduct within the classroom. My expectations of you are that you will fully engage in the course (see above) and be respectful of all others in the class. At a minimum, I expect you to adhere to the following behaviors:
 
 * Please arrive to class on time. If you arrive late, then take the first available seat as quietly as possible. If you need to leave early, then please sit near the exit.
