@@ -68,6 +68,7 @@ hr.small {
 .main-explain-area p {
   font-weight: 600;
   font-size: 140%;
+  text-align: center;
 }
 
 .hideme {
