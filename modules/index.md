@@ -47,10 +47,10 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="Anova-1Way/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-1Way/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-1Way/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-1Way/HW4.html">#4</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_4_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW1.html">ANOVA Tables</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW2.html">Foundational Meanings -- Cuckoo Eggs</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW3.html">Analysis without Transformation -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW4.html">Analysis with Transformation -- Mining</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_4_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
