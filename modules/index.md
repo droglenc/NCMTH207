@@ -49,8 +49,9 @@ title: Modules
           <ol>
             <li><a href="Anova-1Way/HW1.html">ANOVA Tables</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
             <li><a href="Anova-1Way/HW2.html">Foundational Meanings -- Cuckoo Eggs</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-1Way/HW3.html">Analysis without Transformation -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-1Way/HW4.html">Analysis with Transformation -- Mining</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_4_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW3.html">Assumptions -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW3.html">Analysis -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/HW4.html">Transformations -- Mining</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_4_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
@@ -74,9 +75,9 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="Anova-2Way/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-2way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-2Way/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-2way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-2Way/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-2way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-2Way/HW1.html">Interaction Plots</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-2way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-2Way/HW2.html">ANOVA Table -- Cattails</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-2way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-2Way/HW3.html">Analysis -- Predation</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-2way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
         </ul>
       </div>
@@ -100,11 +101,12 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="SLRegression/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW4.html">#4</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_4_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW5.html">#5</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_5_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW1.html">Results Table -- Chirping Crickets</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW2.html">Results Interpretation I -- Human Births</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW3.html">Results Interpretation II -- Ashland Climate</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW4.html">Results Interpretation II -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_4_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW5.html">Assumptions -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_5_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/HW6.html">Analysis -- Black Bears</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_6_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
@@ -129,8 +131,9 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="IVRegression/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="IVRegression/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="IVRegression/HW1.html">Variables & Models I -- Pronghorns</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="IVRegression/HW2.html">Variables & Models II -- Rainbow Trout</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="IVRegression/HW3.html">Analysis -- Bats</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
@@ -154,9 +157,9 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="LogisticRegression/HW1.html">#1</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/LogisticRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="LogisticRegression/HW2.html">#2</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/LogisticRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="LogisticRegression/HW3.html">#3</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/LogisticRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="LogisticRegression/HW1.html">Anaysis -- X-Rated Movies</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/LogisticRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="LogisticRegression/HW2.html">Analysis -- Ruffe I</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/LogisticRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="LogisticRegression/HW3.html">Analysis -- Ruffe II</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/LogisticRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
