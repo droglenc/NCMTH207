@@ -1,5 +1,6 @@
 ---
 layout: page
+title: Modules
 ---
 
 <div class="panel-group" id="accordion">
