@@ -67,7 +67,7 @@ Sources for out-of-class assistance and opportunities for in-class accommodation
 
 ### Instructor -- Derek Ogle
 <img class="img-right" src="../img/DerekOgle1.jpg">
-I am committed to your doing well in this course and see it as my responsibility to help you as much as possible both in and out of the designated class period. Thus, you may call (715-682-1300), e-mail (<a href="mailto:dogle@northland.edu">dogle@northland.edu</a>)[^email], or visit me in my office (CSE228) for help. I will make every effort to be available during office hours from 1230-230 on Monday, Wednesday, and Friday. I will also be available any time that my door is open. Finally, you may also send me <a href="https://www.surveymonkey.com/r/KC87PJW" target="_blank">anonymous feedback, suggestions, or questions</a>. Please don't hesitate to see or contact me if you have any questions regarding this course.
+I am committed to your doing well in this course and see it as my responsibility to help you as much as possible both in and out of the designated class period. Thus, you may call (715-682-1300), e-mail (<a href="mailto:dogle@northland.edu">dogle@northland.edu</a>)[^email], or visit me in my office (CSE228) for help. I will make every effort to be available during office hours from 1-230p on Monday, Wednesday, and Friday. I will also be available any time that my door is open. Finally, you may also send me <a href="https://www.surveymonkey.com/r/KC87PJW" target="_blank">anonymous feedback, suggestions, or questions</a>. Please don't hesitate to see or contact me if you have any questions regarding this course.
 
 ### Tutor
 <img class="img-right" src="../img/Emily_F17.jpg">
@@ -89,26 +89,21 @@ An overall grade will be computed from the items described below and in the <a h
 ### Quizzes
 Six one-hour quizzes will be given on the approximate dates shown on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#overall--grade)).
 
-### Homework
-Several homework assignments will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** homework assignments are **due at the beginning of the class period on the assigned due date** (announced in class and on the [Dates page](Dates-Current){:target="_blank"}). Assignments not handed in at the beginning of the class period will be considered late. Late assignments will not be accepted. **If you meet with me in my office before the end of the second week of class, the lowest approximately 20% of homework grades will be excluded** when computing your overall grade.
-
-Each homework assignment is worth 10 points and will be graded in two parts. The first part is an assessment of completeness and formatting (each assignment should follow [the expectations outlined here](hwformat){:target="_blank"}) according to the following rubric.
+### Exercises
+Several exercises will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** answers to the exercises are due at the **beginning of the class period on the assigned due date** (announced in class and on the [Dates page](Dates-Current){:target="_blank"}). **Exercises will not be accepted after I have posted the answer ke**y (which I often due before coming to class). Each exercise will be graded according to the following rubric.
 
 <div class="container-fluid">
   <table class="table table-bordered">
   <thead>
-    <tr class="info"><th>0-1 points</th><th>2-4 points</th><th>5 points</th></tr>
+    <tr class="info"><th>4 points</th><th>3-1 points</th><th>0 points</th></tr>
   </thead>
   <tbody>
-    <tr><td>Very few questions answered completely OR <a href="hwformat.html">homework format</a> largely not followed.</td><td>Most questions answered completely AND <a href="hwformat.html">homework format</a> largely followed.</td><td>All questions answered completely AND <a href="hwformat.html">homework format</a> followed exactly.</td></tr>
+    <tr><td>All parts of the exercise were completed in full. All steps of the work (e.g., intermediate calculations, R code) are provided. Work was neat, orderly, and followed the <a href="hwformat.html">homework format</a> exactly.</td><td>Some parts of the exercise were either not attempted or were incomplete, all steps were not shown or the work was not as neat and orderly as it should have been or did not follow the <a href="hwformat.html">homework format</a> exactly.</td><td>Very little of the exercise was completed, many steps not shown, substantial amounts of the work was copied from someone else, or work was messy and unorganized or did not follow the <a href="hwformat.html">homework format</a>.</td></tr>
   </tbody>
   </table>
 </div>
 
-The second part, also worth 5 points, is an assessment of the quality of the work. In this part, only some (approximately half) of the questions will be assessed. Answer keys will be [posted online](homework-keys) so that you may check your work.
-
-I am fine with you working together on assignments; however, I will not tolerate simply copying someone else's answer. If you work together, than actually *work together* to solve the problem.
-
+If you meet with me in my office **before the end of the second week of classes** AND **at least two other times in my office (i.e,. outside of class) with legitimate questions** then your lowest (approximate) third of homework grades will be dropped when computing your overall percentage.
 
 ### Portfolio
 <img class="img-right" src="../img/portfolio.png">
