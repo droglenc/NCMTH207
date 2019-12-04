@@ -82,9 +82,9 @@ kREG(lm1)
 
 R Appendix.
 ```{r eval=FALSE, prompt=FALSE}
-d <- read.csv("RiverPh.csv")
-t.test(pH~river,data=d,var.equal=TRUE)
-lm1 <- lm(pH~river,data=d)
+d <- read.csv("Crickets.csv")
+t.test(t.test(explore~group,data=d,var.equal=TRUE)
+lm1 <- lm(explore~group,data=d)
 anova(lm1)
 summary(lm1)
 coef(lm1)
