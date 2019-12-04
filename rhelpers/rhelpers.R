@@ -19,20 +19,30 @@ modHTML <- function(f,need2render=TRUE) {
     require(rmarkdown)
     render(paste0(f,".Rmd"),output_format="all",clean=FALSE)
   }
-  # Delete .md files left over because clear=FALSE was needed
+  # Delete .md files left over because clean=FALSE was needed
   tmp <- list.files(pattern="\\.md")
   if (any(grepl(f,tmp))) file.remove(tmp[which(grepl(f,tmp))])
   # Delete files in directories in f_files that are not needed on the webpage
-  unlink(paste0(getwd(),"/",f,"_files","/bootstrap-3.3.1"),recursive=TRUE)
-  unlink(paste0(getwd(),"/",f,"_files","/jquery-1.11.0"),recursive=TRUE)
+  unlink(paste0(getwd(),"/",f,"_files","/bootstrap-3.3.5"),recursive=TRUE)
+  unlink(paste0(getwd(),"/",f,"_files","/jquery-1.11.3"),recursive=TRUE)
   unlink(paste0(getwd(),"/",f,"_files","/highlight"),recursive=TRUE)
+  unlink(paste0(getwd(),"/",f,"_files","/navigation-1.0"),recursive=TRUE)
   # Read in HTML and RMarkdown files
   h <- readLines(paste0(f,".html"))
   r <- readLines(paste0(f,".Rmd"))
-  # Remove everything before the line after the last mention of
+  # Remove everything before the line (blank) after the last mention of
   # Derek H. Ogle in the HTML file
-  tmp <- which(grepl("<em>Derek H. Ogle</em>",h))
+  tmp <- which(grepl("Derek H. Ogle",h))
   h <- h[-(1:(tmp[length(tmp)]+1))]
+  # there may be a </div> left at the top, if so delete it
+  tmp1 <- grep("</div>",h)         # where are </div>
+  tmp2 <- grep("<div",h)[1]        # where is first <div
+  # remove before </div> if it is before a <div
+  if (is.na(tmp2)) {
+    h <- h[-tmp1]
+  } else {
+    if (tmp1[1]<tmp2) h <- h[-(1:tmp1[1])]
+  }
   # Get the layout, title, subtitle, author, and css from RMD file
   tmp <- c(which(grepl("layout:",r)),which(grepl("title:",r)),which(grepl("author:",r)),which(grepl("css:",r)))
   r <- r[tmp]
