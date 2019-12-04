@@ -35,7 +35,7 @@ library(NCStats)
 
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
-**Among**  |  7 | 35819 | 5117 | 3.5 | `r kPvalue(distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE),include.p=FALSE,digits=3)` |
+**Among**  |  **7** | **35819** | **5117** | **3.5** | **`r kPvalue(distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE),include.p=FALSE,latex=FALSE,digits=3)`** |
 **Within** | 24 | 35088 | 1462 | - | -
 **Total**  | 31 | 70907 | - | - | -
 
