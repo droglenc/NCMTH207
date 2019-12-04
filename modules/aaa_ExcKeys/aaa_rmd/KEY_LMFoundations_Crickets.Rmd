@@ -41,7 +41,7 @@ tbls(name="coef","Coefficient results from the one-way ANOVA for exploration ind
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-<li>Tables (and figures) should be labeled as described in the \href{http://derekogle.com/NCMTH207/resources/hwformat}{homework format description}. Table labels go ABOVE the table and figure labels go BELOW the table. Tables (and figures) should be referred to in your answers. See the key below for a model of this.</li>
+<li>Tables (and figures) should be labeled as described in the <a href="../../../resources/hwformat">homework format description</a>. Table labels go ABOVE the table and figure labels go BELOW the table. Tables (and figures) should be referred to in your answers. See the key below for a model of this.</li>
   <li>Use complete sentences to answer questions.</li>
   <li>Use an R appendix to show the code you used to produce results. Do not include R code in any of your other answers.</li>
   <li>Keep "many" decimals in intermediate calculations ... i.e., don't round until the final answer.</li>
