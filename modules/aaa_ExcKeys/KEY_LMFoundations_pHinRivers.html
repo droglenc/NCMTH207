@@ -34,25 +34,25 @@ Note explanations in the key below.
 <ol>
 <li>The p-values for the two-sample t-test (<span class="math inline">\(p=0.0000016\)</span>; Table 1), from the ANOVA table (<span class="math inline">\(p=0.0000016\)</span>; Table 2), and for the slope coefficient (<span class="math inline">\(p=0.0000016\)</span>; Table 3) are all the same. These p-values are all equivalent because the 2-sample t-test hypothesis of equal means (or difference in means equals zero) is the same as the hypothesis for the slope (see below about the slope representing the difference in means) which is the same as the hypothesis for the ANOVA table (i.e., simple model of one mean representing both groups).</li>
 <li>With these p-values, very strong evidence to reject the null hypothesis exists. Thus, the mean pH appears to differ between the two rivers.</li>
-<li>The mean of the first (A) group in the 2-sample t-test (8.662; Table 1) is the same as the intercept coefficient from the linear model (8.662; Table 3). This occurs because an intercept is defined as the “value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span>=0, on average”. In this case, <span class="math inline">\(Y\)</span> is pH and <span class="math inline">\(X\)</span> is “stream A” because stream A is coded with a zero in <code>lm()</code> (because the levels are code alphabetically). Thus, the intercept is the mean pH (<span class="math inline">\(Y\)</span>) for stream A (<span class="math inline">\(X=0\)</span>).</li>
-<li>The difference in the means (i.e., 6.408-8.662 = -2.254; Table 1) is the same as the slope coefficient in the linear model (i.e., -2.254; Table 3). This is because the slope coefficient shows the change in <span class="math inline">\(Y\)</span> for a one unit change in <span class="math inline">\(X\)</span>. As noted above stream A is coded with a 0 in <code>lm()</code> as it is alphabetically first in the stream names. Stream B is thus coded as a 1 in <code>lm()</code> as it is alphabetically second. Thus a one unit change in <span class="math inline">\(X\)</span> is simply a move from stream A to stream B (i.e., from 0 to 1). Thus, the slope is the difference in mean pH between the two streams (i.e., change in <span class="math inline">\(Y\)</span>).</li>
+<li>The mean of the first (A) group in the 2-sample t-test (8.662; Table 1) is the same as the intercept coefficient from the linear model (8.662; Table 3). This occurs because an intercept is defined as the “value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span>=0, on average”. In this case, <span class="math inline">\(Y\)</span> is pH and <span class="math inline">\(X\)</span> is “river A” because river A is coded with a zero in <code>lm()</code> (because the levels are code alphabetically). Thus, the intercept is the mean pH (<span class="math inline">\(Y\)</span>) for river A (<span class="math inline">\(X=0\)</span>).</li>
+<li>The difference in the means (i.e., 6.408-8.662 = -2.254; Table 1) is the same as the slope coefficient in the linear model (i.e., -2.254; Table 3). This is because the slope coefficient shows the change in <span class="math inline">\(Y\)</span> for a one unit change in <span class="math inline">\(X\)</span>. As noted above river A is coded with a 0 in <code>lm()</code> as it is alphabetically first in the river names. river B is thus coded as a 1 in <code>lm()</code> as it is alphabetically second. Thus a one unit change in <span class="math inline">\(X\)</span> is simply a move from river A to river B (i.e., from 0 to 1). Thus, the slope is the difference in mean pH between the two rivers (i.e., change in <span class="math inline">\(Y\)</span>).</li>
 <li>The df from the two-sample t-test (18; Table 1) and the within-group df from the ANOVA table (18; Table 2) are identical. The within-group df are equal to the total number of individuals (<span class="math inline">\(n=n_{1}+n_{2}\)</span>) minus the number of groups (<span class="math inline">\(I=2\)</span>), which is the same as for the 2-sample t-test (i.e., <span class="math inline">\(n_{1}+n_{2}-2\)</span>).</li>
 <li>The F test statistic (48.789;Table 2) is equal to the square of the t test statistic (6.985<span class="math inline">\(^2\)</span>=48.789; Table 1). This relationship occurs when the numerator df for the ANOVA is equal to one (i.e., there are only two groups).</li>
 <li>The SE for the difference in means is equal to <span class="math inline">\(\frac{\bar{x_{1}}-\bar{x_{2}}}{t}\)</span> = <span class="math inline">\(\frac{8.662-6.408}{6.9849}\)</span> = 0.3227. The pooled variance (<span class="math inline">\(s_{p}^{2}\)</span>) is then equal to this value squared (<span class="math inline">\(0.3227^{2}\)</span> = 0.1041) and divided by the sum of the reciprocals of the sample sizes – i.e., <span class="math inline">\(\frac{0.3227^{2}}{\frac{1}{10}+\frac{1}{10}}\)</span> = 0.5207.</li>
 <li>The <span class="math inline">\(s_{p}^{2}\)</span> computed in the previous question is the same as <span class="math inline">\(MS_{within}\)</span> (Table 2).</li>
 </ol>
-<p>Table 1: Results from 2-sample t-test of pH by stream.</p>
+<p>Table 1: Results from 2-sample t-test of pH by river.</p>
 <pre><code>t = 6.9849, df = 18, p-value = 1.599e-06
 95 percent confidence interval:
  1.576042 2.931958 
 sample estimates:
 mean in group A mean in group B 
           8.662           6.408 </code></pre>
-<p>Table 2: Analysis of variance table for pH by stream.</p>
+<p>Table 2: Analysis of variance table for pH by river.</p>
 <pre><code>          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
 river      1 25.4026 25.4026  48.789 1.599e-06
 Residuals 18  9.3719  0.5207                  </code></pre>
-<p>Table 3: Coefficient results from the one-way ANOVA for pH by stream.</p>
+<p>Table 3: Coefficient results from the one-way ANOVA for pH by river.</p>
 <pre><code>            Estimate Std. Error t value Pr(&gt;|t|)
 (Intercept)   8.6620     0.2282  37.961  &lt; 2e-16
 riverB       -2.2540     0.3227  -6.985  1.6e-06
