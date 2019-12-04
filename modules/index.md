@@ -48,7 +48,9 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="Anova-1Way/HW1.html">ANOVA Tables</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/Ex_AOVTable_1.html">ANOVA Tables I</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_Exckeys/KEY_Anova-1way_Table1.html" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/Ex_AOVTable_2.html">ANOVA Tables II</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_Exckeys/KEY_Anova-1way_Table2.html" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/Ex_AOVTable_3.html">ANOVA Tables III</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_Exckeys/KEY_Anova-1way_Table3.html" target="_blank">Answer</a></button></li>
             <li><a href="Anova-1Way/HW2.html">Foundational Meanings -- Cuckoo Eggs</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_2_noPrint.pdf" target="_blank">Answer</a></button></li>
             <li><a href="Anova-1Way/HW3.html">Assumptions -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
             <li><a href="Anova-1Way/HW3.html">Analysis -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
