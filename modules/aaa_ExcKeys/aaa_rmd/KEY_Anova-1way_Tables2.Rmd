@@ -31,7 +31,7 @@ library(NCStats)
 
 ----
 
-## ANOVA Table 1
+## ANOVA Table 2
 
 Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
