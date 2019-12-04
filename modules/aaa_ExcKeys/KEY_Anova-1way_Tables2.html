@@ -1,0 +1,122 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "1-Way ANOVA"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+<span class="math inline">\(MS_{Total}\)</span> is not usually shown in an ANOVA table). I put it in the table here because that is one of the given values (see the notes below) and it makes it easier to see how the rest of the table is completed.
+</li>
+</ul>
+</div>
+<hr />
+<div id="anova-table-1" class="section level2">
+<h2>ANOVA Table 1</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="right">df</th>
+<th align="right">SS</th>
+<th align="right">MS</th>
+<th align="right">F</th>
+<th align="right">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Among</strong></td>
+<td align="right">5</td>
+<td align="right">887.05</td>
+<td align="right">177.41</td>
+<td align="right">5.25</td>
+<td align="right">0.001</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Within</strong></td>
+<td align="right">48</td>
+<td align="right">1621.44</td>
+<td align="right">33.78</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Total</strong></td>
+<td align="right">53</td>
+<td align="right">2508.49</td>
+<td align="right">*47.33**</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>See completed table above. Note the following
+<ul>
+<li><span class="math inline">\(MS_{total}\)</span> and <span class="math inline">\(MS_{within}\)</span> are given by definition (the variance of individuals ignoring groups is <span class="math inline">\(MS_{total}\)</span> whereas the pooled (or combined) variance of individuals considering groups is <span class="math inline">\(MS_{within}\)</span>).</li>
+<li>The <span class="math inline">\(df\)</span> are found by knowing the number of groups (<span class="math inline">\(I=6\)</span>) and total number of individuals (<span class="math inline">\(n=54\)</span>).</li>
+<li><span class="math inline">\(SS_{within}\)</span> and <span class="math inline">\(SS_{total}\)</span> are obtained with <span class="math inline">\(MS*df\)</span>.</li>
+<li><span class="math inline">\(SS_{among}\)</span> is from <span class="math inline">\(SS_{total}-SS_{within}\)</span>.</li>
+<li><span class="math inline">\(MS_{among}\)</span> is from <span class="math inline">\(SS_{among}\)</span> divided by <span class="math inline">\(df_{among}\)</span>.</li>
+<li><span class="math inline">\(F\)</span> is from <span class="math inline">\(MS_{among}\)</span> divided by <span class="math inline">\(df_{among}\)</span>.</li>
+<li>The p-value is computed with <code>distrib(5.25,distrib="f",df1=5,df2=48,lower.tail=FALSE)</code>.</li>
+</ul></li>
+<li>Yes, there is a difference among the group means because the p-value is less than 0.05.</li>
+</ol>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
