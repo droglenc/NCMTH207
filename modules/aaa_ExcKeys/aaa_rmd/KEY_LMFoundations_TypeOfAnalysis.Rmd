@@ -1,6 +1,6 @@
 ---
-title: "Exercise Key Key"
-subtitle: "Type of Analysis"
+title: "Exercise Key"
+subtitle: "Linear Models Foundation"
 author: Derek H. Ogle
 layout: page
 css: "/css/modules.css"
@@ -19,6 +19,8 @@ modHTML_CEKeys("KEY_LMFoundations_TypeOfAnalysis")
 
 ----
 
+## Type of Analysis
+
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
@@ -27,8 +29,6 @@ modHTML_CEKeys("KEY_LMFoundations_TypeOfAnalysis")
 <li>In question 5, the "number of snails" is categorical because groups were created 1, 2-5, or more than 5 individuals. The actual number of snails was not recorded.</li>
 </ul>
 </div>
-
-----
 
 <ol>
   <li>This is a <b><i>simple linear regression</b></i> because both variables are quantitative (it is not clear which one is the response variable; though, it is likely number of calories).</li>

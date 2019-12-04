@@ -22,7 +22,7 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="LMFoundations/HW1.html">Type of Analysis</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../aaa_ExcKeys/KEY_LMFoundations_TypeOfAnalysis.html" target="_blank">Answer</a></button></li>
+            <li><a href="LMFoundations/HW1.html">Type of Analysis</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_LMFoundations_TypeOfAnalysis.html" target="_blank">Answer</a></button></li>
             <li><a href="LMFoundations/HW2.html">Two-Sample t-Test</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/LMFoundations_2_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
