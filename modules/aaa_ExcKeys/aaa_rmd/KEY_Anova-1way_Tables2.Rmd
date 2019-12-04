@@ -37,7 +37,7 @@ Source     | df | SS | MS | F  | p-value
 :----------|---:|---:|---:|---:|--------:
 **Among**  |  5 | 887.05 | 177.41 | 5.25 | `r kPvalue(distrib(5.25,distrib="f",df1=5,df2=48,lower.tail=FALSE),include.p=FALSE,latex=FALSE,digits=3)` |
 **Within** | 48 | 1621.44 | 33.78 | - | -
-**Total**  | 53 | 2508.49 | *47.33** | - | -
+**Total**  | 53 | 2508.49 | **47.33** | - | -
 
 1. See completed table above. Note the following
     * $MS_{total}$ and $MS_{within}$ are given by definition (the variance of individuals ignoring groups is $MS_{total}$ whereas the pooled (or combined) variance of individuals considering groups is $MS_{within}$).
