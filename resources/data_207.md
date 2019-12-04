@@ -5,7 +5,7 @@ title: Data for MTH207
 
 ## Data for Homework
 
-The following data files are used in the module readings or homework problems.
+The following data files are used in the module readings or exercises.
 
 * AcidMineDrainage -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage_meta.txt)
 * Bacteria -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Bacteria.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Bacteria_meta.txt)
@@ -14,6 +14,7 @@ The following data files are used in the module readings or homework problems.
 * BenthicInfaunal -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/BenthicInfaunal.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/BenthicInfaunal_meta.txt)
 * BlackBears -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/BlackBears.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/BlackBears_meta.txt)
 * CarMPG -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG_meta.txt)
+* Crickets -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Crickets.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Crickets_meta.txt)
 * Cuckoos -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos_meta.txt)
 * FishEnergyDensity -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/FishEnergyDensity.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/FishEnergyDensity_meta.txt)
 * Raspberry -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry_meta.txt)

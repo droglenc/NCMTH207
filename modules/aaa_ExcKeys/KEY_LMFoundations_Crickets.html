@@ -1,0 +1,119 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Linear Models Foundation"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Tables (and figures) should be labeled as described in the . Table labels go ABOVE the table and figure labels go BELOW the table. Tables (and figures) should be referred to in your answers. See the key below for a model of this.
+</li>
+<li>
+Use complete sentences to answer questions.
+</li>
+<li>
+Use an R appendix to show the code you used to produce results. Do not include R code in any of your other answers.
+</li>
+<li>
+Keep “many” decimals in intermediate calculations … i.e., don’t round until the final answer.
+</li>
+<li>
+Note explanations in the key below.
+</li>
+</ul>
+</div>
+<hr />
+<div id="ph-in-two-rivers" class="section level2">
+<h2>pH in Two Rivers</h2>
+<ol>
+<li>The p-values for the two-sample t-test (<span class="math inline">\(p=0.0000054\)</span>; Table 1), from the ANOVA table (<span class="math inline">\(p=0.0000054\)</span>; Table 2), and for the slope coefficient (<span class="math inline">\(p=0.0000054\)</span>; Table 3) are all the same. These p-values are all equivalent because the 2-sample t-test hypothesis of equal means (or difference in means equals zero) is the same as the hypothesis for the slope (see below about the slope representing the difference in means) which is the same as the hypothesis for the ANOVA table (i.e., simple model of one mean representing both groups).</li>
+<li>With these p-values, very strong evidence to reject the null hypothesis exists. Thus, the mean pH appears to differ between the two rivers.</li>
+<li>The mean of the first (A) group in the 2-sample t-test (2.394; Table 1) is the same as the intercept coefficient from the linear model (2.394; Table 3). This occurs because an intercept is defined as the “value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span>=0, on average”. In this case, <span class="math inline">\(Y\)</span> is pH and <span class="math inline">\(X\)</span> is “dominant” crickets because dominant is coded with a zero in <code>lm()</code> (because the levels are code alphabetically). Thus, the intercept is the mean exploration (<span class="math inline">\(Y\)</span>) for dominant crickets (<span class="math inline">\(X=0\)</span>).</li>
+<li>The difference in the means (i.e., 1.304-2.394 = -1.090; Table 1) is the same as the slope coefficient in the linear model (i.e., -1.090; Table 3). This is because the slope coefficient shows the change in <span class="math inline">\(Y\)</span> for a one unit change in <span class="math inline">\(X\)</span>. As noted above dominant crickets is coded with a 0 in <code>lm()</code> as it is alphabetically first in the group names. Subordinate crickets is thus coded as a 1 in <code>lm()</code> as it is alphabetically second. Thus a one unit change in <span class="math inline">\(X\)</span> is simply a move from dominant to subordinate crickets (i.e., from 0 to 1). Thus, the slope is the difference in mean exploration between the dominant and subordinate crickets (i.e., change in <span class="math inline">\(Y\)</span>).</li>
+<li>The df from the two-sample t-test (78; Table 1) and the within-group df from the ANOVA table (78; Table 2) are identical. The within-group df are equal to the total number of individuals (<span class="math inline">\(n=n_{1}+n_{2}\)</span>) minus the number of groups (<span class="math inline">\(I=2\)</span>), which is the same as for the 2-sample t-test (i.e., <span class="math inline">\(n_{1}+n_{2}-2\)</span>).</li>
+<li>The F test statistic (23.860;Table 2) is equal to the square of the t test statistic (4.885<span class="math inline">\(^2\)</span>=23.860; Table 1). This relationship occurs when the numerator df for the ANOVA is equal to one (i.e., there are only two groups).</li>
+<li>The SE for the difference in means is equal to <span class="math inline">\(\frac{\bar{x_{1}}-\bar{x_{2}}}{t}\)</span> = <span class="math inline">\(\frac{2.3944-1.3042}{4.8847}\)</span> = 0.2232. The pooled variance (<span class="math inline">\(s_{p}^{2}\)</span>) is then equal to this value squared and divided by the sum of the reciprocals of the sample sizes – i.e., <span class="math inline">\(\frac{0.2232^{2}}{\frac{1}{41}+\frac{1}{39}}\)</span> = 0.9957.</li>
+<li>The <span class="math inline">\(s_{p}^{2}\)</span> computed in the previous question is the same (within rounding) as <span class="math inline">\(MS_{within}\)</span> (Table 2).</li>
+</ol>
+<p>Table 1: Results from 2-sample t-test of exploration index by dominant or subordinate cricket.</p>
+<pre><code>t = 4.8847, df = 78, p-value = 5.407e-06
+95 percent confidence interval:
+ 0.6458698 1.5345385 
+sample estimates:
+   mean in group Dominant mean in group Subordinate 
+                 2.394417                  1.304213 </code></pre>
+<p>Table 2: Analysis of variance table for exploration index by dominant or subordinate cricket</p>
+<pre><code>          Df Sum Sq Mean Sq F value    Pr(&gt;F)
+group      1 23.756 23.7560   23.86 5.407e-06
+Residuals 78 77.660  0.9956                  </code></pre>
+<p>Table 3: Coefficient results from the one-way ANOVA for exploration index by dominant or subordinate cricket.</p>
+<pre><code>                 Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)        2.3944     0.1558  15.365  &lt; 2e-16
+groupSubordinate  -1.0902     0.2232  -4.885 5.41e-06
+---
+Residual standard error: 0.9978 on 78 degrees of freedom
+Multiple R-squared: 0.2342, Adjusted R-squared: 0.2244 
+F-statistic: 23.86 on 1 and 78 DF,  p-value: 5.407e-06 </code></pre>
+<p>R Appendix.</p>
+<pre class="r"><code>d &lt;- read.csv(&quot;RiverPh.csv&quot;)
+t.test(pH~river,data=d,var.equal=TRUE)
+lm1 &lt;- lm(pH~river,data=d)
+anova(lm1)
+summary(lm1)
+coef(lm1)</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
