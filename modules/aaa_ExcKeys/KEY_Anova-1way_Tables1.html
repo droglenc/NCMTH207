@@ -12,7 +12,7 @@ css: "/css/modules.css"
 <strong>Note:</strong>
 <ul>
 <li>
-.<span class="math inline">\(MS_Total\)</span> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).
+<span class="math inline">\(MS_{Total}\)</span> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).
 </li>
 </ul>
 </div>
@@ -33,17 +33,17 @@ css: "/css/modules.css"
 <tbody>
 <tr class="odd">
 <td align="left"><strong>Among</strong></td>
-<td align="right"><strong>7</strong></td>
-<td align="right"><strong>35819</strong></td>
-<td align="right"><strong>5117</strong></td>
-<td align="right"><strong><span class="math inline">\(0.010\)</span></strong></td>
-<td align="right"></td>
+<td align="right">7</td>
+<td align="right">35819</td>
+<td align="right">5117</td>
+<td align="right">3.5</td>
+<td align="right"><span class="math inline">\(0.010\)</span></td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Within</strong></td>
 <td align="right">24</td>
 <td align="right">35088</td>
-<td align="right"><strong>1462</strong></td>
+<td align="right">1462</td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
@@ -61,7 +61,9 @@ css: "/css/modules.css"
 <li>See completed table above. Note the following
 <ul>
 <li><span class="math inline">\(df_{among}\)</span> and <span class="math inline">\(SS_{among}\)</span> came from subtracting the within values from the total values.</li>
-<li><span class="math inline">\(MS_{among}\)</span> came from <span class="math inline">\(SS_{among}\)</span> divided by <span class="math inline">\(df_{among}\)</span>. # <span class="math inline">\(F\)</span> is then <span class="math inline">\(MS_{among}\)</span> divided by <span class="math inline">\(MS_{within}\)</span>. # Finally the p-value came from <code>distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE)</code>.</li>
+<li><span class="math inline">\(MS_{among}\)</span> came from <span class="math inline">\(SS_{among}\)</span> divided by <span class="math inline">\(df_{among}\)</span>.</li>
+<li><span class="math inline">\(F\)</span> is then <span class="math inline">\(MS_{among}\)</span> divided by <span class="math inline">\(MS_{within}\)</span>.</li>
+<li>Finally the p-value came from <code>distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE)</code>.</li>
 </ul></li>
 <li>The number of groups = 7+1 = 8 (i.e., <span class="math inline">\(df_{among}\)</span>+1).</li>
 <li>The number of individuals = 31+1 = 32 (i.e., <span class="math inline">\(df_{total}\)</span>+1).</li>
