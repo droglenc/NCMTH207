@@ -61,9 +61,9 @@ Residual standard error: 0.9978 on 78 degrees of freedom
 Multiple R-squared: 0.2342, Adjusted R-squared: 0.2244 
 F-statistic: 23.86 on 1 and 78 DF,  p-value: 5.407e-06 </code></pre>
 <p>R Appendix.</p>
-<pre class="r"><code>d &lt;- read.csv(&quot;RiverPh.csv&quot;)
-t.test(pH~river,data=d,var.equal=TRUE)
-lm1 &lt;- lm(pH~river,data=d)
+<pre class="r"><code>d &lt;- read.csv(&quot;Crickets.csv&quot;)
+t.test(t.test(explore~group,data=d,var.equal=TRUE)
+lm1 &lt;- lm(explore~group,data=d)
 anova(lm1)
 summary(lm1)
 coef(lm1)</code></pre>
