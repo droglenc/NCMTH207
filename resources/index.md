@@ -4,7 +4,6 @@ title: Resources
 ---
 
 1. [Feedback / Suggestions](www.surveymonkey.com/r/F7S7GNJ){:target="_blank"}
-1. [Homework Answer Keys](homework-keys)
 1. **Data** (video pwd is "NCStats")
     * [Data Files](data_207) [[Access these data](https://vimeo.com/user45324800/ncstats-getdatawebpage){:target="_blank"} (but use this "Data Files" link.)]
     * Enter Your Own Data -- [with Excel](https://vimeo.com/user45324800/ncstats-preparedataexcel){:target="_blank"} or [without Excel](https://vimeo.com/user45324800/ncstats-preparedatatextfile){:target="_blank"}
