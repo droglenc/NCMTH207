@@ -1,0 +1,55 @@
+---
+title: "Exercise Key"
+subtitle: "1-Way ANOVA"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_Anova-1way_Tables3")
+```
+```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+library(NCStats)
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+<li>$MS_{Total}$ is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).</li>
+</ul>
+</div>
+
+----
+
+## ANOVA Table 1
+
+Source     | df | SS | MS | F  | p-value
+:----------|---:|---:|---:|---:|--------:
+**Among**  | **3** | 17.25 | **5.75** | 1.26 | **`r kPvalue(distrib(1.26,distrib="f",df1=3,df2=20,lower.tail=FALSE),include.p=FALSE,latex=FALSE,digits=3)`**
+**Within** | **20** | **91.20** | 4.56 | - | -
+**Total**  | 23 | **108.45** | -    | - | -
+
+1. See completed table above. Note the following
+    * $MS_{among}$ is from multiplying $F$ and $MS_{within}$.
+    * $df_{among}$ is then $SS_{among}$ divided by $MS_{among}$.
+    * $df_{within}$ is then $df_{total}$-$df_{among}$.
+    * $SS_{within}$ is then $MS_{within}$ times $df_{within}$.
+    * $SS_{total}$ is then $SS_{among}$ + $SS_{within}$.
+    * The p-value is from `distrib(1.26,distrib="f",df1=3,df2=20,lower.tail=FALSE)`.
+1. The number of groups = 3+1 = 4 (i.e., $df_{among}$+1).
+1. The number of individuals = 23+1 = 24 (i.e., $df_{total}$+1).
+1. The variability among individuals within groups is $s_{p}^{s}$ = $MS_{within}$ = 4.56.
+1. The variabilty among individuals ignoring groups is $s^{2}$ = $MS_{total}$ = $\frac{108.45}{23}$ = 4.72.
+1. No there is not a difference among the group means because the p-value is greater than 0.05.
+
+----
