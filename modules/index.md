@@ -52,8 +52,8 @@ title: Modules
             <li><a href="Anova-1Way/Ex_AOVTable_2.html">ANOVA Tables II</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-1way_Tables2.html" target="_blank">Answer</a></button></li>
             <li><a href="Anova-1Way/Ex_AOVTable_3.html">ANOVA Tables III</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-1way_Tables3.html" target="_blank">Answer</a></button></li>
             <li><a href="Anova-1Way/Ex_AOVCuckoos.html">Foundational Meanings -- Cuckoo Eggs</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-1way_Cuckoos.html" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-1Way/Ex_AOVTurtles_1.html">Assumptions -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-1Way/Ex_AOVTurtles_1.html">Analysis -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/Ex_AOVTurtles_1.html">Assumptions -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-1way_Turtles1.html" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-1Way/Ex_AOVTurtles_1.html">Analysis -- Turtle Hatchlings</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-1way_Turtles1.html" target="_blank">Answer</a></button></li>
             <li><a href="Anova-1Way/HW4.html">Transformations -- Mining</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-1way_4_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
