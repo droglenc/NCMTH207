@@ -25,6 +25,7 @@ modHTML_CEKeys("KEY_Anova-2way_Plots")
 <strong>Note:</strong> 
 <ul>
 <li>Make sure that you comment about each type of effect (interaction, row factor,  and column factor) even if that effect is not evident.  In other words, explicitly state that there is no effect if there is no effect; don't just leave that effect absent from your answer.</li>
+<li>Pay close attention to my descriptions below. Come see me if they do not make sense to you.</li>
 </ul>
 </div>
 

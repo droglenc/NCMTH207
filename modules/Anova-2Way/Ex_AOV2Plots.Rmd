@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework 1
+title: Exercise
 subtitle: 2-Way ANOVA
 author: Derek H. Ogle
 css: /css/modules.css
