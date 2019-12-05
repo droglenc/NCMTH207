@@ -49,16 +49,16 @@ use         2  90.091  45.045  21.743 9.35e-09
 Residuals 117 242.392   2.072                 </code></pre>
 <p>Table 2: Tukey’s multiple comparison results for mean log iron levels by mine site type.</p>
 <pre><code>                           Estimate Std. Error  t value      p value
-Reclaimed - Unmined = 0   0.6987774  0.3125378 2.235817 6.932868e-02
-Abandoned - Unmined = 0   2.1989605  0.3397823 6.471674 4.425062e-09
-Abandoned - Reclaimed = 0 1.5001831  0.3226359 4.649772 2.829629e-05</code></pre>
+Reclaimed - Unmined = 0   0.6987774  0.3125378 2.235817 6.926101e-02
+Abandoned - Unmined = 0   2.1989605  0.3397823 6.471674 7.769385e-09
+Abandoned - Reclaimed = 0 1.5001831  0.3226359 4.649772 2.526322e-05</code></pre>
 <p><img src="KEY_Anova-1way_Mining_files/figure-html/unnamed-chunk-7-1.png" width="336" /></p>
 <p>Figure 3: Plot of mean (with 95% CI) log-transformed iron levels in streams by mine site type. Different letters indicate means that are significantly different.</p>
 <p>Table 3: Back-transformed Tukey’s confidence interval results for the ratio of mean iron levels between pairs of mine site types.</p>
 <pre><code>                      Estimate       lwr       upr
-Reclaimed - Unmined   2.011292 0.9579213  4.222994
-Abandoned - Unmined   9.015637 4.0250297 20.194064
-Abandoned - Reclaimed 4.482510 2.0843348  9.639955</code></pre>
+Reclaimed - Unmined   2.011292 0.9580956  4.222226
+Abandoned - Unmined   9.015637 4.0258260 20.190070
+Abandoned - Reclaimed 4.482510 2.0847263  9.638145</code></pre>
 <p>R Appendix.</p>
 <pre class="r"><code>library(multcomp)
 d &lt;- read.csv(&quot;AcidMineDrainage.csv&quot;)
