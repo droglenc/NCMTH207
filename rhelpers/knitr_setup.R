@@ -13,7 +13,7 @@ knit_hooks$set(
   par1 = function(before, options, envir) {
     if (before && options$fig.show != "none") {
       par(mar=c(3.05,3.05,0.65,0.65),
-          mgp=c(1.9,0.3,0),
+          mgp=c(2.1,0.3,0),
           tcl=-0.2,
           las=1,
           cex.lab=0.95,
