@@ -1,0 +1,145 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Linear Models Foundation"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+On the first question, you must use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. Tukey’s multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means. The linear models coefficients table is not appropriate for answering that question either as it does not assess all pairs of means (you should get out of the habit of using <code>summary()</code> on your <code>lm()</code> results).
+</li>
+<li>
+The second question should include a plot of means with appropriate significance letters. Note that when using Tukey’s method that there should be letters on each point. With Dunnett’s method it may be appropriate to leave one point without a letter, but this should be explained in the figure label.
+</li>
+<li>
+In the second to last questions, make sure to clearly indicate which group is greater (or lesser). Don’t just say that you are 95% confident that the difference is between such-and-such.
+</li>
+<li>
+Note how concise the answer key is. Please work to get your answers this concise.
+</li>
+</ul>
+</div>
+<hr />
+<div id="temperature-and-turtle-hatchlings-i" class="section level2">
+<h2>Temperature and Turtle Hatchlings I</h2>
+<ol>
+<li>The mean days to hatch is significantly different among the four temperature groups (p&lt;0.0005; Table 1).</li>
+<li>It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (<span class="math inline">\(p&lt;0.0005\)</span>), 20<sup>o</sup>C (<span class="math inline">\(p=0.001\)</span>), and 25<sup>o</sup>C (<span class="math inline">\(p&lt;0.0005\)</span>) groups (Table 2). The mean days to hatch for all other pairs of temperature groups are not significantly different (Table 2). These results are shown visually in Figure 1.</li>
+<li>The mean days to hatch for sea turtles at 30<sup>o</sup>C is between 22.7 and 53.9 days lower than that at 15<sup>o</sup>C, between 8.9 and 40.1 days lower than that at 20<sup>o</sup>C, and between 13.5 and 44.7 days lower than that at 25<sup>o</sup>C (Table 3).</li>
+<li>It appears that</li>
+</ol>
+<p>Table 1: Analysis of variance table for the days to hatch by temperature group.</p>
+<pre><code>            Df Sum Sq Mean Sq F value    Pr(&gt;F)
+Temperature  3 8025.5 2675.16  15.978 9.082e-07
+Residuals   36 6027.3  167.42                  </code></pre>
+<p>Table 2: Tukey’s multiple comparison results for the days to hatch by sea turles at various temperature groups.</p>
+<pre><code>function (..., interaction_average = FALSE, covariate_average = FALSE) 
+{
+    linfct &lt;- list(...)
+    linfct &lt;- lapply(linfct, function(x) {
+        if (is.numeric(x) &amp;&amp; !is.matrix(x)) {
+            return(matrix(x, nrow = 1))
+        }
+        else {
+            return(x)
+        }
+    })
+    if (is.null(names(linfct))) 
+        stop(sQuote(&quot;linfct&quot;), &quot; doesn&#39;t have a &quot;, sQuote(&quot;names&quot;), 
+            &quot; attribute&quot;)
+    classes &lt;- sapply(linfct, function(x) inherits(x, &quot;matrix&quot;) || 
+        inherits(x, &quot;character&quot;))
+    if (length(linfct) == 1) {
+        lf &lt;- linfct[[1]][1]
+        if (lf == &quot;Means&quot;) {
+            class(linfct) &lt;- &quot;means&quot;
+            return(linfct)
+        }
+    }
+    attr(linfct, &quot;interaction_average&quot;) &lt;- interaction_average
+    attr(linfct, &quot;covariate_average&quot;) &lt;- covariate_average
+    if (all(classes)) {
+        class(linfct) &lt;- &quot;mcp&quot;
+        return(linfct)
+    }
+    stop(&quot;Arguments don&#39;t consist of either matrices or characters&quot;)
+}
+&lt;bytecode: 0x00000272306e5458&gt;
+&lt;environment: namespace:multcomp&gt;</code></pre>
+<p><img src="KEY_Anova-1way_Turtles2_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
+<p>Figure 1: Plot of mean (with 95% CI) days to hatch by sea turtles at various temperature groups. Different letters indicate means that are significantly different.</p>
+<p>Table 3: Tukey’s confidence interval results for the difference in mean days to hatch by sea turtles for each pair of temperature groups.</p>
+<pre><code>        Estimate       lwr        upr
+20 - 15    -13.8 -29.39886   1.798863
+25 - 15     -9.2 -24.79886   6.398863
+30 - 15    -38.3 -53.89886 -22.701137
+25 - 20      4.6 -10.99886  20.198863
+30 - 20    -24.5 -40.09886  -8.901137
+30 - 25    -29.1 -44.69886 -13.501137</code></pre>
+<p>R Appendix.</p>
+<pre class="r"><code>library(multcomp)
+d &lt;- read.csv(&quot;turtles.csv&quot;)
+d$Temperature &lt;- factor(d$Temperature)
+lm1 &lt;- lm(Days~Temperature,data=d)
+anova(lm1)
+mc1 &lt;- glht(lm1,mcp(Temperature=&quot;Tukey&quot;))
+summary(mc1)
+confint(mc1)
+fitPlot(lm1,xlab=&quot;Temperature (C)&quot;,ylab=&quot;Days to Hatch&quot;)
+addSigLetters(lm1,c(&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;),pos=c(2,2,4,4))</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
