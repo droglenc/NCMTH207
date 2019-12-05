@@ -41,10 +41,11 @@ figs(name="fitplot","Plot of mean (with 95% CI) length of Cuckoo eggs by host bi
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>When asked to assess differences among "all" group means then you must use the overall p-value found in the ANOVA table. The p-values found in the coefficients table do not answer this question because those p-values do not compare all pairs of groups.</li>
+  <li>When asked to assess differences among "all" group means then you must use the overall p-value found in the ANOVA table. The p-values for the coefficients (from `summary()`) do not answer this question because those p-values do not compare all pairs of groups.</li>
   <li>Don't say "the groups differ" or the "the mean differs among groups."  Be explicit ... say "the mean length of cuckoo eggs differs among the three host species nests."</li>
   <li>Don't say "first group" or "second group" when those groups have specific names. For example, say "the intercept represents the mean length of cuckoo eggs in the tree pipet group."</li>
   <li>You should be moving away from using the words "intercept" and "slope." You should now be replacing these with words like "the sample mean of the first group" and "the difference in sample means between the second group and the first group."</li>
+  <li>You will be asked to interpret MS and F values in the future. If this is not making sense to you then see me for help.</li>
 </ul>
 </div>
 
@@ -52,7 +53,7 @@ figs(name="fitplot","Plot of mean (with 95% CI) length of Cuckoo eggs by host bi
 
 ## Raising Young Cuckoos
 
-1. The overall sample size is $n$=`r n` and the number of groups is $I$=`r I`.
+1. The overall sample size is n=`r n` and the number of groups is I=`r I`.
 1. The coefficients from fitting the one-way ANOVA to the cuckoo data are in `r tbls("coef",display="cite")` below.
     * The "Intercept" coefficient is the sample mean cuckoo egg length in pipet (reference group) nests. Thus, the mean length of cuckoo eggs in pipet nests is `r formatC(c1[1],format="f",digits=2)` mm.
     * The "speciesSparrow" estimate is the difference in sample mean cuckoo egg length between the sparrow (second group) and pipet (reference group) nests. In this case, the mean cuckoo egg length in sparrow nests is `r formatC(c1[2],format="f",digits=2)` mm longer than the mean cuckoo egg length in pipet nests.
@@ -62,20 +63,20 @@ figs(name="fitplot","Plot of mean (with 95% CI) length of Cuckoo eggs by host bi
     * One is 95% confident that the population mean cuckoo egg length in Sparrow nests is between `r formatC(-1*ci1["speciesSparrow",1],format="f",digits=2)` mm LESS and `r formatC(ci1["speciesSparrow",2],format="f",digits=2)` mm MORE than the population maean cuckoo egg length in Pipet nests.
     * One is 95% confident that the population mean cuckoo egg length in Wagtail nests is between `r formatC(-1*ci1["speciesWagtail",1],format="f",digits=2)` mm LESS and `r formatC(ci1["speciesWagtail",2],format="f",digits=2)` mm MORE than the population 
 1. The ANOVA table for the one-way ANOVA is in `r tbls("aov",display="cite")`. How each degrees-of-freedom is calculated is below.
-    * $df_{species}$ is $df_{Among}$, which is one less than the number of groups (host bird species; $I=$`r I`) in the analysis.
-    * $df_{Residuals}$ is $df_{Within}$, which is the total number of cuckoo eggs ($n=$`r n`) minus the total number of groups ($I=$`r I`) in the analysis.
-    * $df_{Total}$ is not shown in `r tbls("aov",display="cite")` but it is the total number of cuckoo eggs ($n=$`r n`) minus 1.
+    * df<sub>species</sub> is df<sub>Among</sub>, which is one less than the number of groups (host bird species; I=`r I`) in the analysis.
+    * df<sub>Residuals}</sub> is df<sub>Within</sub>, which is the total number of cuckoo eggs (n=`r n`) minus the total number of groups (I=`r I`) in the analysis.
+    * df<sub>Total</sub> is not shown in `r tbls("aov",display="cite")` but it is the total number of cuckoo eggs (n=`r n`) minus 1.
 1. Interpretations of the mean-squares in `r tbls("aov",display="cite")` are below.
-    * $MS_{species}$ is $MS_{Among}$, which is the variability that is explained by using separate means (full model) that was not explained when only one mean (simple model) was used to represent all three groups. It is also the variability of the group means.
-    * $MS_{Residuals}$ is $MS_{Within}$, which is the variability in cuckoo egg length around the mean cuckoo egg length of each host bird species group or the variability unexplained by using a separate mean for each group (i.e., the full model).
-    * $MS_{Total}$ is not shown in `r tbls("aov",display="cite")`, however it is the variability in cuckoo egg length around the grand mean or the variability unexplained by using only one mean (simple model) to represent all three groups.
+    * MS<sub>species</sub> is MS<sub>Among</sub>, which is the variability that is explained by using separate means (full model) that was not explained when only one mean (simple model) was used to represent all three groups. It is also the variability of the group means.
+    * MS<sub>Residuals</sub> is MS<sub>Within</sub>, which is the variability in cuckoo egg length around the mean cuckoo egg length of each host bird species group or the variability unexplained by using a separate mean for each group (i.e., the full model).
+    * MS<sub>Total</sub> is not shown in `r tbls("aov",display="cite")`, however it is the variability in cuckoo egg length around the grand mean or the variability unexplained by using only one mean (simple model) to represent all three groups.
 1. The F test statistic in `r tbls("aov",display="cite")` is the ratio of the variability explained by the full model that was not explained by the simple model to the variability of the simple model. Alternatively, the F test statistic is the ratio of the variability of group means to the variability of individuals within the groups.
 1. No, the overall p-value (`r kPvalue(anova(lm1)[1,"Pr(>F)"],digits=3,include.p=FALSE,latex=FALSE)`; `r tbls("aov",display="cite")`) is greater than 0.05. There is no statistical difference in mean cuckoo length among the three species of host birds `r figs("fitplot",display="cite")`.
 
 `r tbls("coef")`
 
 ```{r echo=FALSE, background="white"}
-cbind(Ests=c1,ci1)
+round(cbind(Ests=c1,ci1),2)
 ```
 
 `r tbls("aov")`

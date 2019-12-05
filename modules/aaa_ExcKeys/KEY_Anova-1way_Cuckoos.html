@@ -12,7 +12,7 @@ css: "/css/modules.css"
 <strong>Note:</strong>
 <ul>
 <li>
-When asked to assess differences among “all” group means then you must use the overall p-value found in the ANOVA table. The p-values found in the coefficients table do not answer this question because those p-values do not compare all pairs of groups.
+When asked to assess differences among “all” group means then you must use the overall p-value found in the ANOVA table. The p-values for the coefficients (from <code>summary()</code>) do not answer this question because those p-values do not compare all pairs of groups.
 </li>
 <li>
 Don’t say “the groups differ” or the “the mean differs among groups.” Be explicit … say “the mean length of cuckoo eggs differs among the three host species nests.”
@@ -23,13 +23,16 @@ Don’t say “first group” or “second group” when those groups have speci
 <li>
 You should be moving away from using the words “intercept” and “slope.” You should now be replacing these with words like “the sample mean of the first group” and “the difference in sample means between the second group and the first group.”
 </li>
+<li>
+You will be asked to interpret MS and F values in the future. If this is not making sense to you then see me for help.
+</li>
 </ul>
 </div>
 <hr />
 <div id="raising-young-cuckoos" class="section level2">
 <h2>Raising Young Cuckoos</h2>
 <ol>
-<li>The overall sample size is <span class="math inline">\(n\)</span>=44 and the number of groups is <span class="math inline">\(I\)</span>=3.</li>
+<li>The overall sample size is n=44 and the number of groups is I=3.</li>
 <li>The coefficients from fitting the one-way ANOVA to the cuckoo data are in Table 1 below.
 <ul>
 <li>The “Intercept” coefficient is the sample mean cuckoo egg length in pipet (reference group) nests. Thus, the mean length of cuckoo eggs in pipet nests is 23.09 mm.</li>
@@ -44,24 +47,24 @@ You should be moving away from using the words “intercept” and “slope.” 
 </ul></li>
 <li>The ANOVA table for the one-way ANOVA is in Table 2. How each degrees-of-freedom is calculated is below.
 <ul>
-<li><span class="math inline">\(df_{species}\)</span> is <span class="math inline">\(df_{Among}\)</span>, which is one less than the number of groups (host bird species; $I=$3) in the analysis.</li>
-<li><span class="math inline">\(df_{Residuals}\)</span> is <span class="math inline">\(df_{Within}\)</span>, which is the total number of cuckoo eggs ($n=<span class="math inline">\(44) minus the total number of groups (\)</span>I=$3) in the analysis.</li>
-<li><span class="math inline">\(df_{Total}\)</span> is not shown in Table 2 but it is the total number of cuckoo eggs ($n=$44) minus 1.</li>
+<li>df<sub>species</sub> is df<sub>Among</sub>, which is one less than the number of groups (host bird species; I=3) in the analysis.</li>
+<li>df<sub>Residuals}</sub> is df<sub>Within</sub>, which is the total number of cuckoo eggs (n=44) minus the total number of groups (I=3) in the analysis.</li>
+<li>df<sub>Total</sub> is not shown in Table 2 but it is the total number of cuckoo eggs (n=44) minus 1.</li>
 </ul></li>
 <li>Interpretations of the mean-squares in Table 2 are below.
 <ul>
-<li><span class="math inline">\(MS_{species}\)</span> is <span class="math inline">\(MS_{Among}\)</span>, which is the variability that is explained by using separate means (full model) that was not explained when only one mean (simple model) was used to represent all three groups. It is also the variability of the group means.</li>
-<li><span class="math inline">\(MS_{Residuals}\)</span> is <span class="math inline">\(MS_{Within}\)</span>, which is the variability in cuckoo egg length around the mean cuckoo egg length of each host bird species group or the variability unexplained by using a separate mean for each group (i.e., the full model).</li>
-<li><span class="math inline">\(MS_{Total}\)</span> is not shown in Table 2, however it is the variability in cuckoo egg length around the grand mean or the variability unexplained by using only one mean (simple model) to represent all three groups.</li>
+<li>MS<sub>species</sub> is MS<sub>Among</sub>, which is the variability that is explained by using separate means (full model) that was not explained when only one mean (simple model) was used to represent all three groups. It is also the variability of the group means.</li>
+<li>MS<sub>Residuals</sub> is MS<sub>Within</sub>, which is the variability in cuckoo egg length around the mean cuckoo egg length of each host bird species group or the variability unexplained by using a separate mean for each group (i.e., the full model).</li>
+<li>MS<sub>Total</sub> is not shown in Table 2, however it is the variability in cuckoo egg length around the grand mean or the variability unexplained by using only one mean (simple model) to represent all three groups.</li>
 </ul></li>
 <li>The F test statistic in Table 2 is the ratio of the variability explained by the full model that was not explained by the simple model to the variability of the simple model. Alternatively, the F test statistic is the ratio of the variability of group means to the variability of individuals within the groups.</li>
 <li>No, the overall p-value (0.820; Table 2) is greater than 0.05. There is no statistical difference in mean cuckoo length among the three species of host birds Figure 1.</li>
 </ol>
 <p>Table 1: Coefficients from the one-way ANOVA fit of egg length by bird species.</p>
-<pre><code>                      Ests      2.5 %     97.5 %
-(Intercept)    23.09000000 22.5610944 23.6189056
-speciesSparrow  0.03142857 -0.7297967  0.7926538
-speciesWagtail -0.18666667 -0.9346522  0.5613189</code></pre>
+<pre><code>                Ests 2.5 % 97.5 %
+(Intercept)    23.09 22.56  23.62
+speciesSparrow  0.03 -0.73   0.79
+speciesWagtail -0.19 -0.93   0.56</code></pre>
 <p>Table 2: Analysis of variance table for the egg length by bird species.</p>
 <pre><code>          Df Sum Sq Mean Sq F value Pr(&gt;F)
 species    2  0.410 0.20496  0.1992 0.8202
