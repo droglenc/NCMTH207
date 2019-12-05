@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework 3
+title: Exercise
 subtitle: 1-Way ANOVA
 css: "/css/modules.css"
 ---
@@ -13,7 +13,7 @@ css: "/css/modules.css"
 
 ----
 
-## Temperature and Turtle Hatchings
+## Temperature and Turtle Hatchings I
 <img src="../zimgs/sea_turtles.jpg" alt="Sea Turtles" class="img-right">
 
 It is widely reported that climate change is having a profound impact on the functioning of ecosystems. Species abundances and distributions are shifting due to the changing environment. The breeding phenology of migratory species is also changing in response to environmental change. Furthermore, climate change-induced habitat loss puts species at risk of extinction when no alternative adequate habitat is available. The risk of climate change is particularly pronounced for marine ectotherms as they conform more closely to thermal tolerance limits than terrestrial ecotherms and, in particular, species whose biology and phenology are intimately linked to temperature.
@@ -33,15 +33,5 @@ Load these data into R and answer the questions below. [*Note: If you enter the 
 1. Thoroughly (*use all possible options*) test the equal variances assumption.
 1. Thoroughly (*use all possible options*) test the normality assumption.
 1. Thoroughly (*use all possible options*) test the outliers assumption.
-
-----
-
-## Temperature and Turtle Hatchings II
-Continue with the data from above. Please do not attempt a transformation with these data and do not check the assumptions again.
-
-1. Test, at the 5% level, if the mean time to hatching differed among the four temperatures.
-1. If a difference in means was identified, then (using an appropriate method) determine which group means differed significantly from each other. [*Note: Provide complete tabular AND graphical support for your answer. Your graph should clearly articulate which groups differ and which do not.*]
-1. For all differences in means identified above, provide an appropriate statement that describes the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results. Clearly identify which group had a larger mean.*]
-1. Write an overall conclusion about the effect of temperature on the days needed to hatch by these sea turtles.
 
 ----
