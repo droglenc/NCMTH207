@@ -49,12 +49,14 @@ figs(name="residplot","Histogram of residuals (left) and boxplot of residuals by
 ## Temperature and Turtle Hatchlings I
 
 1. The individuals appear to be independent both within and among groups as each egg was put into its own container and randomly given a temperature such that the results for any one egg would not impact the results of any other egg given the same (within) or different (among) temperature.
-1. The Levene's test suggests that the variances are equal among the temperature groups (`r kPvalue(lev1[1,"Pr(>F)"],digits=3)`). The boxplots of residuals are very roughly equal in height and thus support the conclusion of equal variances (`r figs("residplot",display="cite")`-Right).
-1. The Anderson-Darling normality test suggests that the residuals are normally distributed (`r kPvalue(ad1$p.value,digits=3)`). The histogram of the residuals is slightly (but not strongly) left-skewed (`r figs("residplot",display="cite")`-Left). The Anderson-Darling tests though is definitive and, thus, the residuals appear to be normal.
-1. There are no significant outliers (`r kPvalue(out1$bonf.p,digits=3)`), though the residual plot suggests possible outliers in the 25<sup>o</sup>C group (`r figs("residplot",display="cite")`).
+1. The Levene's test suggests that the variances are equal among the temperature groups (`r kPvalue(lev1[1,"Pr(>F)"],digits=3,latex=FALSE)`). The boxplots of residuals are very roughly equal in height and thus support the conclusion of equal variances (`r figs("residplot",display="cite")`-Right).
+1. The Anderson-Darling normality test suggests that the residuals are normally distributed (`r kPvalue(ad1$p.value,digits=3,latex=FALSE)`). The histogram of the residuals is slightly (but not strongly) left-skewed (`r figs("residplot",display="cite")`-Left). The Anderson-Darling tests though is definitive and, thus, the residuals appear to be normal.
+1. There are no significant outliers (`r kPvalue(out1$bonf.p,digits=3,latex=FALSE)`), though the residual plot suggests possible outliers in the 25<sup>o</sup>C group (`r figs("residplot",display="cite")`).
 
-```{r residplot, echo=FALSE}
-knitr::include_graphics("TCTurtles1.jpg")
+```{r echo=FALSE, fig.width=6, fig.height=3}
+NCStats:::iAssumPlot_ANOVA(NCStats:::iTypeoflm(lm1),
+                           lambda=1,shifty=0,show.stats=TRUE,boxplot=TRUE,
+                           alpha=0.05,col.hist="gray70")
 ```
 
 `r figs("residplot")`
