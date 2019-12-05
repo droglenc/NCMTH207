@@ -12,7 +12,10 @@ css: "/css/modules.css"
 <strong>Note:</strong>
 <ul>
 <li>
-For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say `<code>the groups are independent.'' Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.&lt;/li&gt;   &lt;li&gt;On the third question, you must use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. The Tukey's multiple comparisons are only used to assess difference in paired means &lt;b&gt;AFTER&lt;/b&gt; it has been determined that there is a difference in means. The linear models coefficients table is not appropriate for answering that question (you should get out of the habit of using</code>summary()<code>on your</code>lm()` results). Make sure you refer to these results as being transformed (i.e., “mean natural log iron levels”).
+For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say “the groups are independent.” Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.
+</li>
+<li>
+On the third question, you must use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. The Tukey’s multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means. The linear models coefficients table is not appropriate for answering that question (you should get out of the habit of using <code>summary()</code> on your <code>lm()</code> results). Make sure you refer to these results as being transformed (i.e., “mean natural log iron levels”).
 </li>
 <li>
 The fourth question should include a plot of means with appropriate significance letters. Note that when using Tukey’s method that there should be letters on each point. With Dunnett’s method it may be appropriate to leave one point without a letter, but this should be explained in the figure label. Make sure you refer to these results as being transformed (i.e., “mean natural log iron levels”).
@@ -29,12 +32,12 @@ Note how concise the answer key is. Please work to get your answers this concise
 <div id="iron-and-mining" class="section level2">
 <h2>Iron and Mining</h2>
 <ol>
-<li>The individuals are likely independent but this is not abundantly clear. The measurements are from 120 unique rivers, so there is not multiple measurements on the same river. However, some of the rivers are likely in the same watershed and would share characteristics (e.g., geogological, other land use, etc.) based on that. The data are likely independent enough for our purposes. The variances appear to be equal (Levene’s test p=0.1077), though the residual plot suggests several outliers (Figure 1-Right). The residuals are strongly not normal (Anderson-Darling p&lt;0.00005) and appear strongly right-skewed (Figure 1-Left). Finally, there is evidence for significant outliers (outlier test p&lt;0.00005). Thus, the assumptions for a one-way ANOVA have NOT been met.</li>
-<li>The iron levels were transformed to the (natural) log scale. On this scale, the variances appear to be equal (Levene’s p=0.4719), the residuals appear to be normal (Anderson-Darling p=0.0004), and no significant outliers are present (p&lt;0.00005; Figure 2). Thus, these data will be analyzed on the log scale.</li>
-<li>The mean log of iron levels differs among the three mine types (p&lt;0.00005; Table 1).</li>
-<li>It appears that the mean log iron level for the abandoned mines is significantly greater than that for the unmined (p&lt;0.00005) and reclaimed mines (p&lt;0.00005), but the mean log iron level does not differ between the unmined and reclaimed mines sites (p=0.0694; Table 2). These results are shown in Figure 3.</li>
-<li>The mean iron level for abandoned mines sites is between 4.02 and 20.20 times greater than the mean iron levels for the unmined sites (Table 3).</li>
-<li>It appears that iron levels are much higher in streams with abandoned mine sites than at either the unmined or reclaimed sites, which suggests that mining is contributing to increased levels of iron. The iron levels did not differ between unmined and reclaimed sites which suggests that reclaiming a mining site can return iron levels to the same as those for unmined sites.</li>
+<li>The individuals are likely independent but this is not abundantly clear. The measurements are from 120 unique rivers, so there is not multiple measurements on the same river. However, some of the rivers are likely in the same watershed and would share characteristics (e.g., geogological, other land use, etc.) based on that. The data are likely independent enough for our purposes. The variances appear to be equal (Levene’s test p=0.1077), though the residual plot suggests several outliers (Figure 1-Right). The residuals are not normal (Anderson-Darling p&lt;0.00005) and appear strongly right-skewed (Figure 1-Left). Finally, there is evidence for significant outliers (outlier test p&lt;0.00005). Thus, the assumptions for a one-way ANOVA have NOT been met.</li>
+<li>The iron levels were transformed to the (natural) log scale. On this scale, the variances appear to be equal (Levene’s p=0.4719), the residuals appear to not be normal (Anderson-Darling p=0.0004) but an examination of the histogram of residuals is not strongly skewed (Figure 2)), and no significant outliers are present (p&lt;0.00005). Thus, the assumptions are adequately met on this scale; these data will be analyzed on the log scale.</li>
+<li>The mean log iron level differs among the three mine types (p&lt;0.00005; Table 1).</li>
+<li>It appears that mean log iron level for the abandoned mines is significantly greater than that for the unmined (p&lt;0.00005) and reclaimed mines (p&lt;0.00005), but the mean log iron level does not differ (at the 5% level) between the unmined and reclaimed mines sites (p=0.0693; Table 2). These results are shown in Figure 3.</li>
+<li>The mean iron level for abandoned mines sites is between 4.0 and 20.2 times greater than the mean iron levels for the unmined sites (Table 3).</li>
+<li>It appears that iron levels are much higher in streams with abandoned mine sites than at either the unmined or reclaimed sites (Figure 2), which suggests that mining is contributing to increased levels of iron. Iron levels did not differ between unmined and reclaimed sites (Figure 2), which suggests that reclaiming a mining site can return iron levels to the same levels as those for unmined sites.</li>
 </ol>
 <p><img src="KEY_Anova-1way_Mining_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Figure 1: Histogram of residuals (left) and boxplot of residuals by mine site type (right).</p>
@@ -46,16 +49,16 @@ use         2  90.091  45.045  21.743 9.35e-09
 Residuals 117 242.392   2.072                 </code></pre>
 <p>Table 2: Tukey’s multiple comparison results for mean log iron levels by mine site type.</p>
 <pre><code>                           Estimate Std. Error  t value      p value
-Reclaimed - Unmined = 0   0.6987774  0.3125378 2.235817 6.935798e-02
-Abandoned - Unmined = 0   2.1989605  0.3397823 6.471674 3.276131e-09
-Abandoned - Reclaimed = 0 1.5001831  0.3226359 4.649772 2.440800e-05</code></pre>
+Reclaimed - Unmined = 0   0.6987774  0.3125378 2.235817 6.932868e-02
+Abandoned - Unmined = 0   2.1989605  0.3397823 6.471674 4.425062e-09
+Abandoned - Reclaimed = 0 1.5001831  0.3226359 4.649772 2.829629e-05</code></pre>
 <p><img src="KEY_Anova-1way_Mining_files/figure-html/unnamed-chunk-7-1.png" width="336" /></p>
 <p>Figure 3: Plot of mean (with 95% CI) log-transformed iron levels in streams by mine site type. Different letters indicate means that are significantly different.</p>
 <p>Table 3: Back-transformed Tukey’s confidence interval results for the ratio of mean iron levels between pairs of mine site types.</p>
 <pre><code>                      Estimate       lwr       upr
-Reclaimed - Unmined   2.011292 0.9577577  4.223715
-Abandoned - Unmined   9.015637 4.0242825 20.197814
-Abandoned - Reclaimed 4.482510 2.0839674  9.641655</code></pre>
+Reclaimed - Unmined   2.011292 0.9579213  4.222994
+Abandoned - Unmined   9.015637 4.0250297 20.194064
+Abandoned - Reclaimed 4.482510 2.0843348  9.639955</code></pre>
 <p>R Appendix.</p>
 <pre class="r"><code>library(multcomp)
 d &lt;- read.csv(&quot;AcidMineDrainage.csv&quot;)
