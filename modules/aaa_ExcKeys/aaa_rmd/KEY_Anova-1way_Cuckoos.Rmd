@@ -85,7 +85,7 @@ round(cbind(Ests=c1,ci1),2)
 kANOVA(lm1)
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, par1=TRUE}
 fitPlot(lm1,xlab="Host Bird",ylab="Length of Cuckoo Eggs")
 ```
 

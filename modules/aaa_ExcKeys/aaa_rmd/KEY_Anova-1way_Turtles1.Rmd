@@ -53,7 +53,7 @@ figs(name="residplot","Histogram of residuals (left) and boxplot of residuals by
 1. The Anderson-Darling normality test suggests that the residuals are normally distributed (`r kPvalue(ad1$p.value,latex=FALSE)`). The histogram of the residuals is slightly (but not strongly) left-skewed (`r figs("residplot",display="cite")`-Left). The Anderson-Darling test though is definitive and, thus, the residuals appear to be normal.
 1. There are no significant outliers (`r kPvalue(out1$bonf.p,latex=FALSE)`), though the residual plot suggests possible outliers in the 25<sup>o</sup>C and 30<sup>o</sup>C groups (`r figs("residplot",display="cite")`).
 
-```{r echo=FALSE, fig.width=6, fig.height=3}
+```{r echo=FALSE, fig.width=7, fig.height=3.5, par1=TRUE}
 NCStats:::iAssumPlot_ANOVA(NCStats:::iTypeoflm(lm1),
                            lambda=1,shifty=0,show.stats=TRUE,boxplot=TRUE,
                            alpha=0.05,col.hist="gray70")
