@@ -22,21 +22,32 @@ library(NCStats)
 library(multcomp)
 source("../../../rhelpers/knitr_setup.R")
 
-d <- read.csv("c:/aaaWork/Web/GitHub/NCMTH207/modules/aaa_ExcKeys/aaa_rmd/turtles.csv")
-d$Temperature <- factor(d$Temperature)
-lm1 <- lm(Days~Temperature,data=d)
-aov1 <- anova(lm1)
-mc1 <- glht(lm1,mcp(Temperature="Tukey"))
-mc1p <- kGLHT(mc1)
-mc1c <- kGLHT(mc1,type="confidence")
+d <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv")
+d$use <- factor(d$use,levels=c("Unmined","Reclaimed","Abandoned"))
+lm1 <- lm(FE~use,data=d)
+lev1 <- levenesTest(lm1)
+ad1 <- adTest(lm1$residuals)
+out1 <- outlierTest(lm1)
+
+d$logFE <- log(d$FE)
+lm2 <- lm(logFE~use,data=d)
+lev2 <- levenesTest(lm2)
+ad2 <- adTest(lm2$residuals)
+out2 <- outlierTest(lm2)
+aov2 <- anova(lm2)
+mc2 <- glht(lm2,mcp(use="Tukey"))
+mc2p <- kGLHT(mc2)
+mc2c <- kGLHT(mc2,type="confidence")
 
 library(captioner)
 tbls <- captioner(prefix="Table")
 figs <- captioner(prefix="Figure")
-tbls(name="aov","Analysis of variance table for the days to hatch by temperature group.")
-tbls(name="mcp","Tukey's multiple comparison results for the days to hatch by sea turles at various temperature groups.")
-tbls(name="mcpci","Tukey's confidence interval results for the difference in mean days to hatch by sea turtles for each pair of temperature groups.")
-figs(name="fitplot","Plot of mean (with 95\\% CI) days to hatch by sea turtles at various temperature groups. Different letters indicate means that are significantly different.")
+tbls(name="aov","Analysis of variance table for the natural log of iron levels by mine type.")
+tbls(name="mcp","Tukey's multiple comparison results for mean log iron levels by mine site type.")
+tbls(name="mcpci","Back-transformed Tukey's confidence interval results for the ratio of mean iron levels between pairs of mine site types.")
+figs(name="residplot","Histogram of residuals (left) and boxplot of residuals by mine site type (right).")
+figs(name="residplot2","Histogram of residuals (left) and boxplot of residuals by mine site type type (right) for log-transformed iron levels.")
+figs(name="fitplot","Plot of mean (with 95% CI) log-transformed iron levels in streams by mine site type. Different letters indicate means that are significantly different.")
 ```
 
 ----
@@ -44,38 +55,58 @@ figs(name="fitplot","Plot of mean (with 95\\% CI) days to hatch by sea turtles a
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>On the first question, you must use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. Tukey's multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means. The linear models coefficients table is not appropriate for answering that question either as it does not assess all pairs of means (you should get out of the habit of using `summary()` on your `lm()` results).</li>
-  <li>The second question should include a plot of means with appropriate significance letters. Note that when using Tukey's method that there should be letters on each point. With Dunnett's method it may be appropriate to leave one point without a letter, but this should be explained in the figure label.</li>
-  <li>In the second to last questions, make sure to clearly indicate which group is greater (or lesser). Don't just say that you are 95% confident that the difference is between such-and-such.</li>
-  <li>I round my p-values to four decimal places. As such, if the fifth decimal place is less than 5, then the p-value would round to "0.0000", which does not make much sense. Thus, if the fifth decimal place is less than 5 then I will report my p-values as "<0.00005." You will see examples of this in the answers below.</li>
+  <li>For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say ``the groups are independent.'' Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.</li>
+  <li>On the third question, you must use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. The Tukey's multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means. The linear models coefficients table is not appropriate for answering that question (you should get out of the habit of using `summary()` on your `lm()` results). Make sure you refer to these results as being transformed (i.e., "mean natural log iron levels").</li>
+  <li>The fourth question should include a plot of means with appropriate significance letters. Note that when using Tukey's method that there should be letters on each point. With Dunnett's method it may be appropriate to leave one point without a letter, but this should be explained in the figure label. Make sure you refer to these results as being transformed (i.e., "mean natural log iron levels").</li>
+  <li>In the second to last questions, make sure to clearly indicate which group is greater (or lesser). Don't just say that you are 95% confident that the difference is between such-and-such. Also note that when you back-transform from the log scale that the difference in means becomes a ratio of means such that the first group is that multiple of the second group.</li>
   <li>Note how concise the answer key is. Please work to get your answers this concise.</li>
 </ul>
 </div>
 
 ----
 
-## Temperature and Turtle Hatchlings I
+## Iron and Mining
 
-1. The mean days to hatch is significantly different among the four temperature groups (`r kPvalue(aov1[1,"Pr(>F)"],latex=FALSE)`; `r tbls("aov",display="cite")`).
-1. It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (`r kPvalue(mc1p[3,"p value"],latex=FALSE)`), 20<sup>o</sup>C (`r kPvalue(mc1p[5,"p value"],latex=FALSE)`), and 25<sup>o</sup>C (`r kPvalue(mc1p[6,"p value"],latex=FALSE)`) groups (`r tbls("mcp",display="cite")`). The mean days to hatch for all other pairs of temperature groups are not significantly different (`r tbls("mcp",display="cite")`). These results are shown visually in `r figs("fitplot",display="cite")`.
-1. The mean days to hatch for sea turtles at 30<sup>o</sup>C is between `r formatC(-1*mc1c["30 - 15","upr"],format="f",digits=1)` and `r formatC(-1*mc1c["30 - 15","lwr"],format="f",digits=1)` days lower than that at 15<sup>o</sup>C, between `r formatC(-1*mc1c["30 - 20","upr"],format="f",digits=1)` and `r formatC(-1*mc1c["30 - 20","lwr"],format="f",digits=1)` days lower than that at 20<sup>o</sup>C, and between `r formatC(-1*mc1c["30 - 25","upr"],format="f",digits=1)` and `r formatC(-1*mc1c["30 - 25","lwr"],format="f",digits=1)` days lower than that at 25<sup>o</sup>C (`r tbls("mcpci",display="cite")`).
-1. It appears that mean days to hatch is longer at 15, 20, and 25<sup>C</sup> than at 30<sup>C</sup>. Thus, it appears that the days to hatch will not decrease substantially until temperatures rise above somewhere between 25 and 30<sup>C</sup>.
+1. The individuals are likely independent but this is not abundantly clear. The measurements are from 120 unique rivers, so there is not multiple measurements on the same river. However, some of the rivers are likely in the same watershed and would share characteristics (e.g., geogological, other land use, etc.) based on that. The data are likely independent enough for our purposes. The variances appear to be equal (Levene's test `r kPvalue(lev1[1,"Pr(>F)"],digits=4,latex=FALSE)`), though the residual plot suggests several outliers (`r figs("residplot",display="cite")`-Right). The residuals are strongly not normal (Anderson-Darling `r kPvalue(ad1$p.value,digits=4,latex=FALSE)`) and appear strongly right-skewed (`r figs("residplot",display="cite")`-Left). Finally, there is evidence for significant outliers (outlier test `r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`). Thus, the assumptions for a one-way ANOVA have NOT been met.
+1. The iron levels were transformed to the (natural) log scale. On this scale, the variances appear to be equal (Levene's `r kPvalue(lev2[1,"Pr(>F)"],digits=4,latex=FALSE)`), the residuals appear to be normal (Anderson-Darling `r kPvalue(ad2$p.value,digits=4,latex=FALSE)`), and no significant outliers are present (`r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`; `r figs("residplot2",display="cite")`). Thus, these data will be analyzed on the log scale.
+1. The mean log of iron levels differs among the three mine types (`r kPvalue(aov2[1,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`).
+1. It appears that the mean log iron level for the abandoned mines is significantly greater than that for the unmined (`r kPvalue(mc2p[2,"p value"],digits=4,latex=FALSE)`) and reclaimed mines (`r kPvalue(mc2p[3,"p value"],digits=4,latex=FALSE)`), but the mean log iron level does not differ between the unmined and reclaimed mines sites (`r kPvalue(mc2p[1,"p value"],digits=4,latex=FALSE)`; `r tbls("mcp",display="cite")`). These results are shown in `r figs("fitplot",display="cite")`.
+1. The mean iron level for abandoned mines sites is between `r formatC(exp(mc2c["Abandoned - Unmined","lwr"]),format="f",digits=2)` and `r formatC(exp(mc2c["Abandoned - Unmined","upr"]),format="f",digits=2)` times greater than the mean iron levels for the unmined sites (`r tbls("mcpci",display="cite")`).
+1. It appears that iron levels are much higher in streams with abandoned mine sites than at either the unmined or reclaimed sites, which suggests that mining is contributing to increased levels of iron. The iron levels did not differ between unmined and reclaimed sites which suggests that reclaiming a mining site can return iron levels to the same as those for unmined sites.
+
+
+```{r echo=FALSE, fig.width=7, fig.height=3.5, par1=TRUE}
+NCStats:::iAssumPlot_ANOVA(NCStats:::iTypeoflm(lm1),
+                           lambda=1,shifty=0,show.stats=TRUE,boxplot=TRUE,
+                           alpha=0.05,col.hist="gray70")
+```
+
+`r figs("residplot")`
+
+
+```{r echo=FALSE, fig.width=7, fig.height=3.5, par1=TRUE}
+NCStats:::iAssumPlot_ANOVA(NCStats:::iTypeoflm(lm1),
+                           lambda=0,shifty=0,show.stats=TRUE,boxplot=TRUE,
+                           alpha=0.05,col.hist="gray70")
+```
+
+`r figs("residplot2")`
 
 `r tbls("aov")`
 
 ```{r echo=FALSE, background="white"}
-kANOVA(lm1)
+kANOVA(lm2)
 ```
 
 `r tbls("mcp")`
 
 ```{r echo=FALSE, background="white"}
-mc1p
+mc2p
 ```
 
 ```{r echo=FALSE, par1=TRUE}
-fitPlot(lm1,xlab="Temperature (C)",ylab="Days to Hatch")
-addSigLetters(lm1,cld(mc1),pos=c(2,2,4,4))
+fitPlot(lm2,xlab="Site Type",ylab="Log Iron Levels")
+addSigLetters(lm2,cld(mc2),pos=c(2,2,4))
 ```
 
 `r figs("fitplot")`
@@ -83,22 +114,27 @@ addSigLetters(lm1,cld(mc1),pos=c(2,2,4,4))
 `r tbls("mcpci")`
 
 ```{r echo=FALSE, background="white"}
-mc1c
+exp(mc2c)
 ```
 
 
 R Appendix.
 ```{r eval=FALSE, prompt=FALSE}
 library(multcomp)
-d <- read.csv("turtles.csv")
-d$Temperature <- factor(d$Temperature)
-lm1 <- lm(Days~Temperature,data=d)
-anova(lm1)
-mc1 <- glht(lm1,mcp(Temperature="Tukey"))
-summary(mc1)
-confint(mc1)
-fitPlot(lm1,xlab="Temperature (C)",ylab="Days to Hatch")
-addSigLetters(lm1,c("b","b","b","a"),pos=c(2,2,4,4))
+d <- read.csv("AcidMineDrainage.csv")
+d$use <- factor(d$use,levels=c("Unmined","Reclaimed","Abandoned"))
+
+lm1 <- lm(FE~use,data=d)
+transChooser(lm1)
+d$logFE <- log(d$FE)
+
+lm2 <- lm(logFE~use,data=d)
+anova(lm2)
+mc2 <- glht(lm2,mcp(use="Tukey"))
+summary(mc2)
+fitPlot(lm2,xlab="Mine Site Type",ylab="Log Iron Level")
+addSigLetters(lm2,c("a","a","b"),pos=c(2,2,4))
+exp(confint(mc2)$confint)
 ```
 
 ----
