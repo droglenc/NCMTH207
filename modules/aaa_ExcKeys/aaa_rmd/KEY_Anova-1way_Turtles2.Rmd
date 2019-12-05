@@ -47,6 +47,7 @@ figs(name="fitplot","Plot of mean (with 95\\% CI) days to hatch by sea turtles a
   <li>On the first question, you must use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. Tukey's multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means. The linear models coefficients table is not appropriate for answering that question either as it does not assess all pairs of means (you should get out of the habit of using `summary()` on your `lm()` results).</li>
   <li>The second question should include a plot of means with appropriate significance letters. Note that when using Tukey's method that there should be letters on each point. With Dunnett's method it may be appropriate to leave one point without a letter, but this should be explained in the figure label.</li>
   <li>In the second to last questions, make sure to clearly indicate which group is greater (or lesser). Don't just say that you are 95% confident that the difference is between such-and-such.</li>
+  <li>I round my p-values to four decimal places. As such, if the fifth decimal place is less than 5, then the p-value would round to "0.0000", which does not make much sense. Thus, if the fifth decimal place is less than 5 then I will report my p-values as "<0.00005." You will see examples of this in the answers below.</li>
   <li>Note how concise the answer key is. Please work to get your answers this concise.</li>
 </ul>
 </div>
@@ -55,10 +56,10 @@ figs(name="fitplot","Plot of mean (with 95\\% CI) days to hatch by sea turtles a
 
 ## Temperature and Turtle Hatchlings I
 
-1. The mean days to hatch is significantly different among the four temperature groups (`r kPvalue(aov1[1,"Pr(>F)"],digits=3,latex=FALSE)`; `r tbls("aov",display="cite")`).
-1. It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (`r kPvalue(mc1p[3,"p value"],digits=3)`), 20<sup>o</sup>C (`r kPvalue(mc1p[5,"p value"],digits=3)`), and 25<sup>o</sup>C (`r kPvalue(mc1p[6,"p value"],digits=3)`) groups (`r tbls("mcp",display="cite")`). The mean days to hatch for all other pairs of temperature groups are not significantly different (`r tbls("mcp",display="cite")`). These results are shown visually in `r figs("fitplot",display="cite")`.
+1. The mean days to hatch is significantly different among the four temperature groups (`r kPvalue(aov1[1,"Pr(>F)"],latex=FALSE)`; `r tbls("aov",display="cite")`).
+1. It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (`r kPvalue(mc1p[3,"p value"],latex=FALSE)`), 20<sup>o</sup>C (`r kPvalue(mc1p[5,"p value"],latex=FALSE)`), and 25<sup>o</sup>C (`r kPvalue(mc1p[6,"p value"],latex=FALSE)`) groups (`r tbls("mcp",display="cite")`). The mean days to hatch for all other pairs of temperature groups are not significantly different (`r tbls("mcp",display="cite")`). These results are shown visually in `r figs("fitplot",display="cite")`.
 1. The mean days to hatch for sea turtles at 30<sup>o</sup>C is between `r formatC(-1*mc1c["30 - 15","upr"],format="f",digits=1)` and `r formatC(-1*mc1c["30 - 15","lwr"],format="f",digits=1)` days lower than that at 15<sup>o</sup>C, between `r formatC(-1*mc1c["30 - 20","upr"],format="f",digits=1)` and `r formatC(-1*mc1c["30 - 20","lwr"],format="f",digits=1)` days lower than that at 20<sup>o</sup>C, and between `r formatC(-1*mc1c["30 - 25","upr"],format="f",digits=1)` and `r formatC(-1*mc1c["30 - 25","lwr"],format="f",digits=1)` days lower than that at 25<sup>o</sup>C (`r tbls("mcpci",display="cite")`).
-1. It appears that 
+1. It appears that mean days to hatch is longer at 15, 20, and 25<sup>C</sup> than at 30<sup>C</sup>. Thus, it appears that the days to hatch will not decrease substantially until temperatures rise above somewhere between 25 and 30<sup>C</sup>.
 
 `r tbls("aov")`
 
@@ -69,10 +70,10 @@ kANOVA(lm1)
 `r tbls("mcp")`
 
 ```{r echo=FALSE, background="white"}
-mcp
+mc1p
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, par1=TRUE}
 fitPlot(lm1,xlab="Temperature (C)",ylab="Days to Hatch")
 addSigLetters(lm1,cld(mc1),pos=c(2,2,4,4))
 ```

@@ -21,6 +21,9 @@ The second question should include a plot of means with appropriate significance
 In the second to last questions, make sure to clearly indicate which group is greater (or lesser). Don’t just say that you are 95% confident that the difference is between such-and-such.
 </li>
 <li>
+I round my p-values to four decimal places. As such, if the fifth decimal place is less than 5, then the p-value would round to “0.0000”, which does not make much sense. Thus, if the fifth decimal place is less than 5 then I will report my p-values as “&lt;0.00005.” You will see examples of this in the answers below.
+</li>
+<li>
 Note how concise the answer key is. Please work to get your answers this concise.
 </li>
 </ul>
@@ -29,59 +32,33 @@ Note how concise the answer key is. Please work to get your answers this concise
 <div id="temperature-and-turtle-hatchlings-i" class="section level2">
 <h2>Temperature and Turtle Hatchlings I</h2>
 <ol>
-<li>The mean days to hatch is significantly different among the four temperature groups (p&lt;0.0005; Table 1).</li>
-<li>It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (<span class="math inline">\(p&lt;0.0005\)</span>), 20<sup>o</sup>C (<span class="math inline">\(p=0.001\)</span>), and 25<sup>o</sup>C (<span class="math inline">\(p&lt;0.0005\)</span>) groups (Table 2). The mean days to hatch for all other pairs of temperature groups are not significantly different (Table 2). These results are shown visually in Figure 1.</li>
+<li>The mean days to hatch is significantly different among the four temperature groups (p&lt;0.00005; Table 1).</li>
+<li>It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (p&lt;0.00005), 20<sup>o</sup>C (p=0.0009), and 25<sup>o</sup>C (p=0.0001) groups (Table 2). The mean days to hatch for all other pairs of temperature groups are not significantly different (Table 2). These results are shown visually in Figure 1.</li>
 <li>The mean days to hatch for sea turtles at 30<sup>o</sup>C is between 22.7 and 53.9 days lower than that at 15<sup>o</sup>C, between 8.9 and 40.1 days lower than that at 20<sup>o</sup>C, and between 13.5 and 44.7 days lower than that at 25<sup>o</sup>C (Table 3).</li>
-<li>It appears that</li>
+<li>It appears that mean days to hatch is longer at 15, 20, and 25<sup>C</sup> than at 30<sup>C</sup>. Thus, it appears that the days to hatch will not decrease substantially until temperatures rise above somewhere between 25 and 30<sup>C</sup>.</li>
 </ol>
 <p>Table 1: Analysis of variance table for the days to hatch by temperature group.</p>
 <pre><code>            Df Sum Sq Mean Sq F value    Pr(&gt;F)
 Temperature  3 8025.5 2675.16  15.978 9.082e-07
 Residuals   36 6027.3  167.42                  </code></pre>
 <p>Table 2: Tukey’s multiple comparison results for the days to hatch by sea turles at various temperature groups.</p>
-<pre><code>function (..., interaction_average = FALSE, covariate_average = FALSE) 
-{
-    linfct &lt;- list(...)
-    linfct &lt;- lapply(linfct, function(x) {
-        if (is.numeric(x) &amp;&amp; !is.matrix(x)) {
-            return(matrix(x, nrow = 1))
-        }
-        else {
-            return(x)
-        }
-    })
-    if (is.null(names(linfct))) 
-        stop(sQuote(&quot;linfct&quot;), &quot; doesn&#39;t have a &quot;, sQuote(&quot;names&quot;), 
-            &quot; attribute&quot;)
-    classes &lt;- sapply(linfct, function(x) inherits(x, &quot;matrix&quot;) || 
-        inherits(x, &quot;character&quot;))
-    if (length(linfct) == 1) {
-        lf &lt;- linfct[[1]][1]
-        if (lf == &quot;Means&quot;) {
-            class(linfct) &lt;- &quot;means&quot;
-            return(linfct)
-        }
-    }
-    attr(linfct, &quot;interaction_average&quot;) &lt;- interaction_average
-    attr(linfct, &quot;covariate_average&quot;) &lt;- covariate_average
-    if (all(classes)) {
-        class(linfct) &lt;- &quot;mcp&quot;
-        return(linfct)
-    }
-    stop(&quot;Arguments don&#39;t consist of either matrices or characters&quot;)
-}
-&lt;bytecode: 0x00000272306e5458&gt;
-&lt;environment: namespace:multcomp&gt;</code></pre>
+<pre><code>            Estimate Std. Error    t value      p value
+20 - 15 = 0    -13.8   5.786623 -2.3848108 9.826750e-02
+25 - 15 = 0     -9.2   5.786623 -1.5898739 3.969707e-01
+30 - 15 = 0    -38.3   5.786623 -6.6187141 2.223366e-07
+25 - 20 = 0      4.6   5.786623  0.7949369 8.562568e-01
+30 - 20 = 0    -24.5   5.786623 -4.2339033 8.709416e-04
+30 - 25 = 0    -29.1   5.786623 -5.0288402 7.013334e-05</code></pre>
 <p><img src="KEY_Anova-1way_Turtles2_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
 <p>Figure 1: Plot of mean (with 95% CI) days to hatch by sea turtles at various temperature groups. Different letters indicate means that are significantly different.</p>
 <p>Table 3: Tukey’s confidence interval results for the difference in mean days to hatch by sea turtles for each pair of temperature groups.</p>
 <pre><code>        Estimate       lwr        upr
-20 - 15    -13.8 -29.39886   1.798863
-25 - 15     -9.2 -24.79886   6.398863
-30 - 15    -38.3 -53.89886 -22.701137
-25 - 20      4.6 -10.99886  20.198863
-30 - 20    -24.5 -40.09886  -8.901137
-30 - 25    -29.1 -44.69886 -13.501137</code></pre>
+20 - 15    -13.8 -29.41398   1.813977
+25 - 15     -9.2 -24.81398   6.413977
+30 - 15    -38.3 -53.91398 -22.686023
+25 - 20      4.6 -11.01398  20.213977
+30 - 20    -24.5 -40.11398  -8.886023
+30 - 25    -29.1 -44.71398 -13.486023</code></pre>
 <p>R Appendix.</p>
 <pre class="r"><code>library(multcomp)
 d &lt;- read.csv(&quot;turtles.csv&quot;)
