@@ -48,7 +48,7 @@ Source     | df | SS | MS | F  | p-value
     * The p-value is from `distrib(1.26,distrib="f",df1=3,df2=20,lower.tail=FALSE)`.
 1. The number of groups = 3+1 = 4 (i.e., $df<sub>among</sub>+1).
 1. The number of individuals = 23+1 = 24 (i.e., $df<sub>total</sub>+1).
-1. The variability among individuals within groups is s<sub>p</sub>$^{2}$ = $MS<sub>within</sub> = 4.56.
+1. The variability among individuals within groups is s<sub>p</sub><sup>2</sup> = $MS<sub>within</sub> = 4.56.
 1. The variabilty among individuals ignoring groups is s>sup>2</sup> = MS<sub>total</sub> = $\frac{108.45}{23}$ = 4.72.
 1. No there is not a difference among the group means because the p-value is greater than 0.05.
 

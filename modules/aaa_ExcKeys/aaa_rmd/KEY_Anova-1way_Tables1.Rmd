@@ -46,7 +46,7 @@ Source     | df | SS | MS | F  | p-value
     * The p-value came from `distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE)`.
 1. The number of groups = 7+1 = 8 (i.e., df<sub>among</sub>+1).
 1. The number of individuals = 31+1 = 32 (i.e., df<sub>total</sub>+1).
-1. The variability among individuals within groups is s<sub>p</sub>$^{2}$ = MS<sub>within</sub> = 1462.
+1. The variability among individuals within groups is s<sub>p</sub><sup>2</sup> = MS<sub>within</sub> = 1462.
 1. The variability among individuals ignoring groups is s<sup>2</sup> = MS<sub>total</sub> = $\frac{70907}{31}$ = 2287.3.
 1. Yes, there is a difference among the group means because the p-value is less than 0.05.
 
