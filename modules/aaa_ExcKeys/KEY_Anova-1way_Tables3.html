@@ -12,7 +12,7 @@ css: "/css/modules.css"
 <strong>Note:</strong>
 <ul>
 <li>
-<span class="math inline">\(MS_{Total}\)</span> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).
+MS<sub>Total</sub> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).
 </li>
 </ul>
 </div>
@@ -60,17 +60,17 @@ css: "/css/modules.css"
 <ol>
 <li>See completed table above. Note the following
 <ul>
-<li><span class="math inline">\(MS_{among}\)</span> is from multiplying <span class="math inline">\(F\)</span> and <span class="math inline">\(MS_{within}\)</span>.</li>
-<li><span class="math inline">\(df_{among}\)</span> is then <span class="math inline">\(SS_{among}\)</span> divided by <span class="math inline">\(MS_{among}\)</span>.</li>
-<li><span class="math inline">\(df_{within}\)</span> is then <span class="math inline">\(df_{total}\)</span>-<span class="math inline">\(df_{among}\)</span>.</li>
-<li><span class="math inline">\(SS_{within}\)</span> is then <span class="math inline">\(MS_{within}\)</span> times <span class="math inline">\(df_{within}\)</span>.</li>
-<li><span class="math inline">\(SS_{total}\)</span> is then <span class="math inline">\(SS_{among}\)</span> + <span class="math inline">\(SS_{within}\)</span>.</li>
+<li>MS<sub>among</sub> is from multiplying F and MS<sub>within</sub>.</li>
+<li>df<sub>among</sub> is then SS<sub>among</sub> divided by MS<sub>among</sub>.</li>
+<li>df<sub>within</sub> is then df<sub>total</sub>-df<sub>among</sub>.</li>
+<li>SS<sub>within</sub> is then MS<sub>within</sub> times df<sub>within</sub>.</li>
+<li>SS<sub>total</sub> is then SS<sub>among</sub> + SS<sub>within</sub>.</li>
 <li>The p-value is from <code>distrib(1.26,distrib="f",df1=3,df2=20,lower.tail=FALSE)</code>.</li>
 </ul></li>
-<li>The number of groups = 3+1 = 4 (i.e., <span class="math inline">\(df_{among}\)</span>+1).</li>
-<li>The number of individuals = 23+1 = 24 (i.e., <span class="math inline">\(df_{total}\)</span>+1).</li>
-<li>The variability among individuals within groups is <span class="math inline">\(s_{p}^{s}\)</span> = <span class="math inline">\(MS_{within}\)</span> = 4.56.</li>
-<li>The variabilty among individuals ignoring groups is <span class="math inline">\(s^{2}\)</span> = <span class="math inline">\(MS_{total}\)</span> = <span class="math inline">\(\frac{108.45}{23}\)</span> = 4.72.</li>
+<li>The number of groups = 3+1 = 4 (i.e., $df<sub>among</sub>+1).</li>
+<li>The number of individuals = 23+1 = 24 (i.e., $df<sub>total</sub>+1).</li>
+<li>The variability among individuals within groups is s<sub>p</sub><span class="math inline">\(^{2}\)</span> = $MS<sub>within</sub> = 4.56.</li>
+<li>The variabilty among individuals ignoring groups is s&gt;sup&gt;2</sup> = MS<sub>total</sub> = <span class="math inline">\(\frac{108.45}{23}\)</span> = 4.72.</li>
 <li>No there is not a difference among the group means because the p-value is greater than 0.05.</li>
 </ol>
 <hr />

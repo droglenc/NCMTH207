@@ -12,7 +12,7 @@ css: "/css/modules.css"
 <strong>Note:</strong>
 <ul>
 <li>
-<span class="math inline">\(MS_{Total}\)</span> is not usually shown in an ANOVA table). I put it in the table here because that is one of the given values (see the notes below) and it makes it easier to see how the rest of the table is completed.
+MS<sub>Total</sub> is not usually shown in an ANOVA table). I put it in the table here because that is one of the given values (see the notes below) and it makes it easier to see how the rest of the table is completed.
 </li>
 </ul>
 </div>
@@ -60,12 +60,12 @@ css: "/css/modules.css"
 <ol>
 <li>See completed table above. Note the following
 <ul>
-<li><span class="math inline">\(MS_{total}\)</span> and <span class="math inline">\(MS_{within}\)</span> are given by definition (the variance of individuals ignoring groups is <span class="math inline">\(MS_{total}\)</span> whereas the pooled (or combined) variance of individuals considering groups is <span class="math inline">\(MS_{within}\)</span>).</li>
-<li>The <span class="math inline">\(df\)</span> are found by knowing the number of groups (<span class="math inline">\(I=6\)</span>) and total number of individuals (<span class="math inline">\(n=54\)</span>).</li>
-<li><span class="math inline">\(SS_{within}\)</span> and <span class="math inline">\(SS_{total}\)</span> are obtained with <span class="math inline">\(MS*df\)</span>.</li>
-<li><span class="math inline">\(SS_{among}\)</span> is from <span class="math inline">\(SS_{total}-SS_{within}\)</span>.</li>
-<li><span class="math inline">\(MS_{among}\)</span> is from <span class="math inline">\(SS_{among}\)</span> divided by <span class="math inline">\(df_{among}\)</span>.</li>
-<li><span class="math inline">\(F\)</span> is from <span class="math inline">\(MS_{among}\)</span> divided by <span class="math inline">\(df_{among}\)</span>.</li>
+<li>MS<sub>total</sub> and MS<sub>within</sub> are given by definition (the variance of individuals ignoring groups is MS<sub>total</sub> whereas the pooled (or combined) variance of individuals considering groups is MS<sub>within</sub>).</li>
+<li>The df are found by knowing the number of groups (I=6) and total number of individuals (n=54).</li>
+<li>SS<sub>within</sub> and SS<sub>total</sub> are obtained with MS*df.</li>
+<li>SS<sub>among</sub> is from SS<sub>total}-SS<sub>within</sub>.</li>
+<li>MS<sub>among</sub> is from SS<sub>among</sub> divided by df<sub>among</sub>.</li>
+<li>F is from MS<sub>among</sub> divided by df<sub>among</sub>.</li>
 <li>The p-value is computed with <code>distrib(5.25,distrib="f",df1=5,df2=48,lower.tail=FALSE)</code>.</li>
 </ul></li>
 <li>Yes, there is a difference among the group means because the p-value is less than 0.05.</li>

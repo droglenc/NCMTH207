@@ -25,7 +25,7 @@ library(NCStats)
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-<li>$MS_{Total}$ is not usually shown in an ANOVA table). I put it in the table here because that is one of the given values (see the notes below) and it makes it easier to see how the rest of the table is completed.</li>
+<li>MS<sub>Total</sub> is not usually shown in an ANOVA table). I put it in the table here because that is one of the given values (see the notes below) and it makes it easier to see how the rest of the table is completed.</li>
 </ul>
 </div>
 
@@ -40,12 +40,12 @@ Source     | df | SS | MS | F  | p-value
 **Total**  | 53 | 2508.49 | **47.33** | - | -
 
 1. See completed table above. Note the following
-    * $MS_{total}$ and $MS_{within}$ are given by definition (the variance of individuals ignoring groups is $MS_{total}$ whereas the pooled (or combined) variance of individuals considering groups is $MS_{within}$).
-    * The $df$ are found by knowing the number of groups ($I=6$) and total number of individuals ($n=54$).
-    * $SS_{within}$ and $SS_{total}$ are obtained with $MS*df$.
-    * $SS_{among}$ is from $SS_{total}-SS_{within}$.
-    * $MS_{among}$ is from $SS_{among}$ divided by $df_{among}$.
-    * $F$ is from $MS_{among}$ divided by $df_{among}$.
+    * MS<sub>total</sub> and MS<sub>within</sub> are given by definition (the variance of individuals ignoring groups is MS<sub>total</sub> whereas the pooled (or combined) variance of individuals considering groups is MS<sub>within</sub>).
+    * The df are found by knowing the number of groups (I=6) and total number of individuals (n=54).
+    * SS<sub>within</sub> and SS<sub>total</sub> are obtained with MS*df.
+    * SS<sub>among</sub> is from SS<sub>total}-SS<sub>within</sub>.
+    * MS<sub>among</sub> is from SS<sub>among</sub> divided by df<sub>among</sub>.
+    * F is from MS<sub>among</sub> divided by df<sub>among</sub>.
     * The p-value is computed with `distrib(5.25,distrib="f",df1=5,df2=48,lower.tail=FALSE)`.
 1. Yes, there is a difference among the group means because the p-value is less than 0.05.
 

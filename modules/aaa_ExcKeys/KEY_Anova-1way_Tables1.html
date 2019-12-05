@@ -12,7 +12,7 @@ css: "/css/modules.css"
 <strong>Note:</strong>
 <ul>
 <li>
-<span class="math inline">\(MS_{Total}\)</span> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).
+MS<sub>Total</sub> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).
 </li>
 </ul>
 </div>
@@ -43,7 +43,7 @@ css: "/css/modules.css"
 <td align="left"><strong>Within</strong></td>
 <td align="right">24</td>
 <td align="right">35088</td>
-<td align="right">1462</td>
+<td align="right"><strong>1462</strong></td>
 <td align="right">-</td>
 <td align="right">-</td>
 </tr>
@@ -60,15 +60,15 @@ css: "/css/modules.css"
 <ol>
 <li>See completed table above. Note the following
 <ul>
-<li><span class="math inline">\(df_{among}\)</span> and <span class="math inline">\(SS_{among}\)</span> came from subtracting the within values from the total values.</li>
-<li><span class="math inline">\(MS_{among}\)</span> came from <span class="math inline">\(SS_{among}\)</span> divided by <span class="math inline">\(df_{among}\)</span>.</li>
-<li><span class="math inline">\(F\)</span> is then <span class="math inline">\(MS_{among}\)</span> divided by <span class="math inline">\(MS_{within}\)</span>.</li>
-<li>Finally the p-value came from <code>distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE)</code>.</li>
+<li>df<sub>among</sub> and SS<sub>among</sub> came from subtracting within values from total values.</li>
+<li>MS<sub>among</sub> came from SS<sub>among</sub> divided by df<sub>among</sub>.</li>
+<li>F is then MS<sub>among</sub> divided by MS<sub>within</sub>.</li>
+<li>The p-value came from <code>distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE)</code>.</li>
 </ul></li>
-<li>The number of groups = 7+1 = 8 (i.e., <span class="math inline">\(df_{among}\)</span>+1).</li>
-<li>The number of individuals = 31+1 = 32 (i.e., <span class="math inline">\(df_{total}\)</span>+1).</li>
-<li>The variability among individuals within groups is <span class="math inline">\(s_{p}^{s}\)</span> = <span class="math inline">\(MS_{within}\)</span> = 1462.</li>
-<li>The variability among individuals ignoring groups is <span class="math inline">\(s^{2}\)</span> = <span class="math inline">\(MS_{total}\)</span> = <span class="math inline">\(\frac{70907}{31}\)</span> = 2287.3.</li>
+<li>The number of groups = 7+1 = 8 (i.e., df<sub>among</sub>+1).</li>
+<li>The number of individuals = 31+1 = 32 (i.e., df<sub>total</sub>+1).</li>
+<li>The variability among individuals within groups is s<sub>p</sub><span class="math inline">\(^{2}\)</span> = MS<sub>within</sub> = 1462.</li>
+<li>The variability among individuals ignoring groups is s<sup>2</sup> = MS<sub>total</sub> = <span class="math inline">\(\frac{70907}{31}\)</span> = 2287.3.</li>
 <li>Yes, there is a difference among the group means because the p-value is less than 0.05.</li>
 </ol>
 <hr />
