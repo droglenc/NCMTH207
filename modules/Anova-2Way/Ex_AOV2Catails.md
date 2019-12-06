@@ -31,18 +31,21 @@ Use these result to complete the ANOVA table below. This question can be hand-wr
 Source     | df | SS | MS | F  | p-value
 :----------|--------:|--------:|--------:|--------:|--------:
 **Among**  |    |    |    |    |
-&nbsp;&nbsp; **Habitat**  |    |    |    |    |
 &nbsp;&nbsp; **Year**  |    |    |    |    |
-&nbsp;&nbsp; **Habitat:Year**  |    |    |    |    |
+&nbsp;&nbsp; **Habitat**  |    |    |    |    |
+&nbsp;&nbsp; **Year:Habitat**  |    |    |    |    |
 **Within** |    |    |    | xxx | xxx
 **Total**  |    | 20227.3 | xxx | xxx | xxx
 
 
-**Hints:**
-
-1. No functions, beyond using `distrib()` to calculate p-values, will be useful for these calculations.
-1. I suggest constructing a 2x2 table (Year as rows, Habitat as columns) of treatment means and then appending group means and the grand mean. Note that a "pooled" mean is the mean of group means if the sample sizes in the groups being pooled are equal.
-1. I suggest computing appropriate df first, followed by SS.
-1. Examine the equations for the SS and determine which ones of these you can compute from the table of means. Compute these and get the others using simple addition and subtraction (from principles of how SS partition).
+<div class="alert alert-info">
+<strong>Hints:</strong>
+<ol>
+  <li>No functions, beyond using `distrib()` to calculate p-values, will be useful for these calculations.</li>
+  <li>I suggest constructing a 2x2 table (Year as rows, Habitat as columns) of treatment means and then appending group means and the grand mean. Note that a "pooled" mean is the mean of group means if the sample sizes in the groups being pooled are equal.</li>
+  <li>I suggest computing appropriate df first, followed by SS.</li>
+  <li>Examine the equations for the SS and determine which ones of these you can compute from the table of means. Compute these and get the others using simple addition and subtraction (from principles of how SS partition).</li>
+</ol>
+</div>
 
 ----
