@@ -80,7 +80,7 @@ title: Modules
           <ol>
             <li><a href="Anova-2Way/Ex_AOV2Plots.html">Interaction Plots</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-2way_Plots.html" target="_blank">Answer</a></button></li>
             <li><a href="Anova-2Way/Ex_AOV2Catails.html">ANOVA Table -- Cattails</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-2way_Cattails.html" target="_blank">Answer</a></button></li>
-            <li><a href="Anova-2Way/HW3.html">Analysis -- Predation</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/Anova-2way_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="Anova-2Way/Ex_AOV2Crayfish.html">Analysis -- Predation</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Anova-2way_Crayfish.html" target="_blank">Answer</a></button></li>
           </ol>
         </ul>
       </div>
