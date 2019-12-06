@@ -37,6 +37,8 @@ Source     | df | SS | MS | F  | p-value
 **Within** |    |    |    | xxx | xxx
 **Total**  |    | 20227.3 | xxx | xxx | xxx
 
+&nbsp;
+&nbsp;
 
 <div class="alert alert-info">
 <strong>Hints:</strong>
