@@ -1,6 +1,6 @@
 ---
 title: "Exercise Key"
-subtitle: "Linear Models Foundation"
+subtitle: "One-Way ANOVA"
 author: Derek H. Ogle
 layout: page
 css: "/css/modules.css"

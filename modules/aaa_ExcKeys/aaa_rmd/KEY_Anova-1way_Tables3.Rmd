@@ -1,6 +1,6 @@
 ---
 title: "Exercise Key"
-subtitle: "1-Way ANOVA"
+subtitle: "One-Way ANOVA"
 author: Derek H. Ogle
 layout: page
 css: "/css/modules.css"
