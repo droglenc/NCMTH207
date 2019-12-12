@@ -1,0 +1,162 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="feeding-under-risk-of-predation" class="section level2">
+<h2>Feeding Under Risk of Predation</h2>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+These data were analyzed with an inverse transformation, which means that “small” values on the transformed scale are actually “large” values on the original scale. Thus, small means on the transformed scale actually represent more active crayfish on the original scale.
+</li>
+<li>
+No multiple comparisons p-values are shown for feeding regime because there are only two levels and it is already known from the ANOVA table that those two levels differ.
+</li>
+</ul>
+</div>
+<ol>
+<li>The individuals (group of 50 crayfish) appear to be independent both within and among treatments. Independence within treatments is apparent as it was implied that different groups were used for each replicate and these groups were randomly selected. In other words there is no connection (like using the same group) among groups within treatments. Independence among treatments is indicated by the same reasoning. However, it is also evident that there is no connection (or pairing) of groups among treatments as the treatments have different numbers of replicates. On the original scale the variances are unequal (Levene’s p=0.0201), the residuals are not normal (Anderson-Darling p=0.0110) nor symmetric (Figure 1), and there is one possible outlier (individual 44; p=0.0002). The trial-and-error method suggested an inverse transformation for the number of active crayfish (response variable). This transformation provided equal variances (Levene’s p=0.3958) and residuals that are not normal (Anderson-Darling p=0.0110) but, even though they were right-skewed, they were not “long-tailed” (Figure 2). There are no significant outliers (p=0.3625; Figure 2)). Thus, the assumptions have been largely met on the inverse scale with no individuals removed.</li>
+<li>There is no significant interaction effect (p=0.8471; Table 1). There are significant main effects for both feeding regime (p&lt;0.00005; Table 1) and time of day (p&lt;0.00005; Table 1).</li>
+<li>The mean inverse number of active crayfish was between 0.19 and 0.36 lower for the fed than unfed crayfish (Table 2). Thus, significantly <strong>more</strong> crayfish were active in the FED then the UNFED treatments (Figure 3). The mean inverse number of active crayfish was between 0.04 and 0.22 lower at 1200 than at 1700 and between 0.01 and 0.22 lower at 1200 than at 1900 (Table 3; Table 4). The mean inverse number of active crayfish did not differ between 1700 and 1900 (Table 3). Thus, there are significantly MORE crayfish active at 1700 and 1900 than at 1200, but there is no difference between 1700 and 1900.</li>
+<li>Summary plots of these results are in Figure 3.</li>
+<li>These results show that there are more active crayfish in the unfed treatment and at 1700 and 1900 than at 1200. Thus, there are more active crayfish when competition is high and at dusk and early evening.</li>
+</ol>
+<p>Table 1: Analysis of variance table for inverse transformed crayfish activity level by feeding regime and temperature.</p>
+<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 86.6666666666667%; margin-left: 0%; margin-right: auto;  ">
+<col><col><col><col><col><tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Df</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Sum Sq</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Mean Sq</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">F value</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Pr(&gt;F)</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">1</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">0.901&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">0.901&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">159&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">6.87e-16</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt; padding: 4pt 4pt 4pt 4pt;">2</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt;">0.145&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt;">0.0725&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt;">12.8&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;">4.5e-05&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0.4pt; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">2</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">0.00188</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">0.000942</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">0.167</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt; background-color: rgb(242, 242, 242);">0.847&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0.4pt; padding: 4pt 4pt 4pt 4pt;">42</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">0.237&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">0.00565&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0.4pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<p> </p>
+<p>Table 2: Tukey’s multiple comparison confidence intervals for the feeding regime in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
+<pre><code>          Estimate         lwr         upr
+17 - 12 -0.1319444 -0.22313775 -0.04075114
+19 - 12 -0.1194444 -0.22474540 -0.01414349
+19 - 17  0.0125000 -0.07869331  0.10369331</code></pre>
+<p> </p>
+<p>Table 5:</p>
+<pre><code>              Estimate Std. Error    t value     p value
+17 - 12 = 0 -0.1319444 0.03759437 -3.5096862 0.003030819
+19 - 12 = 0 -0.1194444 0.04341024 -2.7515269 0.022986649
+19 - 17 = 0  0.0125000 0.03759437  0.3324966 0.940628000</code></pre>
+<p> </p>
+<p>Table 4: Tukey’s multiple comparison confidence intervals for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
+<pre><code>  Estimate        lwr        upr 
+-0.2753968 -0.3630022 -0.1877914 </code></pre>
+<p> </p>
+<p><img src="KEY_Anova-2way_Crayfish_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Figure 1: Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the crayfish and bass feeding study.</p>
+<p> </p>
+<p><img src="KEY_Anova-2way_Crayfish_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Figure 2: Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the inverse number of crayfish feeding in the crayfish and bass feeding study.</p>
+<p> </p>
+<p><img src="KEY_Anova-2way_Crayfish_files/figure-html/fitPlot-1.png" width="336" /><img src="KEY_Anova-2way_Crayfish_files/figure-html/fitPlot-2.png" width="336" /></p>
+<p>Figure 3: Main effects plots for the two-way ANOVA of the inverse of activity level by feeding regime and temperature. Treatment means with different letters are significantly different.</p>
+<p>R Appendix.</p>
+<pre class="r"><code>setwd(&quot;c:/biometry/&quot;)
+cray &lt;- read.csv(&quot;CrayfishPredation.csv&quot;)
+cray$time &lt;- factor(cray$time)
+lm1 &lt;- lm(active~feed*time,data=cray)
+transChooser(lm1)
+cray$t.active &lt;- cray$active^(-1)
+lm2 &lt;- lm(t.active~feed*time,data=cray)
+transChooser(lm2)
+anova(lm2)
+mc2 &lt;- glht(lm2,mcp(time=&quot;Tukey&quot;))
+summary(mc2)
+fitPlot(lm2,which=&quot;feed&quot;,ylab=&quot;Inverse of Active Crayfish&quot;,
+        xlab=&quot;Feeding Regime&quot;,ylim=c(0.05,0.42))
+addSigLetters(lm2,which=&quot;feed&quot;,lets=c(&quot;z&quot;,&quot;y&quot;),pos=c(2,4))
+fitPlot(lm2,which=&quot;time&quot;,ylab=&quot;Inverse of Active Crayfish&quot;,
+        xlab=&quot;Time of Day&quot;,ylim=c(0.05,0.42))
+addSigLetters(lm2,which=&quot;time&quot;,lets=c(&quot;a&quot;,&quot;b&quot;,&quot;a&quot;),pos=c(2,2,4))</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

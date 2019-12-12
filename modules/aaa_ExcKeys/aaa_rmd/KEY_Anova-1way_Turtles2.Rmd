@@ -54,7 +54,7 @@ figs(name="fitplot","Plot of mean (with 95\\% CI) days to hatch by sea turtles a
 
 ----
 
-## Temperature and Turtle Hatchlings I
+## Temperature and Turtle Hatchlings II
 
 1. The mean days to hatch is significantly different among the four temperature groups (`r kPvalue(aov1[1,"Pr(>F)"],latex=FALSE)`; `r tbls("aov",display="cite")`).
 1. It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (`r kPvalue(mc1p[3,"p value"],latex=FALSE)`), 20<sup>o</sup>C (`r kPvalue(mc1p[5,"p value"],latex=FALSE)`), and 25<sup>o</sup>C (`r kPvalue(mc1p[6,"p value"],latex=FALSE)`) groups (`r tbls("mcp",display="cite")`). The mean days to hatch for all other pairs of temperature groups are not significantly different (`r tbls("mcp",display="cite")`). These results are shown visually in `r figs("fitplot",display="cite")`.
