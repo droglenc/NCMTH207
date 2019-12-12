@@ -91,7 +91,7 @@ mc3c <- kGLHT(mc3,type="confidence")
 
 `r tbls("aov")`
 
-```{r echo=FALSE, background="white", results=, results="asis"}
+```{r echo=FALSE, background="white", comment=""}
 kANOVA(lm2)
 ```
 
