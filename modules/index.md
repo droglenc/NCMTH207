@@ -105,12 +105,13 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="SLRegression/HW1.html">Results Table -- Chirping Crickets</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW2.html">Results Interpretation I -- Human Births</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW3.html">Results Interpretation II -- Ashland Climate</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW4.html">Results Interpretation III -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_4_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW5.html">Assumptions -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_5_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="SLRegression/HW6.html">Analysis -- Black Bears</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_6_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRCrickets.html">Results Table -- Chirping Crickets</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRBirths.html">Results Interpretation -- Human Births</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRAshland.html">Results Interpretation -- Ashland Climate</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRWheatears.html">Results Interpretation -- Black Wheatears</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRGas1.html">Results Interpretation -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_4_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRGas2.html">Assumptions -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_5_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRBears.html">Analysis -- Black Bears</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/SLRegression_6_noPrint.pdf" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
