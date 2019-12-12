@@ -20,6 +20,8 @@ modHTML_CEKeys("KEY_Anova-2way_Crayfish")
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 library(dplyr)
 library(captioner)
+source("../../../rhelpers/knitr_setup.R")
+
 tbls <- captioner(prefix="Table")
 figs <- captioner(prefix="Figure")
 tbls(name="aov","Analysis of variance table for inverse transformed crayfish activity level by feeding regime and temperature.")
@@ -43,6 +45,7 @@ figs(name="fitplot","Main effects plots for the two-way ANOVA of the inverse of 
   <li>Make note of the careful language about the "mean inverse number of crayfish" being different as the data were tested on the transformed scale.</li>
   <li>All of the multiple comparisons confidence intervals are for <b>differences</b> in two means. However, don't say "the difference in means is between XXX and XXX." Rather be specific about which group is smaller (Or larger) and by how much. Make note of this in my language below.</li>
   <li>You will receive a warning of "covariate interactions found -- default contrast might be inappropriate" when running the multiple comparisons with these data because the model (in `lm2`) contains an interaction term and in the multiple comparisons method you are using main effects. The warning is a reminder that main effects should not be interpreted if you have an interaction effect in your model. However, the interaction is not significant in this example and, thus, does not overly influence the main effect tests. In this case, the warning can be ignored.</li>
+  <li>The multiple comparison procedures use a bit of randomness to compute p-values and confidence intervals. Thus, your values may differ somewhat from what is presented here.</li>
 </ul>
 </div>
 
