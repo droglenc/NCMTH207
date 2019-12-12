@@ -100,7 +100,7 @@ Results shown in `r tbls("aov",display="cite")`. R code to make calculations are
 p <- pf(F,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)
 tbl <- cbind(c(df,dftotal),c(ss,sstotal),c(ms,NA),c(F,NA,NA),c(p,NA,NA))
 colnames(tbl) <- c("df","SS","MS","F","p")
-rownames(tbl) <- c("Among","Habitat","Year","Interaction","Within","Total")
+rownames(tbl) <- c("Among","Year","Habitat","Year:Habitat","Within","Total")
 tbl <- as_hux(tbl,add_colnames=TRUE,add_rownames=TRUE) %>%
   set_number_format(row=-1,col=2,value=0) %>%
   set_number_format(row=-1,col=3:4,value=1) %>%
