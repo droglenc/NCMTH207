@@ -24,9 +24,9 @@ library(captioner)
 tbls <- captioner(prefix="Table")
 figs <- captioner(prefix="Figure")
 tbls(name="aov","Analysis of variance table for inverse transformed crayfish activity level by feeding regime and temperature.")
-tbls(name="mcpci1","Tukey's multiple comparison confidence intervals for the feeding regime in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.")
+tbls(name="mcpci1","Tukey's multiple comparison confidence intervals for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.")
 tbls(name="mcp2","Tukey's multiple comparison results for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.")
-tbls(name="mcpci2","Tukey's multiple comparison confidence intervals for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.")
+tbls(name="mcpci2","Tukey's multiple comparison confidence intervals for the feeding regime in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.")
 figs(name="residplot1","Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the crayfish and bass feeding study.")
 figs(name="residplot2","Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the inverse number of crayfish feeding in the crayfish and bass feeding study.")
 figs(name="fitplot","Main effects plots for the two-way ANOVA of the inverse of activity level by feeding regime and temperature. Treatment means with different letters are significantly different.")
@@ -75,8 +75,9 @@ mc3c <- kGLHT(mc3,type="confidence")
 
 ```
 
-1. The individuals (group of 50 crayfish) appear to be independent both within and among treatments. Independence within treatments is apparent as it was implied that different groups were used for each replicate and these groups were randomly selected. In other words there is no connection (like using the same group) among groups within treatments. Independence among treatments is indicated by the same reasoning. However, it is also evident that there is no connection (or pairing) of groups among treatments as the treatments have different numbers of replicates.
-    On the original scale the variances are unequal (Levene's `r kPvalue(lev1[1,"Pr(>F)"],digits=4,latex=FALSE)`), the residuals are not normal (Anderson-Darling `r kPvalue(ad2$p.value,digits=4,latex=FALSE)`) nor symmetric (`r figs("residplot1",display="cite")`), and there is one possible outlier (individual 44; `r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`). The trial-and-error method suggested an inverse transformation for the number of active crayfish (response variable). This transformation provided equal variances (Levene's `r kPvalue(lev2[1,"Pr(>F)"],digits=4,latex=FALSE)`) and residuals that are not normal (Anderson-Darling `r kPvalue(ad2$p.value,digits=4,latex=FALSE)`) but, even though they were right-skewed, they were not "long-tailed" (`r figs("residplot2",display="cite")`). There are no significant outliers (`r kPvalue(out2$bonf.p,digits=4,latex=FALSE)`; `r figs("residplot2",display="cite")`)). Thus, the assumptions have been largely met on the inverse scale with no individuals removed.
+1. The individuals (group of 50 crayfish) appear to be independent both within and among treatments. Independence within treatments is apparent as it was implied that different groups were used for each replicate and the groups (presumably the individuals within the gruops) were randomly selected. In other words there is no connection (like using the same individuals or individuals that were non-randomly connected) among groups within treatments. Independence among treatments is indicated by the same reasoning. However, it is also evident that there is no connection (or pairing) of groups among treatments as the treatments have different numbers of replicates.
+
+    On the original scale (`r figs("residplot1",display="cite")`) the variances are unequal (Levene's `r kPvalue(lev1[1,"Pr(>F)"],digits=4,latex=FALSE)`), the residuals are not normal (Anderson-Darling `r kPvalue(ad2$p.value,digits=4,latex=FALSE)`) nor symmetric, and there is one possible outlier (individual 44; `r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`). The trial-and-error method suggested an inverse transformation for the number of active crayfish (response variable). This transformation (`r figs("residplot2",display="cite")`) provided equal variances (Levene's `r kPvalue(lev2[1,"Pr(>F)"],digits=4,latex=FALSE)`), residuals that are not normal (Anderson-Darling `r kPvalue(ad2$p.value,digits=4,latex=FALSE)`) though not "long-tailed" (`r figs("residplot2",display="cite")`), and no significant outliers (`r kPvalue(out2$bonf.p,digits=4,latex=FALSE)`). Thus, the assumptions for a two-way ANOVA have been largely met on the inverse scale with no individuals removed.
 1. There is no significant interaction effect (`r kPvalue(aov2[3,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`). There are significant main effects for both feeding regime (`r kPvalue(aov2[1,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`) and time of day (`r kPvalue(aov2[2,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`).
 1. The mean inverse number of active crayfish was between `r formatC(-1*mc3c["upr"],format="f",digits=2)` and `r formatC(-1*mc3c["lwr"],format="f",digits=2)` lower for the fed than unfed crayfish (`r tbls("mcpci1",display="cite")`). Thus, significantly **more** crayfish were active in the FED then the UNFED treatments (`r figs("fitplot",display="cite")`).
   The mean inverse number of active crayfish was between `r formatC(-1*mc2c[1,"upr"],format="f",digits=2)` and `r formatC(-1*mc2c[1,"lwr"],format="f",digits=2)` lower at 1200 than at 1700 and between `r formatC(-1*mc2c[2,"upr"],format="f",digits=2)` and `r formatC(-1*mc2c[2,"lwr"],format="f",digits=2)` lower at 1200 than at 1900 (`r tbls("mcp2",display="cite")`; `r tbls("mcpci2",display="cite")`). The mean inverse number of active crayfish did not differ between 1700 and 1900 (`r tbls("mcp2",display="cite")`). Thus, there are significantly MORE crayfish active at 1700 and 1900 than at 1200, but there is no difference between 1700 and 1900.
@@ -94,7 +95,7 @@ kANOVA(lm2)
 `r tbls("mcpci1")`
 
 ```{r echo=FALSE, background="white", comment=""}
-mc2c
+mc3c
 ```
 
 &nbsp;
@@ -110,11 +111,10 @@ mc2p
 `r tbls("mcpci2")`
 
 ```{r echo=FALSE, background="white", comment=""}
-mc3c
+mc2c
 ```
 
 &nbsp;
-
 
 ```{r echo=FALSE, fig.width=7, fig.height=3.5, par1=TRUE}
 NCStats:::iAssumPlot_ANOVA(NCStats:::iTypeoflm(lm1),

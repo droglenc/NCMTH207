@@ -22,11 +22,12 @@ No multiple comparisons p-values are shown for feeding regime because there are 
 </ul>
 </div>
 <ol>
-<li>The individuals (group of 50 crayfish) appear to be independent both within and among treatments. Independence within treatments is apparent as it was implied that different groups were used for each replicate and these groups were randomly selected. In other words there is no connection (like using the same group) among groups within treatments. Independence among treatments is indicated by the same reasoning. However, it is also evident that there is no connection (or pairing) of groups among treatments as the treatments have different numbers of replicates. On the original scale the variances are unequal (Levene’s p=0.0201), the residuals are not normal (Anderson-Darling p=0.0110) nor symmetric (Figure 1), and there is one possible outlier (individual 44; p=0.0002). The trial-and-error method suggested an inverse transformation for the number of active crayfish (response variable). This transformation provided equal variances (Levene’s p=0.3958) and residuals that are not normal (Anderson-Darling p=0.0110) but, even though they were right-skewed, they were not “long-tailed” (Figure 2). There are no significant outliers (p=0.3625; Figure 2)). Thus, the assumptions have been largely met on the inverse scale with no individuals removed.</li>
-<li>There is no significant interaction effect (p=0.8471; Table 1). There are significant main effects for both feeding regime (p&lt;0.00005; Table 1) and time of day (p&lt;0.00005; Table 1).</li>
-<li>The mean inverse number of active crayfish was between 0.19 and 0.36 lower for the fed than unfed crayfish (Table 2). Thus, significantly <strong>more</strong> crayfish were active in the FED then the UNFED treatments (Figure 3). The mean inverse number of active crayfish was between 0.04 and 0.22 lower at 1200 than at 1700 and between 0.01 and 0.22 lower at 1200 than at 1900 (Table 3; Table 4). The mean inverse number of active crayfish did not differ between 1700 and 1900 (Table 3). Thus, there are significantly MORE crayfish active at 1700 and 1900 than at 1200, but there is no difference between 1700 and 1900.</li>
-<li>Summary plots of these results are in Figure 3.</li>
-<li>These results show that there are more active crayfish in the unfed treatment and at 1700 and 1900 than at 1200. Thus, there are more active crayfish when competition is high and at dusk and early evening.</li>
+<li><p>The individuals (group of 50 crayfish) appear to be independent both within and among treatments. Independence within treatments is apparent as it was implied that different groups were used for each replicate and the groups (presumably the individuals within the gruops) were randomly selected. In other words there is no connection (like using the same individuals or individuals that were non-randomly connected) among groups within treatments. Independence among treatments is indicated by the same reasoning. However, it is also evident that there is no connection (or pairing) of groups among treatments as the treatments have different numbers of replicates.</p>
+<p>On the original scale (Figure 1) the variances are unequal (Levene’s p=0.0201), the residuals are not normal (Anderson-Darling p=0.0110) nor symmetric, and there is one possible outlier (individual 44; p=0.0002). The trial-and-error method suggested an inverse transformation for the number of active crayfish (response variable). This transformation (Figure 2) provided equal variances (Levene’s p=0.3958), residuals that are not normal (Anderson-Darling p=0.0110) though not “long-tailed” (Figure 2), and no significant outliers (p=0.3625). Thus, the assumptions for a two-way ANOVA have been largely met on the inverse scale with no individuals removed.</p></li>
+<li><p>There is no significant interaction effect (p=0.8471; Table 1). There are significant main effects for both feeding regime (p&lt;0.00005; Table 1) and time of day (p&lt;0.00005; Table 1).</p></li>
+<li><p>The mean inverse number of active crayfish was between 0.19 and 0.36 lower for the fed than unfed crayfish (Table 2). Thus, significantly <strong>more</strong> crayfish were active in the FED then the UNFED treatments (Figure 3). The mean inverse number of active crayfish was between 0.04 and 0.22 lower at 1200 than at 1700 and between 0.01 and 0.22 lower at 1200 than at 1900 (Table 3; Table 4). The mean inverse number of active crayfish did not differ between 1700 and 1900 (Table 3). Thus, there are significantly MORE crayfish active at 1700 and 1900 than at 1200, but there is no difference between 1700 and 1900.</p></li>
+<li><p>Summary plots of these results are in Figure 3.</p></li>
+<li><p>These results show that there are more active crayfish in the unfed treatment and at 1700 and 1900 than at 1200. Thus, there are more active crayfish when competition is high and at dusk and early evening.</p></li>
 </ol>
 <p>Table 1: Analysis of variance table for inverse transformed crayfish activity level by feeding regime and temperature.</p>
 <table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 86.6666666666667%; margin-left: 0%; margin-right: auto;  ">
@@ -68,21 +69,21 @@ No multiple comparisons p-values are shown for feeding regime because there are 
 </table>
 
 <p> </p>
-<p>Table 2: Tukey’s multiple comparison confidence intervals for the feeding regime in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
-<pre><code>          Estimate         lwr         upr
-17 - 12 -0.1319444 -0.22317618 -0.04071271
-19 - 12 -0.1194444 -0.22478977 -0.01409912
-19 - 17  0.0125000 -0.07873173  0.10373173</code></pre>
+<p>Table 2: Tukey’s multiple comparison confidence intervals for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
+<pre><code>  Estimate        lwr        upr 
+-0.2753968 -0.3630022 -0.1877914 </code></pre>
 <p> </p>
 <p>Table 3: Tukey’s multiple comparison results for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
 <pre><code>              Estimate Std. Error    t value     p value
-17 - 12 = 0 -0.1319444 0.03759437 -3.5096862 0.002984242
-19 - 12 = 0 -0.1194444 0.04341024 -2.7515269 0.022936700
-19 - 17 = 0  0.0125000 0.03759437  0.3324966 0.940622258</code></pre>
+17 - 12 = 0 -0.1319444 0.03759437 -3.5096862 0.002967413
+19 - 12 = 0 -0.1194444 0.04341024 -2.7515269 0.022991894
+19 - 17 = 0  0.0125000 0.03759437  0.3324966 0.940625224</code></pre>
 <p> </p>
-<p>Table 4: Tukey’s multiple comparison confidence intervals for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
-<pre><code>  Estimate        lwr        upr 
--0.2753968 -0.3630022 -0.1877914 </code></pre>
+<p>Table 4: Tukey’s multiple comparison confidence intervals for the feeding regime in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
+<pre><code>          Estimate        lwr         upr
+17 - 12 -0.1319444 -0.2231304 -0.04075844
+19 - 12 -0.1194444 -0.2247370 -0.01415192
+19 - 17  0.0125000 -0.0786860  0.10368600</code></pre>
 <p> </p>
 <p><img src="KEY_Anova-2way_Crayfish_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Figure 1: Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the crayfish and bass feeding study.</p>
