@@ -19,7 +19,6 @@ modHTML_CEKeys("KEY_Anova-2way_Crayfish")
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 library(dplyr)
-library(huxtable)
 library(captioner)
 tbls <- captioner(prefix="Table")
 figs <- captioner(prefix="Figure")
@@ -84,8 +83,10 @@ mc3c <- kGLHT(mc3,type="confidence")
 1. There is no significant interaction effect (`r kPvalue(aov2[3,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`). There are significant main effects for both feeding regime (`r kPvalue(aov2[1,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`) and time of day (`r kPvalue(aov2[2,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`).
 1. The mean inverse number of active crayfish was between `r formatC(-1*mc3c["upr"],format="f",digits=2)` and `r formatC(-1*mc3c["lwr"],format="f",digits=2)` lower for the fed than unfed crayfish (`r tbls("mcpci1",display="cite")`). Thus, significantly **more** crayfish were active in the fed than the unfed treatments (`r figs("fitplot",display="cite")`).
 
-  The mean inverse number of active crayfish was between `r formatC(-1*mc2c[1,"upr"],format="f",digits=2)` and `r formatC(-1*mc2c[1,"lwr"],format="f",digits=2)` lower at 1200 than at 1700 and between `r formatC(-1*mc2c[2,"upr"],format="f",digits=2)` and `r formatC(-1*mc2c[2,"lwr"],format="f",digits=2)` lower at 1200 than at 1900 (`r tbls("mcp2",display="cite")`; `r tbls("mcpci2",display="cite")`). The mean inverse number of active crayfish did not differ between 1700 and 1900 (`r tbls("mcp2",display="cite")`). Thus, there are significantly **more** crayfish active at 1700 and 1900 than at 1200, but there is no difference between 1700 and 1900.
+    The mean inverse number of active crayfish was between `r formatC(-1*mc2c[1,"upr"],format="f",digits=2)` and `r formatC(-1*mc2c[1,"lwr"],format="f",digits=2)` lower at 1200 than at 1700 and between `r formatC(-1*mc2c[2,"upr"],format="f",digits=2)` and `r formatC(-1*mc2c[2,"lwr"],format="f",digits=2)` lower at 1200 than at 1900 (`r tbls("mcp2",display="cite")`; `r tbls("mcpci2",display="cite")`). The mean inverse number of active crayfish did not differ between 1700 and 1900 (`r tbls("mcp2",display="cite")`). Thus, there are significantly **more** crayfish active at 1700 and 1900 than at 1200, but there is no difference between 1700 and 1900.
+  
 1. Summary plots of these results are in `r figs("fitplot",display="cite")`.
+
 1. These results show that there are **more** active crayfish in the unfed treatment and at 1700 and 1900 than at 1200. Thus, there are **more** active crayfish when competition is high and at dusk and early evening.
 
 `r tbls("aov")`
