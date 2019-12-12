@@ -24,6 +24,21 @@ knit_hooks$set(
   }
 )
 
+knit_hooks$set(
+  par2 = function(before, options, envir) {
+    if (before && options$fig.show != "none") {
+      par(mfrow=c(1,2),
+          mar=c(3.05,3.05,0.65,0.65),
+          mgp=c(2.1,0.3,0),
+          tcl=-0.2,
+          las=1,
+          cex.lab=0.95,
+          cex.axis=0.9)
+      if (is.list(options$par))
+        do.call(par, options$par)
+    }
+  }
+)
 
 ################################################################################
 ## knitr options -- figure handling

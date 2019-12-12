@@ -143,7 +143,7 @@ NCStats:::iAssumPlot_ANOVA(NCStats:::iTypeoflm(lm1),
 &nbsp;
 
 
-```{r fitPlot, echo=FALSE, par1=TRUE}
+```{r fitPlot, echo=FALSE, fig.width=7, fig.height=3.5, par2=TRUE}
 fitPlot(lm2,which="feed",ylab="Inverse of Active Crayfish",
         xlab="Feeding Regime",ylim=c(0.05,0.42))
 addSigLetters(lm2,which="feed",lets=c("z","y"),pos=c(2,4))
