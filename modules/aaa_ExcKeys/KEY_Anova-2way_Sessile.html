@@ -14,22 +14,16 @@ css: "/css/modules.css"
 <strong>Note:</strong>
 <ul>
 <li>
-These data were analyzed with an inverse transformation, which means that “small” values on the transformed scale are actually “large” values on the original scale. Thus, small means on the transformed scale actually represent more active crayfish on the original scale.
+When an intereaction effect exists, then the levels of the two main effects should be combined to form treatment groups (this is the <code>comb</code> variable below) and a one-way ANOVA is fit using this to determine which treatment groups differ.
 </li>
 <li>
-No multiple comparisons p-values are shown for feeding regime because there are only two levels and it is already known from the ANOVA table that those two levels differ.
-</li>
-<li>
-Make note of the careful language about the “mean inverse number of crayfish” being different as the data were tested on the transformed scale.
-</li>
-<li>
-All of the multiple comparisons confidence intervals are for <b>differences</b> in two means. However, don’t say “the difference in means is between XXX and XXX.” Rather be specific about which group is smaller (Or larger) and by how much. Make note of this in my language below.
-</li>
-<li>
-You will receive a warning of “covariate interactions found – default contrast might be inappropriate” when running the multiple comparisons with these data because the model (in <code>lm2</code>) contains an interaction term and in the multiple comparisons method you are using main effects. The warning is a reminder that main effects should not be interpreted if you have an interaction effect in your model. However, the interaction is not significant in this example and, thus, does not overly influence the main effect tests. In this case, the warning can be ignored.
+Multiple comparisons confidence intervals are for <b>differences</b> in two means. However, don’t say “the difference in means is between XXX and XXX.” Rather be specific about which group is smaller (Or larger) and by how much. Make note of this in my language below.
 </li>
 <li>
 The multiple comparison procedures use a bit of randomness to compute p-values and confidence intervals. Thus, your values may differ somewhat from what is presented here.
+</li>
+<li>
+Interpreting interactions can be difficult. I generally like to describe the effect of the x-axis main effect on the response variable for one of the levels of the other main effect and then describe how this differs for the other level(s) of the other main effect. So, here, I am thinking of how copper level effects species richness for, say, the horizontal orientiation and then how copper effect species richness for the vertical orientation. With an interaction effect the effects of copper on species richness will differ by habitat orientation.
 </li>
 </ul>
 </div>
@@ -49,38 +43,38 @@ Orientation:Copper  2  535.8  267.92  47.874 1.096e-12
 Residuals          54  302.2    5.60                  </code></pre>
 <p>Table 2: Tukey’s multiple comparison results for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.</p>
 <pre><code>                                      Estimate Std. Error    t value      p value
-None:Vertical - None:Horizontal = 0       -2.3    1.05795  -2.174015 2.665907e-01
+None:Vertical - None:Horizontal = 0       -2.3    1.05795  -2.174015 2.666350e-01
 Low:Horizontal - None:Horizontal = 0     -12.2    1.05795 -11.531730 0.000000e+00
-Low:Vertical - None:Horizontal = 0        -9.0    1.05795  -8.507014 4.216094e-11
+Low:Vertical - None:Horizontal = 0        -9.0    1.05795  -8.507014 3.143330e-11
 High:Horizontal - None:Horizontal = 0    -13.4    1.05795 -12.665999 0.000000e+00
 High:Vertical - None:Horizontal = 0      -24.7    1.05795 -23.347028 0.000000e+00
-Low:Horizontal - None:Vertical = 0        -9.9    1.05795  -9.357716 6.249445e-13
-Low:Vertical - None:Vertical = 0          -6.7    1.05795  -6.333000 7.786989e-07
-High:Horizontal - None:Vertical = 0      -11.1    1.05795 -10.491984 6.106227e-15
+Low:Horizontal - None:Vertical = 0        -9.9    1.05795  -9.357716 2.902123e-12
+Low:Vertical - None:Vertical = 0          -6.7    1.05795  -6.333000 3.324409e-07
+High:Horizontal - None:Vertical = 0      -11.1    1.05795 -10.491984 1.487699e-14
 High:Vertical - None:Vertical = 0        -22.4    1.05795 -21.173013 0.000000e+00
-Low:Vertical - Low:Horizontal = 0          3.2    1.05795   3.024716 4.175401e-02
-High:Horizontal - Low:Horizontal = 0      -1.2    1.05795  -1.134269 8.648859e-01
-High:Vertical - Low:Horizontal = 0       -12.5    1.05795 -11.815298 2.220446e-16
-High:Horizontal - Low:Vertical = 0        -4.4    1.05795  -4.158985 1.498752e-03
+Low:Vertical - Low:Horizontal = 0          3.2    1.05795   3.024716 4.182418e-02
+High:Horizontal - Low:Horizontal = 0      -1.2    1.05795  -1.134269 8.648798e-01
+High:Vertical - Low:Horizontal = 0       -12.5    1.05795 -11.815298 2.664535e-15
+High:Horizontal - Low:Vertical = 0        -4.4    1.05795  -4.158985 1.565772e-03
 High:Vertical - Low:Vertical = 0         -15.7    1.05795 -14.840014 0.000000e+00
-High:Vertical - High:Horizontal = 0      -11.3    1.05795 -10.681029 2.664535e-15</code></pre>
+High:Vertical - High:Horizontal = 0      -11.3    1.05795 -10.681029 6.106227e-15</code></pre>
 <p>Table 3: Tukey’s multiple comparison confidence intervals for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.</p>
 <pre><code>                                  Estimate          lwr         upr
-None:Vertical - None:Horizontal       -2.3  -5.42630109   0.8263011
-Low:Horizontal - None:Horizontal     -12.2 -15.32630109  -9.0736989
-Low:Vertical - None:Horizontal        -9.0 -12.12630109  -5.8736989
-High:Horizontal - None:Horizontal    -13.4 -16.52630109 -10.2736989
-High:Vertical - None:Horizontal      -24.7 -27.82630109 -21.5736989
-Low:Horizontal - None:Vertical        -9.9 -13.02630109  -6.7736989
-Low:Vertical - None:Vertical          -6.7  -9.82630109  -3.5736989
-High:Horizontal - None:Vertical      -11.1 -14.22630109  -7.9736989
-High:Vertical - None:Vertical        -22.4 -25.52630109 -19.2736989
-Low:Vertical - Low:Horizontal          3.2   0.07369891   6.3263011
-High:Horizontal - Low:Horizontal      -1.2  -4.32630109   1.9263011
-High:Vertical - Low:Horizontal       -12.5 -15.62630109  -9.3736989
-High:Horizontal - Low:Vertical        -4.4  -7.52630109  -1.2736989
-High:Vertical - Low:Vertical         -15.7 -18.82630109 -12.5736989
-High:Vertical - High:Horizontal      -11.3 -14.42630109  -8.1736989</code></pre>
+None:Vertical - None:Horizontal       -2.3  -5.42551819   0.8255182
+Low:Horizontal - None:Horizontal     -12.2 -15.32551819  -9.0744818
+Low:Vertical - None:Horizontal        -9.0 -12.12551819  -5.8744818
+High:Horizontal - None:Horizontal    -13.4 -16.52551819 -10.2744818
+High:Vertical - None:Horizontal      -24.7 -27.82551819 -21.5744818
+Low:Horizontal - None:Vertical        -9.9 -13.02551819  -6.7744818
+Low:Vertical - None:Vertical          -6.7  -9.82551819  -3.5744818
+High:Horizontal - None:Vertical      -11.1 -14.22551819  -7.9744818
+High:Vertical - None:Vertical        -22.4 -25.52551819 -19.2744818
+Low:Vertical - Low:Horizontal          3.2   0.07448181   6.3255182
+High:Horizontal - Low:Horizontal      -1.2  -4.32551819   1.9255182
+High:Vertical - Low:Horizontal       -12.5 -15.62551819  -9.3744818
+High:Horizontal - Low:Vertical        -4.4  -7.52551819  -1.2744818
+High:Vertical - Low:Vertical         -15.7 -18.82551819 -12.5744818
+High:Vertical - High:Horizontal      -11.3 -14.42551819  -8.1744818</code></pre>
 <p> </p>
 <p><img src="KEY_Anova-2way_Sessile_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Figure 1: Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.</p>

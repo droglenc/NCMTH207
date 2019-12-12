@@ -38,12 +38,10 @@ figs(name="fitplot","Interaction plot (mean species richness by treatment group)
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>These data were analyzed with an inverse transformation, which means that "small" values on the transformed scale are actually "large" values on the original scale. Thus, small means on the transformed scale actually represent more active crayfish on the original scale.</li>
-  <li>No multiple comparisons p-values are shown for feeding regime because there are only two levels and it is already known from the ANOVA table that those two levels differ.</li>
-  <li>Make note of the careful language about the "mean inverse number of crayfish" being different as the data were tested on the transformed scale.</li>
-  <li>All of the multiple comparisons confidence intervals are for <b>differences</b> in two means. However, don't say "the difference in means is between XXX and XXX." Rather be specific about which group is smaller (Or larger) and by how much. Make note of this in my language below.</li>
-  <li>You will receive a warning of "covariate interactions found -- default contrast might be inappropriate" when running the multiple comparisons with these data because the model (in `lm2`) contains an interaction term and in the multiple comparisons method you are using main effects. The warning is a reminder that main effects should not be interpreted if you have an interaction effect in your model. However, the interaction is not significant in this example and, thus, does not overly influence the main effect tests. In this case, the warning can be ignored.</li>
+  <li>When an intereaction effect exists, then the levels of the two main effects should be combined to form treatment groups (this is the `comb` variable below) and a one-way ANOVA is fit using this to determine which treatment groups differ.</li>
+  <li>Multiple comparisons confidence intervals are for <b>differences</b> in two means. However, don't say "the difference in means is between XXX and XXX." Rather be specific about which group is smaller (Or larger) and by how much. Make note of this in my language below.</li>
   <li>The multiple comparison procedures use a bit of randomness to compute p-values and confidence intervals. Thus, your values may differ somewhat from what is presented here.</li>
+  <li>Interpreting interactions can be difficult. I generally like to describe the effect of the x-axis main effect on the response variable for one of the levels of the other main effect and then describe how this differs for the other level(s) of the other main effect. So, here, I am thinking of how copper level effects species richness for, say, the horizontal orientiation and then how copper effect species richness for the vertical orientation. With an interaction effect the effects of copper on species richness will differ by habitat orientation.</li>
 </ul>
 </div>
 
