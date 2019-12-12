@@ -14,23 +14,96 @@ output:
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Renders an appropriate HTML file and moves to CE directory
 source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_Anova-2way_Plots")
+modHTML_CEKeys("KEY_Anova-2way_Cattails")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(dplyr)
+library(huxtable)
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+tbls(name="means","Means table for cattail data.")
+tbls(name="aov","Completed analysis of variance table for cattail data.")
 ```
 
 ----
 
-## Visualizing Main and Interaction Effects
+## ANOVA Table
 
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-<li>Make sure that you comment about each type of effect (interaction, row factor,  and column factor) even if that effect is not evident.  In other words, explicitly state that there is no effect if there is no effect; don't just leave that effect absent from your answer.</li>
-<li>Pay close attention to my descriptions below. Come see me if they do not make sense to you.</li>
+  <li>The key is to construct a table of means similar to `r tbls("means",display="cite")`. Then SS<sub>habitat</sub>, SS<sub>year</sub> and SS<sub>among</sub> are computed by following the SS<sub>row</sub>, SS<sub>column</sub> and SS<sub>among</sub> formulas from the reading and class notes. The SS<sub>interaction</sub> is then found by subtracting both SS<sub>habitat</sub> and SS<sub>year</sub> from SS<sub>among</sub>. The SS<sub>within</sub> is found by substracting SS<sub>among</sub> from SS<sub>total</sub>. All degrees-of-freedom are found by formulae in the reading and class notes, noting that r=2, c=2 and n=25 (remember that n is the number of replicates per treatment in a two-way ANOVA, not the total number of individuals). The MS, F (but note that the denominator is always MS<sub>within</sub>), and p-values are found as usual.</li>
+  <li>I did this in R just for fun (you did not have to use R except for the p-values).</li>
 </ul>
 </div>
 
-1. There is NO interaction effect because all "lines" are "parallel" to each other.  There is a row factor main effect because all "lines" in the left plot are not horizontal (implying a difference in row level means).  There is a column factor main effect because all "lines" in the right plot are not horizontal (implying a difference in column level means).
-1. There is NO interaction effect because all "lines" are "parallel" to each other.  There is a row factor main effect because all "lines" in the left plot are not horizontal (implying a difference in row level means).  There is NO column factor main effect because all "lines" in the right plot are horizontal (implying that the column level means are all equal).
-1. There IS an interaction effect because the "lines" are not parallel (i.e., they intersect) in both plots.  I will not comment on the main effects because of the presence of the interaction effect.
+```{r mnsTable, echo=FALSE, message=FALSE, warning=FALSE}
+library(NCStats)
+tmns <- matrix(c(75.45,83.98,74.46,80.70),byrow=FALSE,nrow=2)
+colnames(tmns) <- c("far","near")
+rownames(tmns) <- c("2015","2016")
+mns <- addmargins(tmns,FUN=mean,quiet=TRUE)
+mns <- round(mns,2)
+```
+
+`r tbls("means")`
+
+```{r echo=FALSE}
+tbl <- as_hux(mns,add_colnames=TRUE,add_rownames=TRUE) %>%
+  set_number_format(row=-1,col=-1,value=2) %>%
+  set_bold(row=1,col=everywhere,value=TRUE) %>%
+  set_bold(row=everywhere,col=1,value=TRUE) %>%
+  set_align(row=everywhere,col=everywhere,value="center") %>%
+  set_width(value=0.5)
+tbl[1,1] <- ""
+tbl
+```
+
+```{r calcs, echo=FALSE}
+r <- c <- 2
+n <- 25
+ssyear <- r*n*sum((mns[1:2,3]-mns[3,3])^2)
+sshab <- r*n*sum((mns[3,1:2]-mns[3,3])^2)
+ssamong <- n*sum((mns[1:2,1:2]-mns[3,3])^2)
+ssint <- ssamong-sshab-ssyear
+sstotal <- 20227.3
+sswithin <- sstotal-ssamong
+dfamong <- r*c-1
+dfyear <- r-1
+dfhab <- c-1
+dfint <- dfamong-dfhab-dfyear
+dftotal <- r*c*n-1
+dfwithin <- dftotal-dfamong
+ss <- c(ssamong,ssyear,sshab,ssint,sswithin)
+df <- c(dfamong,dfyear,dfhab,dfint,dfwithin)
+ms <- ss/df
+F <- ms[-length(ms)]/ms[length(ms)]
+p <- pf(F,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)
+```
+
+&nbsp;
+
+Results shown in `r tbls("aov",display="cite")`. R code to make calculations are shown in an appendix (note, however, that you are not expected to make these calculations in R).
+
+`r tbls("aov")`
+
+&nbsp;
+
+Source     | df | SS | MS | F  | p-value
+:----------|--------:|--------:|--------:|--------:|--------:
+**Among**  | `r dfamong` | `r formatC(ssamong,format="f",digits=1)` | `r formatC(ms[1],format="f",digits=1)` | `r formatC(F[1],format="f",digits=2)` | `r kPvalue(p[1],include.p=FALSE,latex=FALSE)` 
+&nbsp;&nbsp; **Year**  | `r dfyear` | `r formatC(ssyear,format="f",digits=1)` | `r formatC(ms[2],format="f",digits=1)` | `r formatC(F[2],format="f",digits=2)` | `r kPvalue(p[2],include.p=FALSE,latex=FALSE)`
+&nbsp;&nbsp; **Habitat**  | `r dfhab` | `r formatC(sshab,format="f",digits=1)` | `r formatC(ms[3],format="f",digits=1)` | `r formatC(F[3],format="f",digits=2)` | `r kPvalue(p[3],include.p=FALSE,latex=FALSE)`
+&nbsp;&nbsp; **Year:Habitat**  | `r dfint` | `r formatC(ssint,format="f",digits=1)` | `r formatC(ms[4],format="f",digits=1)` | `r formatC(F[4],format="f",digits=2)` | `r kPvalue(p[4],include.p=FALSE,latex=FALSE)`
+**Within** | `r dfwithin` | `r formatC(sswithin,format="f",digits=1)` | `r formatC(ms[5],format="f",digits=1)` | xxx | xxx
+**Total**  | `r dftotal` | 20227.3 | xxx | xxx | xxx
+
+R Appendix.
+```{r eval=FALSE, prompt=FALSE}
+<<mnsTable>>
+<<calcs>>
+```
 
 ----
