@@ -1,0 +1,142 @@
+---
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_Anova-2way_Sessile")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(dplyr)
+library(captioner)
+source("../../../rhelpers/knitr_setup.R")
+
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+tbls(name="aov","Analysis of variance table for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.")
+tbls(name="mcp","Tukey's multiple comparison results for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.")
+tbls(name="mcc","Tukey's multiple comparison confidence intervals for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.")
+figs(name="residplot1","Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.")
+figs(name="fitplot","Interaction plot (mean species richness by treatment group) for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation. Treatment means with different letters are significantly different.")
+```
+
+----
+
+## Feeding Under Risk of Predation
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>These data were analyzed with an inverse transformation, which means that "small" values on the transformed scale are actually "large" values on the original scale. Thus, small means on the transformed scale actually represent more active crayfish on the original scale.</li>
+  <li>No multiple comparisons p-values are shown for feeding regime because there are only two levels and it is already known from the ANOVA table that those two levels differ.</li>
+  <li>Make note of the careful language about the "mean inverse number of crayfish" being different as the data were tested on the transformed scale.</li>
+  <li>All of the multiple comparisons confidence intervals are for <b>differences</b> in two means. However, don't say "the difference in means is between XXX and XXX." Rather be specific about which group is smaller (Or larger) and by how much. Make note of this in my language below.</li>
+  <li>You will receive a warning of "covariate interactions found -- default contrast might be inappropriate" when running the multiple comparisons with these data because the model (in `lm2`) contains an interaction term and in the multiple comparisons method you are using main effects. The warning is a reminder that main effects should not be interpreted if you have an interaction effect in your model. However, the interaction is not significant in this example and, thus, does not overly influence the main effect tests. In this case, the warning can be ignored.</li>
+  <li>The multiple comparison procedures use a bit of randomness to compute p-values and confidence intervals. Thus, your values may differ somewhat from what is presented here.</li>
+</ul>
+</div>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(NCStats)
+library(multcomp)
+
+# Calculations
+df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Sessile.csv")
+df$Copper <- factor(df$Copper,levels=c("None","Low","High"))
+lm1 <- lm(Richness~Orientation*Copper,data=df)
+lev1 <- levenesTest(lm1)
+ad1 <- adTest(lm1$residuals)
+out1 <- outlierTest(lm1)
+
+aov1 <- anova(lm1)
+
+df$comb <- df$Copper:df$Orientation
+lm2 <- lm(Richness~comb,data=df)
+
+mc <- glht(lm2,mcp(comb="Tukey"))
+mcp <- kGLHT(mc)
+mcc <- kGLHT(mc,type="confidence")
+```
+
+1. There is really not enough evidence to determine if the individuals (a location) are independent within and among treatments. Independence within treatments would be suspect if the same copper treatment was assigned to adjacent locations or the same habitat orientation locations are adjacent. Independence among treatments would be suspect if different copper treatments were assigned to adjacent locations or different habitat orientations were at adjacent locations. For example, if the researchers found one vertical orientation and then split it into three parts to receive one of the copper treatments, then independence would be lost. There is no evidence either way with the description we have been given so we will continue as if the individuals are independent.
+
+    On the original scale (`r figs("residplot1",display="cite")`) the variances are equal (Levene's `r kPvalue(lev1[1,"Pr(>F)"],digits=4,latex=FALSE)`), the residuals are not normal (Anderson-Darling `r kPvalue(ad1$p.value,digits=4,latex=FALSE)`) but mostly symmetric without long tails, and there are not significant outliers (`r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`). The trial-and-error method did not suggested a transformation for species richness that resulted in more normal residuals without sacrificing the other assumptions. Given the symmetry and lack of long tails in the distribution of residuals, it appears that the assumptions for a two-way ANOVA have been largely met on the original scale with no individuals removed.
+1. There is a significant interaction effect (`r kPvalue(aov1[3,"Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`). Main effects will not be addressed in the presence of the interaction effect.
+
+1. Summary plots of these results are in `r figs("fitplot",display="cite")`.
+
+1. Mean species richness is most different (and significantly) between the "No Copper and Horizontal Orientation" treatment and the "High Copper and Vertical Orientation Treatment" (`r tbls("mcp",display="cite")`). Specifically, mean species richness was between `r formatC(-1*mcc["High:Vertical - None:Horizontal","upr"],format="f",digits=1)` and `r formatC(-1*mcc["High:Vertical - None:Horizontal","lwr"],format="f",digits=1)` greater at the "No Copper and Horizontal Orientation" treatment than at the "High Copper and Vertical Orientation Treatment" (`r tbls("mcc",display="cite")`).
+
+1. These results show that species richness generally decreased from locations with no copper to locations with low levels of copper, regardless of whether the location was oriented vertically or hoizontally. Species richness further decreased when copper levels were increased from "low" to "high" in vertically-oriented locations **but not** in horizontally-oriented locations. Thus, copper appears to have negatively affected species richness of sessile organisms, but the effect differed depending on habitat orientation.
+
+`r tbls("aov")`
+
+```{r echo=FALSE, background="white", comment=""}
+kANOVA(lm1)
+```
+
+
+`r tbls("mcp")`
+
+```{r echo=FALSE, background="white", comment=""}
+mcp
+```
+
+
+`r tbls("mcc")`
+
+```{r echo=FALSE, background="white", comment=""}
+mcc
+```
+
+&nbsp;
+
+```{r echo=FALSE, fig.width=7, fig.height=3.5, par1=TRUE}
+NCStats:::iAssumPlot_ANOVA(NCStats:::iTypeoflm(lm1),
+                           lambda=1,shifty=0,show.stats=TRUE,boxplot=TRUE,
+                           alpha=0.05,col.hist="gray70")
+```
+
+`r figs("residplot1")`
+
+&nbsp;
+
+
+```{r fitPlot, echo=FALSE, par1=TRUE}
+fitPlot(lm1,change.order=TRUE,ylab="Species Richness",xlab="Copper Level")
+addSigLetters(lm1,change.order=TRUE,lets=c("a","a","b","c","b","d"),pos=c(2,2,2,4,4,4))
+```
+
+`r figs("fitplot")`
+
+R Appendix.
+```{r eval=FALSE, prompt=FALSE}
+library(NCStats)
+library(multcomp)
+df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Sessile.csv")
+df$Copper <- factor(df$Copper,levels=c("None","Low","High"))
+lm1 <- lm(Richness~Orientation*Copper,data=df)
+transChooser(lm1)
+aov1 <- anova(lm1)
+
+df$comb <- df$Copper:df$Orientation
+lm2 <- lm(Richness~comb,data=df)
+
+mc <- glht(lm2,mcp(comb="Tukey"))
+summary(mc)
+confint(mc)
+<<fitPlot>>
+```
+
+----

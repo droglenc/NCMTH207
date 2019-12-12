@@ -35,7 +35,7 @@ The multiple comparison procedures use a bit of randomness to compute p-values a
 </div>
 <ol>
 <li><p>The individuals (group of 50 crayfish) appear to be independent both within and among treatments. Independence within treatments is apparent as it was implied that different groups were used for each replicate and the groups (presumably the individuals within the gruops) were randomly selected. In other words there is no connection (like using the same individuals or individuals that were non-randomly connected) among groups within treatments. Independence among treatments is indicated by the same reasoning. However, it is also evident that there is no connection (or pairing) of groups among treatments as the treatments have different numbers of replicates.</p>
-<p>On the original scale (Figure 1) the variances are unequal (Levene’s p=0.0201), the residuals are not normal (Anderson-Darling p=0.0110) nor symmetric, and there is one possible outlier (individual 44; p=0.0002). The trial-and-error method suggested an inverse transformation for the number of active crayfish (response variable). This transformation (Figure 2) provided equal variances (Levene’s p=0.3958), residuals that are not normal (Anderson-Darling p=0.0110) though not “long-tailed” (Figure 2), and no significant outliers (p=0.3625). Thus, the assumptions for a two-way ANOVA have been largely met on the inverse scale with no individuals removed.</p></li>
+<p>On the original scale (Figure 1) the variances are unequal (Levene’s p=0.0201), the residuals are not normal (Anderson-Darling p&lt;0.00005) nor symmetric, and there is one possible outlier (individual 44; p=0.0002). The trial-and-error method suggested an inverse transformation for the number of active crayfish (response variable). This transformation (Figure 2) provided equal variances (Levene’s p=0.3958), residuals that are not normal (Anderson-Darling p=0.0110) though not “long-tailed” (Figure 2), and no significant outliers (p=0.3625). Thus, the assumptions for a two-way ANOVA have been largely met on the inverse scale with no individuals removed.</p></li>
 <li><p>There is no significant interaction effect (p=0.8471; Table 1). There are significant main effects for both feeding regime (p&lt;0.00005; Table 1) and time of day (p&lt;0.00005; Table 1).</p></li>
 <li><p>The mean inverse number of active crayfish was between 0.19 and 0.36 lower for the fed than unfed crayfish (Table 2). Thus, significantly <strong>more</strong> crayfish were active in the fed than the unfed treatments (Figure 3).</p>
 <p>The mean inverse number of active crayfish was between 0.04 and 0.22 lower at 1200 than at 1700 and between 0.01 and 0.22 lower at 1200 than at 1900 (Table 3; Table 4). The mean inverse number of active crayfish did not differ between 1700 and 1900 (Table 3). Thus, there are significantly <strong>more</strong> crayfish active at 1700 and 1900 than at 1200, but there is no difference between 1700 and 1900.</p></li>
@@ -53,14 +53,14 @@ Residuals 42 0.23744 0.00565                   </code></pre>
 -0.2753968 -0.3630022 -0.1877914 </code></pre>
 <p>Table 3: Tukey’s multiple comparison results for the time of day term in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
 <pre><code>              Estimate Std. Error    t value     p value
-17 - 12 = 0 -0.1319444 0.03759437 -3.5096862 0.002995443
-19 - 12 = 0 -0.1194444 0.04341024 -2.7515269 0.022998620
-19 - 17 = 0  0.0125000 0.03759437  0.3324966 0.940629116</code></pre>
+17 - 12 = 0 -0.1319444 0.03759437 -3.5096862 0.002991544
+19 - 12 = 0 -0.1194444 0.04341024 -2.7515269 0.022946556
+19 - 17 = 0  0.0125000 0.03759437  0.3324966 0.940623104</code></pre>
 <p>Table 4: Tukey’s multiple comparison confidence intervals for the feeding regime in the two-way ANOVA of inverse transformed crayfish activity level by feeding regime and temperature.</p>
-<pre><code>          Estimate         lwr         upr
-17 - 12 -0.1319444 -0.22315989 -0.04072900
-19 - 12 -0.1194444 -0.22477097 -0.01411792
-19 - 17  0.0125000 -0.07871544  0.10371544</code></pre>
+<pre><code>          Estimate        lwr         upr
+17 - 12 -0.1319444 -0.2231364 -0.04075245
+19 - 12 -0.1194444 -0.2247439 -0.01414499
+19 - 17  0.0125000 -0.0786920  0.10369200</code></pre>
 <p> </p>
 <p><img src="KEY_Anova-2way_Crayfish_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Figure 1: Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the crayfish and bass feeding study.</p>
@@ -71,7 +71,9 @@ Residuals 42 0.23744 0.00565                   </code></pre>
 <p><img src="KEY_Anova-2way_Crayfish_files/figure-html/fitPlot-1.png" width="672" /></p>
 <p>Figure 3: Main effects plots for the two-way ANOVA of the inverse of activity level by feeding regime and temperature. Treatment means with different letters are significantly different.</p>
 <p>R Appendix.</p>
-<pre class="r"><code>setwd(&quot;c:/biometry/&quot;)
+<pre class="r"><code>library(NCStats)
+library(multcomp)
+setwd(&quot;c:/biometry/&quot;)
 cray &lt;- read.csv(&quot;CrayfishPredation.csv&quot;)
 cray$time &lt;- factor(cray$time)
 lm1 &lt;- lm(active~feed*time,data=cray)

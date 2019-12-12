@@ -20,6 +20,7 @@ The following data files are used in the module readings or exercises.
 * Raspberry -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry_meta.txt)
 * RuffeLarvalDiet -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet_meta.txt)
 * SalmonSperm -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/SalmonSperm.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/SalmonSperm_meta.txt)
+* Sessile -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Sessile.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Sessile_meta.txt)
 * SexDirection -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/SexDirection.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/SexDirection_meta.txt)
 * SoilPhosphorous -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/SoilPhosphorous.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/SoilPhosphorous_meta.txt)
 * SolarOffer -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/SolarOffer.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/SolarOffer_meta.txt)
