@@ -80,25 +80,38 @@ ss <- c(ssamong,ssyear,sshab,ssint,sswithin)
 df <- c(dfamong,dfyear,dfhab,dfint,dfwithin)
 ms <- ss/df
 F <- ms[-length(ms)]/ms[length(ms)]
-p <- pf(F,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)
+distrib(F[1],df1=df[1],df2=df[5],distrib="f",lower.tail=FALSE)
+distrib(F[2],df1=df[2],df2=df[5],distrib="f",lower.tail=FALSE)
+distrib(F[3],df1=df[3],df2=df[5],distrib="f",lower.tail=FALSE)
+distrib(F[4],df1=df[4],df2=df[5],distrib="f",lower.tail=FALSE)
 ```
 
 &nbsp;
 
 Results shown in `r tbls("aov",display="cite")`. R code to make calculations are shown in an appendix (note, however, that you are not expected to make these calculations in R).
 
-`r tbls("aov")`
-
 &nbsp;
 
-Source     | df | SS | MS | F  | p-value
-:----------|--------:|--------:|--------:|--------:|--------:
-**Among**  | `r dfamong` | `r formatC(ssamong,format="f",digits=1)` | `r formatC(ms[1],format="f",digits=1)` | `r formatC(F[1],format="f",digits=2)` | `r kPvalue(p[1],include.p=FALSE,latex=FALSE)` 
-&nbsp;&nbsp; **Year**  | `r dfyear` | `r formatC(ssyear,format="f",digits=1)` | `r formatC(ms[2],format="f",digits=1)` | `r formatC(F[2],format="f",digits=2)` | `r kPvalue(p[2],include.p=FALSE,latex=FALSE)`
-&nbsp;&nbsp; **Habitat**  | `r dfhab` | `r formatC(sshab,format="f",digits=1)` | `r formatC(ms[3],format="f",digits=1)` | `r formatC(F[3],format="f",digits=2)` | `r kPvalue(p[3],include.p=FALSE,latex=FALSE)`
-&nbsp;&nbsp; **Year:Habitat**  | `r dfint` | `r formatC(ssint,format="f",digits=1)` | `r formatC(ms[4],format="f",digits=1)` | `r formatC(F[4],format="f",digits=2)` | `r kPvalue(p[4],include.p=FALSE,latex=FALSE)`
-**Within** | `r dfwithin` | `r formatC(sswithin,format="f",digits=1)` | `r formatC(ms[5],format="f",digits=1)` | xxx | xxx
-**Total**  | `r dftotal` | 20227.3 | xxx | xxx | xxx
+`r tbls("aov")`
+
+```{r echo=FALSE}
+p <- pf(F,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)
+tbl <- cbind(c(df,dftotal),c(ss,sstotal),c(ms,NA),c(F,NA,NA),c(p,NA,NA))
+colnames(tbl) <- c("df","SS","MS","F","p")
+rownames(tbl) <- c("Among","Habitat","Year","Interaction","Within","Total")
+tbl <- as_hux(tbl,add_colnames=TRUE,add_rownames=TRUE) %>%
+  set_number_format(row=-1,col=2,value=0) %>%
+  set_number_format(row=-1,col=3:4,value=1) %>%
+  set_number_format(row=-1,col=5,value=3) %>%
+  set_number_format(row=-1,col=6,value=4) %>%
+  set_bold(row=1,col=everywhere,value=TRUE) %>%
+  set_bold(row=everywhere,col=1,value=TRUE) %>%
+  set_italic(row=7,col=3,value=TRUE) %>%
+  set_align(row=everywhere,col=everywhere,value="right") %>%
+  set_width(value=0.7)
+tbl[1,1] <- ""
+tbl
+```
 
 R Appendix.
 ```{r eval=FALSE, prompt=FALSE}

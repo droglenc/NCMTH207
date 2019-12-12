@@ -49,72 +49,70 @@ I did this in R just for fun (you did not have to use R except for the p-values)
 </tr>
 </table>
 
+<p><img src="KEY_Anova-2way_Cattails_files/figure-html/calcs-1.png" width="336" /><img src="KEY_Anova-2way_Cattails_files/figure-html/calcs-2.png" width="336" /><img src="KEY_Anova-2way_Cattails_files/figure-html/calcs-3.png" width="336" /><img src="KEY_Anova-2way_Cattails_files/figure-html/calcs-4.png" width="336" /></p>
 <p> </p>
 <p>Results shown in Table 2. R code to make calculations are shown in an appendix (note, however, that you are not expected to make these calculations in R).</p>
-<p>Table 2: Completed analysis of variance table for cattail data.</p>
 <p> </p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Source</th>
-<th align="right">df</th>
-<th align="right">SS</th>
-<th align="right">MS</th>
-<th align="right">F</th>
-<th align="right">p-value</th>
+<p>Table 2: Completed analysis of variance table for cattail data.</p>
+<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 70%; margin-left: auto; margin-right: auto;  ">
+<col><col><col><col><col><col><tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">df</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">SS</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">MS</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">F</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">p</td>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><strong>Among</strong></td>
-<td align="right">3</td>
-<td align="right">1510.2</td>
-<td align="right">503.4</td>
-<td align="right">2.58</td>
-<td align="right">0.0579</td>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Among</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">3</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1510.2</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">503.4</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2.582</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.0579</td>
 </tr>
-<tr class="even">
-<td align="left">   <strong>Year</strong></td>
-<td align="right">1</td>
-<td align="right">1365.3</td>
-<td align="right">1365.3</td>
-<td align="right">7.00</td>
-<td align="right">0.0095</td>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Habitat</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1365.3</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1365.3</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">7.003</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.0095</td>
 </tr>
-<tr class="odd">
-<td align="left">   <strong>Habitat</strong></td>
-<td align="right">1</td>
-<td align="right">114.5</td>
-<td align="right">114.5</td>
-<td align="right">0.59</td>
-<td align="right">0.4454</td>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Year</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">114.5</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">114.5</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.587</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.4454</td>
 </tr>
-<tr class="even">
-<td align="left">   <strong>Year:Habitat</strong></td>
-<td align="right">1</td>
-<td align="right">30.4</td>
-<td align="right">30.4</td>
-<td align="right">0.16</td>
-<td align="right">0.6939</td>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Interaction</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">30.4</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">30.4</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.156</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.6939</td>
 </tr>
-<tr class="odd">
-<td align="left"><strong>Within</strong></td>
-<td align="right">96</td>
-<td align="right">18717.1</td>
-<td align="right">195.0</td>
-<td align="right">xxx</td>
-<td align="right">xxx</td>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Within</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">96</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">18717.1</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">195.0</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Total</strong></td>
-<td align="right">99</td>
-<td align="right">20227.3</td>
-<td align="right">xxx</td>
-<td align="right">xxx</td>
-<td align="right">xxx</td>
+<tr>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">Total</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">99</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt; font-style: italic;">20227.3</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
 </tr>
-</tbody>
 </table>
+
 <p>R Appendix.</p>
 <pre class="r"><code>library(NCStats)
 tmns &lt;- matrix(c(75.45,83.98,74.46,80.70),byrow=FALSE,nrow=2)
@@ -140,7 +138,10 @@ ss &lt;- c(ssamong,ssyear,sshab,ssint,sswithin)
 df &lt;- c(dfamong,dfyear,dfhab,dfint,dfwithin)
 ms &lt;- ss/df
 F &lt;- ms[-length(ms)]/ms[length(ms)]
-p &lt;- pf(F,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)</code></pre>
+distrib(F[1],df1=df[1],df2=df[5],distrib=&quot;f&quot;,lower.tail=FALSE)
+distrib(F[2],df1=df[2],df2=df[5],distrib=&quot;f&quot;,lower.tail=FALSE)
+distrib(F[3],df1=df[3],df2=df[5],distrib=&quot;f&quot;,lower.tail=FALSE)
+distrib(F[4],df1=df[4],df2=df[5],distrib=&quot;f&quot;,lower.tail=FALSE)</code></pre>
 <hr />
 </div>
 
