@@ -99,7 +99,7 @@ mc2c
 
 &nbsp;
 
-`r tbls("mcp1")`
+`r tbls("mcp2")`
 
 ```{r echo=FALSE, background="white", comment=""}
 mc2p
