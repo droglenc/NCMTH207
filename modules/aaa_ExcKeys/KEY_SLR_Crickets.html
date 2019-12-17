@@ -1,0 +1,117 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+When you write the equation of the line don’t use “y”, “x”, “response”, or “explanatory.” Instead make sure you use the name of the actual variables being examined.
+</li>
+<li>
+A statistically significant slope (i.e., statistically different from zero) indicates that there is a statistically significant relationship between the response and explanatory variables. Thus, whether a relationship exists between Y and X depends on if the slope is different from 0 or not.
+</li>
+</ul>
+</div>
+<hr />
+<div id="results-table-chirping-crickets" class="section level2">
+<h2>Results Table – Chirping Crickets</h2>
+<ol>
+<li>The completed table is shown further below. Note the following.
+<ul>
+<li>The SE for the intercept is equal to the intercept divided by the t-value for the intercept.</li>
+<li>The p-value below the coefficient results is exactly the same as the slope p-value.</li>
+<li>The slope is equal to <span class="math inline">\(r\frac{s_{temp}}{s_{chirps}}\)</span> where r is the square root of the r<sup>2</sup> value.</li>
+<li>The slope t-value is the slope value divided by the SE of the slope.</li>
+<li>The slope and intercept values can be used to find the two fitted values (under the <code>predict()</code> results).</li>
+<li>The lower value in the first predict can be found by finding the difference between the fitted value and the upper value and subtracting this from the fitted value. In other words, the fitted value must be exactly between the lower and upper confidence intervals. A similar thought process can be used to find the upper value of the prediction interval.</li>
+<li>The mean temperature can be found in two ways. First, note that the intercept is equal to the mean temperature minus the slope times the mean number of chirps. Solve this for mean temperature. Second, the mean temperature can be found by plugging the mean number of chirps into the equation of the line (because the predicted value of y when x is equal to mean x is mean y).</li>
+</ul></li>
+<li>The equation of the best-fit line is Temp = 26.742+3.2163Chirps.</li>
+<li>Yes, the p-value for testing that the slope is equal to zero is very small (p=0.0002) leading to a conclusion that the slope is different than zero implying a significant relationship between temperature and the number of chirps.</li>
+</ol>
+<pre>
+> summary(cricket)
+       chirps            temp
+ Min.   :14.0   Min.   :69.00
+ 1st Qu.:15.5   1st Qu.:75.50
+ Median :16.0   Median :81.00
+ Mean   :16.6   Mean   :_80.13_
+ Max.   :20.0   Max.   :93.00
+ StDev  : 1.7   StDev  : 6.72
+
+> lm1 <- lm(temp~chirps)
+> summary(lm1)
+Coefficients:
+            Estimate Std. Error   t value  Pr(>|t|)
+(Intercept)  26.7420   _10.1807_    2.627  0.020917
+chirps       _3.2163_     0.6102   _5.271_ 0.000151
+
+Residual standard error: 3.936 on 13 degrees of freedom
+Multiple R-Squared: 0.6812,     Adjusted R-squared: 0.6567
+F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
+
+> predict(lm1,data.frame(chirps=15),interval="confidence")
+          fit       lwr      upr
+[1,] _74.98717_ _71.94262_ 78.03173
+
+> predict(lm1,data.frame(chirps=15),interval="prediction")
+          fit      lwr      upr
+[1,] _74.98717_ 65.95557 _84.01879_
+</pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
