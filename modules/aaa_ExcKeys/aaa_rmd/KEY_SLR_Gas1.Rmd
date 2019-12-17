@@ -1,0 +1,112 @@
+---
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_SLR_Gas1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+car <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv")
+lm1 <- lm(mpg~hp,data=car)
+c1 <- coef(lm1)
+sum1 <- summary(lm1)
+ci1 <- confint(lm1)
+aov1 <- anova(lm1)
+
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+tbls(name="coef","Summary of the linear regression of mpg on horsepower.")
+tbls(name="ci","Confidence intervals for coefficients of the linear regression of mpg on horsepower.")
+tbls(name="aov","ANOVA table for simple linear regression results of mpg on horsepower.")
+figs(name="fitplot","Scatterplot of mpg on horsepower for cars with the best-fit line.")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>When discussing whether there is a relationship between the response and the explanatory variable you must explicitly note that you are referring to the slope p-value. You cannot just refer the reader to the "p-value" in the table from `summary()` because there are three p-values in that table. Be precise with your language!!</li>
+  <li>Remember to use CI when describing rates of change (i.e., slopes) or predictions; don't just use the best estimate.</li>
+</ul>
+</div>
+
+----
+
+## Car Horsepower and Gas Mileage I}
+1. The results of `summary()` are in `r tbls("coef",display="cite")`. Interpretations of the coefficients are below.
+    * The y-intercept (`r formatC(c1[1],format="f",digits=2)`) is the estimated mean mpg for cars with no horsepower.
+    * The slope (i.e., the "hp" "Estimate") says that for every increase in one horsepower the mpg will *decrease* by `r formatC(-1*c1[2],format="f",digits=2)`, on average.
+1. Interpretations of the p-values in `r tbls("coef",display="cite")` are below.
+    * The "Intercept" p-value (`r kPvalue(sum1$coefficients[1,"Pr(>|t|)"],digits=4,latex=FALSE)`) shows that the mean mpg for cars with no horsepower is different than zero (a nonsensical significance test).
+    * The slope (in "hp" row) p-value (`r kPvalue(sum1$coefficients[2,"Pr(>|t|)"],digits=4,latex=FALSE)`) shows that the slope is significantly different from zero, which indicates that there is a significant relationship between the horsepower and mpg of a car.
+1. The coefficient of determination ("multiple r-squared"; `r formatC(sum1$r.squared,format="f",digits=2)`) is the proportion of the total variability in mpg (ignoring horsepower) that is explained away by knowing a horsepower value.
+1. Confidence intervals for the model coefficients are in `r tbls("ci",display="cite")`. Interpretations for each confidence interval are below.
+    * The "intercept" CI says that the mean mpg for cars with no horsepower is between `r formatC(ci1[1,1],format="f",digits=1)` and `r formatC(ci1[1,2],format="f",digits=1)`.
+    * The slope (i.e., "hp" row) CI says that the mpg will *decrease* between `r formatC(-1*ci1[2,2],format="f",digits=2)` and `r formatC(-1*ci1[2,1],format="f",digits=2)` for a one unit increase in horespower.
+1. The ANOVA table is shown in `r tbls("aov",display="cite")`. How each degrees-of-freedom is calculated is below.
+    * The regression df (in the "hp" row) df is one less than the number of parameters estimated (2 -- intercept and slope).
+    * The residual df is the number of observations (`r nrow(car)`) minus the number of parameters estimated (2).
+    * The total df is not shown on the table but is equal to the number of observations minus 1.
+1. The meanings of each MS in `r tbls("aov",display="cite")` are below.
+    * The MS regression (in the "hp" row) is the variance in mpg that can be explained by knowing the value of horespower.
+    * The MS residual is the variance in mpg after considering horsepower or the variability of individuals around the best-fit line (i.e., the full model).
+    * The total MS is not shown in the table but is the variance in mpg or the variability of individuals around the grand mean (i.e., the simple model).
+1. The F test statistic is the ratio of variability in mpg explained by knowing the value of horespower to the variability unexplained even after knowing the value of the horsespower. The F (`r formatC(sum1$fstatistic[1],format="f",digits=1)`) and corresponding p-value (`r kPvalue(aov1[1,"Pr(>F)"],digits=4,latex=FALSE)`) show that the full model including the slope is significantly "better" than the simple model with no slope. Thus, a slope "is needed" and it can be concluded that there is a significant relationship between a car's horespower and its gas mileage.
+1. There is a significant relationship as indicated by the very small slope and F-test p-values (`r kPvalue(sum1$coefficients[2,"Pr(>|t|)"],digits=4,latex=FALSE)`).
+1. The relationship between a car's mpg and horsepower is shown in `r figs("fitplot",display="cite")`.
+
+&nbsp;
+
+`r tbls("coef")`
+
+```{r echo=FALSE, background="white"}
+kREG(lm1)
+```
+
+`r tbls("ci")`
+
+```{r echo=FALSE, background="white"}
+ci1
+```
+
+`r tbls("aov")`
+
+```{r echo=FALSE, background="white"}
+kANOVA(lm1)
+```
+
+```{r echo=FALSE, par1=TRUE}
+fitPlot(lm1,xlab="Horsepower",ylab="MPG")
+```
+
+`r figs("fitplot")`
+
+
+R Appendix.
+```{r eval=FALSE, prompt=FALSE}
+car <- read.csv("CarMPG.csv")
+lm1 <- lm(mpg~hp,data=car)
+summary(lm1)
+confint(lm1)
+anova(lm1)
+fitPlot(lm1,xlab="Horsepower",ylab="MPG")
+```
+
+----
