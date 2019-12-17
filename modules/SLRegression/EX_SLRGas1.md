@@ -25,5 +25,6 @@ Students in the Introduction to Environmental Studies course were interested in 
 1. Interpret the meaning of each mean-square in the ANOVA table, include the mean-square that is usually not presented in the ANOVA table.
 1. Interpret the F test statistic in the ANOVA table.
 1. Is there evidence, at the 5% level, for a relationship between mpg and the horsepower of a car? Explain.
+1. Provide a plot that illustrates your results.
 
 ----
