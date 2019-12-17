@@ -51,7 +51,7 @@ figs(name="fitplot","Scatterplot of the proportion of male births by year with t
 
 ## Male-Female Birth Ratio
 
-1. Yes there is evidence for a significant statistical change in the proportion of male births over the study period because the p-value for the slope (and the equivalent overall F p-value) is very small (`r kPvalue(sum1$coefficients["year","Pr(>|t|)"],digits=3,latex=FALSE)`; `r tbls("coef",display="cite")`).
+1. Yes there is evidence for a significant statistical change in the proportion of male births over the study period because the p-value for the slope (and the equivalent overall F p-value) is very small (`r kPvalue(sum1$coefficients["year","Pr(>|t|)"],digits=4,latex=FALSE)`; `r tbls("coef",display="cite")`).
 
 1. The proportion of males **declined** between `r formatC(-1*ci1["year",2],format="f",digits=6)` and `r formatC(-1*ci1["year",1],format="f",digits=6)` per year, on average (`r tbls("ci",display="cite")`).
 

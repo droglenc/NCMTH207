@@ -57,15 +57,15 @@ figs(name="fitplot","Scatterplot of average monthly preciptation and average hig
 
 ## Ashland Climate
 
-1. Yes, there is a signficant relationship between average precipitation and average high temperature for Ashland, WI (`r kPvalue(sum2$coefficients["ahi","Pr(>|t|)"],digits=3)`; `r tbls("coef",display="cite")`). Specifically, as the average high temperature increases by 1<sup>o</sup>C the mean average precipitation increases between `r formatC(ci2["ahi",1],format="f",digits=1)` and `r formatC(ci2["ahi",2],format="f",digits=1)` mm `r tbls("ci",display="cite")`.
+1. Yes, there is a signficant relationship between average precipitation and average high temperature for Ashland, WI (`r kPvalue(sum2$coefficients["ahi","Pr(>|t|)"],digits=4,latex=FALSE)`; `r tbls("coef",display="cite")`). Specifically, as the average high temperature increases by 1<sup>o</sup>C the mean average precipitation increases between `r formatC(ci2["ahi",1],format="f",digits=2)` and `r formatC(ci2["ahi",2],format="f",digits=2)` mm `r tbls("ci",display="cite")`.
 
 1. The y-intercept value suggests that the mean average monthly preciptation for all months with an average high temperature of 0<sup>o</sup>C is between `r formatC(ci2["(Intercept)",1],format="f",digits=1)` and `r formatC(ci2["(Intercept)",2],format="f",digits=1)` mm `r tbls("ci",display="cite")`.
 
 1. Mean average preciptation for all months with an average high of 10<sup>o</sup>C is between `r formatC(pred1[1,"lwr"],format="f",digits=1)` and `r formatC(pred1[1,"upr"],format="f",digits=1)` mm.
 
-  \item The mean average preciptation for a month with an average high of 10<sup>o</sup>C is between `r formatC(pred2[1,"lwr"],format="f",digits=1)` and `r formatC(pred2[1,"upr"],format="f",digits=1)` mm.
+1. The average preciptation for a month with an average high of 10<sup>o</sup>C is between `r formatC(pred2[1,"lwr"],format="f",digits=1)` and `r formatC(pred2[1,"upr"],format="f",digits=1)` mm.
 
-  \item The prediction interval for the individual (question 4) is wider than the confidence interval for the mean (question 3) because there is more variability in predicting an individual as compared to a mean. Variability for predicting an individual includes both sampling and natural variability, whereas variability for the mean includes only sampling variability.
+1. The prediction interval for the individual (question 4) is wider than the confidence interval for the mean (question 3) because there is more variability in predicting an individual as compared to a mean. Variability for predicting an individual includes both sampling and natural variability, whereas variability for the mean includes only sampling variability.
 
 1. The relationship between average precipitation and average high temperature is illustrated in `r figs("fitplot",display="cite")`.
 

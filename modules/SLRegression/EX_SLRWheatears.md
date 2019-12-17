@@ -29,9 +29,9 @@ T-Cell Response: 0.370 0.381 0.430 0.430 0.213 0.508 0.411
 </pre>
 
 1. Is there a significant relationship between the mass of carried stones and the mean T-cell response of the birds?  If so, specifically describe that relationship (with appropriate interval)?
-1. Predict (with appropriate interval) the mean T-Cell response for birds that carried a mean stone mass of 5 g.
 1. Predict (with appropriate interval) the T-Cell response for a bird that carried a mean stone mass of 5 g.
-1. Provide a plot that illustrates your results.
+1. Predict (with appropriate interval) the mean T-Cell response for birds that carried a mean stone mass of 5 g.
 1. Explain why your answer to (2) is different from your answer to (3) -- be specific.
+1. Provide a plot that illustrates your results.
 
 ----
