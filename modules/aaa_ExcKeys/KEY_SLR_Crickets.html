@@ -23,7 +23,7 @@ A statistically significant slope (i.e., statistically different from zero) indi
 <div id="results-table-chirping-crickets" class="section level2">
 <h2>Results Table – Chirping Crickets</h2>
 <ol>
-<li>The completed table is shown further below. Note the following.
+<li><p>The completed table is shown further below. Note the following.</p>
 <ul>
 <li>The SE for the intercept is equal to the intercept divided by the t-value for the intercept.</li>
 <li>The p-value below the coefficient results is exactly the same as the slope p-value.</li>
@@ -33,9 +33,10 @@ A statistically significant slope (i.e., statistically different from zero) indi
 <li>The lower value in the first predict can be found by finding the difference between the fitted value and the upper value and subtracting this from the fitted value. In other words, the fitted value must be exactly between the lower and upper confidence intervals. A similar thought process can be used to find the upper value of the prediction interval.</li>
 <li>The mean temperature can be found in two ways. First, note that the intercept is equal to the mean temperature minus the slope times the mean number of chirps. Solve this for mean temperature. Second, the mean temperature can be found by plugging the mean number of chirps into the equation of the line (because the predicted value of y when x is equal to mean x is mean y).</li>
 </ul></li>
-<li>The equation of the best-fit line is Temp = 26.742+3.2163Chirps.</li>
-<li>Yes, the p-value for testing that the slope is equal to zero is very small (p=0.0002) leading to a conclusion that the slope is different than zero implying a significant relationship between temperature and the number of chirps.</li>
+<li><p>The equation of the best-fit line is Temp = 26.742+3.2163Chirps.</p></li>
+<li><p>Yes, the p-value for testing that the slope is equal to zero is very small (p=0.0002) leading to a conclusion that the slope is different than zero implying a significant relationship between temperature and the number of chirps.</p></li>
 </ol>
+<p> </p>
 <pre>
 > summary(cricket)
        chirps            temp
@@ -55,7 +56,7 @@ chirps       _3.2163_     0.6102   _5.271_ 0.000151
 
 Residual standard error: 3.936 on 13 degrees of freedom
 Multiple R-Squared: 0.6812,     Adjusted R-squared: 0.6567
-F-statistic: 27.78 on 1 and 13 DF,  p-value: _________
+F-statistic: 27.78 on 1 and 13 DF,  p-value: _0.000151_
 
 > predict(lm1,data.frame(chirps=15),interval="confidence")
           fit       lwr      upr
