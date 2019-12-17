@@ -48,26 +48,18 @@ The predictions should use prediction intervals as the original authors were int
 <pre><code>          Df Sum Sq Mean Sq F value   Pr(&gt;F)
 weight     1 13.706 13.7061  8.9647 0.007785
 Residuals 18 27.520  1.5289                 </code></pre>
-<p>Table 2:</p>
-<pre><code> obs       fit      lwr       upr
-   1  47.32204 32.15363  69.64611
-   2  85.46903 58.16861 125.58242
-   3 139.41227 94.74279 205.14257</code></pre>
 <p>R Appendix.</p>
-<pre class="r"><code>bb &lt;- read.csv(&quot;BlackBears.csv&quot;)
-bb &lt;- filterD(bb,age&gt;1)
-lm1 &lt;- lm(weight~length,data=bb)
+<pre class="r"><code>rdf &lt;- read.csv(&quot;Rattlesnakes.csv&quot;)
+lm1 &lt;- lm(freq~weight,data=rdf)
 transChooser(lm1)
-bb$logw &lt;- log(bb$weight)
-bb$logl &lt;- log(bb$length)
-lm2 &lt;- lm(logw~logl,data=bb)
-transChooser(lm2)
+rdf$logw &lt;- log(rdf$weight)
+rdf$logf &lt;- log(rdf$freq)
+lm2 &lt;- lm(logf~logw,data=rdf)
 anova(lm2)
-cbind(Ests=coef(lm2),confint(lm2))
-lens &lt;- c(130,160,190)
-nd &lt;- data.frame(logl=log(lens))
-p.logw &lt;- predictionPlot(lm2,nd,interval=&quot;prediction&quot;)
-p.weight &lt;- exp(p.logw[,3:5])*exp(anova(lm2)[2,3]/2)</code></pre>
+summary(lm2)
+confint(lm2)
+p.logf &lt;- predict(lm2,data.frame(logw=log(454)),interval=&quot;confidence&quot;)
+exp(p.logf)*exp(anova(lm2)[2,3]/2)</code></pre>
 <hr />
 </div>
 

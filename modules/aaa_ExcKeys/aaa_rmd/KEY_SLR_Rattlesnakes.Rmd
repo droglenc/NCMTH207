@@ -102,28 +102,19 @@ fitPlot(lm2,xlab="Log(Length (cm))",ylab="Log(Weight (kg))")
 kANOVA(lm1)
 ```
 
-`r tbls("preds")`
-
-```{r echo=FALSE,background="white"}
-print(p.weight,row.names=FALSE)
-```
-
 R Appendix.
 ```{r eval=FALSE, prompt=FALSE}
-bb <- read.csv("BlackBears.csv")
-bb <- filterD(bb,age>1)
-lm1 <- lm(weight~length,data=bb)
+rdf <- read.csv("Rattlesnakes.csv")
+lm1 <- lm(freq~weight,data=rdf)
 transChooser(lm1)
-bb$logw <- log(bb$weight)
-bb$logl <- log(bb$length)
-lm2 <- lm(logw~logl,data=bb)
-transChooser(lm2)
+rdf$logw <- log(rdf$weight)
+rdf$logf <- log(rdf$freq)
+lm2 <- lm(logf~logw,data=rdf)
 anova(lm2)
-cbind(Ests=coef(lm2),confint(lm2))
-lens <- c(130,160,190)
-nd <- data.frame(logl=log(lens))
-p.logw <- predictionPlot(lm2,nd,interval="prediction")
-p.weight <- exp(p.logw[,3:5])*exp(anova(lm2)[2,3]/2)
+summary(lm2)
+confint(lm2)
+p.logf <- predict(lm2,data.frame(logw=log(454)),interval="confidence")
+exp(p.logf)*exp(anova(lm2)[2,3]/2)
 ```
 
 ----
