@@ -1,0 +1,120 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+There are no “groups” in simple linear regression; thus, you do not assess “within-” and “among-group” independence here.
+</li>
+<li>
+You should begin to use the ANOVA table p-value rather than the summary table slope p-value to assess the relationship as this will generalize to the next module.
+</li>
+<li>
+When describing the relationship, use the confidence interval for the slope. Don’t just use the slope.
+</li>
+<li>
+When back-transforming the slope to describe the relationship on the original scale, note that “a change in log(x) of 1” should be back-transformed to “a change in x of e<sup>1</sup>” which is where the 2.72 in answer 4 below came from. Also, note that the back-transformed slope indicates a “multiplicative” change such that the value is Y is multiplied by the back-transformed slope rather than added to.
+<li>
+The predictions should use prediction intervals as the original authors were interested in predicting the weight of an individual bear.
+</li>
+</ul>
+</div>
+<hr />
+<div id="car-horsepower-and-gas-mileage-ii" class="section level2">
+<h2>Car Horsepower and Gas Mileage II</h2>
+<ol>
+<li><p>It is difficult to ultimately assess independence with the amount of information given. However, under the assumption that all Black Bears were unique (no bear was measured twice) then it seems that the data are at least roughly independent. There is evidence for a strong non-linearity and heteroscedasticity (Figure 1-Right). The residuals do not appear to be normal (Anderson Darling p&lt;0.00005) and are right-skewed (Figure 1-Left). No significant outliers are evident (outlier test p=0.3564). A transformation will be explored to see if the assumptions can be met.</p></li>
+<li><p>Weight-length relationships tend to follow a power function which suggests that both the weight and lengths should be transformed to the natural log scale. With this transformation there is no visual evidence for non-linearity (Figure 1-Right), the residuals appeared homoscedastic (Figure 1-Right) and normal (Anderson-Darling p=0.3160; Figure 1-Left), and there is no evidence for significant outliers (outlier test p=0.2164). Thus, the assumptions appear to be adequately met on the log-log scale.</p></li>
+<li><p>There is a signficant relationship between the log weight and log length of Florida Black Bears (p&lt;0.00005; Table 1; Figure 3).</p></li>
+<li><p>Specifically, as the log length of the Black Bears increases by one unit, the average log weight increases between 2.664 and 3.030 units. On the original scale, as the length of the Black Bear increases by a multiple of 2.72 cm, the average weight changes (increases) by a multiple of between 14.4 and 20.7.</p></li>
+<li><p>The predicted weight, corrected for back-transformation bias, for three different lengths is shown in Table 2. For example, the predicted weight for a 130 cm long Florida Black Bear is between 32.2 and 69.6 kg.</p></li>
+</ol>
+<p> </p>
+<p><img src="KEY_SLR_Bears_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Figure 1: Histogram of residuals (left) and residual plot (right) for regression of weight on length of Florida Black Bears.</p>
+<p><img src="KEY_SLR_Bears_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Figure 2: Histogram of residuals (left) and residual plot (right) for regression of log-transformed weight on log-transformed length of Florida Black Bears.</p>
+<p><img src="KEY_SLR_Bears_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
+<p>Figure 3: ANOVA table for the linear regression of log-transformed weight on log-transformed length of Florida Black Bears.</p>
+<p>Table 1: ANOVA table for the linear regression of log-transformed weight on log-transformed length of Florida Black Bears.</p>
+<pre><code>           Df Sum Sq Mean Sq F value    Pr(&gt;F)
+length      1 291397  291397  775.63 &lt; 2.2e-16
+Residuals 272 102188     376                  </code></pre>
+<p>Table 2: Weights (back-transformed) for Florida Black Bears of various lengths (130, 160, and 190 cm) as predicted from the linear regression of log-transformed weight on log-transformed length.</p>
+<pre><code> obs       fit      lwr       upr
+   1  47.32204 32.15363  69.64611
+   2  85.46903 58.16861 125.58242
+   3 139.41227 94.74279 205.14257</code></pre>
+<p>R Appendix.</p>
+<pre class="r"><code>bb &lt;- read.csv(&quot;BlackBears.csv&quot;)
+bb &lt;- filterD(bb,age&gt;1)
+lm1 &lt;- lm(weight~length,data=bb)
+transChooser(lm1)
+bb$logw &lt;- log(bb$weight)
+bb$logl &lt;- log(bb$length)
+lm2 &lt;- lm(logw~logl,data=bb)
+transChooser(lm2)
+anova(lm2)
+cbind(Ests=coef(lm2),confint(lm2))
+lens &lt;- c(130,160,190)
+nd &lt;- data.frame(logl=log(lens))
+p.logw &lt;- predictionPlot(lm2,nd,interval=&quot;prediction&quot;)
+p.weight &lt;- exp(p.logw[,3:5])*exp(anova(lm2)[2,3]/2)</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
