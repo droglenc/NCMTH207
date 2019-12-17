@@ -18,6 +18,7 @@ The following data files are used in the module readings or exercises.
 * Cuckoos -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos_meta.txt)
 * FishEnergyDensity -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/FishEnergyDensity.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/FishEnergyDensity_meta.txt)
 * Raspberry -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry_meta.txt)
+* Rattlesnakes -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes_meta.txt)
 * RuffeLarvalDiet -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet_meta.txt)
 * SalmonSperm -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/SalmonSperm.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/SalmonSperm_meta.txt)
 * Sessile -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Sessile.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Sessile_meta.txt)

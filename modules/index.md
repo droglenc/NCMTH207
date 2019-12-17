@@ -112,6 +112,7 @@ title: Modules
             <li><a href="SLRegression/EX_SLRGas1.html">Results Interpretation -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_SLR_Gas1.html" target="_blank">Answer</a></button></li>
             <li><a href="SLRegression/EX_SLRGas2.html">Assumptions -- Gas Mileage</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_SLR_Gas2.html" target="_blank">Answer</a></button></li>
             <li><a href="SLRegression/EX_SLRBears.html">Analysis -- Black Bears</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_SLR_Bears.html" target="_blank">Answer</a></button></li>
+            <li><a href="SLRegression/EX_SLRRattlesnakes.html">Analysis -- Rattlesnakes</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_SLR_Rattlesnakes.html" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
