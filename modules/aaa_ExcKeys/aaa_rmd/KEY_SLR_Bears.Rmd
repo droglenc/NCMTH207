@@ -64,7 +64,7 @@ figs(name="fitplot","ANOVA table for the linear regression of log-transformed we
 
 ----
 
-## Car Horsepower and Gas Mileage II
+## Black Bear Weight
 1. It is difficult to ultimately assess independence with the amount of information given. However, under the assumption that all Black Bears were unique (no bear was measured twice) then it seems that the data are at least roughly independent. There is evidence for a strong non-linearity and heteroscedasticity (`r figs("residPlot1",display="cite")`-Right). The residuals do not appear to be normal (Anderson Darling `r kPvalue(ad1$p,digits=4,latex=FALSE)`) and are right-skewed (`r figs("residPlot1",display="cite")`-Left). No significant outliers are evident (outlier test `r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`). A transformation will be explored to see if the assumptions can be met.
 
 1. Weight-length relationships tend to follow a power function which suggests that both the weight and lengths should be transformed to the natural log scale. With this transformation there is no visual evidence for non-linearity (`r figs("residPlot1",display="cite")`-Right), the residuals appeared homoscedastic (`r figs("residPlot1",display="cite")`-Right) and normal (Anderson-Darling `r kPvalue(ad2$p,digits=4,latex=FALSE)`; `r figs("residPlot1",display="cite")`-Left), and there is no evidence for significant outliers (outlier test `r kPvalue(out2$bonf.p,digits=4,latex=FALSE)`). Thus, the assumptions appear to be adequately met on the log-log scale.

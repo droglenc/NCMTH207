@@ -60,10 +60,10 @@ At the end of this class you will be able to ...
 <img class="img-right" src="../img/help.jpg">
 Sources for out-of-class assistance and opportunities for in-class accommodations are described further below. Please use these throughout the semester as appropriate.[^help]
 
+* *Questions don’t expose the lack of knowledge of the asker, but rather expose opportunities for clarification for the original communicator* - [Julia Steward Lowndes](https://blogs.scientificamerican.com/observations/open-software-means-kinder-science/)
 * *Never apologize for asking for what you need, if you don't ask - the answer will always be no.* - Rachel Wolchin
 * *Asking for other's guidance helps you see what you may not be able to see. It's always important to check your ego and ask for help.* - Ken Blanchard
 * *The only mistake you can make is not asking for help.* - Sandeep Jauhar
-* *You don't have to do it all by yourself.* - Elizabeth Dehn 
 
 ### Instructor -- Derek Ogle
 <img class="img-right" src="../img/DerekOgle1.jpg">
