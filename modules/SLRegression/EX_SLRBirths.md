@@ -30,6 +30,7 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 
 1. Is there evidence for a significant statistical change in the proportion of male births in the U.S. over the study period?
 1. At what average annual rate (i.e., how much per year) did the proportion of male births change? [*Be specific about the direction of change.*]
+1. Provide a plot that illustrates your results.
 1. Explain why the p-value for the slope is so small even though the value of the estimated slope is such a small number [i.e., how is it possible that such a small value for the slope can be considered to be different from zero?].
 
 ----

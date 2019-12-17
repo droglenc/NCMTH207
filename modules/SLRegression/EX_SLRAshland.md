@@ -22,5 +22,6 @@ Climate scientists often need to understand the relationship between different c
 1. Interpret the value of the intercept (with appropriate interval) from your regression model and comment on whether is is proper to interpret this value.
 1. Predict (with appropriate interval) the mean average monthly precipitation if the average monthly high temperature is 10<sup>o</sup>C.
 1. Predict (with appropriate interval) the average monthly precipitation if the average monthly high temperature is 10<sup>o</sup>C.
+1. Provide a plot that illustrates your results.
 
 ----
