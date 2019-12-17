@@ -17,32 +17,38 @@ The indicator variable is named after the non-reference group.
 <li>
 The variables are entered into the ultimate full model in this order – covariate, indicator variable, and interaction variable.
 </li>
+<li>
+The submodel for the “Diet-Curtailed” group is found by plugging in 0 for TAME in the full model and then simplifying. Essentially everywhere TAME appears is dropped from the model.
+</li>
+<li>
+The submodel for the “Tame” group is found by plugging in 1 for TAME in the full model and then simplifying. Essentially TAME is dropped and then the two constants (α and δ<sub>1</sub>) are lumped together and then the two items multiplied by the covariate (β and γ<sub>1</sub>) are lumped together.
+</li>
 </ul>
 </div>
 <hr />
 <div id="growth-of-pronghorn-antelopes" class="section level2">
 <h2>Growth of Pronghorn Antelopes</h2>
 <ol>
-<li><p>The indicator variable is named “TAME” where TAME=1 if the pronghorn is in the “tame” group and TAME=0 if it is in the “diet-curtailed” group.</p></li>
-<li><p>The ultimate full model is μ<sub>WEIGHT</sub> = α + βTIME + δ<sub>1</sub>TAME + γ<sub>1</sub>TAME*TIME.</p></li>
-<li><p>The submodels for both groups are below</p>
+<li>The indicator variable is named “TAME” where TAME=1 if the pronghorn is in the “tame” group and TAME=0 if it is in the “diet-curtailed” group.</li>
+<li>The ultimate full model is μ<sub>WEIGHT</sub> = α + βTIME + δ<sub>1</sub>TAME + γ<sub>1</sub>TAME*TIME.</li>
+<li>The submodels for both groups are below
 <ul>
-<li>Diet-curtailed: α + βTIME</li>
-<li>Tame: (α+δ<sub>1</sub>) + (β+γ<sub>1</sub>)TIME</li>
+<li>Diet-curtailed: μ<sub>WEIGHT</sub> = α + βTIME</li>
+<li>Tame: μ<sub>WEIGHT</sub> = (α+δ<sub>1</sub>) + (β+γ<sub>1</sub>)TIME</li>
 </ul></li>
-<li><p>Interpretations of the coefficients are below.</p>
+<li>Interpretations of the coefficients are below.
 <ul>
 <li>α is the intercept of diet-curtailed (reference) group</li>
 <li>β is the slope of diet-curtailed (reference) group</li>
 <li>δ<sub>1</sub> is the difference in intercept of tame and diet-curtailed groups (i.e., tame-dietcurtailed)</li>
 <li>γ<sub>1</sub> is the difference in slopes of tame and diet-curtailed groups (i.e., tame-dietcurtailed)</li>
 </ul></li>
-<li><p>The models for the “parallel lines test” are below.</p>
+<li>The models for the “parallel lines test” are below.
 <ul>
 <li>H<sub>0</sub>: μ<sub>WEIGHT</sub> = α + βTIME + δ<sub>1</sub>TAME</li>
 <li>H<sub>A</sub>: μ<sub>WEIGHT</sub> = α + βTIME + δ<sub>1</sub>TAME + γ<sub>1</sub>TAME*TIME</li>
 </ul></li>
-<li><p>The models for the “intercepts test” (assuming parallel lines) are below.</p>
+<li>The models for the “intercepts test” (assuming parallel lines) are below.
 <ul>
 <li>H<sub>0</sub>: μ<sub>WEIGHT</sub> = α + βTIME</li>
 <li>H<sub>A</sub>: μ<sub>WEIGHT</sub> = α + βTIME + δ<sub>1</sub>TAME</li>
