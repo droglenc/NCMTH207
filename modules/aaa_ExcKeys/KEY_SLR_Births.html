@@ -1,0 +1,100 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+When discussing whether there is a relationship between the response and the explanatory variable you must explicitly note that you are referring to the slope p-value. You cannot just refer the reader to the “p-value” in the table from <code>summary()</code> because there are three p-values in that table. Be precise with your language!!
+</li>
+<li>
+Remember to use CI when describing rates of change (i.e., slopes) or predictions; don’t just use the best estimate.
+</li>
+</ul>
+</div>
+<hr />
+<div id="male-female-birth-ratio" class="section level2">
+<h2>Male-Female Birth Ratio</h2>
+<ol>
+<li><p>Yes there is evidence for a significant statistical change in the proportion of male births over the study period because the p-value for the slope (and the equivalent overall F p-value) is very small (p&lt;0.0005; Table 1). The relationship is illustrated in Figure 1.</p></li>
+<li><p>The proportion of males <strong>declined</strong> between 0.000035 and 0.000074 per year, on average (Table 2).</p></li>
+<li><p>The very small slope coefficient is statistically different from zero because the SE for the slope coefficient is very small (0.000009; Table 1) and the overall scale of the measurements is very small.</p></li>
+</ol>
+<p> </p>
+<p>Table 1: Summary of the linear regression of proportion of males on year.</p>
+<pre><code>              Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  6.201e-01  1.860e-02  33.340  &lt; 2e-16
+year        -5.429e-05  9.393e-06  -5.779 1.44e-05
+---
+Residual standard error: 0.0002607 on 19 degrees of freedom
+Multiple R-squared: 0.6374, Adjusted R-squared: 0.6183 
+F-statistic:  33.4 on 1 and 19 DF,  p-value: 1.439e-05 </code></pre>
+<p>Table 2: Confidence intervals for coefficients of the linear regression of proportion of males on year.</p>
+<pre><code>                    2.5 %        97.5 %
+(Intercept)  5.811580e-01  6.590134e-01
+year        -7.394606e-05 -3.462537e-05</code></pre>
+<p><img src="KEY_SLR_Births_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
+<p>Figure 1: Scatterplot of the proportion of male births by year with the best-fit line.</p>
+<p>R Appendix.</p>
+<pre class="r"><code>d1 &lt;- read.csv(&quot;MaleBirths.csv&quot;)
+lm1 &lt;- lm(propmale~year,data=d1)
+summary(lm1)
+confint(lm1)
+fitPlot(lm1,xlab=&quot;Year&quot;,ylab=&quot;Proportion of Males&quot;)</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
