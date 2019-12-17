@@ -137,9 +137,9 @@ title: Modules
           </ul>
         <li><b>Exercises</b></li>
           <ol>
-            <li><a href="IVRegression/HW1.html">Variables & Models I -- Pronghorns</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_1_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="IVRegression/HW2.html">Variables & Models II -- Rainbow Trout</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_2_noPrint.pdf" target="_blank">Answer</a></button></li>
-            <li><a href="IVRegression/HW3.html">Analysis -- Bats</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="../resources/homework-keys/IVRegression_3_noPrint.pdf" target="_blank">Answer</a></button></li>
+            <li><a href="IVRegression/EX_IVRPrognhorn.html">Variables & Models I -- Pronghorns</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_IVR_Pronghorns.html" target="_blank">Answer</a></button></li>
+            <li><a href="IVRegression/EX_IVRTrout.html">Variables & Models II -- Rainbow Trout</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_IVR_Trout.html" target="_blank">Answer</a></button></li>
+            <li><a href="IVRegression/EX_IVRBats.html">Analysis -- Bats</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_IVR_Bats.html" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
