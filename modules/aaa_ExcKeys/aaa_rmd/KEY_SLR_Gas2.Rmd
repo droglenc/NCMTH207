@@ -1,0 +1,73 @@
+---
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_SLR_Gas2")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+car <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv")
+lm1 <- lm(mpg~hp,data=car)
+ad1 <- adTest(lm1$residuals)
+out1 <- outlierTest(lm1)
+
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+figs(name="residPlot","Histogram of residuals (left) and residual plot (right) for regression of miles per gallon on horsepower in the cars study.")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>There are no "groups" in simple linear regression; thus, you do not assess "within-" and "among-group" independence here.</li>
+  <li>The residual plot should be <b>obviously</b> non-linear or heteroscedastic to consider the linearity and homoscedasticity assumptions violated.</li>
+</ul>
+</div>
+
+----
+
+## Car Horsepower and Gas Mileage II
+1. The cars appear to be independent as no car make was used twice and they were all of different makes and models.
+1. No non-linearity was detected as the residual plot does not exhibit a distinct curvature (`r figs("residPlot",display="cite")`-Left).
+1. The residual plot does show a very slight heteroscedasticity (`r figs("residPlot",display="cite")`-Right). This is likely not enough to worry about.
+1. The Anderson-Darling test shows weak but insignificant evidence for non-normality (`r kPvalue(ad1$p,digits=4,latex=FALSE)`) and the histogram of residuals is approximately symmetric (`r figs("residPlot",display="cite")`-Left).
+1. There are no significant outliers according to the outlier test (`r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`). There is also no evidence for any outliers on the histogram of residuals (`r figs("residPlot",display="cite")`-Left).
+
+&nbsp;
+
+
+```{r echo=FALSE, fig.width=7, fig.height=3.5, par1=TRUE}
+NCStats:::iAssumPlot_REGRESS(NCStats:::iTypeoflm(lm1),
+                             lambday=1,shifty=0,lambdax=1,shiftx=0,
+                             show.stats=TRUE,alpha=0.05,col.hist="gray70")
+```
+
+`r figs("residPlot")`
+
+
+R Appendix.
+```{r eval=FALSE, prompt=FALSE}
+car <- read.csv("CarMPG.csv")
+lm1 <- lm(mpg~hp,data=car)
+transChoser(lm1)
+```
+
+----

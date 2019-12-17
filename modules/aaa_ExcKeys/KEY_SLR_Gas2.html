@@ -1,0 +1,88 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+There are no “groups” in simple linear regression; thus, you do not assess “within-” and “among-group” independence here.
+</li>
+<li>
+The residual plot should be <b>obviously</b> non-linear or heteroscedastic to consider the linearity and homoscedasticity assumptions violated.
+</li>
+</ul>
+</div>
+<hr />
+<div id="car-horsepower-and-gas-mileage-ii" class="section level2">
+<h2>Car Horsepower and Gas Mileage II</h2>
+<ol>
+<li>The cars appear to be independent as no car make was used twice and they were all of different makes and models.</li>
+<li>No non-linearity was detected as the residual plot does not exhibit a distinct curvature (Figure 1-Left).</li>
+<li>The residual plot does show a very slight heteroscedasticity (Figure 1-Right). This is likely not enough to worry about.</li>
+<li>The Anderson-Darling test shows weak but insignificant evidence for non-normality (p=0.0784) and the histogram of residuals is approximately symmetric (Figure 1-Left).</li>
+<li>There are no significant outliers according to the outlier test (p=0.4334). There is also no evidence for any outliers on the histogram of residuals (Figure 1-Left).</li>
+</ol>
+<p> </p>
+<p><img src="KEY_SLR_Gas2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Figure 1: Histogram of residuals (left) and residual plot (right) for regression of miles per gallon on horsepower in the cars study.</p>
+<p>R Appendix.</p>
+<pre class="r"><code>car &lt;- read.csv(&quot;CarMPG.csv&quot;)
+lm1 &lt;- lm(mpg~hp,data=car)
+transChoser(lm1)</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
