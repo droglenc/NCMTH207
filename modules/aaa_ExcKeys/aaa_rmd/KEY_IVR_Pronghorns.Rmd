@@ -27,8 +27,8 @@ library(NCStats)
 <ul>
   <li>The indicator variable is named after the non-reference group.</li>
   <li>The variables are entered into the ultimate full model in this order -- covariate, indicator variable, and interaction variable.</li>
-  <li>The submodel for the "Diet-Curtailed" group is found by plugging in 0 for TAME in the full model and then simplifying. Essentially everywhere TAME appears is dropped from the model.</li>
-  <li>The submodel for the "Tame" group is found by plugging in 1 for TAME in the full model and then simplifying. Essentially TAME is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and then the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together.</li>
+  <li>The submodel for the "Diet-Curtailed" group is found by plugging in 0 for TAME in the full model and then simplifying. Essentially everything in the ultimate full model multiplied by TAME is dropped.</li>
+  <li>The submodel for the "Tame" group is found by plugging in 1 for TAME in the full model and then simplifying. Essentially the word TAME is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together.</li>
 </ul>
 </div>
 

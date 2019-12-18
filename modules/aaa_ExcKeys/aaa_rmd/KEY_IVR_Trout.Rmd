@@ -1,0 +1,65 @@
+---
+title: "Exercise Key"
+subtitle: "Indicator Variable Regression"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_IVR_Trout")
+```
+```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+library(NCStats)
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>The indicator variable is named after the "1" group. The reference group will not be explicitly stated in the indicator variables, but is defined when all indicator variables are 0.</li>
+  <li>The variables are entered into the ultimate full model in this order -- covariate, all indicator variables, and all interaction variables.</li>
+  <li>The submodel for the "1-day starved" group is found by plugging in 0 for ALL indicatory variables and then simplifying. Essentially everything in the ultimate full model multiplied by an indicator variable is dropped.</li>
+  <li>The submodel for the "4-day starve" group is found by plugging in 1 for FOUR and 0 for the other indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by one of the other indicator variable is dropped. Additionally, the word FOUR is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together. A similar argument is made for the other groups.</li>
+</ul>
+</div>
+
+----
+
+## Food Intake for Rainbow Trout
+
+1. As there are four groups in this analysis, three indicator variables are needed. As the 1-day starved group is to be the reference group, the indicator ariables will be named after the other three groups. Thus, the three indicator variables are as follows:
+    * FOUR=1 if in the "4-day starved" group, 0 otherwise
+    * EIGHT=1 if in the "8-day starved" group, 0 otherwise
+    * SIXTEEN=1 if in the "16-day starved" group, 0 otherwise
+1. The ultimate full model is &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN + &gamma;<sub>1</sub>FOUR*INTAKE + &gamma;<sub>2</sub>EIGHT*INTAKE + &gamma;<sub>3</sub>SIXTEEN*INTAKE.
+1. The submodels for all four groups are below.
+    * 1-day starved: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE
+    * 4-days starved: &mu;<sub>STVOL</sub> = (&alpha;+&delta;<sub>1</sub>) + (&beta;+&gamma;<sub>1</sub>)INTAKE
+    * 8-days starved: &mu;<sub>STVOL</sub> = (&alpha;+&delta;<sub>2</sub>) + (&beta;+&gamma;<sub>3</sub>)INTAKE
+    * 16-days starved: &mu;<sub>STVOL</sub> = (&alpha;+&delta;<sub>3</sub>) + (&beta;+&gamma;<sub>3</sub>)INTAKE
+1. Interpretations of the coefficients are below.
+    * &alpha; is the intercept of the 1-day starved (reference) group.
+    * &beta; is the slope of the 1-day starved (reference) group.
+    * &delta;<sub>1</sub> is the difference in intercept of the 1-day and 4-day groups (i.e., 4-day - 1-day).
+    * &delta;<sub>2</sub> is the difference in intercept of the 1-day and 8-day groups (i.e., 8-day - 1-day).
+    * &delta;<sub>3</sub> is the difference in intercept of the 1-day and 16-day groups (i.e., 16-day - 1-day).
+    * &gamma;<sub>1</sub> is the difference in slopes of the 1-day and 4-day groups (i.e., 4-day - 1-day).
+    * &gamma;<sub>2</sub> is the difference in slopes of the 1-day and 8-day groups (i.e., 8-day - 1-day).
+    * &gamma;<sub>3</sub> is the difference in slopes of the 1-day and 16-day groups (i.e., 16-day - 1-day).
+1. The models for the "parallel lines test" are below.
+    * H<sub>0</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN
+    * H<sub>A</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN + &gamma;<sub>1</sub>FOUR*INTAKE + &gamma;<sub>2</sub>EIGHT*INTAKE + &gamma;<sub>3</sub>SIXTEEN*INTAKE
+1. The models for the "intercepts test" (assuming parallel lines) are below.
+    * H<sub>0</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE
+    * H<sub>A</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN
+
+----
