@@ -52,8 +52,8 @@ figs(name="fitplot","Scatterplot of log-transformed auditory nuclei volume on lo
 <ul>
   <li>The indicator variable is named after the "1" group. The reference group will not be explicitly stated in the indicator variables, but is defined when all indicator variables are 0.</li>
   <li>The variables are entered into the ultimate full model in this order -- covariate, all indicator variables, and all interaction variables.</li>
-  <li>The submodel for the "1-day starved" group is found by plugging in 0 for ALL indicatory variables and then simplifying. Essentially everything in the ultimate full model multiplied by an indicator variable is dropped.</li>
-  <li>The submodel for the "4-day starve" group is found by plugging in 1 for FOUR and 0 for the other indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by one of the other indicator variable is dropped. Additionally, the word FOUR is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together. A similar argument is made for the other groups.</li>
+  <li>The submodel for the "1-day starved" group is found by plugging in 0 for ALL indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by an indicator variable is dropped.</li>
+  <li>The submodel for the "4-day starved" group is found by plugging in 1 for FOUR and 0 for the other indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by one of the other indicator variables is dropped. Additionally, the word FOUR is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together. A similar argument is made for the other groups.</li>
 </ul>
 </div>
 
