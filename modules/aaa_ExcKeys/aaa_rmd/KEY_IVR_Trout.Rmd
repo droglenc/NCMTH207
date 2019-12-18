@@ -40,7 +40,7 @@ library(NCStats)
     * FOUR=1 if in the "4-day starved" group, 0 otherwise
     * EIGHT=1 if in the "8-day starved" group, 0 otherwise
     * SIXTEEN=1 if in the "16-day starved" group, 0 otherwise
-1. The ultimate full model is &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN + &gamma;<sub>1</sub>FOUR*INTAKE + &gamma;<sub>2</sub>EIGHT*INTAKE + &gamma;<sub>3</sub>SIXTEEN*INTAKE.
+1. The ultimate full model is &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN + &gamma;<sub>1</sub>FOUR&times;INTAKE + &gamma;<sub>2</sub>EIGHT&times;INTAKE + &gamma;<sub>3</sub>SIXTEEN&times;INTAKE.
 1. The submodels for all four groups are below.
     * 1-day starved: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE
     * 4-days starved: &mu;<sub>STVOL</sub> = (&alpha;+&delta;<sub>1</sub>) + (&beta;+&gamma;<sub>1</sub>)INTAKE
@@ -57,7 +57,7 @@ library(NCStats)
     * &gamma;<sub>3</sub> is the difference in slopes of the 1-day and 16-day groups (i.e., 16-day - 1-day).
 1. The models for the "parallel lines test" are below.
     * H<sub>0</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN
-    * H<sub>A</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN + &gamma;<sub>1</sub>FOUR*INTAKE + &gamma;<sub>2</sub>EIGHT*INTAKE + &gamma;<sub>3</sub>SIXTEEN*INTAKE
+    * H<sub>A</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN + &gamma;<sub>1</sub>FOUR&times;INTAKE + &gamma;<sub>2</sub>EIGHT&times;INTAKE + &gamma;<sub>3</sub>SIXTEEN&times;INTAKE
 1. The models for the "intercepts test" (assuming parallel lines) are below.
     * H<sub>0</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE
     * H<sub>A</sub>: &mu;<sub>STVOL</sub> = &alpha; + &beta;INTAKE + &delta;<sub>1</sub>FOUR + &delta;<sub>2</sub>EIGHT + &delta;<sub>3</sub>SIXTEEN

@@ -37,7 +37,7 @@ library(NCStats)
 ## Growth of Pronghorn Antelopes
 
 1. The indicator variable is named "TAME" where TAME=1 if the pronghorn is in the "tame" group and TAME=0 if it is in the "diet-curtailed" group.
-1. The ultimate full model is &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME + &delta;<sub>1</sub>TAME + &gamma;<sub>1</sub>TAME*TIME.
+1. The ultimate full model is &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME + &delta;<sub>1</sub>TAME + &gamma;<sub>1</sub>TAME&times;TIME.
 1. The submodels for both groups are below
     * Diet-curtailed: &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME
     * Tame: &mu;<sub>WEIGHT</sub> = (&alpha;+&delta;<sub>1</sub>) + (&beta;+&gamma;<sub>1</sub>)TIME
@@ -48,7 +48,7 @@ library(NCStats)
     * &gamma;<sub>1</sub> is the difference in slopes of tame and diet-curtailed groups (i.e., tame-dietcurtailed)
 1. The models for the "parallel lines test" are below.
     * H<sub>0</sub>: &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME + &delta;<sub>1</sub>TAME
-    * H<sub>A</sub>: &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME + &delta;<sub>1</sub>TAME + &gamma;<sub>1</sub>TAME*TIME
+    * H<sub>A</sub>: &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME + &delta;<sub>1</sub>TAME + &gamma;<sub>1</sub>TAME&times;TIME
 1. The models for the "intercepts test" (assuming parallel lines) are below.
     * H<sub>0</sub>: &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME
     * H<sub>A</sub>: &mu;<sub>WEIGHT</sub> = &alpha; + &beta;TIME + &delta;<sub>1</sub>TAME
