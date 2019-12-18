@@ -46,7 +46,7 @@ tbls(name="aov","ANOVA table for the linear regression of log-transformed weight
 tbls(name="preds","Weights (back-transformed) for Florida Black Bears of various lengths (130, 160, and 190 cm) as predicted from the linear regression of log-transformed weight on log-transformed length.")
 figs(name="residPlot1","Histogram of residuals (left) and residual plot (right) for regression of weight on length of Florida Black Bears.")
 figs(name="residPlot2","Histogram of residuals (left) and residual plot (right) for regression of log-transformed weight on log-transformed length of Florida Black Bears.")
-figs(name="fitplot","ANOVA table for the linear regression of log-transformed weight on log-transformed length of Florida Black Bears.")
+figs(name="fitplot","Scatterplot of log-transformed weight on log-transformed length of Florida Black Bears with best-fit line.")
 ```
 
 ----
