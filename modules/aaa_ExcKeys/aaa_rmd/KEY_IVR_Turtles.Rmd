@@ -1,0 +1,127 @@
+---
+title: "Exercise Key"
+subtitle: "Indicator Variable Regression"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_IVR_Turtles")
+```
+```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+ht <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv")
+ht$Region <- factor(ht$Region,
+                    levels=c("Arabian Gulf","Indian Ocean","Red Sea",
+                             "Caribbean","West Atlantic"))
+lm1 <- lm(Clutch.Size~CCL*Region,data=ht)
+ad1 <- adTest(lm1$residuals)
+out1 <- outlierTest(lm1)
+aov1 <- anova(lm1)
+ints <- compIntercepts(lm1)$comparisons
+ints$p.adj <- round(ints$p.adj,digits=5)
+
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+tbls(name="aov","ANOVA table for the indicator variable regression of clutch size on curved carapace length of Hawksbill Turtles from five regions.")
+tbls(name="ints","Difference, 95% confidence interval, and p-value for the difference in intercepts for the indicator variable regression of clutch size on curved carapace length of Hawksbill Turtles from five regions.")
+figs(name="residPlot1","Histogram of residuals (left) and residual plot (right) for indicator variable regression of clutch size on curved carapace length of Hawksbill Turtles from five regions.")
+figs(name="fitplot","Scatterplot of clutch size on curved carapace length of Hawksbill Turtles from five regions with best-fit lines.")
+
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>The indicator variable is named after the "1" group. The reference group will not be explicitly stated in the indicator variables, but is defined when all indicator variables are 0.</li>
+  <li>The variables are entered into the ultimate full model in this order -- covariate, all indicator variables, and all interaction variables.</li>
+  <li>The submodel for the "1-day starved" group is found by plugging in 0 for ALL indicatory variables and then simplifying. Essentially everything in the ultimate full model multiplied by an indicator variable is dropped.</li>
+  <li>The submodel for the "4-day starve" group is found by plugging in 1 for FOUR and 0 for the other indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by one of the other indicator variable is dropped. Additionally, the word FOUR is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together. A similar argument is made for the other groups.</li>
+</ul>
+</div>
+
+----
+
+## Turtle Nesting Ecology
+
+1. As there are five groups in this analysis and the "Arabian Gulf" turtles are to be the reference group, I created the following four indicator variables.
+    * IO=1 if in the "Indian Ocean" group, 0 otherwise
+    * RS=1 if in the "Red Sea" group, 0 otherwise
+    * CO=1 if in the "Caribbean" group, 0 otherwise
+    * WA=1 if in the "West Atlantic" group, 0 otherwise
+    
+    The ultimate full model is then &mu;<sub>CSZ</sub> = &alpha; + &beta;CCL + &delta;<sub>1</sub>IO + &delta;<sub>2</sub>RS + &delta;<sub>3</sub>CO + &delta;<sub>4</sub>WA + &gamma;<sub>1</sub>IO&times;CCL + &gamma;<sub>2</sub>RS&times;CCL + &gamma;<sub>3</sub>CO&times;CCL + &gamma;<sub>4</sub>WA&times;CCL, where CSZ is "clutch size" and CCL is "curved carapace length" of the turtles.
+
+1. The submodels for all five groups are below.
+    * Arabian Gulf: &mu;<sub>CSZ</sub> = &alpha; + &beta;CCL
+    * Indian Ocean: &mu;<sub>CSZ</sub> = (&alpha;+&delta;<sub>1</sub>) + (&beta;+&gamma;<sub>1</sub>)CCL
+    * Red Sea: &mu;<sub>CSZ</sub> = (&alpha;+&delta;<sub>2</sub>) + (&beta;+&gamma;<sub>2</sub>)CCL
+    * Caribbean: &mu;<sub>CSZ</sub> = (&alpha;+&delta;<sub>3</sub>) + (&beta;+&gamma;<sub>3</sub>)CCL
+    * West Atlantic: &mu;<sub>CSZ</sub> = (&alpha;+&delta;<sub>4</sub>) + (&beta;+&gamma;<sub>4</sub>)CCL
+
+1. It is difficult to assess independence without more information; however, as long as the turtles were randomly selected at a site there should not be a problem of within-group independence and among-group independence is likely given the geographic spread of the regions. The resiuals appear largely linear and homoscedastic (`r figs("residPlot1",display="cite")`-Right), not normal (Anderson Darling `r kPvalue(ad1$p,digits=4,latex=FALSE)`) but quite symmetric without overly long tails (`r figs("residPlot1",display="cite")`-Left), and without significant outliers (outlier test `r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`).
+
+1. The slopes between clutch size and curved carapace length are statistically similar among the five regions (`r kPvalue(aov1["CCL:Region","Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`); thus, the lines that describe the relationship between clutch size and curved carapace length for the separate regions are all parallel.
+
+1. The intercepts (assuming parallel lines) for the lines describing the relationship between clutch size and curved carapace length are statistically diffrent among the five regions (`r kPvalue(aov1["Region","Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`). Turtles from the Arabian Gulf had a significantly smaller intercept than turtles from all other regions except the Indian Ocean (`r tbls("its",display="cite")`). The intercepts for all other pairs of regions are statistically equal (`r tbls("its",display="cite")`).
+
+1. A plot that illustrates the overall model fit is in `r figs("fitplot",display="cite")`. Note that the slope of these lines are statistically equal.
+
+1. The results of the previous analysis show that the relationship between clutch size and curved carapace length does not differ among the five regions. In other words, clutch size increases with increasing carapace length but that increase is statistically the same across all five regions. The results above also indicate that turtles from the Arabian Gulf have significantly smaller clutch sizes after adjusting for differences in turtle size than turtles from all regions except the Indian Ocean. In other words, some other factor besides size of the turtle explains that turtles from the Arabian Gulf have smaller clutch sizes.
+
+```{r echo=FALSE, fig.width=7, fig.height=3.5, par1=TRUE}
+NCStats:::iAssumPlot_REGRESS(NCStats:::iTypeoflm(lm1),
+                             lambday=1,shifty=0,lambdax=1,shiftx=0,
+                             show.stats=TRUE,alpha=0.05,col.hist="gray70")
+```
+
+`r figs("residPlot1")`
+
+`r tbls("aov")`
+
+```{r echo=FALSE,background="white"}
+kANOVA(lm2)
+```
+
+
+`r tbls("ints")`
+
+```{r echo=FALSE,background="white"}
+ints
+```
+
+```{r echo=FALSE, fig.width=4.5, fig.height=4.5, par1=TRUE}
+fitPlot(lm1,xlab="Curved Carapace Length (cm)",ylab="Clutch Size",
+        legend="topleft",col=c("red3","red3","red3","blue3","blue3"))
+```
+
+`r figs("fitplot")`
+
+R Appendix.
+```{r eval=FALSE, prompt=FALSE}
+ht <- read.csv("HawksbillTurtles.csv")
+ht$Region <- factor(ht$Region,
+                    levels=c("Arabian Gulf","Indian Ocean","Red Sea",
+                             "Caribbean","West Atlantic"))
+lm1 <- lm(Clutch.Size~CCL*Region,data=ht)
+transChooser(lm1)
+aov1 <- anova(lm1)
+compIntercepts(lm1)
+fitPlot(lm1,xlab="Curved Carapace Length (cm)",ylab="Clutch Size",
+        legend="topleft",col=c("red3","red3","red3","blue3","blue3"))
+```
+
+----

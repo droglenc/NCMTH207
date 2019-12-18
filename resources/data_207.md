@@ -17,6 +17,7 @@ The following data files are used in the module readings or exercises.
 * Crickets -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Crickets.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Crickets_meta.txt)
 * Cuckoos -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos_meta.txt)
 * FishEnergyDensity -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/FishEnergyDensity.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/FishEnergyDensity_meta.txt)
+* HawksbillTurtles -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles_meta.txt)
 * Raspberry -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Raspberry_meta.txt)
 * Rattlesnakes -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes_meta.txt)
 * RuffeLarvalDiet -- [data](https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet_meta.txt)
