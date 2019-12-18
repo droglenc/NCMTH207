@@ -99,19 +99,19 @@ NCStats:::iAssumPlot_REGRESS(NCStats:::iTypeoflm(lm1),
 
 `r figs("residPlot2")`
 
-```{r echo=FALSE, fig.width=4.5, fig.height=4.5, par1=TRUE}
+`r tbls("aov")`
+
+```{r echo=FALSE,background="white"}
+kANOVA(lm2)
+```
+
+```{r echo=FALSE, fig.width=4, fig.height=4, par1=TRUE}
 fitPlot(lm2,xlab="Log(Body Weight (g))",
         ylab="Log(Auditory Nuclei Volume (mm^3))",
         legend="topleft")
 ```
 
 `r figs("fitplot")`
-
-`r tbls("aov")`
-
-```{r echo=FALSE,background="white"}
-kANOVA(lm2)
-```
 
 R Appendix.
 ```{r eval=FALSE, prompt=FALSE}
