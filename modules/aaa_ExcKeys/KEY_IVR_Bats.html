@@ -52,14 +52,14 @@ The submodel for the “4-day starve” group is found by plugging in 1 for FOUR
 <p>Figure 1: Histogram of residuals (left) and residual plot (right) for indicator variable regression of auditory nuclei volume on bat body weight for three different diet groups.</p>
 <p><img src="KEY_IVR_Bats_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Figure 2: Histogram of residuals (left) and residual plot (right) for indicator variable regression of log-transformed auditory nuclei volume on log-transformed bat body weight for three different diet groups.</p>
-<p><img src="KEY_IVR_Bats_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
+<p><img src="KEY_IVR_Bats_files/figure-html/unnamed-chunk-5-1.png" width="432" /></p>
 <p>Figure 3: Scatterplot of log-transformed auditory nuclei volume on log-transformed bat body weight for three different diet groups with best-fit lines.</p>
 <p>Table 1: ANOVA table for the indicator variable regression of log-transformed auditory nuclei volume on log-transformed bat body weight for three different diet groups.</p>
-<pre><code>##                Df  Sum Sq Mean Sq  F value    Pr(&gt;F)
-## logbodywt       1 13.2492 13.2492 102.4449 3.614e-14
-## diet            2  0.4927  0.2463   1.9047    0.1586
-## logbodywt:diet  2  0.5462  0.2731   2.1116    0.1308
-## Residuals      55  7.1131  0.1293</code></pre>
+<pre><code>               Df  Sum Sq Mean Sq  F value    Pr(&gt;F)
+logbodywt       1 13.2492 13.2492 102.4449 3.614e-14
+diet            2  0.4927  0.2463   1.9047    0.1586
+logbodywt:diet  2  0.5462  0.2731   2.1116    0.1308
+Residuals      55  7.1131  0.1293                   </code></pre>
 <p>R Appendix.</p>
 <pre class="r"><code>b &lt;- read.csv(&quot;Batmorph2.csv&quot;)
 b &lt;- filterD(b,diet!=&quot;vampire&quot;)

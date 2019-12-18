@@ -18,6 +18,7 @@ modHTML_CEKeys("KEY_IVR_Bats")
 ```
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
 library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
 
 b <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph2.csv")
 b <- filterD(b,diet!="vampire")
@@ -98,7 +99,7 @@ NCStats:::iAssumPlot_REGRESS(NCStats:::iTypeoflm(lm1),
 
 `r figs("residPlot2")`
 
-```{r echo=FALSE, fig.width=3.5, fig.height=3.5, par1=TRUE}
+```{r echo=FALSE, fig.width=4.5, fig.height=4.5, par1=TRUE}
 fitPlot(lm2,xlab="Log(Body Weight (g))",
         ylab="Log(Auditory Nuclei Volume (mm^3))",
         legend="topleft")
