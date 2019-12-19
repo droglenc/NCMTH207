@@ -166,8 +166,8 @@ title: Modules
           <ol>
             <li><a href="LogisticRegression/EX_LogisticMoose.html">Analysis -- Moose Calving</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Logistic_Moose.html" target="_blank">Answer</a></button></li>
             <li><a href="LogisticRegression/EX_LogisticXXX.html">Analysis -- X-Rated Movies</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Logistic_XXX.html" target="_blank">Answer</a></button></li>
-            <li><a href="LogisticRegression/EX_Logistic_Ruffe1.html">Analysis -- Ruffe I</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Logistic_Ruffe1.html" target="_blank">Answer</a></button></li>
-            <li><a href="LogisticRegression/EX_Logistic_Ruffe2.html">Analysis -- Ruffe II</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Logistic_Ruffe2.html" target="_blank">Answer</a></button></li>
+            <li><a href="LogisticRegression/EX_LogisticRuffe1.html">Analysis -- Ruffe I</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Logistic_Ruffe1.html" target="_blank">Answer</a></button></li>
+            <li><a href="LogisticRegression/EX_LogisticRuffe2.html">Analysis -- Ruffe II</a> <button type="button" class="btn btn-light btn-sm btn-space"><a href="aaa_ExcKeys/KEY_Logistic_Ruffe2.html" target="_blank">Answer</a></button></li>
           </ol>
       </ul>
       </div>
