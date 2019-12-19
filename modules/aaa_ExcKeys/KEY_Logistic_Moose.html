@@ -28,10 +28,10 @@ XXX
 <li>The odds of a 10-year-old moose having at least one calf is <span class="math inline">\(e^{0.7975}\)</span>=2.2200.</li>
 <li>The probability of a 10-year-old moose having at least one calf is <span class="math inline">\(\frac{2.2200}{1+2.2200}\)</span>=0.6894.</li>
 <li>The probability of a 10-year-old moose having at least one calf as computed in R is also 0.6894 (see code in appendix).</li>
-<li>The probability of an 11-year-old moose having at least one calf is 0.1289. Thus, the an 11-year-old moose having at least one calf is <span class="math inline">\(\frac{0.1289}{1-0.1289}\)</span>=0.1480.</li>
-<li>The ratio of the odds for the 11-year-old to the odds of the 10-year-old is <span class="math inline">\(\frac{0.1480}{2.2200}\)</span> = 0.8790, which is the same as the back-transformed slope (i.e., <span class="math inline">\(e^{-0.1290}\)</span>).</li>
+<li>The probability of an 11-year-old moose having at least one calf is 0.6612. Thus, the odds of an 11-year-old moose having at least one calf is <span class="math inline">\(\frac{0.6612}{1-0.6612}\)</span>=1.9514.</li>
+<li>The ratio of the odds for the 11-year-old to the odds of the 10-year-old is <span class="math inline">\(\frac{1.9514}{2.2200}\)</span> = 0.8790, which is the same as the back-transformed slope (i.e., <span class="math inline">\(e^{-0.1290}\)</span>).</li>
 </ol>
-<p><img src="KEY_Logistic_Moose_files/figure-html/unnamed-chunk-3-1.png" width="336" /></p>
+<p><img src="KEY_Logistic_Moose_files/figure-html/unnamed-chunk-3-1.png" width="379.2" /></p>
 <p>Figure 1: Fitted plot for the logistic regression of whether or not the moose produced at least one calf and the moose’s age.</p>
 <p>R Appendix.</p>
 <pre class="r"><code>d &lt;- readxl::read_excel(&quot;MooseCalves.xls&quot;)

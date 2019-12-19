@@ -28,7 +28,7 @@ cf1 <- coef(glm1)
 ci1 <- confint(glm1)
 log10 <- predict(glm1,data.frame(Age=10))
 p10 <- predict(glm1,data.frame(Age=10),type="response")
-p11 <- predict(glm1,data.frame(Age=31),type="response")
+p11 <- predict(glm1,data.frame(Age=11),type="response")
 
 library(captioner)
 tbls <- captioner(prefix="Table")
@@ -57,11 +57,13 @@ figs(name="fitplot","Fitted plot for the logistic regression of whether or not t
 1. The odds of a 10-year-old moose having at least one calf is $e^{`r formatC(log10,format="f",digits=4)`}$=`r formatC(exp(log10),format="f",digits=4)`.
 1. The probability of a 10-year-old moose having at least one calf is $\frac{`r formatC(exp(log10),format="f",digits=4)`}{1+`r formatC(exp(log10),format="f",digits=4)`}$=`r formatC(p10,format="f",digits=4)`.
 1. The probability of a 10-year-old moose having at least one calf as computed in R is also `r formatC(p10,format="f",digits=4)` (see code in appendix).
-1. The probability of an 11-year-old moose having at least one calf is `r formatC(p11,format="f",digits=4)`. Thus, the an 11-year-old moose having at least one calf is $\frac{`r formatC(p11,format="f",digits=4)`}{1-`r formatC(p11,format="f",digits=4)`}$=`r formatC(p11/(1-p11),format="f",digits=4)`.
+1. The probability of an 11-year-old moose having at least one calf is `r formatC(p11,format="f",digits=4)`. Thus, the odds of an 11-year-old moose having at least one calf is $\frac{`r formatC(p11,format="f",digits=4)`}{1-`r formatC(p11,format="f",digits=4)`}$=`r formatC(p11/(1-p11),format="f",digits=4)`.
 1. The ratio of the odds for the 11-year-old to the odds of the 10-year-old is $\frac{`r formatC(p11/(1-p11),format="f",digits=4)`}{`r formatC(p10/(1-p10),format="f",digits=4)`}$ = `r formatC(exp(cf1[2]),format="f",digits=4)`, which is the same as the back-transformed slope (i.e., $e^{`r formatC(cf1[2],format="f",digits=4)`}$).
 
 
-```{r echo=FALSE, par1=TRUE}
+```{r echo=FALSE, fig.width=3.95}
+par(mar=c(3.05,3.05,0.65,1.55),mgp=c(2.1,0.3,0),tcl=-0.2,
+    las=1,cex.lab=0.95,cex.axis=0.9)
 fitPlot(glm1,xlab="Age (yrs)",ylab="Produced >0 Calves")
 ```
 

@@ -37,6 +37,7 @@ XXX
 <pre class="r"><code>df &lt;- read.csv(&quot;XMovieAge.csv&quot;)
 df &lt;- filterD(df,age&lt;96)
 glm1 &lt;- glm(seen~age,data=df,family=binomial)
+fitPlot(glm1,xlab=&quot;Age (yrs)&quot;,ylab=&quot;Seen an X-Rated Movie?&quot;)
 coef(glm1)
 confint(glm1)
 predict(glm1,data.frame(age=50))                  # log odds
