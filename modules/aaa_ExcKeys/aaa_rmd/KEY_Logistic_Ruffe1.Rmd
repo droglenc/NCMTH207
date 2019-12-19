@@ -1,0 +1,93 @@
+---
+title: "Exercise Key"
+subtitle: "Logistic Regression"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_Logistic_Ruffe1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet.csv")
+df <- filterD(df,loc=="Allouez")
+glm1 <- glm(o.daph~len,data=df,family=binomial)
+cf1 <- coef(glm1)
+sum1 <- summary(glm1)
+ci1 <- confint(glm1)
+p6 <- predict(glm1,data.frame(len=6),type="response")
+
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+figs(name="fitplot","Fitted plot for the logistic regression of whether or not a larval ruffe had consumed a <i>Daphnia</i> and the length of the ruffe.")
+tbls(name="sum","Summary of the coefficients from the logistic regression of whether or not a larval ruffe had consumed a <i>Daphnia</i> and the length of the ruffe. ")
+tbls(name="ci","Confidence intervals for the coefficients from the logistic regression of whether or not a larval ruffe had consumed a <i>Daphnia</i> and the length of the ruffe. ")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>XXX</li>
+</ul>
+</div>
+
+----
+
+## Ruffe Feeding
+
+1. The fitted-line plot (`r figs("fitplot",display="cite")`) suggests that the logistic regression model fits the proportions of larval RUffe that had consumed a *Daphnia* fairly well as indicated by the relative closeness of the modeled line to the observed proportions (i.e., blue pluses).
+1. There is a significant relationship between the probability of consuming a *Daphnia* and the length of the ruffe as indicated by a p-value for the slope of the logistic regression (`r kPvalue(sum1$coefficients[2,4],digits=4,latex=FALSE)`; `r tbls("sum",display="cite")`) that is less than 0.05.
+1. The relationship between the probability of having consumed a *Daphnia* and the length of the ruffe cannot be described with any given number and must be described from `r figs("fitplot",display="cite")`.  From `r figs("fitplot",display="cite")` it is seen that this probability is "low" until about 6 mm, rises sharply to about 10 mm, and then stays high above 10 mm. Additionally, the odds of consuming a *Daphnia* are between `r formatC(exp(ci1[2,1]),format="f",digits=4)` and `r formatC(exp(ci1[2,2]),format="f",digits=4)` times greater for each increase of 1 mm in larval ruffe length (back-transformed from `r tbls("ci",display="cite")`).
+1. The odds that a 6-mm long larval ruffe had consumed a *Daphnia* is `r formatC(p6/(1-p6),format="f",digits=4)`, which means that the probability that a 6-mm long larval ruffe had consumed a *Daphnia* is only `r formatC(p6/(1-p6),format="f",digits=4)` times the probability that it had not consumed a *Daphnia*. This indicates that the 6-mm long larval ruffe was `r formatC((1-p6)/p6,format="f",digits=1)` times more likely to NOT have consumed a *Daphnia* then it was to have consumed a *Daphnia*.
+1. The probabiilty that a 6-mm long larval ruffe had consumed a *Daphnia* is `r formatC(p6,format="f",digits=4)`. This means that approximately one out of every `r formatC(1/p6,format="f",digits=1)` 6-mm long larval ruffe will have consumed a *Daphnia*.
+
+
+```{r echo=FALSE, fig.width=3.95}
+par(mar=c(3.05,3.05,0.65,1.55),mgp=c(2.1,0.3,0),tcl=-0.2,
+    las=1,cex.lab=0.95,cex.axis=0.9)
+fitPlot(glm1,xlab="Length (mm)",ylab="Daphnia in Stomach?",breaks=seq(3.5,17.5,1))
+```
+
+`r figs("fitplot")`
+
+`r tbls("sum")`
+
+```{r echo=FALSE, background="white"}
+sum1$coefficients
+```
+
+
+`r tbls("ci")`
+
+```{r echo=FALSE, background="white"}
+ci1
+```
+
+R Appendix.
+```{r eval=FALSE, prompt=FALSE}
+df <- read.csv("RuffeLarvalDiet.csv")
+df <- filterD(df,loc=="Allouez")
+glm1 <- glm(o.daph~len,data=df,family=binomial)
+coef(glm1)
+summary(glm1)
+confint(glm1)
+predict(glm1,data.frame(len=6),type="response")
+fitPlot(glm1,xlab="Length (mm)",ylab="Daphnia in Stomach?",breaks=seq(3.5,17.5,1))
+```
+
+----
