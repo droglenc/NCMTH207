@@ -20,7 +20,7 @@ XXX
 <div id="x-rated-movies" class="section level2">
 <h2>X-Rated Movies</h2>
 <ol>
-<li>The logistic regression model sseem to fit the proportions of respondents that had seen an x-rated movie by age (i.e., blue pluses; Figure 1).</li>
+<li>The logistic regression model seems to fit the proportions of respondents that had seen an x-rated movie by age (i.e., blue pluses; Figure 1).</li>
 <li>The estimated slope indicates that the log odds that a respondent has seen an x-rated movie decrease between 0.0425 and 0.0466, on average, for every increase in age by one year.</li>
 <li>The back-transformed estimated slopes indicates that the odds that a respondent has seen an x-rated movie are between 0.9545 and 0.9584 as much after an increase of one year.</li>
 <li>The log odds of having seen an x-rated movie for a 50-year-old is 0.6255+-0.0445*50 = -1.6017.</li>
@@ -39,8 +39,8 @@ df &lt;- filterD(df,age&lt;96)
 glm1 &lt;- glm(seen~age,data=df,family=binomial)
 coef(glm1)
 confint(glm1)
-predict(glm1,data.frame(age=50))
-predict(glm1,data.frame(age=50),type=&quot;response&quot;)
+predict(glm1,data.frame(age=50))                  # log odds
+predict(glm1,data.frame(age=50),type=&quot;response&quot;)  # probability
 predict(glm1,data.frame(age=30),type=&quot;response&quot;)
 predict(glm1,data.frame(age=31),type=&quot;response&quot;)</code></pre>
 <hr />

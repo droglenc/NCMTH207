@@ -1,0 +1,84 @@
+---
+title: "Exercise Key"
+subtitle: "Logistic Regression"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/aaa_ExcKeys/aaa_rmd/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_Logistic_Moose")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+d <- readxl::read_excel("MooseCalves.xls")
+d$Calf.production.status <- factor(d$`Calf production status`)
+glm1 <- glm(Calf.production.status~Age,data=d,family="binomial")
+cf1 <- coef(glm1)
+ci1 <- confint(glm1)
+log10 <- predict(glm1,data.frame(Age=10))
+p10 <- predict(glm1,data.frame(Age=10),type="response")
+p11 <- predict(glm1,data.frame(Age=31),type="response")
+
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+figs(name="fitplot","Fitted plot for the logistic regression of whether or not the moose produced at least one calf and the moose's age.")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>XXX</li>
+</ul>
+</div>
+
+----
+
+## Moose Calf Production
+
+1. The logistic regression model does not seem to fit the proportions of moose that had at least one calf very well, as it overestimates at the first few and last several ages and underestimates in the middle ages (i.e., blue pluses; `r figs("fitplot",display="cite")`).
+1. The estimated slope indicates that the log odds that a moose had at least one calf decrease between `r formatC(-1*ci1[2,2],format="f",digits=4)` and `r formatC(-1*ci1[2,1],format="f",digits=4)`, on average, for every increase in age by one year.
+1. The back-transformed estimated slopes indicates that the odds that a moose had at least one calf are between `r formatC(exp(ci1[2,1]),format="f",digits=4)` and `r formatC(exp(ci1[2,2]),format="f",digits=4)` as much after an increase of one year.
+1. The log odds of a 10-year-old moose having at least one calf is `r formatC(cf1[1],format="f",digits=4)`+`r formatC(cf1[2],format="f",digits=4)`*10 = `r formatC(log10,format="f",digits=4)`.
+1. The log odds of a 10-year-old moose having at least one calf as computed in R is also `r formatC(log10,format="f",digits=4)` (see code in appendix).
+1. The odds of a 10-year-old moose having at least one calf is $e^{`r formatC(log10,format="f",digits=4)`}$=`r formatC(exp(log10),format="f",digits=4)`.
+1. The probability of a 10-year-old moose having at least one calf is $\frac{`r formatC(exp(log10),format="f",digits=4)`}{1+`r formatC(exp(log10),format="f",digits=4)`}$=`r formatC(p10,format="f",digits=4)`.
+1. The probability of a 10-year-old moose having at least one calf as computed in R is also `r formatC(p10,format="f",digits=4)` (see code in appendix).
+1. The probability of an 11-year-old moose having at least one calf is `r formatC(p11,format="f",digits=4)`. Thus, the an 11-year-old moose having at least one calf is $\frac{`r formatC(p11,format="f",digits=4)`}{1-`r formatC(p11,format="f",digits=4)`}$=`r formatC(p11/(1-p11),format="f",digits=4)`.
+1. The ratio of the odds for the 11-year-old to the odds of the 10-year-old is $\frac{`r formatC(p11/(1-p11),format="f",digits=4)`}{`r formatC(p10/(1-p10),format="f",digits=4)`}$ = `r formatC(exp(cf1[2]),format="f",digits=4)`, which is the same as the back-transformed slope (i.e., $e^{`r formatC(cf1[2],format="f",digits=4)`}$).
+
+
+```{r echo=FALSE, par1=TRUE}
+fitPlot(glm1,xlab="Age (yrs)",ylab="Produced >0 Calves")
+```
+
+`r figs("fitplot")`
+
+
+R Appendix.
+```{r eval=FALSE, prompt=FALSE}
+d <- readxl::read_excel("MooseCalves.xls")
+d$Calf.production.status <- factor(d$`Calf production status`)
+glm1 <- glm(Calf.production.status~Age,data=d,family="binomial")
+fitPlot(glm1,xlab="Age (yrs)",ylab="Produced >0 Calves")
+cf1 <- coef(glm1)
+ci1 <- confint(glm1)
+log10 <- predict(glm1,data.frame(Age=10))               # log odds
+p10 <- predict(glm1,data.frame(Age=10),type="response") # probability
+p11 <- predict(glm1,data.frame(Age=31),type="response")
+```
+
+----

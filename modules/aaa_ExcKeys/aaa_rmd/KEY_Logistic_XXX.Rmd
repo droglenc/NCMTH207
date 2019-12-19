@@ -50,7 +50,7 @@ figs(name="fitplot","Fitted plot for the logistic regression of whether or not t
 
 ## X-Rated Movies
 
-1. The logistic regression model sseem to fit the proportions of respondents that had seen an x-rated movie by age (i.e., blue pluses; `r figs("fitplot",display="cite")`).
+1. The logistic regression model seems to fit the proportions of respondents that had seen an x-rated movie by age (i.e., blue pluses; `r figs("fitplot",display="cite")`).
 1. The estimated slope indicates that the log odds that a respondent has seen an x-rated movie decrease between `r formatC(-1*ci1[2,2],format="f",digits=4)` and `r formatC(-1*ci1[2,1],format="f",digits=4)`, on average, for every increase in age by one year.
 1. The back-transformed estimated slopes indicates that the odds that a respondent has seen an x-rated movie are between `r formatC(exp(ci1[2,1]),format="f",digits=4)` and `r formatC(exp(ci1[2,2]),format="f",digits=4)` as much after an increase of one year.
 1. The log odds of having seen an x-rated movie for a 50-year-old is `r formatC(cf1[1],format="f",digits=4)`+`r formatC(cf1[2],format="f",digits=4)`*50 = `r formatC(log50,format="f",digits=4)`.
@@ -76,8 +76,8 @@ df <- filterD(df,age<96)
 glm1 <- glm(seen~age,data=df,family=binomial)
 coef(glm1)
 confint(glm1)
-predict(glm1,data.frame(age=50))
-predict(glm1,data.frame(age=50),type="response")
+predict(glm1,data.frame(age=50))                  # log odds
+predict(glm1,data.frame(age=50),type="response")  # probability
 predict(glm1,data.frame(age=30),type="response")
 predict(glm1,data.frame(age=31),type="response")
 ```
