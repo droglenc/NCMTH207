@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Homework 3
+title: Exercise
 subtitle: Logistic Regression
 css: "/css/modules.css"
 ---
