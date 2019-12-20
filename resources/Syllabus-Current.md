@@ -67,7 +67,7 @@ Sources for out-of-class assistance and opportunities for in-class accommodation
 
 ### Instructor -- Derek Ogle
 <img class="img-right" src="../img/DerekOgle1.jpg">
-I am committed to your doing well in this course and see it as my responsibility to help you as much as possible both in and out of the designated class period. Thus, you may call (715-682-1300), e-mail (<a href="mailto:dogle@northland.edu">dogle@northland.edu</a>)[^email], or visit me in my office (CSE228) for help. I will make every effort to be available during office hours from 1-230p on Monday, Wednesday, and Friday. I will also be available any time that my door is open. Finally, you may also send me <a href="https://www.surveymonkey.com/r/KC87PJW" target="_blank">anonymous feedback, suggestions, or questions</a>. Please don't hesitate to see or contact me if you have any questions regarding this course.
+I am committed to your doing well in this course and see it as my responsibility to help you as much as possible both in and out of the designated class period. I will be available in CSE228 whenever my door is open, but also specifically for office hours from 1-3p on Monday, Wednesday, and Friday. You can also anonymously ask me and other students questions on <a href="piazza.com/northland/winter2020/mth207/home" target="_blank">this Piazza class discussion page</a>, which I will monitor regularly. Finally, you may send me <a href="https://www.surveymonkey.com/r/F7S7GNJ" target="_blank">anonymous feedback, suggestions, or questions</a>. Please don't hesitate to see or contact me if you have any questions regarding this course.
 
 ### Tutor
 <img class="img-right" src="../img/Emily_F17.jpg">
