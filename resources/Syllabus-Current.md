@@ -90,7 +90,7 @@ An overall grade will be computed from the items described below and in the <a h
 Six one-hour quizzes will be given on the approximate dates shown on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#overall--grade)).
 
 ### Exercises
-Several exercises will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** answers to the exercises are due at the **beginning of the class period on the assigned due date** (announced in class and on the [Dates page](Dates-Current){:target="_blank"}). **Exercises will not be accepted after I have posted the answer ke**y (which I often due before coming to class). Each exercise will be graded according to the following rubric.
+Several exercises will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** answers to the exercises are due at the **beginning of the class period on the due date announced in class**. **Exercises will not be accepted after I have posted the answer key** (which I often due before coming to class). Each exercise will be graded according to the following rubric.
 
 <div class="container-fluid">
   <table class="table table-bordered">
@@ -103,7 +103,7 @@ Several exercises will be assigned per [module](../modules/){:target="_blank"}. 
   </table>
 </div>
 
-If you meet with me in my office **before the end of the second week of classes** AND **at least two other times in my office (i.e,. outside of class) with legitimate questions** then your lowest (approximate) third of homework grades will be dropped when computing your overall percentage.
+If you meet with me in my office **before the end of the second week of classes** AND **at least two other times outside of class with legitimate questions** then your lowest (approximate) one-third of homework grades will be dropped when computing your overall percentage.
 
 ### Portfolio
 <img class="img-right" src="../img/portfolio.png">
@@ -145,7 +145,7 @@ An overall score will be computed from the items and associated weights listed i
 <th><a href="#quizzes">Q4</A></th>
 <th><a href="#quizzes">Q5</A></th>
 <th><a href="#quizzes">Q6</A></th>
-<th><a href="#homework">HW</a></th>
+<th><a href="#exercises">Exercises</a></th>
 <th><a href="#portfolio">Portfolio</A></th></tr>
 
 <tr><th>Weight</th>
