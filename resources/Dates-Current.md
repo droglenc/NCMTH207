@@ -5,7 +5,7 @@ css: /css/syllabus.css
 ---
 
 <div class="alert alert-info">
-For each class period ("Date"), the module to prepare for is shown under "Material." Items will be updates as the semester progresses. Due dates will be announced in class.
+The module to prepare for each class period is shown under "Material." Dates will be updated as the semester progresses. Due dates will be announced in class.
 </div>
 
 <table width="100%">
@@ -87,7 +87,7 @@ For each class period ("Date"), the module to prepare for is shown under "Materi
 <tr><td>W 26-Feb</td>
     <td></td></tr>
 <tr><td>F 28-Feb</td>
-    <td></a></td></tr>
+    <td></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 2-Mar</td>
@@ -141,7 +141,7 @@ For each class period ("Date"), the module to prepare for is shown under "Materi
 <tr><td></td><td></td></tr>
 
 <tr><td>M 6-Apr</td>
-    <td><a href="../book/Logistic Regression.pdf">Logistic Regression</a></td></tr>
+    <td></td></tr>
 <tr><td>T 7-Apr</td>
     <td></td></tr>
 <tr><td>W 8-Apr</td>
