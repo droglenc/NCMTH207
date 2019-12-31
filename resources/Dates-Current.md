@@ -87,8 +87,7 @@ For each class period ("Date"), the module to prepare for is shown under "Materi
 <tr><td>W 26-Feb</td>
     <td>Work Day</td></tr>
 <tr><td>F 28-Feb</td>
-    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td>
-    <td><a href="../modules/SLRegression/HW1.html">SLR HW#1</a><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal (w/ chance to redo)</a></td></tr>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal Due (w/ chance to redo)</a></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 2-Mar</td>
