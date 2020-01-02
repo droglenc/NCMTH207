@@ -147,7 +147,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>W 8-Apr</td>
     <td></td></tr>
 <tr><td>F 10-Apr</td>
-    <td></td></tr>
+    <td><span style="color:coral">NO CLASS (Good Friday)</span></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 13-Apr</td>
