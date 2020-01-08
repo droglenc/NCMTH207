@@ -18,8 +18,8 @@ title: Modules
         <li><b>Class Materials</b></li>
           <ul>
             <li><a href="LMFoundations/PPT.pptx">Slides</a></li>
-            <li>Handout #1 -- <a href="LMFoundations/Exercise_Intro.pdf"><img src="../img/pdf.png"></li>
-            <li>Handout #2-- <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+            <li>Handout #1 -- <a href="LMFoundations/Exercise_Intro.pdf"><img src="../img/pdf.png"></a></li>
+            <li>Handout #2 -- <a href="LMFoundations/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LMFoundations/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
           </ul>
         <li><b>Exercises</b></li>
           <ol>
