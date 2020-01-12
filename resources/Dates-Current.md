@@ -12,13 +12,12 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><th width="20%">Date</th><th width="80%">Material</th></tr>
 
 <!---
---->
-
 <tr><td>W 8-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations Intro &para;</a>; <a href="Syllabus-Current">Syllabus</a></td></tr>
 <tr><td>F 10-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td></tr>
 <tr><td></td><td></td></tr>
+--->
 
 <tr><td>M 13-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td></tr>
