@@ -17,7 +17,6 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 10-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td></tr>
 <tr><td></td><td></td></tr>
---->
 
 <tr><td>M 13-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations &sect;1.1</a></td></tr>
@@ -28,6 +27,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 17-Jan</td>
     <td><a href="../book/Foundations.pdf">Foundations</a></td></tr>
 <tr><td></td><td></td></tr>
+--->
 
 <tr><td>M 20-Jan</td>
     <td><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
