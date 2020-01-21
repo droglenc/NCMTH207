@@ -48,7 +48,10 @@ tbls(name="coef","Coefficient results from the one-way ANOVA for pH by river.")
   <li>Use an R appendix to show the code you used to produce results. Do not include R code in any of your other answers.</li>
   <li>Keep "many" decimals in intermediate calculations ... i.e., don't round until the final answer.</li>
   <li>Note explanations in the key below.</li>
-  <li>In question 2 below make sure to use the word "mean" as the hypotheses are testing that the "mean ph", not "the pH", differs between the two rivers. Hypotheses are about summaries, not individual values.</li>
+  <li>In question 2 below make sure to use the word "mean" as the hypotheses are testing that the "mean ph", not "the pH", differs between the two rivers. Hypotheses are about summaries, not individual values. Also make sure the say what is different ... say "mean Ph differs between stream A and stream B" not "the group means differ." Don't just say "the null hypothesis is rejected" ... explain what that means about mean pH.</li>
+  <li>Always demonstrate your answers. As one example, don't just say that F=t<sup>2</sup> ... show it with the values from the tales.</li>
+  <li>There are three possible MS values -- MS<sub>Total</sub>, MS<sub>Within</sub>, and MS<sub>Among</sub>. Don't use "residuals MS" (e.g., last question) even though that is how R labels it.</li>
+  <li>Don't say that something is equal if it clearly is not. If your algebra in Question 7 does not equal MS<sub>Within</sub> if it does not. If you know that it is supposed to equal MS<sub>Within</sub> and you can't get your algebra straight then SEEK HELP FROM ME.</li>
 </ul>
 </div>
 

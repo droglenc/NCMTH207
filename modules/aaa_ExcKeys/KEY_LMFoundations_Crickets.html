@@ -27,16 +27,25 @@ Keep “many” decimals in intermediate calculations … i.e., don’t round un
 Note the explanations in the key below.
 </li>
 <li>
-In question 2 below make sure to use the word “mean” as the hypotheses are testing that the “mean ph”, not “the pH”, differs between the two rivers. Hypotheses are about summaries, not individual values.
+In question 2 below make sure to use the word “mean” as the hypotheses are testing that the “mean exploration”, not “the amount of exploration”, differs between the two groups of crickets. Hypotheses are about summaries, not individual values. Also make sure the say what is different … say “mean exploration differs between subordinate and dominant crickets” not “the group means differ.” Don’t just say “the null hypothesis is rejected” … explain what that means about mean exploration.
+</li>
+<li>
+Always demonstrate your answers. As one example, don’t just say that F=t<sup>2</sup> … show it with the values from the tales.
+</li>
+<li>
+There are three possible MS values – MS<sub>Total</sub>, MS<sub>Within</sub>, and MS<sub>Among</sub>. Don’t use “residuals MS” (e.g., last question) even though that is how R labels it.
+</li>
+<li>
+Don’t say that something is equal if it clearly is not. If your algebra in Question 7 does not equal MS<sub>Within</sub> if it does not. If you know that it is supposed to equal MS<sub>Within</sub> and you can’t get your algebra straight then SEEK HELP FROM ME.
 </li>
 </ul>
 </div>
 <hr />
-<div id="ph-in-two-rivers" class="section level2">
-<h2>pH in Two Rivers</h2>
+<div id="cricket-behavior" class="section level2">
+<h2>Cricket Behavior</h2>
 <ol>
 <li>The p-values for the two-sample t-test (<span class="math inline">\(p=0.0000054\)</span>; Table 1), from the ANOVA table (<span class="math inline">\(p=0.0000054\)</span>; Table 2), and for the slope coefficient (<span class="math inline">\(p=0.0000054\)</span>; Table 3) are all the same. These p-values are all equivalent because the 2-sample t-test null hypothesis of equal means (or difference in means equals zero) is the same as the null hypothesis for the slope (see below about the slope representing the difference in means) which is the same as the null hypothesis for the ANOVA table (i.e., simple model of one mean representing both groups). Obviously, the alternative hypotheses are also the same across the 2-sample t-test, slope, and full model in the alternative hypothesis.</li>
-<li>With these p-values, very strong evidence to reject the null hypothesis exists. Thus, the mean pH appears to differ between the two rivers.</li>
+<li>With these p-values, very strong evidence to reject the null hypothesis exists. Thus, mean relative exploration appears to differ between subordinate and dominant crickets.</li>
 <li>The mean of the first group (A) in the 2-sample t-test (2.394; Table 1) is the same as the intercept coefficient from the linear model (2.394; Table 3). This occurs because an intercept is defined as the “value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span>=0, on average”. In this case, <span class="math inline">\(Y\)</span> is pH and <span class="math inline">\(X\)</span> is “dominant” crickets because dominant is coded with a zero in <code>lm()</code> (because the levels are code alphabetically). Thus, the intercept is the mean exploration (<span class="math inline">\(Y\)</span>) for dominant crickets (<span class="math inline">\(X=0\)</span>).</li>
 <li>The difference in the means (i.e., 1.304-2.394 = -1.090; Table 1) is the same as the slope coefficient in the linear model (i.e., -1.090; Table 3). This is because the slope coefficient shows the change in <span class="math inline">\(Y\)</span> for a one unit change in <span class="math inline">\(X\)</span>. As noted above, dominant crickets is coded with a 0 in <code>lm()</code> as it is alphabetically first in the group names. Subordinate crickets is thus coded as a 1 in <code>lm()</code> as it is alphabetically second. Thus a one unit change in <span class="math inline">\(X\)</span> is simply a move from dominant to subordinate crickets (i.e., from 0 to 1). Thus, the slope is the difference in mean exploration between the dominant and subordinate crickets (i.e., change in <span class="math inline">\(Y\)</span>).</li>
 <li>The df from the two-sample t-test (78; Table 1) and the within-group df from the ANOVA table (78; Table 2) are identical. The within-group df are equal to the total number of individuals (<span class="math inline">\(n=n_{1}+n_{2}\)</span>) minus the number of groups (<span class="math inline">\(I=2\)</span>), which is the same as for the 2-sample t-test (i.e., <span class="math inline">\(n_{1}+n_{2}-2\)</span>).</li>
