@@ -32,25 +32,25 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 20-Jan</td>
     <td><span style="color:coral">NO CLASS (Martin Luther King Jr. Day)</span></td></tr>
 <tr><td>T 21-Jan</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.1</a></td></tr>
 <tr><td>W 21-Jan</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.2</a></td></tr>
 <tr><td>F 24-Jan</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 27-Jan</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td></tr>
 <tr><td>T 28-Jan</td>
     <td><span style="color:red;font-weight:bold">First Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 29-Jan</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td></tr>
 <tr><td>F 31-Jan</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 3-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td></tr>
 <tr><td>T 4-Feb</td>
     <td></td></tr>
 <tr><td>W 5-Feb</td>
