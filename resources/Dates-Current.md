@@ -42,7 +42,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 27-Jan</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td></tr>
 <tr><td>T 28-Jan</td>
-    <td><span style="color:red;font-weight:bold">First Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td><span style="color:red;font-weight:bold">First Quiz</span> (<a href="QuizGuides/quiz_1.html">Study Guide</a>)</td></tr>
 <tr><td>W 29-Jan</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td></tr>
 <tr><td>F 31-Jan</td>
