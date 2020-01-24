@@ -26,6 +26,7 @@ library(NCStats)
 <strong>Note:</strong> 
 <ul>
 <li>MS<sub>Total</sub> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).</li>
+<li>When you see a question about a "variance" then it will be answered with an "MS". Questions about variance of individuals will NOT be MS<sub>Among</sub>. Variances ignoring groups uses the simple model and will thus be MS<sub>Total</sub>.</li>
 </ul>
 </div>
 

@@ -1,0 +1,126 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "One-Way ANOVA"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+MS<sub>Total</sub> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups).
+</li>
+<li>
+When you see a question about a “variance” then it will be answered with an “MS”. Questions about variance of individuals will NOT be MS<sub>Among</sub>. Variances ignoring groups uses the simple model and will thus be MS<sub>Total</sub>.
+</li>
+</ul>
+</div>
+<hr />
+<div id="anova-table-1" class="section level2">
+<h2>ANOVA Table 1</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="right">df</th>
+<th align="right">SS</th>
+<th align="right">MS</th>
+<th align="right">F</th>
+<th align="right">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Among</strong></td>
+<td align="right"><strong>7</strong></td>
+<td align="right"><strong>35819</strong></td>
+<td align="right"><strong>5117</strong></td>
+<td align="right"><strong>3.5</strong></td>
+<td align="right"><strong>0.010</strong></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Within</strong></td>
+<td align="right">24</td>
+<td align="right">35088</td>
+<td align="right"><strong>1462</strong></td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Total</strong></td>
+<td align="right">31</td>
+<td align="right">70907</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>See completed table above. Note the following
+<ul>
+<li>df<sub>among</sub> and SS<sub>among</sub> came from subtracting within values from total values.</li>
+<li>MS<sub>among</sub> came from SS<sub>among</sub> divided by df<sub>among</sub>.</li>
+<li>F is then MS<sub>among</sub> divided by MS<sub>within</sub>.</li>
+<li>The p-value came from <code>distrib(3.5,distrib="f",df1=7,df2=24,lower.tail=FALSE)</code>.</li>
+</ul></li>
+<li>The number of groups = 7+1 = 8 (i.e., df<sub>among</sub>+1).</li>
+<li>The number of individuals = 31+1 = 32 (i.e., df<sub>total</sub>+1).</li>
+<li>The variability among individuals within groups is s<sub>p</sub><sup>2</sup> = MS<sub>within</sub> = 1462.</li>
+<li>The variability among individuals ignoring groups is s<sup>2</sup> = MS<sub>total</sub> = <span class="math inline">\(\frac{70907}{31}\)</span> = 2287.3.</li>
+<li>Yes, there is a difference among the group means because the p-value is less than 0.05.</li>
+</ol>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
