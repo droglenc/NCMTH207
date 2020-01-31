@@ -37,7 +37,6 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 24-Jan</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td></tr>
 <tr><td></td><td></td></tr>
---->
 
 <tr><td>M 27-Jan</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.4</a></td></tr>
@@ -48,25 +47,26 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 31-Jan</td>
     <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td></tr>
 <tr><td></td><td></td></tr>
+--->
 
 <tr><td>M 3-Feb</td>
-    <td><a href="../book/One-Way ANOVA.pdf">One-Way ANOVA &sect; 2.6</a></td></tr>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.1</a></td></tr>
 <tr><td>T 4-Feb</td>
-    <td></td></tr>
+    <td>Work Day</td></tr>
 <tr><td>W 5-Feb</td>
     <td><span style="color:coral">NO CLASS (DR. OGLE GONE)</span></td></tr>
 <tr><td>F 7-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 10-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td></tr>
 <tr><td>T 11-Feb</td>
-    <td><span style="color:red;font-weight:bold">Second Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td><span style="color:red;font-weight:bold">Second Quiz</span> (<a href="QuizGuides/quiz_2.html">Study Guide</a>)</td></tr>
 <tr><td>W 12-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td></tr>
 <tr><td>F 14-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 17-Feb</td>
