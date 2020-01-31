@@ -35,7 +35,7 @@ Note how concise the answer key is. Please work to get your answers this concise
 <li>The mean days to hatch is significantly different among the four temperature groups (p&lt;0.00005; Table 1).</li>
 <li>It appears that the mean days to hatch for the 30<sup>o</sup>C group is significantly lower than the mean days to hatch for 15<sup>o</sup>C (p&lt;0.00005), 20<sup>o</sup>C (p=0.0008), and 25<sup>o</sup>C (p=0.0001) groups (Table 2). The mean days to hatch for all other pairs of temperature groups are not significantly different (Table 2). These results are shown visually in Figure 1.</li>
 <li>The mean days to hatch for sea turtles at 30<sup>o</sup>C is between 22.7 and 53.9 days lower than that at 15<sup>o</sup>C, between 8.9 and 40.1 days lower than that at 20<sup>o</sup>C, and between 13.5 and 44.7 days lower than that at 25<sup>o</sup>C (Table 3).</li>
-<li>It appears that mean days to hatch is longer at 15, 20, and 25<sup>C</sup> than at 30<sup>C</sup>. Thus, it appears that the days to hatch will not decrease substantially until temperatures rise above somewhere between 25 and 30<sup>C</sup>.</li>
+<li>It appears that mean days to hatch is longer at 15, 20, and 25<sup>o</sup>C than at 30<sup>o</sup>C. Thus, it appears that the days to hatch will not decrease substantially until temperatures rise above somewhere between 25 and 30<sup>o</sup>C.</li>
 </ol>
 <p>Table 1: Analysis of variance table for the days to hatch by temperature group.</p>
 <pre><code>            Df Sum Sq Mean Sq F value    Pr(&gt;F)
@@ -43,22 +43,22 @@ Temperature  3 8025.5 2675.16  15.978 9.082e-07
 Residuals   36 6027.3  167.42                  </code></pre>
 <p>Table 2: Tukey’s multiple comparison results for the days to hatch by sea turles at various temperature groups.</p>
 <pre><code>            Estimate Std. Error    t value      p value
-20 - 15 = 0    -13.8   5.786623 -2.3848108 9.823628e-02
-25 - 15 = 0     -9.2   5.786623 -1.5898739 3.968375e-01
-30 - 15 = 0    -38.3   5.786623 -6.6187141 2.099579e-07
-25 - 20 = 0      4.6   5.786623  0.7949369 8.562518e-01
-30 - 20 = 0    -24.5   5.786623 -4.2339033 8.123086e-04
-30 - 25 = 0    -29.1   5.786623 -5.0288402 8.128524e-05</code></pre>
+20 - 15 = 0    -13.8   5.786623 -2.3848108 9.819862e-02
+25 - 15 = 0     -9.2   5.786623 -1.5898739 3.970328e-01
+30 - 15 = 0    -38.3   5.786623 -6.6187141 4.147556e-07
+25 - 20 = 0      4.6   5.786623  0.7949369 8.562519e-01
+30 - 20 = 0    -24.5   5.786623 -4.2339033 7.910900e-04
+30 - 25 = 0    -29.1   5.786623 -5.0288402 6.706843e-05</code></pre>
 <p><img src="KEY_Anova-1way_Turtles2_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
 <p>Figure 1: Plot of mean (with 95% CI) days to hatch by sea turtles at various temperature groups. Different letters indicate means that are significantly different.</p>
 <p>Table 3: Tukey’s confidence interval results for the difference in mean days to hatch by sea turtles for each pair of temperature groups.</p>
 <pre><code>        Estimate       lwr        upr
-20 - 15    -13.8 -29.39955   1.799552
-25 - 15     -9.2 -24.79955   6.399552
-30 - 15    -38.3 -53.89955 -22.700448
-25 - 20      4.6 -10.99955  20.199552
-30 - 20    -24.5 -40.09955  -8.900448
-30 - 25    -29.1 -44.69955 -13.500448</code></pre>
+20 - 15    -13.8 -29.38918   1.789182
+25 - 15     -9.2 -24.78918   6.389182
+30 - 15    -38.3 -53.88918 -22.710818
+25 - 20      4.6 -10.98918  20.189182
+30 - 20    -24.5 -40.08918  -8.910818
+30 - 25    -29.1 -44.68918 -13.510818</code></pre>
 <p>R Appendix.</p>
 <pre class="r"><code>library(multcomp)
 d &lt;- read.csv(&quot;turtles.csv&quot;)
