@@ -43,10 +43,10 @@ Source     | df | SS | MS | F  | p-value
 <div class="alert alert-info">
 <strong>Hints:</strong>
 <ol>
+  <li>Identify values for r, c, and n and then use the formulae provide in lecture and the reading to compute all degrees-of-freedom.
+  <li>Construct a 2x2 table (Year as rows, Habitat as columns) of treatment means and then append the level means and grand mean in the margins. Note that level (and grand) means are simply the mean of treatments means when the sample sizes in the treatments are equal, as they are in this example.</li>
+  <li>Use the definitions of r, c, and n, and your table of means to compute SS<sub>among</sub>, SS<sub>row</sub>, and SS<sub>column</sub> according to formulae provided in class and in the reading. Compute the remaining SS with simple addition and subtraction (from principles of how SS partition).</li>
   <li>No functions, beyond using `distrib()` to calculate p-values, will be useful for these calculations.</li>
-  <li>I suggest constructing a 2x2 table (Year as rows, Habitat as columns) of treatment means and then appending group means and the grand mean. Note that a "pooled" mean is the mean of group means if the sample sizes in the groups being pooled are equal.</li>
-  <li>I suggest computing appropriate df first, followed by SS.</li>
-  <li>Examine the equations for the SS and determine which ones of these you can compute from the table of means. Compute these and get the others using simple addition and subtraction (from principles of how SS partition).</li>
 </ol>
 </div>
 
