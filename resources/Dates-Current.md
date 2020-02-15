@@ -82,7 +82,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 24-Feb</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td></tr>
 <tr><td>T 25-Feb</td>
-    <td><span style="color:red;font-weight:bold">Third Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td><span style="color:red;font-weight:bold">Third Quiz</span> (<a href="QuizGuides/quiz_3.html">Study Guide</a>)</td></tr>
 <tr><td>W 26-Feb</td>
     <td></td></tr>
 <tr><td>F 28-Feb</td>
