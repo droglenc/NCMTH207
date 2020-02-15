@@ -57,7 +57,6 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 7-Feb</td>
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td></tr>
 <tr><td></td><td></td></tr>
---->
 
 <tr><td>M 10-Feb</td>
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.2</a></td></tr>
@@ -68,19 +67,20 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 14-Feb</td>
     <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td></tr>
 <tr><td></td><td></td></tr>
+--->
 
 <tr><td>M 17-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Two-Way ANOVA.pdf">Two-Way ANOVA &sect; 3.3 &amp; 3.4</a></td></tr>
 <tr><td>T 18-Feb</td>
-    <td></td></tr>
+    <td>Work Day</td></tr>
 <tr><td>W 19-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1 &amp; 4.2</a></td></tr>
 <tr><td>F 20-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1</a></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 24-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td></tr>
 <tr><td>T 25-Feb</td>
     <td><span style="color:red;font-weight:bold">Third Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
 <tr><td>W 26-Feb</td>
