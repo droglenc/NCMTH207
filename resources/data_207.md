@@ -50,6 +50,7 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [Forest Fires Data](https://archive.ics.uci.edu/ml/datasets/Forest+Fires): Data about many forest fires in Portugal.
 * [ORNL DAAC](https://daac.ornl.gov/): A wide variety of "Earth data" at the Oak Ridge National Laboratoroy Distributed Active Archive Center.
 * [U.S. Census data](https://www.census.gov/): Data from the U.S. Census Bureau.
+* [CDC Wonder Data](https://wonder.cdc.gov/): Public health data available through the Center for Disease Control.
 * [areavibes.com](https://www.areavibes.com/): Find a wealth of information about each city that you select (you will have to drill down a bit to get the actual data).
 * [GasBuddy.com](https://www.gasbuddy.com/): Search for current gas prices for any U.S. city.
 * [USGS Water Data](https://waterdata.usgs.gov/nwis/rt): A large database of water data from throughout the United States.
