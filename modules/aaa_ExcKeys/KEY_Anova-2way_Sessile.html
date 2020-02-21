@@ -1,0 +1,150 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="effect-of-copper-on-sessile-organism-species-richness" class="section level2">
+<h2>Effect of Copper on Sessile Organism Species Richness</h2>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+When an intereaction effect exists, then the levels of the two main effects should be combined to form treatment groups (this is the <code>comb</code> variable below) and a one-way ANOVA is fit using this to determine which treatment groups differ.
+</li>
+<li>
+Multiple comparisons confidence intervals are for <b>differences</b> in two means. However, don’t say “the difference in means is between XXX and XXX.” Rather be specific about which group is smaller (Or larger) and by how much. Make note of this in my language below.
+</li>
+<li>
+The multiple comparison procedures use a bit of randomness to compute p-values and confidence intervals. Thus, your values may differ somewhat from what is presented here.
+</li>
+<li>
+Interpreting interactions can be difficult. I generally like to describe the effect of the x-axis main effect on the response variable for one of the levels of the other main effect and then describe how this differs for the other level(s) of the other main effect. So, here, I am thinking of how copper level effects species richness for, say, the horizontal orientiation and then how copper effect species richness for the vertical orientation. With an interaction effect the effects of copper on species richness will differ by habitat orientation.
+</li>
+</ul>
+</div>
+<ol>
+<li><p>There is not enough information to determine if the individuals (a location) are independent within and among treatments. Independence within treatments would be suspect if the same copper treatment was assigned to adjacent locations or the same habitat orientation locations were adjacent. Independence among treatments would be suspect if different copper treatments were assigned to adjacent locations or different habitat orientations were at adjacent locations. For example, if the researchers found one vertical orientation and then split it into three parts to receive one of the copper treatments, then independence would be lost. There is no evidence either way with the given description so I will continue as if the individuals are independent.</p>
+<p>On the original scale (Figure 1) the variances are equal (Levene’s p=0.0750), the residuals are not normal (Anderson-Darling p=0.0148) but mostly symmetric without long tails, and there are no significant outliers (p&gt;1). The trial-and-error method did not suggest a transformation for species richness that resulted in more normal residuals without sacrificing the other assumptions. Given the symmetry and lack of long tails in the distribution of residuals, it appears that the assumptions for a two-way ANOVA have been largely met on the original scale with no individuals removed.</p></li>
+<li><p>There is a significant interaction effect (p&lt;0.00005; Table 1). Main effects will not be addressed in the presence of this interaction effect.</p></li>
+<li><p>Summary plots of these results are in Figure 2.</p></li>
+<li><p>Mean species richness is most (and significantly) different between the “No Copper and Horizontal Orientation” treatment and the “High Copper and Vertical Orientation Treatment” (Table 2). Specifically, mean species richness was between 21.6 and 27.8 greater at the “No Copper and Horizontal Orientation” treatment than at the “High Copper and Vertical Orientation Treatment” (Table 3).</p></li>
+<li><p>These results show that species richness generally decreased from locations with no copper to locations with low levels of copper, regardless of whether the location was oriented vertically or horizontally. Species richness further decreased when copper levels were increased from “low” to “high” in vertically-oriented locations <strong>but not</strong> in horizontally-oriented locations. Thus, copper appears to have negatively affected species richness of sessile organisms, but the effect differed depending on habitat orientation.</p></li>
+</ol>
+<p>Table 1: Analysis of variance table for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.</p>
+<pre><code>                   Df Sum Sq Mean Sq F value    Pr(&gt;F)
+Orientation         1  180.3  180.27  32.212 5.619e-07
+Copper              2 3207.4 1603.72 286.567 &lt; 2.2e-16
+Orientation:Copper  2  535.8  267.92  47.874 1.096e-12
+Residuals          54  302.2    5.60                  </code></pre>
+<p>Table 2: Tukey’s multiple comparison results for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.</p>
+<pre><code>                                      Estimate Std. Error    t value      p value
+None:Vertical - None:Horizontal = 0       -2.3    1.05795  -2.174015 2.668409e-01
+Low:Horizontal - None:Horizontal = 0     -12.2    1.05795 -11.531730 0.000000e+00
+Low:Vertical - None:Horizontal = 0        -9.0    1.05795  -8.507014 6.569867e-11
+High:Horizontal - None:Horizontal = 0    -13.4    1.05795 -12.665999 0.000000e+00
+High:Vertical - None:Horizontal = 0      -24.7    1.05795 -23.347028 0.000000e+00
+Low:Horizontal - None:Vertical = 0        -9.9    1.05795  -9.357716 2.422285e-12
+Low:Vertical - None:Vertical = 0          -6.7    1.05795  -6.333000 8.975828e-07
+High:Horizontal - None:Vertical = 0      -11.1    1.05795 -10.491984 2.220446e-14
+High:Vertical - None:Vertical = 0        -22.4    1.05795 -21.173013 0.000000e+00
+Low:Vertical - Low:Horizontal = 0          3.2    1.05795   3.024716 4.185940e-02
+High:Horizontal - Low:Horizontal = 0      -1.2    1.05795  -1.134269 8.648756e-01
+High:Vertical - Low:Horizontal = 0       -12.5    1.05795 -11.815298 1.110223e-16
+High:Horizontal - Low:Vertical = 0        -4.4    1.05795  -4.158985 1.607308e-03
+High:Vertical - Low:Vertical = 0         -15.7    1.05795 -14.840014 0.000000e+00
+High:Vertical - High:Horizontal = 0      -11.3    1.05795 -10.681029 1.443290e-15</code></pre>
+<p>Table 3: Tukey’s multiple comparison confidence intervals for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.</p>
+<pre><code>                                  Estimate          lwr         upr
+None:Vertical - None:Horizontal       -2.3  -5.42611464   0.8261146
+Low:Horizontal - None:Horizontal     -12.2 -15.32611464  -9.0738854
+Low:Vertical - None:Horizontal        -9.0 -12.12611464  -5.8738854
+High:Horizontal - None:Horizontal    -13.4 -16.52611464 -10.2738854
+High:Vertical - None:Horizontal      -24.7 -27.82611464 -21.5738854
+Low:Horizontal - None:Vertical        -9.9 -13.02611464  -6.7738854
+Low:Vertical - None:Vertical          -6.7  -9.82611464  -3.5738854
+High:Horizontal - None:Vertical      -11.1 -14.22611464  -7.9738854
+High:Vertical - None:Vertical        -22.4 -25.52611464 -19.2738854
+Low:Vertical - Low:Horizontal          3.2   0.07388536   6.3261146
+High:Horizontal - Low:Horizontal      -1.2  -4.32611464   1.9261146
+High:Vertical - Low:Horizontal       -12.5 -15.62611464  -9.3738854
+High:Horizontal - Low:Vertical        -4.4  -7.52611464  -1.2738854
+High:Vertical - Low:Vertical         -15.7 -18.82611464 -12.5738854
+High:Vertical - High:Horizontal      -11.3 -14.42611464  -8.1738854</code></pre>
+<p> </p>
+<p><img src="KEY_Anova-2way_Sessile_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Figure 1: Histogram of residuals (left) and boxplot of residuals by treatment group (right) for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation.</p>
+<p> </p>
+<p><img src="KEY_Anova-2way_Sessile_files/figure-html/fitPlot-1.png" width="336" /></p>
+<p>Figure 2: Interaction plot (mean species richness by treatment group) for the two-way ANOVA of untransformed species richness of sessile organisms by copper treatment level and habiat orientation. Treatment means with different letters are significantly different.</p>
+<p>R Appendix.</p>
+<pre class="r"><code>library(NCStats)
+library(multcomp)
+df &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/Sessile.csv&quot;)
+df$Copper &lt;- factor(df$Copper,levels=c(&quot;None&quot;,&quot;Low&quot;,&quot;High&quot;))
+lm1 &lt;- lm(Richness~Orientation*Copper,data=df)
+transChooser(lm1)
+aov1 &lt;- anova(lm1)
+
+df$comb &lt;- df$Copper:df$Orientation
+lm2 &lt;- lm(Richness~comb,data=df)
+
+mc &lt;- glht(lm2,mcp(comb=&quot;Tukey&quot;))
+summary(mc)
+confint(mc)
+fitPlot(lm1,change.order=TRUE,ylab=&quot;Species Richness&quot;,xlab=&quot;Copper Level&quot;)
+addSigLetters(lm1,change.order=TRUE,lets=c(&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;b&quot;,&quot;d&quot;),pos=c(2,2,2,4,4,4))</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
