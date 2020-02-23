@@ -112,7 +112,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 16-Mar</td>
     <td></td></tr>
 <tr><td>T 17-Mar</td>
-    <td><span style="color:red;font-weight:bold">Fourth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td><span style="color:red;font-weight:bold">Fourth Quiz</span> (<a href="QuizGuides/quiz_4.html">Study Guide</a>)</td></tr>
 <tr><td>W 18-Mar</td>
     <td></td></tr>
 <tr><td>F 20-Mar</td>
@@ -132,7 +132,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 30-Mar</td>
     <td></td></tr>
 <tr><td>T 31-Mar</td>
-    <td><span style="color:red;font-weight:bold">Fifth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td><span style="color:red;font-weight:bold">Fifth Quiz</span> (<a href="QuizGuides/quiz_5.html">Study Guide</a>)</td></tr>
 <tr><td>W 1-Apr</td>
     <td></td></tr>
 <tr><td>F 3-Apr</td>
@@ -152,7 +152,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 13-Apr</td>
     <td></td></tr>
 <tr><td>T 14-Apr</td>
-    <td><span style="color:red;font-weight:bold">Sixth Quiz</span> (<a href="QuizGuides/quiz_.html">Study Guide</a>)</td></tr>
+    <td><span style="color:red;font-weight:bold">Sixth Quiz</span> (<a href="QuizGuides/quiz_6.html">Study Guide</a>)</td></tr>
 <tr><td>W 15-Apr</td>
     <td><span style="color:red;font-weight:bold"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
 <tr><td>F 17-Apr</td>
