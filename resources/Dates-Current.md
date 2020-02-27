@@ -84,9 +84,9 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>T 25-Feb</td>
     <td><span style="color:red;font-weight:bold">Third Quiz</span> (<a href="QuizGuides/quiz_3.html">Study Guide</a>)</td></tr>
 <tr><td>W 26-Feb</td>
-    <td></td></tr>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5</a></td></tr>
 <tr><td>F 28-Feb</td>
-    <td></td></tr>
+    <td>Work Day</td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 2-Mar</td>
@@ -100,13 +100,13 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td></td><td></td></tr>
 
 <tr><td>M 9-Mar</td>
-    <td></td></tr>
+    <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5</a></td></tr>
 <tr><td>T 10-Mar</td>
-    <td></td></tr>
+    <td>Work Day</td></tr>
 <tr><td>W 11-Mar</td>
-    <td></td></tr>
+    <td>Work Day</td></tr>
 <tr><td>F 13-Mar</td>
-    <td><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal Due</a></td></tr>
+    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.1-5.3</a><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal Due</a></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 16-Mar</td>
@@ -114,9 +114,9 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>T 17-Mar</td>
     <td><span style="color:red;font-weight:bold">Fourth Quiz</span> (<a href="QuizGuides/quiz_4.html">Study Guide</a>)</td></tr>
 <tr><td>W 18-Mar</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4</a></td></td></tr>
 <tr><td>F 20-Mar</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4-5.5</a></td></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 23-Mar</td>
