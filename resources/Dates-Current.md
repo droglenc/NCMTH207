@@ -110,19 +110,19 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td></td><td></td></tr>
 
 <tr><td>M 16-Mar</td>
-    <td></td></tr>
+    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4</a></td></tr>
 <tr><td>T 17-Mar</td>
     <td><span style="color:red;font-weight:bold">Fourth Quiz</span> (<a href="QuizGuides/quiz_4.html">Study Guide</a>)</td></tr>
 <tr><td>W 18-Mar</td>
-    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4</a></td></td></tr>
-<tr><td>F 20-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4-5.5</a></td></td></tr>
+<tr><td>F 20-Mar</td>
+    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.6-5.7</a></td></td></tr>
 <tr><td></td><td></td></tr>
 
 <tr><td>M 23-Mar</td>
     <td></td></tr>
 <tr><td>T 24-Mar</td>
-    <td></td></tr>
+    <td>Work Day</td></tr>
 <tr><td>W 25-Mar</td>
     <td></td></tr>
 <tr><td>F 27-Mar</td>
