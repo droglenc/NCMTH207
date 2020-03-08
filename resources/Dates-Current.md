@@ -77,7 +77,6 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 20-Feb</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.1</a></td></tr>
 <tr><td></td><td></td></tr>
---->
 
 <tr><td>M 24-Feb</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.3 &amp; 4.4</a></td></tr>
@@ -98,6 +97,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 6-Mar</td>
     <td><span style="color:coral">NO CLASS (Mid-Session)</span></td></tr>
 <tr><td></td><td></td></tr>
+--->
 
 <tr><td>M 9-Mar</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5</a></td></tr>
