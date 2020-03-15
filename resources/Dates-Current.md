@@ -108,56 +108,33 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>F 13-Mar</td>
     <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.1-5.3</a><br><a href="Syllabus-Current.html#portfolio">Portfolio Proposal Due</a></td></tr>
 <tr><td></td><td></td></tr>
+--->
 
-<tr><td>M 16-Mar</td>
-    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4</a></td></tr>
-<tr><td>T 17-Mar</td>
-    <td><span style="color:red;font-weight:bold">Fourth Quiz</span> (<a href="QuizGuides/quiz_4.html">Study Guide</a>)</td></tr>
-<tr><td>W 18-Mar</td>
-    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.4-5.5</a></td></tr>
-<tr><td>F 20-Mar</td>
-    <td><a href="../book/One-Way IVR.pdf">IVR &sect; 5.6-5.7</a></td></tr>
+<tr><td>16-Mar -- 20-Mar</td>
+    <td>Finish SLR Excercises ... due Tuesday<br>
+    Work on Black Bears Weight SLR Exercise as quiz ... due Friday<br>
+    Work on Growth of Pronghors IVR Exercise ... due next Tuesday<br>
+    Work on Food Intake of Rainbow IVR Exercise ... due next Tuesday<br>
+    Work on portfolio analyses.<br>
+    See <a href="https://piazza.com/class/k4ea6qq6oh235r?cid=28" target="_blank">this note about these items.</a></td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 23-Mar</td>
-    <td></td></tr>
-<tr><td>T 24-Mar</td>
-    <td>Work Day</td></tr>
-<tr><td>W 25-Mar</td>
-    <td></td></tr>
-<tr><td>F 27-Mar</td>
-    <td></td></tr>
+<tr><td>M 23-Mar -- 27-Mar</td>
+    <td>TBA</td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 30-Mar</td>
-    <td></td></tr>
-<tr><td>T 31-Mar</td>
-    <td><span style="color:red;font-weight:bold">Fifth Quiz</span> (<a href="QuizGuides/quiz_5.html">Study Guide</a>)</td></tr>
-<tr><td>W 1-Apr</td>
-    <td></td></tr>
-<tr><td>F 3-Apr</td>
-    <td></td></tr>
+<tr><td>M 30-Mar -- 3-Apr</td>
+    <td>TBA</td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 6-Apr</td>
-    <td></td></tr>
-<tr><td>T 7-Apr</td>
-    <td></td></tr>
-<tr><td>W 8-Apr</td>
-    <td></td></tr>
-<tr><td>F 10-Apr</td>
-    <td><span style="color:coral">NO CLASS (Good Friday)</span></td></tr>
+<tr><td>M 6-Apr -- 10-Apr</td>
+    <td>TBA</td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 13-Apr</td>
-    <td></td></tr>
-<tr><td>T 14-Apr</td>
-    <td><span style="color:red;font-weight:bold">Sixth Quiz</span> (<a href="QuizGuides/quiz_6.html">Study Guide</a>)</td></tr>
-<tr><td>W 15-Apr</td>
-    <td><span style="color:red;font-weight:bold"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
+<tr><td>M 13-Apr -- 15-Apr</td>
+    <td>TBA</td></tr>
 <tr><td>F 17-Apr</td>
-    <td><span style="color:coral">NO CLASS</span></td></tr>
-
+    <td><span style="color:red;font-weight:bold"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
 </table>
 
 <!---
