@@ -47,6 +47,7 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [Journal of Fish and Wildlife Management](http://fwspubs.org/): Most (all?) articles published in this journal contain the raw data as supplemental information that appears to be open-source. If you find data here that sounds interesting to you but you can not access then let me know.
 * [Journal of Scientific Data](https://www.nature.com/sdata/): A searchable database of scientific data.
 * [GEMStat Water Quality Data](https://gemstat.org/data/): A browseable database of world-wide water quality data.
+* [Isle Royale Wolf-Moose Data](https://isleroyalewolf.org/data/data/home.html): A spreadsheet of population data for the long-term wolf-moose study on Isle Royale.
 * [Forest Fires Data](https://archive.ics.uci.edu/ml/datasets/Forest+Fires): Data about many forest fires in Portugal.
 * [ORNL DAAC](https://daac.ornl.gov/): A wide variety of "Earth data" at the Oak Ridge National Laboratoroy Distributed Active Archive Center.
 * [U.S. Census data](https://www.census.gov/): Data from the U.S. Census Bureau.
