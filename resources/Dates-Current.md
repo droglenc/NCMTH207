@@ -97,7 +97,6 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>M 6-Mar</td>
     <td><span style="color:coral">NO CLASS (Mid-Session)</span></td></tr>
 <tr><td></td><td></td></tr>
---->
 
 <tr><td>M 9-Mar</td>
     <td><a href="../book/Simple Linear Regression.pdf">SLR &sect; 4.5</a></td></tr>
@@ -110,7 +109,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td></td><td></td></tr>
 --->
 
-<tr><td>16-Mar -- 20-Mar</td>
+<tr><td>16-Mar<br>20-Mar</td>
     <td>Finish SLR Excercises ... due Tuesday<br>
     Work on Black Bears Weight SLR Exercise as quiz ... due Friday<br>
     Work on Growth of Pronghors IVR Exercise ... due next Tuesday<br>
@@ -119,19 +118,19 @@ The module to prepare for each class period is shown under "Material." Dates wil
     See <a href="https://piazza.com/class/k4ea6qq6oh235r?cid=28" target="_blank">this note about these items.</a></td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 23-Mar -- 27-Mar</td>
+<tr><td>M 23-Mar --<br> 27-Mar</td>
     <td>TBA</td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 30-Mar -- 3-Apr</td>
+<tr><td>M 30-Mar --<br> 3-Apr</td>
     <td>TBA</td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 6-Apr -- 10-Apr</td>
+<tr><td>M 6-Apr --<br> 10-Apr</td>
     <td>TBA</td></tr>
 <tr><td></td><td></td></tr>
 
-<tr><td>M 13-Apr -- 15-Apr</td>
+<tr><td>M 13-Apr --<br> 15-Apr</td>
     <td>TBA</td></tr>
 <tr><td>F 17-Apr</td>
     <td><span style="color:red;font-weight:bold"><a href="Syllabus-Current.html#portfolio">Portfolio Final Report</a> (due at noon)</span></td></tr>
