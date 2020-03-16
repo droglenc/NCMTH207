@@ -43,6 +43,7 @@ library(NCStats)
 <strong>Note:</strong> 
 <ul>
   <li>The variables are entered into the ultimate full model in this order -- covariate (i.e., depth), indicator variable (i.e., SCAV), and the interaction variable.</li>
+  <li>The covariate is always multiplied by &beta;, the indicator variable(s) is/are always multiplied by &delta;s, and the interaction variable(s) is/are always multiplied by &gamma;s.</li>
 </ul>
 </div>
 
@@ -57,16 +58,16 @@ library(NCStats)
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>The submodel for the "non-scavengers" group is found by plugging in 0 for SCAV in the full model and then simplifying. Essentially everything in the ultimate full model multiplied by SCAV is dropped.</li>
-  <li>The submodel for the "scavengers" group is found by plugging in 1 for SCAV in the full model and then simplifying. Essentially the word SCAV is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together.</li>
+  <li>The "non-scavengers" submodel is found by plugging 0 in for SCAV in the ultimate full model and then simplifying. Essentially everything in the ultimate full model multiplied by SCAV is dropped.</li>
+  <li>The "scavengers" submodel is found by plugging 1 in for SCAV in the ultimate full model and then simplifying. Essentially the word SCAV is dropped, the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together, and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together.</li>
 </ul>
 </div>
 
 <ol start="4">
   <li>Interpretations of the coefficients are below.</li>
   <ul>
-    <li>&alpha; is the intercept of non-scavenger (reference) group</li>
-    <li>&beta; is the slope of non-scavenger (reference) group</li>
+    <li>&alpha; is the intercept of non-scavengers (reference group).</li>
+    <li>&beta; is the slope of non-scavenger (reference group).</li>
     <li>&delta;<sub>1</sub> is the difference in intercept of scavenger and non-scavenger groups (i.e., scavenger-nonscavenger)</li>
     <li>&gamma;<sub>1</sub> is the difference in slopes of scavenger and non-scavenger groups (i.e., scavenger-nonscavenger)</li>
   </ul>

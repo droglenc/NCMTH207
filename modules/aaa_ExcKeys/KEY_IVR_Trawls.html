@@ -34,6 +34,9 @@ The ultimate full model is μ<sub>LOG.MASS</sub> = α + βDEPTH + δ<sub>1</sub>
 <li>
 The variables are entered into the ultimate full model in this order – covariate (i.e., depth), indicator variable (i.e., SCAV), and the interaction variable.
 </li>
+<li>
+The covariate is always multiplied by β, the indicator variable(s) is/are always multiplied by δs, and the interaction variable(s) is/are always multiplied by γs.
+</li>
 </ul>
 </div>
 <ol start="3">
@@ -53,10 +56,10 @@ scavenger: μ<sub>LOG.MASS</sub> = (α+δ<sub>1</sub>) + (β+γ<sub>1</sub>)DEPT
 <strong>Note:</strong>
 <ul>
 <li>
-The submodel for the “non-scavengers” group is found by plugging in 0 for SCAV in the full model and then simplifying. Essentially everything in the ultimate full model multiplied by SCAV is dropped.
+The “non-scavengers” submodel is found by plugging 0 in for SCAV in the ultimate full model and then simplifying. Essentially everything in the ultimate full model multiplied by SCAV is dropped.
 </li>
 <li>
-The submodel for the “scavengers” group is found by plugging in 1 for SCAV in the full model and then simplifying. Essentially the word SCAV is dropped and then the two constants (α and δ<sub>1</sub>) are lumped together and the two items multiplied by the covariate (β and γ<sub>1</sub>) are lumped together.
+The “scavengers” submodel is found by plugging 1 in for SCAV in the ultimate full model and then simplifying. Essentially the word SCAV is dropped, the two constants (α and δ<sub>1</sub>) are lumped together, and the two items multiplied by the covariate (β and γ<sub>1</sub>) are lumped together.
 </li>
 </ul>
 </div>
@@ -66,10 +69,10 @@ Interpretations of the coefficients are below.
 </li>
 <ul>
 <li>
-α is the intercept of non-scavenger (reference) group
+α is the intercept of non-scavengers (reference group).
 </li>
 <li>
-β is the slope of non-scavenger (reference) group
+β is the slope of non-scavenger (reference group).
 </li>
 <li>
 δ<sub>1</sub> is the difference in intercept of scavenger and non-scavenger groups (i.e., scavenger-nonscavenger)
