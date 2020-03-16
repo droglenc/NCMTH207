@@ -56,7 +56,7 @@ library(NCStats)
 <br>
 
 <ol start="3">
-  <li>The submodels for both groups are below</li>
+  <li>The submodels for all groups are below</li>
   <ul>
     <li>ANR: &mu;<sub>LOG.MASS</sub> = &alpha; + &beta;DEPTH
     <li>COA: &mu;<sub>LOG.MASS</sub> = (&alpha;+&delta;<sub>1</sub>) + (&beta;+&gamma;<sub>1</sub>)DEPTH</li></li>
