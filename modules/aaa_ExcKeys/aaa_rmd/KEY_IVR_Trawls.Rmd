@@ -22,7 +22,7 @@ library(NCStats)
 
 ----
 
-## Deep-Sea Trawling
+## Deep-Sea Trawling I
 
 <ol start="1">
   <li>The indicator variable is named "SCAV" where SCAV=1 if the species is a "scavenger" and SCAV=0 if the species is a "non-scavenger" (the reference group).</li>
@@ -35,6 +35,8 @@ library(NCStats)
 </ul>
 </div>
 
+<br>
+
 <ol start="2">
   <li>The ultimate full model is &mu;<sub>LOG.MASS</sub> = &alpha; + &beta;DEPTH + &delta;<sub>1</sub>SCAV + &gamma;<sub>1</sub>SCAV&times;DEPTH.</li>
 </ol>
@@ -46,6 +48,8 @@ library(NCStats)
   <li>The covariate is always multiplied by &beta;, the indicator variable(s) is/are always multiplied by &delta;s, and the interaction variable(s) is/are always multiplied by &gamma;s.</li>
 </ul>
 </div>
+
+<br>
 
 <ol start="3">
   <li>The submodels for both groups are below</li>
@@ -63,6 +67,8 @@ library(NCStats)
 </ul>
 </div>
 
+<br>
+
 <ol start="4">
   <li>Interpretations of the coefficients are below.</li>
   <ul>
@@ -72,6 +78,8 @@ library(NCStats)
     <li>&gamma;<sub>1</sub> is the difference in slopes of scavenger and non-scavenger groups (i.e., scavenger-nonscavenger)</li>
   </ul>
 </ol>
+
+<br>
 
 <ol start="5">
   <li>The models for the "parallel lines test" are below.</li>
@@ -88,6 +96,8 @@ library(NCStats)
 </ul>
 </div>
 
+<br>
+
 <ol start="6">
   <li>The models for the "intercepts test" (assuming parallel lines) are below.</li>
   <ul>
@@ -103,6 +113,7 @@ library(NCStats)
 </ul>
 </div>
 
+<br>
 
 <ol start="7">
   <li>The data for the scavengers appears curved, which violates the assumption of linearity.</li>

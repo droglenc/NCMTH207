@@ -7,7 +7,7 @@ css: "/css/modules.css"
 
 ----
 
-[Collins *et al.* (2005)](http://www.ncbi.nlm.nih.gov/pubmed/16191616) examined trends in body size along environmental gradients for demersal deep-sea fish.  Fish were collected with a bottom-trawl at a variety of locations between September 2000 and October 2002.  Fish were sorted to species immediately and body length (mm) and mass (g) was recorded for each fish.  In one part of their study they examined the relationship between mean log mass within a trawl and the depth of the trawling location.  The authors were interested in determining if there was a difference in this relationship between species categorized as “scavengers” and those categorized as “non-scavengers.”  Use this information to answer the following questions.<button type="button" class="btn btn-light btn-sm btn-space"><a href="../aaa_ExcKeys/KEY_IVR_Trawls.html" target="_blank">Answer</a></button>
+[Collins *et al.* (2005)](http://www.ncbi.nlm.nih.gov/pubmed/16191616) examined trends in body size along environmental gradients for demersal deep-sea fish.  Fish were collected with a bottom-trawl at a variety of locations between September 2000 and October 2002.  Fish were sorted to species immediately and body length (mm) and mass (g) was recorded for each fish.  In one part of their study they examined the relationship between mean log mass within a trawl and the depth of the trawling location.  The authors were interested in determining if there was a difference in this relationship between species categorized as “scavengers” and those categorized as “non-scavengers.” Use this information to answer the following questions. <button type="button" class="btn btn-light btn-sm btn-space"><a href="../aaa_ExcKeys/KEY_IVR_Trawls.html" target="_blank">Answer</a></button>
 
 <div style="text-align:center"><img src="Figs/CE_1.PNG" width="500"></div>
 
@@ -21,7 +21,7 @@ css: "/css/modules.css"
 
 ----
 
-In another part of the Collins *et al.* (2005) study they examined the same relationship but wanted to determine if it differed among three specific species (labelled as ANR, COA, and SYK).
+In another part of the Collins *et al.* (2005) study they examined the same relationship but wanted to determine if it differed among three specific species (labelled as ANR, COA, and SYK). <button type="button" class="btn btn-light btn-sm btn-space"><a href="../aaa_ExcKeys/KEY_IVR_Trawls2.html" target="_blank">Answer</a></button>
 
 <div style="text-align:center"><img src="Figs/CE_2.PNG" width="500"></div>
 
