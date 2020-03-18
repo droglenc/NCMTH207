@@ -1,0 +1,130 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+.
+</li>
+</ul>
+</div>
+<hr />
+<div id="car-horsepower-and-gas-mileage-i" class="section level2">
+<h2>Car Horsepower and Gas Mileage I</h2>
+<ol>
+<li>The results of <code>summary()</code> are in Table 1. Interpretations of the coefficients are below.
+<ul>
+<li>The y-intercept (46.93) is the estimated mean mpg for cars with no horsepower.</li>
+<li>The slope (i.e., the “hp” “Estimate”) says that for every increase in one horsepower the mpg will <em>decrease</em> by 0.22, on average.</li>
+</ul></li>
+<li>Interpretations of the p-values in Table 1 are below.
+<ul>
+<li>The “Intercept” p-value (p&lt;0.00005) shows that the mean mpg for cars with no horsepower is different than zero (a nonsensical significance test).</li>
+<li>The slope (in “hp” row) p-value (p&lt;0.00005) shows that the slope is significantly different from zero, which indicates that there is a significant relationship between the horsepower and mpg of a car.</li>
+</ul></li>
+<li>The coefficient of determination (“multiple r-squared”; 0.78) is the proportion of the total variability in mpg (ignoring horsepower) that is explained away by knowing a horsepower value.</li>
+<li>Confidence intervals for the model coefficients are in Table 2. Interpretations for each confidence interval are below.
+<ul>
+<li>The “intercept” CI says that the mean mpg for cars with no horsepower is between 43.0 and 50.8.</li>
+<li>The slope (i.e., “hp” row) CI says that the mpg will <em>decrease</em> between 0.18 and 0.25 for a one unit increase in horespower.</li>
+</ul></li>
+<li>The ANOVA table is shown in Table 3. How each degrees-of-freedom is calculated is below.
+<ul>
+<li>The regression df (in the “hp” row) df is one less than the number of parameters estimated (2 – intercept and slope).</li>
+<li>The residual df is the number of observations (42) minus the number of parameters estimated (2).</li>
+<li>The total df is not shown on the table but is equal to the number of observations minus 1.</li>
+</ul></li>
+<li>The meanings of each MS in Table 3 are below.
+<ul>
+<li>The MS regression (in the “hp” row) is the variance in mpg that can be explained by knowing the value of horespower.</li>
+<li>The MS residual is the variance in mpg after considering horsepower or the variability of individuals around the best-fit line (i.e., the full model).</li>
+<li>The total MS is not shown in the table but is the variance in mpg or the variability of individuals around the grand mean (i.e., the simple model).</li>
+</ul></li>
+<li>The F test statistic is the ratio of variability in mpg explained by knowing the value of horespower to the variability unexplained even after knowing the value of the horsespower. The F (141.5) and corresponding p-value (p&lt;0.00005) show that the full model including the slope is significantly “better” than the simple model with no slope. Thus, a slope “is needed” and it can be concluded that there is a significant relationship between a car’s horespower and its gas mileage.</li>
+<li>There is a significant relationship as indicated by the very small slope and F-test p-values (p&lt;0.00005).</li>
+<li>The relationship between a car’s mpg and horsepower is shown in Figure 1.</li>
+</ol>
+<p> </p>
+<p>Table 1: Summary of the linear regression of mpg on horsepower.</p>
+<pre><code>            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 46.92659    1.92184   24.42  &lt; 2e-16
+hp          -0.21762    0.01829  -11.90 1.03e-14
+---
+Residual standard error: 3.096 on 40 degrees of freedom
+Multiple R-squared: 0.7796, Adjusted R-squared: 0.7741 
+F-statistic: 141.5 on 1 and 40 DF,  p-value: 1.027e-14 </code></pre>
+<p>Table 2: Confidence intervals for coefficients of the linear regression of mpg on horsepower.</p>
+<pre><code>                 2.5 %    97.5 %
+(Intercept) 43.0424051 50.810780
+hp          -0.2545932 -0.180651</code></pre>
+<p>Table 3: ANOVA table for simple linear regression results of mpg on horsepower.</p>
+<pre><code>          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+hp         1 1356.83 1356.83  141.53 1.027e-14
+Residuals 40  383.48    9.59                  </code></pre>
+<p><img src="KEY_SLR_Gas1_files/figure-html/unnamed-chunk-6-1.png" width="336" /></p>
+<p>Figure 1: Scatterplot of mpg on horsepower for cars with the best-fit line.</p>
+<p>R Appendix.</p>
+<pre class="r"><code>car &lt;- read.csv(&quot;CarMPG.csv&quot;)
+lm1 &lt;- lm(mpg~hp,data=car)
+summary(lm1)
+confint(lm1)
+anova(lm1)
+fitPlot(lm1,xlab=&quot;Horsepower&quot;,ylab=&quot;MPG&quot;)</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

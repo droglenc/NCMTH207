@@ -1,0 +1,105 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Simple Linear Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+When discussing whether there is a relationship between the response and the explanatory variable you must explicitly note that you are referring to the slope p-value. You cannot just refer the reader to the “p-value” in the table from <code>summary()</code> because there are three p-values in that table. Be precise with your language!!
+</li>
+<li>
+Remember to use CI when describing rates of change (i.e., slopes) or predictions; don’t just use the best estimate.
+</li>
+</ul>
+</div>
+<hr />
+<div id="ashland-climate" class="section level2">
+<h2>Ashland Climate</h2>
+<ol>
+<li><p>Yes, there is a signficant relationship between average precipitation and average high temperature for Ashland, WI (p&lt;0.00005; Table 1). Specifically, as the average high temperature increases by 1<sup>o</sup>C the mean average precipitation increases between 2.41 and 3.32 mm Table 2.</p></li>
+<li><p>The y-intercept value suggests that the mean average monthly preciptation for all months with an average high temperature of 0<sup>o</sup>C is between 25.0 and 39.2 mm Table 2.</p></li>
+<li><p>Mean average preciptation for all months with an average high of 10<sup>o</sup>C is between 55.7 and 65.8 mm.</p></li>
+<li><p>The average preciptation for a month with an average high of 10<sup>o</sup>C is between 42.6 and 79.0 mm.</p></li>
+<li><p>The prediction interval for the individual (question 4) is wider than the confidence interval for the mean (question 3) because there is more variability in predicting an individual as compared to a mean. Variability for predicting an individual includes both sampling and natural variability, whereas variability for the mean includes only sampling variability.</p></li>
+<li><p>The relationship between average precipitation and average high temperature is illustrated in Figure 1.</p></li>
+</ol>
+<p> </p>
+<p>Table 1: Summary of the linear regression of proportion of average monthly preciptation on average high temperature for Ashland, WI.</p>
+<pre><code>            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  32.0887     3.1782   10.10 1.46e-06
+ahi           2.8676     0.2053   13.97 6.91e-08
+---
+Residual standard error: 7.842 on 10 degrees of freedom
+Multiple R-squared: 0.9513, Adjusted R-squared: 0.9464 
+F-statistic: 195.2 on 1 and 10 DF,  p-value: 6.913e-08 </code></pre>
+<p>Table 2: Confidence intervals for coefficients of the linear regression of average monthly preciptation on average high temperature for Ashland, WI.</p>
+<pre><code>                2.5 %    97.5 %
+(Intercept) 25.007285 39.170170
+ahi          2.410234  3.324969</code></pre>
+<p><img src="KEY_SLR_Ashland_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
+<p>Figure 1: Scatterplot of average monthly preciptation and average high temperature for Ashland, WI with the best-fit line.</p>
+<p>R Appendix.</p>
+<pre class="r"><code>d2 &lt;- read.csv(&quot;Ashland.csv&quot;)
+lm2 &lt;- lm(aprecip~ahi,data=d2)
+summary(lm2)
+confint(lm2)
+predict(lm2,data.frame(ahi=10),interval=&quot;confidence&quot;)
+predict(lm2,data.frame(ahi=10),interval=&quot;prediction&quot;)
+fitPlot(lm2,xlab=&quot;Average High Temperature (C)&quot;,ylab=&quot;Average Preciptation (mm)&quot;)</code></pre>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
