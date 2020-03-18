@@ -37,7 +37,7 @@ figs(name="residPlot","Histogram of residuals (left) and residual plot (right) f
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>There are no "groups" in simple linear regression; thus, you do not assess "within-" and "among-group" independence here.</li>
+  <li>There are no "groups" in simple linear regression; thus, you do not assess "within-" and "among-group" independence here. Independence is assessed among the individuals.</li>
   <li>The residual plot should be <b>obviously</b> non-linear or heteroscedastic to consider the linearity and homoscedasticity assumptions violated.</li>
 </ul>
 </div>

@@ -42,7 +42,7 @@ figs(name="fitplot","Scatterplot of mpg on horsepower for cars with the best-fit
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>.</li>
+  <li>In the first question, "coefficients" simply refer to the parameter estimates under the "Est" column heading. No other value in the table from `summary()` is considered a coefficient.</li>
 </ul>
 </div>
 

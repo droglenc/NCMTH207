@@ -59,7 +59,7 @@ figs(name="fitplot","Scatterplot of average monthly preciptation and average hig
 
 1. Yes, there is a signficant relationship between average precipitation and average high temperature for Ashland, WI (`r kPvalue(sum2$coefficients["ahi","Pr(>|t|)"],digits=4,latex=FALSE)`; `r tbls("coef",display="cite")`). Specifically, as the average high temperature increases by 1<sup>o</sup>C the mean average precipitation increases between `r formatC(ci2["ahi",1],format="f",digits=2)` and `r formatC(ci2["ahi",2],format="f",digits=2)` mm `r tbls("ci",display="cite")`.
 
-1. The y-intercept value suggests that the mean average monthly preciptation for all months with an average high temperature of 0<sup>o</sup>C is between `r formatC(ci2["(Intercept)",1],format="f",digits=1)` and `r formatC(ci2["(Intercept)",2],format="f",digits=1)` mm `r tbls("ci",display="cite")`.
+1. The y-intercept value suggests that the mean average monthly preciptation for all months with an average high temperature of 0<sup>o</sup>C is between `r formatC(ci2["(Intercept)",1],format="f",digits=1)` and `r formatC(ci2["(Intercept)",2],format="f",digits=1)` mm `r tbls("ci",display="cite")`. It makes sense to interpret this intercept because a temperature of zero is possible.
 
 1. Mean average preciptation for all months with an average high of 10<sup>o</sup>C is between `r formatC(pred1[1,"lwr"],format="f",digits=1)` and `r formatC(pred1[1,"upr"],format="f",digits=1)` mm.
 

@@ -21,9 +21,9 @@ You should begin to use the ANOVA table p-value rather than the summary table sl
 When describing the relationship, use the confidence interval for the slope. Don’t just use the slope.
 </li>
 <li>
-When back-transforming the slope to describe the relationship on the original scale, note that “a change in log(x) of 1” should be back-transformed to “a change in x of e<sup>1</sup>” which is where the 2.72 in answer 4 below came from. Also, note that the back-transformed slope indicates a “multiplicative” change such that the value is Y is multiplied by the back-transformed slope rather than added to.
+I am fine with interpreting the slope on the transformed scale as long as you remember to include language about the logs. However, the slope can be back-transformed to describe the relationship on the original scale. When back-transforming the slope, however, note that “a change in log(x) of 1” should be back-transformed to “a change in x of e<sup>1</sup>” which is where the 2.72 in answer 4 below came from. Also, note that the back-transformed slope indicates a “multiplicative” change such that the value of Y is multiplied by the back-transformed slope rather than added to. This is shown below.
 <li>
-The predictions should use prediction intervals as the original authors were interested in predicting the weight of an individual bear.
+The predictions should use confidence intervals as the original authors were interested in predicting the MEAN peak frequency. Also make sure that you back-transform the result from <code>predict()</code> as it returns the LOG mean peak frequency.
 </li>
 </ul>
 </div>
@@ -31,10 +31,10 @@ The predictions should use prediction intervals as the original authors were int
 <div id="rattlesnake-rattling" class="section level2">
 <h2>Rattlesnake Rattling</h2>
 <ol>
-<li><p>It is difficult to ultimately assess independence with the amount of information given. However, under the assumption that all Rattlesnakes were unique (no snake was measured twice) then it seems that the data are at least roughly independent. There is evidence for a strong non-linearity and heteroscedasticity (Figure 1-Right), the residuals do not appear to be normal (Anderson Darling p=0.0029) and are right-skewed (Figure 1-Left), and significant outliers are evident (outlier test p=0.0012). A transformation will be explored to see if the assumptions can be met.</p></li>
+<li><p>It is difficult to ultimately assess independence with the amount of information given. However, under the assumption that all Rattlesnakes were unique (no snake was measured twice) and they did not come from a single group (i.e., “nest”) of snakes, then it seems that the data are at least roughly independent. There is evidence for a strong non-linearity and heteroscedasticity (Figure 1-Right), the residuals do not appear to be normal (Anderson Darling p=0.0029) and are right-skewed (Figure 1-Left), and significant outliers are evident (outlier test p=0.0012). A transformation will be explored to see if the assumptions can be met.</p></li>
 <li><p>The authors suggested that the relationship would be exponential but logging just the peak frequency of the rattle variable did not result in meeting all of the assumptions. However, when both variables were log-transformed there is no visual evidence for non-linearity (Figure 1-Right), the residuals appear roughly homoscedastic (Figure 1-Right) and approximately normal (Anderson-Darling p=0.7765; Figure 1-Left), and there is no evidence for significant outliers (outlier test p=0.0844). Thus, the assumptions appear to be adequately met on the log-log scale.</p></li>
 <li><p>There is a signficant relationship between log peak frequency of the rattle and log weight of Rattlesnakes (p&lt;0.00005; Table 1; Figure 3).</p></li>
-<li><p>Specifically, as the log weight of the Rattlesnakes increases by one unit, the average log peak frequency of the rattle <em>decreases</em> between 0.099 and 0.188 units. On the original scale, as the weight of the Rattlesnake increases by a multiple of 2.72 cm, the average peak frequency of the rattle changes (decreases) by a multiple of between 0.829 and 0.906.</p></li>
+<li><p>Specifically, as the log weight of the Rattlesnakes increases by one unit, the average log peak frequency of the rattle <em>decreases</em> between 0.099 and 0.188 units.<br>On the original scale, as the weight of the Rattlesnake increases by a multiple of 2.72 cm, the average peak frequency of the rattle changes (decreases) by a multiple of between 0.829 and 0.906.</p></li>
 <li><p>The predicted mean peak frequency for all 454 g Rattlesnake is between 5.93 and 6.59 kg.</p></li>
 </ol>
 <p> </p>
