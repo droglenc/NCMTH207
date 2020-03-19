@@ -91,7 +91,7 @@ NCStats:::iAssumPlot_REGRESS(NCStats:::iTypeoflm(lm1),
 `r figs("residPlot2")`
 
 ```{r echo=FALSE, fig.width=3.5, fig.height=3.5, par1=TRUE}
-fitPlot(lm2,xlab="Log(Length (cm))",ylab="Log(Weight (kg))")
+fitPlot(lm2,xlab="Log(Weight (g))",ylab="Log(Peak Frequency (kHz))")
 ```
 
 `r figs("fitplot")`

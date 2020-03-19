@@ -132,9 +132,17 @@ title: Modules
         <li><a href="../book/One-Way IVR.pdf" target="_blank"><b>Reading</b></a></li>
         <li><b>Class Materials</b></li>
           <ul>
-            <li><a href="IVRegression/PPT.pptx">Slides</a></li>
+            <li><a href="IVRegression/PPT_2020.pptx">Slides</a></li>
+              <ul>
+                <li><a href="https://vimeo.com/398994393">IVR Introduction</a></li>
+                <li><a href="https://vimeo.com/399006140">Indicator and Interaction Variables</a></li>
+                <li><a href="https://vimeo.com/398994239">Constructing Ultimate Full Model and Submodels</a></li>
+                <li><a href="https://vimeo.com/398994330">Parallel Lines and Equal Intercepts Tests</a></li>
+                <li><a href="">TBD</a></li>
+                <li><a href="">TBD</a></li>
+              </ul>
             <li><a href="IVRegression/CE1.html">Class Exercise</a></li>
-            <li>Handouts -- <a href="IVRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="IVRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+            <li>Handouts -- <a href="IVRegression/RHO_2020.pdf"><img src="../img/pdf.png"></a> <a href="IVRegression/RHO_2020.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
           </ul>
         <li><b>Exercises</b></li>
           <ol>
