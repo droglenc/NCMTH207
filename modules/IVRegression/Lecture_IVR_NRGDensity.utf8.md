@@ -47,7 +47,7 @@ This represents an indicator variable regression because the response variable (
 
 <div class="alert alert-info">
 <ul>
-  <li>The concept of an indicator variable was described in [this video](https://vimeo.com/398994393).</li>
+  <li>The concept of an indicator variable regression was described in [this video](https://vimeo.com/398994393).</li>
 </ul>
 </div>
 
@@ -60,7 +60,13 @@ Three indicator variables are required to represent the four species.
 * SB=1 if Striped Bass, =0 otherwise
 * WF=1 if Weakfish, =0 otherwise
 
-With this Bay Anchovy are the reference group. Constructing indicator variables was described in [this video](https://vimeo.com/399006140).
+With this, Bay Anchovy are the reference group.
+
+<div class="alert alert-info">
+<ul>
+  <li>Constructing indicator variables was described in [this video](https://vimeo.com/399006140).</li>
+</ul>
+</div>
 
 The ultimate full model is
 
@@ -79,7 +85,7 @@ The ultimate full model is fit in R with
 > lm1 <- lm(ed2~dw*species,data=FED)
 ```
 
-A quick check of assumptions suggests that they are all met.
+A quick check of assumptions suggests that they are all met as the residual plot shows no curvature or funneling, the Anderson-Darling p-value indicates normality, and the outlier test p-value indicates no outliers.
 
 ```r
 > transChooser(lm1)
@@ -146,7 +152,7 @@ dw:species  3   4.106   1.369   14.904 3.002e-07
 Residuals  56   5.142   0.092                   
 ```
 
-The p-value for the interaction term (p<0.00005; i.e., last p-value in table above) is clearly less than &alpha; indicating that H<sub>0</sub> should be rejected. This results indicates that the slopes for the regressions between energy density and dry weight differ among species and, thus, the relationship between energy density and dry weight differs among the species.
+The p-value for the interaction term (p<0.00005; i.e., last p-value in table above) is clearly less than &alpha; indicating that H<sub>0</sub> should be rejected. This result indicates that the slopes for the regressions between energy density and dry weight differ among species and, thus, the relationship between energy density and dry weight differs among the species.
 
 <div class="alert alert-info">
 <ul>
@@ -165,7 +171,7 @@ The parallel lines test indicates SOME difference in slopes between the species,
 
 <iframe src="https://player.vimeo.com/video/399210843" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
-The results of `compSlopes()` below were shown in the video.
+The `compSlopes()` results below were shown in the video.
 
 ```r
 > compSlopes(lm1)
@@ -198,7 +204,7 @@ Slope Information (using the 'holm' adjustment)
 2    bluefish 0.36250 0.32744 0.39756       0     0
 ```
 
-As discussed in the video, these results show that the slope for Bay Anchovy differs from the slopes for the other three species (top three p-values) but that the slopes for the other three species are not different (bottom three p-values). The first three `diff`erences in the top portion of the results suggest that the slope for Bay Anchovy is less than the slopes for the other three species. The slopes and confidence intervals in the bottom portion of the reslts also suggest that the slope for Bay Anchovy is less than the slope for the other three species.
+As discussed in the video, these results show that the slope for Bay Anchovy differs from the slopes for the other three species (top three p-values) but that the slopes for the other three species are not different (bottom three p-values). The first three `diff`erences in the top portion of the results suggest that the slope for Bay Anchovy is less than the slopes for the other three species. The slopes and confidence intervals in the bottom portion of the results also suggest that the slope for Bay Anchovy is less than the slope for the other three species.
 
 These results are illustrated in the following fitted-line plot.
 
@@ -213,9 +219,9 @@ These results are illustrated in the following fitted-line plot.
 <br>
 
 ## Equal Intercepts (Coincident Lines) Test
-For the three species above that had the same slope it is useful to also determine if they have the same intercepts or not. If they have the same intercepts (and the same slopes) then they can be modeled with the same line.
+For the three species above that had the same slope it is useful to also determine if they have the same intercepts or not. If they have the same intercepts (and the same slopes) then they can be modeled with the same line (or the lines would be called coincident).
 
-To begin this analysis I reduced the data frame to just these three species (by eliminating Bay Anchovy), fit the ultimate full model to just these species, reaffirm that they have the same slopes (i.e., examine the parallel lines test for just these three species), and determine if they have the same intercept or not.
+To begin this analysis I reduced the data frame to just these three species (by eliminating Bay Anchovy), fit the ultimate full model to just these species, reaffirmed that they have the same slopes (i.e., examine the parallel lines test for just these three species), and determined if they have the same intercept or not.
 
 
 ```r
@@ -246,7 +252,7 @@ The interaction (bottom) p-value does reaffirm that these three species have the
 </ul>
 </div>
 
-The p-value for the factor variable (p=0.0003; i.e., the second line) is less than &alpha; and the H<sub>0</sub> for the equal intercepts test is rejected. Thus, there is a difference in intercepts among these three species. The following video explains what we should do to indentify which pairs of intercepts are different.
+The p-value for the factor variable (p=0.0003; i.e., the second line) is less than &alpha; and, thus, the H<sub>0</sub> for the equal intercepts test is rejected. Thus, there is a difference in intercepts among these three species. The following video explains what we should do to indentify which pairs of intercepts are different.
 
 <iframe src="https://player.vimeo.com/video/399283122" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
@@ -283,9 +289,9 @@ Mean ed2 when dw=0
   -2.752451   -2.121053   -2.245976 
 ```
 
-The top of this output shows that the intercept for Bluefish differs from the intercepts for the other two species (top two p-values), which do not differ (bottom p-value). The bottom of this output shows the estimated intercepts for the three species. This bottom output is not particularly interesting because it shows the mean energy density when the percent dry weight is 0 (which is where the `common.cov=0` argument came into play), which is not useful.
+The top of this output shows that the intercept for Bluefish differs from the intercepts for the other two species (top two p-values), which do not differ (bottom p-value). The bottom of this output shows the estimated intercepts for the three species. This bottom output is not particularly interesting because it shows the mean energy density when the percent dry weight is 0 (because `common.cov=0`), which is not useful.
 
-If the `common.cov=0` argument is ignored then `compIntercepts()` will show the mean energy density at the mean percent dry weight, which is more useful. Given that the lines are parallel difference at any value of X will be the same as when X=0. Thus, the top portion of the output did not change.
+If the `common.cov=0` argument is removed then `compIntercepts()` will show the mean energy density at the mean percent dry weight, which is more useful. Given that the lines are parallel, differences at any value of X will be the same as when X=0. Thus, the top portion of the output did not change.
 
 ```r
 > compIntercepts(lm2)
@@ -326,5 +332,9 @@ These results are visualized with the following fitted line plot.
 
 <img src="Lecture_IVR_NRGDensity_files/figure-html/unnamed-chunk-14-1.png" width="336" />
 
+## Relationships Test
+Finally, it should be noted that the top p-values in the ANOVA table when the lines are parallel is the so-called "relationships test." Specifically, it tests whether a relationshiph exists between the response variable and the covariate. It should only examined if the lines are parallel because when the lines are parallel then the relationship between the response variable and the covariate differs depending on the group being examined.
+
+The ANOVA table above clearly shows that there is a relationship between the energy density of the fish and the percent dry weight.
 
 ----
