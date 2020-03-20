@@ -1,0 +1,154 @@
+---
+layout: page
+title: "IVR Lecture"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p><a href="https://www.researchgate.net/profile/Kyle_Hartman/publication/250019672_Estimating_Energy_Density_of_Fish/links/0a85e52e51c7c8df25000000.pdf">Hartman and Brandt (1995)</a>{:target="_blank"} examined the relationship between energy density (J/g wet weight) and percent dry weight for four species – Bay Anchovy (<em>Anchoa mitchilli</em>), Bluefish (<em>Pomatomus saltatrix</em>), Striped Bass (<em>Morone saxatilis</em>), and Weakfish (<em>Cynoscion regalis</em>). Their primary interest was to determine how energy density was related to percent dry weight and if the relationship differed among species. The recorded energy density values were converted from J/g to kJ/g to better represent significant digits.</p>
+<pre class="r"><code>options(show.signif.stars=FALSE)
+library(NCStats)
+FED &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/FishEnergyDensity.csv&quot;)
+FED$ed2 &lt;- FED$ed/1000
+str(FED)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    64 obs. of  4 variables:
+##  $ species: Factor w/ 4 levels &quot;bayanchovy&quot;,&quot;bluefish&quot;,..: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ dw     : int  39 34 34 32 31 30 30 29 26 25 ...
+##  $ ed     : int  10000 9000 8500 8100 7500 7100 7700 6100 5900 5500 ...
+##  $ ed2    : num  10 9 8.5 8.1 7.5 7.1 7.7 6.1 5.9 5.5 ...</code></pre>
+<pre class="r"><code>levels(FED$species)</code></pre>
+<pre><code>## [1] &quot;bayanchovy&quot;  &quot;bluefish&quot;    &quot;stripedbass&quot; &quot;weakfish&quot;</code></pre>
+<p>This represents an indicator variable regression because the response variable (energy density) is quantitative and there is a quantitative explanatory variable (dry weight), which is called a covariate, and a categorical explanatory variable (species).</p>
+<p>The concept of an indicator variable was described in <a href="https://vimeo.com/398994393">this video</a>{:target="_blank"}.</p>
+<p><br></p>
+</div>
+<div id="model-setups" class="section level2">
+<h2>Model Setups</h2>
+<p>Three indicator variables are required to represent the four species.</p>
+<ul>
+<li>BF=1 if Bluefish, =0 otherwise</li>
+<li>SB=1 if Striped Bass, =0 otherwise</li>
+<li>WF=1 if Weakfish, =0 otherwise</li>
+</ul>
+<p>With this Bay Anchovy are the reference group. Constructing indicator variables was described in <a href="https://vimeo.com/399006140">this video</a>{:target="_blank"}.</p>
+<p>The ultimate full model is</p>
+<ul>
+<li>μ<sub>ED</sub> = α + βDW + δ<sub>1</sub>BF + δ<sub>2</sub>SB + δ<sub>3</sub>WF + γ<sub>1</sub>BF×DW + γ<sub>2</sub>SB×DW + γ<sub>3</sub>WF×DW,</li>
+</ul>
+<p>where ED is energy density and DW is dry weight. The corresponding submodels are</p>
+<ul>
+<li>Bay Anchovy: μ<sub>ED</sub> = α + βDW</li>
+<li>Bluefish: μ<sub>ED</sub> = (α+δ<sub>1</sub>) + (β+γ<sub>1</sub>)DW</li>
+<li>Striped Bass: μ<sub>ED</sub> = (α+δ<sub>2</sub>) + (β+γ<sub>2</sub>)DW</li>
+<li>Weakfish: μ<sub>ED</sub> = (α+δ<sub>3</sub>) + (β+γ<sub>3</sub>)DW</li>
+</ul>
+<p>The ultimate full model is fit in R with</p>
+<pre class="r"><code>lm1 &lt;- lm(ed2~dw*species,data=FED)</code></pre>
+<p>The model parameters have the following meanings:</p>
+<ul>
+<li>α is the intercept for Bay Anchovy (reference group).</li>
+<li>β is the slope for Bay Anchovy (reference group).</li>
+<li>δ<sub>1</sub> is the difference in intercept of Bluefish and Bay Anchovy</li>
+<li>δ<sub>2</sub> is the difference in intercept of Striped Bass and Bay Anchovy</li>
+<li>δ<sub>3</sub> is the difference in intercept of Weakfish and Bay Anchovy</li>
+<li>γ<sub>1</sub> is the difference in slopes of Bluefish and Bay Anchovy</li>
+<li>γ<sub>2</sub> is the difference in slopes of Striped Bass and Bay Anchovy</li>
+<li>γ<sub>3</sub> is the difference in slopes of Weakfish and Bay Anchovy</li>
+</ul>
+<p>Estimates (and 95% CIs) of the model parameters are obtained with</p>
+<pre class="r"><code>cbind(Ests=coef(lm1),confint(lm1))</code></pre>
+<pre><code>##                             Ests       2.5 %     97.5 %
+## (Intercept)            0.7027509 -0.42063764  1.8261395
+## dw                     0.1541905  0.10223406  0.2061469
+## speciesbluefish       -4.4402509 -5.96844344 -2.9120584
+## speciesstripedbass    -2.3783415 -3.86110640 -0.8955765
+## speciesweakfish       -2.3960056 -3.85760797 -0.9344031
+## dw:speciesbluefish     0.2083095  0.14562788  0.2709912
+## dw:speciesstripedbass  0.1576205  0.09429774  0.2209434
+## dw:speciesweakfish     0.1496038  0.08320906  0.2159985</code></pre>
+<p>Constructing the ultimate full model and submodels, descriptions of the meanings of the parameters, and the R code were described in <a href="https://vimeo.com/398994239">this video</a>{:target="_blank"}.</p>
+<p><br></p>
+</div>
+<div id="parallel-lines-test" class="section level2">
+<h2>Parallel Lines Test</h2>
+<p>The hypothese (and, thus, models) for the parallel lines test are as follows:</p>
+<ul>
+<li>H<sub>0</sub>: μ<sub>ED</sub> = α + βDW + δ<sub>1</sub>BF + δ<sub>2</sub>SB + δ<sub>3</sub>WF</li>
+<li>H<sub>A</sub>: μ<sub>ED</sub> = α + βDW + δ<sub>1</sub>BF + δ<sub>2</sub>SB + δ<sub>3</sub>WF + γ<sub>1</sub>BF×DW + γ<sub>2</sub>SB×DW + γ<sub>3</sub>WF×DW</li>
+</ul>
+<p>The ANOVA table for conducting the parallel lines test is below</p>
+<pre class="r"><code>anova(lm1)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: ed2
+##            Df  Sum Sq Mean Sq  F value    Pr(&gt;F)
+## dw          1 170.693 170.693 1858.966 &lt; 2.2e-16
+## species     3  10.592   3.531   38.452 1.258e-13
+## dw:species  3   4.106   1.369   14.904 3.002e-07
+## Residuals  56   5.142   0.092</code></pre>
+<p>The p-value for the interaction term (<span class="math inline">\(p&lt;0.00005\)</span>; i.e., last p-value in table above) is clearly less than α indicating that H<sub>0</sub> should be rejected. This results indicates that the slopes for the regressions between energy density and dry weight differ among species and, thus, the relationship between energy density and dry weight differs among the species.</p>
+<div class="alert alert-warning">
+<ul>
+<li>
+To this point was largely review from previous materials
+</li>
+</ul>
+</div>
+<p>The parallel lines test told us that there is SOME difference in slopes between the species, but not specifically which species are different. The following video explains what we should do to identify the specific differences.</p>
+<iframe src="https://player.vimeo.com/video/398994393" width="640" height="483" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+</iframe>
+<p>XXX</p>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -138,7 +138,7 @@ title: Modules
                 <li><a href="https://vimeo.com/399006140">Indicator and Interaction Variables</a></li>
                 <li><a href="https://vimeo.com/398994239">Constructing Ultimate Full Model and Submodels</a></li>
                 <li><a href="https://vimeo.com/398994330">Parallel Lines and Equal Intercepts Tests</a></li>
-                <li><a href="">TBD</a></li>
+                <li><a href="IVRegression/Lecture_IVR_NRGDensity.html">Fish Energy Density Example</a></li>
                 <li><a href="">TBD</a></li>
               </ul>
             <li><a href="IVRegression/CE1.html">Class Exercise</a></li>
