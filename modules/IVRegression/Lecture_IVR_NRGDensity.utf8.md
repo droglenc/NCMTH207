@@ -195,5 +195,115 @@ fitPlot(lm1,xlab="% Dry Weight",ylab="Energy Density (kJ/g)",
 <img src="Lecture_IVR_NRGDensity_files/figure-html/unnamed-chunk-10-1.png" width="336" />
 
 
+<br>
+
+## Equal Intercepts (Coincident Lines) Test
+For the three species above that had the same slope it is useful to also determine if they have the same intercepts or not. If they have the same intercepts (and the same slopes) then they can be modeled with the same line.
+
+To begin this analysis I reduced the data frame to just these three species (by eliminating Bay Anchovy), fit the ultimate full model to just these species, reaffirm that they have the same slopes (i.e., examine the parallel lines test for just these three species), and determine if they have the same intercept or not.
+
+
+```r
+FED1 <- filterD(FED,species!="bayanchovy")
+lm2 <- lm(ed2~dw*species,data=FED1)
+anova(lm2)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: ed2
+##            Df  Sum Sq Mean Sq  F value    Pr(>F)
+## dw          1 104.963 104.963 838.6208 < 2.2e-16
+## species     2   2.584   1.292  10.3210 0.0003476
+## dw:species  2   0.556   0.278   2.2225 0.1247887
+## Residuals  32   4.005   0.125
+```
+
+The interaction (bottom) p-value does reaffirm that these three species have the same slope (and are, thus, parallel). Given that the lines are parallel it is possible then to perform the equal intercepts test. The hypotheses for equal intercepts test are
+
+* H<sub>0</sub>: &mu;<sub>ED</sub> = &alpha; + &beta;DW
+* H<sub>A</sub>: &mu;<sub>ED</sub> = &alpha; + &beta;DW + &delta;<sub>1</sub>SB + &delta;<sub>2</sub>WF
+
+The p-value for the factor variable (p=0.0003; i.e., the second line) is less than &alpha; and the H<sub>0</sub> for the equal intercepts test is rejected. Thus, there is a difference in intercepts among these three species. The following video explains what we should do to indentify which pairs of intercepts are different.
+
+<iframe src="https://player.vimeo.com/video/399283122" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+The results of `compIntercepts()` below were shown in the video.
+
+
+```r
+compIntercepts(lm2,common.cov=0)
+```
+
+```
+## Warning: Removed an interaction term from 'mdl' (i.e., assumed
+##  parallel lines) to test intercepts.
+```
+
+```
+## Tukey HSD on means adjusted assuming parallel lines
+```
+
+```
+##             comparison       diff    95% LCI   95% UCI        p.adj
+## 1 stripedbass-bluefish  0.6313980  0.2911082 0.9716878 0.0001843341
+## 2    weakfish-bluefish  0.5064749  0.1445318 0.8684180 0.0044160914
+## 3 weakfish-stripedbass -0.1249231 -0.4808922 0.2310461 0.6693967026
+```
+
+```
+## 
+## Mean ed2 when dw=0
+```
+
+```
+##    bluefish stripedbass    weakfish 
+##   -2.752451   -2.121053   -2.245976
+```
+
+The top of this output shows that the intercept for Bluefish differs from the intercepts for the other two species (top two p-values), which do not differ (bottom p-value). The bottom of this output shows the estimated intercepts for the three species. This bottom output is not particularly interesting because it shows the mean energy density when the percent dry weight is 0 (which is where the `common.cov=0` argument came into play), which is not useful.
+
+If the `common.cov=0` argument is ignored then `compIntercepts()` will show the mean energy density at the mean percent dry weight, which is more useful. Given that the lines are parallel difference at any value of X will be the same as when X=0. Thus, the top portion of the output did not change.
+
+```r
+compIntercepts(lm2)
+```
+
+```
+## Warning: Removed an interaction term from 'mdl' (i.e., assumed
+##  parallel lines) to test intercepts.
+```
+
+```
+## Tukey HSD on means adjusted assuming parallel lines
+```
+
+```
+##             comparison       diff    95% LCI   95% UCI        p.adj
+## 1 stripedbass-bluefish  0.6313980  0.2911082 0.9716878 0.0001843341
+## 2    weakfish-bluefish  0.5064749  0.1445318 0.8684180 0.0044160914
+## 3 weakfish-stripedbass -0.1249231 -0.4808922 0.2310461 0.6693967026
+```
+
+```
+## 
+## Mean ed2 when dw=26.10526
+```
+
+```
+##    bluefish stripedbass    weakfish 
+##    5.828663    6.460061    6.335138
+```
+
+These results are visualized with the following fitted line plot.
+
+```r
+fitPlot(lm2,xlab="Dry Weight",ylab="Energy Density (kJ/g)",
+        legend="topleft",cex.leg=0.8)
+```
+
+<img src="Lecture_IVR_NRGDensity_files/figure-html/unnamed-chunk-14-1.png" width="336" />
+
 
 ----

@@ -132,5 +132,47 @@ fitPlot(lm1,xlab="% Dry Weight",ylab="Energy Density (kJ/g)",
 ```
 
 
+<br>
+
+## Equal Intercepts (Coincident Lines) Test
+For the three species above that had the same slope it is useful to also determine if they have the same intercepts or not. If they have the same intercepts (and the same slopes) then they can be modeled with the same line.
+
+To begin this analysis I reduced the data frame to just these three species (by eliminating Bay Anchovy), fit the ultimate full model to just these species, reaffirm that they have the same slopes (i.e., examine the parallel lines test for just these three species), and determine if they have the same intercept or not.
+
+```{r}
+FED1 <- filterD(FED,species!="bayanchovy")
+lm2 <- lm(ed2~dw*species,data=FED1)
+anova(lm2)
+```
+
+The interaction (bottom) p-value does reaffirm that these three species have the same slope (and are, thus, parallel). Given that the lines are parallel it is possible then to perform the equal intercepts test. The hypotheses for equal intercepts test are
+
+* H<sub>0</sub>: &mu;<sub>ED</sub> = &alpha; + &beta;DW
+* H<sub>A</sub>: &mu;<sub>ED</sub> = &alpha; + &beta;DW + &delta;<sub>1</sub>SB + &delta;<sub>2</sub>WF
+
+The p-value for the factor variable (`r kPvalue(anova(lm2)[2,5],latex=FALSE)`; i.e., the second line) is less than &alpha; and the H<sub>0</sub> for the equal intercepts test is rejected. Thus, there is a difference in intercepts among these three species. The following video explains what we should do to indentify which pairs of intercepts are different.
+
+<iframe src="https://player.vimeo.com/video/399283122" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+The results of `compIntercepts()` below were shown in the video.
+
+```{r}
+compIntercepts(lm2,common.cov=0)
+```
+
+The top of this output shows that the intercept for Bluefish differs from the intercepts for the other two species (top two p-values), which do not differ (bottom p-value). The bottom of this output shows the estimated intercepts for the three species. This bottom output is not particularly interesting because it shows the mean energy density when the percent dry weight is 0 (which is where the `common.cov=0` argument came into play), which is not useful.
+
+If the `common.cov=0` argument is ignored then `compIntercepts()` will show the mean energy density at the mean percent dry weight, which is more useful. Given that the lines are parallel difference at any value of X will be the same as when X=0. Thus, the top portion of the output did not change.
+```{r}
+compIntercepts(lm2)
+```
+
+These results are visualized with the following fitted line plot.
+```{r echo=-1}
+par(mar=c(3,3,0.5,0.5),mgp=c(1.9,0.5,0),tcl=-0.2)
+fitPlot(lm2,xlab="Dry Weight",ylab="Energy Density (kJ/g)",
+        legend="topleft",cex.leg=0.8)
+```
+
 
 ----
