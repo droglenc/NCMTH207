@@ -1,0 +1,117 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Indicator Variable Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+The indicator variable is named after the “1” group. The reference group will not be explicitly stated in the indicator variables, but is defined when all indicator variables are 0.
+</li>
+<li>
+The variables are entered into the ultimate full model in this order – covariate, all indicator variables, and all interaction variables.
+</li>
+<li>
+The submodel for the “1-day starved” group is found by plugging in 0 for ALL indicatory variables and then simplifying. Essentially everything in the ultimate full model multiplied by an indicator variable is dropped.
+</li>
+<li>
+The submodel for the “4-day starve” group is found by plugging in 1 for FOUR and 0 for the other indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by one of the other indicator variable is dropped. Additionally, the word FOUR is dropped and then the two constants (α and δ<sub>1</sub>) are lumped together and the two items multiplied by the covariate (β and γ<sub>1</sub>) are lumped together. A similar argument is made for the other groups.
+</li>
+</ul>
+</div>
+<hr />
+<div id="food-intake-for-rainbow-trout" class="section level2">
+<h2>Food Intake for Rainbow Trout</h2>
+<ol>
+<li>As there are four groups in this analysis, three indicator variables are needed. As the 1-day starved group is to be the reference group, the indicator ariables will be named after the other three groups. Thus, the three indicator variables are as follows:
+<ul>
+<li>FOUR=1 if in the “4-day starved” group, 0 otherwise</li>
+<li>EIGHT=1 if in the “8-day starved” group, 0 otherwise</li>
+<li>SIXTEEN=1 if in the “16-day starved” group, 0 otherwise</li>
+</ul></li>
+<li>The ultimate full model is μ<sub>STVOL</sub> = α + βINTAKE + δ<sub>1</sub>FOUR + δ<sub>2</sub>EIGHT + δ<sub>3</sub>SIXTEEN + γ<sub>1</sub>FOUR×INTAKE + γ<sub>2</sub>EIGHT×INTAKE + γ<sub>3</sub>SIXTEEN×INTAKE.</li>
+<li>The submodels for all four groups are below.
+<ul>
+<li>1-day starved: μ<sub>STVOL</sub> = α + βINTAKE</li>
+<li>4-days starved: μ<sub>STVOL</sub> = (α+δ<sub>1</sub>) + (β+γ<sub>1</sub>)INTAKE</li>
+<li>8-days starved: μ<sub>STVOL</sub> = (α+δ<sub>2</sub>) + (β+γ<sub>3</sub>)INTAKE</li>
+<li>16-days starved: μ<sub>STVOL</sub> = (α+δ<sub>3</sub>) + (β+γ<sub>3</sub>)INTAKE</li>
+</ul></li>
+<li>Interpretations of the coefficients are below.
+<ul>
+<li>α is the intercept of the 1-day starved (reference) group.</li>
+<li>β is the slope of the 1-day starved (reference) group.</li>
+<li>δ<sub>1</sub> is the difference in intercept of the 1-day and 4-day groups (i.e., 4-day - 1-day).</li>
+<li>δ<sub>2</sub> is the difference in intercept of the 1-day and 8-day groups (i.e., 8-day - 1-day).</li>
+<li>δ<sub>3</sub> is the difference in intercept of the 1-day and 16-day groups (i.e., 16-day - 1-day).</li>
+<li>γ<sub>1</sub> is the difference in slopes of the 1-day and 4-day groups (i.e., 4-day - 1-day).</li>
+<li>γ<sub>2</sub> is the difference in slopes of the 1-day and 8-day groups (i.e., 8-day - 1-day).</li>
+<li>γ<sub>3</sub> is the difference in slopes of the 1-day and 16-day groups (i.e., 16-day - 1-day).</li>
+</ul></li>
+<li>The models for the “parallel lines test” are below.
+<ul>
+<li>H<sub>0</sub>: μ<sub>STVOL</sub> = α + βINTAKE + δ<sub>1</sub>FOUR + δ<sub>2</sub>EIGHT + δ<sub>3</sub>SIXTEEN</li>
+<li>H<sub>A</sub>: μ<sub>STVOL</sub> = α + βINTAKE + δ<sub>1</sub>FOUR + δ<sub>2</sub>EIGHT + δ<sub>3</sub>SIXTEEN + γ<sub>1</sub>FOUR×INTAKE + γ<sub>2</sub>EIGHT×INTAKE + γ<sub>3</sub>SIXTEEN×INTAKE</li>
+</ul></li>
+<li>The models for the “intercepts test” (assuming parallel lines) are below.
+<ul>
+<li>H<sub>0</sub>: μ<sub>STVOL</sub> = α + βINTAKE</li>
+<li>H<sub>A</sub>: μ<sub>STVOL</sub> = α + βINTAKE + δ<sub>1</sub>FOUR + δ<sub>2</sub>EIGHT + δ<sub>3</sub>SIXTEEN</li>
+</ul></li>
+</ol>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

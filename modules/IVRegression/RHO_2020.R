@@ -27,8 +27,8 @@ predictionPlot(lm1,nd,interval="confidence",xlab=xlbl,ylab=ylbl,ylim=c(300,900),
 
 
 FED <- read.csv("FishEnergyDensity.csv")
-str(FED)
 FED$ed2 <- FED$ed/1000
+str(FED)
 
 lm1 <- lm(ed2~dw*species,data=FED)
 
@@ -37,7 +37,10 @@ transChooser(lm1)
 anova(lm1)
 
 compSlopes(lm1)
-fitPlot(lm1,xlab="Dry Weight",ylab="Energy Density (J/kg)",legend="topleft",cex.leg=0.8)
+
+fitPlot(lm1,xlab="Dry Weight",ylab="Energy Density (kJ/g)",legend="topleft",cex.leg=0.8)
+
+
 
 FED1 <- filterD(FED,species!="bayanchovy")
 lm2 <- lm(ed2~dw*species,data=FED1)
