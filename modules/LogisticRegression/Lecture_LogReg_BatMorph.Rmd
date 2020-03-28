@@ -169,9 +169,9 @@ As with linear models, interpretation of the slope is most important. In logisti
 |:-----:|--------------:|------------------:|
 |   1   |        2.6 | 35.51574-11.11193&times;2.6 =  6.624722 |
 |   2   |        3.6 | 35.51574-11.11193&times;3.6 = -4.487208 |
-| DIFF  |        1.0 | -4.487208 - 6.624722 = -11.11193 (&beta;) |
+| DIFF  |        1.0 | -4.487208 - 6.624722 = -11.11193 (see that this is &beta;) |
 
-```{recho=FALSE, fig.height=4.5, fig.width=5}
+```{r echo=FALSE, fig.height=4.5, fig.width=5}
 par(mar=c(3,3,0.5,0.5),mgp=c(1.9,0.5,0),tcl=-0.2)
 xs <- seq(2.6,3.8,length.out=99)
 logodds <- predict(glm1,data.frame(canine=xs))
@@ -200,9 +200,9 @@ The back-transformed slope then means that the odds of being a *semotus* are bet
 |:-----:|--------------:|------------------:|
 |   1   |        2.6 | e<sup>6.624722</sup> = 0.01125202 |
 |   2   |        3.6 | e<sup>-4.487208</sup> = -4.487208 |
-| RATIO  |       --- | $\frac{0.01125202}{753.4947}$ = 0.00001493 (e<sup>&beta;</sup>) |
+| RATIO  |       --- | $\frac{0.01125202}{753.4947}$ = 0.00001493 (see that this is e<sup>&beta;</sup>) |
 
-```{recho=FALSE, fig.height=4.5, fig.width=5}
+```{r echo=FALSE, fig.height=4.5, fig.width=5}
 par(mar=c(3,3,0.5,0.5),mgp=c(1.9,0.5,0),tcl=-0.2)
 plot(odds~xs,data=tmp,type="l",lwd=2,col="red",xlim=c(2.6,3.8),xlab=xlbl,
      ylab="Odds of 'semotus'")
