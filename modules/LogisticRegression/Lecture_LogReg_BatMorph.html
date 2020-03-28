@@ -1,0 +1,99 @@
+---
+layout: page
+title: "Logistic Regression Lecture"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Researchers measured (among other things) the canine tooth height (cm) from two subspecies of Hoary bats (<em>Lasiurus cinereus cinereus</em> and <em>Lasiurus cinereus semotus</em>) found in Hawaii. Their primary question was to determine if canine tooth height differed between the subspecies and, more importantly to them, can canine tooth height be used to predict the subspecies of bat. In this lecture we will focuse on their primary goal – can canine tooth height be used to predict the subspecies of bat. With this,</p>
+<ul>
+<li>What are the response and explanatory variables?<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li>What type of analysis should be used?<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></li>
+</ul>
+<p>The data are loaded into R below. For class demonstration purposes only, the data.frame was reduced to only the two variables of interest. In addition, the <code>canine</code> variable was converted from cm to mm so that the slope would be more usefully interpreted.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Neither of these decisions is required for a logistic regression.</p>
+<pre class="r"><code>&gt; bat &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph.csv&quot;)
+&gt; bat &lt;- bat[,c(&quot;subsp&quot;,&quot;canine&quot;)]  # for class demo purposes only
+&gt; bat$canine &lt;- bat$canine*10      # convert cm to mm
+&gt; xlbl &lt;- &quot;Canine Tooth Height (mm)&quot;
+&gt; ylbl &lt;- &quot;Subspecies Code&quot;
+&gt; str(bat)</code></pre>
+<pre><code>&#39;data.frame&#39;:   118 obs. of  2 variables:
+ $ subsp : Factor w/ 2 levels &quot;cinereus&quot;,&quot;semotus&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+ $ canine: num  3.26 3.08 2.91 2.87 3.01 3.05 2.77 3.13 2.89 2.93 ...</code></pre>
+<div class="alert alert-info">
+<ul>
+<li>
+Note above that <code>cinereus</code> is listed as the first level for <code>subsp</code> and, thus, will be coded with a 0 (and <code>semotus</code>) will be coded with a 1. Recall that R lists levels alphabetically and codes the first item as 0. This ordering is important in the discussion that follows.
+</li>
+</ul>
+</div>
+<p>Before beginning this analysis, I like to examine the data to see if it is going to be reasonable to distinguish between the two subspecies based on canine tooth height. The histograms show some overlap but also considerable separation between the two subspecies. Thus, it may be reasonable to separate the two subspecies for many canine tooth heights.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<pre class="r"><code>&gt; hist(canine~subsp,data=bat,w=0.1,xlim=c(2.6,3.8),ymax=20,xlab=xlbl,nrow=2,ncol=1)</code></pre>
+<p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-4-1.png" width="288" height="3in" /></p>
+<hr />
+</div>
+<div id="footnotes" class="section level2">
+<h2>Footnotes</h2>
+<hr />
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The researchers are trying to predict subspecies so it is the response variable. Thus, canine tooth height is the explanatory variable.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>The subspeces response variable is categorical (and binomial) and the canine tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>The range of canine tooth heights was less than 1cm. Thus, when interpreting the slope a “1cm increase in canine tooth height” was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a “1mm increase in canine tooth height” and would thus would not be a larger increase then the range of the data.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>There are several arguments used in this <code>hist()</code> that you may not have seen before. The <code>w=</code> controls how wide the bins are, <code>ymax=</code> sets a common maximum value for the two y-axes, <code>ncol=</code> sets how many columns the plots will be placed in, and <code>nrow=</code> sets how many rows the plots will be placed in.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
