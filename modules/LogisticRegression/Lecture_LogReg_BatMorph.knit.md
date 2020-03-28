@@ -119,21 +119,88 @@ This implies that as the probabilities (p) get closer and closer to 1 then the o
 
 ### Log Odds or Logits
 
-Initially computing the odds does not seem to be much of an improvement because the plot is still clearly non-linear. However, it now closely resembles an exponential or power function that you are familiar with. Not surpisingly, the plot of the log of the odds looks like the following.
+At first glance, computing the odds does not seem to be much of an improvement because the plot (above) is still clearly non-linear. However, it now closely resembles an exponential function that you are familiar with. How do you think you should transform this?[^logodds]
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-8-1.png" width="480" />
 
 Thus, a linear relationship is observed if the probabilities are transformed to the log odds. Thus, the model that will be fit is
 
-\[ \text{log(odds})} = \text{log(\frac{p}{1-p})} = \alpha+\betaX \]
+\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]
 
 
-## Model Fitting and Parameter Interpretation
+## Model Fitting
+### Using `glm()`
+Fitting this linear model in R requires using `glm()` rather than `lm()`. The first two arguments to `glm()` are the same as what you would use for `lm()` -- i.e., a formulat of the form `response~explanatory` and the data frame given to `data=`. However, to force `glm()` to fit a logistic regression to the log odds transformed probabilities, you must also include `family=binomial`. The result is saved to an object per usual
+
+
+```r
+> glm1 <- glm(subsp~canine,data=bat,family=binomial)
+```
+
+### Parameter Interpretations and Tests
+Parameter estimates are extracted from the object saved with `glm()` with `coef()` and `confint()` as with `lm()`. These results are organized as before -- i.e., values associated with the y-intercept are in the `(Intercept)` row and those associated with the slope are in the row labeled with the quantitative explanatory variable (i.e., `canine` in this example).
+
+
+```r
+> ( cfs <- cbind(Ests=coef(glm1),confint(glm1)) )
+```
+
+```
+Waiting for profiling to be done...
+```
+
+```
+                 Ests     2.5 %   97.5 %
+(Intercept)  35.51574  24.21685 49.66132
+canine      -11.11193 -15.52430 -7.58941
+```
+
+As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a *semotus* decrease by betwen 7.6 and 15.5 for every 1 mm increase in canine tooth height.
+
+
+```r
+> fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),xlab=xlbl,ylab=ylbl)
+```
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-11-1.png" width="336" />
+
+It is very hard to interpret results on the log scale. Thus, the slope is often back-transformed by raising it to the power of e (i.e., e<sup>&beta;</sup>). The back-transformed slope provides a MULTIPLE for how the ODDS change for a one unit increase in the explanatory variale. For examle, all of the parameter estimates are back-transformed as shown below.
+
+```r
+> exp(cfs)
+```
+
+```
+                    Ests        2.5 %       97.5 %
+(Intercept) 2.656377e+15 3.290379e+10 3.695180e+21
+canine      1.493306e-05 1.810853e-07 5.057793e-04
+```
+
+The back-transformed slope then means that the odds of being a *semotus* are between -0.0005058 and -0.0000002 TIMES the odds of being a *cinereus* when the canine tooth height increases by 1 mm. In other words, if the canine tooth height increases by 1 mm then it becomes much more unlikely that the bat is a *semotus*.
 
 
 
+`summary()`.  Thre rest of the output from `summary()` can be ignored. Confidence
 
+```r
+> summary(glm1)
+```
 
+```
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept)   35.516      6.428   5.525 3.29e-08
+canine       -11.112      2.005  -5.543 2.97e-08
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 163.040  on 117  degrees of freedom
+Residual deviance:  97.178  on 116  degrees of freedom
+AIC: 101.18
+
+Number of Fisher Scoring iterations: 5
+```
 
 
 ----
@@ -143,3 +210,4 @@ Thus, a linear relationship is observed if the probabilities are transformed to 
 [^Method]: The subspeces response variable is categorical (and binomial) and the canine tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.
 [^cm2mm]: The range of canine tooth heights was less than 1cm. Thus, when interpreting the slope a "1cm increase in canine tooth height" was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a "1mm increase in canine tooth height" and would thus would not be a larger increase then the range of the data.
 [^hist]: There are several arguments used in this `hist()` that you may not have seen before. The `w=` controls how wide the bins are, `ymax=` sets a common maximum value for the two y-axes, `ncol=` sets how many columns the plots will be placed in, and `nrow=` sets how many rows the plots will be placed in.
+[^logodds]: As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.

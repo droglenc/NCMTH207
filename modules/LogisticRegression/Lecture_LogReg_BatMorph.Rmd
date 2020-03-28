@@ -18,6 +18,7 @@ modHTML("modules/LogisticRegression/Lecture_LogReg_BatMorph")
 ```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
 library(NCStats)
 knitr::opts_chunk$set(prompt=TRUE,comment="")
+options(show.signif.stars=FALSE)
 ```
 
 ----
@@ -135,24 +136,54 @@ plot(odds~xs,data=tmp,xlab=xlbl,ylab="Odds of 'semotus'",pch=3,col="blue",xlim=c
 
 ### Log Odds or Logits
 
-Initially computing the odds does not seem to be much of an improvement because the plot is still clearly non-linear. However, it now closely resembles an exponential or power function that you are familiar with. Not surpisingly, the plot of the log of the odds looks like the following.
+At first glance, computing the odds does not seem to be much of an improvement because the plot (above) is still clearly non-linear. However, it now closely resembles an exponential function that you are familiar with. How do you think you should transform this?[^logodds]
 
 ```{r echo=FALSE,fig.width=5}
 par(mar=c(3.5,3.5,1.1,3.5),mgp=c(1.9,0.5,0),tcl=-0.2)
-plot(logits~xs,data=tmp,xlab=xlbl,ylab="Odds of 'semotus'",pch=3,col="blue",xlim=c(2.6,3.8))
+plot(logits~xs,data=tmp,xlab=xlbl,ylab="log Odds of 'semotus'",pch=3,col="blue",xlim=c(2.6,3.8))
 ```
 
 Thus, a linear relationship is observed if the probabilities are transformed to the log odds. Thus, the model that will be fit is
 
-\[ \text{log(odds})} = \text{log(\frac{p}{1-p})} = \alpha+\betaX \]
+\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]
 
 
-## Model Fitting and Parameter Interpretation
+## Model Fitting
+### Using `glm()`
+Fitting this linear model in R requires using `glm()` rather than `lm()`. The first two arguments to `glm()` are the same as what you would use for `lm()` -- i.e., a formulat of the form `response~explanatory` and the data frame given to `data=`. However, to force `glm()` to fit a logistic regression to the log odds transformed probabilities, you must also include `family=binomial`. The result is saved to an object per usual
+
+```{r}
+glm1 <- glm(subsp~canine,data=bat,family=binomial)
+```
+
+### Parameter Interpretations and Tests
+Parameter estimates are extracted from the object saved with `glm()` with `coef()` and `confint()` as with `lm()`. These results are organized as before -- i.e., values associated with the y-intercept are in the `(Intercept)` row and those associated with the slope are in the row labeled with the quantitative explanatory variable (i.e., `canine` in this example).
+
+```{r}
+( cfs <- cbind(Ests=coef(glm1),confint(glm1)) )
+```
+
+As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a *semotus* decrease by betwen `r formatC(-cfs[2,3],format="f",digits=1)` and `r formatC(-cfs[2,2],format="f",digits=1)` for every 1 mm increase in canine tooth height.
+
+```{r}
+fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),xlab=xlbl,ylab=ylbl)
+```
+
+It is very hard to interpret results on the log scale. Thus, the slope is often back-transformed by raising it to the power of e (i.e., e<sup>&beta;</sup>). The back-transformed slope provides a MULTIPLE for how the ODDS change for a one unit increase in the explanatory variale. For examle, all of the parameter estimates are back-transformed as shown below.
+```{r}
+exp(cfs)
+```
+```{r echo=FALSE}
+cfs1 <- exp(cfs)
+```
+The back-transformed slope then means that the odds of being a *semotus* are between `r formatC(-cfs1[2,3],format="f",digits=7)` and `r formatC(-cfs1[2,2],format="f",digits=7)` TIMES the odds of being a *cinereus* when the canine tooth height increases by 1 mm. In other words, if the canine tooth height increases by 1 mm then it becomes much more unlikely that the bat is a *semotus*.
 
 
 
-
-
+`summary()`.  Thre rest of the output from `summary()` can be ignored. Confidence
+```{r}
+summary(glm1)
+```
 
 
 ----
@@ -162,3 +193,4 @@ Thus, a linear relationship is observed if the probabilities are transformed to 
 [^Method]: The subspeces response variable is categorical (and binomial) and the canine tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.
 [^cm2mm]: The range of canine tooth heights was less than 1cm. Thus, when interpreting the slope a "1cm increase in canine tooth height" was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a "1mm increase in canine tooth height" and would thus would not be a larger increase then the range of the data.
 [^hist]: There are several arguments used in this `hist()` that you may not have seen before. The `w=` controls how wide the bins are, `ymax=` sets a common maximum value for the two y-axes, `ncol=` sets how many columns the plots will be placed in, and `nrow=` sets how many rows the plots will be placed in.
+[^logodds]: As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.

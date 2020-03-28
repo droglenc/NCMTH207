@@ -135,15 +135,53 @@ The proportion of “successes” is very rarely linear. The easiest way to visu
 </div>
 <div id="log-odds-or-logits" class="section level3">
 <h3>Log Odds or Logits</h3>
-<p>Initially computing the odds does not seem to be much of an improvement because the plot is still clearly non-linear. However, it now closely resembles an exponential or power function that you are familiar with. Not surpisingly, the plot of the log of the odds looks like the following.</p>
+<p>At first glance, computing the odds does not seem to be much of an improvement because the plot (above) is still clearly non-linear. However, it now closely resembles an exponential function that you are familiar with. How do you think you should transform this?<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-8-1.png" width="480" /></p>
 <p>Thus, a linear relationship is observed if the probabilities are transformed to the log odds. Thus, the model that will be fit is</p>
-<p><span class="math display">\[ \text{log(odds})} = \text{log(\frac{p}{1-p})} = \alpha+\betaX \]</span></p>
+<p><span class="math display">\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]</span></p>
 </div>
 </div>
-<div id="model-fitting-and-parameter-interpretation" class="section level2">
-<h2>Model Fitting and Parameter Interpretation</h2>
+<div id="model-fitting" class="section level2">
+<h2>Model Fitting</h2>
+<div id="using-glm" class="section level3">
+<h3>Using <code>glm()</code></h3>
+<p>Fitting this linear model in R requires using <code>glm()</code> rather than <code>lm()</code>. The first two arguments to <code>glm()</code> are the same as what you would use for <code>lm()</code> – i.e., a formulat of the form <code>response~explanatory</code> and the data frame given to <code>data=</code>. However, to force <code>glm()</code> to fit a logistic regression to the log odds transformed probabilities, you must also include <code>family=binomial</code>. The result is saved to an object per usual</p>
+<pre class="r"><code>&gt; glm1 &lt;- glm(subsp~canine,data=bat,family=binomial)</code></pre>
+</div>
+<div id="parameter-interpretations-and-tests" class="section level3">
+<h3>Parameter Interpretations and Tests</h3>
+<p>Parameter estimates are extracted from the object saved with <code>glm()</code> with <code>coef()</code> and <code>confint()</code> as with <code>lm()</code>. These results are organized as before – i.e., values associated with the y-intercept are in the <code>(Intercept)</code> row and those associated with the slope are in the row labeled with the quantitative explanatory variable (i.e., <code>canine</code> in this example).</p>
+<pre class="r"><code>&gt; ( cfs &lt;- cbind(Ests=coef(glm1),confint(glm1)) )</code></pre>
+<pre><code>Waiting for profiling to be done...</code></pre>
+<pre><code>                 Ests     2.5 %   97.5 %
+(Intercept)  35.51574  24.21685 49.66132
+canine      -11.11193 -15.52430 -7.58941</code></pre>
+<p>As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a <em>semotus</em> decrease by betwen 7.6 and 15.5 for every 1 mm increase in canine tooth height.</p>
+<pre class="r"><code>&gt; fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),xlab=xlbl,ylab=ylbl)</code></pre>
+<p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-11-1.png" width="336" /></p>
+<p>It is very hard to interpret results on the log scale. Thus, the slope is often back-transformed by raising it to the power of e (i.e., e<sup>β</sup>). The back-transformed slope provides a MULTIPLE for how the ODDS change for a one unit increase in the explanatory variale. For examle, all of the parameter estimates are back-transformed as shown below.</p>
+<pre class="r"><code>&gt; exp(cfs)</code></pre>
+<pre><code>                    Ests        2.5 %       97.5 %
+(Intercept) 2.656377e+15 3.290379e+10 3.695180e+21
+canine      1.493306e-05 1.810853e-07 5.057793e-04</code></pre>
+<p>The back-transformed slope then means that the odds of being a <em>semotus</em> are between -0.0005058 and -0.0000002 TIMES the odds of being a <em>cinereus</em> when the canine tooth height increases by 1 mm. In other words, if the canine tooth height increases by 1 mm then it becomes much more unlikely that the bat is a <em>semotus</em>.</p>
+<p><code>summary()</code>. Thre rest of the output from <code>summary()</code> can be ignored. Confidence</p>
+<pre class="r"><code>&gt; summary(glm1)</code></pre>
+<pre><code>
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)   35.516      6.428   5.525 3.29e-08
+canine       -11.112      2.005  -5.543 2.97e-08
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 163.040  on 117  degrees of freedom
+Residual deviance:  97.178  on 116  degrees of freedom
+AIC: 101.18
+
+Number of Fisher Scoring iterations: 5</code></pre>
 <hr />
+</div>
 </div>
 <div id="footnotes" class="section level2">
 <h2>Footnotes</h2>
@@ -155,6 +193,7 @@ The proportion of “successes” is very rarely linear. The easiest way to visu
 <li id="fn2"><p>The subspeces response variable is categorical (and binomial) and the canine tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 <li id="fn3"><p>The range of canine tooth heights was less than 1cm. Thus, when interpreting the slope a “1cm increase in canine tooth height” was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a “1mm increase in canine tooth height” and would thus would not be a larger increase then the range of the data.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 <li id="fn4"><p>There are several arguments used in this <code>hist()</code> that you may not have seen before. The <code>w=</code> controls how wide the bins are, <code>ymax=</code> sets a common maximum value for the two y-axes, <code>ncol=</code> sets how many columns the plots will be placed in, and <code>nrow=</code> sets how many rows the plots will be placed in.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.<a href="#fnref5" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
