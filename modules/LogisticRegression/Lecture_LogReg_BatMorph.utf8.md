@@ -222,7 +222,9 @@ As usual, `fitPlot()` can be used to visualize these results. For logistic regre
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-16-1.png" width="480" />
 
-## Predictions
+<br>
+
+## Predicting Odds and Probabilities
 The equation for the best-fit line from the results above is
 
 \[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = 35.51574-11.11193\times\text{Height} \]
@@ -273,7 +275,90 @@ Of course, the researchers really would like to predict the probability that a b
 
 \[ \text{p} = \frac{odds}{1+odds} \]
 
-Thus, the probability of "success" can be obtained as the ratio of the odds of "success" to 1 plus the odds of "success". From above the odds that a hoary bat with a canine tooth height of 3.2 mm was the *semotus* subspecies was 2.911758. Using this last equation the probability that a bat with a canine tooth height of 3.2 mm is a *semotus* is $\frac{2.911758}{1+2.911758}$=0.744361. Again, check the fitplot above to make sure that this value makes sense.
+Thus, the probability of "success" can be obtained as the ratio of the odds of "success" to 1 plus the odds of "success". From above the odds that a hoary bat with a canine tooth height of 3.1 mm was the *semotus* subspecies was 2.911758. Using this last equation the probability that a bat with a canine tooth height of 3.1 mm is a *semotus* is $\frac{2.911758}{1+2.911758}$=0.744361. Again, check the fitplot above to make sure that this value makes sense.
+
+These predictions can be made in R with `predict()` very similarly to what you have done before. For example, the log odds computed by hand above may be computed with
+
+```r
+> predict(glm1,data.frame(canine=3.1))
+```
+
+```
+       1 
+1.068746 
+```
+The probability may be computed by including `type="response"` into `predict()`.
+
+```r
+> predict(glm1,data.frame(canine=3.1),type="response")
+```
+
+```
+        1 
+0.7443584 
+```
+The odds cannot be computed directly with `predict()`. If you want to see the odds you must either back-transform from the log(odds) 
+
+```r
+> exp(predict(glm1,data.frame(canine=3.1)))
+```
+
+```
+       1 
+2.911727 
+```
+or compute the odds from the predicted probability
+
+```r
+> p <- predict(glm1,data.frame(canine=3.1),type="response")
+> p/(1-p)
+```
+
+```
+       1 
+2.911727 
+```
+
+<br>
+
+## Predicting X with Certain Probability
+Researchers will also commonly use logistic regression results to predict the value of the quantitive explanatory varialbe (X) that would have a certain probability of "success." For example, researchers may ask what the canine tooth height is such that there is an even probability that the bat would be *semotus* or *cinereus* (i.e., the probability of being *semotus* is 0.5) or the canine tooth height where the probability of being a *semotus* is 0.9. Visually picture choosing a probabiilty on the y-axis, morving horizontally until you hit the best-fit line, and then moving vertically to find the corresponding point on the x-axis.
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-21-1.png" width="480" />
+
+Of course, we want to be exact with this prediction. Again, we can perform some algebra on the equation of the line to solve for X.
+
+* Reminder of the equation of the best-fit line.
+
+\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]
+
+* Subtrace &alpha; from both sides (it will disappear from the right-hand side).
+
+\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha = \beta X \]
+
+* Divide both sides by &beta; (it will disappear from the right-hand side)
+
+\[ \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta} = X \]
+
+* Simply flip the sides of the equals so that it looks like an equation for X.
+
+\[ X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta} \]
+
+Thus, the predicted canine tooth height for a probability of 0.5 is 3.196 as computed with
+
+\[ X = \frac{\text{log}\left(\frac{0.5}{1-0.5}\right) - 35.51574}{-11.11193} \]
+
+Make sure that this makes sense to you from the plot above.
+
+Similarly, the predicted canine tooth height for a probability of 0.9 is 2.998 as computed with
+
+\[ X = \frac{\text{log}\left(\frac{0.9}{1-0.9}\right) - 35.51574}{-11.11193} \]
+
+Again, make sure that this makes sense to you from the plot above.
+
+
+## Confidence Intervals for Predictions
+
 
 ----
 
