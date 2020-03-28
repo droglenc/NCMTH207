@@ -155,11 +155,28 @@ Waiting for profiling to be done...
 canine      -11.11193 -15.52430 -7.58941
 ```
 
-As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a *semotus* decrease by betwen 7.6 and 15.5 for every 1 mm increase in canine tooth height.
+As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a *semotus* decrease by betwen 7.6 and 15.5 for every 1 mm increase in canine tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of canine tooth height.
+
+| point | tooth height (mm) | log odds |
+|:-----:|--------------:|------------------:|
+|   1   |        2.6 | 35.51574-11.11193&times;2.6 =  6.624722 |
+|   2   |        3.6 | 35.51574-11.11193&times;3.6 = -4.487208 |
+| DIFF  |        1.0 | -4.487208 - 6.624722 = -11.11193 |
 
 
 ```r
-> fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),xlab=xlbl,ylab=ylbl)
+> xs <- seq(2.6,3.8,length.out=99)
+> logodds <- predict(glm1,data.frame(canine=xs))
+> tmp <- data.frame(x=xs,logodds=logodds,odds=exp(logodds))
+> plot(logodds~xs,data=tmp,type="l",lwd=2,col="red",xlim=c(2.6,3.8),xlab=xlbl,
++      ylab="log Odds of 'semotus'")
+> xs2 <- c(2.6,3.6)
+> logodds2 <- predict(glm1,data.frame(canine=xs2))
+> points(xs2,logodds2,pch=19)
+> arrows(xs2[1],logodds2[1],xs2[2],logodds2[1],col="blue",length=0.15,angle=20)
+> arrows(xs2[2],logodds2[1],xs2[2],logodds2[2],col="blue",length=0.15,angle=20)
+> text(mean(xs2),logodds2[1],"1 mm increase",pos=1)
+> text(xs2[2],logodds2[1],"    log Odds decrease by 11.11193",pos=4,srt=-90)
 ```
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-11-1.png" width="336" />
@@ -176,8 +193,39 @@ It is very hard to interpret results on the log scale. Thus, the slope is often 
 canine      1.493306e-05 1.810853e-07 5.057793e-04
 ```
 
-The back-transformed slope then means that the odds of being a *semotus* are between -0.0005058 and -0.0000002 TIMES the odds of being a *cinereus* when the canine tooth height increases by 1 mm. In other words, if the canine tooth height increases by 1 mm then it becomes much more unlikely that the bat is a *semotus*.
+The back-transformed slope then means that the odds of being a *semotus* are between 0.0000002 and 0.0005058 TIMES the odds of being a *cinereus* when the canine tooth height increases by 1 mm. In other words, if the canine tooth height increases by 1 mm then it becomes much more unlikely that the bat is a *semotus*. This is visualized below for an increase from 2.6 to 3.6 mm of canine tooth height.
 
+| point | tooth height (mm) | odds |
+|:-----:|--------------:|------------------:|
+|   1   |        2.6 | e<sup>6.624722</sup> = 0.01125202 |
+|   2   |        3.6 | e<sup>-4.487208</sup> = -4.487208 |
+| RATIO  |           | 0.01125202 / 753.4947 = 0.00001493 |
+
+
+```r
+> plot(odds~xs,data=tmp,type="l",lwd=2,col="red",xlim=c(2.6,3.8),xlab=xlbl,
++      ylab="Odds of 'semotus'")
+> odds2 <- exp(predict(glm1,data.frame(canine=xs2)))
+> points(xs2,odds2,pch=19)
+> arrows(xs2[1],odds2[1],xs2[2],odds2[1],col="blue",length=0.15,angle=20)
+> arrows(xs2[2],odds2[1],xs2[2],odds2[2],col="blue",length=0.15,angle=20)
+> text(mean(xs2),odds2[1],"1 mm increase",pos=1)
+> text(xs2[2],odds2[1],"    Odds are 0.00001493 times",pos=4,srt=-90)
+```
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-14-1.png" width="336" />
+
+
+
+
+
+
+
+```r
+> fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),xlab=xlbl,ylab=ylbl)
+```
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-15-1.png" width="336" />
 
 
 `summary()`.  Thre rest of the output from `summary()` can be ignored. Confidence
