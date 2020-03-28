@@ -59,7 +59,7 @@ Before beginning this analysis, I like to examine the data to see if it is going
 
 All models that we have fit in class have been linear (at least after transformation) and represented the mean of the response variable (recall that all models had &mu;<sub>Y</sub>) on the right-hand-side. At first this seems like an issue in this case because the response variable is categorical. How do you compute the mean of "words"?
 
-Recall that behind the scenes R has converted the levels into numbers -- *cinereus* as a 0 and *semotus* as a 1. Now supposed that you have five hoary bats and two are *cinereus* and three are *semotus*. Behind the scenes this is the same as have two 0s and three 1s. The mean of these values is thus 3 (the sum of the 0s and 1s) divided by 5 (total number of numbers) or 0.6. This is ALSO precisely the propotion of *semotus* of those five hoary bats.
+Recall that behind the scenes R has converted the levels into numbers -- *cinereus* as a 0 and *semotus* as a 1. Now suppose that you have five hoary bats and two are *cinereus* and three are *semotus*. Behind the scenes this is the same as having two 0s and three 1s. The mean of these values is thus 3 (the sum of the 0s and 1s) divided by 5 (total number of numbers) or 0.6. This is ALSO precisely the propotion of *semotus* of those five hoary bats (i.e., 3 *semotus* divided by 5 total bats).
 
 <div class="alert alert-info">
 <ul>
@@ -68,15 +68,15 @@ Recall that behind the scenes R has converted the levels into numbers -- *cinere
 </ul>
 </div>
 
-One way to visualize logistic regression data is to plot the categorical response (but as numbers) on the y-axis and the quantitative explanatory on the x-axis (see below). Because of the nature of the categorical data there will be many points plotted on top of each other. Thus, points are plotted with transparency such that darker "points" actually represent more points. In the plot below you can see that canine tooth heights are always *semotus* unel about 3 mm where some *cinereus* appear, but then they are all *cinereus* after about 3.4 mm.
+One way to visualize logistic regression data is to plot the categorical response (but as numbers) and the quantitative explanatory (see below). Because of the nature of the categorical data there will be many points plotted on top of each other. Thus, points are plotted with transparency such that darker "points" actually represent more points. In the plot below you can see that canine tooth heights are always *semotus* until about 3 mm where some *cinereus* appear, but then they are all *cinereus* after about 3.4 mm.
 
-<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-5-1.png" width="336" />
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-5-1.png" width="480" />
 
-This plot can be modified by thinking of narrow vertical "windows" (dashed lines below). The mean of the points within each of these windows is computed and plotted in the center of the window with a "blue plus sign." From above these blue plusses also represent the proportion of *semotus* within each window. In the plot below, the first four "windows" at 100% *semotus*, then the percent that are *semotus* drops until it is 0% in the last three "windows." 
+This plot can be modified by thinking of narrow vertical "windows" (dashed lines below). The mean of the points within each of these windows is computed and plotted in the center of the window with a "blue plus sign." Recall that these means are also the proportions of "successes"; thus, these blue plusses also represent the proportion of *semotus* within each window. In the plot below, the first four "windows" have 100% *semotus*, then the percent that are *semotus* drops until it is 0% in the last three "windows." 
 
-<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-6-1.png" width="336" />
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-6-1.png" width="480" />
 
-What we would like to do with logistic regression is fit a model that best represents the blue plusses (i.e., the means as with other models, but remembering that these are also proportions). However, the blue plusses are clearly not linear. What do we try to do when the data are non-linear?
+Logistic regression tries to fit a model that best represents the blue plusses (i.e., the means as with other models, but remembering that these are also proportions). However, the blue plusses are clearly not linear. What do we try to do when the data are non-linear?
 
 <div class="alert alert-info">
 <ul>
@@ -91,14 +91,44 @@ What we would like to do with logistic regression is fit a model that best repre
 The transformation required to linearize the proportion of "successes" is a two-step process. These two steps are discusses separately below.
 
 ### Odds
+The proportion of successes in the ith "window" of the plot above is p<sub>i</sub>. For example, the fifth "window" had 80% *semotus*, so p<sub>5</sub>=0.80. Similarly the seventh "window" had 40% *semotus* so p<sub>7</sub>=0.40. The p<sub>i</sub> are interpreted as the probability of "success." For example, the probability of being a *semotus* in the fourth window is 0.8. Thus, 1-p<sub>i</sub> is the probability of "failure." For example, the probability of being a *cinereus* (i.e., not a *semotus*) in the fourth "window" is 1-p<sub>4</sub>=1-0.8=0.2.
 
+The odds of a "success" are defined as $\frac{\text{p}_i}{1-\text{p}_i}$. This is interpreted as the ratio of the probability of success to the probability of failure. If the odds are 1 then there are equal probabilities of "success" and "failure" (think of flipping a fair coin). If the odds are greater than 1 then there is a higher probability of a "success" and if the odds are less than 1 then there is a higher probability of a "failure."
 
+In the examples above, the odds for the fourth "window" are $\frac{0.8}{1-0.8}$=$\frac{0.8}{0.2}$=4. Thus, in the fourth "window" it is four times more likely for the bat to be a *semotus* than a *cinereus*. In contrast, the odds for the seventh "window" are $\frac{0.4}{1-0.6}$=$\frac{0.4}{0.6}$=0.67. Thus, in the seventh "window" it is 0.67 times as likely or the bat to be a *semotus* than a *cinereus*. It is often easier when describing odds that are less than 1 to flip them. For example, the inverse of the odds for the seventh "window" is $\frac{1}{0.67}$=1.5, which can be interpreted as the probability that the bat is a *cinereus* (i.e., a failure) is 1.5 times the probability that it is a *semotus*.
+
+Odds are useful in general, but they are particularly useful here as the first step in transforming the non-linear probabilities. Consider the following table.
+
+| p<sub>i</sub> | odds <sub>i</sub> |
+|--------------:|------------------:|
+|        0.9999 |              9999 |
+|         0.999 |               999 |
+|          0.99 |                99 |
+|           0.9 |                 9 |
+|          0.75 |                 3 |
+|           0.5 |                 1 |
+|          0.25 |            0.3333 |
+|           0.1 |            0.1111 |
+|          0.01 |            0.0101 |
+|         0.001 |            0.0010 |
+|        0.0001 |            0.0001 |
+
+This implies that as the probabilities (p) get closer and closer to 1 then the odds go to positive infinity. On the other sise, as the probabilities get closer and closer to 0 then the odds also get closer and closer to zero. Thus, for example, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below.
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-7-1.png" width="480" />
 
 ### Log Odds or Logits
 
+Initially computing the odds does not seem to be much of an improvement because the plot is still clearly non-linear. However, it now closely resembles an exponential or power function that you are familiar with. Not surpisingly, the plot of the log of the odds looks like the following.
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-8-1.png" width="480" />
+
+Thus, a linear relationship is observed if the probabilities are transformed to the log odds. Thus, the model that will be fit is
+
+\[ \text{log(odds})} = \text{log(\frac{p}{1-p})} = \alpha+\betaX \]
 
 
-## Model Fitting
+## Model Fitting and Parameter Interpretation
 
 
 
