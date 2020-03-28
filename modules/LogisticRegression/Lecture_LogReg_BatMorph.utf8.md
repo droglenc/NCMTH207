@@ -1,0 +1,65 @@
+---
+title: "Logistic Regression Lecture"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+
+
+
+----
+
+## Background
+Researchers measured (among other things) the canine tooth height (cm) from two subspecies of Hoary bats (*Lasiurus cinereus cinereus* and *Lasiurus cinereus semotus*) found in Hawaii. Their primary question was to determine if canine tooth height differed between the subspecies and, more importantly to them, can canine tooth height be used to predict the subspecies of bat. In this lecture we will focuse on their primary goal -- can canine tooth height be used to predict the subspecies of bat. With this, 
+
+* What are the response and explanatory variables?[^Vars]
+* What type of analysis should be used?[^Method]
+
+The data are loaded into R below. For class demonstration purposes only, the data.frame was reduced to only the two variables of interest. In addition, the `canine` variable was converted from cm to mm so that the slope would be more usefully interpreted.[^cm2mm] Neither of these decisions is required for a logistic regression.
+
+```r
+> bat <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph.csv")
+> bat <- bat[,c("subsp","canine")]  # for class demo purposes only
+> bat$canine <- bat$canine*10      # convert cm to mm
+> xlbl <- "Canine Tooth Height (mm)"
+> ylbl <- "Subspecies Code"
+> str(bat)
+```
+
+```
+'data.frame':	118 obs. of  2 variables:
+ $ subsp : Factor w/ 2 levels "cinereus","semotus": 2 2 2 2 2 2 2 2 2 2 ...
+ $ canine: num  3.26 3.08 2.91 2.87 3.01 3.05 2.77 3.13 2.89 2.93 ...
+```
+
+<div class="alert alert-info">
+<ul>
+  <li>Note above that `cinereus` is listed as the first level for `subsp` and, thus, will be coded with a 0 (and `semotus`) will be coded with a 1. Recall that R lists levels alphabetically and codes the first item as 0. This ordering is important in the discussion that follows.</li>
+</ul>
+</div>
+
+Before beginning this analysis, I like to examine the data to see if it is going to be reasonable to distinguish between the two subspecies based on canine tooth height. The histograms show some overlap but also considerable separation between the two subspecies. Thus, it may be reasonable to separate the two subspecies for many canine tooth heights.[^hist]
+
+
+```r
+> hist(canine~subsp,data=bat,w=0.1,xlim=c(2.6,3.8),ymax=20,xlab=xlbl,nrow=2,ncol=1)
+```
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-4-1.png" width="288" height="3in" />
+
+
+----
+
+## Footnotes
+[^Vars]: The researchers are trying to predict subspecies so it is the response variable. Thus, canine tooth height is the explanatory variable.
+[^Method]: The subspeces response variable is categorical (and binomial) and the canine tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.
+[^cm2mm]: The range of canine tooth heights was less than 1cm. Thus, when interpreting the slope a "1cm increase in canine tooth height" was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a "1mm increase in canine tooth height" and would thus would not be a larger increase then the range of the data.
+[^hist]: There are several arguments used in this `hist()` that you may not have seen before. The `w=` controls how wide the bins are, `ymax=` sets a common maximum value for the two y-axes, `ncol=` sets how many columns the plots will be placed in, and `nrow=` sets how many rows the plots will be placed in.
+
+----
