@@ -51,7 +51,7 @@ Before beginning this analysis, I like to examine the data to see if it is going
 > hist(canine~subsp,data=bat,w=0.1,xlim=c(2.6,3.8),ymax=20,xlab=xlbl,nrow=2,ncol=1)
 ```
 
-<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-4-1.png" width="288" height="3in" />
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-4-1.png" width="288" />
 
 
 ----
@@ -61,5 +61,3 @@ Before beginning this analysis, I like to examine the data to see if it is going
 [^Method]: The subspeces response variable is categorical (and binomial) and the canine tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.
 [^cm2mm]: The range of canine tooth heights was less than 1cm. Thus, when interpreting the slope a "1cm increase in canine tooth height" was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a "1mm increase in canine tooth height" and would thus would not be a larger increase then the range of the data.
 [^hist]: There are several arguments used in this `hist()` that you may not have seen before. The `w=` controls how wide the bins are, `ymax=` sets a common maximum value for the two y-axes, `ncol=` sets how many columns the plots will be placed in, and `nrow=` sets how many rows the plots will be placed in.
-
-----
