@@ -22,12 +22,12 @@ Researchers measured (among other things) the canine tooth height (cm) from two 
 * What are the response and explanatory variables?[^Vars]
 * What type of analysis should be used?[^Method]
 
-The data are loaded into R below. For class demonstration purposes only, the data.frame was reduced to only the two variables of interest. In addition, the `canine` variable was converted from cm to mm so that the slope would be more usefully interpreted.[^cm2mm] Neither of these decisions is required for a logistic regression.
+The data are loaded into R below. For class demonstration purposes only, the data.frame was reduced to only the two variables of interest. In addition, `canine` was converted from cm to mm so that the slope would be more meaningful.[^cm2mm] Neither of these decisions is required for a logistic regression.
 
 ```r
 > bat <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph.csv")
-> bat <- bat[,c("subsp","canine")]  # for class demo purposes only
-> bat$canine <- bat$canine*10      # convert cm to mm
+> bat <- bat[,c("subsp","canine")]   # for class demo purposes only
+> bat$canine <- bat$canine*10        # convert cm to mm
 > xlbl <- "Canine Tooth Height (mm)"
 > ylbl <- "Subspecies Code"
 > str(bat)
@@ -41,11 +41,11 @@ The data are loaded into R below. For class demonstration purposes only, the dat
 
 <div class="alert alert-info">
 <ul>
-  <li>Note above that `cinereus` is listed as the first level for `subsp` and, thus, will be coded with a 0 (and `semotus`) will be coded with a 1. Recall that R lists levels alphabetically and codes the first item as 0. This ordering is important in the discussion that follows.</li>
+  <li>Recall that R lists levels alphabetically and codes the first item as 0. Note then that `cinereus` is listed as the first level for `subsp` and, thus, will be coded with a 0 (and `semotus` will be coded with a 1). This ordering is important below as R will consider the '1' group to be a "success."</li>
 </ul>
 </div>
 
-Before beginning this analysis, I like to examine the data to see if it is going to be reasonable to distinguish between the two subspecies based on tooth height. The histograms show some overlap but also considerable separation between the two subspecies. Thus, it may be reasonable to separate the two subspecies for many tooth heights.[^hist]
+Before beginning this analysis, I like to examine the data to see if it is reasonable to distinguish between the two subspecies based on tooth height. The histograms below show some overlap but also considerable separation between the subspecies. Thus, it may be reasonable to separate the two subspecies for many tooth heights.[^hist]
 
 
 ```r
@@ -58,9 +58,9 @@ Before beginning this analysis, I like to examine the data to see if it is going
 
 ## Preparing to Model
 
-All models that we have fit in class have been linear (at least after transformation) and represented the mean of the response variable (recall that all models had &mu;<sub>Y</sub>) on the right-hand-side. At first this seems like an issue in this case because the response variable is categorical. How do you compute the mean of "words"?
+All models that we have fit in class have been linear (at least after transformation) and represented the mean of the response variable (recall that all models had &mu;<sub>Y</sub>) on the right-hand-side. This may seem like an issue here because the response variable is categorical. How do you compute the mean of "words"? However, recall that behind the scenes R has converted the levels into numbers -- *cinereus* as a 0 and *semotus* as a 1.
 
-Recall that behind the scenes R has converted the levels into numbers -- *cinereus* as a 0 and *semotus* as a 1. Now suppose that you have five hoary bats and two are *cinereus* and three are *semotus*. Behind the scenes this is the same as having two 0s and three 1s. The mean of these values is thus 3 (the sum of the 0s and 1s) divided by 5 (total number of numbers) or 0.6. This is ALSO precisely the propotion of *semotus* of those five hoary bats (i.e., 3 *semotus* divided by 5 total bats).
+Suppose that you have five hoary bats and two are *cinereus* and three are *semotus*. Behind the scenes this is the same as having two 0s and three 1s. The mean of these values is thus $\frac{3  \text{ (sum of 0s and 1s)}}{5 \text{ (total number of bats)}}$=0.6. This is ALSO precisely the propotion of those five hoary bats that are *semotus* (i.e., $\frac{3  \text{ (number of semotus)}}{5 \text{ (total number of bats)}}$=0.6).
 
 <div class="alert alert-info">
 <ul>
@@ -69,20 +69,21 @@ Recall that behind the scenes R has converted the levels into numbers -- *cinere
 </ul>
 </div>
 
-One way to visualize logistic regression data is to plot the categorical response (but as numbers) and the quantitative explanatory (see below). Because of the nature of the categorical data there will be many points plotted on top of each other. Thus, points are plotted with transparency such that darker "points" actually represent more points. In the plot below you can see that tooth heights are always *semotus* until about 3 mm where some *cinereus* appear, but then they are all *cinereus* after about 3.4 mm.
+One way to visualize logistic regression data is to plot the categorical response (but as their numberic codes) and the quantitative explanatory (see below). Because of the nature of categorical data there will be many points plotted on top of each other. Thus, points are plotted with transparency such that darker "points" actually represent more points. In the plot below you can see that tooth heights are always *semotus* until about 3.0 mm, there is a mix of *semotus* and *cinereus* between 3.0 and about 3.4 mm (where there are more bats), and there is all *cinereus* after about 3.4 mm.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-5-1.png" width="480" />
 
-This plot can be modified by thinking of narrow vertical "windows" (dashed lines below). The mean of the points within each of these windows is computed and plotted in the center of the window with a "blue plus sign." Recall that these means are also the proportions of "successes"; thus, these blue plusses also represent the proportion of *semotus* within each window. In the plot below, the first four "windows" have 100% *semotus*, then the percent that are *semotus* drops until it is 0% in the last three "windows." 
+This plot can be modified by thinking of narrow vertical "windows" (dashed lines below). The mean of the points within each of these windows is computed and plotted in the center of the window with a "blue plus sign." Recall that these means are also the proportions of "successes"; thus, these blue plusses also represent the proportion of *semotus* within each window. In the plot below, the first four "windows" up to about 3.0 mm have 100% *semotus*, the percent of *semotus* declines in windows between about 3.0 and 3.4 mm, and the percent that are *semotus* is 0% in the "windows" larger than 3.4 mm. 
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-6-1.png" width="480" />
 
-Logistic regression tries to fit a model that best represents the blue plusses (i.e., the means as with other models, but remembering that these are also proportions). However, the blue plusses are clearly not linear. What do we try to do when the data are non-linear?
+Logistic regression tries to fit a model that best represents the blue plusses (i.e., the means as with other models, but remembering that these are also proportions of a categorical variable in logistic regression). However, the blue plusses are clearly not linear. What do we try to do when the data are non-linear?
 
 <div class="alert alert-info">
 <ul>
   <li>A logistic regression model attempts to fit a linear model to the proportion of "successes" and the quantitative explanatory variable.</li>
-  <li>The proportion of "successes" is very rarely linear. The easiest way to visualize this is to realize that the propotion of "successes" must be between 0 and 1. Thus, the line must bend at the edges to vertically stay between 0 and 1.</li>
+  <li>The proportion of "successes" is very rarely linear. The easiest way to think about this is to realize that the propotion of "successes" must be between 0 and 1. Thus, the line must bend at the edges to vertically stay between 0 and 1.</li>
+  <li>The bending at the edges to stay between 0 and 1 leads to an "S-curve" that is often referred to as a "logistic curve" (think of population growth from your ecology class), which is where the name "logistic regresion" comes from.</li>
 </ul>
 </div>
 
@@ -378,13 +379,13 @@ As partially seen below the function returns parameter estimates for each of 999
 
 ```
      (Intercept)    canine
-[1,]    33.29017 -10.50073
-[2,]    36.23160 -11.42526
-[3,]    45.86164 -14.31917
-[4,]    44.58180 -14.18128
-[5,]    40.62489 -12.63575
+[1,]    38.69584 -12.24948
+[2,]    22.93043  -7.18007
+[3,]    37.15659 -11.78555
+[4,]    32.35343 -10.06312
+[5,]    41.10844 -12.89136
 ```
-A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -15.79 and -8.28.
+A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.12 and -8.30.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" />
 
@@ -411,7 +412,7 @@ More importantly, the `alpha=` and `beta=` arguments can be the intercept and sl
 ```
 
 ```
-[1] 0.6765360 0.6928104 0.8133924 0.6501775 0.8106210
+[1] 0.6731446 0.6619987 0.6505339 0.7609275 0.7586392
 ```
 The `quantile()` function is used to identify the values in the 2.5% and 97.5% positions.
 
@@ -421,9 +422,9 @@ The `quantile()` function is used to identify the values in the 2.5% and 97.5% p
 
 ```
      2.5%     97.5% 
-0.6338620 0.8606364 
+0.6402856 0.8619182 
 ```
-Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.86.
+Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.64 and 0.86.
 
 ### CIs for Predicted Values of X for a Given Probability
 The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.[^predX]
@@ -440,7 +441,7 @@ This is then applied to the boostrapped samples.
 
 ```
     2.5%    97.5% 
-3.150714 3.239037 
+3.150909 3.242525 
 ```
 Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a *semotus* or a *cinereus* is between 3.15 and 3.24.
 
