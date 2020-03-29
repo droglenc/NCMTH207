@@ -90,34 +90,39 @@ Logistic regression tries to fit a model that best represents the blue plusses (
 <br>
 
 ## Transformations
-The transformation required to linearize the proportion of "successes" is a two-step process. These two steps are discusses separately below.
+The transformation required to linearize the proportion of "successes" is a two-step process, which are discussed separately below.
 
 ### Odds
-The proportion of successes in the ith "window" of the plot above is p<sub>i</sub>. For example, the fifth "window" had 80% *semotus*, so p<sub>5</sub>=0.80. Similarly the seventh "window" had 40% *semotus* so p<sub>7</sub>=0.40. The p<sub>i</sub> are interpreted as the probability of "success." For example, the probability of being a *semotus* in the fourth window is 0.8. Thus, 1-p<sub>i</sub> is the probability of "failure." For example, the probability of being a *cinereus* (i.e., not a *semotus*) in the fourth "window" is 1-p<sub>4</sub>=1-0.8=0.2.
+The proportion of successes in a "window" of the plot above is labelled as p. For example, the fifth "window" had 80% *semotus*, so p for that "window" is 0.80. Similarly the seventh "window" had 40% *semotus* so p for that window is 0.40. These p are interpreted as the **probability** of "success" in logistic regression. For example, the probability of being a *semotus* in the fourth window is 0.8. Thus, 1-p is the probability of "failure." For example, the probability of being a *cinereus* (i.e., not a *semotus*) in the fourth "window" is 1-0.8=0.2.
 
-The odds of a "success" are defined as $\frac{\text{p}_i}{1-\text{p}_i}$. This is interpreted as the ratio of the probability of success to the probability of failure. If the odds are 1 then there are equal probabilities of "success" and "failure" (think of flipping a fair coin). If the odds are greater than 1 then there is a higher probability of a "success" and if the odds are less than 1 then there is a higher probability of a "failure."
+The odds of a "success" are defined as $\frac{\text{p}}{1-\text{p}}$. This is interpreted as the ratio of the probability of success to the probability of failure. If the odds are 1 then there are equal probabilities of "success" and "failure" (think of flipping a fair coin). If the odds are greater than 1 then there is a higher probability of a "success" and if the odds are less than 1 then there is a higher probability of a "failure."
 
-In the examples above, the odds for the fourth "window" are $\frac{0.8}{1-0.8}$=$\frac{0.8}{0.2}$=4. Thus, in the fourth "window" it is four times more likely for the bat to be a *semotus* than a *cinereus*. In contrast, the odds for the seventh "window" are $\frac{0.4}{1-0.6}$=$\frac{0.4}{0.6}$=0.67. Thus, in the seventh "window" it is 0.67 times as likely or the bat to be a *semotus* than a *cinereus*. It is often easier when describing odds that are less than 1 to flip them. For example, the inverse of the odds for the seventh "window" is $\frac{1}{0.67}$=1.5, which can be interpreted as the probability that the bat is a *cinereus* (i.e., a failure) is 1.5 times the probability that it is a *semotus*.
+In the examples above, the odds for the fourth "window" are $\frac{0.8}{1-0.8}$=$\frac{0.8}{0.2}$=4. Thus, in the fourth "window" it is four times more likely for the bat to be a *semotus* than a *cinereus*. In contrast, the odds for the seventh "window" are $\frac{0.4}{1-0.6}$=$\frac{0.4}{0.6}$=0.67. Thus, in the seventh "window" it is 0.67 times as likely for the bat to be a *semotus* than a *cinereus*. It is often easier when describing odds that are less than 1 to flip them. For example, the inverse of the odds for the seventh "window" is $\frac{1}{0.67}$=1.5, which can be interpreted as the probability that the bat is a *cinereus* (i.e., a failure) is 1.5 times the probability that it is a *semotus*.
 
 Odds are useful in general, but they are particularly useful here as the first step in transforming the non-linear probabilities. Consider the following table.
 
-| p<sub>i</sub> | odds <sub>i</sub> |
-|--------------:|------------------:|
-|        0.9999 |              9999 |
-|         0.999 |               999 |
-|          0.99 |                99 |
-|           0.9 |                 9 |
-|          0.75 |                 3 |
-|           0.5 |                 1 |
-|          0.25 |            0.3333 |
-|           0.1 |            0.1111 |
-|          0.01 |            0.0101 |
-|         0.001 |            0.0010 |
-|        0.0001 |            0.0001 |
+|  p   | 0.999 | 0.99 | 0.9 | 0.75 | 0.5 |  0.25  |   0.1  |  0.01  |  0.001 |
+|------|-------|------|-----|------|-----|--------|--------|--------|--------|
+| odds | 999   |  99  |  9  |   3  | 1   | 0.3333 | 0.1111 | 0.0101 | 0.0010 |
 
-This implies that as the probabilities (p) get closer and closer to 1 then the odds go to positive infinity. On the other sise, as the probabilities get closer and closer to 0 then the odds also get closer and closer to zero. Thus, for example, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below.
+This implies that as the probabilities (p) get closer and closer to 1 then the odds go to positive infinity. On the other sise, as the probabilities get closer and closer to 0 then the odds also get closer and closer to zero.
+
+<div class="alert alert-info">
+<ul>
+  <li>Probabilities are constrained to be between 0 and 1.</li>
+  <li>Odds are constrained to be between 0 and infinity.</li>
+</ul>
+</div>
+
+Thus, for example, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-7-1.png" width="480" />
+
+<div class="alert alert-info">
+<ul>
+  <li>Transforming the probabilities to odds changes the curve from logistic to exponential.</li>
+</ul>
+</div>
 
 ### Log Odds or Logits
 
@@ -378,14 +383,14 @@ Consider using 'Boot' from the 'car' package instead.
 As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).
 
 ```
-     (Intercept)    canine
-[1,]    38.69584 -12.24948
-[2,]    22.93043  -7.18007
-[3,]    37.15659 -11.78555
-[4,]    32.35343 -10.06312
-[5,]    41.10844 -12.89136
+     (Intercept)     canine
+[1,]    29.45588  -9.329211
+[2,]    32.41864 -10.195339
+[3,]    33.78087 -10.716928
+[4,]    32.94644 -10.256773
+[5,]    32.77413 -10.205644
 ```
-A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.12 and -8.30.
+A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.04 and -8.51.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" />
 
@@ -412,7 +417,7 @@ More importantly, the `alpha=` and `beta=` arguments can be the intercept and sl
 ```
 
 ```
-[1] 0.6731446 0.6619987 0.6505339 0.7609275 0.7586392
+[1] 0.6307238 0.6927684 0.6360802 0.7595914 0.7570606
 ```
 The `quantile()` function is used to identify the values in the 2.5% and 97.5% positions.
 
@@ -422,9 +427,9 @@ The `quantile()` function is used to identify the values in the 2.5% and 97.5% p
 
 ```
      2.5%     97.5% 
-0.6402856 0.8619182 
+0.6304972 0.8536024 
 ```
-Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.64 and 0.86.
+Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.85.
 
 ### CIs for Predicted Values of X for a Given Probability
 The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.[^predX]
@@ -441,7 +446,7 @@ This is then applied to the boostrapped samples.
 
 ```
     2.5%    97.5% 
-3.150909 3.242525 
+3.151950 3.242729 
 ```
 Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a *semotus* or a *cinereus* is between 3.15 and 3.24.
 

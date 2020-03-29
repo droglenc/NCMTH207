@@ -72,69 +72,63 @@ The bending at the edges to stay between 0 and 1 leads to an “S-curve” that 
 </div>
 <div id="transformations" class="section level2">
 <h2>Transformations</h2>
-<p>The transformation required to linearize the proportion of “successes” is a two-step process. These two steps are discusses separately below.</p>
+<p>The transformation required to linearize the proportion of “successes” is a two-step process, which are discussed separately below.</p>
 <div id="odds" class="section level3">
 <h3>Odds</h3>
-<p>The proportion of successes in the ith “window” of the plot above is p<sub>i</sub>. For example, the fifth “window” had 80% <em>semotus</em>, so p<sub>5</sub>=0.80. Similarly the seventh “window” had 40% <em>semotus</em> so p<sub>7</sub>=0.40. The p<sub>i</sub> are interpreted as the probability of “success.” For example, the probability of being a <em>semotus</em> in the fourth window is 0.8. Thus, 1-p<sub>i</sub> is the probability of “failure.” For example, the probability of being a <em>cinereus</em> (i.e., not a <em>semotus</em>) in the fourth “window” is 1-p<sub>4</sub>=1-0.8=0.2.</p>
-<p>The odds of a “success” are defined as <span class="math inline">\(\frac{\text{p}_i}{1-\text{p}_i}\)</span>. This is interpreted as the ratio of the probability of success to the probability of failure. If the odds are 1 then there are equal probabilities of “success” and “failure” (think of flipping a fair coin). If the odds are greater than 1 then there is a higher probability of a “success” and if the odds are less than 1 then there is a higher probability of a “failure.”</p>
-<p>In the examples above, the odds for the fourth “window” are <span class="math inline">\(\frac{0.8}{1-0.8}\)</span>=<span class="math inline">\(\frac{0.8}{0.2}\)</span>=4. Thus, in the fourth “window” it is four times more likely for the bat to be a <em>semotus</em> than a <em>cinereus</em>. In contrast, the odds for the seventh “window” are <span class="math inline">\(\frac{0.4}{1-0.6}\)</span>=<span class="math inline">\(\frac{0.4}{0.6}\)</span>=0.67. Thus, in the seventh “window” it is 0.67 times as likely or the bat to be a <em>semotus</em> than a <em>cinereus</em>. It is often easier when describing odds that are less than 1 to flip them. For example, the inverse of the odds for the seventh “window” is <span class="math inline">\(\frac{1}{0.67}\)</span>=1.5, which can be interpreted as the probability that the bat is a <em>cinereus</em> (i.e., a failure) is 1.5 times the probability that it is a <em>semotus</em>.</p>
+<p>The proportion of successes in a “window” of the plot above is labelled as p. For example, the fifth “window” had 80% <em>semotus</em>, so p for that “window” is 0.80. Similarly the seventh “window” had 40% <em>semotus</em> so p for that window is 0.40. These p are interpreted as the <strong>probability</strong> of “success” in logistic regression. For example, the probability of being a <em>semotus</em> in the fourth window is 0.8. Thus, 1-p is the probability of “failure.” For example, the probability of being a <em>cinereus</em> (i.e., not a <em>semotus</em>) in the fourth “window” is 1-0.8=0.2.</p>
+<p>The odds of a “success” are defined as <span class="math inline">\(\frac{\text{p}}{1-\text{p}}\)</span>. This is interpreted as the ratio of the probability of success to the probability of failure. If the odds are 1 then there are equal probabilities of “success” and “failure” (think of flipping a fair coin). If the odds are greater than 1 then there is a higher probability of a “success” and if the odds are less than 1 then there is a higher probability of a “failure.”</p>
+<p>In the examples above, the odds for the fourth “window” are <span class="math inline">\(\frac{0.8}{1-0.8}\)</span>=<span class="math inline">\(\frac{0.8}{0.2}\)</span>=4. Thus, in the fourth “window” it is four times more likely for the bat to be a <em>semotus</em> than a <em>cinereus</em>. In contrast, the odds for the seventh “window” are <span class="math inline">\(\frac{0.4}{1-0.6}\)</span>=<span class="math inline">\(\frac{0.4}{0.6}\)</span>=0.67. Thus, in the seventh “window” it is 0.67 times as likely for the bat to be a <em>semotus</em> than a <em>cinereus</em>. It is often easier when describing odds that are less than 1 to flip them. For example, the inverse of the odds for the seventh “window” is <span class="math inline">\(\frac{1}{0.67}\)</span>=1.5, which can be interpreted as the probability that the bat is a <em>cinereus</em> (i.e., a failure) is 1.5 times the probability that it is a <em>semotus</em>.</p>
 <p>Odds are useful in general, but they are particularly useful here as the first step in transforming the non-linear probabilities. Consider the following table.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="right">p<sub>i</sub></th>
-<th align="right">odds <sub>i</sub></th>
+<th>p</th>
+<th>0.999</th>
+<th>0.99</th>
+<th>0.9</th>
+<th>0.75</th>
+<th>0.5</th>
+<th>0.25</th>
+<th>0.1</th>
+<th>0.01</th>
+<th>0.001</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.9999</td>
-<td align="right">9999</td>
-</tr>
-<tr class="even">
-<td align="right">0.999</td>
-<td align="right">999</td>
-</tr>
-<tr class="odd">
-<td align="right">0.99</td>
-<td align="right">99</td>
-</tr>
-<tr class="even">
-<td align="right">0.9</td>
-<td align="right">9</td>
-</tr>
-<tr class="odd">
-<td align="right">0.75</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="right">0.5</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">0.25</td>
-<td align="right">0.3333</td>
-</tr>
-<tr class="even">
-<td align="right">0.1</td>
-<td align="right">0.1111</td>
-</tr>
-<tr class="odd">
-<td align="right">0.01</td>
-<td align="right">0.0101</td>
-</tr>
-<tr class="even">
-<td align="right">0.001</td>
-<td align="right">0.0010</td>
-</tr>
-<tr class="odd">
-<td align="right">0.0001</td>
-<td align="right">0.0001</td>
+<td>odds</td>
+<td>999</td>
+<td>99</td>
+<td>9</td>
+<td>3</td>
+<td>1</td>
+<td>0.3333</td>
+<td>0.1111</td>
+<td>0.0101</td>
+<td>0.0010</td>
 </tr>
 </tbody>
 </table>
-<p>This implies that as the probabilities (p) get closer and closer to 1 then the odds go to positive infinity. On the other sise, as the probabilities get closer and closer to 0 then the odds also get closer and closer to zero. Thus, for example, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below.</p>
+<p>This implies that as the probabilities (p) get closer and closer to 1 then the odds go to positive infinity. On the other sise, as the probabilities get closer and closer to 0 then the odds also get closer and closer to zero.</p>
+<div class="alert alert-info">
+<ul>
+<li>
+Probabilities are constrained to be between 0 and 1.
+</li>
+<li>
+Odds are constrained to be between 0 and infinity.
+</li>
+</ul>
+</div>
+<p>Thus, for example, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below.</p>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-7-1.png" width="480" /></p>
+<div class="alert alert-info">
+<ul>
+<li>
+Transforming the probabilities to odds changes the curve from logistic to exponential.
+</li>
+</ul>
+</div>
 </div>
 <div id="log-odds-or-logits" class="section level3">
 <h3>Log Odds or Logits</h3>
@@ -346,13 +340,13 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <pre><code>&#39;bootCase&#39; is provided here only for backward compatibility.
 Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pre>
 <p>As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).</p>
-<pre><code>     (Intercept)    canine
-[1,]    38.69584 -12.24948
-[2,]    22.93043  -7.18007
-[3,]    37.15659 -11.78555
-[4,]    32.35343 -10.06312
-[5,]    41.10844 -12.89136</code></pre>
-<p>A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.12 and -8.30.</p>
+<pre><code>     (Intercept)     canine
+[1,]    29.45588  -9.329211
+[2,]    32.41864 -10.195339
+[3,]    33.78087 -10.716928
+[4,]    32.94644 -10.256773
+[5,]    32.77413 -10.205644</code></pre>
+<p>A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.04 and -8.51.</p>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" /></p>
 </div>
 <div id="cis-for-predicted-probabilities" class="section level3">
@@ -365,12 +359,12 @@ Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pr
 <p>More importantly, the <code>alpha=</code> and <code>beta=</code> arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of <em>semotus</em> if the tooth height is 3.1 for each bootstrapped sample (the first five are shown below).</p>
 <pre class="r"><code>&gt; p31 &lt;- predProb(3.1,bc1[,1],bc1[,2])
 &gt; p31[1:5]</code></pre>
-<pre><code>[1] 0.6731446 0.6619987 0.6505339 0.7609275 0.7586392</code></pre>
+<pre><code>[1] 0.6307238 0.6927684 0.6360802 0.7595914 0.7570606</code></pre>
 <p>The <code>quantile()</code> function is used to identify the values in the 2.5% and 97.5% positions.</p>
 <pre class="r"><code>&gt; quantile(p31,c(0.025,0.975))</code></pre>
 <pre><code>     2.5%     97.5% 
-0.6402856 0.8619182 </code></pre>
-<p>Thus, one is 95% confident that the probability of being a <em>semotus</em> for a hoary bat with a 3.1 mm tooth height is between 0.64 and 0.86.</p>
+0.6304972 0.8536024 </code></pre>
+<p>Thus, one is 95% confident that the probability of being a <em>semotus</em> for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.85.</p>
 </div>
 <div id="cis-for-predicted-values-of-x-for-a-given-probability" class="section level3">
 <h3>CIs for Predicted Values of X for a Given Probability</h3>
@@ -380,7 +374,7 @@ Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pr
 <pre class="r"><code>&gt; x05 &lt;- predX(0.5,bc1[,1],bc1[,2])
 &gt; quantile(x05,c(0.025,0.975))</code></pre>
 <pre><code>    2.5%    97.5% 
-3.150909 3.242525 </code></pre>
+3.151950 3.242729 </code></pre>
 <p>Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a <em>semotus</em> or a <em>cinereus</em> is between 3.15 and 3.24.</p>
 <hr />
 </div>
