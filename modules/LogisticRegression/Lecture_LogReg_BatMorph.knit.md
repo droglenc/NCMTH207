@@ -105,7 +105,7 @@ Odds are useful in general, but they are particularly useful here as the first s
 |------|-------|------|-----|------|-----|--------|--------|--------|--------|
 | odds | 999   |  99  |  9  |   3  | 1   | 0.3333 | 0.1111 | 0.0101 | 0.0010 |
 
-This implies that as the probabilities (p) get closer and closer to 1 then the odds go to positive infinity. On the other sise, as the probabilities get closer and closer to 0 then the odds also get closer and closer to zero.
+This implies that as the probabilities (p) get closer and closer to 1 then the odds go to positive infinity. On the other side, as the probabilities get closer and closer to 0 then the odds also get closer and closer to 0.
 
 <div class="alert alert-info">
 <ul>
@@ -114,7 +114,7 @@ This implies that as the probabilities (p) get closer and closer to 1 then the o
 </ul>
 </div>
 
-Thus, for example, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below.
+Thus, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below. At first glance, computing the odds does not seem to be much of an improvement because the plot of odds is still non-linear. However, it now resembles an exponential function that you are familiar with. How should you transform this?[^logodds]
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-7-1.png" width="480" />
 
@@ -124,20 +124,21 @@ Thus, for example, converting the probabilities that were the blue plusses in th
 </ul>
 </div>
 
-### Log Odds or Logits
 
-At first glance, computing the odds does not seem to be much of an improvement because the plot (above) is still clearly non-linear. However, it now closely resembles an exponential function that you are familiar with. How do you think you should transform this?[^logodds]
+### Log Odds or Logits
+The exponential form of the odds versus X function can be linearized by transforming the odds to log(odds), as shown below.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-8-1.png" width="480" />
 
-Thus, a linear relationship is observed if the probabilities are transformed to the log odds. Thus, the model that will be fit is
+Thus, a linear relationship is observed if the probabilities are transformed to log(odds). Thus, the model that will be fit in logistic regression is
 
 \[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]
 
+<br>
 
 ## Model Fitting
 ### Using `glm()`
-Fitting this linear model in R requires using `glm()` rather than `lm()`. The first two arguments to `glm()` are the same as what you would use for `lm()` -- i.e., a formulat of the form `response~explanatory` and the data frame given to `data=`. However, to force `glm()` to fit a logistic regression to the log odds transformed probabilities, you must also include `family=binomial`. The result is saved to an object per usual
+Fitting this linear model in R requires using `glm()` rather than `lm()`.[^glm] The first two arguments to `glm()` are the same as what you would use for `lm()` -- i.e., a formulat of the form `response~explanatory` and the data frame given to `data=`. However, to force `glm()` to fit a logistic regression to the log odds transformed probabilities, you must also include `family=binomial`. The result is saved to an object per usual
 
 
 ```r
@@ -384,13 +385,13 @@ As partially seen below the function returns parameter estimates for each of 999
 
 ```
      (Intercept)     canine
-[1,]    29.45588  -9.329211
-[2,]    32.41864 -10.195339
-[3,]    33.78087 -10.716928
-[4,]    32.94644 -10.256773
-[5,]    32.77413 -10.205644
+[1,]    30.15203  -9.543695
+[2,]    41.95590 -13.045571
+[3,]    30.27672  -9.529023
+[4,]    32.09506 -10.075771
+[5,]    38.44998 -12.039085
 ```
-A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.04 and -8.51.
+A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.26 and -8.28.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" />
 
@@ -417,7 +418,7 @@ More importantly, the `alpha=` and `beta=` arguments can be the intercept and sl
 ```
 
 ```
-[1] 0.6307238 0.6927684 0.6360802 0.7595914 0.7570606
+[1] 0.6379719 0.8197467 0.6762842 0.7026961 0.7556208
 ```
 The `quantile()` function is used to identify the values in the 2.5% and 97.5% positions.
 
@@ -427,9 +428,9 @@ The `quantile()` function is used to identify the values in the 2.5% and 97.5% p
 
 ```
      2.5%     97.5% 
-0.6304972 0.8536024 
+0.6336027 0.8618285 
 ```
-Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.85.
+Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.86.
 
 ### CIs for Predicted Values of X for a Given Probability
 The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.[^predX]
@@ -446,7 +447,7 @@ This is then applied to the boostrapped samples.
 
 ```
     2.5%    97.5% 
-3.151950 3.242729 
+3.151665 3.239863 
 ```
 Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a *semotus* or a *cinereus* is between 3.15 and 3.24.
 
@@ -459,6 +460,7 @@ Thus, one is 95% confident that the tooth height where it is an equal probabilit
 [^cm2mm]: The range of tooth heights was less than 1cm. Thus, when interpreting the slope a "1cm increase in tooth height" was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a "1mm increase in tooth height" and would thus would not be a larger increase then the range of the data.
 [^hist]: There are several arguments used in this `hist()` that you may not have seen before. The `w=` controls how wide the bins are, `ymax=` sets a common maximum value for the two y-axes, `ncol=` sets how many columns the plots will be placed in, and `nrow=` sets how many rows the plots will be placed in.
 [^logodds]: As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.
+[^glm]: The "g" in `glm()` stands for "general." If the `family=` argument is not used then `glm()` behaves exactly like `lm()`; i.e., all other models we have fit in this class could have also been fit with `glm()`. However, `glm()` is more general in the sense that it allows for residuals that are not normally distributed, which is the case with logistic regression.
 [^fitplot31]: When I look at the fitplot it appears to me that the probability that the bat is a *semotus* is around 0.7 or 0.75. If the probability was 0.75 then the odds would be $\frac{0.75}{0.25}$=3, which is pretty close to the calculated 2.91 value.
 [^predprob]: This function is simply an R version of $\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}$.
 [^predX]: This function is simply and R version of $X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}$.
