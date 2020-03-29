@@ -118,6 +118,9 @@ Probabilities are constrained to be between 0 and 1.
 <li>
 Odds are constrained to be between 0 and infinity.
 </li>
+<li>
+Odds and probabilities are not synonyms, though they are sometimes used as such in everyday language (but not by statisticians). The probability of something happening explains how likely that that something is going to happen. The probability that a woman walks through of 0.6 means that 60% of the people that walk through the door will be women. The odds that a woman walks through the of 1.5 means that there will be 1.5 women walking through the door for every man that walks through the door. Odds and probabilities are related, but not equal.
+</li>
 </ul>
 </div>
 <p>Thus, converting the probabilities that were the blue plusses in the plot above to odds produces the plot below. At first glance, computing the odds does not seem to be much of an improvement because the plot of odds is still non-linear. However, it now resembles an exponential function that you are familiar with. How should you transform this?<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
@@ -143,24 +146,24 @@ Transforming the probabilities to odds changes the curve from logistic to expone
 <h2>Model Fitting</h2>
 <div id="using-glm" class="section level3">
 <h3>Using <code>glm()</code></h3>
-<p>Fitting this linear model in R requires using <code>glm()</code> rather than <code>lm()</code>.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> The first two arguments to <code>glm()</code> are the same as what you would use for <code>lm()</code> – i.e., a formulat of the form <code>response~explanatory</code> and the data frame given to <code>data=</code>. However, to force <code>glm()</code> to fit a logistic regression to the log odds transformed probabilities, you must also include <code>family=binomial</code>. The result is saved to an object per usual</p>
+<p>Fitting this linear model in R requires using <code>glm()</code> rather than <code>lm()</code>.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> The first two arguments to <code>glm()</code> are the same as for <code>lm()</code> – i.e., a formula of the form <code>response~explanatory</code> and the data frame in <code>data=</code>. However, to force <code>glm()</code> to fit a logistic regression to the log(odds)-transformed probabilities, you must also include <code>family=binomial</code>.</p>
 <pre class="r"><code>&gt; glm1 &lt;- glm(subsp~canine,data=bat,family=binomial)</code></pre>
 </div>
 <div id="interpreting-the-slope-and-back-transformed-slope" class="section level3">
 <h3>Interpreting the Slope and Back-Transformed Slope</h3>
-<p>Parameter estimates are extracted from the object saved with <code>glm()</code> with <code>coef()</code> and <code>confint()</code> as with <code>lm()</code>. These results are organized as before – i.e., values associated with the y-intercept are in the <code>(Intercept)</code> row and those associated with the slope are in the row labeled with the quantitative explanatory variable (i.e., <code>canine</code> in this example).</p>
+<p>Parameter estimates are extracted from the <code>glm()</code> object with <code>coef()</code> and <code>confint()</code> as with <code>lm()</code>. These results are organized as before – i.e., values associated with the y-intercept are in the <code>(Intercept)</code> row and those associated with the slope are in the row labeled with the quantitative explanatory variable (i.e., <code>canine</code> in this example).</p>
 <pre class="r"><code>&gt; ( cfs &lt;- cbind(Ests=coef(glm1),confint(glm1)) )</code></pre>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>                 Ests     2.5 %   97.5 %
 (Intercept)  35.51574  24.21685 49.66132
 canine      -11.11193 -15.52430 -7.58941</code></pre>
-<p>As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a <em>semotus</em> decrease by betwen 7.6 and 15.5 for every 1 mm increase in tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.</p>
+<p>As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a <em>semotus</em> decrease by betwen 7.6 and 15.5 for every 1 mm increase in tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <table>
 <thead>
 <tr class="header">
 <th align="center">point</th>
 <th align="right">tooth height</th>
-<th align="right">log odds</th>
+<th align="right">log (odds)</th>
 </tr>
 </thead>
 <tbody>
@@ -182,12 +185,12 @@ canine      -11.11193 -15.52430 -7.58941</code></pre>
 </tbody>
 </table>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-11-1.png" width="432" /></p>
-<p>It is very hard to interpret results on the log scale. Thus, the slope is often back-transformed by raising it to the power of e (i.e., e<sup>β</sup>). The back-transformed slope provides a MULTIPLE for how the ODDS change for a one unit increase in the explanatory variale. For examle, all of the parameter estimates are back-transformed as shown below.</p>
+<p>It is hard to interpret results on the log scale. Thus, the slope is often back-transformed with e<sup>β</sup>. The back-transformed slope provides a MULTIPLE for how the ODDS change for a one unit increase in the explanatory variale. For examle, all of the parameter estimates are back-transformed as shown below.</p>
 <pre class="r"><code>&gt; exp(cfs)</code></pre>
 <pre><code>                    Ests        2.5 %       97.5 %
 (Intercept) 2.656377e+15 3.290379e+10 3.695180e+21
 canine      1.493306e-05 1.810853e-07 5.057793e-04</code></pre>
-<p>The back-transformed slope then means that the odds of being a <em>semotus</em> are between 0.0000002 and 0.0005058 TIMES the odds of being a <em>cinereus</em> when the tooth height increases by 1 mm. In other words, if the tooth height increases by 1 mm then it becomes much more unlikely that the bat is a <em>semotus</em>. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.</p>
+<p>The back-transformed slope is that the odds of being a <em>semotus</em> are between 0.0000002 and 0.0005058 TIMES the odds of being a <em>cinereus</em> when the tooth height increases by 1 mm. In other words, if the tooth height increases by 1 mm then it becomes much more unlikely that the bat is a <em>cinereus</em>. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.</p>
 <table>
 <thead>
 <tr class="header">
@@ -218,7 +221,7 @@ canine      1.493306e-05 1.810853e-07 5.057793e-04</code></pre>
 </div>
 <div id="default-tests-for-the-slope" class="section level3">
 <h3>Default Tests for the Slope</h3>
-<p>As before, the parameter estimates, standard errors, and a test that the parameter is equal to zero (or not) is obtained by submitting the saved <code>glm()</code> object to <code>summary()</code>. As above, information for the slope is in the row labeled with the quantitative explanatory variable. The rest of the output from <code>summary()</code> can be ignored.</p>
+<p>As before, the parameter estimates, standard errors, and a test that the parameter is equal to zero (or not) is obtained by submitting the <code>glm()</code> object to <code>summary()</code>. As above, information for the slope is in the row labeled with the quantitative explanatory variable. The output from <code>summary()</code> below the “Coefficients:” table can be ignored.</p>
 <pre class="r"><code>&gt; summary(glm1)</code></pre>
 <pre><code>
 Coefficients:
@@ -233,10 +236,11 @@ Residual deviance:  97.178  on 116  degrees of freedom
 AIC: 101.18
 
 Number of Fisher Scoring iterations: 5</code></pre>
-<p>The p-value for the slope is a test of whether it is equal to 0 or not. This tests if relationship (i.e., slope) between the LOG ODDS and the explanatory variable exists. If the H<sub>0</sub> is not rejected then no relationship exists and the the blue plusses in the previous plots would all be equal and represented by a flat line.</p>
-<p>As usual, <code>fitPlot()</code> can be used to visualize these results. For logistic regression is it best to include <code>breaks=</code> which will control the number of vertical “windows” at which the proportion of successes is calculated (and, thus, how many blue plusses are included on the plot). Finding an appropriate number is usually a matter of trial-and-error, but usually around 10 is a good idea. In the code below <code>seq()</code> is used to create a sequence of numbers that starts at 2.6, ends at 3.8, and goes in steps of 0.1 (i.e., 2.6, 2.7, 2.8, …, 3.7, 3.8).</p>
+<p>The p-value for the slope is a test of whether the slope is equal to 0 or not. This tests if a relationship (i.e., a non-zero slope) between the LOG ODDS and the explanatory variable exists. If the H<sub>0</sub> is not rejected then no relationship exists and the blue plusses in the previous plots would all be equal and represented by a flat line.</p>
+<p>As usual, <code>fitPlot()</code> can be used to visualize these results. For logistic regression it is best to also include <code>breaks=</code>, which controls the number of vertical “windows” at which the proportion of successes is calculated (and, thus, how many blue plusses are included on the plot). Finding an appropriate number is usually a matter of trial-and-error, but usually around 10 is a good idea. In the code below <code>seq()</code> is used to create a sequence of numbers that starts at 2.6, ends at 3.8, and goes in steps of 0.1 (i.e., 2.6, 2.7, 2.8, …, 3.7, 3.8).</p>
 <pre class="r"><code>&gt; fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),xlab=xlbl,ylab=ylbl)</code></pre>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-16-1.png" width="480" /></p>
+<p>There are no formal assumptions to check with logistic regresion. Rather, we simply assess whether the fitted model (red line above) fits the proportion of “successes” (the blue plusses) reasonably closely. The fit displayed above is quite good.</p>
 <p><br></p>
 </div>
 </div>
@@ -244,44 +248,40 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <h2>Predicting Odds and Probabilities</h2>
 <p>The equation for the best-fit line from the results above is</p>
 <p><span class="math display">\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = 35.51574-11.11193\times\text{Height} \]</span></p>
-<p>Thus, plugging a value of X into this equation results in a predicted value of the <strong>log(odds)</strong>. For example, the predicted log(odds) for a tooth height of 3.1 mm is</p>
+<p>Thus, plugging a value for tooth height into this equation results in a predicted value of the <strong>log(odds)</strong>. For example, the predicted log(odds) for a tooth height of 3.1 mm is</p>
 <p><span class="math display">\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = 35.51574-11.11193\times3.1 = 1.068757 \]</span></p>
-<p>Of course, interpreting the log(odds) is nearly impossible. This value can be back-transformed to the odds by raising to the power of e.</p>
+<p>Of course, interpreting the log(odds) is difficult; thus, this value can be back-transformed to the odds by raising to the power of e.</p>
 <p><span class="math display">\[ e^{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right)} = e^{1.068757} \]</span> <span class="math display">\[ \frac{\text{p}}{1-\text{p}} = 2.911758 \]</span></p>
-<p>Thus, a hoary bat with a 3.1 mm caninte tooth is 2.91 times more likely to be a <em>semotus</em> than a <em>cinereus</em> subspecies. Look at the fitplot above to convince yourself that this is true.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
-<p>Of course, the researchers really would like to predict the probability that a bat is a <em>semotus</em>. Algebra on the best-fit line equation will result in an equation for this. Steps for the algebra are below</p>
+<p>Thus, a hoary bat with a 3.1 mm tooth height is 2.91 times more likely to be a <em>semotus</em> than a <em>cinereus</em> subspecies. Look at the fitplot above to convince yourself that this calculation makes sense.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<p>Of course, the researchers really would like to predict the probability that a bat is a <em>semotus</em>. Algebra on the best-fit line equation will result in an equation for making this prediction. Steps for the algebra are below</p>
 <ul>
 <li>Reminder of the equation of the best-fit line.</li>
 </ul>
 <p><span class="math display">\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]</span></p>
 <ul>
-<li>Both side of the equation are raised to the power of e (i.e., back-transforming the log).</li>
+<li>Both side of the equation set to the power of e (i.e., back-transforming the log). Note that this is an equation for predicting the odds as was demonstrated above; thus, substitute odds for <span class="math inline">\(e^{\alpha+\beta X}\)</span>.</li>
 </ul>
-<p><span class="math display">\[ e^{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right)} = e^{\alpha+\beta X} \]</span> <span class="math display">\[ \frac{\text{p}}{1-\text{p}} = e^{\alpha+\beta X} \]</span></p>
+<p><span class="math display">\[ e^{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right)} = e^{\alpha+\beta X} \]</span> <span class="math display">\[ \frac{\text{p}}{1-\text{p}} = e^{\alpha+\beta X} \]</span> <span class="math display">\[ \frac{\text{p}}{1-\text{p}} = \text{odds} \]</span></p>
 <ul>
-<li>Multiply both sides by 1-p (which removes it from the right-hand-side).</li>
+<li>Multiply both sides by 1-p (which removes 1-p from the right-hand-side).</li>
 </ul>
-<p><span class="math display">\[ \text{p} = e^{\alpha+\beta X}(1-\text{p}) \]</span></p>
+<p><span class="math display">\[ \text{p} = \text{odds}(1-\text{p}) \]</span></p>
 <ul>
-<li>Distribute the <span class="math inline">\(e^{\alpha+\beta X}\)</span> through the 1-p</li>
+<li>Distribute the odds through the 1-p.</li>
 </ul>
-<p><span class="math display">\[ \text{p} = e^{\alpha+\beta X}-\text{p}e^{\alpha+\beta X} \]</span></p>
+<p><span class="math display">\[ \text{p} = \text{odds}-\text{p}\text{odds} \]</span></p>
 <ul>
-<li>Add <span class="math inline">\(\text{p}e^{\alpha+\beta X}\)</span> to both sides (which removes it from the left-hand-side)</li>
+<li>Add <span class="math inline">\(\text{p}\text{odds}\)</span> to both sides (which removes <span class="math inline">\(\text{p}\text{odds}\)</span> from the left-hand-side).</li>
 </ul>
-<p><span class="math display">\[ \text{p}+\text{p}e^{\alpha+\beta X} = e^{\alpha+\beta X} \]</span></p>
+<p><span class="math display">\[ \text{p}+\text{p}\text{odds} = \text{odds} \]</span></p>
 <ul>
-<li>Factor out the p</li>
+<li>Factor out the p.</li>
 </ul>
-<p><span class="math display">\[ \text{p}(1+e^{\alpha+\beta X}) = e^{\alpha+\beta X} \]</span></p>
+<p><span class="math display">\[ \text{p}(1+\text{odds}) = \text{odds} \]</span></p>
 <ul>
-<li>Divide both sides by <span class="math inline">\(1+e^{\alpha+\beta X}\)</span> (which removes it from the right-hand-side)</li>
+<li>Divide both sides by <span class="math inline">\(1+\text{odds}\)</span> (which removes <span class="math inline">\(1+\text{odds}\)</span> from the right-hand-side).</li>
 </ul>
-<p><span class="math display">\[ \text{p} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}} \]</span></p>
-<ul>
-<li>Substitute odds for <span class="math inline">\(e^{\alpha+\beta X}\)</span> (see above).</li>
-</ul>
-<p><span class="math display">\[ \text{p} = \frac{odds}{1+odds} \]</span></p>
+<p><span class="math display">\[ \text{p} = \frac{\text{odds}}{1+\text{odds}} \]</span></p>
 <p>Thus, the probability of “success” can be obtained as the ratio of the odds of “success” to 1 plus the odds of “success”. From above the odds that a hoary bat with a tooth height of 3.1 mm was the <em>semotus</em> subspecies was 2.911758. Using this last equation the probability that a bat with a tooth height of 3.1 mm is a <em>semotus</em> is <span class="math inline">\(\frac{2.911758}{1+2.911758}\)</span>=0.744361. Again, check the fitplot above to make sure that this value makes sense.</p>
 <p>These predictions can be made in R with <code>predict()</code> very similarly to what you have done before. For example, the log odds computed by hand above may be computed with</p>
 <pre class="r"><code>&gt; predict(glm1,data.frame(canine=3.1))</code></pre>
@@ -341,18 +341,18 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <pre><code>&#39;bootCase&#39; is provided here only for backward compatibility.
 Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pre>
 <p>As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).</p>
-<pre><code>     (Intercept)     canine
-[1,]    30.15203  -9.543695
-[2,]    41.95590 -13.045571
-[3,]    30.27672  -9.529023
-[4,]    32.09506 -10.075771
-[5,]    38.44998 -12.039085</code></pre>
-<p>A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.26 and -8.28.</p>
+<pre><code>     (Intercept)    canine
+[1,]    41.60532 -13.04390
+[2,]    34.83668 -10.86136
+[3,]    47.59170 -14.96047
+[4,]    42.05638 -13.11217
+[5,]    37.61262 -11.68511</code></pre>
+<p>A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.27 and -8.37.</p>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" /></p>
 </div>
 <div id="cis-for-predicted-probabilities" class="section level3">
 <h3>CIs for Predicted Probabilities</h3>
-<p>Bootstrapping is more useful to us when it comes to making confidence intervals for the predictions discussed above. First, however, we have to write a function that can be used to make the predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a “success” given a particular value of X.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<p>Bootstrapping is more useful to us when it comes to making confidence intervals for the predictions discussed above. First, however, we have to write a function that can be used to make the predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a “success” given a particular value of X.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 <pre class="r"><code>&gt; predProb &lt;- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))</code></pre>
 <p>For example, this function can be used to find the probability of a <em>semotus</em> given a tooth height of 3.1 (and the obsered values of the intercept and slope).</p>
 <pre class="r"><code>&gt; predProb(3.1,alpha=35.51574,beta=-11.11193)</code></pre>
@@ -360,22 +360,22 @@ Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pr
 <p>More importantly, the <code>alpha=</code> and <code>beta=</code> arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of <em>semotus</em> if the tooth height is 3.1 for each bootstrapped sample (the first five are shown below).</p>
 <pre class="r"><code>&gt; p31 &lt;- predProb(3.1,bc1[,1],bc1[,2])
 &gt; p31[1:5]</code></pre>
-<pre><code>[1] 0.6379719 0.8197467 0.6762842 0.7026961 0.7556208</code></pre>
+<pre><code>[1] 0.7630067 0.7625069 0.7710459 0.8035546 0.8003989</code></pre>
 <p>The <code>quantile()</code> function is used to identify the values in the 2.5% and 97.5% positions.</p>
 <pre class="r"><code>&gt; quantile(p31,c(0.025,0.975))</code></pre>
 <pre><code>     2.5%     97.5% 
-0.6336027 0.8618285 </code></pre>
-<p>Thus, one is 95% confident that the probability of being a <em>semotus</em> for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.86.</p>
+0.6368349 0.8582176 </code></pre>
+<p>Thus, one is 95% confident that the probability of being a <em>semotus</em> for a hoary bat with a 3.1 mm tooth height is between 0.64 and 0.86.</p>
 </div>
 <div id="cis-for-predicted-values-of-x-for-a-given-probability" class="section level3">
 <h3>CIs for Predicted Values of X for a Given Probability</h3>
-<p>The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 <pre class="r"><code>&gt; predX &lt;- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta</code></pre>
 <p>This is then applied to the boostrapped samples.</p>
 <pre class="r"><code>&gt; x05 &lt;- predX(0.5,bc1[,1],bc1[,2])
 &gt; quantile(x05,c(0.025,0.975))</code></pre>
 <pre><code>    2.5%    97.5% 
-3.151665 3.239863 </code></pre>
+3.153957 3.242064 </code></pre>
 <p>Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a <em>semotus</em> or a <em>cinereus</em> is between 3.15 and 3.24.</p>
 <hr />
 </div>
@@ -392,9 +392,10 @@ Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pr
 <li id="fn4"><p>There are several arguments used in this <code>hist()</code> that you may not have seen before. The <code>w=</code> controls how wide the bins are, <code>ymax=</code> sets a common maximum value for the two y-axes, <code>ncol=</code> sets how many columns the plots will be placed in, and <code>nrow=</code> sets how many rows the plots will be placed in.<a href="#fnref4" class="footnote-back">↩</a></p></li>
 <li id="fn5"><p>As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.<a href="#fnref5" class="footnote-back">↩</a></p></li>
 <li id="fn6"><p>The “g” in <code>glm()</code> stands for “general.” If the <code>family=</code> argument is not used then <code>glm()</code> behaves exactly like <code>lm()</code>; i.e., all other models we have fit in this class could have also been fit with <code>glm()</code>. However, <code>glm()</code> is more general in the sense that it allows for residuals that are not normally distributed, which is the case with logistic regression.<a href="#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>When I look at the fitplot it appears to me that the probability that the bat is a <em>semotus</em> is around 0.7 or 0.75. If the probability was 0.75 then the odds would be <span class="math inline">\(\frac{0.75}{0.25}\)</span>=3, which is pretty close to the calculated 2.91 value.<a href="#fnref7" class="footnote-back">↩</a></p></li>
-<li id="fn8"><p>This function is simply an R version of <span class="math inline">\(\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}\)</span>.<a href="#fnref8" class="footnote-back">↩</a></p></li>
-<li id="fn9"><p>This function is simply and R version of <span class="math inline">\(X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}\)</span>.<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>The log(odds) are predicted by plugging the tooth height values into the best-fit line produced by <code>glm()</code> with coefficients shown by <code>coef()</code>. Remember that the best-fit line predicts log(odds).<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>When I look at the fitplot it appears to me that the probability that the bat is a <em>semotus</em> is around 0.7 or 0.75. If the probability was 0.75 then the odds would be <span class="math inline">\(\frac{0.75}{0.25}\)</span>=3, which is pretty close to the calculated 2.91 value.<a href="#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>This function is simply an R version of <span class="math inline">\(\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}\)</span>.<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>This function is simply and R version of <span class="math inline">\(X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}\)</span>.<a href="#fnref10" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
