@@ -16,7 +16,8 @@ output:
 ----
 
 ## Background
-Researchers measured (among other things) the canine tooth height (cm) from two subspecies of Hoary bats (*Lasiurus cinereus cinereus* and *Lasiurus cinereus semotus*) found in Hawaii. Their primary question was to determine if canine tooth height differed between the subspecies and, more importantly to them, can canine tooth height be used to predict the subspecies of bat. In this lecture we will focuse on their primary goal -- can canine tooth height be used to predict the subspecies of bat. With this, 
+<img src="../zimgs/bat2.jpg" alt="Hoary Bat" class="img-right">
+Researchers measured (among other things) the canine tooth height (cm) from two subspecies of [Hoary bats](https://en.wikipedia.org/wiki/Hoary_bat) (*Lasiurus cinereus cinereus* and *Lasiurus cinereus semotus*) found in Hawaii. Their primary question was to determine if canine tooth height (hereafter, just tooth height) differed between subspecies and, more importantly to them, can tooth height be used to predict the subspecies of bat. In this lecture we will focuse on their primary goal -- can tooth height be used to predict the subspecies of bat. With this, 
 
 * What are the response and explanatory variables?[^Vars]
 * What type of analysis should be used?[^Method]
@@ -44,7 +45,7 @@ The data are loaded into R below. For class demonstration purposes only, the dat
 </ul>
 </div>
 
-Before beginning this analysis, I like to examine the data to see if it is going to be reasonable to distinguish between the two subspecies based on canine tooth height. The histograms show some overlap but also considerable separation between the two subspecies. Thus, it may be reasonable to separate the two subspecies for many canine tooth heights.[^hist]
+Before beginning this analysis, I like to examine the data to see if it is going to be reasonable to distinguish between the two subspecies based on tooth height. The histograms show some overlap but also considerable separation between the two subspecies. Thus, it may be reasonable to separate the two subspecies for many tooth heights.[^hist]
 
 
 ```r
@@ -68,7 +69,7 @@ Recall that behind the scenes R has converted the levels into numbers -- *cinere
 </ul>
 </div>
 
-One way to visualize logistic regression data is to plot the categorical response (but as numbers) and the quantitative explanatory (see below). Because of the nature of the categorical data there will be many points plotted on top of each other. Thus, points are plotted with transparency such that darker "points" actually represent more points. In the plot below you can see that canine tooth heights are always *semotus* until about 3 mm where some *cinereus* appear, but then they are all *cinereus* after about 3.4 mm.
+One way to visualize logistic regression data is to plot the categorical response (but as numbers) and the quantitative explanatory (see below). Because of the nature of the categorical data there will be many points plotted on top of each other. Thus, points are plotted with transparency such that darker "points" actually represent more points. In the plot below you can see that tooth heights are always *semotus* until about 3 mm where some *cinereus* appear, but then they are all *cinereus* after about 3.4 mm.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-5-1.png" width="480" />
 
@@ -155,7 +156,7 @@ Waiting for profiling to be done...
 canine      -11.11193 -15.52430 -7.58941
 ```
 
-As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a *semotus* decrease by betwen 7.6 and 15.5 for every 1 mm increase in canine tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of canine tooth height.
+As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a *semotus* decrease by betwen 7.6 and 15.5 for every 1 mm increase in tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.
 
 | point | tooth height | log odds |
 |:-----:|--------------:|------------------:|
@@ -177,7 +178,7 @@ It is very hard to interpret results on the log scale. Thus, the slope is often 
 canine      1.493306e-05 1.810853e-07 5.057793e-04
 ```
 
-The back-transformed slope then means that the odds of being a *semotus* are between 0.0000002 and 0.0005058 TIMES the odds of being a *cinereus* when the canine tooth height increases by 1 mm. In other words, if the canine tooth height increases by 1 mm then it becomes much more unlikely that the bat is a *semotus*. This is visualized below for an increase from 2.6 to 3.6 mm of canine tooth height.
+The back-transformed slope then means that the odds of being a *semotus* are between 0.0000002 and 0.0005058 TIMES the odds of being a *cinereus* when the tooth height increases by 1 mm. In other words, if the tooth height increases by 1 mm then it becomes much more unlikely that the bat is a *semotus*. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.
 
 | point | tooth height | odds (from log(odds) above) |
 |:-----:|--------------:|------------------:|
@@ -229,7 +230,7 @@ The equation for the best-fit line from the results above is
 
 \[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = 35.51574-11.11193\times\text{Height} \]
 
-Thus, plugging a value of X into this equation results in a predicted value of the **log(odds)**. For example, the predicted log(odds) for a canine tooth height of 3.1 mm is
+Thus, plugging a value of X into this equation results in a predicted value of the **log(odds)**. For example, the predicted log(odds) for a tooth height of 3.1 mm is
 
 \[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = 35.51574-11.11193\times3.1 = 1.068757 \]
 
@@ -275,7 +276,7 @@ Of course, the researchers really would like to predict the probability that a b
 
 \[ \text{p} = \frac{odds}{1+odds} \]
 
-Thus, the probability of "success" can be obtained as the ratio of the odds of "success" to 1 plus the odds of "success". From above the odds that a hoary bat with a canine tooth height of 3.1 mm was the *semotus* subspecies was 2.911758. Using this last equation the probability that a bat with a canine tooth height of 3.1 mm is a *semotus* is $\frac{2.911758}{1+2.911758}$=0.744361. Again, check the fitplot above to make sure that this value makes sense.
+Thus, the probability of "success" can be obtained as the ratio of the odds of "success" to 1 plus the odds of "success". From above the odds that a hoary bat with a tooth height of 3.1 mm was the *semotus* subspecies was 2.911758. Using this last equation the probability that a bat with a tooth height of 3.1 mm is a *semotus* is $\frac{2.911758}{1+2.911758}$=0.744361. Again, check the fitplot above to make sure that this value makes sense.
 
 These predictions can be made in R with `predict()` very similarly to what you have done before. For example, the log odds computed by hand above may be computed with
 
@@ -322,7 +323,7 @@ or compute the odds from the predicted probability
 <br>
 
 ## Predicting X with Certain Probability
-Researchers will also commonly use logistic regression results to predict the value of the quantitive explanatory varialbe (X) that would have a certain probability of "success." For example, researchers may ask what the canine tooth height is such that there is an even probability that the bat would be *semotus* or *cinereus* (i.e., the probability of being *semotus* is 0.5) or the canine tooth height where the probability of being a *semotus* is 0.9. Visually picture choosing a probabiilty on the y-axis, morving horizontally until you hit the best-fit line, and then moving vertically to find the corresponding point on the x-axis.
+Researchers will also commonly use logistic regression results to predict the value of the quantitive explanatory varialbe (X) that would have a certain probability of "success." For example, researchers may ask what the tooth height is such that there is an even probability that the bat would be *semotus* or *cinereus* (i.e., the probability of being *semotus* is 0.5) or the tooth height where the probability of being a *semotus* is 0.9. Visually picture choosing a probabiilty on the y-axis, morving horizontally until you hit the best-fit line, and then moving vertically to find the corresponding point on the x-axis.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-21-1.png" width="480" />
 
@@ -344,13 +345,13 @@ Of course, we want to be exact with this prediction. Again, we can perform some 
 
 \[ X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta} \]
 
-Thus, the predicted canine tooth height for a probability of 0.5 is 3.196 as computed with
+Thus, the predicted tooth height for a probability of 0.5 is 3.196 as computed with
 
 \[ X = \frac{\text{log}\left(\frac{0.5}{1-0.5}\right) - 35.51574}{-11.11193} \]
 
 Make sure that this makes sense to you from the plot above.
 
-Similarly, the predicted canine tooth height for a probability of 0.9 is 2.998 as computed with
+Similarly, the predicted tooth height for a probability of 0.9 is 2.998 as computed with
 
 \[ X = \frac{\text{log}\left(\frac{0.9}{1-0.9}\right) - 35.51574}{-11.11193} \]
 
@@ -376,14 +377,14 @@ Consider using 'Boot' from the 'car' package instead.
 As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).
 
 ```
-     (Intercept)     canine
-[1,]    41.81468 -13.066312
-[2,]    39.25502 -12.210561
-[3,]    28.88699  -9.073165
-[4,]    35.07414 -10.883949
-[5,]    37.35102 -11.645327
+     (Intercept)    canine
+[1,]    33.29017 -10.50073
+[2,]    36.23160 -11.42526
+[3,]    45.86164 -14.31917
+[4,]    44.58180 -14.18128
+[5,]    40.62489 -12.63575
 ```
-A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.00 and -8.37.
+A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -15.79 and -8.28.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" />
 
@@ -393,7 +394,7 @@ Bootstrapping is more useful to us when it comes to making confidence intervals 
 ```r
 > predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
 ```
-For example, this function can be used to find the probability of a *semotus* given a canine tooth height of 3.1 (and the obsered values of the intercept and slope).
+For example, this function can be used to find the probability of a *semotus* given a tooth height of 3.1 (and the obsered values of the intercept and slope).
 
 ```r
 > predProb(3.1,alpha=35.51574,beta=-11.11193)
@@ -402,7 +403,7 @@ For example, this function can be used to find the probability of a *semotus* gi
 ```
 [1] 0.7443605
 ```
-More importantly, the `alpha=` and `beta=` arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of *semotus* if the canine tooth height is 3.1 for each bootstrapped sample (the first five are shown below).
+More importantly, the `alpha=` and `beta=` arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of *semotus* if the tooth height is 3.1 for each bootstrapped sample (the first five are shown below).
 
 ```r
 > p31 <- predProb(3.1,bc1[,1],bc1[,2])
@@ -410,7 +411,7 @@ More importantly, the `alpha=` and `beta=` arguments can be the intercept and sl
 ```
 
 ```
-[1] 0.7873648 0.8025458 0.6813915 0.7914853 0.7773875
+[1] 0.6765360 0.6928104 0.8133924 0.6501775 0.8106210
 ```
 The `quantile()` function is used to identify the values in the 2.5% and 97.5% positions.
 
@@ -420,9 +421,9 @@ The `quantile()` function is used to identify the values in the 2.5% and 97.5% p
 
 ```
      2.5%     97.5% 
-0.6403458 0.8598830 
+0.6338620 0.8606364 
 ```
-Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm canine tooth height is between 0.64 and 0.86.
+Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.86.
 
 ### CIs for Predicted Values of X for a Given Probability
 The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.[^predX]
@@ -439,17 +440,17 @@ This is then applied to the boostrapped samples.
 
 ```
     2.5%    97.5% 
-3.154207 3.244069 
+3.150714 3.239037 
 ```
-Thus, one is 95% confident that the canine tooth height where it is an equal probability that the hoary bat is a *semotus* or a *cinereus* is between 3.15 and 3.24.
+Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a *semotus* or a *cinereus* is between 3.15 and 3.24.
 
 ----
 
 
 ## Footnotes
-[^Vars]: The researchers are trying to predict subspecies so it is the response variable. Thus, canine tooth height is the explanatory variable.
-[^Method]: The subspeces response variable is categorical (and binomial) and the canine tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.
-[^cm2mm]: The range of canine tooth heights was less than 1cm. Thus, when interpreting the slope a "1cm increase in canine tooth height" was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a "1mm increase in canine tooth height" and would thus would not be a larger increase then the range of the data.
+[^Vars]: The researchers are trying to predict subspecies so it is the response variable. Thus, tooth height is the explanatory variable.
+[^Method]: The subspeces response variable is categorical (and binomial) and the tooth height explanatory variable is quantitative. Thus, this question requires a (binary) logistic regression.
+[^cm2mm]: The range of tooth heights was less than 1cm. Thus, when interpreting the slope a "1cm increase in tooth height" was not realistic. Thus, this variable was multiplied by 10 to convert the cm to mm such that a slope would be for a "1mm increase in tooth height" and would thus would not be a larger increase then the range of the data.
 [^hist]: There are several arguments used in this `hist()` that you may not have seen before. The `w=` controls how wide the bins are, `ymax=` sets a common maximum value for the two y-axes, `ncol=` sets how many columns the plots will be placed in, and `nrow=` sets how many rows the plots will be placed in.
 [^logodds]: As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.
 [^fitplot31]: When I look at the fitplot it appears to me that the probability that the bat is a *semotus* is around 0.7 or 0.75. If the probability was 0.75 then the odds would be $\frac{0.75}{0.25}$=3, which is pretty close to the calculated 2.91 value.
