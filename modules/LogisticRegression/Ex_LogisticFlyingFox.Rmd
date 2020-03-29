@@ -1,0 +1,88 @@
+---
+layout: page
+title: Exercise
+subtitle: Logistic Regression
+author: Derek H. Ogle
+css: /css/modules.css
+output:
+  html_document:
+    self_contained: no
+---
+
+```{r echo=FALSE, eval=FALSE}
+# Renders HTML file for webpage ... however, a couple of wayward <div>s, <hr>s,
+# and <p>s (last two related to HW format note) should be manually deleted from
+# the rendered HTML page.
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/LogisticRegression/")
+source("../../rhelpers/rhelpers.R")
+modHTML("Ex_LogisticFlyingFox")
+```
+
+----
+
+<div class="alert alert-warning">
+  <strong>Note</strong> Your answers to the questions below should follow the <a href="../../resources/hwformat" target="_blank">expectations for homework found here</a>. Due date is on the <a href="../../resources/Dates-Current" target="_blank">Dates page.</a>
+</div>
+
+----
+
+## Maturation of Flying Foxes
+<img src="../zimgs/flyingfox.jpg" alt="Flying Fox" class="img-right">
+
+```{r FFSetup, echo=FALSE, results='hide',message=FALSE}
+library(NCStats)
+set.seed(5343454)
+beta <- .03
+(alpha <- -367*beta)
+
+mass <- runif(110,min=200,max=550)
+p <- exp(alpha+beta*mass)/(1+exp(alpha+beta*mass))
+mat <- apply(matrix(p,ncol=1),MARGIN=1,FUN=function(x) sample(c("mature","immature"),1,prob=c(x,1-x)))
+
+tmp <- data.frame(mass=mass,mat=mat)
+glm1 <- glm(mat~mass,data=tmp,family="binomial")
+
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+tbls(name="coef","Parameter estimates (and 95% confidence intervals) for the logistic regression describing the relationship between the proportion of male Flying Fox that are mature and body mass (g).")
+tbls(name="sum","Summary of parameter estimates for the logistic regression describing the relationship between the proportion of male Flying Fox that are mature and body mass (g).")
+figs(name="fitplot","Fitted-line plot for the logistic regression describing the relationship between the proportion of male Flying Fox that are mature and body mass (g).")
+```
+
+[Todd *et al.* (2018; J. Mammalogy 99:1510-1521)](https://watermark.silverchair.com/gyy110.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAmAwggJcBgkqhkiG9w0BBwagggJNMIICSQIBADCCAkIGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMJnfmguGYZGAdhTo4AgEQgIICEysLDsd-x2zEFFUTihZc8PHH9tXaczz1RNSeu9ZFMvQAmdxoO-iJKUACL4bxiVPn_hIk5x1EWfPWrfAUsSSa__LDGirnw-gtBX3pLZP19S2m9TTuTUTCTHvtRQesKRLSY6gT7Le_kXhUhZQWw0doEhDV8V2K8AHHr4eZDdCr8W1p4qF2hMF8WoRtrrlqvXbYVer3yOF0BWRa3qyDirGoMpBtOdiBUL9qKPWb9YwO6fCNBIqSls-pa7Jg32j_YRAf-BaNwcHzB2lGMGoAfSmMeiHSFMRy4x9YENC7iHXwHDHNk-c4WpcvpuGsc_eKOrcwYoIj_j1-PqlpQSRa9I_dhnln-bLRhMRtS9SYg_DVFCE6tbP0ZAEKRplYCuVPXhh-Eylkotc3tYgFAMAV4DfukkBBLxK6-qZ-gVdV6P4z-HjQmM5SbFeEjDwW_IuJ6S5fqHSeyt7NUmy_kSxfOR_NFNK4H-pndJX3DWzEn5dgulxl2epN7VgXHuGBl0Qm7UYTIM2BIH5h8luvjPv1WvTis9L1ySPPBoQpL-85aEs2db04wBsRn0FYu6V96XhoNlE9l-uYUxzfPiUvT87-ltbGLgbfzIlL9CeE2xntZzux-LJV4TR3sq7-bMF6j_VqqpSdwefpa_PwGI1bub4pmYn_bGCKu4EvwMamTNi0MbTkZqXUQuHeVKhqyP34IQGBP7Dtm9Ubpw) examined the maturity of the endangered Flying Fox (*Pteropus natalis*) on [Christmas Island](https://en.wikipedia.org/wiki/Christmas_Island_flying_fox). In one part of their study they recorded the body mass (g) and whether the individual was mature (or immature) of male Flying Fox. Their goal was to describe the relationship between the proportion of male Flying Fox that were mature and the body mass of the individual. Their results are shown in `r figs("fitplot",display="cite")`, `r tbls("coef",display="cite")`, and `r tbls("sum",display="cite")`.
+
+```{r fitPlot, echo=FALSE, fig.widht=5, fig.height=4.5}
+par(mar=c(3,3,1,1.5),mgp=c(1.9,0.5,0),tcl=-0.2)
+fitPlot(glm1,breaks=seq(200,550,25),xlab="Body mass (g)",ylab="Proportion mature",transparency=1/4)
+```
+
+`r figs("fitplot")`
+
+`r tbls("coef")`
+
+```{r coef, echo=FALSE, message=FALSE, warning=FALSE, comment=""}
+cbind(Ests=coef(glm1),confint(glm1))
+```
+
+`r tbls("sum")`
+
+```{r sum, echo=FALSE, comment=""}
+summary(glm1)$coefficients
+```
+
+Use this information to answer the questions below. [*Do not yet be concerned with confidence intervals, but you will be on future exercises.*]
+
+1. Is there a significant relationship between the probability that a male Flying Fox is mature and body mass? Provide evidence.
+1. Compute the **log(odds)** that a 454 g male Flying Fox is mature.
+1. Compute the **odds** that a 454 g male Flying Fox is mature. Carefully interpret this result in terms of the probabilities of being mature or immature.
+1. Compute the **probability** that a 454 g male Fying Fox is mature. Carefully interpret what this value means.
+1. Interpret the slope from the fitted model. Explain why this value is positive (you may want to relate this to `r figs("fitplot",display="cite")`).
+1. Interpret the back-transformed slope from the fitted model. Carefully explain why this value is greater than 1 (you may want to relate this to `r figs("fitplot",display="cite")`).
+1. How much would you expect the **log(odds)** to change if the body mass of a male Flying Fox increased by 100 g? [*Make sure to identify if this is an increase or decrease and whehter the amount is additive or multiplicative.*]
+1. Make two predictions that demonstrate your answer to the previous question.
+1. How much would you expect the **odds** to change if the body mass of a male Flying Fox increased by 100 g? [*Make sure to identify if this is an increase or decrease and whehter the amount is additive or multiplicative.*]
+1. Make two predictions that demonstrate your answer to the previous question.
+1. Predict the body mass where it is 50-50 whether the male Flying Fox is mature or immature.
+1. Predict the body mass where 10% of male Flying Fox are likely to be mature.
+1. Predict the body mass where 10% of male Flying Fox are likely to be immature.
