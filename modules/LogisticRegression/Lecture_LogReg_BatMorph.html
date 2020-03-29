@@ -334,7 +334,53 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </div>
 <div id="confidence-intervals-for-predictions" class="section level2">
 <h2>Confidence Intervals for Predictions</h2>
+<div id="bootstrapping" class="section level3">
+<h3>Bootstrapping</h3>
+<p>As with all predictions, you want to use a confidence interval. Unfortunately, the predictions within a linear regression do not follow the normal distribution theory used for other linear models because the response variable is categorical (among other reasons). Confidence intervals can be constructed with a method called <em>bootstrapping.</em></p>
+<p>Bootstrapping is a process that develops an approximate sampling distribution of a statistic by repeatedly sampling from the original data. Specifically, one bootstrap step randomly selects n individuals from the original data with replacement and computes the desired statistic. It then repeats this process many times (usually on the order of 5000-10000 times). All of the statistics from these repeated samples are then ordered from smallest to largest. The values of the statistics at the 2.5 and 97.5 percentiles are then found to form a 95% confidence interval for the statistic.</p>
+<p>The bootstrapped samples can be generated with <code>bootCase()</code> which requires the object saved from <code>glm()</code> as its only argument. By default it will take 999 samples, which will be adequate for this class.</p>
+<pre class="r"><code>&gt; bc1 &lt;- bootCase(glm1)      # bootstrapping, be patient!</code></pre>
+<pre><code>&#39;bootCase&#39; is provided here only for backward compatibility.
+Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pre>
+<p>As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).</p>
+<pre><code>     (Intercept)     canine
+[1,]    41.81468 -13.066312
+[2,]    39.25502 -12.210561
+[3,]    28.88699  -9.073165
+[4,]    35.07414 -10.883949
+[5,]    37.35102 -11.645327</code></pre>
+<p>A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.00 and -8.37.</p>
+<p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" /></p>
+</div>
+<div id="cis-for-predicted-probabilities" class="section level3">
+<h3>CIs for Predicted Probabilities</h3>
+<p>Bootstrapping is more useful to us when it comes to making confidence intervals for the predictions discussed above. First, however, we have to write a function that can be used to make the predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a “success” given a particular value of X.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<pre class="r"><code>&gt; predProb &lt;- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))</code></pre>
+<p>For example, this function can be used to find the probability of a <em>semotus</em> given a canine tooth height of 3.1 (and the obsered values of the intercept and slope).</p>
+<pre class="r"><code>&gt; predProb(3.1,alpha=35.51574,beta=-11.11193)</code></pre>
+<pre><code>[1] 0.7443605</code></pre>
+<p>More importantly, the <code>alpha=</code> and <code>beta=</code> arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of <em>semotus</em> if the canine tooth height is 3.1 for each bootstrapped sample (the first five are shown below).</p>
+<pre class="r"><code>&gt; p31 &lt;- predProb(3.1,bc1[,1],bc1[,2])
+&gt; p31[1:5]</code></pre>
+<pre><code>[1] 0.7873648 0.8025458 0.6813915 0.7914853 0.7773875</code></pre>
+<p>The <code>quantile()</code> function is used to identify the values in the 2.5% and 97.5% positions.</p>
+<pre class="r"><code>&gt; quantile(p31,c(0.025,0.975))</code></pre>
+<pre><code>     2.5%     97.5% 
+0.6403458 0.8598830 </code></pre>
+<p>Thus, one is 95% confident that the probability of being a <em>semotus</em> for a hoary bat with a 3.1 mm canine tooth height is between 0.64 and 0.86.</p>
+</div>
+<div id="cis-for-predicted-values-of-x-for-a-given-probability" class="section level3">
+<h3>CIs for Predicted Values of X for a Given Probability</h3>
+<p>The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a></p>
+<pre class="r"><code>&gt; predX &lt;- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta</code></pre>
+<p>This is then applied to the boostrapped samples.</p>
+<pre class="r"><code>&gt; x05 &lt;- predX(0.5,bc1[,1],bc1[,2])
+&gt; quantile(x05,c(0.025,0.975))</code></pre>
+<pre><code>    2.5%    97.5% 
+3.154207 3.244069 </code></pre>
+<p>Thus, one is 95% confident that the canine tooth height where it is an equal probability that the hoary bat is a <em>semotus</em> or a <em>cinereus</em> is between 3.15 and 3.24.</p>
 <hr />
+</div>
 </div>
 <div id="footnotes" class="section level2">
 <h2>Footnotes</h2>
@@ -348,6 +394,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <li id="fn4"><p>There are several arguments used in this <code>hist()</code> that you may not have seen before. The <code>w=</code> controls how wide the bins are, <code>ymax=</code> sets a common maximum value for the two y-axes, <code>ncol=</code> sets how many columns the plots will be placed in, and <code>nrow=</code> sets how many rows the plots will be placed in.<a href="#fnref4" class="footnote-back">↩</a></p></li>
 <li id="fn5"><p>As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.<a href="#fnref5" class="footnote-back">↩</a></p></li>
 <li id="fn6"><p>When I look at the fitplot it appears to me that the probability that the bat is a <em>semotus</em> is around 0.7 or 0.75. If the probability was 0.75 then the odds would be <span class="math inline">\(\frac{0.75}{0.25}\)</span>=3, which is pretty close to the calculated 2.91 value.<a href="#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>This function is simply an R version of <span class="math inline">\(\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}\)</span>.<a href="#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>This function is simply and R version of <span class="math inline">\(X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}\)</span>.<a href="#fnref8" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

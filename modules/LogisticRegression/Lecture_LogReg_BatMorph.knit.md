@@ -358,7 +358,90 @@ Again, make sure that this makes sense to you from the plot above.
 
 
 ## Confidence Intervals for Predictions
+### Bootstrapping
+As with all predictions, you want to use a confidence interval. Unfortunately, the predictions within a linear regression do not follow the normal distribution theory used for other linear models because the response variable is categorical (among other reasons). Confidence intervals can be constructed with a method called *bootstrapping.*
 
+Bootstrapping is a process that develops an approximate sampling distribution of a statistic by repeatedly sampling from the original data. Specifically, one bootstrap step randomly selects n individuals from the original data with replacement and computes the desired statistic. It then repeats this process many times (usually on the order of 5000-10000 times). All of the statistics from these repeated samples are then ordered from smallest to largest. The values of the statistics at the 2.5 and 97.5 percentiles are then found to form a 95% confidence interval for the statistic.
+
+The bootstrapped samples can be generated with `bootCase()` which requires the object saved from `glm()` as its only argument. By default it will take 999 samples, which will be adequate for this class.
+
+```r
+> bc1 <- bootCase(glm1)      # bootstrapping, be patient!
+```
+
+```
+'bootCase' is provided here only for backward compatibility.
+Consider using 'Boot' from the 'car' package instead.
+```
+As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).
+
+```
+     (Intercept)     canine
+[1,]    41.81468 -13.066312
+[2,]    39.25502 -12.210561
+[3,]    28.88699  -9.073165
+[4,]    35.07414 -10.883949
+[5,]    37.35102 -11.645327
+```
+A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.00 and -8.37.
+
+<img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" />
+
+### CIs for Predicted Probabilities
+Bootstrapping is more useful to us when it comes to making confidence intervals for the predictions discussed above. First, however, we have to write a function that can be used to make the predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a "success" given a particular value of X.[^predprob]
+
+```r
+> predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+```
+For example, this function can be used to find the probability of a *semotus* given a canine tooth height of 3.1 (and the obsered values of the intercept and slope).
+
+```r
+> predProb(3.1,alpha=35.51574,beta=-11.11193)
+```
+
+```
+[1] 0.7443605
+```
+More importantly, the `alpha=` and `beta=` arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of *semotus* if the canine tooth height is 3.1 for each bootstrapped sample (the first five are shown below).
+
+```r
+> p31 <- predProb(3.1,bc1[,1],bc1[,2])
+> p31[1:5]
+```
+
+```
+[1] 0.7873648 0.8025458 0.6813915 0.7914853 0.7773875
+```
+The `quantile()` function is used to identify the values in the 2.5% and 97.5% positions.
+
+```r
+> quantile(p31,c(0.025,0.975))
+```
+
+```
+     2.5%     97.5% 
+0.6403458 0.8598830 
+```
+Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm canine tooth height is between 0.64 and 0.86.
+
+### CIs for Predicted Values of X for a Given Probability
+The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.[^predX]
+
+```r
+> predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+```
+This is then applied to the boostrapped samples.
+
+```r
+> x05 <- predX(0.5,bc1[,1],bc1[,2])
+> quantile(x05,c(0.025,0.975))
+```
+
+```
+    2.5%    97.5% 
+3.154207 3.244069 
+```
+Thus, one is 95% confident that the canine tooth height where it is an equal probability that the hoary bat is a *semotus* or a *cinereus* is between 3.15 and 3.24.
 
 ----
 
@@ -370,4 +453,5 @@ Again, make sure that this makes sense to you from the plot above.
 [^hist]: There are several arguments used in this `hist()` that you may not have seen before. The `w=` controls how wide the bins are, `ymax=` sets a common maximum value for the two y-axes, `ncol=` sets how many columns the plots will be placed in, and `nrow=` sets how many rows the plots will be placed in.
 [^logodds]: As this does follow an exponential function then, from our work in the SLR module, only the response variable should be log-transformed. Thus, the log of the odds should be computed.
 [^fitplot31]: When I look at the fitplot it appears to me that the probability that the bat is a *semotus* is around 0.7 or 0.75. If the probability was 0.75 then the odds would be $\frac{0.75}{0.25}$=3, which is pretty close to the calculated 2.91 value.
-
+[^predprob]: This function is simply an R version of $\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}$.
+[^predX]: This function is simply and R version of $X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}$.
