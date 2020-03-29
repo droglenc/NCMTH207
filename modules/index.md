@@ -169,8 +169,7 @@ title: Modules
         <li><b>Class Materials</b></li>
           <ul>
             <li><a href="LogisticRegression/Lecture_LogReg_BatMorph.html">Lecture Notes</a></li>
-            <li><a href="LogisticRegression/PPT.pptx">Slides</a></li>
-            <li>Handouts -- <a href="LogisticRegression/RHO.pdf"><img src="../img/pdf.png"></a> <a href="LogisticRegression/RHO.R" target="_blank"><img src="../img/Rlogo.png"></a></li>
+            <li><a href="LogisticRegression/XXX.html">Full Worked Example</a></li>
           </ul>
         <li><b>Exercises</b></li>
           <ol>

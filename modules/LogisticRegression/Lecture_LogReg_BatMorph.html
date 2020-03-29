@@ -157,7 +157,7 @@ Transforming the probabilities to odds changes the curve from logistic to expone
 <pre><code>                 Ests     2.5 %   97.5 %
 (Intercept)  35.51574  24.21685 49.66132
 canine      -11.11193 -15.52430 -7.58941</code></pre>
-<p>As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a <em>semotus</em> decrease by betwen 7.6 and 15.5 for every 1 mm increase in tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG(ODDS) change for a one unit increase in the explanatory variable. Thus, in this case, the LOG(ODDS) of being a <em>semotus</em> decrease by betwen 7.6 and 15.5 for every 1 mm increase in tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
 <table>
 <thead>
 <tr class="header">
@@ -236,7 +236,7 @@ Residual deviance:  97.178  on 116  degrees of freedom
 AIC: 101.18
 
 Number of Fisher Scoring iterations: 5</code></pre>
-<p>The p-value for the slope is a test of whether the slope is equal to 0 or not. This tests if a relationship (i.e., a non-zero slope) between the LOG ODDS and the explanatory variable exists. If the H<sub>0</sub> is not rejected then no relationship exists and the blue plusses in the previous plots would all be equal and represented by a flat line.</p>
+<p>The p-value for the slope is a test of whether the slope is equal to 0 or not. This tests if a relationship (i.e., a non-zero slope) between the LOG(ODDS) and the explanatory variable exists. If the H<sub>0</sub> is not rejected then no relationship exists and the blue plusses in the previous plots would all be equal and represented by a flat line.</p>
 <p>As usual, <code>fitPlot()</code> can be used to visualize these results. For logistic regression it is best to also include <code>breaks=</code>, which controls the number of vertical “windows” at which the proportion of successes is calculated (and, thus, how many blue plusses are included on the plot). Finding an appropriate number is usually a matter of trial-and-error, but usually around 10 is a good idea. In the code below <code>seq()</code> is used to create a sequence of numbers that starts at 2.6, ends at 3.8, and goes in steps of 0.1 (i.e., 2.6, 2.7, 2.8, …, 3.7, 3.8).</p>
 <pre class="r"><code>&gt; fitPlot(glm1,breaks=seq(2.6,3.8,0.1),xlim=c(2.6,3.8),xlab=xlbl,ylab=ylbl)</code></pre>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-16-1.png" width="480" /></p>
@@ -267,13 +267,13 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </ul>
 <p><span class="math display">\[ \text{p} = \text{odds}(1-\text{p}) \]</span></p>
 <ul>
-<li>Distribute the odds through the 1-p.</li>
+<li>Distribute the odds through the 1-p (I added the explicit × for clarity).</li>
 </ul>
-<p><span class="math display">\[ \text{p} = \text{odds}-\text{p}\text{odds} \]</span></p>
+<p><span class="math display">\[ \text{p} = \text{odds}-\text{p}\times\text{odds} \]</span></p>
 <ul>
-<li>Add <span class="math inline">\(\text{p}\text{odds}\)</span> to both sides (which removes <span class="math inline">\(\text{p}\text{odds}\)</span> from the left-hand-side).</li>
+<li>Add <span class="math inline">\(\text{p}\times\text{odds}\)</span> to both sides (which removes <span class="math inline">\(\text{p}\times\text{odds}\)</span> from the left-hand-side).</li>
 </ul>
-<p><span class="math display">\[ \text{p}+\text{p}\text{odds} = \text{odds} \]</span></p>
+<p><span class="math display">\[ \text{p}+\text{p}\times\text{odds} = \text{odds} \]</span></p>
 <ul>
 <li>Factor out the p.</li>
 </ul>
@@ -282,20 +282,20 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <li>Divide both sides by <span class="math inline">\(1+\text{odds}\)</span> (which removes <span class="math inline">\(1+\text{odds}\)</span> from the right-hand-side).</li>
 </ul>
 <p><span class="math display">\[ \text{p} = \frac{\text{odds}}{1+\text{odds}} \]</span></p>
-<p>Thus, the probability of “success” can be obtained as the ratio of the odds of “success” to 1 plus the odds of “success”. From above the odds that a hoary bat with a tooth height of 3.1 mm was the <em>semotus</em> subspecies was 2.911758. Using this last equation the probability that a bat with a tooth height of 3.1 mm is a <em>semotus</em> is <span class="math inline">\(\frac{2.911758}{1+2.911758}\)</span>=0.744361. Again, check the fitplot above to make sure that this value makes sense.</p>
-<p>These predictions can be made in R with <code>predict()</code> very similarly to what you have done before. For example, the log odds computed by hand above may be computed with</p>
+<p>Thus, the probability of “success” can be obtained as the ratio of the odds of “success” to 1 plus the odds of “success”. The odds that a hoary bat with a tooth height of 3.1 mm was <em>semotus</em> was calculated above as 2.911758. Using the equation for p just derived, the probability that a bat with a tooth height of 3.1 mm is <em>semotus</em> is <span class="math inline">\(\frac{2.911758}{1+2.911758}\)</span>=0.744361. Again, check the fitplot above to make sure that this value makes sense.</p>
+<p>These predictions can be made in R with <code>predict()</code> very similarly to what you have done before. For example, the log(odds) that a hoary bat with a 3.1 mm tooth height is <em>semotus</em> is computed with</p>
 <pre class="r"><code>&gt; predict(glm1,data.frame(canine=3.1))</code></pre>
 <pre><code>       1 
 1.068746 </code></pre>
-<p>The probability may be computed by including <code>type="response"</code> into <code>predict()</code>.</p>
+<p>The probability (rather than log(odds)) that a hoary bat with a 3.1 mm tooth height is <em>semotus</em> is computed by including <code>type="response"</code> in <code>predict()</code>. [<em>Compare this to the hand-calculated results above.</em>]</p>
 <pre class="r"><code>&gt; predict(glm1,data.frame(canine=3.1),type=&quot;response&quot;)</code></pre>
 <pre><code>        1 
 0.7443584 </code></pre>
-<p>The odds cannot be computed directly with <code>predict()</code>. If you want to see the odds you must either back-transform from the log(odds)</p>
+<p>The odds cannot be computed directly with <code>predict()</code>. The odds can be computed by either back-transforming the log(odds)</p>
 <pre class="r"><code>&gt; exp(predict(glm1,data.frame(canine=3.1)))</code></pre>
 <pre><code>       1 
 2.911727 </code></pre>
-<p>or compute the odds from the predicted probability</p>
+<p>or computing the odds from the predicted probability</p>
 <pre class="r"><code>&gt; p &lt;- predict(glm1,data.frame(canine=3.1),type=&quot;response&quot;)
 &gt; p/(1-p)</code></pre>
 <pre><code>       1 
@@ -304,7 +304,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </div>
 <div id="predicting-x-with-certain-probability" class="section level2">
 <h2>Predicting X with Certain Probability</h2>
-<p>Researchers will also commonly use logistic regression results to predict the value of the quantitive explanatory varialbe (X) that would have a certain probability of “success.” For example, researchers may ask what the tooth height is such that there is an even probability that the bat would be <em>semotus</em> or <em>cinereus</em> (i.e., the probability of being <em>semotus</em> is 0.5) or the tooth height where the probability of being a <em>semotus</em> is 0.9. Visually picture choosing a probabiilty on the y-axis, morving horizontally until you hit the best-fit line, and then moving vertically to find the corresponding point on the x-axis.</p>
+<p>Researchers will also commonly use logistic regression results to predict the value of the quantitive explanatory variable (X) that would have a certain probability of “success.” For example, researchers may ask what the tooth height is such that there is an even probability that the bat would be <em>semotus</em> or <em>cinereus</em> (i.e., the probability of being <em>semotus</em> is 0.5) or the tooth height where the probability of being a <em>semotus</em> is 0.9. Visualize this as choosing the given probabiilty on the y-axis, moving right until you hit the best-fit line, and then moving down to find the corresponding point on the x-axis (see below for the the examples of 0.5 and 0.9).</p>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-21-1.png" width="480" /></p>
 <p>Of course, we want to be exact with this prediction. Again, we can perform some algebra on the equation of the line to solve for X.</p>
 <ul>
@@ -312,15 +312,15 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </ul>
 <p><span class="math display">\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]</span></p>
 <ul>
-<li>Subtrace α from both sides (it will disappear from the right-hand side).</li>
+<li>Subtract α from both sides (α will disappear from the right-hand side).</li>
 </ul>
 <p><span class="math display">\[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha = \beta X \]</span></p>
 <ul>
-<li>Divide both sides by β (it will disappear from the right-hand side)</li>
+<li>Divide both sides by β (β will disappear from the right-hand side)</li>
 </ul>
 <p><span class="math display">\[ \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta} = X \]</span></p>
 <ul>
-<li>Simply flip the sides of the equals so that it looks like an equation for X.</li>
+<li>Simply flip the sides so that it looks like an equation for X.</li>
 </ul>
 <p><span class="math display">\[ X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta} \]</span></p>
 <p>Thus, the predicted tooth height for a probability of 0.5 is 3.196 as computed with</p>
@@ -329,53 +329,53 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <p>Similarly, the predicted tooth height for a probability of 0.9 is 2.998 as computed with</p>
 <p><span class="math display">\[ X = \frac{\text{log}\left(\frac{0.9}{1-0.9}\right) - 35.51574}{-11.11193} \]</span></p>
 <p>Again, make sure that this makes sense to you from the plot above.</p>
+<p><br></p>
 </div>
 <div id="confidence-intervals-for-predictions" class="section level2">
 <h2>Confidence Intervals for Predictions</h2>
 <div id="bootstrapping" class="section level3">
 <h3>Bootstrapping</h3>
-<p>As with all predictions, you want to use a confidence interval. Unfortunately, the predictions within a linear regression do not follow the normal distribution theory used for other linear models because the response variable is categorical (among other reasons). Confidence intervals can be constructed with a method called <em>bootstrapping.</em></p>
-<p>Bootstrapping is a process that develops an approximate sampling distribution of a statistic by repeatedly sampling from the original data. Specifically, one bootstrap step randomly selects n individuals from the original data with replacement and computes the desired statistic. It then repeats this process many times (usually on the order of 5000-10000 times). All of the statistics from these repeated samples are then ordered from smallest to largest. The values of the statistics at the 2.5 and 97.5 percentiles are then found to form a 95% confidence interval for the statistic.</p>
-<p>The bootstrapped samples can be generated with <code>bootCase()</code> which requires the object saved from <code>glm()</code> as its only argument. By default it will take 999 samples, which will be adequate for this class.</p>
+<p>As always, these predictions should be accompanied by a confidence interval. Unfortunately, the predictions within a logistic regression do not follow the normal distribution theory used for other linear models. Confidence intervals can be constructed, however, with a method called <em>bootstrapping.</em></p>
+<p>Bootstrapping is a process that develops an approximate sampling distribution of a statistic by repeatedly sampling from the original data. Specifically, one bootstrap step randomly selects n individuals from the original data with replacement and computes the desired statistic. It then repeats this process many times (usually on the order of 5000-10000 times). All of the statistics from these repeated samples are then ordered from smallest to largest. The values of the statistic at the 2.5 and 97.5 percentiles<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> are then found to form a 95% confidence interval for the statistic.</p>
+<p>The bootstrapped samples can be generated with <code>bootCase()</code> which requires the <code>glm()</code> object as its only argument.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 <pre class="r"><code>&gt; bc1 &lt;- bootCase(glm1)      # bootstrapping, be patient!</code></pre>
 <pre><code>&#39;bootCase&#39; is provided here only for backward compatibility.
 Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pre>
-<p>As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).</p>
+<p>As partially seen below, <code>bootCase()</code> returns parameter estimates for each bootstrapped sample (each row is a separate bootstrapped sample).</p>
 <pre><code>     (Intercept)    canine
-[1,]    41.60532 -13.04390
-[2,]    34.83668 -10.86136
-[3,]    47.59170 -14.96047
-[4,]    42.05638 -13.11217
-[5,]    37.61262 -11.68511</code></pre>
-<p>A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.27 and -8.37.</p>
+[1,]    34.21969 -10.64698
+[2,]    33.53490 -10.45157
+[3,]    33.13709 -10.34672
+[4,]    39.08206 -12.21312
+[5,]    40.54202 -12.67247</code></pre>
+<p>A histogram of the slopes from all of the bootstrapped samples is shown below. The vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -15.60 and -8.28.</p>
 <p><img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" /></p>
 </div>
 <div id="cis-for-predicted-probabilities" class="section level3">
 <h3>CIs for Predicted Probabilities</h3>
-<p>Bootstrapping is more useful to us when it comes to making confidence intervals for the predictions discussed above. First, however, we have to write a function that can be used to make the predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a “success” given a particular value of X.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>Bootstrapping is more useful for making confidence intervals for the predictions discussed above.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> First, however, we have to write a function that can be used to make predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a “success” given a particular value of X.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
 <pre class="r"><code>&gt; predProb &lt;- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))</code></pre>
-<p>For example, this function can be used to find the probability of a <em>semotus</em> given a tooth height of 3.1 (and the obsered values of the intercept and slope).</p>
+<p>For example, this function can be used to find the probability of a <em>semotus</em> given a tooth height of 3.1 (and the obsered values of the intercept and slope). [<em>Compare this result to what was calculated above.</em>]</p>
 <pre class="r"><code>&gt; predProb(3.1,alpha=35.51574,beta=-11.11193)</code></pre>
 <pre><code>[1] 0.7443605</code></pre>
-<p>More importantly, the <code>alpha=</code> and <code>beta=</code> arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of <em>semotus</em> if the tooth height is 3.1 for each bootstrapped sample (the first five are shown below).</p>
-<pre class="r"><code>&gt; p31 &lt;- predProb(3.1,bc1[,1],bc1[,2])
-&gt; p31[1:5]</code></pre>
-<pre><code>[1] 0.7630067 0.7625069 0.7710459 0.8035546 0.8003989</code></pre>
+<p>More importantly, the <code>alpha=</code> and <code>beta=</code> arguments can be the intercept and slope columns (first and second columns, respectively; thus, the use of “1” and “2” below) from the bootstrapped samples object. This would then predict the probability of being <em>semotus</em> if the tooth height is 3.1 for each bootstrapped sample (the first five are shown below).</p>
+<pre class="r"><code>&gt; p31 &lt;- predProb(3.1,bc1[,1],bc1[,2])</code></pre>
+<pre><code>[1] 0.7710168 0.7567687 0.7431242 0.7723065 0.7785726</code></pre>
 <p>The <code>quantile()</code> function is used to identify the values in the 2.5% and 97.5% positions.</p>
 <pre class="r"><code>&gt; quantile(p31,c(0.025,0.975))</code></pre>
 <pre><code>     2.5%     97.5% 
-0.6368349 0.8582176 </code></pre>
-<p>Thus, one is 95% confident that the probability of being a <em>semotus</em> for a hoary bat with a 3.1 mm tooth height is between 0.64 and 0.86.</p>
+0.6347614 0.8500010 </code></pre>
+<p>Thus, one is 95% confident that the probability of being a <em>semotus</em> for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.85.</p>
 </div>
 <div id="cis-for-predicted-values-of-x-for-a-given-probability" class="section level3">
 <h3>CIs for Predicted Values of X for a Given Probability</h3>
-<p>The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
 <pre class="r"><code>&gt; predX &lt;- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta</code></pre>
-<p>This is then applied to the boostrapped samples.</p>
+<p>This is then applied to the boostrapped samples (here for a probability of 0.5).</p>
 <pre class="r"><code>&gt; x05 &lt;- predX(0.5,bc1[,1],bc1[,2])
 &gt; quantile(x05,c(0.025,0.975))</code></pre>
 <pre><code>    2.5%    97.5% 
-3.153957 3.242064 </code></pre>
+3.151589 3.240603 </code></pre>
 <p>Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a <em>semotus</em> or a <em>cinereus</em> is between 3.15 and 3.24.</p>
 <hr />
 </div>
@@ -394,8 +394,11 @@ Consider using &#39;Boot&#39; from the &#39;car&#39; package instead.</code></pr
 <li id="fn6"><p>The “g” in <code>glm()</code> stands for “general.” If the <code>family=</code> argument is not used then <code>glm()</code> behaves exactly like <code>lm()</code>; i.e., all other models we have fit in this class could have also been fit with <code>glm()</code>. However, <code>glm()</code> is more general in the sense that it allows for residuals that are not normally distributed, which is the case with logistic regression.<a href="#fnref6" class="footnote-back">↩</a></p></li>
 <li id="fn7"><p>The log(odds) are predicted by plugging the tooth height values into the best-fit line produced by <code>glm()</code> with coefficients shown by <code>coef()</code>. Remember that the best-fit line predicts log(odds).<a href="#fnref7" class="footnote-back">↩</a></p></li>
 <li id="fn8"><p>When I look at the fitplot it appears to me that the probability that the bat is a <em>semotus</em> is around 0.7 or 0.75. If the probability was 0.75 then the odds would be <span class="math inline">\(\frac{0.75}{0.25}\)</span>=3, which is pretty close to the calculated 2.91 value.<a href="#fnref8" class="footnote-back">↩</a></p></li>
-<li id="fn9"><p>This function is simply an R version of <span class="math inline">\(\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}\)</span>.<a href="#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>This function is simply and R version of <span class="math inline">\(X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}\)</span>.<a href="#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>Percentiles are the values of X that have the given percent lower. For example, the 97.5 percentile would have 97.5% of values smaller.<a href="#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p>By default <code>bootCase()</code> will take 999 bootstrap samples, which will be adequate for the analyses in this class. For research-grade analyses, I will increase this number to at least 5000.<a href="#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p>Note that confidence or prediction intervals can NOT be computed with <code>predict()</code> as was done in previous modules. In addition, there is no mathematical way to derive a confidence interval for the value of X at a certain probability value as this calculation reverses the order of the best-fit model (i.e., solves for X given a value of Y).<a href="#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p>This function is simply an R version of <span class="math inline">\(\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}\)</span>.<a href="#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p>This function is simply and R version of <span class="math inline">\(X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}\)</span>.<a href="#fnref13" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 

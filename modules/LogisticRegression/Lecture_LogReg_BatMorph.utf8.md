@@ -163,7 +163,7 @@ Waiting for profiling to be done...
 canine      -11.11193 -15.52430 -7.58941
 ```
 
-As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG ODDS change for a one unit increase in the explanatory variable. Thus, in this case, the LOG ODDS of being a *semotus* decrease by betwen 7.6 and 15.5 for every 1 mm increase in tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.[^predictedLO]
+As with linear models, interpretation of the slope is most important. In logistic regression, the slope measures how much the LOG(ODDS) change for a one unit increase in the explanatory variable. Thus, in this case, the LOG(ODDS) of being a *semotus* decrease by betwen 7.6 and 15.5 for every 1 mm increase in tooth height. This is visualized below for an increase from 2.6 to 3.6 mm of tooth height.[^predictedLO]
 
 | point | tooth height  | log (odds) |
 |:-----:|--------------:|------------------:|
@@ -219,7 +219,7 @@ AIC: 101.18
 Number of Fisher Scoring iterations: 5
 ```
 
-The p-value for the slope is a test of whether the slope is equal to 0 or not. This tests if a  relationship (i.e., a non-zero slope) between the LOG ODDS and the explanatory variable exists. If the H<sub>0</sub> is not rejected then no relationship exists and the blue plusses in the previous plots would all be equal and represented by a flat line.
+The p-value for the slope is a test of whether the slope is equal to 0 or not. This tests if a  relationship (i.e., a non-zero slope) between the LOG(ODDS) and the explanatory variable exists. If the H<sub>0</sub> is not rejected then no relationship exists and the blue plusses in the previous plots would all be equal and represented by a flat line.
 
 As usual, `fitPlot()` can be used to visualize these results. For logistic regression it is best to also include `breaks=`, which controls the number of vertical "windows" at which the proportion of successes is calculated (and, thus, how many blue plusses are included on the plot). Finding an appropriate number is usually a matter of trial-and-error, but usually around 10 is a good idea. In the code below `seq()` is used to create a sequence of numbers that starts at 2.6, ends at 3.8, and goes in steps of 0.1 (i.e., 2.6, 2.7, 2.8, ..., 3.7, 3.8).
 
@@ -266,13 +266,13 @@ Of course, the researchers really would like to predict the probability that a b
 
 \[ \text{p} = \text{odds}(1-\text{p}) \]
 
-* Distribute the odds through the 1-p.
+* Distribute the odds through the 1-p (I added the explicit &times; for clarity).
 
-\[ \text{p} = \text{odds}-\text{p}\text{odds} \]
+\[ \text{p} = \text{odds}-\text{p}\times\text{odds} \]
 
-* Add $\text{p}\text{odds}$ to both sides (which removes $\text{p}\text{odds}$ from the left-hand-side).
+* Add $\text{p}\times\text{odds}$ to both sides (which removes $\text{p}\times\text{odds}$ from the left-hand-side).
 
-\[ \text{p}+\text{p}\text{odds} = \text{odds} \]
+\[ \text{p}+\text{p}\times\text{odds} = \text{odds} \]
 
 * Factor out the p.
 
@@ -282,9 +282,9 @@ Of course, the researchers really would like to predict the probability that a b
 
 \[ \text{p} = \frac{\text{odds}}{1+\text{odds}} \]
 
-Thus, the probability of "success" can be obtained as the ratio of the odds of "success" to 1 plus the odds of "success". From above the odds that a hoary bat with a tooth height of 3.1 mm was the *semotus* subspecies was 2.911758. Using this last equation the probability that a bat with a tooth height of 3.1 mm is a *semotus* is $\frac{2.911758}{1+2.911758}$=0.744361. Again, check the fitplot above to make sure that this value makes sense.
+Thus, the probability of "success" can be obtained as the ratio of the odds of "success" to 1 plus the odds of "success". The odds that a hoary bat with a tooth height of 3.1 mm was *semotus* was calculated above as 2.911758. Using the equation for p just derived, the probability that a bat with a tooth height of 3.1 mm is *semotus* is $\frac{2.911758}{1+2.911758}$=0.744361. Again, check the fitplot above to make sure that this value makes sense.
 
-These predictions can be made in R with `predict()` very similarly to what you have done before. For example, the log odds computed by hand above may be computed with
+These predictions can be made in R with `predict()` very similarly to what you have done before. For example, the log(odds) that a hoary bat with a 3.1 mm tooth height is *semotus* is computed with
 
 ```r
 > predict(glm1,data.frame(canine=3.1))
@@ -294,7 +294,7 @@ These predictions can be made in R with `predict()` very similarly to what you h
        1 
 1.068746 
 ```
-The probability may be computed by including `type="response"` into `predict()`.
+The probability (rather than log(odds)) that a hoary bat with a 3.1 mm tooth height is *semotus* is computed by including `type="response"` in `predict()`. [*Compare this to the hand-calculated results above.*]
 
 ```r
 > predict(glm1,data.frame(canine=3.1),type="response")
@@ -304,7 +304,7 @@ The probability may be computed by including `type="response"` into `predict()`.
         1 
 0.7443584 
 ```
-The odds cannot be computed directly with `predict()`. If you want to see the odds you must either back-transform from the log(odds) 
+The odds cannot be computed directly with `predict()`. The odds can be computed by either back-transforming the log(odds) 
 
 ```r
 > exp(predict(glm1,data.frame(canine=3.1)))
@@ -314,7 +314,7 @@ The odds cannot be computed directly with `predict()`. If you want to see the od
        1 
 2.911727 
 ```
-or compute the odds from the predicted probability
+or computing the odds from the predicted probability
 
 ```r
 > p <- predict(glm1,data.frame(canine=3.1),type="response")
@@ -329,7 +329,7 @@ or compute the odds from the predicted probability
 <br>
 
 ## Predicting X with Certain Probability
-Researchers will also commonly use logistic regression results to predict the value of the quantitive explanatory varialbe (X) that would have a certain probability of "success." For example, researchers may ask what the tooth height is such that there is an even probability that the bat would be *semotus* or *cinereus* (i.e., the probability of being *semotus* is 0.5) or the tooth height where the probability of being a *semotus* is 0.9. Visually picture choosing a probabiilty on the y-axis, morving horizontally until you hit the best-fit line, and then moving vertically to find the corresponding point on the x-axis.
+Researchers will also commonly use logistic regression results to predict the value of the quantitive explanatory variable (X) that would have a certain probability of "success." For example, researchers may ask what the tooth height is such that there is an even probability that the bat would be *semotus* or *cinereus* (i.e., the probability of being *semotus* is 0.5) or the tooth height where the probability of being a *semotus* is 0.9. Visualize this as choosing the given probabiilty on the y-axis, moving right until you hit the best-fit line, and then moving down to find the corresponding point on the x-axis (see below for the the examples of 0.5 and 0.9).
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-21-1.png" width="480" />
 
@@ -339,15 +339,15 @@ Of course, we want to be exact with this prediction. Again, we can perform some 
 
 \[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) = \alpha+\beta X \]
 
-* Subtrace &alpha; from both sides (it will disappear from the right-hand side).
+* Subtract &alpha; from both sides (&alpha; will disappear from the right-hand side).
 
 \[ \text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha = \beta X \]
 
-* Divide both sides by &beta; (it will disappear from the right-hand side)
+* Divide both sides by &beta; (&beta; will disappear from the right-hand side)
 
 \[ \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta} = X \]
 
-* Simply flip the sides of the equals so that it looks like an equation for X.
+* Simply flip the sides so that it looks like an equation for X.
 
 \[ X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta} \]
 
@@ -363,14 +363,15 @@ Similarly, the predicted tooth height for a probability of 0.9 is 2.998 as compu
 
 Again, make sure that this makes sense to you from the plot above.
 
+<br>
 
 ## Confidence Intervals for Predictions
 ### Bootstrapping
-As with all predictions, you want to use a confidence interval. Unfortunately, the predictions within a linear regression do not follow the normal distribution theory used for other linear models because the response variable is categorical (among other reasons). Confidence intervals can be constructed with a method called *bootstrapping.*
+As always, these predictions should be accompanied by a confidence interval. Unfortunately, the predictions within a logistic regression do not follow the normal distribution theory used for other linear models. Confidence intervals can be constructed, however, with a method called *bootstrapping.*
 
-Bootstrapping is a process that develops an approximate sampling distribution of a statistic by repeatedly sampling from the original data. Specifically, one bootstrap step randomly selects n individuals from the original data with replacement and computes the desired statistic. It then repeats this process many times (usually on the order of 5000-10000 times). All of the statistics from these repeated samples are then ordered from smallest to largest. The values of the statistics at the 2.5 and 97.5 percentiles are then found to form a 95% confidence interval for the statistic.
+Bootstrapping is a process that develops an approximate sampling distribution of a statistic by repeatedly sampling from the original data. Specifically, one bootstrap step randomly selects n individuals from the original data with replacement and computes the desired statistic. It then repeats this process many times (usually on the order of 5000-10000 times). All of the statistics from these repeated samples are then ordered from smallest to largest. The values of the statistic at the 2.5 and 97.5 percentiles[^percentiles] are then found to form a 95% confidence interval for the statistic.
 
-The bootstrapped samples can be generated with `bootCase()` which requires the object saved from `glm()` as its only argument. By default it will take 999 samples, which will be adequate for this class.
+The bootstrapped samples can be generated with `bootCase()` which requires the `glm()` object as its only argument.[^bootstrapR]
 
 ```r
 > bc1 <- bootCase(glm1)      # bootstrapping, be patient!
@@ -380,27 +381,27 @@ The bootstrapped samples can be generated with `bootCase()` which requires the o
 'bootCase' is provided here only for backward compatibility.
 Consider using 'Boot' from the 'car' package instead.
 ```
-As partially seen below the function returns parameter estimates for each of 999 bootstrapped samples (each row is a separate bootstrapped sample).
+As partially seen below, `bootCase()` returns parameter estimates for each bootstrapped sample (each row is a separate bootstrapped sample).
 
 ```
      (Intercept)    canine
-[1,]    41.60532 -13.04390
-[2,]    34.83668 -10.86136
-[3,]    47.59170 -14.96047
-[4,]    42.05638 -13.11217
-[5,]    37.61262 -11.68511
+[1,]    34.21969 -10.64698
+[2,]    33.53490 -10.45157
+[3,]    33.13709 -10.34672
+[4,]    39.08206 -12.21312
+[5,]    40.54202 -12.67247
 ```
-A histogram of the slopes from the 999 bootstrapped samples is shown below. In addition, the vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -16.27 and -8.37.
+A histogram of the slopes from all of the bootstrapped samples is shown below. The vertical red lines show the values that have 2.5% and 97.% of the samples smaller and, thus, show the endpoints of a 95% bootstrapped confidence interval. Thus, one would be 95% confident that the slope for this logistic regression is between -15.60 and -8.28.
 
 <img src="Lecture_LogReg_BatMorph_files/figure-html/unnamed-chunk-24-1.png" width="336" />
 
 ### CIs for Predicted Probabilities
-Bootstrapping is more useful to us when it comes to making confidence intervals for the predictions discussed above. First, however, we have to write a function that can be used to make the predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a "success" given a particular value of X.[^predprob]
+Bootstrapping is more useful for making confidence intervals for the predictions discussed above.[^predictCI] First, however, we have to write a function that can be used to make predictions for each of the bootstrapped samples. For example, the following function can be used to predict the probability of a "success" given a particular value of X.[^predprob]
 
 ```r
 > predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
 ```
-For example, this function can be used to find the probability of a *semotus* given a tooth height of 3.1 (and the obsered values of the intercept and slope).
+For example, this function can be used to find the probability of a *semotus* given a tooth height of 3.1 (and the obsered values of the intercept and slope). [*Compare this result to what was calculated above.*]
 
 ```r
 > predProb(3.1,alpha=35.51574,beta=-11.11193)
@@ -409,15 +410,14 @@ For example, this function can be used to find the probability of a *semotus* gi
 ```
 [1] 0.7443605
 ```
-More importantly, the `alpha=` and `beta=` arguments can be the intercept and slope columns from the bootstrapped samples object. This then would predicted the probability of *semotus* if the tooth height is 3.1 for each bootstrapped sample (the first five are shown below).
+More importantly, the `alpha=` and `beta=` arguments can be the intercept and slope columns (first and second columns, respectively; thus, the use of "1" and "2" below) from the bootstrapped samples object. This would then predict the probability of being *semotus* if the tooth height is 3.1 for each bootstrapped sample (the first five are shown below).
 
 ```r
 > p31 <- predProb(3.1,bc1[,1],bc1[,2])
-> p31[1:5]
 ```
 
 ```
-[1] 0.7630067 0.7625069 0.7710459 0.8035546 0.8003989
+[1] 0.7710168 0.7567687 0.7431242 0.7723065 0.7785726
 ```
 The `quantile()` function is used to identify the values in the 2.5% and 97.5% positions.
 
@@ -427,9 +427,9 @@ The `quantile()` function is used to identify the values in the 2.5% and 97.5% p
 
 ```
      2.5%     97.5% 
-0.6368349 0.8582176 
+0.6347614 0.8500010 
 ```
-Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.64 and 0.86.
+Thus, one is 95% confident that the probability of being a *semotus* for a hoary bat with a 3.1 mm tooth height is between 0.63 and 0.85.
 
 ### CIs for Predicted Values of X for a Given Probability
 The same process can be followed for making a confidence interval for the value of the quantitative explanatory variable for a certain probability. First, make a function to compute the value of X for a given probability.[^predX]
@@ -437,7 +437,7 @@ The same process can be followed for making a confidence interval for the value 
 ```r
 > predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
 ```
-This is then applied to the boostrapped samples.
+This is then applied to the boostrapped samples (here for a probability of 0.5).
 
 ```r
 > x05 <- predX(0.5,bc1[,1],bc1[,2])
@@ -446,7 +446,7 @@ This is then applied to the boostrapped samples.
 
 ```
     2.5%    97.5% 
-3.153957 3.242064 
+3.151589 3.240603 
 ```
 Thus, one is 95% confident that the tooth height where it is an equal probability that the hoary bat is a *semotus* or a *cinereus* is between 3.15 and 3.24.
 
@@ -462,5 +462,8 @@ Thus, one is 95% confident that the tooth height where it is an equal probabilit
 [^glm]: The "g" in `glm()` stands for "general." If the `family=` argument is not used then `glm()` behaves exactly like `lm()`; i.e., all other models we have fit in this class could have also been fit with `glm()`. However, `glm()` is more general in the sense that it allows for residuals that are not normally distributed, which is the case with logistic regression.
 [^predictedLO]: The log(odds) are predicted by plugging the tooth height values into the best-fit line produced by `glm()` with coefficients shown by `coef()`. Remember that the best-fit line predicts log(odds).
 [^fitplot31]: When I look at the fitplot it appears to me that the probability that the bat is a *semotus* is around 0.7 or 0.75. If the probability was 0.75 then the odds would be $\frac{0.75}{0.25}$=3, which is pretty close to the calculated 2.91 value.
+[^percentiles]: Percentiles are the values of X that have the given percent lower. For example, the 97.5 percentile would have 97.5% of values smaller.
+[^bootstrapR]:  By default `bootCase()` will take 999 bootstrap samples, which will be adequate for the analyses in this class. For research-grade analyses, I will increase this number to at least 5000.
+[^predictCI]: Note that confidence or prediction intervals can NOT be computed with `predict()` as was done in previous modules. In addition, there is no mathematical way to derive a confidence interval for the value of X at a certain probability value as this calculation reverses the order of the best-fit model (i.e., solves for X given a value of Y).
 [^predprob]: This function is simply an R version of $\text{p} = \frac{odds}{1+odds} = \frac{e^{\alpha+\beta X}}{1+e^{\alpha+\beta X}}$.
 [^predX]: This function is simply and R version of $X = \frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right) - \alpha}{\beta}$.
