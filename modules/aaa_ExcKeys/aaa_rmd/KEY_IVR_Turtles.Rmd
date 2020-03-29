@@ -93,7 +93,7 @@ NCStats:::iAssumPlot_REGRESS(NCStats:::iTypeoflm(lm1),
 `r tbls("aov")`
 
 ```{r echo=FALSE,background="white"}
-kANOVA(lm2)
+kANOVA(lm1)
 ```
 
 
