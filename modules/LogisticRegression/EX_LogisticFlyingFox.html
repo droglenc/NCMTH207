@@ -1,0 +1,93 @@
+---
+layout: page
+title: Exercise
+subtitle: Logistic Regression
+author: Derek H. Ogle
+css: /css/modules.css
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<p><strong>Note</strong> Your answers to the questions below should follow the <a href="../../resources/hwformat" target="_blank">expectations for homework found here</a>. Due date is on the <a href="../../resources/Dates-Current" target="_blank">Dates page.</a></p>
+</div>
+<hr />
+<div id="maturation-of-flying-foxes" class="section level2">
+<h2>Maturation of Flying Foxes</h2>
+<p><img src="../zimgs/flyingfox.jpg" alt="Flying Fox" class="img-right"></p>
+<p><a href="https://watermark.silverchair.com/gyy110.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAmAwggJcBgkqhkiG9w0BBwagggJNMIICSQIBADCCAkIGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMJnfmguGYZGAdhTo4AgEQgIICEysLDsd-x2zEFFUTihZc8PHH9tXaczz1RNSeu9ZFMvQAmdxoO-iJKUACL4bxiVPn_hIk5x1EWfPWrfAUsSSa__LDGirnw-gtBX3pLZP19S2m9TTuTUTCTHvtRQesKRLSY6gT7Le_kXhUhZQWw0doEhDV8V2K8AHHr4eZDdCr8W1p4qF2hMF8WoRtrrlqvXbYVer3yOF0BWRa3qyDirGoMpBtOdiBUL9qKPWb9YwO6fCNBIqSls-pa7Jg32j_YRAf-BaNwcHzB2lGMGoAfSmMeiHSFMRy4x9YENC7iHXwHDHNk-c4WpcvpuGsc_eKOrcwYoIj_j1-PqlpQSRa9I_dhnln-bLRhMRtS9SYg_DVFCE6tbP0ZAEKRplYCuVPXhh-Eylkotc3tYgFAMAV4DfukkBBLxK6-qZ-gVdV6P4z-HjQmM5SbFeEjDwW_IuJ6S5fqHSeyt7NUmy_kSxfOR_NFNK4H-pndJX3DWzEn5dgulxl2epN7VgXHuGBl0Qm7UYTIM2BIH5h8luvjPv1WvTis9L1ySPPBoQpL-85aEs2db04wBsRn0FYu6V96XhoNlE9l-uYUxzfPiUvT87-ltbGLgbfzIlL9CeE2xntZzux-LJV4TR3sq7-bMF6j_VqqpSdwefpa_PwGI1bub4pmYn_bGCKu4EvwMamTNi0MbTkZqXUQuHeVKhqyP34IQGBP7Dtm9Ubpw">Todd <em>et al.</em> (2018; J. Mammalogy 99:1510-1521)</a> examined the maturity of the endangered Flying Fox (<em>Pteropus natalis</em>) on <a href="https://en.wikipedia.org/wiki/Christmas_Island_flying_fox">Christmas Island</a>. In one part of their study they recorded the body mass (g) and whether the individual was mature (or immature) of male Flying Fox. Their goal was to describe the relationship between the proportion of male Flying Fox that were mature and the body mass of the individual. Their results are shown in Figure 1, Table 1, and Table 2.</p>
+<p><img src="EX_LogisticFlyingFox_files/figure-html/fitPlot-1.png" width="384" /></p>
+<p>Figure 1: Fitted-line plot for the logistic regression describing the relationship between the proportion of male Flying Fox that are mature and body mass (g).</p>
+<p>Table 1: Parameter estimates (and 95% confidence intervals) for the logistic regression describing the relationship between the proportion of male Flying Fox that are mature and body mass (g).</p>
+<pre><code>                    Ests        2.5 %      97.5 %
+(Intercept) -13.45683731 -19.67010918 -8.97641782
+mass          0.03842538   0.02586132  0.05588533</code></pre>
+<p>Table 2: Summary of parameter estimates for the logistic regression describing the relationship between the proportion of male Flying Fox that are mature and body mass (g).</p>
+<pre><code>                Estimate  Std. Error   z value     Pr(&gt;|z|)
+(Intercept) -13.45683731 2.683602477 -5.014467 5.318055e-07
+mass          0.03842538 0.007536373  5.098657 3.420720e-07</code></pre>
+<p>Use this information to answer the questions below. [<em>Do not yet be concerned with confidence intervals, but you will be on future exercises.</em>]</p>
+<ol>
+<li>Is there a significant relationship between the probability that a male Flying Fox is mature and body mass? Provide evidence.</li>
+<li>Compute the <strong>log(odds)</strong> that a 454 g male Flying Fox is mature.</li>
+<li>Compute the <strong>odds</strong> that a 454 g male Flying Fox is mature. Carefully interpret this result in terms of the probabilities of being mature or immature.</li>
+<li>Compute the <strong>probability</strong> that a 454 g male Fying Fox is mature. Carefully interpret what this value means.</li>
+<li>Interpret the slope from the fitted model. Explain why this value is positive (you may want to relate this to Figure 1).</li>
+<li>Interpret the back-transformed slope from the fitted model. Carefully explain why this value is greater than 1 (you may want to relate this to Figure 1).</li>
+<li>How much would you expect the <strong>log(odds)</strong> to change if the body mass of a male Flying Fox increased by 100 g? [<em>Make sure to identify if this is an increase or decrease and whehter the amount is additive or multiplicative.</em>]</li>
+<li>Make two predictions that demonstrate your answer to the previous question.</li>
+<li>How much would you expect the <strong>odds</strong> to change if the body mass of a male Flying Fox increased by 100 g? [<em>Make sure to identify if this is an increase or decrease and whehter the amount is additive or multiplicative.</em>]</li>
+<li>Make two predictions that demonstrate your answer to the previous question.</li>
+<li>Predict the body mass where it is 50-50 whether the male Flying Fox is mature or immature.</li>
+<li>Predict the body mass where 10% of male Flying Fox are likely to be mature.</li>
+<li>Predict the body mass where 10% of male Flying Fox are likely to be immature.</li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
