@@ -74,13 +74,13 @@ Use this information to answer the questions below. [*Do not yet be concerned wi
 1. Is there a significant relationship between the probability that a male Flying Fox is mature and body mass? Provide evidence.
 1. Compute the **log(odds)** that a 454 g male Flying Fox is mature.
 1. Compute the **odds** that a 454 g male Flying Fox is mature. Carefully interpret this result in terms of the probabilities of being mature or immature.
-1. Compute the **probability** that a 454 g male Fying Fox is mature. Carefully interpret what this value means.
+1. Compute the **probability** that a 454 g male Flying Fox is mature. Carefully interpret what this value means.
 1. Interpret the slope from the fitted model. Explain why this value is positive (you may want to relate this to `r figs("fitplot",display="cite")`).
 1. Interpret the back-transformed slope from the fitted model. Carefully explain why this value is greater than 1 (you may want to relate this to `r figs("fitplot",display="cite")`).
-1. How much would you expect the **log(odds)** to change if the body mass of a male Flying Fox increased by 100 g? [*Make sure to identify if this is an increase or decrease and whehter the amount is additive or multiplicative.*]
+1. How much would you expect the **log(odds)** to change if the body mass of a male Flying Fox increased by 100 g? [*Make sure to identify if this is an increase or decrease and whether the amount is additive or multiplicative.*]
 1. Make two predictions that demonstrate your answer to the previous question.
-1. How much would you expect the **odds** to change if the body mass of a male Flying Fox increased by 100 g? [*Make sure to identify if this is an increase or decrease and whehter the amount is additive or multiplicative.*]
+1. How much would you expect the **odds** to change if the body mass of a male Flying Fox increased by 100 g? [*Make sure to identify if this is an increase or decrease and whether the amount is additive or multiplicative.*]
 1. Make two predictions that demonstrate your answer to the previous question.
 1. Predict the body mass where it is 50-50 whether the male Flying Fox is mature or immature.
-1. Predict the body mass where 10% of male Flying Fox are likely to be mature.
-1. Predict the body mass where 10% of male Flying Fox are likely to be immature.
+1. Predict the body mass where 10% of male Flying Fox are likely mature.
+1. Predict the body mass where 10% of male Flying Fox are likely immature.
