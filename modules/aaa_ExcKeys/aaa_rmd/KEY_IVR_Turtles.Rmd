@@ -46,10 +46,18 @@ figs(name="fitplot","Scatterplot of clutch size on curved carapace length of Haw
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>The indicator variable is named after the "1" group. The reference group will not be explicitly stated in the indicator variables, but is defined when all indicator variables are 0.</li>
-  <li>The variables are entered into the ultimate full model in this order -- covariate, all indicator variables, and all interaction variables.</li>
-  <li>The submodel for the "Arabian Gulf" group is found by plugging in 0 for ALL indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by an indicator variable is dropped.</li>
-  <li>The submodel for the "Indian Ocean" group is found by plugging in 1 for IO and 0 for the other indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by one of the other indicator variables is dropped. Additionally, the word IO is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together. A similar argument is made for the other groups.</li>
+  <li>With respect to indicator variables, ulimate full model, and submodels ...</li>
+    <ul>
+      <li>The indicator variable is named after the "1" group. The reference group will not be explicitly stated in the indicator variables, but is defined when all indicator variables are 0.</li>
+      <li>The variables are entered into the ultimate full model in this order -- covariate, all indicator variables, and all interaction variables.</li>
+      <li>The submodel for the "Arabian Gulf" group is found by plugging in 0 for ALL indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by an indicator variable is dropped.</li>
+      <li>The submodel for the "Indian Ocean" group is found by plugging in 1 for IO and 0 for the other indicator variables and then simplifying. Essentially everything in the ultimate full model multiplied by one of the other indicator variables is dropped. Additionally, the word IO is dropped and then the two constants (&alpha; and &delta;<sub>1</sub>) are lumped together and the two items multiplied by the covariate (&beta; and &gamma;<sub>1</sub>) are lumped together. A similar argument is made for the other groups.</li>
+    </ul>
+  <li>With respect to the tests ...</li>
+    <ul>
+      <li>Be VERY careful with your interpretations of the parallel lines test. Some of you said that there is "no difference between clutch size and carapace length." This is NOT correct ... there is clearly a difference between these two things (like comparing elephants and ants) and that is not what was tested. What you found is that there is NOT a difference in slopes for the regression between clutch size and carapace length among the regions or, better yet, there is NOT a difference in the RELATIONSHIP between clutch size and carapace length among the regions.</li>
+      <li>It is "legal" to perform the equal interecepts test because the lines were found to be parallel. It is also "legal" to examine the relationships test p-value (in the row labelled with the covariate) for the same reason. Think of the line for the covariate (relationship test) and the line with the group factor variable (equal intercepts test) as analagous to "main effects" that can be properly interpreted if the interaction variable (parallel lines test) is not significant.</li>
+    </ul>
 </ul>
 </div>
 
@@ -74,9 +82,11 @@ figs(name="fitplot","Scatterplot of clutch size on curved carapace length of Haw
 
 1. It is difficult to assess independence without more information; however, as long as the turtles were randomly selected at a site there should not be a problem of within-group independence and among-group independence is likely given the geographic spread of the regions. The resiuals appear largely linear and homoscedastic (`r figs("residPlot1",display="cite")`-Right), not normal (Anderson Darling `r kPvalue(ad1$p,digits=4,latex=FALSE)`) but quite symmetric without overly long tails (`r figs("residPlot1",display="cite")`-Left), and without significant outliers (outlier test `r kPvalue(out1$bonf.p,digits=4,latex=FALSE)`).
 
-1. The slopes between clutch size and curved carapace length are statistically similar among the five regions (`r kPvalue(aov1["CCL:Region","Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`); thus, the lines that describe the relationship between clutch size and curved carapace length for the separate regions are all parallel.
+1. The slopes between clutch size and curved carapace length are statistically similar among the five regions (`r kPvalue(aov1["CCL:Region","Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`); thus, the lines that describe the relationship between clutch size and curved carapace length for the separate regions are all parallel. Thus, the relationship between clutch size and curved carapace length does not differ among the separate regions.
 
 1. The intercepts (assuming parallel lines) for the lines describing the relationship between clutch size and curved carapace length are statistically diffrent among the five regions (`r kPvalue(aov1["Region","Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`). Turtles from the Arabian Gulf had a significantly smaller intercept than turtles from all other regions except the Indian Ocean (`r tbls("its",display="cite")`). The intercepts for all other pairs of regions are statistically equal (`r tbls("its",display="cite")`).
+
+1. There is a significant relationship between clutch size and curved carapace length (`r kPvalue(aov1["CCL","Pr(>F)"],digits=4,latex=FALSE)`; `r tbls("aov",display="cite")`). As curved carapace length increases so does clutch size and the degree of increase is the same for all regions (because the lines are paralle as shown above).
 
 1. A plot that illustrates the overall model fit is in `r figs("fitplot",display="cite")`. Note that the slope of these lines are statistically equal.
 
