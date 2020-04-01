@@ -136,7 +136,7 @@ x25ci <- quantile(x25bc,c(0.025,0.975))
 
   <li>At what family income will 25% of the residents accept the offer?</li>
   <ul>
-    <li>The offer will be accepted by 25% of the residents when their family income is $`r formatC(1000*x25,format="f",digits=0)`, with a 95% confidence interval from $`r formatC(1000*x25ci[1],format="f",digits=0)` to $`r formatC(1000*x25ci[2],format="f",digits=1)`.</li>
+    <li>The offer will be accepted by 25% of the residents when their family income is $`r formatC(1000*x25,format="f",digits=0)`, with a 95% confidence interval from $`r formatC(1000*x25ci[1],format="f",digits=0)` to $`r formatC(1000*x25ci[2],format="f",digits=0)`.</li>
   </ul>
   
 ```{r}
