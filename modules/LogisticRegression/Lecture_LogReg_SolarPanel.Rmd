@@ -1,0 +1,147 @@
+---
+title: "Logistic Regression Lecture"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("rhelpers/rhelpers.R")
+modHTML("modules/LogisticRegression/Lecture_LogReg_SolarPanel")
+```
+```{r echo=FALSE, include=FALSE, message=FALSE, warning=FALSE}
+library(NCStats)
+knitr::opts_chunk$set(prompt=TRUE,comment="")
+options(show.signif.stars=FALSE)
+
+library(captioner)
+tbls <- captioner(prefix="Table")
+figs <- captioner(prefix="Figure")
+figs(name="fitplot","Fitted line plot for the logistic regression of willingness to accept the solar panel offer on family income.")
+tbls(name="sum","Parameter estimates and detault tests for the logistic regression of willingness to accept the solar panel offer on family income.")
+tbls(name="cfs","Parameter estimates with 95% confidence intervals) for the logistic regression of willingness to accept the solar panel offer on family income.")
+
+```
+
+----
+
+## Background
+<img src="../zimgs/solarpanel.jpg" alt="Solar Panel" class="img-right">
+Households were asked if they would accept an offer to put solar panels on the roof of their house if they would receive a 50% subsidy from the state. Demographic variables for each household such as income, size, monthly mortgage payment, and age of the head of household were also recorded. The analysis below will examine the willingness of the respondents to accept the offer relative to their annual income (which was recorded in \$1000s; i.e., 80 means \$80000). The data were recorded in [SolarOffer.csv](https://raw.githubusercontent.com/droglenc/NCData/master/SolarOffer.csv) and are loaded below.
+```{r}
+spo <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/SolarOffer.csv")
+str(spo)
+xlbl <- "Family Income (1000s)"
+ylbl <- "Response to Offer"
+```
+
+The logistic regression model is fit and visualized below. The model was used to answer specific questions further below.
+```{r echo=-1, fig.height=4.5, fig.width=5, warning=FALSE}
+par(mar=c(3.5,3.5,0.5,3.5),mgp=c(1.9,0.5,0),tcl=-0.2)
+glm2 <- glm(takeoffer~income,data=spo,family=binomial)
+fitPlot(glm2,xlab=xlbl,ylab=ylbl,breaks=seq(25,135,5))
+```
+
+`r figs("fitplot")`
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+sum <- summary(glm2)$coefficients
+cfs <- cbind(Ests=coef(glm2),confint(glm2))
+ecfs <- exp(cfs)
+```
+
+<ul>
+  <li>Comment on the fit of the logistic regression model.</li>
+  <ul>
+    <li>The logistic regression fits fairly well as there is a fairly distinct break in whether respondents will accept the offer near a family income of approximately $60000 (`r figs("fitplot",display="cite")`). However, the model does seem to over predict their willingness to accept the offer just below this break and under predict just above it.</li>
+  </ul>
+
+  <li>Describe the relationship between the <strong>probability</strong> of accepting the offer and family income.</li>
+  <ul>
+    <li>The probability of accepting the offer is near 0 to about a family income of $45000, where it rises sharply until about $80000, after which the probability of accepting the offer is nearly 1.</li>
+  </ul>
+  
+  <li>Is there a significant relationship between willingness to accept the offer and family income?</li>
+  <ul>
+    <li>There is a significant relationship between the log(odds) of accepting the offer and family income (`r kPvalue(sum[2,"Pr(>|z|)"])`;)</li>
+  </ul>
+
+```{r warning=FALSE, message=FALSE}
+summary(glm2)$coefficients
+```
+  
+  <li>Interpret the slope of this regression model.</li>
+  <ul>
+    <li>I am 95% confident that as family income increases by $1000 that the log(odds) of accepting the offer increase by `r formatC(cfs[2,"Ests"],format="f",digits=3)`, with a 95% confidence interval from `r formatC(cfs[2,"2.5 %"],format="f",digits=3)` to `r formatC(cfs[2,"97.5 %"],format="f",digits=3)`.</li>
+  </ul>
+
+```{r warning=FALSE, message=FALSE}
+(cfs <- cbind(Ests=coef(glm2),confint(glm2)) )
+```
+
+  <li>Interpret the back-transformed slope of this regression model.</li>
+  <ul>
+    <li>I am 95% confident that as family income increases by $1000 that the odds of accepting the offer are `r formatC(ecfs[2,"Ests"],format="f",digits=3)`, with a 95% confidence interval from `r formatC(ecfs[2,"2.5 %"],format="f",digits=3)` to `r formatC(ecfs[2,"97.5 %"],format="f",digits=3)`, TIMES greater.</li>
+  </ul>
+  
+```{r warning=FALSE, message=FALSE}
+exp(cfs)
+```
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+set.seed(34323434)
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+p80 <- predProb(80,cfs[[1]],cfs[[2]])
+bc2 <- bootCase(glm2)      # bootstrapping, be patient!
+p80ci <- quantile(predProb(80,bc2[,1],bc2[,2]),c(0.025,0.975),na.rm=TRUE)
+```
+  
+  <li>What is the probability that a resident will accept the offer if their family income is $80000?</li>
+  <ul>
+    <li>The probability that a resident with a family income of $80000 will accept the offer is `r formatC(p80,format="f",digits=3)`, with a 95% confidence interval from `r formatC(p80ci[1],format="f",digits=3)` to `r formatC(p80ci[2],format="f",digits=3)`?</li>
+  </ul>
+
+```{r echo=-1, warning=FALSE, message=FALSE}
+set.seed(34323434)
+predict(glm2,data.frame(income=70),type="response")
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+predProb(80,cfs[[1]],cfs[[2]])
+bc2 <- bootCase(glm2)      # bootstrapping, be patient!
+p80 <- predProb(80,bc2[,1],bc2[,2])
+quantile(p80,c(0.025,0.975),na.rm=TRUE)
+```
+
+  <li>Predict the odds that a family with an income of $80000 will accept the offer? [You do not need a confidence interval for this] Interpret the results.</li>
+  <ul>
+    <li>The odds that a family with an income of $80000 will accept the offer is `r formatC(p80/(1-p80),format="f",digits=1)`. Thus, residents with a family income of $80000 are `r formatC(p80/(1-p80),format="f",digits=1)` times more likely to accept the offer than to not accept the offer.</li>
+  </ul>
+
+```{r}
+p80/(1-p80)
+```
+
+```{r echo=FALSE}
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+x25 <- predX(0.25,bc2[,1],bc2[,2])
+x25ci <- quantile(x25,c(0.025,0.975))
+```
+
+  <li>At what family income will 25% of the residents accept the offer?</li>
+  <ul>
+    <li>The offer will be accepted by 25% of the residents when their family income is `r formatC(x25,format="f",digits=0)`, with a 95% confidence interval from `r formatC(x25ci[1],format="f",digits=0)` to `r formatC(x25ci[2],format="f",digits=0)`.</li>
+  </ul>
+  
+```{r}
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+x25 <- predX(0.25,bc2[,1],bc2[,2])
+quantile(x25,c(0.025,0.975))
+```
+
+</ul>

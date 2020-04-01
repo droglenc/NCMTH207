@@ -169,7 +169,7 @@ title: Modules
         <li><b>Class Materials</b></li>
           <ul>
             <li><a href="LogisticRegression/Lecture_LogReg_BatMorph.html">Lecture Notes</a></li>
-            <li><a href="LogisticRegression/XXX.html">Full Worked Example</a></li>
+            <li><a href="LogisticRegression/Lecture_LogReg_SolarPanel.html">Another Example</a></li>
           </ul>
         <li><b>Exercises</b></li>
           <ol>
