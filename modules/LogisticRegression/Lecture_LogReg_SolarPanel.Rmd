@@ -69,7 +69,7 @@ ecfs <- exp(cfs)
   
   <li>Is there a significant relationship between willingness to accept the offer and family income?</li>
   <ul>
-    <li>There is a significant relationship between the log(odds) of accepting the offer and family income (`r kPvalue(sum[2,"Pr(>|z|)"])`;)</li>
+    <li>There is a significant relationship between the log(odds) of accepting the offer and family income (`r kPvalue(sum[2,"Pr(>|z|)"],latex=FALSE)`)</li>
   </ul>
 
 ```{r warning=FALSE, message=FALSE}
@@ -105,17 +105,17 @@ p80ci <- quantile(predProb(80,bc2[,1],bc2[,2]),c(0.025,0.975),na.rm=TRUE)
   
   <li>What is the probability that a resident will accept the offer if their family income is $80000?</li>
   <ul>
-    <li>The probability that a resident with a family income of $80000 will accept the offer is `r formatC(p80,format="f",digits=3)`, with a 95% confidence interval from `r formatC(p80ci[1],format="f",digits=3)` to `r formatC(p80ci[2],format="f",digits=3)`?</li>
+    <li>The probability that a resident with a family income of $80000 will accept the offer is `r formatC(p80,format="f",digits=3)`, with a 95% confidence interval from `r formatC(p80ci[1],format="f",digits=3)` to `r formatC(p80ci[2],format="f",digits=3)`.</li>
   </ul>
 
 ```{r echo=-1, warning=FALSE, message=FALSE}
 set.seed(34323434)
-predict(glm2,data.frame(income=70),type="response")
+predict(glm2,data.frame(income=80),type="response")
 predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
-predProb(80,cfs[[1]],cfs[[2]])
+p80 <- predProb(80,cfs[[1]],cfs[[2]])
 bc2 <- bootCase(glm2)      # bootstrapping, be patient!
-p80 <- predProb(80,bc2[,1],bc2[,2])
-quantile(p80,c(0.025,0.975),na.rm=TRUE)
+p80bc <- predProb(80,bc2[,1],bc2[,2])
+quantile(p80bc,c(0.025,0.975),na.rm=TRUE)
 ```
 
   <li>Predict the odds that a family with an income of $80000 will accept the offer? [You do not need a confidence interval for this] Interpret the results.</li>
@@ -129,8 +129,9 @@ p80/(1-p80)
 
 ```{r echo=FALSE}
 predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
-x25 <- predX(0.25,bc2[,1],bc2[,2])
-x25ci <- quantile(x25,c(0.025,0.975))
+x25 <- predX(0.25,cfs[[1]],cfs[[2]])
+x25bc <- predX(0.25,bc2[,1],bc2[,2])
+x25ci <- quantile(x25bc,c(0.025,0.975))
 ```
 
   <li>At what family income will 25% of the residents accept the offer?</li>
