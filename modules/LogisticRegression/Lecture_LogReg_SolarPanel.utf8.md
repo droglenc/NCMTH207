@@ -159,7 +159,7 @@ income      1.220597e+00 1.080523e+00 1.614672303
 
   <li>At what family income will 25% of the residents accept the offer?</li>
   <ul>
-    <li>The offer will be accepted by 25% of the residents when their family income is 59, with a 95% confidence interval from 54 to 68.</li>
+    <li>The offer will be accepted by 25% of the residents when their family income is $58926, with a 95% confidence interval from $53694 to $68476.7.</li>
   </ul>
   
 
