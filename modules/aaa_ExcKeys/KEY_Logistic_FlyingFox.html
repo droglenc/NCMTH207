@@ -1,0 +1,106 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Logistic Regression"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Log(odds) are predicted by plugging a value of “X” (body mass in this case) into the equation of the line, where estimates of α and β come from table 1 or table 2.
+</li>
+<li>
+Odds are predicted by back-transforming the predicted log(odds); i.e., raise the log(odds) to the power of e.
+</li>
+<li>
+The predicted probability is computed from the predicted odds with <span class="math inline">\(\frac{\text{odds}}{1+\text{odds}}\)</span>.
+</li>
+<li>
+When interpreting the slope make sure you realize that it is telling you how the log(odds) (not the odds and not the probability) change with increasing “X” and that that increase is additive.
+</li>
+<li>
+When interpreting the back-transformed slope (i.e., e<sup>slope</sup>) make you realize that it is tell you how much the odds (not the log(odds) and not the probability) change with increasing “X” and that the increase is multiplicative
+</li>
+<li>
+Questions 7 and 9 are related to moving 100 slopes or 100 back-transformed slopes. On the original scale it is 100 slopes ADDED together and on the back-transformed scale is 100 slopes MULTPLIED together.
+</li>
+<li>
+Questions 8 and 10 should pick two values of “X” that are 100 units apart. In question 8, we subtracted because this is on the original scale and we are trying to prove that the slope is an ADDITIVE quantity. In question 10, we divided because this is on the back-transformed scale and we are trying to prove that the back-transformed slope is a MULTIPLICATIVE quantity.
+</li>
+<li>
+Questions 11-13 are applications of the formula <span class="math inline">\(\frac{\text{log}\left(\frac{\text{p}}{1-\text{p}}\right)-\alpha}{\beta}\)</span>, where p is the given probability of interest and α and β come from tables 1 and 2 (as in previous questions).
+</ul>
+</div>
+<hr />
+<div id="maturation-of-flying-foxes" class="section level2">
+<h2>Maturation of Flying Foxes</h2>
+<ol>
+<li><p>There is a significant <strong>linear</strong> relationship between the log(odds) that a male Flying Fox is mature and its body mass because the p-value for the slope in Table 2 (0.000000342) is less than α. This implies that there is a significant, though not linear, relationship between the probability that a male Flying Fox is mature and its body mass.</p></li>
+<li><p>The log(odds) that a 454 g male Flying Fox is mature is -13.4568+0.0384*454 = 3.9768.</p></li>
+<li><p>The odds that a 454 g male Flying Fox is mature is e<sup>-13.4568+0.0384*454</sup> = e<sup>3.9768</sup> = 53.3461. This means that a 454 g male Flying Fox is 53 times more likely to be mature than immature.</p></li>
+<li><p>The probability that a 454 g male Flying Fox is mature is <span class="math inline">\(\frac{e^{-13.4568+0.0384*454}}{1+e^{-13.4568+0.0384*454}}\)</span> = 0.9816. This means that approximately 98% of 454 g male Flying Foxes will be mature.</p></li>
+<li><p>The slope tells me that the log(odds) that a male Flying Fox is mature increases by 0.0384 for every 1 g increase in body mass. This value is positive because the probability, odds, and log(odds) of being mature all increase with increasing body mass and adding a positive number means that the log(odds) are increasing.</p></li>
+<li><p>The back-transformed slope (e<sup>0.0384</sup>=1.0391) tells me that the odds that a male Flying Fox is mature increases 1.0391 TIMES for every 1 g increase in body mass. This value is greater than 1 because the probability and odds of being mature all increase with increasing body mass and multiplying by a value greater than 1 means that the odds are increasing.</p></li>
+<li><p>The log(odds) of being mature would increase by 3.84 (i.e., 100 slopes added together, or 100*0.0384) if the body mass increased by 100 g. For clarity, note that the log(odds) this increase would occur by adding 3.84.</p></li>
+<li><p>The log(odds) of being mature for a 354 g male Flying Fox is -13.4568+0.0384*354 = 0.1368. Subtracting this prediction from the predicted log odds for a 454 g male Flying Fox (from above; i.e., 3.9768) gives 3.9768-0.1368 = 3.8400, which is the same value as our previous answer.</p></li>
+<li><p>The odds of being mature would increase by a multiple of 46.53 (i.e., 100 back-transformed slopes multiplied together, or 1.0391<sup>100</sup>).</p></li>
+<li><p>The odds of being mature for a 354 g male Flying Fox is e<sup>0.1368</sup> = 1.1466. Dividing the predicted odds for a 454 g male Flying Fox (from above; i.e., 53.3461) by the predicted odds for a 354 g male Flying Fox gives <span class="math inline">\(\frac{53.3461}{1.1466}\)</span> = 46.53, which is the same value as our previous answer.</p></li>
+<li><p>The body mass where 50% of male Flying Fox are mature is <span class="math inline">\(\frac{\text{log}\left(\frac{0.5}{1-0.5}\right)-(-13.4568)}{0.0384}\)</span> = 350.4 g.</p></li>
+<li><p>The body mass where 10% of male Flying Fox are mature is <span class="math inline">\(\frac{\text{log}\left(\frac{0.1}{1-0.9}\right)-(-13.4568)}{0.0384}\)</span> = 293.2 g.</p></li>
+<li><p>The body mass where 10% of male Flying Fox are immature (which will be calculated by finding where 90% are mature) is <span class="math inline">\(\frac{\text{log}\left(\frac{0.9}{1-0.1}\right)-(-13.4568)}{0.0384}\)</span> = 407.7 g.</p></li>
+</ol>
+<hr />
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
