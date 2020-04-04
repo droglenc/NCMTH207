@@ -41,7 +41,8 @@ figs(name="fitplot","Fitted plot for the logistic regression of whether or not t
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>XXX</li>
+  <li>When addressing how well the logistic regression model fits (question 1) you are addressing how well the red "best fit line" fits the proportions of successes (the blue plusses). This is a subjective statement from examing the `fitPlot()`.</li>
+  <li>Make sure to use confidence intervals for the slope, back-transformed slope, and, in future homeworks, the predictions.</li>
 </ul>
 </div>
 
@@ -50,10 +51,10 @@ figs(name="fitplot","Fitted plot for the logistic regression of whether or not t
 ## Moose Calf Production
 
 1. The logistic regression model does not seem to fit the proportions of moose that had at least one calf very well, as it overestimates at the first few and last several ages and underestimates in the middle ages (i.e., blue pluses; `r figs("fitplot",display="cite")`).
-1. The estimated slope indicates that the log odds that a moose had at least one calf decrease between `r formatC(-1*ci1[2,2],format="f",digits=4)` and `r formatC(-1*ci1[2,1],format="f",digits=4)`, on average, for every increase in age by one year.
-1. The back-transformed estimated slopes indicates that the odds that a moose had at least one calf are between `r formatC(exp(ci1[2,1]),format="f",digits=4)` and `r formatC(exp(ci1[2,2]),format="f",digits=4)` as much after an increase of one year.
+1. The estimated slope indicates that the log odds that a moose had at least one calf decrease between `r formatC(-1*ci1[2,2],format="f",digits=4)` and `r formatC(-1*ci1[2,1],format="f",digits=4)`, on average, for every one year increase in age.
+1. The back-transformed estimated slope indicates that the odds that a moose had at least one calf are between `r formatC(exp(ci1[2,1]),format="f",digits=4)` and `r formatC(exp(ci1[2,2]),format="f",digits=4)` as much after an increase of one year.
 1. The log odds of a 10-year-old moose having at least one calf is `r formatC(cf1[1],format="f",digits=4)`+`r formatC(cf1[2],format="f",digits=4)`*10 = `r formatC(log10,format="f",digits=4)`.
-1. The log odds of a 10-year-old moose having at least one calf as computed in R is also `r formatC(log10,format="f",digits=4)` (see code in appendix).
+1. The log odds of a 10-year-old moose having at least one calf as computed in R is also `r formatC(log10,format="f",digits=4)` (see `predict()` code in appendix).
 1. The odds of a 10-year-old moose having at least one calf is $e^{`r formatC(log10,format="f",digits=4)`}$=`r formatC(exp(log10),format="f",digits=4)`.
 1. The probability of a 10-year-old moose having at least one calf is $\frac{`r formatC(exp(log10),format="f",digits=4)`}{1+`r formatC(exp(log10),format="f",digits=4)`}$=`r formatC(p10,format="f",digits=4)`.
 1. The probability of a 10-year-old moose having at least one calf as computed in R is also `r formatC(p10,format="f",digits=4)` (see code in appendix).
