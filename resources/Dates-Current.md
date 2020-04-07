@@ -120,7 +120,6 @@ The module to prepare for each class period is shown under "Material." Dates wil
 <tr><td>23-Mar --<br> 27-Mar</td>
     <td>TBA</td></tr>
 <tr><td></td><td></td></tr>
---->
 
 <tr><td>30-Mar --<br> 3-Apr</td>
     <td>Flying Fox Logistic Regression Exercise ... due Wednesday<br>
@@ -129,6 +128,7 @@ The module to prepare for each class period is shown under "Material." Dates wil
     Work on portfolio analyses<br>
     See <a href="https://piazza.com/class/k4ea6qq6oh235r?cid=54" target="_blank">this note about these items.</a></td></tr>
 <tr><td></td><td></td></tr>
+--->
 
 <tr><td>6-Apr --<br> 10-Apr</td>
     <td>Ruffe I Logistic Regression Exercise ... Due Monday<br>
