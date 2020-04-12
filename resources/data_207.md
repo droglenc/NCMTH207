@@ -62,6 +62,7 @@ The following sources may be useful for locating data for [your portfolio](Sylla
 * [NOAA Climate Data](https://www.ncdc.noaa.gov/data-access/quick-links): A large compilation of climate-related data.
 * [Air Data](https://www.epa.gov/outdoor-air-quality-data): Air quality data collected by the EPA.
 * [UNICEF](https://data.unicef.org/): A large compilation of data related to women and children around the world.
+* [Living Planet Index](https://livingplanetindex.org/home/index): A database for measuring the state of the world's biological diversity.
 * [Walmart sales data](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting/data): A database of information about a sample of Walmart stores and their sales. [I can help you merge the various datasets available here.]
 * [fivethirtyeight data](https://data.fivethirtyeight.com/): A list of data behind articles on fivethirtyeight.com.
 * [Buzzfeed data](https://github.com/BuzzFeedNews/everything): A list of data behind articles on buzzfeed.com.
