@@ -128,12 +128,12 @@ The module to prepare for each class period is shown under "Material." Dates wil
     Work on portfolio analyses<br>
     See <a href="https://piazza.com/class/k4ea6qq6oh235r?cid=54" target="_blank">this note about these items.</a></td></tr>
 <tr><td></td><td></td></tr>
---->
 
 <tr><td>6-Apr --<br> 10-Apr</td>
     <td>Ruffe I Logistic Regression Exercise ... Due Monday<br>
     Work on portfolio analyses.</td></tr>
 <tr><td></td><td></td></tr>
+--->
 
 <tr><td>13-Apr --<br> 15-Apr</td>
     <td>Work on portfolio analyses.</td></tr>
