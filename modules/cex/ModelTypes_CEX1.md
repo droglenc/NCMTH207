@@ -60,13 +60,13 @@ For each question below decide which type of analysis (e.g., one-way ANOVA, two-
 
 1. [Okun's Law in Macroeconomics](https://en.wikipedia.org/wiki/Okun%27s_law)
 
-![Okun's Law](zimgs/OkunsLaw.JPG | width=350)
+![Okun's Law](zimgs/OkunsLaw.JPG){:width="350px"}
 
 1. [Yoga and Heart Rates](https://bmccomplementmedtherapies.biomedcentral.com/articles/10.1186/s12906-018-2343-1)
 
-![Heart Rate with an without Yoga](zimgs/Yoga.JPG | width=100)
+![Heart Rate with an without Yoga](zimgs/Yoga.JPG){:width="350px"}
 
-1. [Lizard Clutch Mass](https://www.researchgate.net/publication/225906496_The_effects_of_tail_loss_on_survival_growth_reproduction_and_sex_ratio_of_offspring_in_the_lizard_Uta_stansburiana_in_the_field)
+1. [Lizard Clutch Mass](https://www.researchgate.net/publication/225906496_The_effects_of_tail_loss_on_survival_growth_reproduction_and_sex_ratio_of_offspring_in_the_lizard_Uta_stansburiana_in_the_field){:width="350px"}
 
 ![Clutch Mass versus Female SVL](https://www.researchgate.net/profile/Stanley_Fox/publication/225906496/figure/fig1/AS:669008693047300@1536515510549/Regressions-of-clutch-mass-versus-female-snout-vent-length-SVL-for-tailed-closed_W640.jpg)
 
@@ -79,5 +79,3 @@ For each question below decide which type of analysis (e.g., one-way ANOVA, two-
 ### Footnotes
 
 <b id="f1"><sup>1</sup></b> This example is essentially from the [Open Intro Statistics book](http://www.openintro.org/stat/index.php){:target="_blank"}. [↩](#a1)
-
-----
