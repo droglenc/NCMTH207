@@ -29,9 +29,9 @@ XXX
 ## Preparation for Class
 Use the resources below to answer [these questions](prep/ModelTypes). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (XX pages, XX mins)
+* **Primary Resources** (~4 pages)
   * Review about [types of variables](http://derekogle.com/NCMTH107/modules/FoundationalDefns.html){:target="_blank"} and [response and explanatory variables](http://derekogle.com/NCMTH107/modules/DataProduction.html){:target="_blank"} from your introductory statistics course
-  * [Reading](readings/ModelTypes)
+  * [Reading](readings/ModelTypes){:target="_blank"}
 
 ----
 
