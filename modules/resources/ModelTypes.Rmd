@@ -1,0 +1,120 @@
+---
+title: "Model Types"
+description: |
+  Introduction to linear model types covered during this course.
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+library(NCStats)
+library(ggplot2)
+knitr::opts_chunk$set(echo=FALSE,message=FALSE,comment="#R>  ",
+                      fig.align='center',fig.width=3.5,fig.height=3.5)
+data(Mirex)
+Mirex <- Mirex %>%
+  dplyr::mutate(year=factor(year),
+                exceeds_limit=factor(ifelse(mirex>0.1,"Yes","No")))
+```
+
+During this course we will examine a variety of models that fall into the general categories of *general linear models* or *generalIZED linear models*. General linear models have a quantitative [response variable](https://deepai.org/machine-learning-glossary-and-terms/response-variable) and generally assume that the "errors" around the model follow a normal distribution. General linear models that we will discuss are a **One-Way ANOVA**, **Two-WAY ANOVA**, **Simple Linear Regression**, and **Indicator Variable Regression**. GeneralIZED linear models do not require a quantitative response variable nor "errors" that are normally distributed. Thus, generalIZED linear models are more flexible than general linear models. In this course, the only generalIZED linear model that we will encounter is the **Logistic Regression**, but the chi-square test from your introductory statistics course can also be cast as a generalIZED linear model.
+
+<aside>
+ANOVA is short for ANalysis Of VAriance
+</aside>
+Both general and generalIZED linear models can have a single explanatory variable that can be either quantitative or categorical, or multiple explanatory variables that can be all quantitative, all categorical, or a mixture of both quantitative and categorical. Ultimately, there can be several explanatory variables in a model, but we will only consider two explanatory variables in this course.
+
+&nbsp;
+
+# Distinguinsing Model Types
+The five models that will be covered in this course can be distinguished by considering only the type of response variable and the types and number of explanatory variables. For example, the following table may be used to distinguish between the five models that we will cover in this course.
+
+| Response     | Explanatory                            | Linear Model                  |
+|--------------|----------------------------------------|-------------------------------|
+| Quantitative | Categorical (only one)                 | One-Way ANOVA                 |
+| Quantitative | Categorical (two)                      | Two-Way ANOVA                 |
+| Quantitative | Quantitative (only one)                | Simple Linear Regression      |
+| Quantitative | Quantitative (one) & Categorical (one) | Indicator Variable Regression |
+| Binomial     | Quantitative (or Both)                 | (Binary) Logistic Regression  |
+
+&nbsp;
+
+# Model Purposes
+As seen above, each model uses different types of data. Not surprisingly then, each model is used to test different hypotheses or has a different analytical purpose. These purposes will be discussed in detail in subsequent modules. However, the major objective of each module is explained briefly below (in the order that we will cover the models).
+
+Each example uses a data set that contains data about [mirex](https://en.wikipedia.org/wiki/Mirex) concentrations (`mirex`) for two species of salmon (`species`) captured in six years between 1977 and 1999 (`year`) in Lake Ontario. In addition the weight of each fish (`weight`) and whether or not the mirex concentration exceeded the EPA limit of 0.1 mg/kg (`exceeds_limit`) were recorded.
+
+&nbsp;
+
+A **one-way ANOVA** is used to determine if the mean of the response variable (`mirex`) differs among two or more groups defined by a single categorical variable (e.g., `year`).
+
+```{r}
+ggplot(data=Mirex,mapping=aes(x=year,y=mirex)) +
+  geom_point(alpha=0.15) +
+  stat_summary(fun.data=mean_cl_normal,geom="errorbar",width=0.25,size=1) +
+  stat_summary(fun=mean,geom="point",shape=15,size=2) +
+  labs(y="Mirex Concentration (mg/kg)",x="Sample Year") +
+  theme_NCStats()
+```
+
+&nbsp;
+
+A **two-way ANOVA** is used to determine if the mean of the response variable (`mirex`) differs among groups for one categorical variable (e.g., `year`), another categorical variable (e.g., `species`), or the interaction between the two categorical variables.
+
+
+```{r}
+pd <- position_dodge(0.25)
+ggplot(data=Mirex,mapping=aes(x=year,y=mirex,color=species)) +
+  geom_point(alpha=0.25,position=pd) +
+  stat_summary(fun.data=mean_cl_normal,geom="errorbar",width=0.25,size=1,position=pd) +
+  stat_summary(fun=mean,geom="point",shape=15,size=2,position=pd) +
+  labs(y="Mirex Concentration (mg/kg)",x="Sample Year") +
+  theme_NCStats() +
+  theme(legend.position=c(1,1),legend.justification=c(1,1.02))
+```
+
+&nbsp;
+
+A **simple linear regression** is used to determine if there is a relationship between the response variable (e.g., `mirex`) and the single quantitative explanatory variable (e.g., `weight`).
+
+```{r}
+ggplot(data=Mirex,mapping=aes(x=weight,y=mirex)) +
+  geom_point(alpha=0.25) +
+  geom_smooth(method="lm",se=FALSE) +
+  labs(y="Mirex Concentration (mg/kg)",x="Weight (kg)") +
+  theme_NCStats()
+```
+
+&nbsp;
+
+An **indicator variable regression** is used to determine if the simple linear regressions differ between two or more groups (`species`).
+
+```{r}
+ggplot(data=Mirex,mapping=aes(x=weight,y=mirex,color=species)) +
+  geom_point(alpha=0.25) +
+  geom_smooth(method="lm",se=FALSE) +
+  labs(y="Mirex Concentration (mg/kg)",x="Weight (kg)") +
+  theme_NCStats() +
+  theme(legend.position=c(0,1),legend.justification=c(-0.02,1.02))
+```
+
+&nbsp;
+
+A **logistic regression** is used to determine if the probability of "success" for the binary categorical response (e.g., `exceeds_limit`) is related to the quantitative explanatory variable (e.g., `weight`).
+
+```{r}
+ggplot(data=dplyr::filter(Mirex,species=="coho"),
+       mapping=aes(x=weight,y=as.numeric(exceeds_limit)-1)) +
+  geom_point(alpha=0.25) +
+  geom_smooth(method="glm",se=FALSE,
+              method.args=list(family="binomial")) +
+  labs(y="Prob. of Exceeding 0.1 mg/kg Mirex",x="Weight (kg)") +
+  theme_NCStats()
+```
+
+
+
+# Corrections {.appendix}
+If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).
