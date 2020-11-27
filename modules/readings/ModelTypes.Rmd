@@ -19,12 +19,17 @@ Mirex <- Mirex %>%
                 exceeds_limit=factor(ifelse(mirex>0.1,"Yes","No")))
 ```
 
-During this course we will examine a variety of models that fall into the general categories of *general linear models* or *generalIZED linear models*. General linear models have a quantitative [response variable](https://deepai.org/machine-learning-glossary-and-terms/response-variable) and generally assume that the "errors" around the model follow a normal distribution. General linear models that we will discuss are a **One-Way ANOVA**, **Two-WAY ANOVA**, **Simple Linear Regression**, and **Indicator Variable Regression**. GeneralIZED linear models do not require a quantitative response variable nor "errors" that are normally distributed. Thus, generalIZED linear models are more flexible than general linear models. In this course, the only generalIZED linear model that we will encounter is the **Logistic Regression**, but the chi-square test from your introductory statistics course can also be cast as a generalIZED linear model.
+During this course we will examine a variety of models that fall into the general categories of *general linear models* or *generalIZED linear models*. General linear models have a quantitative [response variable](https://deepai.org/machine-learning-glossary-and-terms/response-variable) and generally assume that the "errors" around the model follow a normal distribution. General linear models that we will discuss are a **One-Way ANOVA**, **Two-WAY ANOVA**, **Simple Linear Regression**, and **Indicator Variable Regression**. GeneralIZED linear models do not require a quantitative response variable nor "errors" that are normally distributed. Thus, generalIZED linear models are more flexible than general linear models. In this course, the only generalIZED linear model that we will encounter is **Logistic Regression**, but the chi-square test from your introductory statistics course can also be cast as a generalIZED linear model.
 
 <aside>
 ANOVA is short for ANalysis Of VAriance
 </aside>
+
 Both general and generalIZED linear models can have a single explanatory variable that can be either quantitative or categorical, or multiple explanatory variables that can be all quantitative, all categorical, or a mixture of both quantitative and categorical. Ultimately, there can be several explanatory variables in a model, but we will only consider two explanatory variables in this course.
+
+<aside>
+All models covered in this course will have **only one** response variable
+</aside>
 
 &nbsp;
 
@@ -39,16 +44,20 @@ The five models that will be covered in this course can be distinguished by cons
 | Quantitative | Quantitative (one) & Categorical (one) | Indicator Variable Regression |
 | Binomial     | Quantitative (or Both)                 | (Binary) Logistic Regression  |
 
+<aside>
+How to distinguish among models covered in this course
+</aside>
+
 &nbsp;
 
 # Model Purposes
-As seen above, each model uses different types of data. Not surprisingly then, each model is used to test different hypotheses or has a different analytical purpose. These purposes will be discussed in detail in subsequent modules. However, the major objective of each module is explained briefly below (in the order that we will cover the models).
+As seen above, each model uses different types of data. Not surprisingly then, each model is used to test different hypotheses or has a different analytical purpose. These purposes will be discussed in detail in subsequent modules. However, the major objective of each model is explained briefly below (in the order that we will cover the models).
 
-Each example uses a data set that contains data about [mirex](https://en.wikipedia.org/wiki/Mirex) concentrations (`mirex`) for two species of salmon (`species`) captured in six years between 1977 and 1999 (`year`) in Lake Ontario. In addition the weight of each fish (`weight`) and whether or not the mirex concentration exceeded the EPA limit of 0.1 mg/kg (`exceeds_limit`) were recorded.
+Each example uses a data set that contains data about [mirex](https://en.wikipedia.org/wiki/Mirex) concentrations (`mirex`) for two species of salmon (`species`) captured in six years between 1977 and 1999 (`year`) in Lake Ontario. The weight of each fish (`weight`) and whether or not the mirex concentration exceeded the EPA limit of 0.1 mg/kg (`exceeds_limit`) were also recorded.
 
 &nbsp;
 
-A **one-way ANOVA** is used to determine if the mean of the response variable (`mirex`) differs among two or more groups defined by a single categorical variable (e.g., `year`).
+A **one-way ANOVA** is used to determine if the means of the quantitative response variable (`mirex`) differ among two or more groups defined by a single categorical variable (e.g., `year`).
 
 ```{r}
 ggplot(data=Mirex,mapping=aes(x=year,y=mirex)) +
@@ -61,7 +70,7 @@ ggplot(data=Mirex,mapping=aes(x=year,y=mirex)) +
 
 &nbsp;
 
-A **two-way ANOVA** is used to determine if the mean of the response variable (`mirex`) differs among groups for one categorical variable (e.g., `year`), another categorical variable (e.g., `species`), or the interaction between the two categorical variables.
+A **two-way ANOVA** is used to determine if the means of the quantitative response variable (`mirex`) differ among groups for one categorical variable (e.g., `year`), among groups of another categorical variable (e.g., `species`), or by the interaction between the two categorical variables.
 
 
 ```{r}
@@ -77,7 +86,7 @@ ggplot(data=Mirex,mapping=aes(x=year,y=mirex,color=species)) +
 
 &nbsp;
 
-A **simple linear regression** is used to determine if there is a relationship between the response variable (e.g., `mirex`) and the single quantitative explanatory variable (e.g., `weight`).
+A **simple linear regression** is used to determine if there is a relationship between the quantitative response variable (e.g., `mirex`) and the single quantitative explanatory variable (e.g., `weight`).
 
 ```{r}
 ggplot(data=Mirex,mapping=aes(x=weight,y=mirex)) +
@@ -89,7 +98,7 @@ ggplot(data=Mirex,mapping=aes(x=weight,y=mirex)) +
 
 &nbsp;
 
-An **indicator variable regression** is used to determine if the simple linear regressions differ between two or more groups (`species`).
+An **indicator variable regression** is used to determine if the relationship between the quantitative response (e.g., `mirex`) and the quantitative explanatory variable (e.g., `weight`) differs between two or more groups defined by the categorical explanatory variable (e.g., `species`). This will look like two (or more) simple linear regressions are being compared.
 
 ```{r}
 ggplot(data=Mirex,mapping=aes(x=weight,y=mirex,color=species)) +
@@ -102,7 +111,7 @@ ggplot(data=Mirex,mapping=aes(x=weight,y=mirex,color=species)) +
 
 &nbsp;
 
-A **logistic regression** is used to determine if the probability of "success" for the binary categorical response (e.g., `exceeds_limit`) is related to the quantitative explanatory variable (e.g., `weight`).
+A **logistic regression** is used to determine if there is a relationship between the probability of "success" for the binary categorical response variable (e.g., `exceeds_limit`) and the quantitative explanatory variable (e.g., `weight`).
 
 ```{r}
 ggplot(data=dplyr::filter(Mirex,species=="coho"),
@@ -114,7 +123,13 @@ ggplot(data=dplyr::filter(Mirex,species=="coho"),
   theme_NCStats()
 ```
 
+&nbsp;
 
+From these examples it should be apparent that "ANOVAs" are about **comparing means** among groups and will look like means (usually with confidence intervals) plotted as points for each group. In contrast "regressions" are about exploring **relationships** and will look like a line or a curve when plotted.
+
+<aside>
+ANOVAs compare means; regressions examine relationships.
+</aside>
 
 # Corrections {.appendix}
 If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).

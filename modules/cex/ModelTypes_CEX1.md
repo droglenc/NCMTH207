@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Example
+title: Class Example
 subtitle: Model Types
 css: "/css/modules.css"
 ---
