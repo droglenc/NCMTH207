@@ -11,4 +11,19 @@ css: "/css/modules.css"
 Use the preparation readings and videos to prepare written answers for the following questions. Please contact <a href="mailto:dogle@northland.edu">Dr. Ogle</a> if you have questions.
 </div>
 
-1.
+1. What type of response variable is used in a 2-sample t-test?
+1. What type of explanatory variable is used in a 2-sample t-test?
+1. What are the null and alternative hypotheses in a 2-sample t-test?
+1. What are the three assumptions of a 2-sample t-test?
+1. What test is used to test that population variances are equal?
+1. What is the formula for the combined sample variance (across both groups)?
+1. What is the statistic for a 2-sample t-test?
+1. What is the test statistic (i.e., the formula) for a 2-sample t-test?
+1. What are the degrees-of-freedom for that test statistic?
+1. Describe in words what the numerator in the test statistic represents.
+1. Describe in words what the denominator in the test statistic represents.
+1. What do you conclude if the p-value<&alpha; in a 2-sample t-test?
+1. What do you conclude if the p-value<&alpha; in a Levene's test?
+1. In the signal-to-noise metaphor, what would a plot with low "signal" and low "noise" look like?
+1. In the signal-to-noise metaphor, what would a plot with high "signal" and low "noise" look like?
+1. What do you expect for the p-value of a 2-sample t-test to be if the signal-to-noise ratio is very small (i.e., much more noise than signal)?

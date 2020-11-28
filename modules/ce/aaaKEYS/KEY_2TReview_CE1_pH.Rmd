@@ -1,0 +1,80 @@
+---
+title: "Exercise Key"
+subtitle: "2-Sample t Review"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_2TReview_CE1_pH")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+d <- data.frame(pH=c(8.97,9.12,9.41,8.67,9.94,8.28,7.86,7.51,9.18,7.68,
+                     6.67,5.83,6.84,6.86,5.89,7.42,6.56,5.99,5.33,6.69),
+                river=rep(c("A","B"),each=10))
+rvr.lev <- levenesTest(pH~river,data=d)
+rvr.t <- t.test(pH~river,data=d,var.equal=TRUE)
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Make sure you show an "R Code and Results" section.</li>
+  <li>Use complete sentences to answer questions.</li>
+  <li>I usually round summary statistics to one more decimal place than the way the data were recorded. In this case pH was recorded to two decimals so I used three decimals for my means. I usually use three or for decimals for the test statistics and p-values.</li>
+  <li>Make sure to define all symbols in your hypotheses.</li>
+  <li>Note the explanation for "independence" in the assumption checking. It is not adequae to just say "there is no connection"; you need to exlain why you think there is no connection.</li>
+  <li>When checking equal variances you must explictly refer to the Levene's test results.</li>
+  <li>The appropriate statistic is the DIFFERENCE in means, not just the two means.</li>
+  <li>When interpreting the rejection decision and the confidence intervals make sure you use the "mean ph" and not "the pH". Hypotheses and confidence intervals are about summaries, not individual values.</li>
+  <li>When making a conclusion make sure the say what is different ... say "mean Ph differs between stream A and stream B" not "the group means differ." Don't just say "the null hypothesis is rejected" ... explain what that means about mean pH.</li>
+  <li>When interpreting the confidence interval after rejecting an H<sub>0</sub> make sure to explicitly say which group is larger (or smaller) and by how much.</li>
+</ul>
+</div>
+
+----
+
+# pH in Two Rivers
+
+1. H<sub>0</sub>: &mu;<sub>A</sub>=&mu;<sub>B</sub> and H<sub>0</sub>: &mu;<sub>A</sub>&ne;&mu;<sub>B</sub>, where &mu; is the population mean pH, A is stream A, and B is stream B.
+1. Assumption checking:
+    i. Independence: The pH measurements across streams are likely independent of each other because the two streams were said to be in different watersheds with different geologies. It is possible that the measurements were recorded on the same days which could lead to a dependence. As there is no evidence for this I will assume that this assumption is met.  
+    i. Normality: The questions says to assume that the distributions are normal.
+    i. Equal variances: The population variances appear equal because Levene's test p-value (`r kPvalue(rvr.lev[1,"Pr(>F)"],include.p=FALSE,latex=FALSE)`) is greater than &alpha;=0.05.
+1. The appropriate statistic is `r formatC(rvr.t$estimate[[1]],format="f",digits=3)`-`r formatC(rvr.t$estimate[[2]],format="f",digits=3)`=`r formatC(rvr.t$estimate[[1]]-rvr.t$estimate[[2]],format="f",digits=3)`.
+1. The appropriate test statistic is `r formatC(rvr.t$statistic[[1]],format="f",digits=3)` with `r rvr.t$parameter[[1]]` df.
+1. The p-value is `r kPvalue(rvr.t$p.value,include.p=FALSE,latex=FALSE)` (or more specifically `r formatC(rvr.t$p.value)`). This p-value is less than &alpha;=0.05, which means that H<sub>0</sub> is rejected and it appears that the mean pH is greater for stream A than for stream B.
+1. It appears that the mean pH for stream A is between `r formatC(rvr.t$conf.int[[1]],format="f",digits=3)` and `r formatC(rvr.t$conf.int[[2]],format="f",digits=3)` greater than the mean pH for stream B.
+1. The graphic is shown in the R Code and Results section below.
+1. It appears that the "signal" (difference in means) is greater than the "noise" (sampling variability) because the p-value is much less than &alpha;.
+
+
+### R Code and Results
+```{r eval=FALSE}
+d <- read.csv("phLevels.csv")
+```
+```{r warning=FALSE}
+levenesTest(pH~river,data=d)
+t.test(pH~river,data=d,var.equal=TRUE)
+
+ggplot(data=d,mapping=aes(x=river,y=pH)) +
+  geom_jitter(alpha=0.25,width=0.05) +
+  stat_summary(fun.data=mean_cl_normal,geom="pointrange",
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(y="pH",x="Stream") +
+  theme_NCStats()
+```
