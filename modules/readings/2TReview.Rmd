@@ -1,0 +1,207 @@
+---
+title: "2-Sample t Review"
+description: |
+  Review 2-Sample t-test, with a few twists.
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+library(NCStats)
+library(ggplot2)
+library(patchwork)
+knitr::opts_chunk$set(echo=TRUE, comment="#R>  ",
+                      fig.align='center',fig.width=3.5,fig.height=3.5)
+clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
+aqua <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv")
+aquaLevenes <- levenesTest(BOD~src,data=aqua)
+aqua2t <- t.test(BOD~src,data=aqua,var.equal=TRUE,alt="two.side",conf.level=0.95)
+```
+
+# Introduction
+A two-sample t-test is a statistical method for comparing the means of a quantitative variable between two populations represented by two independent samples. The specific details of a two-sample t-test were covered in your introductory statistics courses and will only be cursorily reviewed here.
+
+The null hypothesis for a 2-sample t-test is $H_{0}:\mu_{1}=\mu_{2}$, where $\mu$ is the population mean and the subscripts represent the two populations. The alternative hypothesis of a 2-sample t-test may be "less than", "greater than", or "not equals" but will be "not equals" for most examples in this course. Thus, we will use $H_{A}:\mu_{1}\neq\mu_{2}$ in most cases here.
+
+<aside>
+Hypotheses
+</aside>
+
+The 2-sample t-test assumes that (i) inividuals in the populations are independent; (ii) the sample size (n) is great than 40, greater than 15 and the histograms are not strongly skewed, or the histograms are normally distributed; and (iii) the population variances are equal. The assumption of equal variances for the 2-sample t-test is tested with Levene's test, which uses $H_{0}:\sigma_{1}^{2}=\sigma_{2}^{2}$ and $H_{A}:\sigma_{1}^{2}\neq\sigma_{2}^{2}$. If H<sub>0</sub> is rejected for Levene's test then the variances for both populations are assumed to be equal, such that only one combined sample variance needs to be estimated. That combined sample variance is called the *the pooled sample variance* and is computed as a weighted mean of the two sample variances,
+
+<aside>
+Assumptions
+</aside>
+
+\[ s_{p}^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2} \]
+
+If the three assumptions are met then the statistic for the 2-sample t-test is $\bar{x}_{1}-\bar{x}_{2}$ which is immediately standardized to a t test statistic with
+
+<aside>
+Statistic and test statistic
+</aside>
+
+\[ t=\frac{\bar{x}_{1}-\bar{x}_{2}-0}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}} \]
+
+The t test statistic is then converted to a p-value using a t-distribution with $n_{1}+n_{2}-2$ df. Of course, a p-value < &alpha; means that H<sub>0</sub> is rejected and the two population means appear to be different. A confidence interval would then be used to fully describe which population mean was greater (or smaller) and by how much.
+
+<aside>
+p-value and decision
+</aside>
+
+&nbsp;
+
+# Analysis in R
+### Data Format
+Data for a 2-sample t-test must be in stacked format, where measurements are in one column and a label for the populations is in another column. Each row corresponds to the measurement and population of a single individual.
+
+<aside>
+MUST use stacked data
+</aside>
+
+The data ([data](https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv), [meta](https://github.com/droglenc/NCData/blob/master/BOD_meta.txt)) for the example below are the biological oxygen demands at the inlet and outlet to an aquaculture facility. These data illustrate stacked data because each row is one water sample with two variables recorded -- BOD and where the sample came from.
+
+```{r eval=FALSE}
+aqua <- read.csv("BOD.csv")
+```
+```{r}
+str(aqua)
+headtail(aqua)
+```
+
+### Assumption Checking
+The metadata suggests that the measurements at the intake and outtake were taken at different times. Thus, there is not reasonable reason to think that individuals are dependent across the two populations. Thus, the independence assumption is met.
+
+The sample size is less than 40 but greater than 15. The histograms shown below are not particularly informative because of the small sample size. The histogram for the inlet samples appears to be not strongly skewed, but that for the outlet appears to be strongly right-skewed. I am going to continue with this analysis, but I will be cautious with my final interpretations.
+
+```{r fig.width=7}
+ggplot(data=aqua,mapping=aes(x=BOD,fill=src)) +
+  geom_histogram(binwidth=0.5,boundary=0,color="black") +
+  labs(y="Frequency of Water Samples",x="Biological Oxygen Demand") +
+  scale_y_continuous(expand=expansion(mult=c(0,0.05))) +
+  scale_fill_manual(values=clrs) +
+  theme_NCStats() +
+  theme(legend.position="none") +
+  facet_wrap(vars(src))
+```
+
+Levene's test is computed with `levenesTest()` with a model formula of `response~group` as the first argument, where `response` represents the name of the quantitative response variable and `groups` represents the name of the categorical variable that identifies the two populations. The data.frame with the variables must be in `data=`. From the results below, it is concluded that the population variances appear to be equal because the Levene's test p-value (`r kPvalue(aquaLevenes[1,"Pr(>F)"],include.p=FALSE,latex=FALSE)`) is greater than &alpha;=0.05.
+
+```{r eval=FALSE}
+levenesTest(BOD~src,data=aqua)
+```
+```{r echo=FALSE}
+aquaLevenes
+```
+
+### Analysis
+A 2-sample t-test is constructed in R with `t.test()` with the exact same `response~group` formula and `data=` used in `levenesTest()` as the first two arguments. Additionally, `var.equal=TRUE` should be used when the two population variances should be considered equal. By default `t.test()` uses a not equals H<sub>A</sub> and a 95% confidence interval. Thus, in the results below the two sample means are `r formatC(aqua2t$estimate[1],format="f",digits=4)` for the inlet group and `r formatC(aqua2t$estimate[2],format="f",digits=4)` for the outlet group, the t test statistic is `r formatC(aqua2t$statistic[1],format="f",digits=3)` with `r aqua2t$parameter` df, and the p-value is `r kPvalue(aqua2t$p.value,include.p=FALSE,latex=FALSE)` (or, more specifically, `r formatC(aqua2t$p.value,digits=4)`). Because the p-value<&alpha; the H<sub>0</sub> is rejected and we concluded that the mean BOD at the inlet is lower than the mean BOD at the outlet. More specifically, the mean BOD at the inlet is between `r formatC(-1*aqua2t$conf.int[2],format="f",digits=3)` and `r formatC(-1*aqua2t$conf.int[1],format="f",digits=3)` lower than the mean BOD at the outlet. Thus, it appears that the mean BOD in the water is increased from when it enters to when it leaves the aquaculture facility.
+
+```{r eval=FALSE}
+t.test(BOD~src,data=aqua,var.equal=TRUE)
+```
+```{r echo=FALSE}
+aqua2t
+```
+
+&nbsp;
+
+# Signal-to-Noise
+```{r echo=FALSE}
+set.seed(53236)
+ybar <- c(2,3,2,3,2,3)*10+25
+sp <- c(2,2,8,8,20,20)
+n <- 20
+y <- NULL
+for (i in seq_along(ybar)) y <- c(y,ybar[i]+sp[i]*scale(rnorm(n=n)))
+d <- data.frame(y=y,
+                grp=rep(rep(c("A","B"),each=n),times=3),
+                sim=factor(rep(c("Small SE","Medium SE","Large SE"),each=n*2),
+                           levels=c("Small SE","Medium SE","Large SE")))
+d1 <- filter(d,sim=="Small SE")
+```
+
+The ratio of signal to noise can be a useful metaphor for understanding hypothesis testing, as we have done here, and model comparisons, as we will do in future modules. In this metaphor, think of "signal" as how different two things are and "noise" as anything that gets in the way of you receiving the signal. For example, the difference in heights of two students standing on the other side of the room is a "signal", but smoke in the room that makes it difficult to see those students is "noise." As another example, it may be easy to see an orange kayak (the "signal") on Lake Superior on a calm day but harder to see it on a wavy day (i.e., more "noise").
+
+<aside>
+![Signal-to-Noise](zimgs/signal_to_noise.png)
+</aside>
+In a 2-sample t-test, the "signal" is the difference in the two group means, which is measured by $\bar{x}_{1}-\bar{x}_{2}$, the numerator of the t-test statistic. The bigger the difference in means the stronger the "signal" that the population means are different.
+
+<aside>
+"Signal" is the difference in sample means
+</aside>
+
+```{r echo=FALSE}
+tmp <- ggplot(data=d1,mapping=aes(y=y,x=grp,color=grp)) +
+  geom_point(alpha=0.5) +
+  stat_summary(geom="point",fun="mean",shape="-",size=15) +
+  labs(y="Response Variable",x="Group") +
+  scale_color_manual(values=clrs) +
+  theme_NCStats() +
+  theme(legend.position="none")
+tmp +
+  geom_segment(mapping=aes(x=1.5,xend=1,y=45,yend=45),color="black",linetype="dashed") +
+  geom_segment(mapping=aes(x=1.5,xend=2,y=55,yend=55),color="black",linetype="dashed") +
+  geom_segment(mapping=aes(x=1.5,xend=1.5,y=45,yend=55),color="black",
+               arrow=arrow(ends="both",length=unit(0.2,"cm"),type="closed")) +
+  geom_text(mapping=aes(x=1.5,y=50,label="Signal"),size=4,color="black",
+            angle=90,vjust=-0.5)
+```
+
+"Noise" is sampling variability, the fact that statistics (i.e., $\bar{x}_{1}$ and $\bar{x}_{2}$) vary from sample to sample. Sampling variability in a 2-sample t-test is measured by $SE_{\bar{x}_{1}-\bar{x}_{2}}$, which is the denominator of the t test statistic, or $\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}$. This SE increases with increasing $s_{p}^{2}$ and decreases with increasing $n_{1}+n_{1}$. So the "noise" increases as the natural variability of individuals around their group means (i.e., $s_{p}^{2}$) increases, but decreases as the sample size increases.
+
+<aside>
+"Noise" is sampling variability
+</aside>
+
+```{r echo=FALSE,results="hide"}
+d1 %>%
+  group_by(grp) %>%
+  summarize(miny=min(y),
+            maxy=max(y))
+
+tmp + 
+  geom_segment(mapping=aes(x=1,xend=1.2,y=41.3,yend=41.3),color="black",linetype="dashed") +
+  geom_segment(mapping=aes(x=1,xend=1.2,y=49.0,yend=49.0),color="black",linetype="dashed") +
+  geom_segment(mapping=aes(x=1.2,xend=1.2,y=41.3,yend=49.0),color="black",
+               arrow=arrow(ends="both",length=unit(0.2,"cm"),type="closed")) +
+  geom_segment(mapping=aes(x=2,xend=1.8,y=50.1,yend=50.1),color="black",linetype="dashed") +
+  geom_segment(mapping=aes(x=2,xend=1.8,y=58.5,yend=58.5),color="black",linetype="dashed") +
+  geom_segment(mapping=aes(x=1.8,xend=1.8,y=50.1,yend=58.5),color="black",
+               arrow=arrow(ends="both",length=unit(0.2,"cm"),type="closed")) +
+  geom_segment(mapping=aes(x=1.2,xend=1.5,y=45,yend=45),color="black") +
+  geom_segment(mapping=aes(x=1.8,xend=1.5,y=55,yend=55),color="black") +
+  geom_segment(mapping=aes(x=1.5,xend=1.5,y=45,yend=55),color="black") +
+  geom_text(mapping=aes(x=1.5,y=50,label="Part of the Noise"),size=4,color="black",
+            angle=90,vjust=-0.5)
+```
+
+The ratio of signal to noise is related to whether we will be able to detect a difference in the group means or not. If the signal is larger relative to the noise then the signal will be detected. In other words, will be able to tell the difference in heights of students if the room is not full of smoke. For example, the plots below all have the same signal (difference in means) but the noise (i.e., SE) increases from left to right. In the left-most plot it is very clear that the means are different (high signal-to-noise ratio), but in the right-most plot it is less clear that the group means are different (low signal-to-noise ratio).
+
+```{r echo=FALSE, fig.width=7.5, fig.height=3}
+ggplot(data=d,mapping=aes(y=y,x=grp,color=grp)) +
+  geom_point(alpha=0.5) +
+  stat_summary(geom="point",fun="mean",shape="-",size=15) +
+  labs(y="Response Variable",x="Group") +
+  scale_color_manual(values=clrs) +
+  theme_NCStats() +
+  theme(legend.position="none") +
+  facet_wrap(vars(sim),scales="free_y")
+```
+
+The t test statistic is a measure of signal (i.e., difference in sample means) to noise (i.e., sampling variability as measured by the SE)
+
+\[ t=\frac{\bar{x}_{1}-\bar{x}_{2}-0}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}} = \frac{\text{Signal}}{\text{Noise}} \]
+
+Thus, larger values of the t test statistic indicate a larger signal-to-noise ratio. Larger t test statistics are further into the tail of the t distribution and result in smaller p-values. Therefore, small p-values represent larger signal-to-noise ratios and are more likely to lead to concluding that group means differ. In other words, you saw the "signal" despite the "noise."
+
+<aside>
+More signal-to-noise means smaller p-values
+</aside>
+
+
+# Corrections {.appendix}
+If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).
