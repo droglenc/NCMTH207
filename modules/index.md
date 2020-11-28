@@ -10,7 +10,26 @@ title: Learning Modules
 1. [Comparing Two Models](ModelComparison)
 
 #### One-Way ANOVA
+{:start="5"}
+1. Hello
+1. good bye
 
+#### Two-Way ANOVA
+{:start="5"}
+1. Hello
+1. good bye
+
+#### Simple Linear Regression (SLR)
+{:start="5"}
+1. Hello
+1. good bye
+
+#### Indicator Variable Regression (IVR)
+{:start="5"}
+1. Hello
+1. good bye
+
+#### Logistic Regressions
 {:start="5"}
 1. Hello
 1. good bye
