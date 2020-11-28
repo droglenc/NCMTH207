@@ -57,7 +57,8 @@ rvr.t <- t.test(pH~river,data=d,var.equal=TRUE)
     i. Equal variances: The population variances appear equal because Levene's test p-value (`r kPvalue(rvr.lev[1,"Pr(>F)"],include.p=FALSE,latex=FALSE)`) is greater than &alpha;=0.05.
 1. The appropriate statistic is `r formatC(rvr.t$estimate[[1]],format="f",digits=3)`-`r formatC(rvr.t$estimate[[2]],format="f",digits=3)`=`r formatC(rvr.t$estimate[[1]]-rvr.t$estimate[[2]],format="f",digits=3)`.
 1. The appropriate test statistic is `r formatC(rvr.t$statistic[[1]],format="f",digits=3)` with `r rvr.t$parameter[[1]]` df.
-1. The p-value is `r kPvalue(rvr.t$p.value,include.p=FALSE,latex=FALSE)` (or more specifically `r formatC(rvr.t$p.value)`). This p-value is less than &alpha;=0.05, which means that H<sub>0</sub> is rejected and it appears that the mean pH is greater for stream A than for stream B.
+1. The p-value is `r kPvalue(rvr.t$p.value,include.p=FALSE,latex=FALSE)` (or more specifically `r formatC(rvr.t$p.value)`).
+1. This p-value is less than &alpha;=0.05, which means that H<sub>0</sub> is rejected and it appears that the mean pH is greater for stream A than for stream B.
 1. It appears that the mean pH for stream A is between `r formatC(rvr.t$conf.int[[1]],format="f",digits=3)` and `r formatC(rvr.t$conf.int[[2]],format="f",digits=3)` greater than the mean pH for stream B.
 1. The graphic is shown in the R Code and Results section below.
 1. It appears that the "signal" (difference in means) is greater than the "noise" (sampling variability) because the p-value is much less than &alpha;.
