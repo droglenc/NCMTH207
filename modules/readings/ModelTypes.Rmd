@@ -34,7 +34,9 @@ All models covered in this course will have **only one** response variable
 &nbsp;
 
 # Distinguinsing Model Types
-The five models that will be covered in this course can be distinguished by considering only the type of response variable and the types and number of explanatory variables. For example, the following table may be used to distinguish between the five models that we will cover in this course.
+The five models that will be covered in this course can be distinguished by considering only the type of response variable and the types and number of explanatory variables. Thus, you will want to review [variable types](http://derekogle.com/NCMTH107/modules/FoundationalDefns.html) and [definitions and distinctions of response and explanatory variables](http://derekogle.com/NCMTH107/modules/DataProduction.html) from your introductory statistics course.
+
+The following table may be used to distinguish between the five models that we will cover in this course.
 
 | Response     | Explanatory                            | Linear Model                  |
 |--------------|----------------------------------------|-------------------------------|

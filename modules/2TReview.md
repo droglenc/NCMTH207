@@ -29,8 +29,7 @@ XXX
 ## Preparation for Class
 Use the resources below to answer [these questions](prep/2TReview). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~4 pages)
-  * Review [2-Sample t-Test](http://derekogle.com/NCMTH107/modules/2Samplet.html){:target="_blank"} and [2-Sample t-Test in R](http://derekogle.com/NCMTH107/modules/2Samplet.html){:target="_blank"} from your introductory statistics course
+* **Primary Resources** (~6 pages)
   * [Reading](readings/2TReview){:target="_blank"}
 
 ----

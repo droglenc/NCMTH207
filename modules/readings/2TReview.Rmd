@@ -11,7 +11,6 @@ output:
 ```{r setup, include=FALSE}
 library(NCStats)
 library(ggplot2)
-library(patchwork)
 knitr::opts_chunk$set(echo=TRUE, comment="#R>  ",
                       fig.align='center',fig.width=3.5,fig.height=3.5)
 clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
@@ -21,7 +20,7 @@ aqua2t <- t.test(BOD~src,data=aqua,var.equal=TRUE,alt="two.side",conf.level=0.95
 ```
 
 # Introduction
-A two-sample t-test is a statistical method for comparing the means of a quantitative variable between two populations represented by two independent samples. The specific details of a two-sample t-test were covered in your introductory statistics courses and will only be cursorily reviewed here.
+A two-sample t-test is a statistical method for comparing the means of a quantitative variable between two populations represented by two independent samples. The [specific details of a two-sample t-test were covered in your introductory statistics course](http://derekogle.com/NCMTH107/modules/2Samplet.html) and will only be cursorily reviewed here. 
 
 The null hypothesis for a 2-sample t-test is $H_{0}:\mu_{1}=\mu_{2}$, where $\mu$ is the population mean and the subscripts represent the two populations. The alternative hypothesis of a 2-sample t-test may be "less than", "greater than", or "not equals". We will use $H_{A}:\mu_{1}\neq\mu_{2}$ for most examples in this course.
 
@@ -69,6 +68,8 @@ aqua <- read.csv("BOD.csv")
 ```{r}
 headtail(aqua)
 ```
+
+Specific [details for performing a 2-sample t-test in R](http://derekogle.com/NCMTH107/modules/2Samplet.html) were provided in your introductory statistics course, but will be cursorily reviewed below.
 
 ### Assumption Checking
 The metadata suggests that measurements at the intake and outtake were taken at different times. Thus, there is no reasonable reason to think that individuals are dependent across the two populations. Thus, the independence assumption is met.
