@@ -17,7 +17,7 @@ Suppose that the following observations were made for individuals in two groups.
 
 ```
 Group A -- 13, 14, 17, 20
-Group B -- 18, 20, 23, 24, 25
+Group B -- 21, 23, 26, 27, 28
 ```
 
 Use these data to answer the following questions.
@@ -47,7 +47,7 @@ Another potential model is that each observation can be represented by its corre
 1. Calculate the residual MS for this model.
 1. Describe as fully as possible what the square root of this residual MS means.
 
-Results from using the grand mean are labeled with "total", whereas those results using group means are labeled with "within." With this in mind, answer the following questions.
+Results from using the grand mean are usually labeled with "total", whereas those results using group means are usually labeled with "within." With this in mind, answer the following questions.
 
 {:start="17"}
 1. Calculate RSS<sub>Total</sub>-RSS<sub>Within</sub>. What do you think this value measures or represents?

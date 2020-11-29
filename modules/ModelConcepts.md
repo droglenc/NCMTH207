@@ -27,14 +27,13 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/ModelConcepts). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
+Use the resources below to answer [these questions](prep/ModelConcepts).
 
-* **Primary Resources** (~4 pages)
+* **Primary Resources** (~5 pages)
   * [Reading](readings/ModelConcepts){:target="_blank"}
 
 ----
 
 ## Practice
 
-* [Class Example](cex/ModelConcepts_CEX1) ... [ANNOTATED KEY](cex/KEY_ModelConcepts_CEX1) 
 * [Assignment](ce/ModelConcepts_CE1) ... [ANSWER KEY](cex/KEY_ModelConcepts_CE)

@@ -1,0 +1,73 @@
+---
+title: "Exercise Key"
+subtitle: "Model Concepts"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ModelConcepts_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+d <- data.frame(vals=c(13,14,17,20,21,23,26,27,28),
+                grps=c("A","A","A","A","B","B","B","B","B"))
+dmns <- group_by(d,grps) %>% summarize(n=n(),
+                                       group_mean=mean(vals))
+d <- left_join(d,dmns,by="grps") %>%
+  mutate(grand_mean=mean(vals),
+         group_resid=vals-group_mean,
+         grand_resid=vals-grand_mean)
+dss <- d %>%
+  summarize(ss_within=sum(group_resid^2),
+            ss_total=sum(grand_resid^2),
+            df_within=n()-2,
+            df_total=n()-1) %>%
+  mutate(ms_within=ss_within/df_within,
+         ms_total=ss_total/df_total)
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+  <li>Make sure to show your work.</li>
+  <li>When discussing models, means, or residuals make sure to explicitly state what type of mean you are talking about. Say "group means" or "grand mean" not just "mean."
+</ul>
+</div>
+
+----
+
+# Calculations
+
+1. The group means are **y&#772;<sub>A</sub>=`r dmns$group_mean[1]`** and **y&#772;<sub>B</sub>=`r dmns$group_mean[2]`**.
+1. The grand mean is **y&#772;=`r d$grand_mean[1]`**.
+1. The residual from the grand mean for the first individual is `r d$vals[1]`-`r d$grand_mean[1]`=`r d$grand_resid[1]`. The residuals from the grand mean for all individuals are -- `r paste(d$grand_resid,collapse=", ")`.
+1. The residual from the grand mean for the first individual in group A tells us that that individual is `r -1*d$grand_resid[1]` units *below* average relative to all individuals in the data set, regardless of which group they belong to.
+1. The residual from the grand mean for the last individual in group B tells us that that individual is `r d$grand_resid[nrow(d)]` units *above* average relative to all individuals in the data set, regardless of which group they belong to.
+1. The RSS for the grand mean model is **`r dss$ss_total`**.
+1. The residual df for the grand mean model is **`r dss$df_total`**.
+1. The residual MS for the grand mean model is $\frac{`r dss$ss_total`}{`r dss$df_total`}$=**`r formatC(dss$ms_total,format="f",digits=2)`**.
+1. The square root of this residual MS (i.e., `r formatC(sqrt(dss$ms_total),format="f",digits=2)`) measures the natural variability of individuals around the grand mean. It is the "noise" around the grand mean.
+1. The residual from the group mean for the first individual is `r d$vals[1]`-`r d$group_mean[1]`=`r d$group_resid[1]`. The residuals from the grouop means for all individuals are -- `r paste(d$group_resid,collapse=", ")`.
+1. The residual from the group mean for the first individual in group A tells us that that individual is `r -1*d$group_resid[1]` units *below* average relative to *all individuals in group A*.
+1. The residual from the group mean for the last individual in group B tells us that that individual is `r d$group_resid[nrow(d)]` units *above* average relative to *all individuals in group B*.
+1. The RSS for the group means model is **`r dss$ss_within`**.
+1. The residual df for the group means model is **`r dss$df_within`**.
+1. The residual MS for the group means model is $\frac{`r dss$ss_within`}{`r dss$df_within`}$=**`r formatC(dss$ms_within,format="f",digits=2)`**.
+1. The square root of this residual MS (i.e., `r formatC(sqrt(dss$ms_within),format="f",digits=2)`) measures the pooled natural variability of individuals around their respective group means. It is the "noise" around the group means.
+1. The RSS<sub>Total</sub>-RSS<sub>Within</sub> is `r dss$ss_total`-`r dss$ss_within`=`r dss$ss_total-dss$ss_within`. This value is the reduction in RSS from using the group means rather than the grand means. It is how much better the group means model fits compared to the grand mean model.
+1. The df<sub>Total</sub>-df<sub>Within</sub> is `r dss$df_total`-`r dss$df_within`=`r dss$df_total-dss$df_within`. This value is the difference in number of parameters between the group means and grand mean models. It is how much more complex the group mean sodel is than the grand mean model.
