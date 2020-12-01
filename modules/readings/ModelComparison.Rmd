@@ -1,0 +1,279 @@
+---
+title: "Model Comparison"
+description: |
+  Introduction to least-squares concept of comparing two competing statistical models.
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+library(NCStats)
+library(ggplot2)
+library(patchwork)
+knitr::opts_chunk$set(echo=FALSE,message=FALSE,comment="#R>  ",
+                      fig.align='center',fig.width=3.5,fig.height=3.5)
+clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
+set.seed(34353)
+## Aquaculture data
+aqua <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv") %>%
+  mutate(srcjit=round(jitter(as.numeric(factor(src)),0.25),4))
+aqua_mns <- group_by(aqua,src) %>% summarize(mn=mean(BOD))
+aqua <- left_join(aqua,aqua_mns,by="src") %>%
+  mutate(gmn=mean(BOD),
+         residF=BOD-mn,
+         residS=BOD-gmn)
+```
+
+# Competing Models
+### General
+Many hypothesis tests can be cast in a framework of competing models. In this module we will cast the familiar 2-sample t-test in this framework which will then serve as a conceptual foundation for all other linear models in this course.
+
+The two competing models are generically called the *simple* and *full* models. The simple model is simpler than the full model in the sense that it has fewer parameters. However, the simple model fits the data "worse" than a full model. Thus, determining which model to use becomes a question of balancing "fit" (full model fits better than the simple model) with complexity (simple model is less complex than the full model). Because the simple model corresponds to H<sub>0</sub> and the full model corresponds to H<sub>A</sub>, deciding which model to use is the same as deciding which hypothesis is supported by the data.
+
+Differences between the two model types are summarized in the table below.
+
+| Model  | Parameters | Residual df | Relative Fit | Residual SS |  Hypothesis   |
+|--------|:----------:|:-----------:|:------------:|:-----------:|:-------------:|
+| Simple |    Fewer   |     More    |     Worse    |    Larger   | H<sub>0</sub> |
+| Full   |    More    |     Less    |    Better    |   Smaller   | H<sub>A</sub> |
+
+&nbsp;
+
+### 2-Sample t-Test
+Recall that H<sub>0</sub> in a two-sample t-test is that the two population means do not differ (i.e., they are equal). In this hypothesis, if the two means do not differ than a single mean would adequately represent both groups. The [general model from the previous module](ModelConcepts.html#what-is-a-model) could be specified for this situation as
+
+\[ Y_{ij} = \mu + \epsilon_{ij} \]
+
+where $Y_{ij}$ is the $j$th observation of the response variable in the $i$th group, $\mu$ is the population grand mean, and $\epsilon_{ij}$ is the "error" for the $j$th observation in the $i$th group. This model means that $\mu$ is the predicted response value for each observation and the model looks like the red line in the figure below.
+
+```{r echo=FALSE}
+ggplot(data=aqua) +
+  geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),width=0.25,color="blue") +
+  geom_crossbar(mapping=aes(x=1.5,y=gmn,ymin=gmn,ymax=gmn),width=1.25,color="red") +
+  geom_point(mapping=aes(x=srcjit,y=BOD),alpha=0.25) +
+  labs(y="Biological Oxygen Demand",x="Water Sample Location") +
+  theme_NCStats()
+```
+
+In contrast, H<sub>A</sub> in the 2-sample t-test is that the two population means differ (i.e., they are not equal). This hypothesis suggests that two separate means are needed to predict observations in the separate groups. The model for this situation is
+
+\[ Y_{ij} = \mu_{i} + \epsilon_{ij} \]
+
+where $\mu_{i}$ is the population mean for the $i$th group. This model means that $\mu_{1}$ is the predicted response value for observations in the first group and $\mu_{2}$ is the predicted response value for observations in the second group. This model looks like the two blue lines in the figure above.
+
+Thus, for a 2-sample t-test, the **simple model** corresponds to H<sub>0</sub>: &mu;<sub>1</sub>=&mu;<sub>2</sub> (=&mu;), has fewer parameters (i.e., requires only one mean; the red line in the plots above), and fits "worse."^[We will be more objective in the following sections, but an examination of the plot above clearly shows that the red line does not represent the observations well.] In contrast, the **full model** corresponds to H<sub>A</sub>: &mu;<sub>1</sub>&ne;&mu;<sub>2</sub>, has more parameters (i.e., requires two means; the blue lines in the plots above), and fits "better."
+
+In the ensuing sections we will develop a method to determine if the increase in "fit" is worth the increase in "complexity."
+
+&nbsp;
+
+# Measuring Increase in Fit
+### SS<sub>Total</sub> and SS<sub>Within</sub>
+In [the previous module](ModelConcepts.html#residual-sum-of-squares) we introduced the idea of using RSS^[Residual sum-of-squares] to measure the lack-of-fit of a model. Here we apply that concept to measure the lack-of-fit of the simple and full models, which we will then use to see how much "better" the full model fits than the simple model.^[Remember that the full model will always fit better than the simple model, even if by just a small amount.]
+
+The RSS for the simple model using just the grand mean is called SS<sub>Total</sub> and is computed with
+
+\[ \text{SS}_{\text{Total}} = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2} \]
+
+where $I$ is the number of groups (=2 in a 2-sample t-test), $n_{i}$ is the sample size in the $i$th group, and $\bar{Y}_{\cdot\cdot}$ is the sample grand mean as computed with 
+
+\[ \bar{Y}_{\cdot\cdot}= \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}Y_{ij}}{n} \]
+
+where $n$ is the sample size across all groups. The $\bar{Y}_{\cdot\cdot}$ is used here because it is an estimate of the population grand mean, &mu;, which is used to make predictions in this simple model. The formula for SS<sub>Total</sub> may look daunting but it is just the sum of the squared residuals computed from each observation relative to the grand mean (as shown below).
+
+```{r echo=FALSE}
+ggplot(data=aqua) +
+  geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),color="white",alpha=0.01) +
+  geom_crossbar(mapping=aes(x=1.5,y=gmn,ymin=gmn,ymax=gmn),width=1.25,color="red") +
+  geom_point(mapping=aes(x=srcjit,y=BOD),alpha=0.25) +
+  geom_segment(data=aqua,mapping=aes(x=srcjit,xend=srcjit,y=BOD,yend=gmn),
+               color="red",linetype="dashed") +
+  labs(y="Biological Oxygen Demand",x="Water Sample Location",
+       title=bquote("Residuals for"~SS[Total])) +
+  annotate(geom="text",x=1.7,y=6.5,
+           label=expression(plain("One of")~Y[ij]),parse=TRUE,
+           size=4.5,hjust=-0.1) +
+  annotate(geom="segment",x=1.7,y=6.5,xend=aqua$srcjit[7],yend=aqua$BOD[7],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  annotate(geom="text",x=1,y=9,
+           label=expression(bar(Y)~plain(..)),parse=TRUE,
+           size=4.5,hjust=1.1,vjust=-0.1) +
+  annotate(geom="segment",x=1,y=9,xend=1.5,yend=aqua$gmn[1],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  theme_NCStats() +
+  theme(aspect.ratio=1)
+```
+
+&nbsp;
+
+The RSS for the full model using separate group means is called SS<sub>Within</sub> and is computed with
+
+\[ \text{SS}_{\text{Within}} = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2} \]
+
+where $\bar{Y}_{i\cdot}$ are the sample group means as computed with 
+
+\[ \bar{Y}_{\cdot\cdot} = \frac{\sum_{j=1}^{n_{i}}Y_{ij}}{n_{i}} \]
+
+The $\bar{Y}_{i\cdot}$ are used here because they are an estimate of the population group means, &mu;<sub>i</sub>, which are used to make predictions in this full model. Again, the formula for SS<sub>Within</sub> may look imposing but it is just the sum of the squared residuals computed from each observation to the observation's group mean (as shown below).
+
+```{r echo=FALSE}
+ggplot(data=aqua) +
+  geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),width=0.25,color="blue") +
+  geom_point(mapping=aes(x=srcjit,y=BOD),alpha=0.25) +
+  geom_segment(data=aqua,mapping=aes(x=srcjit,xend=srcjit,y=BOD,yend=mn),
+               color="blue",linetype="dashed") +
+  labs(y="Biological Oxygen Demand",x="Water Sample Location",
+       title=bquote("Residuals for"~SS[Within])) +
+  annotate(geom="text",x=1.7,y=6.5,
+           label=expression(plain("One of")~Y[ij]),parse=TRUE,
+           size=4.5,hjust=-0.1) +
+  annotate(geom="segment",x=1.7,y=6.5,xend=aqua$srcjit[7],yend=aqua$BOD[7],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  annotate(geom="text",x=1.2,y=8,
+           label=expression(bar(Y)[i]~plain(.)),parse=TRUE,
+           size=4.5,hjust=1.1,vjust=-0.1) +
+  annotate(geom="segment",x=1.2,y=8,xend=1.1,yend=aqua$mn[1],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  annotate(geom="segment",x=1.2,y=8,xend=1.9,yend=aqua$mn[nrow(aqua)],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  theme_NCStats() +
+  theme(aspect.ratio=1)
+```
+
+&nbsp;
+
+Thus, SS<sub>Total</sub> measures the relative lack-of-fit of the grand mean to the data or the relative lack-of-fit of the simple model. SS<sub>Within</sub>, in contrast, measures the relative lack-of-fit of the group means to the data or the relative lack-of-fit of the full model.
+
+In this example, SS<sub>Total</sub>=`r formatC(sum(aqua$residS^2),format="f",digits=2)` and SS<sub>Within</sub>=`r formatC(sum(aqua$residF^2),format="f",digits=2)`. Because SS<sub>Within</sub> is less than SS<sub>Total</sub> that means that the full model that uses &mu;<sub>i</sub> fits the data better than the simple model that uses just &mu;.
+
+However, we knew that this was going to happen as the full model always fits better. What we need now is a measure of how much better the full model fits or, equivalently, a measure of how much the lack-of-fit was reduced by using the full model rather than the simple model.
+
+### SS<sub>Among</sub>
+An awesome property of SS<sub>Total</sub> is that it "partitions" into two parts according to the following simple formula
+
+\[ \text{SS}_{\text{Total}} = \text{SS}_{\text{Within}} + \text{SS}_{\text{Among}} \]
+
+This introduces a new quantity, SS<sub>Among</sub>. A quick re-arrangement of the partitioning of SS<sub>Total</sub> shows that
+
+\[ \text{SS}_{\text{Among}} = \text{SS}_{\text{Total}} - \text{SS}_{\text{Within}} \]
+
+Thus, SS<sub>Among</sub> records how much the lack-of-fit was reduced by using the full model rather than the simple model. In other words, SS<sub>Among</sub> records how much "better" the full model fits the data than the simple model.
+
+In our example, SS<sub>Among</sub>=`r formatC(sum(aqua$residS^2),format="f",digits=2)`-`r formatC(sum(aqua$residF^2),format="f",digits=2)`=`r formatC(sum(aqua$residS^2)-sum(aqua$residF^2),format="f",digits=2)`. Thus, the residual SS from the simple model was reduced by `r formatC(sum(aqua$residS^2)-sum(aqua$residF^2),format="f",digits=2)` when the full model was used.
+
+<aside>
+SS<sub>Among</sub> is the **benefit** (i.e., reduction in lack-of-fit) of using the full rather than simple model
+</aside>
+
+SS<sub>Among</sub> can also be thought of in a different way. It can be algebraically shown that 
+
+\[ \text{SS}_{\text{Among}} = \sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}
+ \]
+
+Again, this looks complicated, but the main part to focus on is $\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}$, which shows that SS<sub>Among</sub> is primarily concerned with measuring the distance between the group means (i.e., $\bar{Y}_{i\cdot}$) and the grand mean (i.e., $\bar{Y}_{\cdot\cdot}$).
+
+```{r echo=FALSE}
+ggplot(data=aqua) +
+  geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),width=0.25,color="blue") +
+  geom_crossbar(mapping=aes(x=1.5,y=gmn,ymin=gmn,ymax=gmn),width=1.25,color="red") +
+  geom_point(mapping=aes(x=srcjit,y=BOD),alpha=0.01,color="white") +
+  geom_segment(data=aqua,mapping=aes(x=src,xend=src,y=mn,yend=gmn),linetype="dashed") +
+  labs(y="Biological Oxygen Demand",x="Water Sample Location",
+       title=bquote('"Residuals" for'~SS[Among])) +
+  annotate(geom="text",x=0.65,y=8,
+           label=expression(bar(Y)[i]~plain(.)),parse=TRUE,
+           size=4.5,hjust=1.1,vjust=-0.1) +
+  annotate(geom="segment",x=0.65,y=8,xend=0.9,yend=aqua$mn[1],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  annotate(geom="segment",x=0.65,y=8,xend=1.9,yend=aqua$mn[nrow(aqua)],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  annotate(geom="text",x=2,y=6.6,
+           label=expression(bar(Y)~plain(..)),parse=TRUE,
+           size=4.5,hjust=-0.1,vjust=1.1) +
+  annotate(geom="segment",x=2,y=6.5,xend=1.5,yend=aqua$gmn[1],
+           arrow=arrow(length=unit(0.2,"cm"),type="closed")) +
+  theme_NCStats() +
+  theme(aspect.ratio=1)
+```
+
+From the figure above, it is seen that SS<sub>Among</sub> will increase as the group means become more different. In other words, SS<sub>Among</sub> is measuring the **signal** in the data.
+
+<aside>
+SS<sub>Among</sub> is the **signal** (i.e., relative difference in group means) in the data
+</aside>
+
+So, SS<sub>Among</sub> is immensely useful -- it is a measure of "benefit" that will be used in a "benefit-to-cost" ratio and it is the "signal" that will be used in a "signal-to-noise" ratio. These ratios are discussed further below. Next we discuss how to measure the "cost" of using the more complex full model.
+
+
+# Measuring Increase in Complexity
+In this example, df<sub>Total</sub>=`r nrow(aqua)`-1 because there is one parameter (the grand mean) in the simple model, and df<sub>Within</sub>=`r nrow(aqua)`-2 because there are two parameters (the group means) in the full model. The full model uses more parameters and, thus, the residual degrees-of-freedom is reduced -- there is a "cost" to using the full model over the simple model. We need a measure of this "cost".^[The "cost" is obviously 1 in this simple case.]
+
+Interestingly df<sub>Total</sub> partitions in the same way as SS<sub>Total</sub>; i.e., 
+
+\[ \text{df}_{\text{Total}} = \text{df}_{\text{Within}} + \text{df}_{\text{Among}} \]
+
+This introduces another new quantity, df<sub>Among</sub>. A quick re-arrangement of the partitioning of df<sub>Total</sub> shows that
+
+\[ \text{df}_{\text{Among}} = \text{df}_{\text{Total}} - \text{df}_{\text{Within}} \]
+
+In this case, df<sub>Among</sub>=`r nrow(aqua)-1`-`r nrow(aqua)-2`=1.
+
+Thus, df<sub>Among</sub> is the degrees-of-freedom that were "lost" or "used" when the more complicated full model was used compared to the simpler simple model. The df<sub>Among</sub> is also the **difference in number of parameters**  between the full and simple models. In other words, df<sub>Among</sub> is how much more complex (in terms of number of parameters) the full model is compared to the simple model. Thus, df<sub>Among</sub> measures the **cost** of using the full model rather than the simple model.
+
+<aside>
+df<sub>Among</sub> is the extra **cost** (i.e., loss of df) from using the full rather than simple model
+</aside>
+
+&nbsp;
+
+# "Noise" Variances
+As discussed in the previous module, SS are not true variances until they are divided by their df and become mean-squares (MS).
+
+MS<sub>Total</sub> and MS<sub>Within</sub> are measures of the variance of **individuals** around the grand mean and group means, respectively. Thus, MS<sub>Total</sub> measures the "noise" around the full model, whereas MS<sub>Within</sub> measures the "noise" around the simple model.
+
+<aside>
+MS<sub>Total</sub> and MS<sub>Within</sub> measure "noise" -- i.e., variability of observations around a model
+</aside>
+
+Before moving on to discuss MS<sub>Among</sub>, it is worth noting that MS<sub>Total</sub> is
+
+\[ \text{MS}_{\text{Total}} = \frac{\text{SS}_{\text{Total}}}{\text{df}_{\text{Total}}} = \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2}}{n-1} \]
+
+Realizing that the double summation simple means to sum across all individuals it is seen that this is the variance (s<sup>2</sup>) from your introductory statistics course. In other words it is just the variability of the individuals around a mean that ignores that there are groups.
+
+<aside>
+MS<sub>Total</sub>=s<sup>2</sup>
+</aside>
+
+Similarly, MS<sub>Within</sub> is
+
+\[ \text{MS}_{\text{Within}} = \frac{\text{SS}_{\text{Within}}}{\text{df}_{\text{Within}}} = \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}}{\sum_{i=1}^{I}n_{i}-I} \]
+
+It is not hard to show algebraically (and for just two groups) that the numerator is $n_{1}s_{1}^{2}+n_{2}s_{2}^{2}$ and that the denominator is $n_{1}+n_{2}-2$. This numerator and denominator are then simply the pooled sample variance ($s_{p}^{2}$) from the 2-sample t-test. Thus, MS<sub>Within</sub> with two groups is the same as $s_{p}^{2}$ from the 2-sample t-test.
+
+<aside>
+MS<sub>Within</sub>=$s_{p}^{2}$
+</aside>
+
+&nbsp;
+
+# "Signal" Variance (Benefit-to-Cost)
+Of course SS<sub>Among</sub> divided by df<sub>Among</sub> will be MS<sub>Among</sub>. However, while MS<sub>Among</sub> is still a variance, it has a very different interpretation.
+
+First, MS<sub>Among</sub> is a ratio of the "benefit" (i.e., SS<sub>Among</sub>) to the "cost" (i.e., df<sub>Among</sub>) of using the full model over the simple model. So MS<sub>Among</sub> scales the benefit to the cost of using the full model.
+
+Second, note that MS<sub>Among</sub> is NOT a variance of individuals, rather it is a variance of sample means. Sample means can vary (i.e., not be equal) for two reasons -- the population means are not different but the sample means differ due to random sampling variability (caused by natural variability) or the population means really do differ such that the sample means differ. In other words, the variance among means is a combination of "noise" and "signal." Our goal next is to disentangle these two reasons for why the sample means differ to determine if there is a real "signal" or not.
+
+# Ratio of Variances (Signal-to-Noise)
+From the above discussion we have a measure of potential "signal" in MS<sub>Among</sub> and actual "noise" around the full model (the model representing the "signal") in MS<sub>Within</sub>. The ratio of this "signal" to "noise" is called an F test statistic; i.e.,
+
+\[ \text{F}=\frac{\text{MS}_{\text{Among}}}{\text{MS}_{\text{Within}}} = \frac{\text{Signal}}{\text{Noise}} = \frac{\text{Variance Explained by Full Model}}{\text{Variance Unexplained by Full Model}} \]
+
+
+
+
+
+# Corrections {.appendix}
+If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).

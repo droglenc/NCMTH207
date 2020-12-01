@@ -15,6 +15,7 @@ library(patchwork)
 knitr::opts_chunk$set(echo=FALSE,message=FALSE,comment="#R>  ",
                       fig.align='center',fig.width=3.5,fig.height=3.5)
 clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
+set.seed(34353)
 ## Aquaculture data
 aqua <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/BOD.csv") %>%
   mutate(srcjit=round(jitter(as.numeric(factor(src)),0.25),4))
