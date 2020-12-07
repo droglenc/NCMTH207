@@ -2448,6 +2448,9 @@ distill-header .nav a {
 <li><a href="#noise-variances">“Noise” Variances</a></li>
 <li><a href="#signal-variance-benefit-to-cost">“Signal” Variance (Benefit-to-Cost)</a></li>
 <li><a href="#ratio-of-variances-signal-to-noise">Ratio of Variances (Signal-to-Noise)</a></li>
+<li><a href="#anova-table">ANOVA Table</a></li>
+<li><a href="#two-sample-t-test-revisited-using-linear-models">Two-Sample t-Test Revisited: Using Linear Models</a></li>
+<li><a href="#one-more-look-at-ms-and-f-test">One More Look at MS and F-test</a></li>
 <li><a href="#corrections">Corrections</a></li>
 </ul>
 </nav>
@@ -2608,9 +2611,60 @@ The p-value is always computer to the <strong>right</strong> on an F-distributio
 </iframe>
 </div>
 <p> </p>
+<h1 id="anova-table">ANOVA Table</h1>
+<p>The degrees-of-freedom (df), sum-of-squares (SS), mean-squares (MS), F-ratio test statistic (F), and corresponding p-value are summarized in what is called an <strong>analysis of variance (ANOVA) table</strong>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> The ANOVA table contains rows that correspond to the different measures discussed above: among,<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> within,<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> and total. The df and SS are shown for each source, but the MS is shown only for the within and among sources because MS<sub>Among</sub>+MS<sub>Within</sub>≠MS<sub>Total</sub>.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<p>An ANOVA table for the BOD measurements at the inlet and outlet sources to the aquaculture facility are shown below. Note that R does not show the total row that most softwares do.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+src        1 20.6756 20.6756  80.891 4.449e-08
+Residuals 18  4.6008  0.2556                  </code></pre>
+</div>
+<p>These results indicate that H<sub>0</sub> should be rejected (i.e., F-test p-value &lt;0.00005). Thus, the full model fits the data significantly better than the simple model even given the difference in complexity between the two models and sampling variability. Therefore, there is a significant difference in mean BOD between the two locations.</p>
+<p>In addition to the primary objective of comparing the full and simple models, several items of interest can be identified from an ANOVA table. Using the table above as an example, note the following items:</p>
+<ul>
+<li>The variance within groups is equal to MS<sub>Within</sub> (e.g., MS<sub>Residuals</sub>=0.2556 in this case). This is <span class="math inline">\(s_{p}^{2}\)</span> from the two-sample t-test (because there are only two groups here).</li>
+<li>The common variance about the mean (<span class="math inline">\(s_{Y}^{2}\)</span>) is given by MS<sub>Total</sub> (e.g., <span class="math inline">\(=\frac{20.6756+4.6008}{1+18}\)</span>=1.3303).</li>
+</ul>
+<p> </p>
+<h1 id="two-sample-t-test-revisited-using-linear-models">Two-Sample t-Test Revisited: Using Linear Models</h1>
+<p>The models for a two-sample t-test can be fit and assessed with <code>lm()</code>. This function requires the same type of formula for its first argument – <code>response~factor</code> – and a data.frame in the <code>data=</code> argument as described for <code>t.test()</code> in <a href="2TReview.html#analysis">a previous module</a>. The results of <code>lm()</code> should be assigned to an object so that specific results can be selectively extracted from it. For example, the ANOVA table results are extracted from the <code>lm()</code> object with <code>anova()</code>. In addition, coefficient results<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> can be extracted with <code>coef()</code>, <code>confint()</code>, and <code>summary()</code>. Note that I like to “column-bind” the coefficients and confidence intervals together for a more succinct representation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="va">aqua.lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">BOD</span><span class="op">~</span><span class="va">src</span>,data<span class="op">=</span><span class="va">aqua</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">aqua.lm</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#R&gt;   Analysis of Variance Table
+#R&gt;   
+#R&gt;   Response: BOD
+#R&gt;             Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+#R&gt;   src        1 20.6756 20.6756  80.891 4.449e-08
+#R&gt;   Residuals 18  4.6008  0.2556</code></pre>
+<div class="sourceCode">
+<pre><code><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>ests<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">aqua.lm</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">aqua.lm</span><span class="op">)</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#R&gt;                 ests    2.5 %   97.5 %
+#R&gt;   (Intercept) 6.6538 6.317917 6.989683
+#R&gt;   srcoutlet   2.0335 1.558489 2.508511</code></pre>
+</div>
+<p>From these results, note:</p>
+<ul>
+<li>The p-value in the ANOVA table is the same as that computed from <code>t.test()</code>.</li>
+<li>The coefficient for <code>srcoutlet</code> is the same as the difference in the group means computed with <code>t.test()</code>.</li>
+<li>The F test statistics in the ANOVA table equals the square of the t test statistic from <code>t.test()</code>. This is because an F with 1 numerator and v denominator df exactly equals the square of a t with v df.</li>
+</ul>
+<p>Thus, the exact same results for a two-sample t-test are obtained whether the analysis is completed in the “traditional” manner (i.e., with <code>t.test()</code>) or with competing models (i.e., using <code>lm()</code>). This concept will be extended in subsequent modules.</p>
+<p> </p>
+<h1 id="one-more-look-at-ms-and-f-test">One More Look at MS and F-test</h1>
+<p>Recall from your introductory statistics course that a sampling distribution is the distribution of a statistic from all possible samples. For example, the Central Limit Theorem states that the distribution of sample means is approximately normal, centered on μ, with a standard error of <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> as long as assumptions about the sample size are met. Further recall that the sampling distribution of the sample means is centered on μ because the sample mean is an unbiased estimator of μ. Similarly, it is also known that the center of the sampling distribution of s<sup>2</sup> is equal to σ<sup>2</sup> because s<sup>2</sup> is an unbiased estimate of σ<sup>2</sup>.</p>
+<p>MS<sub>Within</sub> and MS<sub>Among</sub> are statistics just as x̄ and s<sup>2</sup> are statistics. Thus, MS<sub>Within</sub> and MS<sub>Among</sub> are subject to sampling variability and have sampling distributions. It can be shown<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> that the center of the sampling distribution of MS<sub>Within</sub> is σ<sup>2</sup> and the center of the sampling distribution of MS<sub>Among</sub> is</p>
+<p><span class="math display">\[ \sigma^{2} + \frac{1}{I-1}\sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2} \]</span></p>
+<p>Thus, MS<sub>Among</sub> consists of two “sources” of variability. The first source (σ<sup>2</sup>) is the natural variability that exists among individuals. The second source <span class="math inline">\(\left(\frac{1}{I-1}\sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2}\right)\)</span> is related to differences among the group means. Therefore, if the group means are all equal – i.e., μ<sub>1</sub>=μ<sub>2</sub>= <span class="math inline">\(\cdots\)</span> = μ<sub>I</sub> = μ – then the second source of variability is equal to zero and MS<sub>Among</sub> will equal MS<sub>Within</sub>. As soon as the groups begin to differ, the second source of variability will be greater than 0 and MS<sub>Among</sub> will be greater than MS<sub>Within</sub>.</p>
+<p>From this, it follows that if the null hypothesis of equal population means is true (i.e., one mean fits all groups), then the center of the sampling distribution of both MS<sub>Within</sub> and MS<sub>Among</sub> is σ<sup>2</sup>. Therefore, if the null hypothesis is true, then the F test-statistic is expected to be equal to 1, on average, which will always result in a large p-value and a DNR H<sub>0</sub> conclusion. However, if the null hypothesis is false (i.e., separate means are needed for all groups), then the center of the sampling distribution of MS<sub>Within</sub> is σ<sup>2</sup> but the center of the sampling distribution of MS<sub>Among</sub> is σ<sup>2</sup> + “something”, where the “something” is greater than 0 and gets larger as the means become “more different.” Thus, if the null hypothesis is false then the F test-statistic is expected to be greater than 1 and will get larger as the null hypothesis gets “more false.” This analysis of sampling distribution theory illustrates once again that (1) MS<sub>Among</sub> consists of multiple sources of variability and (2) “large” values of the F test-statistic indicate that the null hypothesis is incorrect.</p>
 <h1 id="corrections" class="appendix">Corrections</h1>
 <p>If you see any errors (code, typographical, or logical) please bring these to <a href="mailto:dogle@northland.edu">my attention</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
@@ -2619,9 +2673,15 @@ The p-value is always computer to the <strong>right</strong> on an F-distributio
 <li id="fn3" role="doc-endnote"><p>Residual sum-of-squares<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4" role="doc-endnote"><p>Remember that the full model will always fit better than the simple model, even if by just a small amount.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5" role="doc-endnote"><p>The “cost” is obviously 1 in this simple case.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6" role="doc-endnote"><p>As discussed in the previous module, SS are not true variances until they are divided by their df and become mean-squares (MS).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>As discussed in <a href="ModelConcepts.html#mean-squares">the previous module</a>, SS are not true variances until they are divided by their df and become mean-squares (MS).<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7" role="doc-endnote"><p>An F-distribution occurs whenever the ratio of two variances is calculated.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8" role="doc-endnote"><p>If the F-ratio is computed by hand, then <code>distrib()</code> with <code>distrib=&quot;f&quot;</code>, <code>df1=</code>, <code>df2=</code>, and <code>lower.tail=FALSE</code> may be used to calculate the corresponding p-value.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>An ANOVA table does not necessarily mean that an “analysis of variance” method was used. It turns out that all general linear models are summarized with an ANOVA table, regardless of whether a one- or two-way ANOVA method was used.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>Labeled as the factor variable in most statistical software packages including R – that variable was called <code>src</code> in this example.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>Labeled as residuals in R and error in other statistical software packages.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>SS and df partition, but MS do not!<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13" role="doc-endnote"><p>The coefficient results will be discussed in more detail in the next module.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14" role="doc-endnote"><p>This derivation is beyond the scope of this course.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

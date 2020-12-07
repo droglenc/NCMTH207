@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Preparation Guide
-subtitle: Module Concepts
+subtitle: Model Concepts
 css: "/css/modules.css"
 ---
 
