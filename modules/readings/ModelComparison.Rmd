@@ -42,11 +42,11 @@ Differences between the two model types are summarized in the table below.
 &nbsp;
 
 ### 2-Sample t-Test
-Recall that H<sub>0</sub> in a two-sample t-test is that the two population means do not differ (i.e., they are equal). In this hypothesis, if the two means do not differ than a single mean would adequately represent both groups. The [general model from the previous module](ModelConcepts.html#what-is-a-model) could be specified for this situation as
+Recall that H<sub>0</sub> in a two-sample t-test is that the two population means do not differ (i.e., they are equal). In this hypothesis, if the two means do not differ than a single mean would adequately represent both groups. The [general model from the previous module](ModelConcepts.html#what-is-a-model) ^[Generally, Observation = Model Prediction + Error] could be specified for this situation as
 
 \[ Y_{ij} = \mu + \epsilon_{ij} \]
 
-where $Y_{ij}$ is the $j$th observation of the response variable in the $i$th group, $\mu$ is the population grand mean, and $\epsilon_{ij}$ is the "error" for the $j$th observation in the $i$th group. This model means that $\mu$ is the predicted response value for each observation and the model looks like the red line in the figure below.
+where Y<sub>ij</sub> is the jth observation of the response variable in the ith group, &mu; is the population grand mean, and &epsilon;<sub>ij</sub> is the "error" for the jth observation in the ith group. This model means that &mu; is the predicted response value for each observation and the model looks like the red line in the figure below.
 
 ```{r echo=FALSE}
 ggplot(data=aqua) +
@@ -61,7 +61,7 @@ In contrast, H<sub>A</sub> in the 2-sample t-test is that the two population mea
 
 \[ Y_{ij} = \mu_{i} + \epsilon_{ij} \]
 
-where $\mu_{i}$ is the population mean for the $i$th group. This model means that $\mu_{1}$ is the predicted response value for observations in the first group and $\mu_{2}$ is the predicted response value for observations in the second group. This model looks like the two blue lines in the figure above.
+where &mu;<sub>i</sub> is the population mean for the ith group. This model means that &mu;<sub>1</sub> is the predicted response value for observations in the first group and &mu;<sub>2</sub> is the predicted response value for observations in the second group. This model looks like the two blue lines in the figure above.
 
 Thus, for a 2-sample t-test, the **simple model** corresponds to H<sub>0</sub>: &mu;<sub>1</sub>=&mu;<sub>2</sub> (=&mu;), has fewer parameters (i.e., requires only one mean; the red line in the plots above), and fits "worse."^[We will be more objective in the following sections, but an examination of the plot above clearly shows that the red line does not represent the observations well.] In contrast, the **full model** corresponds to H<sub>A</sub>: &mu;<sub>1</sub>&ne;&mu;<sub>2</sub>, has more parameters (i.e., requires two means; the blue lines in the plots above), and fits "better."
 
@@ -77,11 +77,13 @@ The RSS for the simple model using just the grand mean is called SS<sub>Total</s
 
 \[ \text{SS}_{\text{Total}} = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2} \]
 
-where $I$ is the number of groups (=2 in a 2-sample t-test), $n_{i}$ is the sample size in the $i$th group, and $\bar{Y}_{\cdot\cdot}$ is the sample grand mean as computed with 
+where I is the number of groups (=2 in a 2-sample t-test), n<sub>i</sub> is the sample size in the ith group, and $\bar{Y}_{\cdot\cdot}$ is the sample grand mean as computed with 
 
 \[ \bar{Y}_{\cdot\cdot}= \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}Y_{ij}}{n} \]
 
-where $n$ is the sample size across all groups. The $\bar{Y}_{\cdot\cdot}$ is used here because it is an estimate of the population grand mean, &mu;, which is used to make predictions in this simple model. The formula for SS<sub>Total</sub> may look daunting but it is just the sum of the squared residuals computed from each observation relative to the grand mean (as shown below).
+where n is the sample size across all groups. The $\bar{Y}_{\cdot\cdot}$ is used here because it is an estimate of the population grand mean, &mu;, which is used to make predictions in this simple model.
+
+The formula for SS<sub>Total</sub> may look daunting but it is just the sum of the squared residuals computed from each observation relative to the grand mean (as shown below).
 
 ```{r echo=FALSE}
 ggplot(data=aqua) +
@@ -144,14 +146,14 @@ ggplot(data=aqua) +
 
 &nbsp;
 
-Thus, SS<sub>Total</sub> measures the relative lack-of-fit of the grand mean to the data or the relative lack-of-fit of the simple model. SS<sub>Within</sub>, in contrast, measures the relative lack-of-fit of the group means to the data or the relative lack-of-fit of the full model.
+Thus, SS<sub>Total</sub> measures the lack-of-fit of the grand mean to the data or the lack-of-fit of the simple model. SS<sub>Within</sub>, in contrast, measures the lack-of-fit of the group means to the data or the lack-of-fit of the full model.
 
 In this example, SS<sub>Total</sub>=`r formatC(sum(aqua$residS^2),format="f",digits=2)` and SS<sub>Within</sub>=`r formatC(sum(aqua$residF^2),format="f",digits=2)`. Because SS<sub>Within</sub> is less than SS<sub>Total</sub> that means that the full model that uses &mu;<sub>i</sub> fits the data better than the simple model that uses just &mu;.
 
 However, we knew that this was going to happen as the full model always fits better. What we need now is a measure of how much better the full model fits or, equivalently, a measure of how much the lack-of-fit was reduced by using the full model rather than the simple model.
 
 ### SS<sub>Among</sub>
-An awesome property of SS<sub>Total</sub> is that it "partitions" into two parts according to the following simple formula
+An useful property of SS<sub>Total</sub> is that it "partitions" into two parts according to the following simple formula
 
 \[ \text{SS}_{\text{Total}} = \text{SS}_{\text{Within}} + \text{SS}_{\text{Among}} \]
 
@@ -204,12 +206,15 @@ From the figure above, it is seen that SS<sub>Among</sub> will increase as the g
 SS<sub>Among</sub> is the **signal** (i.e., relative difference in group means) in the data
 </aside>
 
-So, SS<sub>Among</sub> is immensely useful -- it is a measure of "benefit" that will be used in a "benefit-to-cost" ratio and it is the "signal" that will be used in a "signal-to-noise" ratio. These ratios are discussed further below. Next we discuss how to measure the "cost" of using the more complex full model.
-
+This can be seen in the interactive graphic below. You can adjust the amount of "signal" in the data by increasing or decreasing the difference between the group means and the grand mean. As you do this note how SS<sub>Among</sub> (and SS<sub>Total</sub>) change.
 
 ```{r echo=FALSE}
 knitr::include_app("https://derek-ogle.shinyapps.io/App_SSTotal_Partitioning/",height='800px')
 ```
+
+&nbsp;
+
+So, SS<sub>Among</sub> is immensely useful -- it is a measure of "benefit" that will be used in a "benefit-to-cost" ratio and it is the "signal" that will be used in a "signal-to-noise" ratio. These ratios are discussed further below. Next we discuss how to measure the "cost" of using the more complex full model.
 
 
 # Measuring Increase in Complexity
@@ -234,9 +239,7 @@ df<sub>Among</sub> is the extra **cost** (i.e., loss of df) from using the full 
 &nbsp;
 
 # "Noise" Variances
-As discussed in the previous module, SS are not true variances until they are divided by their df and become mean-squares (MS).
-
-MS<sub>Total</sub> and MS<sub>Within</sub> are measures of the variance of **individuals** around the grand mean and group means, respectively. Thus, MS<sub>Total</sub> measures the "noise" around the full model, whereas MS<sub>Within</sub> measures the "noise" around the simple model.
+MS<sub>Total</sub> and MS<sub>Within</sub> are measures of the variance ^[As discussed in the previous module, SS are not true variances until they are divided by their df and become mean-squares (MS).] of **individuals** around the grand mean and group means, respectively. Thus, MS<sub>Total</sub> measures the variance or "noise" around the full model, whereas MS<sub>Within</sub> measures the variance or "noise" around the simple model.
 
 <aside>
 MS<sub>Total</sub> and MS<sub>Within</sub> measure "noise" -- i.e., variability of observations around a model
@@ -246,7 +249,7 @@ Before moving on to discuss MS<sub>Among</sub>, it is worth noting that MS<sub>T
 
 \[ \text{MS}_{\text{Total}} = \frac{\text{SS}_{\text{Total}}}{\text{df}_{\text{Total}}} = \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2}}{n-1} \]
 
-Realizing that the double summation simple means to sum across all individuals it is seen that this is the variance (s<sup>2</sup>) from your introductory statistics course. In other words it is just the variability of the individuals around a mean that ignores that there are groups.
+Realizing that the double summation simply means to "sum across all individuals" it is seen that this is the variance (s<sup>2</sup>) from your introductory statistics course. In other words it is just the variability of the individuals around a mean that ignores that there are groups.
 
 <aside>
 MS<sub>Total</sub>=s<sup>2</sup>
@@ -267,16 +270,59 @@ MS<sub>Within</sub>=$s_{p}^{2}$
 # "Signal" Variance (Benefit-to-Cost)
 Of course SS<sub>Among</sub> divided by df<sub>Among</sub> will be MS<sub>Among</sub>. However, while MS<sub>Among</sub> is still a variance, it has a very different interpretation.
 
-First, MS<sub>Among</sub> is a ratio of the "benefit" (i.e., SS<sub>Among</sub>) to the "cost" (i.e., df<sub>Among</sub>) of using the full model over the simple model. So MS<sub>Among</sub> scales the benefit to the cost of using the full model.
+MS<sub>Among</sub> is NOT a variance of *individuals*, rather it is a variance of *sample means*. Sample means can vary (i.e., not be equal) for two reasons -- purely due to random sampling variability (i.e., the population means are not different) or the population means really do differ such that the sample means differ. In other words, MS<sub>Among</sub> -- the variance among means -- is a combination of "noise" and "signal." Our goal (next) is to disentangle these two reasons for why the sample means differ to determine if there is a real "signal" or not.
 
-Second, note that MS<sub>Among</sub> is NOT a variance of individuals, rather it is a variance of sample means. Sample means can vary (i.e., not be equal) for two reasons -- the population means are not different but the sample means differ due to random sampling variability (caused by natural variability) or the population means really do differ such that the sample means differ. In other words, the variance among means is a combination of "noise" and "signal." Our goal next is to disentangle these two reasons for why the sample means differ to determine if there is a real "signal" or not.
+Additionally, MS<sub>Among</sub> is a ratio of the "benefit" (i.e., SS<sub>Among</sub>) to the "cost" (i.e., df<sub>Among</sub>) of using the full model over the simple model. So MS<sub>Among</sub> scales the benefit to the cost of using the full model.
+
+&nbsp;
 
 # Ratio of Variances (Signal-to-Noise)
 From the above discussion we have a measure of potential "signal" in MS<sub>Among</sub> and actual "noise" around the full model (the model representing the "signal") in MS<sub>Within</sub>. The ratio of this "signal" to "noise" is called an F test statistic; i.e.,
 
 \[ \text{F}=\frac{\text{MS}_{\text{Among}}}{\text{MS}_{\text{Within}}} = \frac{\text{Signal}}{\text{Noise}} = \frac{\text{Variance Explained by Full Model}}{\text{Variance Unexplained by Full Model}} \]
 
+If the F-ratio is "large," then a great deal more variability was explained (i.e., more "signal") than was unexplained by the full model (i.e., "less noise") and one would conclude that the full model fits the data significantly better than the simple model, even considering the increased complexity of the full model.
 
+The question now becomes "when is the F-ratio considered large enough to reject the simple model and conclude that the full model is significantly better?" This question can by comparing the F-ratio test statistic to an F-distribution.
+
+An F-distribution ^[An F-distribution occurs whenever the ratio of two variances is calculated.] is right-skewed, with the exact shape of the distribution dictated by two separate degrees-of-freedom -- called the numerator and denominator degrees-of-freedom, respectively. The numerator df is equal to the df used in MS<sub>Among</sub>, whereas the denominator df is equal to the df used in MS<sub>Within</sub>. The p-value is always computed as the area under the F-distribution curve to the right of the observed F-ratio test statistic.^[If the F-ratio is computed by hand, then `distrib()` with `distrib="f"`, `df1=`, `df2=`, and `lower.tail=FALSE` may be used to calculate the corresponding p-value.]
+
+<aside>
+The p-value is always computer to the **right** on an F-distribution.
+</aside>
+
+```{r Fpvalue, echo=FALSE}
+dfA <- 4
+dfW <- 20
+
+b <- ggplot(data.frame(x=c(-Inf,Inf)),mapping=aes(x=x)) +
+  stat_function(fun=df,args=list(df1=dfA,df2=dfW),xlim=c(0,5),
+                geom="line",color="black",size=1.1) +
+  scale_y_continuous(expand=expansion(mult=c(0,0.04))) +
+  scale_x_continuous(expand=expansion(mult=c(0,0))) +
+  theme_NCStats() +
+  theme(axis.title.y=element_blank(),axis.title.x=element_text(size=16),
+        axis.text.x=element_text(size=12),axis.text.y=element_blank())
+
+b + labs(x="F-Ratio") +
+  stat_function(fun=df,args=list(df1=dfA,df2=dfW),xlim=c(2.2,5),
+                geom="area",fill="gray20",color="black",size=1.1) +
+  annotate(geom="text",x=2.8,y=df(2.2,df1=dfA,df2=dfW),
+           label="p-value",size=5.5,hjust=-0.1) +
+  annotate(geom="segment",x=2.2,y=df(2.2,df1=dfA,df2=dfW),
+           xend=2.8,yend=df(2.2,df1=dfA,df2=dfW),
+           arrow=arrow(length=unit(0.2,"cm"),type="closed"))
+```
+
+&nbsp;
+
+From this it can be seen that a small p-value comes from a large F-ratio, which comes from a large MS<sub>Among</sub> relative to MS<sub>Within</sub>, which means both that the full model explains more variability than is left unexplained and the "signal" is much greater than the "noise", which means that the full model does fit significantly better than the simple model (even given the increased complexity), and, thus, the means are indeed different, which is what we would conclude from a small p-value. This cascade of measures can be explored with the dynamic graphic below.
+
+```{r echo=FALSE}
+knitr::include_app("https://derek-ogle.shinyapps.io/App_F_Meaning/",height='800px')
+```
+
+&nbsp;
 
 
 

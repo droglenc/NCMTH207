@@ -138,12 +138,12 @@ If a residual measures how closely a model comes to a point then it stands to re
 Instead of summing residuals, statisticians sum squared residuals into a quantity called a **residual sum-of-squares (RSS)**.^[Some statisticans call this an error sum-of-squares or a sum of squared errors (SSE)] Using the formula for a residual from above, an RSS for a given set of observed data and a model is computed with
 
 <aside>
-The RSS measures how well the model fits *all* of the observations.
+The RSS measures how closely the model comes to *all* of the observations.
 </aside>
 
 \[   \text{RSS} = \sum_{data}\left(\text{Observed Response}-\text{Model Predicted Response}\right)^2 \]
 
-The RSS is on an unfamiliar scale (squared residuals?) but it maintains the same conceptual idea that summing residuals would have. Mainly, the smaller the RSS, the better the model fits the observed data or, visually, the more closely the points are to the model. The full set of residuals required to compute an RSS are shown in the figures below.
+The RSS is on an unfamiliar scale (squared residuals?) but it maintains the same conceptual idea that summing residuals would have. Mainly, the smaller the RSS the more closely the points are to the model. The full set of residuals required to compute an RSS are shown in the figures below.
 
 ```{r echo=FALSE, fig.width=7}
 t2b <- t2 +
@@ -156,6 +156,12 @@ t2b + slrb
 ```
 
 &nbsp;
+
+As a value, the RSS is a measure of how *poorly* the model fits the data -- i.e., small values are a good fit, large values are a poor fit. Thus, the RSS is often called "a measure of lack-of-fit" of the model to the observations.
+
+<aside>
+An RSS is a measure of the "lack-of-fit" of a model to the data.
+</aside>
 
 Unfortunately, the magnitude of the RSS is only useful in comparison to other RSS computed for different models from the same data. We will discuss this further in the next module.
 
