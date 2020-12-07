@@ -207,6 +207,11 @@ SS<sub>Among</sub> is the **signal** (i.e., relative difference in group means) 
 So, SS<sub>Among</sub> is immensely useful -- it is a measure of "benefit" that will be used in a "benefit-to-cost" ratio and it is the "signal" that will be used in a "signal-to-noise" ratio. These ratios are discussed further below. Next we discuss how to measure the "cost" of using the more complex full model.
 
 
+```{r echo=FALSE}
+knitr::include_app("https://derek-ogle.shinyapps.io/App_SSTotal_Partitioning/",height='800px')
+```
+
+
 # Measuring Increase in Complexity
 In this example, df<sub>Total</sub>=`r nrow(aqua)`-1 because there is one parameter (the grand mean) in the simple model, and df<sub>Within</sub>=`r nrow(aqua)`-2 because there are two parameters (the group means) in the full model. The full model uses more parameters and, thus, the residual degrees-of-freedom is reduced -- there is a "cost" to using the full model over the simple model. We need a measure of this "cost".^[The "cost" is obviously 1 in this simple case.]
 

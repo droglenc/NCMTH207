@@ -70,7 +70,7 @@ An observed value of the response variable can be thought of as being equal to a
 
 For example, tomorrow's temperature may be 74<sup>o</sup>F, which is the predicted 76<sup>o</sup>F from the forecaster's model plus -2<sup>o</sup>F "error."
 
-In statistics, one model for predicting the response variable for an individual in a group is to use the mean for the group. My best guess at the height of an unknown student is to guess that they are average. Obviously, most individuals are not truly average, so the specific individual will deviate from the mean. Visually, in the plot below, an observation is shown as a red point, the predicted value for that individual is shown as a horizontal line at the mean for the individual's group, and the "error" from this prediction is shown as the vertical red line.
+In statistics, one model for predicting the response variable for an individual in a group is to use the mean for the group. My best guess at the height of an unknown student is to guess that they are average for "their group." Obviously, most individuals are not truly average, so the specific individual will deviate from the mean. Visually, in the plot below, an observation is shown as a red point, the predicted value for that individual is shown as a horizontal line at the mean for the individual's group, and the "error" from this prediction is shown as the vertical red line.
 
 <aside>
 We always predict the **response** variable with a model.
@@ -94,7 +94,7 @@ slr +
 
 &nbsp;
 
-Many hypothesis tests, including the two-sample t-test, can be cast in a framework of competing statistical models. Using this framework requires assessing the relative fit (to data) and complexity of a model. The remainder of this module is about measuring fit. We will discuss fit and formally compare two models to see which is "best" in the next module.
+Many hypothesis tests, including the two-sample t-test, can be cast in a framework of competing statistical models. Using this framework requires assessing the relative fit (to data) and complexity of a model. The remainder of this module is about measuring fit and complexity of models. We will discuss fit and formally compare two models to see which is "best" in the next module.
 
 &nbsp;
 
@@ -135,7 +135,7 @@ t2a + slra
 ### Residual Sum-of-Squares
 If a residual measures how closely a model comes to a point then it stands to reason that the sum of all of the residuals measures how closely a model comes to all of the points. Unfortunately, because residuals are negative and positive they always sum to 0.^[Under certain reasonable assumptions.] Thus, the sum of all residuals is not a useful measure of the overall fit of a model.
 
-Instead of summing residuals, statisticians sum squared residuals into a quantity called a **residual sum-of-squares (RSS)**. An RSS for a given set of observed data and a model is computed with
+Instead of summing residuals, statisticians sum squared residuals into a quantity called a **residual sum-of-squares (RSS)**.^[Some statisticans call this an error sum-of-squares or a sum of squared errors (SSE)] Using the formula for a residual from above, an RSS for a given set of observed data and a model is computed with
 
 <aside>
 The RSS measures how well the model fits *all* of the observations.
@@ -164,7 +164,7 @@ Unfortunately, the magnitude of the RSS is only useful in comparison to other RS
 # Residual Degrees-of-Freedom
 You used degrees-of-freedom (df) with t-tests and chi-square tests in your introductory statistics course. However, you likely did not discuss what degrees-of-freedom mean and where they come from. I will discuss this briefly here, but we will use df more in the next module.
 
-Residual degrees-of-freedom (Rdf) are the number of observations that are "free" to vary if the sample size (n) and number of parameters estimated is known. As a simple example, suppose that we know that x&#772;=13 from n=4 observations. With just this information can I tell you the values for the four observations that went into x&#772;? Clearly I cannot. If you give me one observation can I tell you the remaining three? No! If you tell me two? No! If you tell me three observations can I tell you the last observation? Yes, because the total of the four numbers must be 52 (=n&times;x&#772;=4&times;13); so the last number must be 52 minus the total of the three numbers you told me. In this case, three numbers were "free" to be anything value before the last number was set. Thus, this case has three residual degrees-of-freedom.
+Residual degrees-of-freedom (Rdf) are the number of observations that are "free" to vary if the sample size (n) and number of parameters estimated is known. As a simple example, suppose that we know that x&#772;=13 from n=4 observations. With just this information can I tell you the values for the four observations that went into x&#772;? Clearly I cannot. If you give me one observation can I tell you the remaining three? No! If you tell me two? No! If you tell me three observations can I tell you the last observation? Yes, because the total of the four numbers must be 52 (=n&times;x&#772;=4&times;13); so the last number must be 52 minus the total of the three numbers you told me. In this case, three numbers were "free" to be any value before the last number was set. Thus, this case has three residual degrees-of-freedom.
 
 Residual degrees-of-freedom are more complicated to explain in other situations, but generally
 
@@ -178,14 +178,16 @@ t2 + slr
 
 &nbsp;
 
-As a general rule, parameters estimates are more precisely estimated with more residual degrees-of-freedom. Thus, models that "preserve" residual degrees-of-freedom (i.e., have fewer parameters) are preferred.
+As a general rule, parameter estimates are more precisely estimated with more residual degrees-of-freedom. Thus, models that "preserve" residual degrees-of-freedom (i.e., have fewer parameters) are preferred, all else being equal.
 
 &nbsp;
 
 # Mean-Squares
 Sums-of-squares are useful measures of model fit, but they are largely uninterpretible on their own. However, if a sum-of-squares is divided by its corresponding degrees-of-freedom it is called a **Mean-Square (MS)**. Mean-squares are the **variance** (i.e., squared standard deviation) of individuals around a given model. Mean-squares have useful mathematical properties as you will see in future modules. However, visually the square root of a mean square loosely describes how far each point is from the model (i.e., the "errors"), on average. The mean-squares are thus a measure of the "noise" around each model.
 
-&nbsp;
+<aside>
+MS are variances; thus, the square root of MS are standard deviations
+</aside>
 
 # Corrections {.appendix}
 If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).
