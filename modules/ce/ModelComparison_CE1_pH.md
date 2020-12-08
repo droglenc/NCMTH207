@@ -26,7 +26,7 @@ Load these data into R and answer the following questions. Make sure to show and
 1. Write the simple and full models for this situation. Make sure to define all symbols (and subscripts).
 1. What are values for I and n for these data.
 
-For the following questions you should present and refer to an ANOVA table computed from these data. **Each answer should have a value directly from or computed from the ANOVA table and a proper label (i.e., using df<sub>Among</sub>, SS<sub>Total</sub>, MS<sub>Within</sub>, etc.)**
+For the following questions you should present and refer to an ANOVA table computed from these data. Each answer should have a value directly from or computed from the ANOVA table and a proper label (i.e., using df<sub>Among</sub>, SS<sub>Total</sub>, MS<sub>Within</sub>, etc.),
 
 {:start="3"}
 1. What are the residual df for the simple model?
@@ -45,6 +45,8 @@ For the following questions you should present and refer to an ANOVA table compu
 The following questions still refer to values from the ANOVA table.
 
 {:start="15"}
-1. Explain what the F-ratio **means**. Your explanation is not simply how it is calculated (i.e., it is not simply a formula), rather it should include two separate explanations focused on variabilities (explained and unexplained) and relative model fits.
+1. Explain what the F-ratio means. Your explanation is not simply how it is calculated (i.e., it is not simply a formula), rather it should include two separate explanations focused on variabilities (explained and unexplained) and relative model fits.
+1. How does the F-ratio test statistic from the ANOVA table compare to the t test statistic from the 2-sample t-test? This is not a simple "equals", "less than", or "greater than" answer; there is a specific relationship (as described in the reading).
 1. What three related conclusions can you make from the p-value? These should be related to hypotheses, models, and number of means.
+1. How does the p-value from the ANOVA table compare to the p-value from the 2-sample t-test?
 1. Write an overall conclusion from this study.

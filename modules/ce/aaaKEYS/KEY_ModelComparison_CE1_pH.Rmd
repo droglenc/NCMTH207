@@ -1,0 +1,75 @@
+---
+title: "Exercise Key"
+subtitle: "Model Comparison"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ModelComparison_CE1_pH")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+d <- data.frame(pH=c(8.97,9.12,9.41,8.67,9.94,8.28,7.86,7.51,9.18,7.68,
+                     6.67,5.83,6.84,6.86,5.89,7.42,6.56,5.99,5.33,6.69),
+                river=rep(c("A","B"),each=10))
+rvr.lev <- levenesTest(pH~river,data=d)
+rvr.t <- t.test(pH~river,data=d,var.equal=TRUE)
+rvr.aov <- anova(lm(pH~river,data=d))
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Make sure you show an "R Code and Results" section.</li>
+  <li>Use complete sentences to answer questions and label your results as directed.</li>
+  <li>Questions that ask about a "variance" or "variability" should be answered with an MS, as MS are "true variances" (as described in the reading).
+</ul>
+</div>
+
+----
+
+# pH in Two Rivers
+
+1. The simple model in this case is that one mean describes observations in both groups or $Y_{ij} = \mu + \epsilon_{ij}$, where Y<sub>ij</sub> is the jth observation of the response variable in the ith group, &mu; is the population grand mean, and &epsilon;<sub>ij</sub> is the "error" for the jth observation in the ith group. In contrast the full model is that to means are needed to describe the observation in each group separately or $Y_{ij} = \mu_{i} + \epsilon_{ij}$, where &mu;<sub>i</sub> is the population mean for the ith group.
+1. The number of groups in the study is **I=2**. The total number of individuals in the study is **n=`r nrow(d)`**.
+1. The residual df for the simple model is **df<sub>Total</sub>**=`r rvr.aov$Df[1]`+`r rvr.aov$Df[2]`**=`r sum(rvr.aov$Df)`**.
+1. The residual df for the full model is **df<sub>Within</sub>=`r rvr.aov$Df[2]`**.
+1. The difference in number of parameters between the two models is **df<sub>Among</sub>=`r rvr.aov$Df[1]`**.
+1. The variance of individuals around the simple model is **MS<sub>Total</sub>=**$\frac{`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`+`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`}{`r rvr.aov$Df[1]`+`r rvr.aov$Df[2]`}$=$\frac{`r formatC(sum(rvr.aov$"Sum Sq"),format="f",digits=4)`}{`r sum(rvr.aov$Df)`}$=**`r formatC(sum(rvr.aov$"Sum Sq")/sum(rvr.aov$Df),format="f",digits=4)`**.
+1. The variance of individuals around the full model is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
+1. The  variance among sample means is **MS<sub>Among</sub>=`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`**.
+1. The amount of "signal" in the data is the measurement of how different the sample means are, which is represented by **MS<sub>Among</sub>=`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`**.
+1. The amount of "noise" in the data is the measurement of how variable individuals are around the group means, which is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
+1. The pooled sample variances for the 2-sample t-test (i.e., $s_{p}^{2}$) is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
+1. The overall sample variance (i.e., s<sup>2</sup>) is **MS<sub>Total</sub>=`r formatC(sum(rvr.aov$"Sum Sq")/sum(rvr.aov$Df),format="f",digits=4)`**.
+1. The variance not explained by the full model is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
+1. The variance that is explained by the full model is **MS<sub>Among</sub>=`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`**.
+1. The F-ratio is the ratio of variability that is explained by the full model to the variability that is left unexplained by the full model. In other words it measures what the full model can explain to what it cannot explain. Alternatively the F-ratio is a measure of the reduction in lack-of-fit from the simple to full model to the lack-of-fit of the full model. In other words, it measures how much better than full models fits relative to how poorly it still fits the data.
+1. The F-ratio from the ANOVA table (=`r formatC(rvr.aov$"F value"[1],format="f",digits=3)`) is exactly **the square of the t test statistic** from the 2-sample t-test (`r formatC(rvr.t$statistic,format="f",digits=4)`).
+1. The p-value in the ANOVA table (`r formatC(rvr.aov$"Pr(>F)"[1],digits=4)`) **exactly equals** the p-value from the 2-sample t-test (`r formatC(rvr.t$p.value,digits=4)`).
+1. This p-value (=`r kPvalue(rvr.aov$"Pr(>F)"[1],latex=FALSE,include.p=FALSE)`) is less than &alpha; which means that H<sub>0</sub> is rejected, the full model is preferred over the simple model, and there is significant evidence for a difference in the two group means.
+1. It appears that the mean pH is greater for stream A than for stream B.
+
+### R Code and Results
+```{r eval=FALSE}
+d <- read.csv("phLevels.csv")
+```
+```{r warning=FALSE}
+aov <- lm(pH~river,data=d)
+anova(aov)
+t.test(pH~river,data=d,var.equal=TRUE)
+```
