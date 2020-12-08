@@ -29,12 +29,11 @@ XXX
 ## Preparation for Class
 Use the resources below to answer [these questions](prep/ModelComparison). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~4 pages)
+* **Primary Resources** (~6 pages)
   * [Reading](readings/ModelComparison){:target="_blank"}
 
 ----
 
 ## Practice
 
-* [Class Example](cex/ModelComparison_CEX1) ... [ANNOTATED KEY](cex/KEY_ModelComparison_CEX1) 
-* [Assignment](ce/ModelComparison_CE1) ... [ANSWER KEY](cex/KEY_ModelComparison_CE)
+* [Assignment](ce/ModelComparison_CE1_pH) ... [ANSWER KEY](cex/KEY_ModelComparison_CE_pH)
