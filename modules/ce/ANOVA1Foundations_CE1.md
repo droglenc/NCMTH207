@@ -19,7 +19,7 @@ Source     | df |   SS  |  MS  |   F  | p-value
 **Within** |    |       | 4.56 |   -  | -
 **Total**  | 23 |       |  -   |   -  | -
 
-1. Complete the missing cells in the ANOVA table above. Show your work. [*Note this does not use R except to compute the p-value with* `distrib()`^[Use `distrib(##,distrib="f",df1=##,df2=##,lower.tail=FALSE)`.]]
+1. Complete the missing cells in the ANOVA table above. Show your work. (*Note this does not use R except to compute the p-value with* `distrib()`.^[Use `distrib(##,distrib="f",df1=##,df2=##,lower.tail=FALSE)`])
 1. How many groups were in this analysis?
 1. How many individuals were in this analysis?
 1. What is the pooled variance among individuals in each group?
@@ -32,14 +32,14 @@ Source     | df |   SS  |  MS  |   F  | p-value
 
 A study that used 54 individuals evenly allocated to 6 treatment groups had a variance among all individuals (ignoring group membership) of 47.33 and a combined variance of individuals in each group of 33.78.
 
-1. Use this information to construct an ANOVA table. Show your work.*Note this does not use R except to compute the p-value with* `distrib()`]
+1. Use this information to construct an ANOVA table. Show your work. (*Note this does not use R except to compute the p-value with* `distrib()`)
 2. Is there a significant difference among the group means? [*Provide statistical evidence to support your answer*]
 
 &nbsp;
 
 ## Raising Young Cuckoos
 <img src="../zimgs/cuckoo-eggs.jpg" alt="Cuckoo Eggs" class="img-right">
-Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the cuckoo young at the expense of their own young. Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the [tree pipet](https://en.wikipedia.org/wiki/Tree_pipit){:target="_blank"}, [hedge sparrow](https://en.wikipedia.org/wiki/Dunnock){:target="_blank"}, and [pied wagtail](https://www.rspb.org.uk/birds-and-wildlife/bird-and-wildlife-guides/bird-a-z/p/piedwagtail/){:target="_blank"} - are provided in Cuckoos.csv ([download](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv), [meta](https://github.com/droglenc/NCData/blob/master/Cuckoos_meta.txt)). Load these data into R, construct a One-Way ANOVA (*make sure to show the* `anova()` *results.*), and answer the following questions.
+Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the cuckoo young at the expense of their own young. Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the [tree pipet](https://en.wikipedia.org/wiki/Tree_pipit){:target="_blank"}, [hedge sparrow](https://en.wikipedia.org/wiki/Dunnock){:target="_blank"}, and [pied wagtail](https://www.rspb.org.uk/birds-and-wildlife/bird-and-wildlife-guides/bird-a-z/p/piedwagtail/){:target="_blank"} - are provided in Cuckoos.csv ([download](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv), [meta](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos_meta.txt)). Load these data into R, construct a One-Way ANOVA (*make sure to show the* `anova()` *results.*), and answer the following questions.
 
 1. Identify and label with a proper symbol the (a) overall sample size and (b) the number of groups in these data.
 1. Show how each degrees-of-freedom in the ANOVA table was calculated. Include the degrees-of-freedom that R does not show in the ANOVA table.
