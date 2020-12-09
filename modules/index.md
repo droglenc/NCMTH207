@@ -13,12 +13,14 @@ title: Learning Modules
 #### One-Way ANOVA
 
 {:start="5"}
-1. Hello
-1. good bye
+1. [Foundational Concepts](ANOVA1Foundations)
+1. [Multiple Comparisons](ANOVA1MultipleComparisons)
+1. [Assumption Checking](ANOVA1Assumptions)
+1. [Transformations](ANOVA1Transformations)
 
 #### Two-Way ANOVA
 
-{:start="5"}
+{:start="9"}
 1. Hello
 1. good bye
 
