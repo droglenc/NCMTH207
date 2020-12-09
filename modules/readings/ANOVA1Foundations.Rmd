@@ -54,6 +54,10 @@ A one-way analysis of variance (ANOVA) is used to determine if a significant dif
 ### Data
 The data for a one-way ANOVA must be stacked as described for the 2-sample t-test. In this module, we examine the immunoglobulin^[Any of a class of proteins present in the serum and cells of the immune system, which function as antibodies.] measurements of opossums (`imm`) during three months of the same year (`season`). The data are loaded into R and a subset of rows is shown below.
 
+<aside>
+Data must be stacked!!
+</aside>
+
 ```{r echo=TRUE, eval=FALSE}
 opp <- read.csv("Opossums.csv")
 ```
@@ -74,7 +78,15 @@ where I is the total number of groups or populations.^[From this, it is evident 
 
 A rejection of H<sub>0</sub> in favor of H<sub>A</sub> is a statement that *some* difference in group means exists. It does not clearly indicate which group means differ. Methods to identify which group means differ are in [the Multiple Comparisons module](ANOVA1MultipleComparisons).
 
+<aside>
+Rejecting H<sub>0</sub> **just** means that **some** group means differ.
+</aside>
+
 The simple (Y<sub>ij</sub> = &mu; + &epsilon;<sub>ij</sub>) and full (Y<sub>ij</sub> = &mu;<sub>i</sub> + &epsilon;<sub>ij</sub>) models for the one-way ANOVA are the same as those for the [2-sample t-test](2TReview.html), except that there are I>2 means in the full model. Thus, SS<sub>total</sub>, SS<sub>within</sub>, and SS<sub>among</sub> are computed using the same formulae shown in the [Model Comparision module](ModelComparison.html), except to again note that I>2. The degrees-of-freedom are also computed similarly -- i.e., df<sub>Within</sub>=n-I and df<sub>Among</sub>=I-1. The MS, F, and p-value are also computed in the same way.^[The MS, F, and p-value are computed the same in nearly every ANOVA table encountered in this class.]
+
+<aside>
+A 2-Sample t-Test is simply a special case of a One-Way ANOVA.
+</aside>
 
 The figures below show a visual for simple and full models and residuals from each. Note the similarity with figures from the [Model Comparison module](ModelComparison.html), except that there are three group means here.
 
@@ -170,6 +182,10 @@ In addition to the usual meanings attached to MS<sub>Among</sub>, MS<sub>Among</
 
 # Using R
 The models for a one-way ANOVA are fit and assessed with `lm()` exactly as described for a [2-sample t-test](ModelComparison.html#two-sample-t-test-revisited-using-linear-models). As a reminder, a formula of `response~factor` is the first argument and a data.frame is given in `data=` in `lm()`, the results of `lm()` should be assigned to an object, and the ANOVA table is extracted with `anova()`.
+
+<aside>
+The `lm()` code is the same for a 2-Sample t-Test and a One-Way ANOVA.
+</aside>
 
 ```{r echo=TRUE}
 lm1 <- lm(imm~season,data=opp)
