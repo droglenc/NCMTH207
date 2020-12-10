@@ -1,0 +1,123 @@
+---
+title: "Exercise Key"
+subtitle: "One-Way ANOVA Foundations"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ANOVA1Foundations_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+cuc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv")
+lm1 <- lm(length~species,data=cuc)
+c1 <- coef(lm1)
+ci1 <- confint(lm1)
+n <- nrow(cuc)
+I <- length(levels(cuc$species))
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+  <li>MS<sub>Total</sub> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups). I put it in the table for the second question because it was one of the given values.</li>
+  <li>When you see a question about a "variance" then it will be answered with an "MS". Questions about variance of individuals will NOT be MS<sub>Among</sub>. Variances ignoring groups uses the simple model and will thus be MS<sub>Total</sub>.</li>
+  <li>In the cuckoos question ... </li>
+  <ol>
+    <li>When asked to assess differences among "all" group means then you must use the overall p-value found in the ANOVA table.</li>
+    <li>Don't say "the groups differ" or the "the mean differs among groups." Be explicit ... say "the mean length of cuckoo eggs differs among the three host species nests."</li>
+    <li>You will be asked to interpret MS and F values in the future. If this is not making sense to you then see me for help.</li>
+  </ol>
+</ul>
+</div>
+
+----
+
+# ANOVA Table Completion I
+
+Source     | df | SS | MS | F  | p-value
+:----------|---:|---:|---:|---:|--------:
+**Among**  | **3** | 17.25 | **5.75** | 1.26 | **`r kPvalue(distrib(1.26,distrib="f",df1=3,df2=20,lower.tail=FALSE),include.p=FALSE,latex=FALSE,digits=3)`**
+**Within** | **20** | **91.20** | 4.56 | - | -
+**Total**  | 23 | **108.45** | -    | - | -
+
+1. See completed table above. Note the following
+    * MS<sub>among</sub> is from multiplying F and MS<sub>within</sub>.
+    * df<sub>among</sub> is then SS<sub>among</sub> divided by MS<sub>among</sub>.
+    * df<sub>within</sub> is then df<sub>total</sub>-df<sub>among</sub>.
+    * SS<sub>within</sub> is then MS<sub>within</sub> times df<sub>within</sub>.
+    * SS<sub>total</sub> is then SS<sub>among</sub> + SS<sub>within</sub>.
+    * The p-value is from `distrib(1.26,distrib="f",df1=3,df2=20,lower.tail=FALSE)`.
+1. The number of groups = 3+1 = 4 (i.e., $df<sub>among</sub>+1).
+1. The number of individuals = 23+1 = 24 (i.e., $df<sub>total</sub>+1).
+1. The variability among individuals within groups is s<sub>p</sub><sup>2</sup> = $MS<sub>within</sub> = 4.56.
+1. The variabilty among individuals ignoring groups is s>sup>2</sup> = MS<sub>total</sub> = $\frac{108.45}{23}$ = 4.72.
+1. No, there is not a significant difference among the group means because the p-value is greater than 0.05.
+
+&nbsp;
+
+# ANOVA Table Completion II
+
+Source     | df | SS | MS | F  | p-value
+:----------|---:|---:|---:|---:|--------:
+**Among**  |  5 | 887.05 | 177.41 | 5.25 | `r kPvalue(distrib(5.25,distrib="f",df1=5,df2=48,lower.tail=FALSE),include.p=FALSE,latex=FALSE,digits=3)` |
+**Within** | 48 | 1621.44 | 33.78 | - | -
+**Total**  | 53 | 2508.49 | **47.33** | - | -
+
+1. See completed table above. Note the following
+    * MS<sub>total</sub> and MS<sub>within</sub> are given by definition (the variance of individuals ignoring groups is MS<sub>total</sub> whereas the pooled (or combined) variance of individuals considering groups is MS<sub>within</sub>).
+    * The df are found by knowing the number of groups (I=6) and total number of individuals (n=54).
+    * SS<sub>within</sub> and SS<sub>total</sub> are obtained with MS*df.
+    * SS<sub>among</sub> is from SS<sub>total}-SS<sub>within</sub>.
+    * MS<sub>among</sub> is from SS<sub>among</sub> divided by df<sub>among</sub>.
+    * F is from MS<sub>among</sub> divided by df<sub>among</sub>.
+    * The p-value is computed with `distrib(5.25,distrib="f",df1=5,df2=48,lower.tail=FALSE)`.
+1. Yes, there is a difference among the group means because the p-value is less than 0.05.
+
+&nbsp;
+
+# Raising Young Cuckoos
+1. The overall sample size is n=`r n` and the number of groups is I=`r I`.
+1. Each degrees-of-freedom is calculated as shown below.
+    * df<sub>species</sub> is df<sub>Among</sub>, which is one less than the number of groups (host bird species; I=`r I`) in the analysis.
+    * df<sub>Residuals}</sub> is df<sub>Within</sub>, which is the total number of cuckoo eggs (n=`r n`) minus the total number of groups (I=`r I`) in the analysis.
+    * df<sub>Total</sub> is not shown from `anova()` but it is the total number of cuckoo eggs (n=`r n`) minus 1.
+1. Interpretations of the mean-squares are below.
+    * MS<sub>species</sub> is MS<sub>Among</sub>, which is the variability that is explained by using separate means (full model) that was not explained when only one mean (simple model) was used to represent all three groups. It is also the variability of the group means.
+    * MS<sub>Residuals</sub> is MS<sub>Within</sub>, which is the variability in cuckoo egg length around the mean cuckoo egg length of each host bird species group or the variability unexplained by using a separate mean for each group (i.e., the full model).
+    * MS<sub>Total</sub> is not shown from `anova()`, however it is the variability in cuckoo egg length around the grand mean or the variability unexplained by using only one mean (simple model) to represent all three groups.
+1. The F test statistic is the ratio of the variability explained by the full model that was not explained by the full model. Alternatively, the F test statistic is the ratio of the variance of group means to the variance of individuals within the groups. Alternatively, it is the reduction in lack-of-fit from using the full model to the lack-of-fit of the full model.
+1. The p-value (`r kPvalue(anova(lm1)[1,"Pr(>F)"],digits=3,include.p=FALSE,latex=FALSE)`) is greater than &alpha; thus, the simple model is adequate (compared to the full model), the H<sub>0</sub> is not rejected, and it is concluded that there is no statistical difference in mean cuckoo length among the three species of host birds.
+1. The summary figure is below.
+1. There is no statistical difference in the mean length of cuckoo eggs among the three species of host birds. Thus, it does not appear that host species is related to egg length.
+
+
+### R Code and Results.
+```{r eval=FALSE}
+cuc <- read.csv("Cuckoos.csv")
+```
+```{r prompt=FALSE}
+lm1 <- lm(length~species,data=cuc)
+anova(lm1)
+ggplot(data=cuc,mapping=aes(x=species,y=length)) +
+  geom_jitter(alpha=0.25,width=0.05) +
+  stat_summary(fun.data=mean_cl_normal,geom="pointrange",
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(y="Cuckook Egg Length (mm)",x="Host Species") +
+  theme_NCStats()
+```

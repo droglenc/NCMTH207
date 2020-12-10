@@ -28,7 +28,7 @@ Source     | df |   SS  |  MS  |   F  | p-value
 
 &nbsp;
 
-# ANOVA Table Completion I
+# ANOVA Table Completion II
 
 A study that used 54 individuals evenly allocated to 6 treatment groups had a variance among all individuals (ignoring group membership) of 47.33 and a combined variance of individuals in each group of 33.78.
 
@@ -37,7 +37,7 @@ A study that used 54 individuals evenly allocated to 6 treatment groups had a va
 
 &nbsp;
 
-## Raising Young Cuckoos
+# Raising Young Cuckoos
 <img src="../zimgs/cuckoo-eggs.jpg" alt="Cuckoo Eggs" class="img-right">
 Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the cuckoo young at the expense of their own young. Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the [tree pipet](https://en.wikipedia.org/wiki/Tree_pipit){:target="_blank"}, [hedge sparrow](https://en.wikipedia.org/wiki/Dunnock){:target="_blank"}, and [pied wagtail](https://www.rspb.org.uk/birds-and-wildlife/bird-and-wildlife-guides/bird-a-z/p/piedwagtail/){:target="_blank"} - are provided in Cuckoos.csv ([download](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv), [meta](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos_meta.txt)). Load these data into R, construct a One-Way ANOVA (*make sure to show the* `anova()` *results.*), and answer the following questions.
 
@@ -46,6 +46,7 @@ Many species of cuckoos are brood parasites where the females lay their eggs in 
 1. Interpret the meaning of each mean-square in the ANOVA table, include the mean-square that is usually not presented in the ANOVA table.
 1. Explain what the F-ratio means. Your explanation is not simply how it is calculated (i.e., it is not simply a formula), rather it should include two separate explanations focused on variabilities (explained and unexplained) and relative model fits.
 1. What three related conclusions can you make from the p-value? These should be related to hypotheses, models, and number of means.
+1. Make a graphic that illustrates the results of the study.
 1. Write an overall conclusion from this study.
 
 &nbsp;
