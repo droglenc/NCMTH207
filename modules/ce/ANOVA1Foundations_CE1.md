@@ -19,7 +19,7 @@ Source     | df |   SS  |  MS  |   F  | p-value
 **Within** |    |       | 4.56 |   -  | -
 **Total**  | 23 |       |  -   |   -  | -
 
-1. Complete the missing cells in the ANOVA table above. Show your work. (*Note this does not use R except to compute the p-value with* `distrib()`.^[Use `distrib(##,distrib="f",df1=##,df2=##,lower.tail=FALSE)`])
+1. Complete the missing cells in the ANOVA table above. Show your work. [*Note this does not use R except to compute the p-value with* `distrib()`.[^distrib]]
 1. How many groups were in this analysis?
 1. How many individuals were in this analysis?
 1. What is the pooled variance among individuals in each group?
@@ -32,7 +32,7 @@ Source     | df |   SS  |  MS  |   F  | p-value
 
 A study that used 54 individuals evenly allocated to 6 treatment groups had a variance among all individuals (ignoring group membership) of 47.33 and a combined variance of individuals in each group of 33.78.
 
-1. Use this information to construct an ANOVA table. Show your work. (*Note this does not use R except to compute the p-value with* `distrib()`)
+1. Use this information to construct an ANOVA table. Show your work. [*Note this does not use R except to compute the p-value with* `distrib()`.]
 2. Is there a significant difference among the group means? [*Provide statistical evidence to support your answer*]
 
 &nbsp;
@@ -47,3 +47,7 @@ Many species of cuckoos are brood parasites where the females lay their eggs in 
 1. Explain what the F-ratio means. Your explanation is not simply how it is calculated (i.e., it is not simply a formula), rather it should include two separate explanations focused on variabilities (explained and unexplained) and relative model fits.
 1. What three related conclusions can you make from the p-value? These should be related to hypotheses, models, and number of means.
 1. Write an overall conclusion from this study.
+
+&nbsp;
+
+[^distrib]: Use `distrib(##,distrib="f",df1=##,df2=##,lower.tail=FALSE)`
