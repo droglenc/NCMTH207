@@ -1,0 +1,132 @@
+---
+title: "Multiple Comparisons"
+description: |
+  Introduction to multiple comparisions in a 1-Way ANOVA.
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+library(NCStats)
+library(emmeans)
+knitr::opts_chunk$set(message=FALSE,comment="#R>  ",
+                      fig.align='center',fig.width=3.5,fig.height=3.5)
+options(show.signif.stars=FALSE)
+clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
+set.seed(34353)
+
+## Opossums data
+opp <- read.csv("data/Opposums.csv")
+lm1 <- lm(imm~season,data=opp)
+aov1 <- anova(lm1)
+mc <- emmeans(lm1,specs=pairwise~season)
+mc1 <- summary(mc,infer=TRUE)
+```
+
+# Introduction
+A significant result (i.e., reject H<sub>0</sub>) in a one-way ANOVA indicates that the means of at least one pair of groups differ. It is not yet known whether all means differ, all but two means differ, only one pair of means differ, or any other possible combination of differences. Thus, specific follow-up analyses to a significant one-way ANOVA are needed to identify which pairs of means are significantly different.
+
+<aside>
+A significant one-way ANOVA only indicates that at least one pair of means differ. Follow-up analyses are required to determine which pairs differ.
+</aside>
+
+# Multiple Comparison Problem
+The most obvious solution to identify which pairs of means differ is to perform a 2-sample t-test for each pair of groups. Unfortunately, this seemingly simple answer has at least two major problems. First, the number of 2-sample t-tests needed increases dramatically with increasing numbers of groups. Second, the probability of incorrectly concluding that at least one pair of means differs when no pairs actually differ increases dramatically with increasing numbers of groups. Of these two issues, the second is much more problematic and needs to be better understood.
+
+In any one comparison of two means the probability of incorrectly concluding that the means are different when they are actually not different is &alpha;. This incorrect conclusion is called a **pairwise Type I error**^[This is sometimes called an comparison-individual-, or test-wise error.] because it relates to only one comparison of a pair of means.
+
+In a situation with three (I=3) groups (say A, B, C) then there are three pairwise comparisons (k=3) to be made (A to B, A to C, and B to C). A pairwise error could be made on any of these three tests. Making a Type I error on *at least one* of these multiple pairwise tests is called an **experiment-wise Type I error**^[This is sometimes called a family-wise error.] because it involves all pairwise comparisons in the experiment at hand.
+
+It is important that you notice *at least* in the definition of the experiment-wise error rate. For example, in three comparisons, the incorrect conclusion could be for the first pair, the second pair, the third pair, the first and second pair, the first and third pair, the second and third pair, or all three pairs!!
+
+Figure \@ref(fig:MCProblem) demonstrates the two issues related to multiple comparisons. First, the x-axis labels show how the number of pairwise comparisons (k) increases quickly with increasing number of groups (I) in the study. For example, six groups (I=6) is not a complicated study, but it results in fifteen pairwise comparisons (k=15). More importantly the line and point labels in the figure show how the experiment-wise error rate increases quickly and dramatically with increasing number of groups. For example, the experiment-wise error rate for six (I=6) groups is over 0.50.^[Using &alpha;=0.05] Thus, it is nearly a coin flip that at least one error will be made in all paired comparisons among six groups. Making an error more than 50% of the time in such a simple study is not acceptable and must be corrected.
+
+<aside>
+The experiment-wise error rate increases dramatically with increasing numbers of treatment groups.
+</aside>
+
+
+```{r MCProblem, echo=FALSE, fig.cap="Relationship between the number of groups (I) in an analysis, the number of pairs of means that would need to be tested (k), and the probability of making one or more Type I errors in all comparisons. Note that &alpha;=0.05."}
+mcprob <- tibble(I=2:6,
+                 k=choose(I,2),
+                 ewise05=1-(1-0.05)^k,
+                 labels=paste("I=",I,"\nk=",k))
+
+ggplot(data=mcprob,mapping=aes(x=I,y=ewise05)) +
+  geom_path(size=1) +
+  ggrepel::geom_label_repel(mapping=aes(label=formatC(ewise05,format="f",digits=2)),
+                            size=3,hjust=1.5,vjust=-0.5,segment.size=0.2) +
+  geom_point(size=2,pch=21,color="black",fill="white") +
+  scale_x_continuous("Number of Groups (I)\nNumber of Pairwise Comparisons (k)",
+                     labels=mcprob$labels) +
+  scale_y_continuous("PR(One or More Type I Error)",limits=c(0,NA),
+                     expand=expansion(mult=c(0,0.02))) +
+  theme_NCStats()
+```
+
+# Correction Methods
+There are many procedures designed to attempt to control experiment-wise error rate at a desired level (usually &alpha;). You will here a variety of names like Tukey's HSD, Bonferroni's adjustment, Sidak's method, and Scheffe's method.^[See [here](https://en.wikipedia.org/wiki/Family-wise_error_rate#Controlling_procedures) for a short list of methods.] For simplicity, only the Tukey-Kramer honestly significantly different (i.e., Tukey's HSD or Tukey's) method will be used here.
+
+As simplistically as possible, Tukey's test computes the t test statistic for each pair of means as if conducting a 2-sample t-test. However, this test statistic is compared to a "Studentized range" rather than a t distribution to compute the p-value. These "adjusted" p-values are then simply compared to &alpha; to make a decision about the means of each pair. The net result of this modification however is that the experiment-wise error rate across all comparisions is controlled at the desired level when the group sample sizes are equal and is slightly conservative when the group sample sizes are different.
+
+&nbsp;
+
+# Multiple Comparisons in R
+Tukey's procedure should only be implemented if multiple comparisons are needed!! In other words, only use this method following a significant One-Way ANOVA result; i.e., H<sub>0</sub> was rejected such that it appears that there is some difference among group means. Therefore, a One-Way ANOVA must be performed first as described in [the previous module](ANOVA1Foundations.html#using-r).
+
+The ANOVA table from the analysis if immunoglobulin levels in opossums across seasons that was begun in the previous module is shown below.
+
+```{r echo=TRUE}
+lm1 <- lm(imm~season,data=opp)
+anova(lm1)
+```
+
+Once again, there appears to be some significant difference in the mean immunoglobulin values among the three months (`r kPvalue(aov1$"Pr(>F)"[1],include.p=FALSE,latex=FALSE)`<&alpha;). Thus, a multiple comparisons procedure is warranted here to identify exaclty which pairs of means differ.
+
+There are a number of functions and packages in R for computing Tukey's multiple comparisons. I prefer to use functions in the `emmeans` package because those functions will generalize to other methods, some of which we will use in other modules and some of which you may used in more advanced statistics courses. The `emmeans` package must be attached with `library()` before its functions can be used.
+
+<aside>
+The `emmeans` package must be attached with `library` to perform Tukey's procedure.
+</aside>
+
+```{r eval=FALSE, echo=TRUE}
+library(emmeans)
+```
+
+Tukey's procedure is computed with a two-step process. First, use `emmeans()` with the `lm()` object as the first argument and a `specs=` argument with `pairwise~` followed by the name of the variable that identifies the groups. The results from this function should be saved to an object.
+
+```{r echo=TRUE}
+mc <- emmeans(lm1,specs=pairwise~season)
+```
+
+That saved object is then the first argument to `summary()`, which also uses `infer=TRUE`.
+
+```{r}
+summary(mc,infer=TRUE)
+```
+
+The results are shown in two "sections" labeled as `$emmeans` and `$contrasts`. The `$emmeans` section contains the group sample means under `emmean` with 95% confidence intervals under `lower.CL` and `upper.CL`. For example, the sample mean immunoglobulin level for opossums in February was `r formatC(mc1$emmeans$emmean[1],format="f",digits=3)`, with a 95% confidence interval from `r formatC(mc1$emmeans$lower.CL[1],format="f",digits=3)` to `r formatC(mc1$emmeans$upper.CL[1],format="f",digits=3)`. The `t.ratio` and `p.value` in this section tests if the group population mean is different than 0. These tests are not often of interest and can largely be ignored.
+
+<aside>
+The group means with 95% confidence intervals are shown in the `$emmeans` section of the results.
+</aside>
+
+The `$contrasts` section contains the actual Tukey's test for each pair of means. In these results the difference in group sample means is under `estimate`, a 95% confidence interval for the **difference** in means is under `lower.CL` and `upper.CL`, and a p-value for testing that the difference in group population means is 0 is under `p.value`. For example, the difference in group **sample** mean immunoglobulin between February and May is `r formatC(mc1$contrasts$estimate[1],format="f",digits=4)`, but the p-value suggests that the **population** mean immunoglobulin does not differ between February and May (`r kPvalue(mc1$contrasts$p.value[1],latex=FALSE)`). In contrast, it appears that the population mean immunoglobulin for opossums in November differed from both those in Feb (`r kPvalue(mc1$contrasts$p.value[2],latex=FALSE)`) and those in May (`r kPvalue(mc1$contrasts$p.value[3],latex=FALSE)`).
+
+<aside>
+The **difference** group means with 95% confidence intervals and p-values are shown in the `$contrasts` section of the results.
+</aside>
+
+&nbsp;
+
+```{r}
+df <- mc %>%
+  as.data.frame()
+```
+
+
+
+# Corrections {.appendix}
+If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).
