@@ -43,7 +43,7 @@ Load these data into R and answer the questions below. [*Note: If you enter the 
 
 &nbsp;
 
-# Salamander Tail Length
+# Salamander Lengths
 <img src="../zimgs/salamander.jpg" alt="California Tiger Salamander" class="img-right">
 [Polich *et al.* (2013)](https://besjournals.onlinelibrary.wiley.com/doi/10.1002/jwmg.596) examined the effects of tail-clipping on survivorship and growth of larval California Tiger Salamanders (*Ambystoma californiense*). In one part of their study, randomly selected larval salamanders were designated for one of four treatment groups which were defined by how much of the salamander’s tail was clipped: “Control”, “Small”, “Medium”, and “Large” were 0.0-, 2.5-, 5.0-, and 10.0-mm tail clips, respectively. The larvae were then released into experimental simulated vernal pools where they were fed *ad libitum* for two weeks. At the end of two weeks, the total length (snout to the end of the tail; mm) was measured and recorded. Their goal for this particular portion of the study was to compare all pairs of tail-clips to determine if the amount of tail-clip had a significant impact on the resultant total length. The data are recorded in Salamanders.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders_meta.txt)). Load these data into R and answer the questions below. [*Note: Use `factor()` and levels= to order the treatments levels from smallest to large clip amount ... [see this for help.](http://derekogle.com/NCMTH107/resources/FAQs/reorder-levels)*]
 

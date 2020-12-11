@@ -1,0 +1,116 @@
+---
+title: "Exercise Key"
+subtitle: "Multiple Comparisons"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ANOVA1MultipleComparisons_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(ggplot2)
+library(emmeans)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+# Raising Young Cuckoos
+It is not appropriate to conduct multiple comparisons in this example because the H<sub>0</sub> in the one-way ANOVA was not rejected. This result suggests that there is no difference among group means and, thus, no need to determine which specific groups differ.
+
+&nbsp;
+
+# Temperature and Turtle Hatchings
+
+<div class="alert alert-warning">
+<ul>
+  <li>On the first questions, define any symbols used in the hypotheses.</li>
+  <li>On the second question, use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. Tukey's multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means.</li>
+  <li>In the fourth question, clearly indicate which group is greater (or lesser). Don't just say that you are 95% confident that the difference is between such-and-such.</li>
+  <li>In the fifth question include a plot of means with confidence intervals.</li>
+  <li>In the last question, note that there is no difference in means for the first three temperatures. So, even though, the plot shows slight differences in the SAMPLE means, those differences were not great enough to conclude that the POPULATION means were different. So, your conclusion should not make it sound like there is a difference among those temperature treatments.</li>
+  <li>Also note in the last question that the conclusion is about the MEAN days to hatch not days to hatche because that is what is tested in the hypotheses.</li>
+  <li>Note how concise the answer key is. Please work to get your answers this concise.</li>
+</ul>
+</div>
+
+```{r echo=FALSE}
+d <- read.csv("c:/aaaWork/Web/GitHub/NCMTH207/modules/ce/aaaKeys/turtles.csv")
+d$Temperature <- factor(d$Temperature)
+lm1 <- lm(Days~Temperature,data=d)
+aov1 <- anova(lm1)
+mc <- emmeans(lm1,specs=pairwise~Temperature)
+mc1 <- summary(mc,infer=TRUE)
+```
+
+1. The H<sub>0</sub>: &mu;<sub>15C</sub>=&mu;<sub>20C</sub>=&mu;<sub>25C</sub>=&mu;<sub>30C</sub>, where &mu; is the mean days to hatch and the subscripts are the temperatures in the temperature treatments. The H<sub>A</sub>: "mean days to hatch differs between at least one pair of treatment temperatures".
+1. It appears that the mean days to hatch differs between at least one pair of treatment temperatures (`r kPvalue(aov1$"Pr(>F)"[1],latex=FALSE)`<&alpha;).
+1. It appears that the mean days to hatch differs between 30<sup>o</sup>C and 15<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[3],latex=FALSE)`), 20<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[5],latex=FALSE)`), and 25<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[6],latex=FALSE)`). The mean days to hatch did not differ between any other pairs of temperature treatments.
+1. It appears that the mean days to hatch at 30<sup>o</sup>C was between `r formatC(mc1$contrasts$lower.CL[3],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[3],format="f",digits=1)` days lower than at 15<sup>o</sup>C, between `r formatC(mc1$contrasts$lower.CL[5],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[5],format="f",digits=1)` days lower than at 20<sup>o</sup>C, and between `r formatC(mc1$contrasts$lower.CL[6],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[6],format="f",digits=1)` days lower than at 25<sup>o</sup>C.
+1. The plot of means with 95% confidence intervals is shown below.
+1. It appears that temperature does not affect the mean days to hatch from between 15<sup>o</sup>C to 25<sup>o</sup>C, but declines dramatically from 25<sup>o</sup>C to 30<sup>o</sup>C. Thus, temperature does affect the mean days to hatch but not until temperature is above 25<sup>o</sup>C.
+
+### R Code and Results.
+```{r eval=FALSE}
+d <- read.csv("turtles.csv")
+d$Temperature <- factor(d$Temperature)
+```
+```{r}
+lm1 <- lm(Days~Temperature,data=d)
+anova(lm1)
+mc <- emmeans(lm1,specs=pairwise~Temperature)
+summary(mc,infer=TRUE)
+
+ggplot(data=d,mapping=aes(x=Temperature,y=Days)) +
+  geom_jitter(alpha=0.25,width=0.05) +
+  stat_summary(fun.data=mean_cl_normal,geom="pointrange",
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(y="Days to Hatch",x="Temperature Treatment") +
+  theme_NCStats()
+```
+
+&nbsp;
+
+# Salamander
+
+```{r echo=FALSE}
+df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders.csv")
+df$Treatment <- factor(df$Treatment,levels=c("Control","Small","Medium","Large"))
+lm2 <- lm(TL~Treatment,data=df)
+aov2 <- anova(lm2)
+mcS <- emmeans(lm2,specs=pairwise~Treatment)
+mcS2 <- summary(mcS,infer=TRUE)
+```
+
+1. The H<sub>0</sub>: &mu;<sub>Control</sub>=&mu;<sub>Small</sub>=&mu;<sub>Medium</sub>=&mu;<sub>Large</sub>, where &mu; is the mean total length at the end of the experiment and the subscripts are the tail clipping treatments. The H<sub>A</sub>: "mean total length differs between at least one pair of tail clipping treatments".
+1. It appears that the total length differs between at least one pair of tail clipping treatments (`r kPvalue(aov2$"Pr(>F)"[1],latex=FALSE)`<&alpha;).
+1. It appears that the mean total length differs only between the control (no clipping) treatment and the "large" (10.0-mm) clipping treatment (`r kPvalue(mcS2$contrasts$p.value[3],latex=FALSE)`). The mean total length did not differ between any other pairs of tail clipping treatments.
+1. It appears that the mean total length was between `r formatC(mcS2$contrasts$lower.CL[3],format="f",digits=1)` and `r formatC(mcS2$contrasts$upper.CL[3],format="f",digits=1)` mm lower in the "large" clipping treatment than the control (no clipping) treatment.
+1. The plot of means with 95% confidence intervals is shown below.
+1. It appears that clipping only results in a difference in mean total length if the large (10.0-mm) clipping is compared to no clipping (i.e., control). Part of the reason that few differences in mean total length were observed is because there is a large amount of natural variability among individuals in each group.
+
+### R Code and Results.
+```{r prompt=FALSE}
+df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders.csv")
+df$Treatment <- factor(df$Treatment,levels=c("Control","Small","Medium","Large"))
+lm2 <- lm(TL~Treatment,data=df)
+anova(lm2)
+mcS <- emmeans(lm2,specs=pairwise~Treatment)
+summary(mcS,infer=TRUE)
+
+ggplot(data=df,mapping=aes(x=Treatment,y=TL)) +
+  geom_jitter(alpha=0.25,width=0.05) +
+  stat_summary(fun.data=mean_cl_normal,geom="pointrange",
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(y="Total Length (mm)",x="Tail Clipping Treatment") +
+  theme_NCStats()
+```
