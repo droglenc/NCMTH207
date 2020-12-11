@@ -29,7 +29,7 @@ XXX
 ## Preparation for Class
 Use the resources below to answer [these questions](prep/ANOVA1MultipleComparisons). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~6 pages)
+* **Primary Resources** (~3 pages)
   * [Reading](readings/ANOVA1MultipleComparisons){:target="_blank"}
 
 ----
