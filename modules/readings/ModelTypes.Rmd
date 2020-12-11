@@ -34,7 +34,9 @@ All models covered in this course will have **only one** response variable
 &nbsp;
 
 # Distinguishing Methods
-The five methods that will be covered in this course can be distinguished by considering only the type of response variable and the types and number of explanatory variables (see table below). Thus, you will want to review [variable types](http://derekogle.com/NCMTH107/modules/FoundationalDefns.html) and [definitions and distinctions of response and explanatory variables](http://derekogle.com/NCMTH107/modules/DataProduction.html) from your introductory statistics course.
+The five methods that will be covered in this course can be distinguished by considering only the type of response variable and the types and number of explanatory variables (Table \@ref(tab:ModelCharacteristics)). Thus, you will want to review [variable types](http://derekogle.com/NCMTH107/modules/FoundationalDefns.html) and [definitions and distinctions of response and explanatory variables](http://derekogle.com/NCMTH107/modules/DataProduction.html) from your introductory statistics course.
+
+Table: (\#tab:ModelCharacteristics) Response and explanatory variables types for the linear models considered in this course.
 
 | Response     | Explanatory                            | Linear Model                  |
 |--------------|----------------------------------------|-------------------------------|
@@ -59,7 +61,7 @@ Each example uses a data set that contains data about [mirex](https://en.wikiped
 
 A **one-way ANOVA** is used to determine if the means of the quantitative response variable (`mirex`) differ among two or more groups defined by a single categorical variable (e.g., `year`).
 
-```{r}
+```{r OneWay, fig.cap="Mean mirex concentration by sample year. This is an example of a One-Way ANOVA."}
 ggplot(data=Mirex,mapping=aes(x=year,y=mirex)) +
   geom_point(alpha=0.15) +
   stat_summary(fun.data=mean_cl_normal,geom="errorbar",width=0.25,size=1) +
@@ -73,7 +75,7 @@ ggplot(data=Mirex,mapping=aes(x=year,y=mirex)) +
 A **two-way ANOVA** is used to determine if the means of the quantitative response variable (`mirex`) differ among groups of one categorical variable (e.g., `year`), among groups of another categorical variable (e.g., `species`), or by the interaction between the two categorical variables.
 
 
-```{r}
+```{r TwoWay, fig.cap="Mean mirex concentration by sample year and salmon species. This is an example of a Two-Way ANOVA."}
 pd <- position_dodge(0.25)
 ggplot(data=Mirex,mapping=aes(x=year,y=mirex,color=species)) +
   geom_point(alpha=0.25,position=pd) +
@@ -88,7 +90,7 @@ ggplot(data=Mirex,mapping=aes(x=year,y=mirex,color=species)) +
 
 A **simple linear regression** is used to determine if there is a relationship between the quantitative response variable (e.g., `mirex`) and a single quantitative explanatory variable (e.g., `weight`).
 
-```{r}
+```{r SLR, fig.cap="Mirex concentration by fish weight. This is an example of a Simple Linear Regression."}
 ggplot(data=Mirex,mapping=aes(x=weight,y=mirex)) +
   geom_point(alpha=0.25) +
   geom_smooth(method="lm",se=FALSE) +
@@ -100,7 +102,7 @@ ggplot(data=Mirex,mapping=aes(x=weight,y=mirex)) +
 
 An **indicator variable regression** is used to determine if the relationship between a quantitative response (e.g., `mirex`) and a quantitative explanatory variable (e.g., `weight`) differs between two or more groups defined by a categorical explanatory variable (e.g., `species`). This will look like two (or more) simple linear regressions are being compared.
 
-```{r}
+```{r IVR, fig.cap="Mirex concentration by fish weight seprated by salmon species. This is an example of an Indicator Variable Regression."}
 ggplot(data=Mirex,mapping=aes(x=weight,y=mirex,color=species)) +
   geom_point(alpha=0.25) +
   geom_smooth(method="lm",se=FALSE) +
@@ -113,7 +115,7 @@ ggplot(data=Mirex,mapping=aes(x=weight,y=mirex,color=species)) +
 
 A **logistic regression** is used to determine if there is a relationship between the probability of "success" for a binary^[Binary means there are only two categories -- generically "success" and "failure".] categorical response variable (e.g., `exceeds_limit`) and the quantitative explanatory variable (e.g., `weight`).
 
-```{r}
+```{r LogReg, fig.cap="The probability that the mirex concentration exceed the 0.1 mg/kg threshold by fish weight. This is an example of a Logistic Regression."}
 ggplot(data=dplyr::filter(Mirex,species=="coho"),
        mapping=aes(x=weight,y=as.numeric(exceeds_limit)-1)) +
   geom_point(alpha=0.25) +

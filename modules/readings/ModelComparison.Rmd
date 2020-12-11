@@ -31,9 +31,9 @@ aqua <- left_join(aqua,aqua_mns,by="src") %>%
 ### General
 Many hypothesis tests can be cast in a framework of competing models. In this module we will cast the familiar 2-sample t-test in this framework which will then serve as a conceptual foundation for all other linear models in this course.
 
-The two competing models are generically called the *simple* and *full* models. The simple model is simpler than the full model in the sense that it has fewer parameters. However, the simple model fits the data "worse" than a full model. Thus, determining which model to use becomes a question of balancing "fit" (full model fits better than the simple model) with complexity (simple model is less complex than the full model). Because the simple model corresponds to H<sub>0</sub> and the full model corresponds to H<sub>A</sub>, deciding which model to use is the same as deciding which hypothesis is supported by the data.
+The two competing models are generically called the *simple* and *full* models (Table \@ref(tab:ModelDifferences)). The simple model is simpler than the full model in the sense that it has fewer parameters. However, the simple model fits the data "worse" than a full model. Thus, determining which model to use becomes a question of balancing "fit" (full model fits better than the simple model) with complexity (simple model is less complex than the full model). Because the simple model corresponds to H<sub>0</sub> and the full model corresponds to H<sub>A</sub>, deciding which model to use is the same as deciding which hypothesis is supported by the data.
 
-Differences between the two model types are summarized in the table below.
+Table: (\#tab:ModelDifferences) Differences between the two model types.
 
 | Model  | Parameters | Residual df | Relative Fit | Residual SS |  Hypothesis   |
 |--------|:----------:|:-----------:|:------------:|:-----------:|:-------------:|
@@ -47,9 +47,9 @@ Recall that H<sub>0</sub> in a two-sample t-test is that the two population mean
 
 \[ Y_{ij} = \mu + \epsilon_{ij} \]
 
-where Y<sub>ij</sub> is the jth observation of the response variable in the ith group, &mu; is the population grand mean, and &epsilon;<sub>ij</sub> is the "error" for the jth observation in the ith group. This model means that &mu; is the predicted response value for each observation and the model looks like the red line in the figure below.
+where Y<sub>ij</sub> is the jth observation of the response variable in the ith group, &mu; is the population grand mean, and &epsilon;<sub>ij</sub> is the "error" for the jth observation in the ith group. This model means that &mu; is the predicted response value for each observation and the model looks like the red line in Figure \@ref(fig:Models1).
 
-```{r echo=FALSE}
+```{r Models1, echo=FALSE, fig.cap='Biological oxygen demand versus sample location with group means shown as blue horizontal segments and the grand mean shown as a red horizontal segment.'}
 ggplot(data=aqua) +
   geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),width=0.25,color="blue") +
   geom_crossbar(mapping=aes(x=1.5,y=gmn,ymin=gmn,ymax=gmn),width=1.25,color="red") +
@@ -84,9 +84,9 @@ where I is the number of groups (=2 in a 2-sample t-test), n<sub>i</sub> is the 
 
 where n is the sample size across all groups. The $\bar{Y}_{\cdot\cdot}$ is used here because it is an estimate of the population grand mean, &mu;, which is used to make predictions in this simple model.
 
-The formula for SS<sub>Total</sub> may look daunting but it is just the sum of the squared residuals computed from each observation relative to the grand mean (as shown below).
+The formula for SS<sub>Total</sub> may look daunting but it is just the sum of the squared residuals computed from each observation relative to the grand mean (Figure \@ref(fig:FullModelResids1)).
 
-```{r echo=FALSE}
+```{r FullModelResids1, echo=FALSE, fig.cap='Biological oxygen demand versus sample location with the grand mean shown as a red horizontal segment. Residuals from the grand mean are shown by red vertical dashed lines. The sum of these residuals is SS<sub>Total</sub>.'}
 ggplot(data=aqua) +
   geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),color="white",alpha=0.01) +
   geom_crossbar(mapping=aes(x=1.5,y=gmn,ymin=gmn,ymax=gmn),width=1.25,color="red") +
@@ -119,9 +119,9 @@ where $\bar{Y}_{i\cdot}$ are the sample group means as computed with
 
 \[ \bar{Y}_{\cdot\cdot} = \frac{\sum_{j=1}^{n_{i}}Y_{ij}}{n_{i}} \]
 
-The $\bar{Y}_{i\cdot}$ are used here because they are an estimate of the population group means, &mu;<sub>i</sub>, which are used to make predictions in this full model. Again, the formula for SS<sub>Within</sub> may look imposing but it is just the sum of the squared residuals computed from each observation to the observation's group mean (as shown below).
+The $\bar{Y}_{i\cdot}$ are used here because they are an estimate of the population group means, &mu;<sub>i</sub>, which are used to make predictions in this full model. Again, the formula for SS<sub>Within</sub> may look imposing but it is just the sum of the squared residuals computed from each observation to the observation's group mean (Figure \@ref(fig:SimpleModelResids1)).
 
-```{r echo=FALSE}
+```{r SimpleModelResids1, echo=FALSE, fig.cap='Biological oxygen demand versus sample location with the group means shown as blue horizontal segments. Residuals from the group means are shown by blue vertical dashed lines. The sum of these residuals is SS<sub>Within</sub>.'}
 ggplot(data=aqua) +
   geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),width=0.25,color="blue") +
   geom_point(mapping=aes(x=srcjit,y=BOD),alpha=0.25) +
@@ -175,9 +175,9 @@ SS<sub>Among</sub> can also be thought of in a different way. It can be algebrai
 \[ \text{SS}_{\text{Among}} = \sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}
  \]
 
-Again, this looks complicated, but the main part to focus on is $\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}$, which shows that SS<sub>Among</sub> is primarily concerned with measuring the distance between the group means (i.e., $\bar{Y}_{i\cdot}$) and the grand mean (i.e., $\bar{Y}_{\cdot\cdot}$).
+Again, this looks complicated, but the main part to focus on is $\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}$, which shows that SS<sub>Among</sub> is primarily concerned with measuring the distance between the group means (i.e., $\bar{Y}_{i\cdot}$) and the grand mean (i.e., $\bar{Y}_{\cdot\cdot}$; Figure \@ref(fig:BothModelResids)).
 
-```{r echo=FALSE}
+```{r BothModelResids, echo=FALSE, fig.cap='Mean biological oxygen demand versus sample location with the grand mean shown as a red horizontal segment and the group means shown as blue horizontal segments. Residuals between the group means and the grand mean are shown by black vertical dashed lines. The sum of these residuals scaled by the group sample sizes is SS<sub>Among</sub>.'}
 ggplot(data=aqua) +
   geom_crossbar(mapping=aes(x=src,y=mn,ymin=mn,ymax=mn),width=0.25,color="blue") +
   geom_crossbar(mapping=aes(x=1.5,y=gmn,ymin=gmn,ymax=gmn),width=1.25,color="red") +
@@ -292,7 +292,7 @@ An F-distribution ^[An F-distribution occurs whenever the ratio of two variances
 The p-value is always computer to the **right** on an F-distribution.
 </aside>
 
-```{r Fpvalue, echo=FALSE}
+```{r Fpvalue, echo=FALSE, fi.cap='An F distribution with 4 numerator and 20 denominator degrees-of-freedom. The shaded area demonstrates calculating a p-value for an F-ratio of 2.2.'}
 dfA <- 4
 dfW <- 20
 
@@ -328,7 +328,9 @@ knitr::include_app("https://derek-ogle.shinyapps.io/App_F_Meaning/",height='800p
 # ANOVA Table
 The degrees-of-freedom (df), sum-of-squares (SS), mean-squares (MS), F-ratio test statistic (F), and corresponding p-value are summarized in what is called an **analysis of variance (ANOVA) table**.^[An ANOVA table does not necessarily mean that an "analysis of variance" method was used. It turns out that all general linear models are summarized with an ANOVA table, regardless of whether a one- or two-way ANOVA method was used.] The ANOVA table contains rows that correspond to the different measures discussed above: among,^[Labeled as the factor variable in most statistical software packages including R -- that variable was called `src` in this example.] within,^[Labeled as residuals in R and error in other statistical software packages.] and total. The df and SS are shown for each source, but the MS is shown only for the within and among sources because MS<sub>Among</sub>+MS<sub>Within</sub>&ne;MS<sub>Total</sub>.^[SS and df partition, but MS do not!]
 
-An ANOVA table for the BOD measurements at the inlet and outlet sources to the aquaculture facility are shown below. Note that R does not show the total row that most softwares do.
+An ANOVA table for the BOD measurements at the inlet and outlet sources to the aquaculture facility is in Table \@ref(tab:ANOVA1). Note that R does not show the total row that most softwares do.
+
+Table: (\#tab:ANOVA1) An ANOVA table for biological oxygen demand measurements at two locations of the aquaculture facility. Note that the "Total" row is not shown.
 
 ```{r echo=FALSE, comment=""}
 aov <- lm(BOD~src,data=aqua)

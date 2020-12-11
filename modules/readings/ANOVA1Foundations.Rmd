@@ -88,9 +88,9 @@ The simple (Y<sub>ij</sub> = &mu; + &epsilon;<sub>ij</sub>) and full (Y<sub>ij</
 A 2-Sample t-Test is simply a special case of a One-Way ANOVA.
 </aside>
 
-The figures below show a visual for simple and full models and residuals from each. Note the similarity with figures from the [Model Comparison module](ModelComparison.html), except that there are three group means here.
+Figure \@ref(fig:SS) is a visual for simple and full models and residuals from each. Note the similarity with figures from the [Model Comparison module](ModelComparison.html), except that there are three group means here.
 
-```{r echo=FALSE, fig.width=8.5, fig.height=3}
+```{r SS, echo=FALSE, fig.width=8.5, fig.height=3, fig.cap="Immunoglobulin concentrations versus season (or month) of capture for New Zealand opposums. The grand mean is shown by a red horizontal segment, group means are shown by blue horizontal segments, residuals from the grand mean are red vertical dashed lines, residuals from the groups means are blue vertical dashed lines, and differnces between the group means and the grand mean are black vertical dashed lines."}
 lbl_text_size <- 4
 SST <- ggplot(data=opp1) +
   geom_crossbar(mapping=aes(x=season,y=mn,ymin=mn,ymax=mn),color="white",alpha=0.01) +
@@ -166,7 +166,9 @@ SST + SSW + SSA + plot_layout(nrow=1)
 
 &nbsp;
 
-An ANOVA table is use to display the results from a one-way ANOVA, because the one-way ANOVA is simply a comparison of two models.
+An ANOVA table (Table \@ref(tab:ANOVA1)) is use to display the results from a one-way ANOVA, because the one-way ANOVA is simply a comparison of two models.
+
+Table: (\#tab:ANOVA1) An ANOVA table for immunoglobuling concentration by season (or month) for New Zealand opossums. Note that the "Total" row is not shown.
 
 ```{r echo=FALSE, comment=""}
 kANOVA(lm1)

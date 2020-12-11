@@ -137,13 +137,13 @@ The ratio of signal to noise can be a useful metaphor for understanding hypothes
 <aside>
 ![Signal-to-Noise](../zimgs/signal_to_noise.png)
 </aside>
-In a 2-sample t-test, the "signal" is the difference in the two group means, which is measured by x&#772;<sub>1</sub>-x&#772;<sub>2</sub>, the numerator of the t-test statistic. The bigger the difference in sample means the stronger the "signal" that the population means are different.
+In a 2-sample t-test, the "signal" is the difference in the two group means (Figure \@ref(fig:SignalNoise1)), which is measured by x&#772;<sub>1</sub>-x&#772;<sub>2</sub>, the numerator of the t-test statistic. The bigger the difference in sample means the stronger the "signal" that the population means are different.
 
 <aside>
 "Signal" is the difference in sample means
 </aside>
 
-```{r echo=FALSE}
+```{r SignalNoise1, echo=FALSE, fig.cap='Response variable by group for each indiviual (points) with group means shown as horizontal segments. The difference in sample means is highlighted as the "signal" in these data.'}
 tmp <- ggplot(data=d1,mapping=aes(y=y,x=grp,color=grp)) +
   geom_point(alpha=0.5) +
   stat_summary(geom="point",fun="mean",shape="-",size=15) +
@@ -160,13 +160,13 @@ tmp +
             angle=90,vjust=-0.5)
 ```
 
-"Noise" is sampling variability, the fact that statistics (e.g., x&#772;<sub>1</sub> and x&#772;<sub>2</sub>) vary from sample to sample. Sampling variability in a 2-sample t-test is measured by $SE_{\bar{x}_{1}-\bar{x}_{2}}$, which is the denominator of the t test statistic, or $\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}$. This SE increases with increasing $s_{p}^{2}$ and decreases with increasing n<sub>1</sub> qne n<sub>2</sub>. So the "noise" increases as the natural variability of individuals around their group means (i.e., $s_{p}^{2}$) increases, but decreases as the sample size increases.
+"Noise" is sampling variability, the fact that statistics (e.g., x&#772;<sub>1</sub> and x&#772;<sub>2</sub>) vary from sample to sample. Sampling variability in a 2-sample t-test is measured by $SE_{\bar{x}_{1}-\bar{x}_{2}}$, which is the denominator of the t test statistic, or $\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}$. This SE increases with increasing $s_{p}^{2}$ and decreases with increasing n<sub>1</sub> qne n<sub>2</sub>. So the "noise" increases as the natural variability of individuals around their group means (i.e., $s_{p}^{2}$) increases (Figure \@ref(fig:SignalNoise2)), but decreases as the sample size increases.
 
 <aside>
 "Noise" is sampling variability
 </aside>
 
-```{r echo=FALSE,results="hide"}
+```{r SignalNoise2, echo=FALSE, results='hide', fig.cap='Response variable by group for each indiviual (points) with group means shown as horizontal segments. The variability of individuals around the group means is highlighted as a part of the "noise" in these data.'}
 d1 %>%
   group_by(grp) %>%
   summarize(miny=min(y),
@@ -190,9 +190,9 @@ tmp +
 
 The ratio of signal to noise is related to whether we will be able to detect the difference between two things or not. If the signal is large relative to the noise then the signal will be detected. In other words, will be able to tell the difference in heights of students if the room is not full of smoke.
 
-For example, the plots below all have the same signal (difference in means) but the noise (i.e., SE) increases from left to right. In the left-most plot it is very clear that the sample means are different (high signal-to-noise ratio), but in the right-most plot it is less clear that the sample means are different (low signal-to-noise ratio).
+For example, each panel in Figure \@ref(fig:SignalNoise3) has the same signal (difference in means) but the noise (i.e., SE) increases from left to right. In the left-most panel it is very clear that the sample means are different (high signal-to-noise ratio), but in the right-most panel it is less clear that the sample means are different (low signal-to-noise ratio).
 
-```{r echo=FALSE, fig.width=7.5, fig.height=3}
+```{r SignalNoise3, echo=FALSE, fig.width=7.5, fig.height=3, fig.cap='Response variable by group for each indiviual (points) with group means shown as horizontal segments for three different standard errors (SE; i.e., "noise"). Note that the group means are the same in all three panels.'}
 ggplot(data=d,mapping=aes(y=y,x=grp,color=grp)) +
   geom_point(alpha=0.5) +
   stat_summary(geom="point",fun="mean",shape="-",size=15) +
