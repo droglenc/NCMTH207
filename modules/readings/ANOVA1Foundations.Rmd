@@ -15,7 +15,7 @@ library(ggplot2)
 library(patchwork)
 knitr::opts_chunk$set(message=FALSE,comment="#R>  ",
                       fig.align='center',fig.width=3.5,fig.height=3.5)
-options(show.signif.stars=FALSE)
+options(show.signif.stars=FALSE,knitr.kable.NA = '')
 clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
 set.seed(34353)
 
@@ -168,10 +168,9 @@ SST + SSW + SSA + plot_layout(nrow=1)
 
 An ANOVA table (Table \@ref(tab:ANOVA1)) is use to display the results from a one-way ANOVA, because the one-way ANOVA is simply a comparison of two models.
 
-Table: (\#tab:ANOVA1) An ANOVA table for immunoglobuling concentration by season (or month) for New Zealand opossums. Note that the "Total" row is not shown.
-
-```{r echo=FALSE, comment=""}
-kANOVA(lm1)
+```{r ANOVA1, echo=FALSE}
+knitr::kable(aov1,booktabs=TRUE,digits=4,
+             caption='An ANOVA table for immunoglobuling concentration by season (or month) for New Zealand opossums. Note that the "Total" row is not shown.')
 ```
 
 In addition to the usual meanings attached to MS<sub>Among</sub>, MS<sub>Among</sub>, and MS<sub>Total</sub>,^[Note that MS<sub>Total</sub> **must** be computed from SS<sub>Total</sub> and df<sub>Total</sub> and not by summing MS<sub>Among</sub> an MS<sub>Within</sub>.] the following can be discerned from this ANOVA table.

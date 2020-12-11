@@ -2634,11 +2634,38 @@ The p-value is always computer to the <strong>right</strong> on an F-distributio
 <h1 id="anova-table">ANOVA Table</h1>
 <p>The degrees-of-freedom (df), sum-of-squares (SS), mean-squares (MS), F-ratio test statistic (F), and corresponding p-value are summarized in what is called an <strong>analysis of variance (ANOVA) table</strong>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> The ANOVA table contains rows that correspond to the different measures discussed above: among,<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> within,<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> and total. The df and SS are shown for each source, but the MS is shown only for the within and among sources because MS<sub>Among</sub>+MS<sub>Within</sub>≠MS<sub>Total</sub>.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
 <p>An ANOVA table for the BOD measurements at the inlet and outlet sources to the aquaculture facility is in Table <a href="#tab:ANOVA1">2</a>. Note that R does not show the total row that most softwares do.</p>
-<p>Table: (#tab:ANOVA1) An ANOVA table for biological oxygen demand measurements at two locations of the aquaculture facility. Note that the “Total” row is not shown.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
-src        1 20.6756 20.6756  80.891 4.449e-08
-Residuals 18  4.6008  0.2556                  </code></pre>
+<table>
+<caption><span id="tab:ANOVA1">Table 2: </span>An ANOVA table for biological oxygen demand measurements at two locations of the aquaculture facility. Note that the “Total” row is not shown.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">Sum Sq</th>
+<th style="text-align: right;">Mean Sq</th>
+<th style="text-align: right;">F value</th>
+<th style="text-align: right;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">src</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20.6756</td>
+<td style="text-align: right;">20.6756</td>
+<td style="text-align: right;">80.8912</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residuals</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">4.6008</td>
+<td style="text-align: right;">0.2556</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
 </div>
 <p>These results indicate that H<sub>0</sub> should be rejected (i.e., F-test p-value &lt;0.00005). Thus, the full model fits the data significantly better than the simple model even given the difference in complexity between the two models and sampling variability. Therefore, there is a significant difference in mean BOD between the two locations.</p>
 <p>In addition to the primary objective of comparing the full and simple models, several items of interest can be identified from an ANOVA table. Using the table above as an example, note the following items:</p>
@@ -2685,7 +2712,7 @@ Residuals 18  4.6008  0.2556                  </code></pre>
 <p>From this, it follows that if the null hypothesis of equal population means is true (i.e., one mean fits all groups), then the center of the sampling distribution of both MS<sub>Within</sub> and MS<sub>Among</sub> is σ<sup>2</sup>. Therefore, if the null hypothesis is true, then the F test-statistic is expected to be equal to 1, on average, which will always result in a large p-value and a DNR H<sub>0</sub> conclusion. However, if the null hypothesis is false (i.e., separate means are needed for all groups), then the center of the sampling distribution of MS<sub>Within</sub> is σ<sup>2</sup> but the center of the sampling distribution of MS<sub>Among</sub> is σ<sup>2</sup> + “something”, where the “something” is greater than 0 and gets larger as the means become “more different.” Thus, if the null hypothesis is false then the F test-statistic is expected to be greater than 1 and will get larger as the null hypothesis gets “more false.” This analysis of sampling distribution theory illustrates once again that (1) MS<sub>Among</sub> consists of multiple sources of variability and (2) “large” values of the F test-statistic indicate that the null hypothesis is incorrect.</p>
 <h1 id="corrections" class="appendix">Corrections</h1>
 <p>If you see any errors (code, typographical, or logical) please bring these to <a href="mailto:dogle@northland.edu">my attention</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

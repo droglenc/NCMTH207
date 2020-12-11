@@ -14,7 +14,7 @@ library(ggplot2)
 library(patchwork)
 knitr::opts_chunk$set(echo=FALSE,message=FALSE,comment="#R>  ",
                       fig.align='center',fig.width=3.5,fig.height=3.5)
-options(show.signif.stars=FALSE)
+options(show.signif.stars=FALSE,knitr.kable.NA = '')
 clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
 set.seed(34353)
 ## Aquaculture data
@@ -330,11 +330,10 @@ The degrees-of-freedom (df), sum-of-squares (SS), mean-squares (MS), F-ratio tes
 
 An ANOVA table for the BOD measurements at the inlet and outlet sources to the aquaculture facility is in Table \@ref(tab:ANOVA1). Note that R does not show the total row that most softwares do.
 
-Table: (\#tab:ANOVA1) An ANOVA table for biological oxygen demand measurements at two locations of the aquaculture facility. Note that the "Total" row is not shown.
-
-```{r echo=FALSE, comment=""}
+```{r ANOVA1, echo=FALSE}
 aov <- lm(BOD~src,data=aqua)
-kANOVA(aov)
+knitr::kable(anova(aov),booktabs=TRUE,digits=4,
+             caption='An ANOVA table for biological oxygen demand measurements at two locations of the aquaculture facility. Note that the "Total" row is not shown.')
 ```
 
 These results indicate that H<sub>0</sub> should be rejected (i.e., F-test p-value `r kPvalue(anova(aov)[1,"Pr(>F)"],include.p=FALSE,latex=FALSE)`). Thus, the full model fits the data significantly better than the simple model even given the difference in complexity between the two models and sampling variability. Therefore, there is a significant difference in mean BOD between the two locations.
