@@ -17,10 +17,11 @@ title: Learning Modules
 1. [Multiple Comparisons](ANOVA1MultipleComparisons)
 1. [Assumption Checking](ANOVA1Assumptions)
 1. [Transformations](ANOVA1Transformations)
+1. [All Together](ANVOA1Examples)
 
 #### Two-Way ANOVA
 
-{:start="9"}
+{:start="10"}
 1. Hello
 1. good bye
 

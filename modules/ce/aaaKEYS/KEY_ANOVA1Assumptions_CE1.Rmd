@@ -1,6 +1,6 @@
 ---
 title: "Exercise Key"
-subtitle: "Multiple Comparisons"
+subtitle: "One-Way ANOVA Assumptions"
 author: Derek H. Ogle
 layout: page
 css: "/css/modules.css"
@@ -14,105 +14,113 @@ output:
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Renders an appropriate HTML file and moves to CE directory
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_ANOVA1MultipleComparisons_CE1")
+modHTML_CEKeys("KEY_ANOVA1Assumptions_CE1")
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
-library(ggplot2)
-library(emmeans)
 source("../../../rhelpers/knitr_setup.R")
 ```
 
-# Raising Young Cuckoos
-It is not appropriate to conduct multiple comparisons in this example because the H<sub>0</sub> in the one-way ANOVA was not rejected. This result suggests that there is no difference among group means and, thus, no need to determine which specific groups differ.
+# Assumptions I
+```{r Assumptions1, echo=FALSE}
+df1 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions1.csv")
+lm1 <- lm(measure~group,data=df1)
+```
+```{r echo=FALSE, warning=FALSE}
+lev.p1 <- levenesTest(lm1)$"Pr(>F)"[1]
+out.p1 <- outlierTest(lm1)$p[[1]]
+ad.p1 <- adTest(lm1$residuals)$p.value
+```
+
+The variances do not appear to be equal as suggested by the Levene's test p-value (=`r kPvalue(lev.p1,latex=FALSE,include.p=FALSE)`) and the somewhat different sized boxes in the  boxplots below. The residuals appear to be normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p1,latex=FALSE,include.p=FALSE)`) and the histogram below does not look strongly skewed. There is evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p1,latex=FALSE,include.p=FALSE)`) and the distinctly "odd" individual on the right-side of the residual histogram below.
+
+### R Code and Results.
+```{r fig.width=7}
+<<Assumptions1>>
+assumptionCheck(lm1)
+```
 
 &nbsp;
+
+# Assumptions I
+```{r Assumptions2, echo=FALSE}
+df2 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions2.csv")
+lm2 <- lm(measure~group,data=df2)
+```
+```{r echo=FALSE, warning=FALSE}
+lev.p2 <- levenesTest(lm2)$"Pr(>F)"[1]
+out.p2 <- outlierTest(lm2)$p[[1]]
+ad.p2 <- adTest(lm2$residuals)$p.value
+```
+
+The variances do not appear to be equal based on the different sized boxes in the boxplots below. However, the Levene's test p-value (=`r kPvalue(lev.p2,latex=FALSE,include.p=FALSE)`) suggests that the variances are equal. This test is probably improper due to the outliers that are evident.  The residuals appear to be not normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p2,latex=FALSE,include.p=FALSE)`) and the strongly skewed histogram below. There is evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p2,latex=FALSE,include.p=FALSE)`) and by points outside the "whiskers" in the boxplot of residuals.
+
+### R Code and Results.
+```{r fig.width=7}
+<<Assumptions2>>
+assumptionCheck(lm2)
+```
 
 # Temperature and Turtle Hatchings
 
 <div class="alert alert-warning">
 <ul>
-  <li>On the first questions, define any symbols used in the hypotheses.</li>
-  <li>On the second question, use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. Tukey's multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means.</li>
-  <li>In the fourth question, clearly indicate which group is greater (or lesser). Don't just say that you are 95% confident that the difference is between such-and-such.</li>
-  <li>In the fifth question include a plot of means with confidence intervals.</li>
-  <li>In the last question, note that there is no difference in means for the first three temperatures. So, even though, the plot shows slight differences in the SAMPLE means, those differences were not great enough to conclude that the POPULATION means were different. So, your conclusion should not make it sound like there is a difference among those temperature treatments.</li>
-  <li>Also note in the last question that the conclusion is about the MEAN days to hatch not days to hatche because that is what is tested in the hypotheses.</li>
-  <li>Note how concise the answer key is. Please work to get your answers this concise.</li>
+  <li>For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say "the groups are independent." Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.</li>
 </ul>
 </div>
 
 ```{r echo=FALSE}
 d <- read.csv("c:/aaaWork/Web/GitHub/NCMTH207/modules/ce/aaaKeys/turtles.csv")
 d$Temperature <- factor(d$Temperature)
-lm1 <- lm(Days~Temperature,data=d)
-aov1 <- anova(lm1)
-mc <- emmeans(lm1,specs=pairwise~Temperature)
-mc1 <- summary(mc,infer=TRUE)
+lm3 <- lm(Days~Temperature,data=d)
+lev.p3 <- levenesTest(lm3)$"Pr(>F)"[1]
+out.p3 <- outlierTest(lm3)$p[[1]]
+ad.p3 <- adTest(lm3$residuals)$p.value
 ```
 
-1. The H<sub>0</sub>: &mu;<sub>15C</sub>=&mu;<sub>20C</sub>=&mu;<sub>25C</sub>=&mu;<sub>30C</sub>, where &mu; is the mean days to hatch and the subscripts are the temperatures in the temperature treatments. The H<sub>A</sub>: "mean days to hatch differs between at least one pair of treatment temperatures".
-1. It appears that the mean days to hatch differs between at least one pair of treatment temperatures (`r kPvalue(aov1$"Pr(>F)"[1],latex=FALSE)`<&alpha;).
-1. It appears that the mean days to hatch differs between 30<sup>o</sup>C and 15<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[3],latex=FALSE)`), 20<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[5],latex=FALSE)`), and 25<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[6],latex=FALSE)`). The mean days to hatch did not differ between any other pairs of temperature treatments.
-1. It appears that the mean days to hatch at 30<sup>o</sup>C was between `r formatC(mc1$contrasts$lower.CL[3],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[3],format="f",digits=1)` days lower than at 15<sup>o</sup>C, between `r formatC(mc1$contrasts$lower.CL[5],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[5],format="f",digits=1)` days lower than at 20<sup>o</sup>C, and between `r formatC(mc1$contrasts$lower.CL[6],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[6],format="f",digits=1)` days lower than at 25<sup>o</sup>C.
-1. The plot of means with 95% confidence intervals is shown below.
-1. It appears that temperature does not affect the mean days to hatch from between 15<sup>o</sup>C to 25<sup>o</sup>C, but declines dramatically from 25<sup>o</sup>C to 30<sup>o</sup>C. Thus, temperature does affect the mean days to hatch but not until temperature is above 25<sup>o</sup>C.
+The variances appear to be equal as suggested by the Levene's test p-value (=`r kPvalue(lev.p3,latex=FALSE,include.p=FALSE)`). The boxes in the boxplot appears different sized, so the p-value results could be due to the small sample size. The residuals appear to be normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p3,latex=FALSE,include.p=FALSE)`) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p3,latex=FALSE,include.p=FALSE)`). The boxplots of residuals suggest possible outliers though in the 25<sup>o</sup>C and 30<sup>o</sup>C treatments. From this, I conclude that these three assumptions are tentatively met.
+
+The individuals are likely independent. The background noted that the eggs were put into **individual** containers that were then assigned a temperature. There is not information about where the eggs came from but under the assumption that they did not all come from the same or only a few nests then this is likely not a dependency problem. All-in-all this assumption is likely largely met.
 
 ### R Code and Results.
 ```{r eval=FALSE}
 d <- read.csv("turtles.csv")
 d$Temperature <- factor(d$Temperature)
 ```
-```{r}
-lm1 <- lm(Days~Temperature,data=d)
-anova(lm1)
-mc <- emmeans(lm1,specs=pairwise~Temperature)
-( mcsum <- summary(mc,infer=TRUE) )
-
-ggplot(data=d,mapping=aes(x=Temperature,y=Days)) +
-  geom_jitter(alpha=0.25,width=0.05) +
-  geom_pointrange(data=mcsum$emmeans,
-                  mapping=aes(x=Temperature,y=emmean,ymin=lower.CL,ymax=upper.CL),
-               size=1.1,fatten=2,pch=21,fill="white") +
-  labs(y="Days to Hatch",x="Temperature Treatment") +
-  theme_NCStats()
+```{r fig.width=7}
+lm3 <- lm(Days~Temperature,data=d)
+assumptionCheck(lm3)
 ```
 
 &nbsp;
 
-# Salamander
+# Iron and Mining
 
+<div class="alert alert-warning">
+<ul>
+  <li>For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say "the groups are independent." Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.</li>
+</ul>
+</div>
+
+```{r IronMine, echo=FALSE}
+im <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv")
+im$use <- factor(im$use,levels=c("Unmined","Reclaimed","Abandoned"))
+```
 ```{r echo=FALSE}
-df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders.csv")
-df$Treatment <- factor(df$Treatment,levels=c("Control","Small","Medium","Large"))
-lm2 <- lm(TL~Treatment,data=df)
-aov2 <- anova(lm2)
-mcS <- emmeans(lm2,specs=pairwise~Treatment)
-mcS2 <- summary(mcS,infer=TRUE)
+lm4 <- lm(FE~use,data=im)
+lev.p4 <- levenesTest(lm4)$"Pr(>F)"[1]
+out.p4 <- outlierTest(lm4)$p[[1]]
+ad.p4 <- adTest(lm4$residuals)$p.value
 ```
 
-1. The H<sub>0</sub>: &mu;<sub>Control</sub>=&mu;<sub>Small</sub>=&mu;<sub>Medium</sub>=&mu;<sub>Large</sub>, where &mu; is the mean total length at the end of the experiment and the subscripts are the tail clipping treatments. The H<sub>A</sub>: "mean total length differs between at least one pair of tail clipping treatments".
-1. It appears that the total length differs between at least one pair of tail clipping treatments (`r kPvalue(aov2$"Pr(>F)"[1],latex=FALSE)`<&alpha;).
-1. It appears that the mean total length differs only between the control (no clipping) treatment and the "large" (10.0-mm) clipping treatment (`r kPvalue(mcS2$contrasts$p.value[3],latex=FALSE)`). The mean total length did not differ between any other pairs of tail clipping treatments.
-1. It appears that the mean total length was between `r formatC(mcS2$contrasts$lower.CL[3],format="f",digits=1)` and `r formatC(mcS2$contrasts$upper.CL[3],format="f",digits=1)` mm lower in the "large" clipping treatment than the control (no clipping) treatment.
-1. The plot of means with 95% confidence intervals is shown below.
-1. It appears that clipping only results in a difference in mean total length if the large (10.0-mm) clipping is compared to no clipping (i.e., control). Part of the reason that few differences in mean total length were observed is because there is a large amount of natural variability among individuals in each group.
+There is a clear issue with normality here as shown by the Anderson-Darling p-value (=`r kPvalue(ad.p4,latex=FALSE,include.p=FALSE)`) and the histogram below is strongly skewed. In addition there is a clear outlier to the far right (in the abandoned group) as shown by the outlier test p-value (=`r kPvalue(out.p4,latex=FALSE,include.p=FALSE)`) and the boxplots of residuals. The variances appear to be equal according to the Levene's test p-value (=`r kPvalue(lev.p4,latex=FALSE,include.p=FALSE)`), but this p-value is likely compromised by the normality and outlier issues. The huge outlier also makes the boxplots of residuals largely uselss for examining equal variances. It is clear that there are violations of these three assumptions.
+
+The individuals are likely independent but this is not abundantly clear. The measurements are from 120 **unique** rivers, so there is not multiple measurements on the same river. However, some of the rivers are likely in the same watershed and would likely share some characteristics due to that (e.g., geological, land use, etc.). The data are likely independent enough for our purposes.
+
 
 ### R Code and Results.
-```{r prompt=FALSE}
-df <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders.csv")
-df$Treatment <- factor(df$Treatment,levels=c("Control","Small","Medium","Large"))
-lm2 <- lm(TL~Treatment,data=df)
-anova(lm2)
-mcS <- emmeans(lm2,specs=pairwise~Treatment)
-( mcSsum <- summary(mcS,infer=TRUE) )
-
-ggplot(data=df,mapping=aes(x=Treatment,y=TL)) +
-  geom_jitter(alpha=0.25,width=0.05) +
-  geom_pointrange(data=mcSsum$emmeans,
-                  mapping=aes(x=Treatment,y=emmean,ymin=lower.CL,ymax=upper.CL),
-               size=1.1,fatten=2,pch=21,fill="white") +
-  labs(y="Total Length (mm)",x="Tail Clipping Treatment") +
-  theme_NCStats()
+```{r fig.width=7}
+<<IronMine>>
+assumptionCheck(lm4)
 ```
