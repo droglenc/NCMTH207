@@ -11,7 +11,7 @@ output:
 ```{r setup, include=FALSE}
 library(NCStats)
 library(emmeans)
-knitr::opts_chunk$set(message=FALSE,comment="#R>  ",
+knitr::opts_chunk$set(echo=TRUE,message=FALSE,comment="#R>  ",
                       fig.align='center',fig.width=3.5,fig.height=3.5)
 options(show.signif.stars=FALSE)
 clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
@@ -78,7 +78,7 @@ Tukey's procedure should only be implemented if multiple comparisons are needed!
 
 The ANOVA table from the analysis if immunoglobulin levels in opossums across seasons that was begun in the previous module is shown below.
 
-```{r echo=TRUE}
+```{r}
 lm1 <- lm(imm~season,data=opp)
 anova(lm1)
 ```
@@ -91,27 +91,23 @@ There are a number of functions and packages in R for computing Tukey's multiple
 The `emmeans` package must be attached with `library` to perform Tukey's procedure.
 </aside>
 
-```{r eval=FALSE, echo=TRUE}
+```{r eval=FALSE}
 library(emmeans)
 ```
 
 Tukey's procedure is computed with a two-step process. First, use `emmeans()` with the `lm()` object as the first argument and a `specs=` argument with `pairwise~` followed by the name of the variable that identifies the groups. The results from this function should be saved to an object.
 
-```{r echo=TRUE}
+```{r}
 mc <- emmeans(lm1,specs=pairwise~season)
 ```
 
-That saved object is then the first argument to `summary()`, which also uses `infer=TRUE`.
+That saved object is then the first argument to `summary()`, which also uses `infer=TRUE`. This again should be saved to an object.
 
 ```{r}
-summary(mc,infer=TRUE)
+mcsum <- summary(mc,infer=TRUE)
 ```
 
-The results are shown in two "sections" labeled as `$emmeans` and `$contrasts`. The `$emmeans` section contains the group sample means under `emmean` with 95% confidence intervals under `lower.CL` and `upper.CL`. For example, the sample mean immunoglobulin level for opossums in February was `r formatC(mc1$emmeans$emmean[1],format="f",digits=3)`, with a 95% confidence interval from `r formatC(mc1$emmeans$lower.CL[1],format="f",digits=3)` to `r formatC(mc1$emmeans$upper.CL[1],format="f",digits=3)`. The `t.ratio` and `p.value` in this section tests if the group population mean is different than 0. These tests are not often of interest and can largely be ignored.
-
-<aside>
-The group means with 95% confidence intervals are shown in the `$emmeans` section of the results.
-</aside>
+The results are in two "sections" labeled as `$emmeans` and `$contrasts`.
 
 The `$contrasts` section contains the actual Tukey's test for each pair of means. In these results the difference in group sample means is under `estimate`, a 95% confidence interval for the **difference** in means is under `lower.CL` and `upper.CL`, and a p-value for testing that the difference in group population means is 0 is under `p.value`. For example, the difference in group **sample** mean immunoglobulin between February and May is `r formatC(mc1$contrasts$estimate[1],format="f",digits=4)`, but the p-value suggests that the **population** mean immunoglobulin does not differ between February and May (`r kPvalue(mc1$contrasts$p.value[1],latex=FALSE)`). In contrast, it appears that the population mean immunoglobulin for opossums in November differed from both those in Feb (`r kPvalue(mc1$contrasts$p.value[2],latex=FALSE)`) and those in May (`r kPvalue(mc1$contrasts$p.value[3],latex=FALSE)`).
 
@@ -119,14 +115,34 @@ The `$contrasts` section contains the actual Tukey's test for each pair of means
 The **difference** group means with 95% confidence intervals and p-values are shown in the `$contrasts` section of the results.
 </aside>
 
-&nbsp;
-
 ```{r}
-df <- mc %>%
-  as.data.frame()
+mcsum$contrasts
 ```
 
+The `$emmeans` section contains the group sample means under `emmean` with 95% confidence intervals under `lower.CL` and `upper.CL`. For example, the sample mean immunoglobulin level for opossums in February was `r formatC(mc1$emmeans$emmean[1],format="f",digits=3)`, with a 95% confidence interval from `r formatC(mc1$emmeans$lower.CL[1],format="f",digits=3)` to `r formatC(mc1$emmeans$upper.CL[1],format="f",digits=3)`. The `t.ratio` and `p.value` in this section tests if the group population mean is different than 0. These tests are not often of interest and can largely be ignored.
 
+<aside>
+The group means with 95% confidence intervals are shown in the `$emmeans` section of the results.
+</aside>
+
+```{r}
+mcsum$emmeans
+```
+
+&nbsp;
+
+A plot of the means with 95% confidence intervals can be constructed from the `$emmeans` results as shown below. This method for constructed the plot produces the same plot here as the other methods in the previous modules; however, this method will generalize to other linear models in future modules.
+
+```{r}
+ggplot() +
+  geom_jitter(data=opp,mapping=aes(x=season,y=imm),
+              alpha=0.25,width=0.05) +
+  geom_pointrange(data=mcsum$emmeans,
+                  mapping=aes(x=season,y=emmean,ymin=lower.CL,ymax=upper.CL),
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(y="Immunoglobulin Concentration",x="Season/Month") +
+  theme_NCStats()
+```
 
 # Corrections {.appendix}
 If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).

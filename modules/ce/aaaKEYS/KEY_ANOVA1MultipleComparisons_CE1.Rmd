@@ -68,11 +68,12 @@ d$Temperature <- factor(d$Temperature)
 lm1 <- lm(Days~Temperature,data=d)
 anova(lm1)
 mc <- emmeans(lm1,specs=pairwise~Temperature)
-summary(mc,infer=TRUE)
+( mcsum <- summary(mc,infer=TRUE) )
 
 ggplot(data=d,mapping=aes(x=Temperature,y=Days)) +
   geom_jitter(alpha=0.25,width=0.05) +
-  stat_summary(fun.data=mean_cl_normal,geom="pointrange",
+  geom_pointrange(data=mcsum$emmeans,
+                  mapping=aes(x=Temperature,y=emmean,ymin=lower.CL,ymax=upper.CL),
                size=1.1,fatten=2,pch=21,fill="white") +
   labs(y="Days to Hatch",x="Temperature Treatment") +
   theme_NCStats()
@@ -105,11 +106,12 @@ df$Treatment <- factor(df$Treatment,levels=c("Control","Small","Medium","Large")
 lm2 <- lm(TL~Treatment,data=df)
 anova(lm2)
 mcS <- emmeans(lm2,specs=pairwise~Treatment)
-summary(mcS,infer=TRUE)
+( mcSsum <- summary(mcS,infer=TRUE) )
 
 ggplot(data=df,mapping=aes(x=Treatment,y=TL)) +
   geom_jitter(alpha=0.25,width=0.05) +
-  stat_summary(fun.data=mean_cl_normal,geom="pointrange",
+  geom_pointrange(data=mcSsum$emmeans,
+                  mapping=aes(x=Treatment,y=emmean,ymin=lower.CL,ymax=upper.CL),
                size=1.1,fatten=2,pch=21,fill="white") +
   labs(y="Total Length (mm)",x="Tail Clipping Treatment") +
   theme_NCStats()
