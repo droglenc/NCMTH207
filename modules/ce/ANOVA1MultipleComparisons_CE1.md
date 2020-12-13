@@ -13,7 +13,7 @@ css: "/css/modules.css"
 
 # Raising Young Cuckoos
 <img src="../zimgs/cuckoo-eggs.jpg" alt="Cuckoo Eggs" class="img-right">
-In [a previous exercise](ANOVA1Foundations_CE1.html$raising-young-cuckoos) you tested whether the mean length of cuckoos eggs laid in the nests of three species of host birds differed among the species. Should you conduct a multiple comparisions procedure for those results? Explain why or why not.
+In [a previous exercise](ANOVA1Foundations_CE1.html$raising-young-cuckoos) you tested whether the mean length of cuckoos eggs laid in the nests of three species of host birds differed among the species. Should you conduct a multiple comparisons procedure for those results? Explain why or why not.
 
 &nbsp;
 
@@ -23,7 +23,7 @@ In [a previous exercise](ANOVA1Foundations_CE1.html$raising-young-cuckoos) you t
 <img src="../zimgs/sea_turtles.jpg" alt="Sea Turtles" class="img-right">
 It is widely reported that climate change is having a profound impact on the functioning of ecosystems. Species abundances and distributions are shifting due to the changing environment. The breeding phenology of migratory species is also changing in response to environmental change. Furthermore, climate change-induced habitat loss puts species at risk of extinction when no alternative adequate habitat is available. The risk of climate change is particularly pronounced for marine ectotherms as they conform more closely to thermal tolerance limits than terrestrial ectotherms and, in particular, species whose biology and phenology are intimately linked to temperature.
 
-To examine the effect of sand temperature on the phenology of sea turtules, researchers placed individual turtle eggs in individual containers of sand for which the temperature could be controlled. Four temperatures were used with the specific temparature used for each container randomly determined. The researchers then recorded the number of days for the egg in each container to hatch. The results of their study are below.
+To examine the effect of sand temperature on the phenology of sea turtles, researchers placed individual turtle eggs in individual containers of sand for which the temperature could be controlled. Four temperatures were used with the specific temperature used for each container randomly determined. The researchers then recorded the number of days for the egg in each container to hatch. The results of their study are below.
 
 <pre>
 15C:  37  43  45  54  56  65  62  73  74  75
