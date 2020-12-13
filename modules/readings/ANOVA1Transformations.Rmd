@@ -1,0 +1,245 @@
+---
+title: "One-Way ANOVA Transformaions"
+description: |
+  Using data transformations to address violations of model assumptions for a 1-Way ANOVA.
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+library(NCStats)
+knitr::opts_chunk$set(echo=TRUE,message=FALSE,comment="#R>  ",
+                      fig.align='center',fig.width=3.5,fig.height=3.5)
+options(show.signif.stars=FALSE)
+set.seed(534383)
+## Opossums data
+opp <- read.csv("data/Opposums.csv")
+lm1 <- lm(imm~season,data=opp)
+```
+
+# Introduction
+As discussed in [the previous module](ANOVA1Assumptions.html) a One-Way ANOVA depends on four assumptions being met. If those assumptions are not met, then the results of the one-way ANOVA are invalid. Fortunately, violations of the equality of variances and normality assumptions can often be addressed by transforming the quantitative response variable to a scale where the assumptions are met. For example it is common use the natural log of the response variable rather than the response variable on its original scale.
+
+<aside>
+If the assumptions of a one-way ANOVA are not met, then the data may be transformed to a scale where the assumptions are met.
+</aside>
+
+Besides the obvious reason related to assumption violations, Fox (1997) gave four arguments for why data that is skewed or has unequal variances should be transformed:
+
+* Highly skewed distributions are difficult to examine because most of the observations are confined to a small part of the range of the data.
+* Apparently outlying individuals in the direction of the skew are brought in towards the main body of the data when the distribution is made more symmetric. In contrast, unusual values in the direction opposite to the skew can be hidden prior to transforming the data.
+* Linear models summarize distributions based on means. The mean of a skewed distribution is not, however, a good summary of its center.
+* When a variable has very different degrees of variation in different groups, it becomes difficult to examine the data and to compare differences in levels across the groups.
+
+Identification of an appropriate transformation and understanding the resultant output is the focus of this module.
+
+&nbsp;
+
+# Power Transformations
+With power transformations, the response variable is transformed by raising it to a particular power, &lambda;, i.e., Y<sup>&lambda;</sup> (Table \@ref(tab:CommonTranformations)).
+
+Table: (\#tab:CommonTranformations) Common power transformations in ANOVAs.
+
+|    Power   | Name | Formula | R Code |
+|:----------:|:----:|:-------:|:-------:|
+| &lambda;=1 | -- | $Y^{1}=Y$ | -- |
+| &lambda;=0.5 | Square Root | $Y^{0.5}=\sqrt{Y}$ | `df$newvar <- sqrt(df$oldvar)` |
+| &lambda;=0.33 | Cube Root | $Y^{0.33}=\sqrt[3]{Y}$ | `df$newvar <- df$oldvar^(1/3)` |
+| &lambda;=0.25 | Fourth Root | $Y^{0.25}=\sqrt[4]{Y}$ | `df$newvar <- df$oldvar^(1/4)` |
+| &lambda;=0 | Natural log | $log(Y)$ | `df$newvar <- log(df$oldvar)` |
+| &lambda;=-1 | Inverse | $Y^{-1}=\frac{1}{Y}$ | `df$newvar <- 1/df$oldvar` |
+
+&nbsp;
+
+Each transformation in Table \@ref(tab:CommonTranformations) "spreads out" small values and "draws in" large values in a distribution. For example, in Figure \@ref(fig:OWATransformLog) the log function is shown as the black curved line, the original histogram of strongly right-skewed data is shown upside-down below the x-axis, and the histogram following the log-transformation is shown sideways left of the y-axis. Two "small" values are shown in red on the x-axis. The log-transformation of these two points is shown by following the two vertical lines from these points to the black log function and then moving horizontally to the y-axis. From this it is seen that these two values that were relatively close together are more spread out after the transformation. Conversely two "large" values are shown in blue on the x-axis. Following the same process it is seen that these two points are closer together following the log transformation.
+
+```{r OWATransformLog, echo=FALSE, fig.width=5, fig.height=5, fig.cap="Demonstration of the result (upper-left) from applying the natural log transformation function (black curve in upper-right) to strongly right-skewed original values (lower-right)."}
+x1 <- rlnorm(500,0,1); y1 <- log(x1)  # lognormal data
+layout(matrix(c(1,3,0,2),nrow=2,byrow=TRUE))
+par(mar=c(0,0.1,0.1,0), mgp=c(0,0,0),las=1,tcl=-0.2)
+y.hist <- hist(y1,breaks=20,plot=FALSE)
+barplot(-y.hist$counts,horiz=TRUE,space=c(0,0),col="gray90",
+        xaxt="n",yaxt="n",xlab="",ylab="",xaxs="i",yaxs="i")
+mtext("log(Y)",side=3,line=-2)
+par(mar=c(0.1,0,0,0.1), mgp=c(0,0,0),las=1,tcl=-0.2)
+x.hist <- hist(x1,breaks=20,plot=FALSE)
+barplot(-x.hist$counts,space=c(0,0),col="gray90",
+         xaxt="n",yaxt="n",xlab="",ylab="",xaxs="i",yaxs="i")
+mtext("Y",side=3,line=-4)
+par(mar=c(0,0,0,0), mgp=c(0,0,0),las=1,tcl=-0.2)
+curve(log(x),min(x1),max(x1),n=501,lwd=2,col="black",
+      xlab="",ylab="",bty="n",xaxt="n",yaxt="n",tck=0,xaxs="i",yaxs="i")
+xs <- c(0.5,1,5,10)
+ys <- log(xs)
+segments(xs[1],-10,xs[1],ys[1],col="red",lty="dashed")
+segments(xs[1],ys[1],0,ys[1],col="red",lty="dashed")
+points(xs[1],min(y1),col="red",pch=16,xpd=NA)
+points(min(x1),ys[1],col="red",pch=16,xpd=NA)
+segments(xs[2],-10,xs[2],ys[2],col="red",lty="dashed")
+segments(xs[2],ys[2],0,ys[2],col="red",lty="dashed")
+points(xs[2],min(y1),col="red",pch=16,xpd=NA)
+points(min(x1),ys[2],col="red",pch=16,xpd=NA)
+segments(xs[3],-10,xs[3],ys[3],col="blue",lty="dashed")
+segments(xs[3],ys[3],0,ys[3],col="blue",lty="dashed")
+points(xs[3],min(y1),col="blue",pch=16,xpd=NA)
+points(min(x1),ys[3],col="blue",pch=16,xpd=NA)
+segments(xs[4],-10,xs[4],ys[4],col="blue",lty="dashed")
+segments(xs[4],ys[4],0,ys[4],col="blue",lty="dashed")
+points(xs[4],min(y1),col="blue",pch=16,xpd=NA)
+points(min(x1),ys[4],col="blue",pch=16,xpd=NA)
+```
+
+&nbsp;
+
+As seen in Figure \@ref(fig:OWATransformLog), applying the log transformation to all values in the original strongly right-skewed distribution resulted in a distribution that was approximately normal. All transformations may not achieve normality. For example, the same process shown in Figure \@ref(fig:OWATransformLog) is repeated in Figure \@ref(fig:OWATransformSqrt) for a square-root transformation. A comparison of the two figures shows that the square-root transformation function is less curved, it spreads out relatively small values less and draws in relative larger values less, and it does not transform the original strongly right-skewed distribution to an approximately normal distribution. Thus, the square-root transformation is not a "strong enough" transformation to normalize this strongly right-skewed original distribution.
+
+```{r OWATransformSqrt, echo=FALSE, fig.width=5, fig.height=5, fig.cap="Demonstration of the result (upper-left) from applying the square root transformation function (black curve in upper-right) to strongly right-skewed original values (lower-right). The original values here are the same as those in Figure \\@ref(fig:OWATransformLog)."}
+y1 <- sqrt(x1)
+layout(matrix(c(1,3,0,2),nrow=2,byrow=TRUE))
+par(mar=c(0,0.1,0.1,0), mgp=c(0,0,0),las=1,tcl=-0.2)
+y.hist <- hist(y1,breaks=20,plot=FALSE)
+barplot(-y.hist$counts,horiz=TRUE,space=c(0,0),col="gray90",
+        xaxt="n",yaxt="n",xlab="",ylab="",xaxs="i",yaxs="i")
+mtext("sqrt(Y)",side=3,line=-2)
+par(mar=c(0.1,0,0,0.1), mgp=c(0,0,0),las=1,tcl=-0.2)
+x.hist <- hist(x1,breaks=20,plot=FALSE)
+barplot(-x.hist$counts,space=c(0,0),col="gray90",
+         xaxt="n",yaxt="n",xlab="",ylab="",xaxs="i",yaxs="i")
+mtext("Y",side=3,line=-4)
+par(mar=c(0,0,0,0), mgp=c(0,0,0),las=1,tcl=-0.2)
+curve(sqrt(x),min(x1),max(x1),n=501,lwd=2,col="black",
+      xlab="",ylab="",bty="n",xaxt="n",yaxt="n",tck=0,xaxs="i",yaxs="i")
+xs <- c(0.5,1,5,10)
+ys <- sqrt(xs)
+segments(xs[1],-10,xs[1],ys[1],col="red",lty="dashed")
+segments(xs[1],ys[1],0,ys[1],col="red",lty="dashed")
+points(xs[1],min(y1),col="red",pch=16,xpd=NA)
+points(min(x1),ys[1],col="red",pch=16,xpd=NA)
+segments(xs[2],-10,xs[2],ys[2],col="red",lty="dashed")
+segments(xs[2],ys[2],0,ys[2],col="red",lty="dashed")
+points(xs[2],min(y1),col="red",pch=16,xpd=NA)
+points(min(x1),ys[2],col="red",pch=16,xpd=NA)
+segments(xs[3],-10,xs[3],ys[3],col="blue",lty="dashed")
+segments(xs[3],ys[3],0,ys[3],col="blue",lty="dashed")
+points(xs[3],min(y1),col="blue",pch=16,xpd=NA)
+points(min(x1),ys[3],col="blue",pch=16,xpd=NA)
+segments(xs[4],-10,xs[4],ys[4],col="blue",lty="dashed")
+segments(xs[4],ys[4],0,ys[4],col="blue",lty="dashed")
+points(xs[4],min(y1),col="blue",pch=16,xpd=NA)
+points(min(x1),ys[4],col="blue",pch=16,xpd=NA)
+```
+
+&nbsp;
+
+The square root transformation is more likely to be useful when the original distribution is less strongly skewed (Figure \@ref(fig:OWATransformSqrt2)).
+
+```{r OWATransformSqrt2, echo=FALSE, fig.width=5, fig.height=5, fig.cap="Demonstration of the result (upper-left) from applying the square root transformation function (black curve in upper-right) to slightly right-skewed original values (lower-right). The original values here are **not** the same as those in Figures \\@ref(fig:OWATransformLog) and \\@ref(fig:OWATransformSqrt)."}
+x1 <- rbeta(500,shape1=2,shape2=7);
+y1 <- sqrt(x1)
+layout(matrix(c(1,3,0,2),nrow=2,byrow=TRUE))
+par(mar=c(0,0.1,0.1,0), mgp=c(0,0,0),las=1,tcl=-0.2)
+y.hist <- hist(y1,breaks=20,plot=FALSE)
+barplot(-y.hist$counts,horiz=TRUE,space=c(0,0),col="gray90",
+        xaxt="n",yaxt="n",xlab="",ylab="",xaxs="i",yaxs="i")
+mtext("sqrt(Y)",side=3,line=-2)
+par(mar=c(0.1,0,0,0.1), mgp=c(0,0,0),las=1,tcl=-0.2)
+x.hist <- hist(x1,breaks=20,plot=FALSE)
+barplot(-x.hist$counts,space=c(0,0),col="gray90",
+         xaxt="n",yaxt="n",xlab="",ylab="",xaxs="i",yaxs="i")
+mtext("Y",side=3,line=-10)
+par(mar=c(0,0,0,0), mgp=c(0,0,0),las=1,tcl=-0.2)
+curve(sqrt(x),min(x1),max(x1),n=501,lwd=2,col="black",
+      xlab="",ylab="",bty="n",xaxt="n",yaxt="n",tck=0,xaxs="i",yaxs="i")
+xs <- c(0.05,0.1,0.3,0.6)
+ys <- sqrt(xs)
+segments(xs[1],-10,xs[1],ys[1],col="red",lty="dashed")
+segments(xs[1],ys[1],0,ys[1],col="red",lty="dashed")
+points(xs[1],min(y1),col="red",pch=16,xpd=NA)
+points(min(x1),ys[1],col="red",pch=16,xpd=NA)
+segments(xs[2],-10,xs[2],ys[2],col="red",lty="dashed")
+segments(xs[2],ys[2],0,ys[2],col="red",lty="dashed")
+points(xs[2],min(y1),col="red",pch=16,xpd=NA)
+points(min(x1),ys[2],col="red",pch=16,xpd=NA)
+segments(xs[3],-10,xs[3],ys[3],col="blue",lty="dashed")
+segments(xs[3],ys[3],0,ys[3],col="blue",lty="dashed")
+points(xs[3],min(y1),col="blue",pch=16,xpd=NA)
+points(min(x1),ys[3],col="blue",pch=16,xpd=NA)
+segments(xs[4],-10,xs[4],ys[4],col="blue",lty="dashed")
+segments(xs[4],ys[4],0,ys[4],col="blue",lty="dashed")
+points(xs[4],min(y1),col="blue",pch=16,xpd=NA)
+points(min(x1),ys[4],col="blue",pch=16,xpd=NA)
+```
+
+ 
+&nbsp;
+
+As demonstrated above, the common transformations listed in Table \@ref(tab:CommonTranformations) vary in their ability to "normalize" skewed distributions. Generally the common transformations in Table \@ref(tab:CommonTranformations) are ordered from least to most powerful. In other words, the transformations are ordered from those that "normalize" mildly skewed data to those that "normalize" strongly skewed data.^[Alternatively, the transformations are listed in order from the transformations that "spread out" the small values the least to those that "spread out" the small values the most.]
+
+It is possible to "combine" one of the common powers with the inverse transformation to create a larger array of transformations. For example, &lambda;=-0.5 is an inverse square-root transformation. These types of transformations are common but less common than those listed in Table \@ref(tab:CommonTranformations).
+
+Table: (\#tab:CommonInvTranformations) Common inverse power transformations in ANOVAs. These transformations are much less common than those in Table \@ref(tab:CommonTranformations).
+
+|    Power   | Name | Formula | R Code |
+|:----------:|:----:|:-------:|:-------:|
+| &lambda;=-0.25 | Inverse Fourth Root | $Y^{-0.25}=\frac{1}{\sqrt[4]{Y}}$ | `df$ifourrt.y <- df$Y^(-1/4)` |
+| &lambda;=-0.33 | Inverse Cube Root | $Y^{-0.33}=\frac{1}{\sqrt[3]{Y}}$ | `df$icubert.y <- df$Y^(-1/3)` |
+| &lambda;=-0.5 | Inverse Square Root | $Y^{-0.5}=\frac{1}{\sqrt{Y}}$ | `df$isqrt.y <- 1/sqrt(df$Y)` |
+
+&nbsp;
+
+Power transformations require non-negative and non-zero data. Violations of this restriction can be rectified by adding an amount to all values of the response variable such that all values become positive. This is called *shifting* the data and does not effect the shape of the distribution. In addition, power transformations are not effective if the range of values of the response variable is narrow.^[In effect, the power transformation is basically linear over short ranges and, thus, is not effective.]
+
+There are several methods to identify the power transformation that is most likely to meet the assumptions of a one-way ANOVA.^[Box and Cox (1964) provided a statistical and graphical method for identifying the appropriate power transformation for the response variable. The details of this method are beyond the scope of this class but, in general, the method searches for a &lambda; that minimizes SS<sub>within</sub>). A slightly modified Box and Cox approach is implemented in R by sending a `lm` object to `boxcox()` from the `MASS` package.] One simple method is trial-and-error -- i.e., trying various powers until one is found where the assumptions of the model are most closely met. 
+
+The trial-and-error method is made easier with software. For example, the `assumptionCheck()` function introducted in [the previous module](ANOVA1Assumptions.html#testing-assumptions-in-r) can be used to quickly compute the graphs and hypothesis tests for assumption checking *after* the data have been transformed by the power given in the `lambday=` argument. For example, the code and results below show what the assumption checking would look like if the immunoglobulin measurments for the New Zealand opossums had been log transformed.
+
+```{r fig.width=7}
+lm1 <- lm(imm~season,data=opp)
+assumptionCheck(lm1,lambday=0)  #lambda=0 corresponds to log-transformation
+```
+
+Of course, it was shown in the previous module that the assumptions for a One-Way ANOVA with these data had been met; thus, there is no need to explore a transformation here. However, this shows how easily one quickly test various transformations for a given set of data.
+
+Note that `assumptionCheck()` only transform the data "behind-the-scenes." If you want to continue with transformed data then you need to use R code like that shown in the last columns of Tables \@ref(tab:CommonTranformations) and \@ref(tab:CommonInvTranformations).
+
+&nbsp;
+
+# Transformations from Theory
+Certain special transformations are common in particular fields of study and are generally well-known to scientists in those fields. An example that crosses many fields is the transformation of proportions or percentages data by using the arcsine square-root function (i.e., $\text{sin}^{-1}(\sqrt{Y})$). Also, a possible power transformation may be chosen from theory related to the response variable. For example, it is common to square-root transform response variables that are areas and cube-root transform response variables that are volumes. In addition, discrete counts are often transformed with the square root.
+
+&nbsp;
+
+# Interpretations After Transformations
+Care must be taken with interpretations following transformations. A few simple rules help in this regard.
+
+First, tell the reader what transformation you used and how you arrived at it. In other words, clearly demonstrate that the assumptions were not met on the original scale and demonstrate that they were met on the transformed scale.
+
+Second, when making a conclusion from the One-Way ANOVA p-value, refer to the transformed response variable in your conclusions. In other words, say "the mean square root of the response variable differed among groups" rather than "the mean of the response variable differed among groups." It will be implied that the means differed on the original scale, but you strictly tested on the transformed scale so you should be explicit about that here.
+
+Third, back-transform estimates (and confidence intervals) for "points". In One-Way ANOVA this means that you should back-transform estimates of means. For example, if the response variable was log-transformed such that the **mean log of Y** was 1.356 then this should be back-transformed to the original scale with e<sup>1.356</sup>=`r formatC(exp(1.356),format="f",digits=3)`. Similarly if the response variable was square-root transformed such that the **mean square-root of Y** was 1.356 then this should be back-transformed to the original scale with 1.356<sup>2</sup>=`r formatC(1.356^2,format="f",digits=3)`.
+
+It is know that back-transforming the mean value on the log scale underestimates the mean value on the original scale.^[This stems from the fact that the back-transformed mean value from the log scale is equal to the geometric mean (i.e., the nth root of the product of n values) of the values on the original scale. The geometric mean is always less than the arithmetic mean (i.e., sum of all values divided by n) and, thus, the back-transformed mean always underestimates the arithmetic mean from the original scale.] The most common^[A wide variety of "corrections" for this back-transformation bias have been suggested.] correction for this back-transformation bias^[This correction is derived from the analysis of normal and log-normal distributional theory.] is to multiply the back-transformed value by $e^{\frac{MS_{Within}}{2}}$. This correction factor can be extracted from the `lm` object with `logbtcf()`.
+
+```{r}
+logbtcf(lm1)
+```
+
+Fourth, do **NOT** back-transform "differences" unless those differences are from a log-transformation. In a One-Way ANOVA this translates into whether or not you can back-transform *differences* in means, as would result from multiple comparisons. For example if the result is a difference in the mean square-root of the response variable between groups then do not back-transform this value as it can **not** be back-transformed to anything meaningful. However, if the result is a difference in mean log of the response variable between groups then this **difference** can (and should) be back-transformed to something meaningful.
+
+We know from algebra class that the difference in the log of two values is the log of the ratio of the two values -- i.e., $log(a)-log(b) = log(\frac{a}{b})$. Thus, back-transforming the difference in log values results in a ratio of values on the original scale -- i.e., $e^{log(a)-log(b)} = e^{log(\frac{a}{b})} = \frac{a}{b}$. Thus, in a One-Way ANOVA, the back-transformed **difference** in group means on the log scale is the **ratio** of group means on the original scale.
+
+For example, suppose that the difference in log means for two groups is 0.5. Back-transforming this value gives e<sup>0.5</sup>=`r formatC(exp(0.5),format="f",digits=3)`. Thus, on the original scale, the mean for the first group is `r formatC(exp(0.5),format="f",digits=3)` times larger than the mean for the second group.
+
+Alternatively, suppose that the difference in log means for two groups is -0.5. Back-transforming this value gives e<sup>-0.5</sup>=`r formatC(exp(-0.5),format="f",digits=3)`. Thus, on the original scale, the mean for the first group is `r formatC(exp(-0.5),format="f",digits=3)` as large as the mean for the second group. Or, the mean for the *second* group is $\frac{1}{`r formatC(exp(-0.5),format="f",digits=3)`}$=`r formatC(1/exp(-0.5),format="f",digits=3)` times larger than the mean for the *first* group.
+
+Log-transformations are very special, as they allow both means and differences in means to be back-transformed to the original scale with a meaningful result. Because of this, the first transformation that you should try in all situations is the log-transformation. Many times we prefer the log-transformation over other transformations, even if the assumptions are not perfectly met with the log-transformation.
+
+<aside>
+Always try the log-transformation first as it allows for meaningful back-transformations of means and differences.
+</aside>
+
+
+# Corrections {.appendix}
+If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).
