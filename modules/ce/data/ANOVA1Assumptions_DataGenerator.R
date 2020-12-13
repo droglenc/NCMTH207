@@ -20,7 +20,7 @@ write.csv(df1,file="modules/ce/data/ANOVA1Assumptions1.csv",quote=FALSE,row.name
 ns2 <- c(30,30,30)
 lmns2 <- c(2,1.5,3)
 lsds2 <- c(1,1,1)
-df2 <- mrnorm(ns2,lmns2,lsds2)
+df2 <- mrnorm(ns2,lmns2,lsds2,exact=FALSE)
 df2$measure <- round(exp(df2$measure),2)
 lm2 <- lm(measure~group,data=df2)
 Summarize(measure~group,data=df2)
