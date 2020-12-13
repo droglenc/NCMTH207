@@ -1,6 +1,6 @@
 ---
 title: "Exercise Key"
-subtitle: "One-Way ANOVA Assumptions"
+subtitle: "One-Way ANOVA Transformations"
 author: Derek H. Ogle
 layout: page
 css: "/css/modules.css"
@@ -29,7 +29,7 @@ lm1 <- lm(measure~group,data=df1)
 ```
 ```{r echo=FALSE, warning=FALSE}
 lev.p1 <- levenesTest(lm1)$"Pr(>F)"[1]
-out.p1 <- outlierTest(lm1)$bonf.p[[1]]
+out.p1 <- outlierTest(lm1)$p[[1]]
 ad.p1 <- adTest(lm1$residuals)$p.value
 ```
 
@@ -38,31 +38,29 @@ The variances do not appear to be equal as suggested by the Levene's test p-valu
 ### R Code and Results.
 ```{r fig.width=7}
 <<Assumptions1>>
-assumptionCheck(lm1)
+assumptionCheck(lm1,lambday=0.5)
 ```
 
 &nbsp;
 
-# Assumptions II
+# Assumptions I
 ```{r Assumptions2, echo=FALSE}
 df2 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions2.csv")
 lm2 <- lm(measure~group,data=df2)
 ```
 ```{r echo=FALSE, warning=FALSE}
 lev.p2 <- levenesTest(lm2)$"Pr(>F)"[1]
-out.p2 <- outlierTest(lm2)$bonf.p[[1]]
+out.p2 <- outlierTest(lm2)$p[[1]]
 ad.p2 <- adTest(lm2$residuals)$p.value
 ```
 
-The residuals appear to be not normal according to the Anderson-Darling p-value (`r kPvalue(ad.p2,latex=FALSE,include.p=FALSE)`) and the strongly right-skewed histogram below. There is evidence for a significant outlier according to the outlier test p-value (`r kPvalue(out.p2,latex=FALSE,include.p=FALSE)`) and by points outside the "whiskers" in the boxplot of residuals. The variances do not appear to be equal based on the different sized boxes in the boxplots below and the Levene's test p-value (=`r kPvalue(lev.p2,latex=FALSE,include.p=FALSE)`). 
+The variances do not appear to be equal based on the different sized boxes in the boxplots below. However, the Levene's test p-value (=`r kPvalue(lev.p2,latex=FALSE,include.p=FALSE)`) suggests that the variances are equal. This test is probably improper due to the outliers that are evident.  The residuals appear to be not normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p2,latex=FALSE,include.p=FALSE)`) and the strongly skewed histogram below. There is evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p2,latex=FALSE,include.p=FALSE)`) and by points outside the "whiskers" in the boxplot of residuals.
 
 ### R Code and Results.
 ```{r fig.width=7}
 <<Assumptions2>>
-assumptionCheck(lm2)
+assumptionCheck(lm2,lambday = 0)
 ```
-
-&nbsp;
 
 # Temperature and Turtle Hatchings
 
@@ -77,7 +75,7 @@ d <- read.csv("c:/aaaWork/Web/GitHub/NCMTH207/modules/ce/aaaKeys/turtles.csv")
 d$Temperature <- factor(d$Temperature)
 lm3 <- lm(Days~Temperature,data=d)
 lev.p3 <- levenesTest(lm3)$"Pr(>F)"[1]
-out.p3 <- outlierTest(lm3)$bonf.p[[1]]
+out.p3 <- outlierTest(lm3)$p[[1]]
 ad.p3 <- adTest(lm3$residuals)$p.value
 ```
 
@@ -112,7 +110,7 @@ im$use <- factor(im$use,levels=c("Unmined","Reclaimed","Abandoned"))
 ```{r echo=FALSE}
 lm4 <- lm(FE~use,data=im)
 lev.p4 <- levenesTest(lm4)$"Pr(>F)"[1]
-out.p4 <- outlierTest(lm4)$bonf.p[[1]]
+out.p4 <- outlierTest(lm4)$p[[1]]
 ad.p4 <- adTest(lm4$residuals)$p.value
 ```
 
@@ -124,5 +122,5 @@ The individuals are likely independent but this is not abundantly clear. The mea
 ### R Code and Results.
 ```{r fig.width=7}
 <<IronMine>>
-assumptionCheck(lm4)
+assumptionCheck(lm4,lambday = 0)
 ```
