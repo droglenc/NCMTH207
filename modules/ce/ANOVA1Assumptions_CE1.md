@@ -23,7 +23,7 @@ Assess the three assumptions of a One-Way ANOVA that can be tested with data usi
 
 ## Temperature and Turtle Hatchings
 <img src="../zimgs/sea_turtles.jpg" alt="Sea Turtles" class="img-right">
-In [a previous exercise](ANOVA1MultipleComparisons_CE1.html#temperature-and-turtle-hatchings) your examined the effect of sand temperature on the number of days for turgle eggs to hatch. Assess the **four** assumptions of a One-Way ANOVA for that situation. Make sure to provide specific results to support your assessments where appropriate.
+In [a previous exercise](ANOVA1MultipleComparisons_CE1.html#temperature-and-turtle-hatchings) you examined the effect of sand temperature on the number of days for turtle eggs to hatch. Assess the **four** assumptions of a One-Way ANOVA for that situation. Make sure to provide specific results to support your assessments where appropriate.
 
 &nbsp;
 

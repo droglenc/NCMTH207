@@ -63,7 +63,7 @@ Equal variances among groups is a critical assumption of a one-way ANOVA. Violat
 
 The assumption of equal variances can be tested with Levene's homogeneity of variances test.^[There are a wide variety of statistical tests for examining equality of variances. We will use the Levene's test in this class because it is common in the literature and simple to implement in most statistical software packages.] The hypotheses tested by Levene's test are
 
-<aside>The equal variance assumption is tested with Levene's test. P-values less than &alpha; indicate that the variances are not equal and the assumption was violated.
+<aside>Levene's test p-values less than &alpha; indicate that the variances are not equal and the assumption was violated.
 </aside>
 
 \[ \begin{split}
