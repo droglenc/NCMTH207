@@ -1,0 +1,74 @@
+---
+layout: page
+title: Dates Current
+author: "Derek H. Ogle"
+css: "/css/syllabus.css"
+output:
+  html_document:
+    self_contained: false
+    lib_dir: zlibs
+---
+
+```{r echo=FALSE, eval=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/resources/")
+source("../rhelpers/rhelpers.R")
+modHTML("Dates-Current")
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+options(knitr.kable.NA = '')
+## Read data, make data with day and topic with link
+d <- readxl::read_excel("Dates_W20A.xlsx") %>%
+  dplyr::mutate(Date=as.Date(Date)) %>%
+  dplyr::mutate(Date2=paste0(DOW,", ",format(Date,"%b-%d")),
+                Topic=ifelse(is.na(url),Topic,
+                       paste0('<a href=\"../modules/',url,'\">',Topic,'</a>'))) %>%
+  dplyr::select(Date,Date2,Topic)
+## Put a blank row after each Friday
+blank_rows <- grep("F",d$Date2)
+if (blank_rows[length(blank_rows)]==nrow(d)) blank_rows <- blank_rows[-length(blank_rows)]
+for (i in rev(blank_rows))
+  d <- dplyr::add_row(d,Date=NA,Date2=NA,Topic=NA_character_,.after=i)
+```
+
+<div class="alert alert-info">
+For each class period ("Date"), the module to prepare for is shown under "Topic." Some of the more distant dates are subject to change.
+</div>
+
+<div class="alert alert-warning">
+**Group Blackwell** will meet "in-person" from 830-1015 on weeks 3, 5, and 7 and from 1030-1130 on weeks 2, 4, and 6. **Group Nightingale** will meet "in-person" from 830-1015 on weeks 2, 4, and 6 and from 1030-1130 on weeks 3, 5, and 7. There will be modifications to this general schedule that will be announced in class. <a href="Groups_Current.html">Group assignments are here.</a>
+</div>
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+## Get only future dates
+dfuture <- d %>%
+  dplyr::filter(Date>=lubridate::today()) %>%
+  select(-Date)
+
+## Make the kable
+knitr::kable(dfuture,format="html",escape=FALSE) %>%
+  kableExtra::kable_styling(bootstrap_options=c("condensed","hover","responsive"),
+                            full_width=FALSE,position="center",
+                            fixed_thead=TRUE)
+```
+
+<br>
+
+<br>
+
+# Past Dates
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+## Get only future dates
+dpast <- d %>%
+  dplyr::filter(Date<lubridate::today()) %>%
+  select(-Date)
+## Make the kable
+knitr::kable(dpast,format="html",escape=FALSE) %>%
+  kableExtra::kable_styling(bootstrap_options=c("condensed","hover","responsive"),
+                            full_width=FALSE,position="center",
+                            fixed_thead=TRUE)
+```
+
