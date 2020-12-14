@@ -240,6 +240,8 @@ Log-transformations are very special, as they allow both means and differences i
 Always try the log-transformation first as it allows for meaningful back-transformations of means and differences.
 </aside>
 
+If the log transformation does not work to meet the assumptions of the One-Way ANOVA then you should start with the least strong transformation (i.e., the square root) and successively move through more strong transformations until the assumptions are adequately met.
+
 
 # Corrections {.appendix}
 If you see any errors (code, typographical, or logical) please bring these to [my attention](mailto:dogle@northland.edu).

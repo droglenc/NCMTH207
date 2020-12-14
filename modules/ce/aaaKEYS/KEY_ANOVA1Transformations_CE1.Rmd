@@ -19,108 +19,127 @@ modHTML_CEKeys("KEY_ANOVA1Assumptions_CE1")
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
+library(emmeans)
 source("../../../rhelpers/knitr_setup.R")
 ```
 
+<div class="alert alert-warning">
+<ul>
+  <li>Refer to specific p-values and graphs hen demonstrating that the assumptions are met.</li>
+  <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
+  <li>In question 2 not the careful wording about how the mean of the transformed variable is what differs (not the mean of the untransformed variable).</li>
+  <li>Use Tukey's multiple comparison results when identifying specifically which pairs of group means differ.</li>
+  <li>In questions 4 and 6 you must specifically refer to the mean of the transformed variable.</li>
+  <li>Note that when the square root transformation was used that the group mean could be back-transformed (question 5) but the difference in group means could not (question 7).</li>
+  <li>Note that when the log transformation was used that both the group mean (question 5) and the difference in group means (question 7) could be back-transformed.</li>
+  <li>I find it hard to interpret the back-transformed difference in means (from the log scale) when the ratio is less than 1. Thus, I prefer to flip the ratio and talk about the second group is that many times larger than the first group. This is demonstrated in my "alternatively" sentences for question 7 when a log transformation was used.</li>
+</ul>
+</div>
+
 # Assumptions I
-```{r Assumptions1, echo=FALSE}
+
+```{r Assumptions1, echo=FALSE, warning=FALSE}
 df1 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions1.csv")
-lm1 <- lm(measure~group,data=df1)
-```
-```{r echo=FALSE, warning=FALSE}
-lev.p1 <- levenesTest(lm1)$"Pr(>F)"[1]
-out.p1 <- outlierTest(lm1)$p[[1]]
-ad.p1 <- adTest(lm1$residuals)$p.value
+df1$sqrtmeas <- sqrt(df1$measure)
+lm1t <- lm(sqrtmeas~group,data=df1)
+aov.p1t <- anova(lm1t)$"Pr(>F)"[1]
+mc1t <- emmeans(lm1t,specs=pairwise~group)
+mcsum1t <- summary(mc1t,infer=TRUE)
+lev.p1t <- levenesTest(lm1t)$"Pr(>F)"[1]
+out.p1t <- outlierTest(lm1t)$bonf.p[[1]]
+ad.p1t <- adTest(lm1t$residuals)$p.value
 ```
 
-The variances do not appear to be equal as suggested by the Levene's test p-value (=`r kPvalue(lev.p1,latex=FALSE,include.p=FALSE)`) and the somewhat different sized boxes in the  boxplots below. The residuals appear to be normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p1,latex=FALSE,include.p=FALSE)`) and the histogram below does not look strongly skewed. There is evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p1,latex=FALSE,include.p=FALSE)`) and the distinctly "odd" individual on the right-side of the residual histogram below.
+1. After **square root** transforming, the variances appear to be equal as suggested by the Levene's test (`r kPvalue(lev.p1t,latex=FALSE)`) and the similar sized boxes in the boxplots below. The residuals appear to be normally distributed according to the Anderson-Darling test (`r kPvalue(ad.p1t,latex=FALSE)`) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test (`r kPvalue(out.p1t,latex=FALSE)`).
+1. There appears to be a difference in mean square root of the measurement variable among some of the group means (ANOVA `r kPvalue(aov.p1t,latex=FALSE)`).
+1. It appears that mean square root of the measurement variable differs between all pairs of groups (`r kPvalue(max(mcsum1t$contrasts$p.value[-5]),latex=FALSE)`), except for the "B" and "D" groups (`r kPvalue(mcsum1t$contrasts$p.value[5],latex=FALSE)`).
+1. The mean square root of the measurement variable for the "A" group is `r formatC(mcsum1t$emmeans$emmean[1],format="f",digits=2)`.
+1. The back-transformed mean of the measurement variable for the "A" group is `r formatC(mcsum1t$emmeans$emmean[1]^2,format="f",digits=2)` (=`r formatC(mcsum1t$emmeans$emmean[1],format="f",digits=2)`<sup>2</sup>).
+1. The mean square root of the measurement variable is `r formatC(mcsum1t$contrasts$estimate[1],format="f",digits=3)` units less for the "A" group than for the "B" group.
+1. The differences in square root transformed values **can not** be back-transformed!
 
 ### R Code and Results.
-```{r fig.width=7}
-<<Assumptions1>>
+```{r fig.width=7, warning=FALSE}
+df1 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions1.csv")
+lm1 <- lm(measure~group,data=df1)
 assumptionCheck(lm1,lambday=0.5)
+df1$sqrtmeas <- sqrt(df1$measure)
+lm1t <- lm(sqrtmeas~group,data=df1)
+anova(lm1t)
+mc1t <- emmeans(lm1t,specs=pairwise~group)
+summary(mc1t,infer=TRUE)
 ```
 
 &nbsp;
 
-# Assumptions I
-```{r Assumptions2, echo=FALSE}
+# Assumptions II
+```{r Assumptions2, echo=FALSE, warning=FALSE}
+df2 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions2.csv")
+df2$logmeas <- log(df2$measure)
+lm2t <- lm(logmeas~group,data=df2)
+aov.p2t <- anova(lm2t)$"Pr(>F)"[1]
+mc2t <- emmeans(lm2t,specs=pairwise~group)
+mcsum2t <- summary(mc2t,infer=TRUE)
+lev.p2t <- levenesTest(lm2t)$"Pr(>F)"[1]
+out.p2t <- outlierTest(lm2t)$bonf.p[[1]]
+ad.p2t <- adTest(lm2t$residuals)$p.value
+```
+
+1. After **log** transforming, the variances appear to be equal as suggested by the Levene's test (`r kPvalue(lev.p2t,latex=FALSE)`) and the similar sized boxes in the boxplots below. The residuals appear to be normally distributed according to the Anderson-Darling test (`r kPvalue(ad.p2t,latex=FALSE)`) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test (`r kPvalue(out.p2t,latex=FALSE)`).
+1. There appears to be a difference in mean log of the measurement variable among some of the group means (ANOVA `r kPvalue(aov.p2t,latex=FALSE)`).
+1. It appears that mean log of the measurement variable differs between all three groups (p<`r kPvalue(max(mcsum2t$contrasts$p.value[1]),latex=FALSE,include.p=FALSE)`).
+1. The mean log of the measurement variable for the "C" group is `r formatC(mcsum2t$emmeans$emmean[3],format="f",digits=2)`.
+1. The back-transformed mean of the measurement variable for the "C" group is `r formatC(exp(mcsum2t$emmeans$emmean[1]),format="f",digits=2)` (=e<sup>`r formatC(mcsum2t$emmeans$emmean[1],format="f",digits=2)`</sup>). [If corrected for back-transformation bias, the mean of the measurement variable for the "C" group is `r formatC(exp(mcsum2t$emmeans$emmean[1])*logbtcf(lm2t),format="f",digits=2)` (=`r formatC(exp(mcsum2t$emmeans$emmean[1]),format="f",digits=2)`&times;`r formatC(logbtcf(lm2t),format="f",digits=2)`).]
+1. The mean log of the measurement variable is `r formatC(mcsum2t$contrasts$estimate[3],format="f",digits=3)` units less for the "B" group than for the "C" group.
+1. The mean of the measurement variable for the "B" group is `r formatC(exp(mcsum2t$contrasts$estimate[3]),format="f",digits=3)` as large as the mean for the "C" group. Alternatively, the mean of the measurement variable for the "C" group is `r formatC(1/exp(mcsum2t$contrasts$estimate[3]),format="f",digits=3)` times larger than the mean for the "B" group.
+
+### R Code and Results.
+```{r fig.width=7, warning=FALSE}
 df2 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions2.csv")
 lm2 <- lm(measure~group,data=df2)
-```
-```{r echo=FALSE, warning=FALSE}
-lev.p2 <- levenesTest(lm2)$"Pr(>F)"[1]
-out.p2 <- outlierTest(lm2)$p[[1]]
-ad.p2 <- adTest(lm2$residuals)$p.value
-```
-
-The variances do not appear to be equal based on the different sized boxes in the boxplots below. However, the Levene's test p-value (=`r kPvalue(lev.p2,latex=FALSE,include.p=FALSE)`) suggests that the variances are equal. This test is probably improper due to the outliers that are evident.  The residuals appear to be not normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p2,latex=FALSE,include.p=FALSE)`) and the strongly skewed histogram below. There is evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p2,latex=FALSE,include.p=FALSE)`) and by points outside the "whiskers" in the boxplot of residuals.
-
-### R Code and Results.
-```{r fig.width=7}
-<<Assumptions2>>
-assumptionCheck(lm2,lambday = 0)
-```
-
-# Temperature and Turtle Hatchings
-
-<div class="alert alert-warning">
-<ul>
-  <li>For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say "the groups are independent." Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.</li>
-</ul>
-</div>
-
-```{r echo=FALSE}
-d <- read.csv("c:/aaaWork/Web/GitHub/NCMTH207/modules/ce/aaaKeys/turtles.csv")
-d$Temperature <- factor(d$Temperature)
-lm3 <- lm(Days~Temperature,data=d)
-lev.p3 <- levenesTest(lm3)$"Pr(>F)"[1]
-out.p3 <- outlierTest(lm3)$p[[1]]
-ad.p3 <- adTest(lm3$residuals)$p.value
-```
-
-The variances appear to be equal as suggested by the Levene's test p-value (=`r kPvalue(lev.p3,latex=FALSE,include.p=FALSE)`). The boxes in the boxplot appears different sized, so the p-value results could be due to the small sample size. The residuals appear to be normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p3,latex=FALSE,include.p=FALSE)`) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p3,latex=FALSE,include.p=FALSE)`). The boxplots of residuals suggest possible outliers though in the 25<sup>o</sup>C and 30<sup>o</sup>C treatments. From this, I conclude that these three assumptions are tentatively met.
-
-The individuals are likely independent. The background noted that the eggs were put into **individual** containers that were then assigned a temperature. There is not information about where the eggs came from but under the assumption that they did not all come from the same or only a few nests then this is likely not a dependency problem. All-in-all this assumption is likely largely met.
-
-### R Code and Results.
-```{r eval=FALSE}
-d <- read.csv("turtles.csv")
-d$Temperature <- factor(d$Temperature)
-```
-```{r fig.width=7}
-lm3 <- lm(Days~Temperature,data=d)
-assumptionCheck(lm3)
+assumptionCheck(lm2,lambday=0)
+df2$logmeas <- log(df2$measure)
+lm2t <- lm(logmeas~group,data=df2)
+anova(lm2t)
+mc2t <- emmeans(lm2t,specs=pairwise~group)
+summary(mc2t,infer=TRUE)
 ```
 
 &nbsp;
 
 # Iron and Mining
 
-<div class="alert alert-warning">
-<ul>
-  <li>For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say "the groups are independent." Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.</li>
-</ul>
-</div>
-
-```{r IronMine, echo=FALSE}
+```{r IronMine, echo=FALSE, warning=FALSE}
 im <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv")
 im$use <- factor(im$use,levels=c("Unmined","Reclaimed","Abandoned"))
 ```
 ```{r echo=FALSE}
-lm4 <- lm(FE~use,data=im)
-lev.p4 <- levenesTest(lm4)$"Pr(>F)"[1]
-out.p4 <- outlierTest(lm4)$p[[1]]
-ad.p4 <- adTest(lm4$residuals)$p.value
+im$logFE <- log(im$FE)
+lm3t <- lm(logFE~use,data=im)
+aov.p3t <- anova(lm3t)$"Pr(>F)"[1]
+mc3t <- emmeans(lm3t,specs=pairwise~use)
+mcsum3t <- summary(mc3t,infer=TRUE)
+lev.p3t <- levenesTest(lm3t)$"Pr(>F)"[1]
+out.p3t <- outlierTest(lm3t)$bonf.p[[1]]
+ad.p3t <- adTest(lm3t$residuals)$p.value
 ```
 
-There is a clear issue with normality here as shown by the Anderson-Darling p-value (=`r kPvalue(ad.p4,latex=FALSE,include.p=FALSE)`) and the histogram below is strongly skewed. In addition there is a clear outlier to the far right (in the abandoned group) as shown by the outlier test p-value (=`r kPvalue(out.p4,latex=FALSE,include.p=FALSE)`) and the boxplots of residuals. The variances appear to be equal according to the Levene's test p-value (=`r kPvalue(lev.p4,latex=FALSE,include.p=FALSE)`), but this p-value is likely compromised by the normality and outlier issues. The huge outlier also makes the boxplots of residuals largely uselss for examining equal variances. It is clear that there are violations of these three assumptions.
-
-The individuals are likely independent but this is not abundantly clear. The measurements are from 120 **unique** rivers, so there is not multiple measurements on the same river. However, some of the rivers are likely in the same watershed and would likely share some characteristics due to that (e.g., geological, land use, etc.). The data are likely independent enough for our purposes.
-
+1. After **log** transforming, the variances appear to be equal as suggested by the Levene's test (`r kPvalue(lev.p3t,latex=FALSE)`) and the similarity in the boxes in the boxplot below. The Anderson-Darling test suggests that the residuals are not normally distributed (`r kPvalue(ad.p3t,latex=FALSE)`), but the histogram below is not strongly skewed so this assumption is adequately met. There is no strong evidence for a significant outlier according to the outlier test (`r kPvalue(out.p3t,latex=FALSE)`).
+1. There appears to be a difference in mean log iron concentration in streams among some of the basin types (ANOVA `r kPvalue(aov.p2t,latex=FALSE)`).
+1. It appears that mean log iron concentration in mines in basins with abandoned mines differs from basins with reclaimed mines (`r kPvalue(mcsum3t$contrasts$p.value[2],latex=FALSE)`) and basins that were unmined (`r kPvalue(mcsum3t$contrasts$p.value[3],latex=FALSE)`). The mean log concentration did not differ between streams in basins with reclaimed mines and basins that were not mined (`r kPvalue(mcsum3t$contrasts$p.value[1],latex=FALSE)`).
+1. The mean log concentration of iron was lowest in streams in the unmined basin at `r formatC(mcsum3t$emmeans$emmean[1],format="f",digits=3)`.
+1. The back-transformed mean concentration of iron in streams in the unbined basin is `r formatC(exp(mcsum3t$emmeans$emmean[1]),format="f",digits=3)` mg/L (=e<sup>`r formatC(mcsum3t$emmeans$emmean[1],format="f",digits=3)`</sup>). [If corrected for back-transformation bias, the mean log iron concentration for streams in the unmined basin is `r formatC(exp(mcsum3t$emmeans$emmean[1])*logbtcf(lm2t),format="f",digits=3)` mg/L (=`r formatC(exp(mcsum3t$emmeans$emmean[1]),format="f",digits=3)`&times;`r formatC(logbtcf(lm3t),format="f",digits=3)`).]
+1. The mean log concentration of iron in streams in the unmined basin was `r formatC(mcsum3t$contrasts$estimate[2],format="f",digits=3)` units less than the mean log concentration of iron in streams in basins with abandoned mines.
+1. The mean concentration of iron in streams in the unmined basin was `r formatC(exp(mcsum3t$contrasts$estimate[2]),format="f",digits=3)` as large as the mean concentration of iron in streams in the basin with abandoned mines. Alternatively, mean concentration of iron in streams in the basin with abandoned mines was `r formatC(1/exp(mcsum3t$contrasts$estimate[2]),format="f",digits=3)` as large as the mean concentration of iron in streams in the unmined basin.
 
 ### R Code and Results.
-```{r fig.width=7}
+```{r fig.width=7, warning=FALSE}
 <<IronMine>>
-assumptionCheck(lm4,lambday = 0)
+lm3 <- lm(FE~use,data=im)
+assumptionCheck(lm3,lambday=0)
+im$logFE <- log(im$FE)
+lm3t <- lm(logFE~use,data=im)
+anova(lm3t)
+mc3t <- emmeans(lm3t,specs=pairwise~use)
+summary(mc3t,infer=TRUE)
 ```

@@ -20,7 +20,7 @@ Use the preparation readings and videos to prepare written answers for the follo
 1. How is the normality assumption tested?
 1. What are the hypotheses for the Anderson-Darling test?
 1. What is concluded if the Anderson-Darling test p-value<&alpha;?
-1. How is the outlier assumptin tested?
+1. How is the outlier assumption tested?
 1. What are the hypotheses for the outlier test?
 1. What is concluded if the outlier test p-value<&alpha;?
 1. What R function is used to perform all calculations required for checking the assumptions of a One-Way ANOVA?

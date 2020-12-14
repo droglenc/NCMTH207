@@ -29,7 +29,7 @@ XXX
 ## Preparation for Class
 Use the resources below to answer [these questions](prep/ANOVA1Transformations). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~4 pages)
+* **Primary Resources** (~7 pages)
   * [Reading](readings/ANOVA1Transformations){:target="_blank"}
 
 ----
