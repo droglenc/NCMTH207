@@ -21,7 +21,7 @@ set.seed(34353)
 
 
 ## Opossums data
-opp <- read.csv("data/Opposums.csv")
+opp <- read.csv("http://derekogle.com/NCMTH207/modules/readings/data/Opossums.csv")
 opp1 <- opp %>%
   mutate(season=factor(season,levels=c("feb","may","nov")),
          seasjit=round(jitter(as.numeric(season),0.25),4))

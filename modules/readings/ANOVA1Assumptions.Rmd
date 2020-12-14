@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo=TRUE,message=FALSE,comment="#R>  ",
 options(show.signif.stars=FALSE)
 
 ## Opossums data
-opp <- read.csv("data/Opposums.csv")
+opp <- read.csv("http://derekogle.com/NCMTH207/modules/readings/data/Opossums.csv")
 lm1 <- lm(imm~season,data=opp)
 ```
 
