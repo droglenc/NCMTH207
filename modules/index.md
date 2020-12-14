@@ -17,7 +17,7 @@ title: Learning Modules
 1. [Multiple Comparisons](ANOVA1MultipleComparisons)
 1. [Assumption Checking](ANOVA1Assumptions)
 1. [Transformations](ANOVA1Transformations)
-1. [All Together](ANVOA1Examples)
+1. [Summary](ANVOA1Summary)
 
 #### Two-Way ANOVA
 
