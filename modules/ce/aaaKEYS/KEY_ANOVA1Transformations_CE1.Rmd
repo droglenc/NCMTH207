@@ -25,13 +25,13 @@ source("../../../rhelpers/knitr_setup.R")
 
 <div class="alert alert-warning">
 <ul>
-  <li>Refer to specific p-values and graphs hen demonstrating that the assumptions are met.</li>
+  <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
   <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
   <li>In question 2 not the careful wording about how the mean of the transformed variable is what differs (not the mean of the untransformed variable).</li>
   <li>Use Tukey's multiple comparison results when identifying specifically which pairs of group means differ.</li>
-  <li>In questions 4 and 6 you must specifically refer to the mean of the transformed variable.</li>
-  <li>Note that when the square root transformation was used that the group mean could be back-transformed (question 5) but the difference in group means could not (question 7).</li>
-  <li>Note that when the log transformation was used that both the group mean (question 5) and the difference in group means (question 7) could be back-transformed.</li>
+  <li>In questions 3-5 you must specifically refer to the mean of the transformed variable.</li>
+  <li>Note that when the square root transformation was used that the group mean could be back-transformed (question 6) but the difference in group means could not (question 7).</li>
+  <li>Note that when the log transformation was used that both the group mean (question 6) and the difference in group means (question 7) could be back-transformed.</li>
   <li>I find it hard to interpret the back-transformed difference in means (from the log scale) when the ratio is less than 1. Thus, I prefer to flip the ratio and talk about the second group is that many times larger than the first group. This is demonstrated in my "alternatively" sentences for question 7 when a log transformation was used.</li>
 </ul>
 </div>
@@ -43,8 +43,9 @@ df1 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions
 df1$sqrtmeas <- sqrt(df1$measure)
 lm1t <- lm(sqrtmeas~group,data=df1)
 aov.p1t <- anova(lm1t)$"Pr(>F)"[1]
-mc1t <- emmeans(lm1t,specs=pairwise~group)
+mc1t <- emmeans(lm1t,specs=pairwise~group,tran="sqrt")
 mcsum1t <- summary(mc1t,infer=TRUE)
+mcsum1bt <- summary(mc1t,infer=TRUE,type="response")
 lev.p1t <- levenesTest(lm1t)$"Pr(>F)"[1]
 out.p1t <- outlierTest(lm1t)$bonf.p[[1]]
 ad.p1t <- adTest(lm1t$residuals)$p.value
@@ -54,8 +55,8 @@ ad.p1t <- adTest(lm1t$residuals)$p.value
 1. There appears to be a difference in mean square root of the measurement variable among some of the group means (ANOVA `r kPvalue(aov.p1t,latex=FALSE)`).
 1. It appears that mean square root of the measurement variable differs between all pairs of groups (`r kPvalue(max(mcsum1t$contrasts$p.value[-5]),latex=FALSE)`), except for the "B" and "D" groups (`r kPvalue(mcsum1t$contrasts$p.value[5],latex=FALSE)`).
 1. The mean square root of the measurement variable for the "A" group is `r formatC(mcsum1t$emmeans$emmean[1],format="f",digits=2)`.
-1. The back-transformed mean of the measurement variable for the "A" group is `r formatC(mcsum1t$emmeans$emmean[1]^2,format="f",digits=2)` (=`r formatC(mcsum1t$emmeans$emmean[1],format="f",digits=2)`<sup>2</sup>).
 1. The mean square root of the measurement variable is `r formatC(mcsum1t$contrasts$estimate[1],format="f",digits=3)` units less for the "A" group than for the "B" group.
+1. The back-transformed mean of the measurement variable for the "A" group is `r formatC(mcsum1bt$emmeans$emmean[1],format="f",digits=2)` (=`r formatC(mcsum1t$emmeans$emmean[1],format="f",digits=2)`<sup>2</sup>).
 1. The differences in square root transformed values **can not** be back-transformed!
 
 ### R Code and Results.
@@ -66,8 +67,9 @@ assumptionCheck(lm1,lambday=0.5)
 df1$sqrtmeas <- sqrt(df1$measure)
 lm1t <- lm(sqrtmeas~group,data=df1)
 anova(lm1t)
-mc1t <- emmeans(lm1t,specs=pairwise~group)
-summary(mc1t,infer=TRUE)
+mc1t <- emmeans(lm1t,specs=pairwise~group,tran="sqrt")
+( mcsum1t <- summary(mc1t,infer=TRUE) )
+( mcsum1bt <- summary(mc1t,infer=TRUE,type="response") )
 ```
 
 &nbsp;
@@ -78,8 +80,9 @@ df2 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions
 df2$logmeas <- log(df2$measure)
 lm2t <- lm(logmeas~group,data=df2)
 aov.p2t <- anova(lm2t)$"Pr(>F)"[1]
-mc2t <- emmeans(lm2t,specs=pairwise~group)
+mc2t <- emmeans(lm2t,specs=pairwise~group,tran="log")
 mcsum2t <- summary(mc2t,infer=TRUE)
+mcsum2bt <- summary(mc2t,infer=TRUE,type="response")
 lev.p2t <- levenesTest(lm2t)$"Pr(>F)"[1]
 out.p2t <- outlierTest(lm2t)$bonf.p[[1]]
 ad.p2t <- adTest(lm2t$residuals)$p.value
@@ -89,9 +92,9 @@ ad.p2t <- adTest(lm2t$residuals)$p.value
 1. There appears to be a difference in mean log of the measurement variable among some of the group means (ANOVA `r kPvalue(aov.p2t,latex=FALSE)`).
 1. It appears that mean log of the measurement variable differs between all three groups (p<`r kPvalue(max(mcsum2t$contrasts$p.value[1]),latex=FALSE,include.p=FALSE)`).
 1. The mean log of the measurement variable for the "C" group is `r formatC(mcsum2t$emmeans$emmean[3],format="f",digits=2)`.
-1. The back-transformed mean of the measurement variable for the "C" group is `r formatC(exp(mcsum2t$emmeans$emmean[1]),format="f",digits=2)` (=e<sup>`r formatC(mcsum2t$emmeans$emmean[1],format="f",digits=2)`</sup>). [If corrected for back-transformation bias, the mean of the measurement variable for the "C" group is `r formatC(exp(mcsum2t$emmeans$emmean[1])*logbtcf(lm2t),format="f",digits=2)` (=`r formatC(exp(mcsum2t$emmeans$emmean[1]),format="f",digits=2)`&times;`r formatC(logbtcf(lm2t),format="f",digits=2)`).]
 1. The mean log of the measurement variable is `r formatC(mcsum2t$contrasts$estimate[3],format="f",digits=3)` units less for the "B" group than for the "C" group.
-1. The mean of the measurement variable for the "B" group is `r formatC(exp(mcsum2t$contrasts$estimate[3]),format="f",digits=3)` as large as the mean for the "C" group. Alternatively, the mean of the measurement variable for the "C" group is `r formatC(1/exp(mcsum2t$contrasts$estimate[3]),format="f",digits=3)` times larger than the mean for the "B" group.
+1. The back-transformed mean of the measurement variable for the "C" group is `r formatC(mcsum2bt$emmeans$response[1],format="f",digits=2)` (=e<sup>`r formatC(mcsum2t$emmeans$emmean[1],format="f",digits=2)`</sup>).
+1. The mean of the measurement variable for the "B" group is `r formatC(mcsum2bt$contrasts$ratio[3],format="f",digits=3)` as large as the mean for the "C" group. Alternatively, the mean of the measurement variable for the "C" group is `r formatC(1/mcsum2bt$contrasts$ratio[3],format="f",digits=3)` times larger than the mean for the "B" group.
 
 ### R Code and Results.
 ```{r fig.width=7, warning=FALSE}
@@ -101,8 +104,9 @@ assumptionCheck(lm2,lambday=0)
 df2$logmeas <- log(df2$measure)
 lm2t <- lm(logmeas~group,data=df2)
 anova(lm2t)
-mc2t <- emmeans(lm2t,specs=pairwise~group)
-summary(mc2t,infer=TRUE)
+mc2t <- emmeans(lm2t,specs=pairwise~group,tran="log")
+( mcsum2t <- summary(mc2t,infer=TRUE) )
+( mcsum2bt <- summary(mc2t,infer=TRUE,type="response") )
 ```
 
 &nbsp;
@@ -117,8 +121,9 @@ im$use <- factor(im$use,levels=c("Unmined","Reclaimed","Abandoned"))
 im$logFE <- log(im$FE)
 lm3t <- lm(logFE~use,data=im)
 aov.p3t <- anova(lm3t)$"Pr(>F)"[1]
-mc3t <- emmeans(lm3t,specs=pairwise~use)
+mc3t <- emmeans(lm3t,specs=pairwise~use,tran="log")
 mcsum3t <- summary(mc3t,infer=TRUE)
+mcsum3bt <- summary(mc3t,infer=TRUE,type="response")
 lev.p3t <- levenesTest(lm3t)$"Pr(>F)"[1]
 out.p3t <- outlierTest(lm3t)$bonf.p[[1]]
 ad.p3t <- adTest(lm3t$residuals)$p.value
@@ -128,9 +133,9 @@ ad.p3t <- adTest(lm3t$residuals)$p.value
 1. There appears to be a difference in mean log iron concentration in streams among some of the basin types (ANOVA `r kPvalue(aov.p2t,latex=FALSE)`).
 1. It appears that mean log iron concentration in mines in basins with abandoned mines differs from basins with reclaimed mines (`r kPvalue(mcsum3t$contrasts$p.value[2],latex=FALSE)`) and basins that were unmined (`r kPvalue(mcsum3t$contrasts$p.value[3],latex=FALSE)`). The mean log concentration did not differ between streams in basins with reclaimed mines and basins that were not mined (`r kPvalue(mcsum3t$contrasts$p.value[1],latex=FALSE)`).
 1. The mean log concentration of iron was lowest in streams in the unmined basin at `r formatC(mcsum3t$emmeans$emmean[1],format="f",digits=3)`.
-1. The back-transformed mean concentration of iron in streams in the unbined basin is `r formatC(exp(mcsum3t$emmeans$emmean[1]),format="f",digits=3)` mg/L (=e<sup>`r formatC(mcsum3t$emmeans$emmean[1],format="f",digits=3)`</sup>). [If corrected for back-transformation bias, the mean log iron concentration for streams in the unmined basin is `r formatC(exp(mcsum3t$emmeans$emmean[1])*logbtcf(lm2t),format="f",digits=3)` mg/L (=`r formatC(exp(mcsum3t$emmeans$emmean[1]),format="f",digits=3)`&times;`r formatC(logbtcf(lm3t),format="f",digits=3)`).]
+1. The back-transformed mean concentration of iron in streams in the unmined basin is `r formatC(mcsum3bt$emmeans$response[1],format="f",digits=3)` mg/L (=e<sup>`r formatC(mcsum3t$emmeans$emmean[1],format="f",digits=3)`</sup>).
 1. The mean log concentration of iron in streams in the unmined basin was `r formatC(mcsum3t$contrasts$estimate[2],format="f",digits=3)` units less than the mean log concentration of iron in streams in basins with abandoned mines.
-1. The mean concentration of iron in streams in the unmined basin was `r formatC(exp(mcsum3t$contrasts$estimate[2]),format="f",digits=3)` as large as the mean concentration of iron in streams in the basin with abandoned mines. Alternatively, mean concentration of iron in streams in the basin with abandoned mines was `r formatC(1/exp(mcsum3t$contrasts$estimate[2]),format="f",digits=3)` as large as the mean concentration of iron in streams in the unmined basin.
+1. The mean concentration of iron in streams in the unmined basin was `r formatC(mcsum3bt$contrasts$ratio[2],format="f",digits=3)` as large as the mean concentration of iron in streams in the basin with abandoned mines. Alternatively, mean concentration of iron in streams in the basin with abandoned mines was `r formatC(1/mcsum3bt$contrasts$ratio[2],format="f",digits=3)` as large as the mean concentration of iron in streams in the unmined basin.
 
 ### R Code and Results.
 ```{r fig.width=7, warning=FALSE}
@@ -140,6 +145,7 @@ assumptionCheck(lm3,lambday=0)
 im$logFE <- log(im$FE)
 lm3t <- lm(logFE~use,data=im)
 anova(lm3t)
-mc3t <- emmeans(lm3t,specs=pairwise~use)
-summary(mc3t,infer=TRUE)
+mc3t <- emmeans(lm3t,specs=pairwise~use,tran="log")
+( mcsum3t <- summary(mc3t,infer=TRUE) )
+( mcsum3bt <- summary(mc3t,infer=TRUE,type="response") )
 ```

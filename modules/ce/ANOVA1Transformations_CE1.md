@@ -11,7 +11,7 @@ css: "/css/modules.css"
 
 ----
 
-# Assumptions I
+# Transformations I
 In [a previous exercise](ANOVA1Assumptions_CE1.html#assumptions-i) you assessed the assumptions of a One-Way ANOVA (except for independence) for the data in [ANOVA1Assumptions1.csv](http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions1.csv). Load those data and the fit the untransformed linear model again. Use these data to answer the questions below. Show and refer to results as appropriate.
 
 1. What transformation results in the One-Way ANOVA assumptions to be adequately met. Briefly but completely explain your evidence for why each assumption is now met.
@@ -36,7 +36,7 @@ Back-transform the multiple comparisons results (i.e., use `type="response"` in 
 
 &nbsp;
 
-# Assumptions II
+# Transformations II
 In [a previous exercise](ANOVA1Assumptions_CE1.html#assumptions-ii) you assessed the assumptions of a One-Way ANOVA (except for independence) for the data in [ANOVA1Assumptions2.csv](http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions2.csv). Load those data and the fit the untransformed linear model again. Use these data to answer the questions below. Show and refer to results as appropriate.
 
 1. What transformation results in the One-Way ANOVA assumptions to be adequately met. Briefly but completely explain your evidence for why each assumption is now met.
@@ -70,6 +70,6 @@ Create a new variable in the data frame that is the appropriately transformed re
 1. Is there a significant difference in the groups means of the transformed data?
 1. Specifically which group means (of transformed data) differ?
 1. Interpret (on the transformed scale) the smallest group mean.
+1. Interpret the smallest back-transformed group mean.
 1. Interpret (on the transformed scale) the difference in means for the paired means that are most different.
-1. Interpret the small back-transformed group mean.
 1. Interpret the back-transform difference in group means for paired means that are most different.
