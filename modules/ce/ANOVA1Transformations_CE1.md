@@ -59,7 +59,7 @@ Back-transform the multiple comparisons results. Use these results to answer the
 &nbsp;
 
 # Iron and Mining
-<img src="../zimgs/Iron_Mining.jpg" alt="Iron Mining" class="img-right">
+<img src="../zimgs/Iron_Mining.jpg" alt="Decoration" class="img-right">
 In [a previous exercise](ANOVA1Assumptions_CE1.html#iron-and-mining) you assessed the assumptions for data related to iron concentrations (mg/L) in 120 unique streams in coal-mining districts of Ohio, grouped according to land use in their basins: unmined, reclaimed, and abandoned. Load those data and the fit the untransformed linear model again. Use these data to answer the questions below. Show and refer to results as appropriate.
 
 1. What transformation results in the One-Way ANOVA assumptions to be adequately met. Briefly but completely explain your evidence for why each assumption is now met.

@@ -1,0 +1,16 @@
+setwd(here::here())
+
+library(NCStats)
+set.seed(157394)
+
+ns1 <- c(32,32,32)
+mns1 <- c(67.244,56.113,44.091)
+sds1 <- c(16.226,15.723,18.042)
+lbls <- c("Individual","Team Sport","Non-Practitioner")
+df1 <- mrnorm(ns1,mns1,sds1,grp.labels=lbls,var.labels=c("SDE","Group"))
+Summarize(SDE~Group,data=df1)
+lm1 <- lm(SDE~Group,data=df1)
+fitPlot(lm1)
+assumptionCheck(lm1)
+head(df1)
+write.csv(df1,file="modules/ce/data/SDE.csv",row.names=FALSE)
