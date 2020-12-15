@@ -36,9 +36,9 @@ The process of fitting and interpreting linear models is as much an art as it is
     * If only an outlier exists (i.e., there are equal variances and normal residuals) and no transformation corrects the outlier then *consider* removing the outlier from the data set.
     * Fit the ultimate full model with the transformed response or reduced data set.
 1. Construct an ANOVA table for the full model with `anova()` and make a conclusion about the equality of means from the p-value.
-1. If differences among group means exist, then use a multiple comparison technique with `emmeans()` and `summary()` to identify specific differences. Discuss specific differences using confidence intervals.
+1. If differences among group means exist, then use a multiple comparison technique with `emmeans()` and `summary()` to identify specific differences. Discuss specific differences **using confidence intervals**.
     * If the data were log-transformed then discuss specific ratios of means using back-transformed differences (use `tran=` in `emmeans()` and `type="response"` in `summary()` to computed the back-transformations).
-1. Create a summary graphic of group means with 95% confidence intervals using `ggplot()` and results from `emmeans()`.
+1. Create a summary graphic of observations with group means **on the original scale** and 95% confidence intervals using `ggplot()` and results from `emmeans()`.
 1. Write an overall conclusion of your findings.
 
 &nbsp;
@@ -112,6 +112,10 @@ knitr::kable(dmns.tn[,-c(3,4,7)],digits=c(NA,3,3,3,4),
 ```
 
 The student's hypothesis was generally supported (Figure \@ref(fig:TNMeansPlot)). However, it does not appear that tomato seedling growth is negatively affected for all increases in nematode density. For example, seedling growth declined for an increase from 1000 to 5000 nematodes per pot but not for increases from 0 to 1000 nematodes per pot or from 5000 to 10000 nematodes per pot. Specifically, it appears that the mean growth of the tomato seedlings is between `r formatC(dmns.tn$lower.CL[4],format="f",digits=1)` and `r formatC(dmns.tn$upper.CL[4],format="f",digits=1)` cm lower at a density of 5000 nematodes than at a density of 1000 nematodes (Table \@ref(tab:TNANOVA)).
+
+<aside>
+Note use of a confidence interval and specific direction (i.e., "lower") when describing the "difference."
+</aside>
 
 ```{r TNMeansPlot, echo=FALSE, fig.cap="Mean (with 95% confidence interval) of tomato growth at each nematode density."}
 ggplot() +

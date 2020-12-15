@@ -1,0 +1,155 @@
+---
+title: "Exercise Key"
+subtitle: "One-Way ANOVA Summary"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ANOVA1Summary_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(emmeans)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+<div class="alert alert-warning">
+<ul>
+  <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
+  <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
+</ul>
+</div>
+
+
+# Iron and Mining
+
+```{r IronMine, echo=FALSE, warning=FALSE}
+im <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv")
+im$use <- factor(im$use,levels=c("Unmined","Reclaimed","Abandoned"))
+```
+```{r echo=FALSE}
+lm1 <- lm(FE~use,data=im)
+lev.p1 <- levenesTest(lm1)$"Pr(>F)"[1]
+out.p1 <- outlierTest(lm1)$bonf.p[[1]]
+ad.p1 <- adTest(lm1$residuals)$p.value
+im$logFE <- log(im$FE)
+lm1t <- lm(logFE~use,data=im)
+lev.p1t <- levenesTest(lm1t)$"Pr(>F)"[1]
+out.p1t <- outlierTest(lm1t)$bonf.p[[1]]
+ad.p1t <- adTest(lm1t$residuals)$p.value
+aov.p1t <- anova(lm1t)$"Pr(>F)"[1]
+mc1t <- emmeans(lm1t,specs=pairwise~use,tran="log")
+mcsum1t <- summary(mc1t,infer=TRUE)
+mcsum1bt <- summary(mc1t,infer=TRUE,type="response")
+```
+
+The statistical hypotheses to be examined are
+
+\[ \begin{split}
+   H_{0}&: \mu_{abandaned} = \mu_{reclaimed} = \mu_{unmined} \\
+   H_{A}&:\text{At least one pair of means is different}
+\end{split} \]
+
+where &mu; is the mean iron concentration in the stream and the subscripts identify the different past mining activities in the streams basin.
+
+The individuals are likely independent but this is not abundantly clear. The measurements are from 120 **unique** rivers, so there is not multiple measurements on the same river. However, some of the rivers are likely in the same watershed and would likely share some characteristics due to that (e.g., geological, land use, etc.). The data are likely independent enough for our purposes.
+
+There is a clear issue with normality (Anderson-Darling `r kPvalue(ad.p1,latex=FALSE)`) and the first histogram below is strongly skewed. In addition there is a clear outlier to the far right (in the abandoned group; outlier test `r kPvalue(out.p1,latex=FALSE)`) and the first boxplots of residuals below. The variances appear to be equal (Levene's `r kPvalue(lev.p1,latex=FALSE)`), but this p-value is likely compromised by the normality and outlier issues. The huge outlier also makes the boxplots of residuals largely useless for examining equal variances. It is clear that there are violations of these three assumptions.
+
+After **log** transforming, the variances appear to be equal (Levene's `r kPvalue(lev.p1t,latex=FALSE)`) and the similarity in the boxes in the second boxplots below. The residuals are not normally distributed (Anderson-Darling `r kPvalue(ad.p1t,latex=FALSE)`), but the second histogram below is not strongly skewed so this assumption is adequately met. There is no strong evidence for a significant outlier (outlier test `r kPvalue(out.p1t,latex=FALSE)`). Thus, the assumptions are met on the log scale, so the analysis will continue on that scale.
+
+There appears to be a difference in mean log iron concentration in streams among some of the basin types (ANOVA `r kPvalue(aov.p1t,latex=FALSE)`). Specifically, it appears that the mean log iron concentration is significantly higher in streams with abandoned mines in the basin than in streams with reclaimed mines (Tukey `r kPvalue(mcsum1t$contrasts$p.value[2],latex=FALSE)`) or no mines at all (Tukey `r kPvalue(mcsum1t$contrasts$p.value[2],latex=FALSE)`). There was no significant difference in mean log iron concentration between those streams in basins with reclaimed mines and basins without mines (Tukey `r kPvalue(mcsum1t$contrasts$p.value[1],latex=FALSE)`).
+
+The mean concentration of iron in streams in basins with abandoned mines was `r formatC(1/mcsum1bt$contrasts$ratio[2],format="f",digits=3)` times as large as the mean concentration of iron in streams in the unmined basin. Similarly, the mean concentration of iron in streams in basins with abandoned mines was `r formatC(1/mcsum1bt$contrasts$ratio[3],format="f",digits=3)` times as large as the mean concentration of iron in streams in the basin with reclaimed mines.
+
+These results indicate that reclaiming a mine can result in mean iron concentrations in streams that are on par with mean iron concentrations in streams were a mine never existed in their basin. In addition, the iron concentrations in streams in the reclaimed and unmined basins was less than that for streams in basins where mines had simply been abandoned. This suggests that reclaiming a mine, rather than simply abandoning it, can reduce iron concentrations in nearby streams to levels similar to those streams unimpacted by mining.
+
+### R Code and Results
+```{r fig.width=7, warning=FALSE}
+<<IronMine>>
+lm1 <- lm(FE~use,data=im)
+assumptionCheck(lm1)
+assumptionCheck(lm1,lambday=0)
+im$logFE <- log(im$FE)
+lm1t <- lm(logFE~use,data=im)
+anova(lm1t)
+mc1t <- emmeans(lm1t,specs=pairwise~use,tran="log")
+( mcsum1t <- summary(mc1t,infer=TRUE) )
+( mcsum1bt <- summary(mc1t,infer=TRUE,type="response") )
+```
+```{r}
+( p <- ggplot() +
+  geom_jitter(data=im,mapping=aes(x=use,y=FE),
+              alpha=0.25,width=0.05) +
+  geom_pointrange(data=mcsum1bt$emmeans,
+                  mapping=aes(x=use,y=response,ymin=lower.CL,ymax=upper.CL),
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(x="Past Mining Activity",y="Iron Concentration (mg/L)") +
+  theme_NCStats() )
+p + scale_y_continuous(trans="log",breaks=c(0.1,1,10,100,300))
+```
+
+&nbsp;
+
+# Speed and Distance Estimation
+
+```{r SDE, echo=FALSE, warning=FALSE}
+df <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/SDE.csv")
+df$Group <- factor(df$Group,levels=c("Non-Practitioner","Individual","Team Sport"))
+```
+```{r echo=FALSE}
+lm2 <- lm(SDE~Group,data=df)
+lev.p2 <- levenesTest(lm2)$"Pr(>F)"[1]
+out.p2 <- outlierTest(lm2)$bonf.p[[1]]
+ad.p2 <- adTest(lm2$residuals)$p.value
+aov.p2 <- anova(lm2)$"Pr(>F)"[1]
+mc2 <- emmeans(lm2,specs=pairwise~Group)
+mcsum2 <- summary(mc2,infer=TRUE)
+```
+
+The statistical hypotheses to be examined are
+
+\[ \begin{split}
+   H_{0}&: \mu_{Non-Practitioner} = \mu_{Individual} = \mu_{Team Sport} \\
+   H_{A}&:\text{At least one pair of means is different}
+\end{split} \]
+
+where &mu; is the mean "score" on the speed and distance estimation tests and the subscripts identify the different types of participation in sports.
+
+The individuals are likely independent but there are some issues to consider. Within the sports participation groups there are some individuals that came from the same team or club. These individuals may be related in some way; e.g., perhaps the team is "elite" such that you would expect the individuals to be excellent at these tests. However, not all individuals are from the same team or club so this is likely not a barrier to independence. There does not seem to be any relationships between individuals across the sports participation groups -- i.e., individuals in the different groups don't appear to be familially related, etc. The data are likely independent enough for our purposes.
+
+The residuals appear normal (Anderson-Darling `r kPvalue(ad.p2,latex=FALSE)`) and the histogram below is only slightly skewed, the variances appear equal (Levene's `r kPvalue(lev.p2,latex=FALSE)`), and there are no significant outliers (outlier test `r kPvalue(out.p1,latex=FALSE)`). Thus, the assumptions are met on the original scale and no transformation will be considered.
+
+There appears to be a difference in mean speed and distance estimation "score" among some of the sports participation groups (ANOVA `r kPvalue(aov.p2,latex=FALSE)`). In fact it appears that all three groups differ from each other (Tukey p&leq;`r kPvalue(max(mcsum2$contrasts$p.value),latex=FALSE,include.p=FALSE)`). Specifically, mean speed and distance estimation "score" for non-practitioners was lower than that for the other two groups -- between `r formatC(-1*mcsum2$contrasts$upper.CL[1])` and `r formatC(-1*mcsum2$contrasts$lower.CL[1])` lower than for those participating in individual sports and between `r formatC(-1*mcsum2$contrasts$upper.CL[2])` and `r formatC(-1*mcsum2$contrasts$lower.CL[2])` lower than for those participating in team sports. Additionally, those participating in individuals sports had mean speed and distance estimation "scores" between `r formatC(mcsum2$contrasts$lower.CL[3])` and `r formatC(mcsum2$contrasts$upper.CL[3])` higher than that for those participating in team sports.
+
+These results indicate that those that participate sports have higher speed and distance estimation scores than those that do not participated in sports. Furthermore, participting in an individual sport than a team sports appears to be related to a higher speed and distance estimation score.
+
+### R Code and Results
+```{r fig.width=7, warning=FALSE}
+<<SDE>>
+lm2 <- lm(SDE~Group,data=df)
+assumptionCheck(lm2)
+anova(lm2)
+mc2 <- emmeans(lm2,specs=pairwise~Group)
+( mcsum2 <- summary(mc2,infer=TRUE) )
+```
+```{r}
+ggplot() +
+  geom_jitter(data=df,mapping=aes(x=Group,y=SDE),
+              alpha=0.25,width=0.05) +
+  geom_pointrange(data=mcsum2$emmeans,
+                  mapping=aes(x=Group,y=emmean,ymin=lower.CL,ymax=upper.CL),
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(x="Sport Participation Group",y="Speed and Distance Estimation 'Score'") +
+  theme_NCStats()
+```
