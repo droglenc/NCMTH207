@@ -2440,6 +2440,7 @@ distill-header .nav a {
 <li><a href="#power-transformations">Power Transformations</a></li>
 <li><a href="#transformations-from-theory">Transformations from Theory</a></li>
 <li><a href="#interpretations-after-transformations">Interpretations After Transformations</a></li>
+<li><a href="#back-transformations-in-r">Back-Transformations in R</a></li>
 <li><a href="#corrections">Corrections</a></li>
 </ul>
 </nav>
@@ -2602,14 +2603,20 @@ Figure 3: Demonstration of the result (upper-left) from applying the square root
 <p>First, tell the reader what transformation you used and how you arrived at it. In other words, clearly demonstrate that the assumptions were not met on the original scale and demonstrate that they were met on the transformed scale.</p>
 <p>Second, when making a conclusion from the One-Way ANOVA p-value, refer to the transformed response variable in your conclusions. In other words, say “the mean square root of the response variable differed among groups” rather than “the mean of the response variable differed among groups.” It will be implied that the means differed on the original scale, but you strictly tested on the transformed scale so you should be explicit about that here.</p>
 <p>Third, back-transform estimates (and confidence intervals) for “points”. In One-Way ANOVA this means that you should back-transform estimates of means. For example, if the response variable was log-transformed such that the <strong>mean log of Y</strong> was 1.356 then this should be back-transformed to the original scale with e<sup>1.356</sup>=3.881. Similarly if the response variable was square-root transformed such that the <strong>mean square-root of Y</strong> was 1.356 then this should be back-transformed to the original scale with 1.356<sup>2</sup>=1.839.</p>
-<p>It is know that back-transforming the mean value on the log scale underestimates the mean value on the original scale.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> The most common<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> correction for this back-transformation bias<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> is to multiply the back-transformed value by <span class="math inline">\(e^{\frac{MS_{Within}}{2}}\)</span>. This correction factor can be extracted from the <code>lm</code> object with <code>logbtcf()</code>.</p>
+<!---
+It is known that back-transforming the mean value on the log scale underestimates the mean value on the original scale.^[This stems from the fact that the back-transformed mean value from the log scale is equal to the geometric mean (i.e., the nth root of the product of n values) of the values on the original scale. The geometric mean is always less than the arithmetic mean (i.e., sum of all values divided by n) and, thus, the back-transformed mean always underestimates the arithmetic mean from the original scale.] The most common^[A wide variety of "corrections" for this back-transformation bias have been suggested.] correction for this back-transformation bias^[This correction is derived from the analysis of normal and log-normal distributional theory.] is to multiply the back-transformed value by $e^{\frac{MS_{Within}}{2}}$. This correction factor can be extracted from the `lm` object with `logbtcf()`.
+
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre><code><span class="fu">logbtcf</span><span class="op">(</span><span class="va">lm1</span><span class="op">)</span>
-</code></pre>
+<div class="sourceCode"><pre><code><span class='fu'>logbtcf</span><span class='op'>(</span><span class='va'>lm1</span><span class='op'>)</span>
+</code></pre></div>
+
+```
+#R>   [1] 1.004057
+```
+
 </div>
-<pre><code>#R&gt;   [1] 1.004057</code></pre>
-</div>
+
+--->
 <p>Fourth, do <strong>NOT</strong> back-transform “differences” unless those differences are from a log-transformation. In a One-Way ANOVA this translates into whether or not you can back-transform <em>differences</em> in means, as would result from multiple comparisons. For example if the result is a difference in the mean square-root of the response variable between groups then do not back-transform this value as it can <strong>not</strong> be back-transformed to anything meaningful. However, if the result is a difference in mean log of the response variable between groups then this <strong>difference</strong> can (and should) be back-transformed to something meaningful.</p>
 <p>We know from algebra class that the difference in the log of two values is the log of the ratio of the two values – i.e., <span class="math inline">\(log(a)-log(b) = log(\frac{a}{b})\)</span>. Thus, back-transforming the difference in log values results in a ratio of values on the original scale – i.e., <span class="math inline">\(e^{log(a)-log(b)} = e^{log(\frac{a}{b})} = \frac{a}{b}\)</span>. Thus, in a One-Way ANOVA, the back-transformed <strong>difference</strong> in group means on the log scale is the <strong>ratio</strong> of group means on the original scale.</p>
 <p>For example, suppose that the difference in log means for two groups is 0.5. Back-transforming this value gives e<sup>0.5</sup>=1.649. Thus, on the original scale, the mean for the first group is 1.649 times larger than the mean for the second group.</p>
@@ -2619,18 +2626,160 @@ Figure 3: Demonstration of the result (upper-left) from applying the square root
 Always try the log-transformation first as it allows for meaningful back-transformations of means and differences.
 </aside>
 <p>If the log transformation does not work to meet the assumptions of the One-Way ANOVA then you should start with the least strong transformation (i.e., the square root) and successively move through more strong transformations until the assumptions are adequately met.</p>
+<h1 id="back-transformations-in-r">Back-Transformations in R</h1>
+<p>Transformations and back-transformations will be illustrated more in this module’s assignment and in <a href="ANOVA1Summary.html">the next module</a>. However, the <code>emmeans()</code> function introduced in [a previous module(ANOVA1MultipleComparisons.html#multiple-comparisons-in-r)] makes back-transformations very easy.</p>
+<p>While a transformation was not needed for the New Zealand opossums example, let’s suppose for illustrative purposes that a square root transformation was used. First, a square root variable is created and a new ANOVA model with this variable is used.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="va">opp</span><span class="op">$</span><span class="va">sqrtimm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">opp</span><span class="op">$</span><span class="va">imm</span><span class="op">)</span>
+<span class="va">lm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">sqrtimm</span><span class="op">~</span><span class="va">season</span>,data<span class="op">=</span><span class="va">opp</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">lm2</span><span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#R&gt;   Analysis of Variance Table
+#R&gt;   
+#R&gt;   Response: sqrtimm
+#R&gt;             Df   Sum Sq  Mean Sq F value    Pr(&gt;F)
+#R&gt;   season     2 0.099654 0.049827  14.675 6.868e-05
+#R&gt;   Residuals 24 0.081487 0.003395</code></pre>
+</div>
+<p>Multiple comparisons can be created as before, but there is an advantage to telling <code>emmeans()</code> that you used a square root transformation with <code>tran=</code> as shown below. Here we can see (see the two notes under the <code>$emmeans</code> and <code>$contrasts</code> portions of the output) that <code>summary()</code> reminds you that the results are on the square root scale. This should help you remember to interpret these results on the square root scale.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="va">mct</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="op">(</span><span class="va">lm2</span>,specs<span class="op">=</span><span class="va">pairwise</span><span class="op">~</span><span class="va">season</span>,tran<span class="op">=</span><span class="st">&quot;sqrt&quot;</span><span class="op">)</span>
+<span class="op">(</span> <span class="va">mcsumt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mct</span>,infer<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#R&gt;   $emmeans
+#R&gt;    season emmean     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb     0.816 0.0168 24    0.781    0.851 48.513  &lt;.0001 
+#R&gt;    may     0.849 0.0220 24    0.803    0.894 38.528  &lt;.0001 
+#R&gt;    nov     0.698 0.0206 24    0.656    0.741 33.886  &lt;.0001 
+#R&gt;   
+#R&gt;   Results are given on the sqrt (not the response) scale. 
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   
+#R&gt;   $contrasts
+#R&gt;    contrast  estimate     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb - may  -0.0325 0.0277 24  -0.1017   0.0367 -1.172  0.4806 
+#R&gt;    feb - nov   0.1179 0.0266 24   0.0515   0.1843  4.434  0.0005 
+#R&gt;    may - nov   0.1504 0.0302 24   0.0751   0.2257  4.988  0.0001 
+#R&gt;   
+#R&gt;   Note: contrasts are still on the sqrt scale 
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   Conf-level adjustment: tukey method for comparing a family of 3 estimates 
+#R&gt;   P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+</div>
+<p>More importantly if you declare your transformation with <code>tran=</code> then you can use <code>summary()</code> to <strong>appopriately</strong> back-transform the results by including <code>type=&quot;response&quot;</code>. Here, the <code>$emmeans</code> results are back-transformed as the <em>“Intervals are back-transformed from the sqrt scale”</em> note indicates, but you are reminded that the p-values were computed on the transformed scale with the <em>“Tests are performed on the sqrt scale”</em>. The <code>$contrasts</code> results are left on the square root scales as noted with <em>“Note: contrasts are still on the sqrt scale”</em> because <code>emmeans()</code> is smart enough to know that you should not back-transform <em>differences</em> when using a square root transformation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="op">(</span> <span class="va">mcsumbt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mct</span>,infer<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">&quot;response&quot;</span><span class="op">)</span> <span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#R&gt;   $emmeans
+#R&gt;    season response     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb       0.666 0.0275 24    0.610    0.724 48.513  &lt;.0001 
+#R&gt;    may       0.720 0.0374 24    0.645    0.799 38.528  &lt;.0001 
+#R&gt;    nov       0.487 0.0288 24    0.430    0.549 33.886  &lt;.0001 
+#R&gt;   
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   Intervals are back-transformed from the sqrt scale 
+#R&gt;   Tests are performed on the sqrt scale 
+#R&gt;   
+#R&gt;   $contrasts
+#R&gt;    contrast  estimate     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb - may  -0.0325 0.0277 24  -0.1017   0.0367 -1.172  0.4806 
+#R&gt;    feb - nov   0.1179 0.0266 24   0.0515   0.1843  4.434  0.0005 
+#R&gt;    may - nov   0.1504 0.0302 24   0.0751   0.2257  4.988  0.0001 
+#R&gt;   
+#R&gt;   Note: contrasts are still on the sqrt scale 
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   Conf-level adjustment: tukey method for comparing a family of 3 estimates 
+#R&gt;   P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+</div>
+<p> </p>
+<p>The back-transformed means in <code>$emmeans</code> can be used to construct a plot of means as before, but you must realize that the means are now labeled as “response” (look at the last output above) rather than “emmean” (thus you must change <code>y=</code> in <code>geom_pointrange()</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_jitter</span><span class="op">(</span>data<span class="op">=</span><span class="va">opp</span>,mapping<span class="op">=</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">season</span>,y<span class="op">=</span><span class="va">imm</span><span class="op">)</span>,
+              alpha<span class="op">=</span><span class="fl">0.25</span>,width<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_pointrange</span><span class="op">(</span>data<span class="op">=</span><span class="va">mcsumbt</span><span class="op">$</span><span class="va">emmeans</span>,
+                  mapping<span class="op">=</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">season</span>,y<span class="op">=</span><span class="va">response</span>,ymin<span class="op">=</span><span class="va">lower.CL</span>,ymax<span class="op">=</span><span class="va">upper.CL</span><span class="op">)</span>,
+               size<span class="op">=</span><span class="fl">1.1</span>,fatten<span class="op">=</span><span class="fl">2</span>,pch<span class="op">=</span><span class="fl">21</span>,fill<span class="op">=</span><span class="st">&quot;white&quot;</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">labs</span><span class="op">(</span>y<span class="op">=</span><span class="st">&quot;Immunoglobulin Concentration&quot;</span>,x<span class="op">=</span><span class="st">&quot;Season/Month&quot;</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_NCStats</span><span class="op">(</span><span class="op">)</span>
+</code></pre>
+</div>
+<p><img src="data:image/png;base64,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" width="336" style="display: block; margin: auto;" /></p>
+</div>
+<p> </p>
+<p>Now, look at the same results for a log transformation. Once again the results when not using <code>type=&quot;response&quot;</code> show a note reminding you that the results are on the log scale.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="va">opp</span><span class="op">$</span><span class="va">logimm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">opp</span><span class="op">$</span><span class="va">imm</span><span class="op">)</span>
+<span class="va">lm3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">logimm</span><span class="op">~</span><span class="va">season</span>,data<span class="op">=</span><span class="va">opp</span><span class="op">)</span>
+<span class="va">mct</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="op">(</span><span class="va">lm2</span>,specs<span class="op">=</span><span class="va">pairwise</span><span class="op">~</span><span class="va">season</span>,tran<span class="op">=</span><span class="st">&quot;log&quot;</span><span class="op">)</span>
+<span class="op">(</span> <span class="va">mcsumt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mct</span>,infer<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#R&gt;   $emmeans
+#R&gt;    season emmean     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb     0.816 0.0168 24    0.781    0.851 48.513  &lt;.0001 
+#R&gt;    may     0.849 0.0220 24    0.803    0.894 38.528  &lt;.0001 
+#R&gt;    nov     0.698 0.0206 24    0.656    0.741 33.886  &lt;.0001 
+#R&gt;   
+#R&gt;   Results are given on the log (not the response) scale. 
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   
+#R&gt;   $contrasts
+#R&gt;    contrast  estimate     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb - may  -0.0325 0.0277 24  -0.1017   0.0367 -1.172  0.4806 
+#R&gt;    feb - nov   0.1179 0.0266 24   0.0515   0.1843  4.434  0.0005 
+#R&gt;    may - nov   0.1504 0.0302 24   0.0751   0.2257  4.988  0.0001 
+#R&gt;   
+#R&gt;   Results are given on the log (not the response) scale. 
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   Conf-level adjustment: tukey method for comparing a family of 3 estimates 
+#R&gt;   P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
+</div>
+<p>However, when <code>type=&quot;response&quot;</code> is used, the <code>$emmeans</code> portion of the results are back-transformed with a note again saying so. However, the <code>$contrasts</code> portion is now also back-transformed because <code>emmeans()</code> is smart enough to know that it is possible (and useful) to back-transform differences from the log scale. In fact the rows in the <code>$contrasts</code> portion are appropriately labeled as <strong>ratios</strong> to aid your interpretation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class="op">(</span> <span class="va">mcsumbt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mct</span>,infer<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">&quot;response&quot;</span><span class="op">)</span> <span class="op">)</span>
+</code></pre>
+</div>
+<pre><code>#R&gt;   $emmeans
+#R&gt;    season response     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb        2.26 0.0380 24     2.18     2.34 48.513  &lt;.0001 
+#R&gt;    may        2.34 0.0515 24     2.23     2.44 38.528  &lt;.0001 
+#R&gt;    nov        2.01 0.0414 24     1.93     2.10 33.886  &lt;.0001 
+#R&gt;   
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   Intervals are back-transformed from the log scale 
+#R&gt;   Tests are performed on the log scale 
+#R&gt;   
+#R&gt;   $contrasts
+#R&gt;    contrast  ratio     SE df lower.CL upper.CL t.ratio p.value
+#R&gt;    feb / may 0.968 0.0268 24    0.903     1.04 -1.172  0.4806 
+#R&gt;    feb / nov 1.125 0.0299 24    1.053     1.20  4.434  0.0005 
+#R&gt;    may / nov 1.162 0.0351 24    1.078     1.25  4.988  0.0001 
+#R&gt;   
+#R&gt;   Confidence level used: 0.95 
+#R&gt;   Conf-level adjustment: tukey method for comparing a family of 3 estimates 
+#R&gt;   Intervals are back-transformed from the log scale 
+#R&gt;   P value adjustment: tukey method for comparing a family of 3 estimates 
+#R&gt;   Tests are performed on the log scale</code></pre>
+</div>
 <h1 id="corrections" class="appendix">Corrections</h1>
 <p>If you see any errors (code, typographical, or logical) please bring these to <a href="mailto:dogle@northland.edu">my attention</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p>Alternatively, the transformations are listed in order from the transformations that “spread out” the small values the least to those that “spread out” the small values the most.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>In effect, the power transformation is basically linear over short ranges and, thus, is not effective.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p>Box and Cox (1964) provided a statistical and graphical method for identifying the appropriate power transformation for the response variable. The details of this method are beyond the scope of this class but, in general, the method searches for a λ that minimizes SS<sub>within</sub>). A slightly modified Box and Cox approach is implemented in R by sending a <code>lm</code> object to <code>boxcox()</code> from the <code>MASS</code> package.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>This stems from the fact that the back-transformed mean value from the log scale is equal to the geometric mean (i.e., the nth root of the product of n values) of the values on the original scale. The geometric mean is always less than the arithmetic mean (i.e., sum of all values divided by n) and, thus, the back-transformed mean always underestimates the arithmetic mean from the original scale.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>A wide variety of “corrections” for this back-transformation bias have been suggested.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6" role="doc-endnote"><p>This correction is derived from the analysis of normal and log-normal distributional theory.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

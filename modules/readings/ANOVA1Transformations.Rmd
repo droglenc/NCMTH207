@@ -10,6 +10,8 @@ output:
 
 ```{r setup, include=FALSE}
 library(NCStats)
+library(emmeans)
+library(ggplot2)
 knitr::opts_chunk$set(echo=TRUE,message=FALSE,comment="#R>  ",
                       fig.align='center',fig.width=3.5,fig.height=3.5)
 options(show.signif.stars=FALSE)
@@ -220,11 +222,13 @@ Second, when making a conclusion from the One-Way ANOVA p-value, refer to the tr
 
 Third, back-transform estimates (and confidence intervals) for "points". In One-Way ANOVA this means that you should back-transform estimates of means. For example, if the response variable was log-transformed such that the **mean log of Y** was 1.356 then this should be back-transformed to the original scale with e<sup>1.356</sup>=`r formatC(exp(1.356),format="f",digits=3)`. Similarly if the response variable was square-root transformed such that the **mean square-root of Y** was 1.356 then this should be back-transformed to the original scale with 1.356<sup>2</sup>=`r formatC(1.356^2,format="f",digits=3)`.
 
-It is know that back-transforming the mean value on the log scale underestimates the mean value on the original scale.^[This stems from the fact that the back-transformed mean value from the log scale is equal to the geometric mean (i.e., the nth root of the product of n values) of the values on the original scale. The geometric mean is always less than the arithmetic mean (i.e., sum of all values divided by n) and, thus, the back-transformed mean always underestimates the arithmetic mean from the original scale.] The most common^[A wide variety of "corrections" for this back-transformation bias have been suggested.] correction for this back-transformation bias^[This correction is derived from the analysis of normal and log-normal distributional theory.] is to multiply the back-transformed value by $e^{\frac{MS_{Within}}{2}}$. This correction factor can be extracted from the `lm` object with `logbtcf()`.
+<!---
+It is known that back-transforming the mean value on the log scale underestimates the mean value on the original scale.^[This stems from the fact that the back-transformed mean value from the log scale is equal to the geometric mean (i.e., the nth root of the product of n values) of the values on the original scale. The geometric mean is always less than the arithmetic mean (i.e., sum of all values divided by n) and, thus, the back-transformed mean always underestimates the arithmetic mean from the original scale.] The most common^[A wide variety of "corrections" for this back-transformation bias have been suggested.] correction for this back-transformation bias^[This correction is derived from the analysis of normal and log-normal distributional theory.] is to multiply the back-transformed value by $e^{\frac{MS_{Within}}{2}}$. This correction factor can be extracted from the `lm` object with `logbtcf()`.
 
 ```{r}
 logbtcf(lm1)
 ```
+--->
 
 Fourth, do **NOT** back-transform "differences" unless those differences are from a log-transformation. In a One-Way ANOVA this translates into whether or not you can back-transform *differences* in means, as would result from multiple comparisons. For example if the result is a difference in the mean square-root of the response variable between groups then do not back-transform this value as it can **not** be back-transformed to anything meaningful. However, if the result is a difference in mean log of the response variable between groups then this **difference** can (and should) be back-transformed to something meaningful.
 
@@ -241,6 +245,62 @@ Always try the log-transformation first as it allows for meaningful back-transfo
 </aside>
 
 If the log transformation does not work to meet the assumptions of the One-Way ANOVA then you should start with the least strong transformation (i.e., the square root) and successively move through more strong transformations until the assumptions are adequately met.
+
+# Back-Transformations in R
+Transformations and back-transformations will be illustrated more in this module's assignment and in [the next module](ANOVA1Summary.html). However, the `emmeans()` function introduced in [a previous module(ANOVA1MultipleComparisons.html#multiple-comparisons-in-r)] makes back-transformations very easy.
+
+While a transformation was not needed for the New Zealand opossums example, let's suppose for illustrative purposes that a square root transformation was used. First, a square root variable is created and a new ANOVA model with this variable is used.
+
+```{r}
+opp$sqrtimm <- sqrt(opp$imm)
+lm2 <- lm(sqrtimm~season,data=opp)
+anova(lm2)
+```
+
+Multiple comparisons can be created as before, but there is an advantage to telling `emmeans()` that you used a square root transformation with `tran=` as shown below. Here we can see (see the two notes under the `$emmeans` and `$contrasts` portions of the output) that `summary()` reminds you that the results are on the square root scale. This should help you remember to interpret these results on the square root scale.
+
+```{r warning=FALSE, message=FALSE}
+mct <- emmeans(lm2,specs=pairwise~season,tran="sqrt")
+( mcsumt <- summary(mct,infer=TRUE) )
+```
+
+More importantly if you declare your transformation with `tran=` then you can use `summary()` to **appopriately** back-transform the results by including `type="response"`. Here, the `$emmeans` results are back-transformed as the *"Intervals are back-transformed from the sqrt scale"* note indicates, but you are reminded that the p-values were computed on the transformed scale with the *"Tests are performed on the sqrt scale"*. The `$contrasts` results are left on the square root scales as noted with *"Note: contrasts are still on the sqrt scale"* because `emmeans()` is smart enough to know that you should not back-transform *differences* when using a square root transformation.
+
+```{r}
+( mcsumbt <- summary(mct,infer=TRUE,type="response") )
+```
+
+&nbsp;
+
+The back-transformed means in `$emmeans` can be used to construct a plot of means as before, but you must realize that the means are now labeled as "response" (look at the last output above) rather than "emmean" (thus you must change `y=` in `geom_pointrange()`).
+
+```{r}
+ggplot() +
+  geom_jitter(data=opp,mapping=aes(x=season,y=imm),
+              alpha=0.25,width=0.05) +
+  geom_pointrange(data=mcsumbt$emmeans,
+                  mapping=aes(x=season,y=response,ymin=lower.CL,ymax=upper.CL),
+               size=1.1,fatten=2,pch=21,fill="white") +
+  labs(y="Immunoglobulin Concentration",x="Season/Month") +
+  theme_NCStats()
+```
+
+&nbsp;
+
+Now, look at the same results for a log transformation. Once again the results when not using `type="response"` show a note reminding you that the results are on the log scale. 
+
+```{r}
+opp$logimm <- log(opp$imm)
+lm3 <- lm(logimm~season,data=opp)
+mct <- emmeans(lm2,specs=pairwise~season,tran="log")
+( mcsumt <- summary(mct,infer=TRUE) )
+```
+
+However, when `type="response"` is used, the `$emmeans` portion of the results are back-transformed with a note again saying so. However, the `$contrasts` portion is now also back-transformed because `emmeans()` is smart enough to know that it is possible (and useful) to back-transform differences from the log scale. In fact the rows in the `$contrasts` portion are appropriately labeled as **ratios** to aid your interpretation.
+
+```{r}
+( mcsumbt <- summary(mct,infer=TRUE,type="response") )
+```
 
 
 # Corrections {.appendix}

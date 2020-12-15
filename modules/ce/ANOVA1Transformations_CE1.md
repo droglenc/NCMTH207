@@ -20,11 +20,19 @@ Create a new variable in the data frame that is the appropriately transformed re
 
 {:start="2"}
 1. Is there a significant difference in the groups means of the transformed data?
+
+Perform multiple comparisons on the transformed scale (i.e., use `tran=` appropriately in `emmeans()`, but don't use `type="response"` in `summary()` of the `emmeans()` object). Use these results to answer the questions below.
+
+{:start="3"}
 1. Specifically which group means (of transformed data) differ?
-1. Interpret the mean of the first group from the `emmeans()` results.
-1. Back-transform the mean of the first group. Interpret this value.
-1. Interpret the first difference of paired means from the `emmeans()` results.
-1. Back-transform the first difference of paired means from the `emmeans()` results. Interpret this value.
+1. Interpret the first group mean (i.e., from the `$emmeans` results).
+1. Interpret the first difference of paired means (i.e., from the `$contrasts` results).
+
+Back-transform the multiple comparisons results (i.e., use `type="response"` in `summary()` of the `emmeans()` object). Use these results to answer the questions below.
+
+{:start="6"}
+1. Interpret the first back-transformed group mean (i.e., from the `$emmeans` results).
+1. Interpret the first back-transformed difference of paired means (i.e., from the `$contrasts` results).
 
 &nbsp;
 
@@ -35,13 +43,18 @@ In [a previous exercise](ANOVA1Assumptions_CE1.html#assumptions-ii) you assessed
 
 Create a new variable in the data frame that is the appropriately transformed response variable. Fit a new One-Way ANOVA with this transformed variable. Use it to answer the following questions.
 
-{:start="2"}
-1. Is there a significant difference in the groups means of the transformed data?
+Perform multiple comparisons on the transformed scale). Use these results to answer the questions below.
+
+{:start="3"}
 1. Specifically which group means (of transformed data) differ?
-1. Interpret the largest group mean in the `emmeans()` results.
-1. Back-transform the largest group mean. Interpret this value.
-1. Interpret the paired means from the `emmeans()` results that are most different.
-1. Back-transform the most different difference of paired means from the `emmeans()` results. Interpret this value.
+1. Interpret the first group mean.
+1. Interpret the first difference of paired means.
+
+Back-transform the multiple comparisons results. Use these results to answer the questions below.
+
+{:start="6"}
+1. Interpret the first back-transformed group mean.
+1. Interpret the first back-transformed difference of paired means.
 
 &nbsp;
 
@@ -56,7 +69,7 @@ Create a new variable in the data frame that is the appropriately transformed re
 {:start="2"}
 1. Is there a significant difference in the groups means of the transformed data?
 1. Specifically which group means (of transformed data) differ?
-1. Interpret the smallest group mean in the `emmeans()` results.
-1. Back-transform the smallest group mean. Interpret this value.
-1. Interpret the paired means from the `emmeans()` results that are most different.
-1. Back-transform the most different difference of paired means from the `emmeans()` results. Interpret this value.
+1. Interpret (on the transformed scale) the smallest group mean.
+1. Interpret (on the transformed scale) the difference in means for the paired means that are most different.
+1. Interpret the small back-transformed group mean.
+1. Interpret the back-transform difference in group means for paired means that are most different.
