@@ -1,0 +1,167 @@
+---
+title: Exercise
+subtitle: Two-Way ANOVA Conceptual Foundations
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 4.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/CE/")
+source("../../rhelpers/rhelpers.R")
+modHTML("ANOVA2Foundations1_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(ggplot2)
+source("../../rhelpers/knitr_setup.R")
+clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")
+```
+
+<div class="alert alert-warning">
+  <strong>Note</strong> Your answers to the questions below should follow the <a href="../../resources/hwformat" target="_blank">expectations for homework found here</a>. Due date is on the <a href="../../resources/Dates-Current" target="_blank">Dates page.</a>
+</div>
+
+----
+
+# Design of a Two-Factor Experiment
+<img src="../zimgs/stirring.jpg" alt="Decoration" class="img-right">
+A chemical engineer is designing the production process for a new product. The chemical reaction that produces the product may have higher or lower yield, depending on the temperature and stirring rate in the vessel in which the reaction takes place. The engineer decides to investigate the effect on yield of three temperatures (50<sup>o</sup>C, 55<sup>o</sup>C, and 60<sup>o</sup>C) and three stirring rates (60, 90, and 120 rpm). A new vessel should be used for each production and only 30 vessels exist. Help the engineer set up this experiment by answering the questions below.
+
+1. What is the response variable?
+1. What are the factors (list all of them)?
+1. How many levels are there (list in same order as you listed factors)?
+1. How many treatments are there?
+1. How many replicates are there?
+1. Physically, what is a replicate (i.e., not a number)?
+1. Identify the individuals that will receive each treatment. Show your R work.[^sample]
+
+&nbsp;
+
+# Means Table and Interaction Plot
+
+The table below represents the group or treatment means created from two factors. Use this information to answer the questions below.
+
+```{r echo=FALSE}
+tmp <- data.frame(A=c(50,40),
+                  B=c(50,45),
+                  C=c(35,30),
+                  D=c(40,45))
+rownames(tmp) <- c("W","Z")
+knitr::kable(tmp,booktab=TRUE) %>%
+  kableExtra::kable_classic(full_width=FALSE)
+```
+
+1. Hand draw an interaction plot with the factor that has levels A-D on the x-axis.
+1. Hand draw an interaction plot with the factor that has levels W and Z o the x-axis.
+
+&nbsp;
+
+# Interaction and Main Effects
+For each interaction plot below determine which effects (interaction, factor A main, or factor B main) are illustrated. Provide a short explanation for each of your answers (i.e., how did you come to your conclusions).
+
+(@) Figure 1.
+
+```{r echo=FALSE}
+tmp1 <- tibble(fA=rep(c("A","B","C"),each=3),
+               fB=rep(c("V","W","Z"),3),
+               resp=c(3.5,2.5,1.5,3,2,1,2,1,0))
+intplot1 <- ggplot(data=tmp1,mapping=aes(x=fA,y=resp,color=fB,group=fB)) +
+  geom_path(size=1.1) +
+  geom_point(size=2.5,pch=21,fill="white") +
+  scale_color_manual(values=clrs[c(1,2,6)],name="Factor B") +
+  labs(x="Factor A",y="Mean Response") +
+  theme_NCStats() +
+  theme(axis.text.y=element_blank())
+intplot1
+```
+
+(@) Figure 2.
+
+```{r echo=FALSE}
+tmp2 <- tibble(fA=rep(c("A","B","C"),each=3),
+               fB=rep(c("V","W","Z"),3),
+               resp=c(3.5,1.5,3.47,3.5,1.5,3.47,3.5,1.5,3.47))
+intplot1 %+% tmp2
+```
+
+(@) Figure 3.
+
+```{r echo=FALSE}
+tmp3 <- tibble(fA=rep(c("A","B","C"),each=3),
+               fB=rep(c("V","W","Z"),3),
+               resp=c(3.0,1.5,3.5,1.25,3.0,1.0,3.0,1.5,3.5))
+intplot1 %+% tmp3
+```
+
+(@) Figure 4.
+
+```{r echo=FALSE}
+tmp4 <- tibble(fA=rep(c("A","B","C"),each=2),
+               fB=rep(c("W","Z"),3),
+               resp=c(2.5,1.5,3.0,2.0,2.25,1.25))
+intplot1 %+% tmp4
+```
+
+(@) Figure 5.
+
+```{r echo=FALSE}
+tmp5 <- tibble(fA=rep(c("A","B"),each=3),
+               fB=rep(c("V","W","Z"),2),
+               resp=c(2.5,3.0,2.25,1.5,2.0,1.25))
+intplot1 %+% tmp5
+```
+
+(@) Figure 6.
+
+```{r echo=FALSE}
+tmp6 <- tibble(fA=rep(c("A","B"),each=3),
+               fB=rep(c("V","W","Z"),2),
+               resp=c(2.5,1.5,2.25,3.0,3.0,3.0))
+intplot1 %+% tmp6
+```
+
+&nbsp;
+
+# Means Tables
+Below are three means tables that each corresponds to one of the figures in the previous questions. For each table, identify which figure above that it corresponds to.
+
+```{r echo=FALSE}
+tmp5w <- tidyr::pivot_wider(tmp5,names_from=fB,values_from=resp) %>%
+  select(-fA) %>%
+  as.data.frame()
+rownames(tmp5w) <- c("A","B")
+
+knitr::kable(tmp5w,booktabs=TRUE,caption="Table 1.") %>%
+  kableExtra::kable_classic(full_width=FALSE)
+```
+
+```{r echo=FALSE}
+tmp2w <- tidyr::pivot_wider(tmp2,names_from=fB,values_from=resp) %>%
+  select(-fA) %>%
+  as.data.frame()
+rownames(tmp2w) <- c("A","B","C")
+
+knitr::kable(tmp2w,booktabs=TRUE,caption="Table 2.") %>%
+  kableExtra::kable_classic(full_width=FALSE)
+```
+
+```{r echo=FALSE}
+tmp6w <- tidyr::pivot_wider(tmp6,names_from=fB,values_from=resp) %>%
+  select(-fA) %>%
+  as.data.frame()
+rownames(tmp6w) <- c("A","B")
+
+knitr::kable(tmp6w,booktabs=TRUE,caption="Table 3.") %>%
+  kableExtra::kable_classic(full_width=FALSE)
+```
+
+
+[^sample]: Note that `sample(n)` where `n` is replaced with a number will randomly "jumble" n numbers.

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Derek H. Ogle" />
+
+
+<title>Exercise</title>
+
+<script src="ANOVA2Foundations1_CE1_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="ANOVA2Foundations1_CE1_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="ANOVA2Foundations1_CE1_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="ANOVA2Foundations1_CE1_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="ANOVA2Foundations1_CE1_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="ANOVA2Foundations1_CE1_files/navigation-1.1/tabsets.js"></script>
+<link href="ANOVA2Foundations1_CE1_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="ANOVA2Foundations1_CE1_files/highlightjs-9.12.0/highlight.js"></script>
+<link href="ANOVA2Foundations1_CE1_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="ANOVA2Foundations1_CE1_files/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="ANOVA2Foundations1_CE1_files/kePrint-0.0.1/kePrint.js"></script>
+<link href="ANOVA2Foundations1_CE1_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="/css/modules.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Exercise</h1>
+<h3 class="subtitle">Two-Way ANOVA Conceptual Foundations</h3>
+<h4 class="author">Derek H. Ogle</h4>
+
+</div>
+
+
+<div class="alert alert-warning">
+<p><strong>Note</strong> Your answers to the questions below should follow the <a href="../../resources/hwformat" target="_blank">expectations for homework found here</a>. Due date is on the <a href="../../resources/Dates-Current" target="_blank">Dates page.</a></p>
+</div>
+<hr />
+<div id="design-of-a-two-factor-experiment" class="section level1">
+<h1>Design of a Two-Factor Experiment</h1>
+<p><img src="../zimgs/stirring.jpg" alt="Decoration" class="img-right"> A chemical engineer is designing the production process for a new product. The chemical reaction that produces the product may have higher or lower yield, depending on the temperature and stirring rate in the vessel in which the reaction takes place. The engineer decides to investigate the effect on yield of three temperatures (50<sup>o</sup>C, 55<sup>o</sup>C, and 60<sup>o</sup>C) and three stirring rates (60, 90, and 120 rpm). A new vessel should be used for each production and only 30 vessels exist. Help the engineer set up this experiment by answering the questions below.</p>
+<ol style="list-style-type: decimal">
+<li>What is the response variable?</li>
+<li>What are the factors (list all of them)?</li>
+<li>How many levels are there (list in same order as you listed factors)?</li>
+<li>How many treatments are there?</li>
+<li>How many replicates are there?</li>
+<li>Physically, what is a replicate (i.e., not a number)?</li>
+<li>Identify the individuals that will receive each treatment. Show your R work.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+</ol>
+<p> </p>
+</div>
+<div id="means-table-and-interaction-plot" class="section level1">
+<h1>Means Table and Interaction Plot</h1>
+<p>The table below represents the group or treatment means created from two factors. Use this information to answer the questions below.</p>
+<table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+A
+</th>
+<th style="text-align:right;">
+B
+</th>
+<th style="text-align:right;">
+C
+</th>
+<th style="text-align:right;">
+D
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+W
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Z
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+45
+</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>Hand draw an interaction plot with the factor that has levels A-D on the x-axis.</li>
+<li>Hand draw an interaction plot with the factor that has levels W and Z o the x-axis.</li>
+</ol>
+<p> </p>
+</div>
+<div id="interaction-and-main-effects" class="section level1">
+<h1>Interaction and Main Effects</h1>
+<p>For each interaction plot below determine which effects (interaction, factor A main, or factor B main) are illustrated. Provide a short explanation for each of your answers (i.e., how did you come to your conclusions).</p>
+<ol class="example" style="list-style-type: decimal">
+<li>Figure 1.</li>
+</ol>
+<p><img src="ANOVA2Foundations1_CE1_files/figure-html/unnamed-chunk-4-1.png" width="432" /></p>
+<ol start="2" class="example" style="list-style-type: decimal">
+<li>Figure 2.</li>
+</ol>
+<p><img src="ANOVA2Foundations1_CE1_files/figure-html/unnamed-chunk-5-1.png" width="432" /></p>
+<ol start="3" class="example" style="list-style-type: decimal">
+<li>Figure 3.</li>
+</ol>
+<p><img src="ANOVA2Foundations1_CE1_files/figure-html/unnamed-chunk-6-1.png" width="432" /></p>
+<ol start="4" class="example" style="list-style-type: decimal">
+<li>Figure 4.</li>
+</ol>
+<p><img src="ANOVA2Foundations1_CE1_files/figure-html/unnamed-chunk-7-1.png" width="432" /></p>
+<ol start="5" class="example" style="list-style-type: decimal">
+<li>Figure 5.</li>
+</ol>
+<p><img src="ANOVA2Foundations1_CE1_files/figure-html/unnamed-chunk-8-1.png" width="432" /></p>
+<ol start="6" class="example" style="list-style-type: decimal">
+<li>Figure 6.</li>
+</ol>
+<p><img src="ANOVA2Foundations1_CE1_files/figure-html/unnamed-chunk-9-1.png" width="432" /></p>
+<p> </p>
+</div>
+<div id="means-tables" class="section level1">
+<h1>Means Tables</h1>
+<p>Below are three means tables that each corresponds to one of the figures in the previous questions. For each table, identify which figure above that it corresponds to.</p>
+<table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<caption>
+Table 1.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+V
+</th>
+<th style="text-align:right;">
+W
+</th>
+<th style="text-align:right;">
+Z
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1.25
+</td>
+</tr>
+</tbody>
+</table>
+<table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<caption>
+Table 2.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+V
+</th>
+<th style="text-align:right;">
+W
+</th>
+<th style="text-align:right;">
+Z
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+3.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+3.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+3.47
+</td>
+</tr>
+</tbody>
+</table>
+<table class=" lightable-classic" style='font-family: "Arial Narrow", "Source Sans Pro", sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+<caption>
+Table 3.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+V
+</th>
+<th style="text-align:right;">
+W
+</th>
+<th style="text-align:right;">
+Z
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+2.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Note that <code>sample(n)</code> where <code>n</code> is replaced with a number will randomly “jumble” n numbers.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
