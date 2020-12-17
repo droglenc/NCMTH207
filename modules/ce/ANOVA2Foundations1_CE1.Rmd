@@ -56,7 +56,7 @@ tmp <- data.frame(A=c(50,40),
                   D=c(40,45))
 rownames(tmp) <- c("W","Z")
 knitr::kable(tmp,booktab=TRUE) %>%
-  kableExtra::kable_classic(full_width=FALSE)
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
 
 1. Hand draw an interaction plot with the factor that has levels A-D on the x-axis.
@@ -67,7 +67,7 @@ knitr::kable(tmp,booktab=TRUE) %>%
 # Interaction and Main Effects
 For each interaction plot below determine which effects (interaction, factor A main, or factor B main) are illustrated. Provide a short explanation for each of your answers (i.e., how did you come to your conclusions).
 
-(@) Figure 1.
+1. Figure 1.
 
 ```{r echo=FALSE}
 tmp1 <- tibble(fA=rep(c("A","B","C"),each=3),
@@ -83,7 +83,8 @@ intplot1 <- ggplot(data=tmp1,mapping=aes(x=fA,y=resp,color=fB,group=fB)) +
 intplot1
 ```
 
-(@) Figure 2.
+{:start="2"}
+1. Figure 2.
 
 ```{r echo=FALSE}
 tmp2 <- tibble(fA=rep(c("A","B","C"),each=3),
@@ -92,7 +93,8 @@ tmp2 <- tibble(fA=rep(c("A","B","C"),each=3),
 intplot1 %+% tmp2
 ```
 
-(@) Figure 3.
+{:start="2"}
+1. Figure 3.
 
 ```{r echo=FALSE}
 tmp3 <- tibble(fA=rep(c("A","B","C"),each=3),
@@ -101,7 +103,8 @@ tmp3 <- tibble(fA=rep(c("A","B","C"),each=3),
 intplot1 %+% tmp3
 ```
 
-(@) Figure 4.
+{:start="4"}
+1. Figure 4.
 
 ```{r echo=FALSE}
 tmp4 <- tibble(fA=rep(c("A","B","C"),each=2),
@@ -110,7 +113,8 @@ tmp4 <- tibble(fA=rep(c("A","B","C"),each=2),
 intplot1 %+% tmp4
 ```
 
-(@) Figure 5.
+{:start="5"}
+1. Figure 5.
 
 ```{r echo=FALSE}
 tmp5 <- tibble(fA=rep(c("A","B"),each=3),
@@ -119,7 +123,8 @@ tmp5 <- tibble(fA=rep(c("A","B"),each=3),
 intplot1 %+% tmp5
 ```
 
-(@) Figure 6.
+{:start="6"}
+1. Figure 6.
 
 ```{r echo=FALSE}
 tmp6 <- tibble(fA=rep(c("A","B"),each=3),
@@ -140,7 +145,7 @@ tmp5w <- tidyr::pivot_wider(tmp5,names_from=fB,values_from=resp) %>%
 rownames(tmp5w) <- c("A","B")
 
 knitr::kable(tmp5w,booktabs=TRUE,caption="Table 1.") %>%
-  kableExtra::kable_classic(full_width=FALSE)
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
 
 ```{r echo=FALSE}
@@ -150,7 +155,7 @@ tmp2w <- tidyr::pivot_wider(tmp2,names_from=fB,values_from=resp) %>%
 rownames(tmp2w) <- c("A","B","C")
 
 knitr::kable(tmp2w,booktabs=TRUE,caption="Table 2.") %>%
-  kableExtra::kable_classic(full_width=FALSE)
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
 
 ```{r echo=FALSE}
@@ -160,7 +165,7 @@ tmp6w <- tidyr::pivot_wider(tmp6,names_from=fB,values_from=resp) %>%
 rownames(tmp6w) <- c("A","B")
 
 knitr::kable(tmp6w,booktabs=TRUE,caption="Table 3.") %>%
-  kableExtra::kable_classic(full_width=FALSE)
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
 
 
