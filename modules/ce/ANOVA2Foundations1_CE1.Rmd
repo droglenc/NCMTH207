@@ -60,7 +60,7 @@ knitr::kable(tmp,booktab=TRUE) %>%
 ```
 
 1. Hand draw an interaction plot with the factor that has levels A-D on the x-axis.
-1. Hand draw an interaction plot with the factor that has levels W and Z o the x-axis.
+1. Hand draw an interaction plot with the factor that has levels W and Z on the x-axis.
 
 &nbsp;
 
