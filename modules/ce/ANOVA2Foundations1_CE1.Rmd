@@ -146,7 +146,7 @@ intplot1 %+% tmp6
 Below are three means tables that each corresponds to one of the figures in the previous questions. For each table, identify which figure above that it corresponds to.
 
 <ol>
-  <li>Table 1. &#8628;</li>
+  <li>Table 1. <span style="font-size:200%">&#8628;</span></li>
 </ol>
 
 ```{r echo=FALSE}
@@ -158,6 +158,8 @@ rownames(tmp5w) <- c("A","B")
 knitr::kable(tmp5w,booktabs=TRUE) %>%
   kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
+
+&nbsp;
 
 <ol start="2">
   <li>Table 2. &#8628;</li>
@@ -172,6 +174,8 @@ rownames(tmp2w) <- c("A","B","C")
 knitr::kable(tmp2w,booktabs=TRUE) %>%
   kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
+
+&nbsp;
 
 <ol start="3">
   <li>Table 3. &#8628;</li>
