@@ -33,7 +33,7 @@ clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")
 
 # Design of a Two-Factor Experiment
 <img src="../zimgs/stirring.jpg" alt="Decoration" class="img-right">
-A chemical engineer is designing the production process for a new product. The chemical reaction that produces the product may have higher or lower yield, depending on the temperature and stirring rate in the vessel in which the reaction takes place. The engineer decides to investigate the effect on yield of three temperatures (50<sup>o</sup>C, 55<sup>o</sup>C, and 60<sup>o</sup>C) and three stirring rates (60, 90, and 120 rpm). A new vessel should be used for each production and only 30 vessels exist. Help the engineer set up this experiment by answering the questions below.
+A chemical engineer is designing the production process for a new product. The chemical reaction that produces the product may have higher or lower yield, depending on the temperature and stirring rate in the vessel in which the reaction takes place. The engineer decides to investigate the effect on yield of three temperatures (50<sup>o</sup>C, 55<sup>o</sup>C, and 60<sup>o</sup>C) and three stirring rates (60, 90, and 120 rpm). A new vessel should be used for each production and only 36 vessels exist. Help the engineer set up this experiment by answering the questions below.
 
 1. What is the response variable?
 1. What are the factors (list all of them)?

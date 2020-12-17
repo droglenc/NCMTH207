@@ -1,0 +1,98 @@
+---
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA Conceptual Foundations"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ANOVA2Foundations1_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>XXX</li>
+  </ol>
+</ul>
+</div>
+
+----
+
+# Design of a Two-Factor Experiment
+1. The response variable is yield of the product.
+1. The factors are temperature and stirring rates.
+1. There are three levels of temperature and three levels of stirring rates.
+1. There are nine (=3&times;3) treatments.
+1. There are 4 replicates (=$\frac{36}{9}$).
+1. A replicate is a "vessel" in which the product will be heated and stirred.
+1. I would use `sample(36)` and select the first four numbers for the first treatment, the second four numbers for the second treatment, and so on.
+
+# Means Table and Interaction Plot
+The interaction plots should look like the following.
+
+```{r echo=FALSE, fig.width=7, fig.height=3, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(patchwork)
+clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")
+tmp <- data.frame(fB=c("W","Z"),
+                  A=c(50,40),
+                  B=c(50,45),
+                  C=c(35,30),
+                  D=c(40,45))
+tmp <- tidyr::pivot_longer(tmp,cols=A:D,names_to="fA",values_to="resp")
+intplot1 <- ggplot(data=tmp,mapping=aes(x=fA,y=resp,color=fB,group=fB)) +
+  geom_path(size=1.1) +
+  geom_point(size=2.5,pch=21,fill="white") +
+  scale_color_manual(values=clrs[c(1,2,6)],name="Factor B") +
+  labs(x="Factor A",y="Mean Response") +
+  theme_NCStats() +
+  theme(axis.text.y=element_blank())
+intplot2 <- ggplot(data=tmp,mapping=aes(x=fB,y=resp,color=fA,group=fA)) +
+  geom_path(size=1.1) +
+  geom_point(size=2.5,pch=21,fill="white") +
+  scale_color_manual(values=clrs[c(1,2,4,6)],name="Factor A") +
+  labs(x="Factor B",y="Mean Response") +
+  theme_NCStats() +
+  theme(axis.text.y=element_blank())
+
+intplot1 + intplot2
+```
+
+# Interaction and Main Effects
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+<li>Make sure that you comment about each type of effect (interaction, row factor,  and column factor) even if that effect is not evident. In other words, explicitly state that there is no effect if there is no effect; don't just leave that effect absent from your answer.</li>
+<li>If there is an interaction effect, do NOT say that there is "no main effects." Rather say that the "main effects cannot be assessed because of the interaction effect."</li>
+<li> The "lines" do not have to intersect to represent an interaction, they simply do not "track together." Imagine "lines" that start near the same point but one goes up and the other goes down. They don't intersect but they certainly don't track together.
+<li>Pay close attention to my descriptions below. Come see me if they do not make sense to you.</li>
+</ul>
+</div>
+
+1. There is NO interaction effect because all "lines" "track together." There is a factor A main effect because all "lines" are not horizontal (implying a difference in factor A level means). There is a factor B main effect because all "lines" are not on top of each other (implying a difference in factor B level means).
+1. There is NO interaction effect because all "lines" "track together." There is a not a factor A main effect because all "lines" are horizontal (implying no difference in factor A level means). There is a factor B main effect because all "lines" are not on top of each other (implying that the factor B level means are not equal).
+1. There IS an interaction effect because the "lines" do not "track together" (in fact they intersect). I will not comment on the main effects because of the presence of the interaction effect.
+1. There is NO interaction effect because all "lines" "track together." There is a factor A main effect because all "lines" are not horizontal (implying a difference in factor A level means). There is a factor B main effect because all "lines" are not on top of each other (implying a difference in factor B level means).
+1. There is NO interaction effect because all "lines" "track together." There is a factor A main effect because all "lines" are not horizontal (implying a difference in factor A level means). There is a factor B main effect because all "lines" are not on top of each other (implying a difference in factor B level means).
+1. There IS an interaction effect because the "lines" do not "track together" (in fact they intersect). I will not comment on the main effects because of the presence of the interaction effect.
+
+# Means Tables
+1. Table 1 corresponds to Figure 5. It has to be Figure 5 or 6 because those are the only figures with only two levels for Factor A. The means in row "A" and row "B" "track together" implying no interactions as seen in Figure 5.
+1. Table 2 corresponds to Figure 2. Table 2 has the same values in each row for each column, but the columns differ. This implies no interaction effect, a Factor A ("A", "B", "C") effect, but no Factor B ("V","W","Z") effect. This corresponds to Figure 2.
+1. Table 3 corresponds to Figure 6. See reasoning for Table 1 (but noting that this table shows an interaction) and noting that all three values for the "B" row are equal.
