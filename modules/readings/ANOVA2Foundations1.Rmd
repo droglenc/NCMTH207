@@ -194,6 +194,8 @@ noint2 + noint3
 
 In Figure \@ref(fig:TadpoleNoInteraction2)-Right, there is no main effect of tadpole density as the mean body mass at each density within each UV-B light level is the same; i.e., mean body mass does not differ by density. However, there is a UV-B light main effect as mean body mass at the high UV-B light intensity is always^[For each density.] greater than mean body mass at the low UV-B light intensity.
 
+As a reminder, only assess main effects if there is no interaction effect. Visually a main effect of the factor shown on the x-axis will be evident if the lines connecting the means are *not* horizontal (i.e., the means differ). In contrast, a main effect of the factor not shown on the x-axis (but shown as a legend) will be evident if the lines connecting the means are *not* right on top of each other.
+
 &nbsp;
 
 # Advantages of CCFD
