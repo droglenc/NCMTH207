@@ -21,4 +21,4 @@ Use the preparation readings and videos to prepare written answers for the follo
 1. What does no interaction effect look like on an interaction plot.
 1. Define "main effect."
 1. What must you consider before identifying main effects.
-1. What are two advantages of a CCFD over an OFAT? Thoroughly escribe the importance of each advantage.
+1. What are two advantages of a CCFD over an OFAT? Thoroughly describe the importance of each advantage.
