@@ -12,7 +12,7 @@ Use the preparation readings and videos to prepare written answers for the follo
 </div>
 
 1. Define *factor*, *levels*, *treatments*, and *replicates*. [Note that you may need to refer to [your "Data Production"" chapter from your introductory statistics course.](http://derekogle.com/NCMTH107/modules/DataProduction.html)
-1. Define each of the following symbols -- $a$, $b$, $m$, $i$, $j$, and $k$.
+1. Define each of the following symbols -- *a*, *b*, *m*, *i*, *j*, and *k*.
 1. What generic symbols are used for each of the following:
     1. Observed response variable for an individual.
     1. Grand mean
