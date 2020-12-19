@@ -1,0 +1,94 @@
+---
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA Analytical Foundations"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ANOVA2Foundations2_CE1_Cattails")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+options(show.signif.stars=FALSE,knitr.kable.NA = '')
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>The key is to construct a table of means similar to what is shown in the R code as `mns`. Then SS<sub>habitat</sub>, SS<sub>year</sub> and SS<sub>Among</sub> are computed by following the SS<sub>A</sub>, SS<sub>B</sub> and SS<sub>Among</sub> formulae from the reading. The SS<sub>A:B</sub> is then found by subtracting both SS<sub>habitat</sub> and SS<sub>year</sub> from SS<sub>Among</sub>. The SS<sub>Within</sub> is found by subtracting SS<sub>Among</sub> from SS<sub>Total</sub>. All degrees-of-freedom are found by formulae in the reading, noting that a=2, b=2 and m=25. The MS, F (but note that the denominator is always MS<sub>Within</sub>), and p-values are found as usual.</li>
+  <li>I did this in R just for fun (you did not have to use R except for the p-values).</li>
+</ul>
+</div>
+
+# ANOVA Table
+```{r calcs, echo=FALSE, results="hide"}
+library(NCStats)
+
+tmns <- matrix(c(75.45,83.98,74.46,80.70),byrow=FALSE,nrow=2)
+mns <- addmargins(tmns,FUN=mean,quiet=TRUE)
+colnames(mns) <- c("far","near","year")
+rownames(mns) <- c("2015","2016","habitat")
+mns <- round(mns,2)
+mns
+
+a <- b <- 2
+m <- 25
+ssyear <- a*m*sum((mns[1:2,3]-mns[3,3])^2)
+sshab <- b*m*sum((mns[3,1:2]-mns[3,3])^2)
+ssamong <- m*sum((mns[1:2,1:2]-mns[3,3])^2)
+ssint <- ssamong-sshab-ssyear
+sstotal <- 20227.3
+sswithin <- sstotal-ssamong
+dfamong <- a*b-1
+dfyear <- a-1
+dfhab <- b-1
+dfint <- dfamong-dfhab-dfyear
+dftotal <- a*b*m-1
+dfwithin <- dftotal-dfamong
+ss <- c(ssamong,ssyear,sshab,ssint,sswithin)
+df <- c(dfamong,dfyear,dfhab,dfint,dfwithin)
+ms <- ss/df
+F <- ms[-length(ms)]/ms[length(ms)]
+```
+```{r calcp, echo=FALSE, eval=FALSE}
+distrib(F[1],df1=df[1],df2=df[5],distrib="f",lower.tail=FALSE)
+distrib(F[2],df1=df[2],df2=df[5],distrib="f",lower.tail=FALSE)
+distrib(F[3],df1=df[3],df2=df[5],distrib="f",lower.tail=FALSE)
+distrib(F[4],df1=df[4],df2=df[5],distrib="f",lower.tail=FALSE)
+```
+
+<ol>
+  <li>Completed table shown below. Calculations shown in the R Code and Results appendix.</li>
+</ol>
+
+```{r AOVtbl, echo=FALSE}
+p <- pf(F,df1=df[-length(df)],df2=df[length(df)],lower.tail=FALSE)
+tbl <- cbind(c(df,dftotal),c(ss,sstotal),c(ms,NA),c(F,NA,NA),c(p,NA,NA))
+colnames(tbl) <- c("df","SS","MS","F","p")
+rownames(tbl) <- c("Among","Year","Habitat","Year:Habitat","Within","Total")
+knitr::kable(tbl,digits=c(0,1,1,3,4),booktab=TRUE) %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+<ol start="2">
+  <li>There is no evidence for an interaction effect (`r kPvalue(tbl[4,"p"],latex=FALSE)`). There is also no evidence for a "habitat" main effect (`r kPvalue(tbl[3,"p"],latex=FALSE)`). However, there is evidence for a "year" main effect (`r kPvalue(tbl[2,"p"],latex=FALSE)`).</li>
+</ol>
+
+### R Code and Results
+```{r fig.show="hide"}
+<<calcs>>
+<<calcp>>
+```

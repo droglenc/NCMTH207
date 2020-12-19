@@ -23,7 +23,7 @@ Density   2015    far        25      75.45      75.15      14.76
                   near       25      80.70      79.15      14.20
 </pre>
 
-1. Use these result to complete the ANOVA table below. This question can be hand-written, but clearly show your work for all calculations. Keep one decimal for SS and MS, two decimals for F, and four decimals for p-values.
+1. Use these result to complete the ANOVA table below. This question can be hand-written, but clearly show your work for all calculations. Keep one decimal for SS and MS, three decimals for F, and four decimals for p-values.
 
 Source     | df | SS | MS | F  | p-value
 :----------|--------:|--------:|--------:|--------:|--------:
@@ -47,8 +47,8 @@ Source     | df | SS | MS | F  | p-value
 <ol>
   <li>Think about what type of means are shown in the table of results above (grand mean, level means, or treatment means).</li>
   <li>Identify values for <i>a</i>, <i>b</i>, and <i>m</i> and then use the formulae provide in the reading to calculate all degrees-of-freedom.</li>
-  <li>Construct a 2x2 table (Year as rows, Habitat as columns) of treatment means and then append the level means and grand mean in the margins. Note that level (and grand) means are simply the mean of treatments means when the sample sizes in the treatments are equal, as they are in this example.</li>
+  <li>Construct a 2x2 table (Year as rows, Habitat as columns) of treatment means and then append the level means and grand mean in the margins. Note that level (and grand) means are simply the mean of treatments means when the sample sizes in the treatments are equal, as they are in this example. Save two decimals for the levels means and grand mean that you calculate.</li>
   <li>Use the definitions of <i>a</i>, <i>b</i>, and <i>m</i>, and your table of means to compute SS<sub>among</sub>, SS<sub>row</sub>, and SS<sub>column</sub> according to formulae provided in the reading. Compute the remaining SS with simple addition and subtraction (from principles of how SS partition).</li>
-  <li>No functions, beyond using `distrib()` to calculate p-values, will be useful for these calculations.</li>
+  <li>No functions, beyond using <pre>distrib()</pre> to calculate p-values, will be useful for these calculations.</li>
 </ol>
 </div>

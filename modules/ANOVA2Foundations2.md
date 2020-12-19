@@ -29,11 +29,11 @@ XXX
 ## Preparation for Class
 Use the resources below to answer [these questions](prep/ANOVA2Foundations2). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~6 pages)
+* **Primary Resources** (~8 pages)
   * [Reading](readings/ANOVA2Foundations2){:target="_blank"}
 
 ----
 
 ## Practice
 
-* [Assignment](ce/ANOVA2Foundations2_CE1) ... [ANSWER KEY](cex/KEY_ANOVA2Foundations2_CE)
+* [Assignment](ce/ANOVA2Foundations2_CE1_Cattail) ... [ANSWER KEY](cex/KEY_ANOVA2Foundations2_CE1_Cattail)
