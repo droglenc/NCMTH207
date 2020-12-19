@@ -23,7 +23,7 @@ Density   2015    far        25      75.45      75.15      14.76
                   near       25      80.70      79.15      14.20
 </pre>
 
-1. Use these result to complete the ANOVA table below. This question can be hand-written, but clearly show your work for all calculations.
+1. Use these result to complete the ANOVA table below. This question can be hand-written, but clearly show your work for all calculations. Keep one decimal for SS and MS, two decimals for F, and four decimals for p-values.
 
 Source     | df | SS | MS | F  | p-value
 :----------|--------:|--------:|--------:|--------:|--------:
@@ -33,6 +33,8 @@ Source     | df | SS | MS | F  | p-value
 &nbsp;&nbsp; **Year:Habitat**  |    |    |    |    |
 **Within** |    |    |    | xxx | xxx
 **Total**  |    | 20227.3 | xxx | xxx | xxx
+
+&nbsp;
 
 {:start="2"}
 1. What type of effects are evident (i.e., significant) in these results.
@@ -44,9 +46,9 @@ Source     | df | SS | MS | F  | p-value
 <strong>Hints:</strong>
 <ol>
   <li>Think about what type of means are shown in the table of results above (grand mean, level means, or treatment means).
-  <li>Identify values for *a*, *b*, and *m* and then use the formulae provide in the reading to calculate all degrees-of-freedom.</li>
+  <li>Identify values for <emph>a</emph>, <emph>b</emph>, and <emph>m</emph> and then use the formulae provide in the reading to calculate all degrees-of-freedom.</li>
   <li>Construct a 2x2 table (Year as rows, Habitat as columns) of treatment means and then append the level means and grand mean in the margins. Note that level (and grand) means are simply the mean of treatments means when the sample sizes in the treatments are equal, as they are in this example.</li>
-  <li>Use the definitions of *a*, *b*, and *m*, and your table of means to compute SS<sub>among</sub>, SS<sub>row</sub>, and SS<sub>column</sub> according to formulae provided in the reading. Compute the remaining SS with simple addition and subtraction (from principles of how SS partition).</li>
+  <li>Use the definitions of <emph>a</emph>, <emph>b</emph>, and <emph>m</emph>, and your table of means to compute SS<sub>among</sub>, SS<sub>row</sub>, and SS<sub>column</sub> according to formulae provided in the reading. Compute the remaining SS with simple addition and subtraction (from principles of how SS partition).</li>
   <li>No functions, beyond using `distrib()` to calculate p-values, will be useful for these calculations.</li>
 </ol>
 </div>

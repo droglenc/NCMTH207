@@ -36,4 +36,4 @@ Use the resources below to answer [these questions](prep/ANOVA2Foundations2). [[
 
 ## Practice
 
-* [Assignment](ce/ANOVA2Foundations1_CE2) ... [ANSWER KEY](cex/KEY_ANOVA2Foundations2_CE)
+* [Assignment](ce/ANOVA2Foundations2_CE1) ... [ANSWER KEY](cex/KEY_ANOVA2Foundations2_CE)
