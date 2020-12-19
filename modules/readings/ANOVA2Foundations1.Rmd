@@ -19,8 +19,6 @@ knitr::opts_chunk$set(message=FALSE,comment="#R>  ",
 options(show.signif.stars=FALSE,knitr.kable.NA = '')
 clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")[c(1,6)]
 set.seed(34353)
-
-
 ```
 
 # Introduction
