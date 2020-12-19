@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -66,7 +67,7 @@ Models can predict an observation but generally not perfectly. For example, weat
 
 An observed value of the response variable can be thought of as being equal to a value predicted from a model plus some deviation, or error, from that prediction; i.e.,
 
-\[ \text{Observed Response} = \text{Model Predicted Response} + \text{error} \]
+$$ \text{Observed Response} = \text{Model Predicted Response} + \text{error} $$
 
 For example, tomorrow's temperature may be 74<sup>o</sup>F, which is the predicted 76<sup>o</sup>F from the forecaster's model plus -2<sup>o</sup>F "error."
 
@@ -102,7 +103,7 @@ Many hypothesis tests, including the two-sample t-test, can be cast in a framewo
 ### A Residual
 A residual is an estimate of the "error" discussed in the previous section. If you rearrange the formula shown above and replace "error" with "residual" you see that
 
-\[ \text{residual} = \text{Observed Response} - \text{Model Predicted Response} \]
+$$ \text{residual} = \text{Observed Response} - \text{Model Predicted Response} $$
 
 Visually a residual is the vertical distance between a point and the "model", as shown by the vertical dashed lines above (or further below). Residuals are vertical distances because they are the difference between two values of the response variable, which is always plotted on the y-axis.
 
@@ -141,9 +142,9 @@ Instead of summing residuals, statisticians sum squared residuals into a quantit
 The RSS measures how closely the model comes to *all* of the observations.
 </aside>
 
-\[ \text{RSS} = \sum_{data}\left(\text{Observed Response}-\text{Model Predicted Response}\right)^2 \]
+$$ \text{RSS} = \sum_{data}\left(\text{Observed Response}-\text{Model Predicted Response}\right)^2 $$
 
-The RSS is on an unfamiliar scale (squared residuals?) but it maintains the same conceptual idea that summing residuals would have. Mainly, the smaller the RSS the more closely the points are to the model. The full set of residuals required to compute an RSS are shown in \@ref(fig:RSS1).
+The RSS is on an unfamiliar scale (squared residuals?) but it maintains the same conceptual idea that summing residuals would have. Mainly, the smaller the RSS the more closely the points are to the model. The full set of residuals required to compute an RSS are shown in Figure \@ref(fig:RSS1).
 
 ```{r RSS1, echo=FALSE, fig.width=7, fig.cap='Same plots as Figure \\@ref(fig:FullResid1) and Figure \\@ref(fig:FullResid2) but with all residuals shown.'}
 t2b <- t2 +
@@ -170,13 +171,13 @@ Unfortunately, the magnitude of the RSS is only useful in comparison to other RS
 # Residual Degrees-of-Freedom
 You used degrees-of-freedom (df) with t-tests and chi-square tests in your introductory statistics course. However, you likely did not discuss what degrees-of-freedom mean and where they come from. I will discuss this briefly here, but we will use df more in the next module.
 
-Residual degrees-of-freedom (Rdf) are the number of observations that are "free" to vary if the sample size (n) and number of parameters estimated is known. As a simple example, suppose that we know that x&#772;=13 from n=4 observations. With just this information can I tell you the values for the four observations that went into x&#772;? Clearly I cannot. If you give me one observation can I tell you the remaining three? No! If you tell me two? No! If you tell me three observations can I tell you the last observation? Yes, because the total of the four numbers must be 52 (=n&times;x&#772;=4&times;13); so the last number must be 52 minus the total of the three numbers you told me. In this case, three numbers were "free" to be any value before the last number was set. Thus, this case has three residual degrees-of-freedom.
+Residual degrees-of-freedom (Rdf) are the number of observations that are "free" to vary if the sample size ($n$) and number of parameters estimated is known. As a simple example, suppose that we know that $\bar{x}$=13 from $n$=4 observations. With just this information can I tell you the values for the four observations that went into $\bar{x}$? Clearly I cannot. If you give me one observation can I tell you the remaining three? No! If you tell me two? No! If you tell me three observations can I tell you the last observation? Yes, because the total of the four numbers must be 52 (=$n\bar{x}$=4&times;13); so the last number must be 52 minus the total of the three numbers you told me. In this case, three numbers were "free" to be any value before the last number was set. Thus, this case has three residual degrees-of-freedom.
 
 Residual degrees-of-freedom are more complicated to explain in other situations, but generally
 
-\[ \text{Rdf}=\text{Number of Observations}-\text{Number of Model Parameters} \]
+$$ \text{Rdf}=\text{Number of Observations}-\text{Number of Model Parameters} $$
 
-In the example above, there were four observations (n) and one model parameter -- x&#772; -- so df=4-1=3. In Figure \@ref(fig:TwoModelsEx)-Left there are `r nrow(aqua)` observations and two parameters (i.e., two group means) so Rdf=`r nrow(aqua)`-2=`r nrow(aqua)-2`. In Figure \@ref(fig:TwoModelsEx)-Right there are `r nrow(Mirex)` observations and two parameters (i.e., the slope and intercept of the regression line) so Rdf=`r nrow(Mirex)`-2=`r nrow(Mirex)-2`.
+In the example above, there were four observations (n) and one model parameter -- $\bar{x}$ -- so df=4-1=3. In Figure \@ref(fig:TwoModelsEx)-Left there are `r nrow(aqua)` observations and two parameters (i.e., two group means) so Rdf=`r nrow(aqua)`-2=`r nrow(aqua)-2`. In Figure \@ref(fig:TwoModelsEx)-Right there are `r nrow(Mirex)` observations and two parameters (i.e., the slope and intercept of the regression line) so Rdf=`r nrow(Mirex)`-2=`r nrow(Mirex)-2`.
 
 As a general rule, parameter estimates are more precisely estimated with more residual degrees-of-freedom. Thus, models that "preserve" residual degrees-of-freedom (i.e., have fewer parameters) are preferred, all else being equal.
 

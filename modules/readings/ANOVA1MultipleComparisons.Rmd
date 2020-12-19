@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -37,11 +38,11 @@ The most obvious solution to identify which pairs of means differ is to perform 
 
 In any one comparison of two means the probability of incorrectly concluding that the means are different when they are actually not different is &alpha;. This incorrect conclusion is called a **pairwise Type I error**^[This is sometimes called an comparison-individual-, or test-wise error.] because it relates to only one comparison of a pair of means.
 
-In a situation with three (I=3) groups (say A, B, C) then there are three pairwise comparisons (k=3) to be made (A to B, A to C, and B to C). A pairwise error could be made on any of these three tests. Making a Type I error on *at least one* of these multiple pairwise tests is called an **experiment-wise Type I error**^[This is sometimes called a family-wise error.] because it involves all pairwise comparisons in the experiment at hand.
+In a situation with three ($I$=3) groups (say A, B, C) then there are three pairwise comparisons ($k$=3) to be made (A to B, A to C, and B to C). A pairwise error could be made on any of these three tests. Making a Type I error on *at least one* of these multiple pairwise tests is called an **experiment-wise Type I error**^[This is sometimes called a family-wise error.] because it involves all pairwise comparisons in the experiment at hand.
 
 It is important that you notice *at least* in the definition of the experiment-wise error rate. For example, in three comparisons, the incorrect conclusion could be for the first pair, the second pair, the third pair, the first and second pair, the first and third pair, the second and third pair, or all three pairs!!
 
-Figure \@ref(fig:MCProblem) demonstrates the two issues related to multiple comparisons. First, the x-axis labels show how the number of pairwise comparisons (k) increases quickly with increasing number of groups (I) in the study. For example, six groups (I=6) is not a complicated study, but it results in fifteen pairwise comparisons (k=15). More importantly the line and point labels in the figure show how the experiment-wise error rate increases quickly and dramatically with increasing number of groups. For example, the experiment-wise error rate for six (I=6) groups is over 0.50.^[Using &alpha;=0.05] Thus, it is nearly a coin flip that at least one error will be made in all paired comparisons among six groups. Making an error more than 50% of the time in such a simple study is not acceptable and must be corrected.
+Figure \@ref(fig:MCProblem) demonstrates the two issues related to multiple comparisons. First, the x-axis labels show how the number of pairwise comparisons ($k$) increases quickly with increasing number of groups ($I$) in the study. For example, six groups ($I$=6) is not a complicated study, but it results in fifteen pairwise comparisons ($k$=15). More importantly the line and point labels in the figure show how the experiment-wise error rate increases quickly and dramatically with increasing number of groups. For example, the experiment-wise error rate for six ($I$=6) groups is over 0.50.^[Using &alpha;=0.05] Thus, it is nearly a coin flip that at least one error will be made in all paired comparisons among six groups. Making an error more than 50% of the time in such a simple study is not acceptable and must be corrected.
 
 <aside>
 The experiment-wise error rate increases dramatically with increasing numbers of treatment groups.

@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -40,18 +41,18 @@ Identification of an appropriate transformation and understanding the resultant 
 &nbsp;
 
 # Power Transformations
-With power transformations, the response variable is transformed by raising it to a particular power, &lambda;, i.e., Y<sup>&lambda;</sup> (Table \@ref(tab:CommonTranformations)).
+With power transformations, the response variable is transformed by raising it to a particular power, $\lambda$, i.e., $Y^{\lambda}$ (Table \@ref(tab:CommonTranformations)).
 
 Table: (\#tab:CommonTranformations) Common power transformations in ANOVAs.
 
 |    Power   | Name | Formula | R Code |
 |:----------:|:----:|:-------:|:-------:|
-| &lambda;=1 | -- | $Y^{1}=Y$ | -- |
-| &lambda;=0.5 | Square Root | $Y^{0.5}=\sqrt{Y}$ | `df$newvar <- sqrt(df$oldvar)` |
-| &lambda;=0.33 | Cube Root | $Y^{0.33}=\sqrt[3]{Y}$ | `df$newvar <- df$oldvar^(1/3)` |
-| &lambda;=0.25 | Fourth Root | $Y^{0.25}=\sqrt[4]{Y}$ | `df$newvar <- df$oldvar^(1/4)` |
-| &lambda;=0 | Natural log | $log(Y)$ | `df$newvar <- log(df$oldvar)` |
-| &lambda;=-1 | Inverse | $Y^{-1}=\frac{1}{Y}$ | `df$newvar <- 1/df$oldvar` |
+| $\lambda$=1 | -- | $Y^{1}=Y$ | -- |
+| $\lambda$=0.5 | Square Root | $Y^{0.5}=\sqrt{Y}$ | `df$newvar <- sqrt(df$oldvar)` |
+| $\lambda$=0.33 | Cube Root | $Y^{0.33}=\sqrt[3]{Y}$ | `df$newvar <- df$oldvar^(1/3)` |
+| $\lambda$=0.25 | Fourth Root | $Y^{0.25}=\sqrt[4]{Y}$ | `df$newvar <- df$oldvar^(1/4)` |
+| $\lambda$=0 | Natural log | $log(Y)$ | `df$newvar <- log(df$oldvar)` |
+| $\lambda$=-1 | Inverse | $Y^{-1}=\frac{1}{Y}$ | `df$newvar <- 1/df$oldvar` |
 
 &nbsp;
 
@@ -179,21 +180,21 @@ points(min(x1),ys[4],col="blue",pch=16,xpd=NA)
 
 As demonstrated above, the common transformations listed in Table \@ref(tab:CommonTranformations) vary in their ability to "normalize" skewed distributions. Generally the common transformations in Table \@ref(tab:CommonTranformations) are ordered from least to most powerful. In other words, the transformations are ordered from those that "normalize" mildly skewed data to those that "normalize" strongly skewed data.^[Alternatively, the transformations are listed in order from the transformations that "spread out" the small values the least to those that "spread out" the small values the most.]
 
-It is possible to "combine" one of the common powers with the inverse transformation to create a larger array of transformations. For example, &lambda;=-0.5 is an inverse square-root transformation. These types of transformations are common but less common than those listed in Table \@ref(tab:CommonTranformations).
+It is possible to "combine" one of the common powers with the inverse transformation to create a larger array of transformations. For example, $\lambda$=-0.5 is an inverse square-root transformation. These types of transformations are common but less common than those listed in Table \@ref(tab:CommonTranformations).
 
 Table: (\#tab:CommonInvTranformations) Common inverse power transformations in ANOVAs. These transformations are much less common than those in Table \@ref(tab:CommonTranformations).
 
 |    Power   | Name | Formula | R Code |
 |:----------:|:----:|:-------:|:-------:|
-| &lambda;=-0.25 | Inverse Fourth Root | $Y^{-0.25}=\frac{1}{\sqrt[4]{Y}}$ | `df$ifourrt.y <- df$Y^(-1/4)` |
-| &lambda;=-0.33 | Inverse Cube Root | $Y^{-0.33}=\frac{1}{\sqrt[3]{Y}}$ | `df$icubert.y <- df$Y^(-1/3)` |
-| &lambda;=-0.5 | Inverse Square Root | $Y^{-0.5}=\frac{1}{\sqrt{Y}}$ | `df$isqrt.y <- 1/sqrt(df$Y)` |
+| $\lambda$=-0.25 | Inverse Fourth Root | $Y^{-0.25}=\frac{1}{\sqrt[4]{Y}}$ | `df$ifourrt.y <- df$Y^(-1/4)` |
+| $\lambda$=-0.33 | Inverse Cube Root | $Y^{-0.33}=\frac{1}{\sqrt[3]{Y}}$ | `df$icubert.y <- df$Y^(-1/3)` |
+| $\lambda$=-0.5 | Inverse Square Root | $Y^{-0.5}=\frac{1}{\sqrt{Y}}$ | `df$isqrt.y <- 1/sqrt(df$Y)` |
 
 &nbsp;
 
 Power transformations require non-negative and non-zero data. Violations of this restriction can be rectified by adding an amount to all values of the response variable such that all values become positive. This is called *shifting* the data and does not effect the shape of the distribution. In addition, power transformations are not effective if the range of values of the response variable is narrow.^[In effect, the power transformation is basically linear over short ranges and, thus, is not effective.]
 
-There are several methods to identify the power transformation that is most likely to meet the assumptions of a one-way ANOVA.^[Box and Cox (1964) provided a statistical and graphical method for identifying the appropriate power transformation for the response variable. The details of this method are beyond the scope of this class but, in general, the method searches for a &lambda; that minimizes SS<sub>within</sub>). A slightly modified Box and Cox approach is implemented in R by sending a `lm` object to `boxcox()` from the `MASS` package.] One simple method is trial-and-error -- i.e., trying various powers until one is found where the assumptions of the model are most closely met. 
+There are several methods to identify the power transformation that is most likely to meet the assumptions of a one-way ANOVA.^[Box and Cox (1964) provided a statistical and graphical method for identifying the appropriate power transformation for the response variable. The details of this method are beyond the scope of this class but, in general, the method searches for a $\lambda$ that minimizes SS<sub>within</sub>). A slightly modified Box and Cox approach is implemented in R by sending a `lm` object to `boxcox()` from the `MASS` package.] One simple method is trial-and-error -- i.e., trying various powers until one is found where the assumptions of the model are most closely met. 
 
 The trial-and-error method is made easier with software. For example, the `assumptionCheck()` function introducted in [the previous module](ANOVA1Assumptions.html#testing-assumptions-in-r) can be used to quickly compute the graphs and hypothesis tests for assumption checking *after* the data have been transformed by the power given in the `lambday=` argument. For example, the code and results below show what the assumption checking would look like if the immunoglobulin measurments for the New Zealand opossums had been log transformed.
 
@@ -234,9 +235,9 @@ Fourth, do **NOT** back-transform "differences" unless those differences are fro
 
 We know from algebra class that the difference in the log of two values is the log of the ratio of the two values -- i.e., $log(a)-log(b) = log(\frac{a}{b})$. Thus, back-transforming the difference in log values results in a ratio of values on the original scale -- i.e., $e^{log(a)-log(b)} = e^{log(\frac{a}{b})} = \frac{a}{b}$. Thus, in a One-Way ANOVA, the back-transformed **difference** in group means on the log scale is the **ratio** of group means on the original scale.
 
-For example, suppose that the difference in log means for two groups is 0.5. Back-transforming this value gives e<sup>0.5</sup>=`r formatC(exp(0.5),format="f",digits=3)`. Thus, on the original scale, the mean for the first group is `r formatC(exp(0.5),format="f",digits=3)` times larger than the mean for the second group.
+For example, suppose that the difference in log means for two groups is 0.5. Back-transforming this value gives $e$<sup>0.5</sup>=`r formatC(exp(0.5),format="f",digits=3)`. Thus, on the original scale, the mean for the first group is `r formatC(exp(0.5),format="f",digits=3)` times larger than the mean for the second group.
 
-Alternatively, suppose that the difference in log means for two groups is -0.5. Back-transforming this value gives e<sup>-0.5</sup>=`r formatC(exp(-0.5),format="f",digits=3)`. Thus, on the original scale, the mean for the first group is `r formatC(exp(-0.5),format="f",digits=3)` as large as the mean for the second group. Or, the mean for the *second* group is $\frac{1}{`r formatC(exp(-0.5),format="f",digits=3)`}$=`r formatC(1/exp(-0.5),format="f",digits=3)` times larger than the mean for the *first* group.
+Alternatively, suppose that the difference in log means for two groups is -0.5. Back-transforming this value gives $e$<sup>-0.5</sup>=`r formatC(exp(-0.5),format="f",digits=3)`. Thus, on the original scale, the mean for the first group is `r formatC(exp(-0.5),format="f",digits=3)` as large as the mean for the second group. Or, the mean for the *second* group is $\frac{1}{`r formatC(exp(-0.5),format="f",digits=3)`}$=`r formatC(1/exp(-0.5),format="f",digits=3)` times larger than the mean for the *first* group.
 
 Log-transformations are very special, as they allow both means and differences in means to be back-transformed to the original scale with a meaningful result. Because of this, the first transformation that you should try in all situations is the log-transformation. Many times we prefer the log-transformation over other transformations, even if the assumptions are not perfectly met with the log-transformation.
 

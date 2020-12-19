@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -66,10 +67,12 @@ The assumption of equal variances can be tested with Levene's homogeneity of var
 <aside>Levene's test p-values less than &alpha; indicate that the variances are not equal and the assumption was violated.
 </aside>
 
-\[ \begin{split}
-   H_{0}&: \sigma_{1}^{2}=\sigma_{2}^{2}=\cdots=\sigma_{I}^{2} \\
-   H_{A}&:\text{At least one pair of variances differ}
-\end{split} \]
+$$
+\begin{split}
+   \text{H}_{\text{0}} &: \sigma_{1}^{2}=\sigma_{2}^{2}=\cdots=\sigma_{I}^{2} \\
+   \text{H}_{\text{A}} &: \text{At least one pair of variances differ}
+\end{split}
+$$
 
 Thus, a p-value less than &alpha; means that the variances are not equal and the assumption of the one-way ANOVA has not been met.^[Methods for "working around" this assumption violation are discussed in the next moule.]
 
@@ -88,10 +91,12 @@ Normality is often tested by simply viewing a histogram of residuals or a so-cal
 
 The normality of residuals may also be tested with the Anderson-Darling Normality Test.^[There are also a wide variety of normality tests. Some authors even argue against the use of hypothesis tests for testing normality and suggest the use of graphical methods instead. For simplicity, the Anderson-Darling normality test will be used throughout this course.] The hypotheses for this test are
 
-\[ \begin{split}
-   H_{0}&: \text{Residuals are normally distributed} \\
-   H_{A}&:\text{Residuals are not normally distributed} \\
-\end{split} \]
+$$ 
+\begin{split}
+   \text{H}_{\text{0}}&: \text{Residuals are normally distributed} \\
+   \text{H}_{\text{A}}&: \text{Residuals are not normally distributed} \\
+\end{split}
+$$
 
 An Anderson-Darling p-value greater than &alpha; indicates that the residuals appear to be normally distributed and the normality assumption is met. An Anderson-Darling p-value less than &alpha; suggests that the normality assumption has been violated.
 

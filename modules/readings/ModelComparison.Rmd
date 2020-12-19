@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -45,9 +46,9 @@ Table: (\#tab:ModelDifferences) Differences between the two model types.
 ### 2-Sample t-Test
 Recall that H<sub>0</sub> in a two-sample t-test is that the two population means do not differ (i.e., they are equal). In this hypothesis, if the two means do not differ than a single mean would adequately represent both groups. The [general model from the previous module](ModelConcepts.html#what-is-a-model) ^[Generally, Observation = Model Prediction + Error] could be specified for this situation as
 
-\[ Y_{ij} = \mu + \epsilon_{ij} \]
+$$ Y_{ij} = \mu + \epsilon_{ij} $$
 
-where Y<sub>ij</sub> is the jth observation of the response variable in the ith group, &mu; is the population grand mean, and &epsilon;<sub>ij</sub> is the "error" for the jth observation in the ith group. This model means that &mu; is the predicted response value for each observation and the model looks like the red line in Figure \@ref(fig:Models1).
+where $Y_{ij}$ is the $j$th observation of the response variable in the $i$th group, $\mu$ is the population grand mean, and $\epsilon_{ij}$ is the "error" for the $j$th observation in the $i$th group. This model means that &mu; is the predicted response value for each observation and the model looks like the red line in Figure \@ref(fig:Models1).
 
 ```{r Models1, echo=FALSE, fig.cap='Biological oxygen demand versus sample location with group means shown as blue horizontal segments and the grand mean shown as a red horizontal segment.'}
 ggplot(data=aqua) +
@@ -60,11 +61,11 @@ ggplot(data=aqua) +
 
 In contrast, H<sub>A</sub> in the 2-sample t-test is that the two population means differ (i.e., they are not equal). This hypothesis suggests that two separate means are needed to predict observations in the separate groups. The model for this situation is
 
-\[ Y_{ij} = \mu_{i} + \epsilon_{ij} \]
+$$ Y_{ij} = \mu_{i} + \epsilon_{ij} $$
 
-where &mu;<sub>i</sub> is the population mean for the ith group. This model means that &mu;<sub>1</sub> is the predicted response value for observations in the first group and &mu;<sub>2</sub> is the predicted response value for observations in the second group. This model looks like the two blue lines in the figure above.
+where $\mu_{i}$ is the population mean for the $i$th group. This model means that $\mu_{1}$ is the predicted response value for observations in the first group and $\mu_{2}$ is the predicted response value for observations in the second group. This model looks like the two blue lines in the figure above.
 
-Thus, for a 2-sample t-test, the **simple model** corresponds to H<sub>0</sub>: &mu;<sub>1</sub>=&mu;<sub>2</sub> (=&mu;), has fewer parameters (i.e., requires only one mean; the red line in the plots above), and fits "worse."^[We will be more objective in the following sections, but an examination of the plot above clearly shows that the red line does not represent the observations well.] In contrast, the **full model** corresponds to H<sub>A</sub>: &mu;<sub>1</sub>&ne;&mu;<sub>2</sub>, has more parameters (i.e., requires two means; the blue lines in the plots above), and fits "better."
+Thus, for a 2-sample t-test, the **simple model** corresponds to H<sub>0</sub>: $\mu_{1}=\mu_{2}$ (=$\mu$), has fewer parameters (i.e., requires only one mean; the red line in the plots above), and fits "worse."^[We will be more objective in the following sections, but an examination of the plot above clearly shows that the red line does not represent the observations well.] In contrast, the **full model** corresponds to H<sub>A</sub>: $\mu_{1}\ne\mu_{2}$, has more parameters (i.e., requires two means; the blue lines in the plots above), and fits "better."
 
 In the ensuing sections we will develop a method to determine if the increase in "fit" is worth the increase in "complexity."
 
@@ -76,13 +77,13 @@ In [the previous module](ModelConcepts.html#residual-sum-of-squares) we introduc
 
 The RSS for the simple model using just the grand mean is called SS<sub>Total</sub> and is computed with
 
-\[ \text{SS}_{\text{Total}} = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2} \]
+$$ \text{SS}_{\text{Total}} = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2} $$
 
-where I is the number of groups (=2 in a 2-sample t-test), n<sub>i</sub> is the sample size in the ith group, and $\bar{Y}_{\cdot\cdot}$ is the sample grand mean as computed with 
+where $I$ is the number of groups (=2 in a 2-sample t-test), $n_{i}$ is the sample size in the $i$th group, and $\bar{Y}_{\cdot\cdot}$ is the sample grand mean as computed with 
 
-\[ \bar{Y}_{\cdot\cdot}= \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}Y_{ij}}{n} \]
+$$ \bar{Y}_{\cdot\cdot}= \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}Y_{ij}}{n} $$
 
-where n is the sample size across all groups. The $\bar{Y}_{\cdot\cdot}$ is used here because it is an estimate of the population grand mean, &mu;, which is used to make predictions in this simple model.
+where $n$ is the sample size across all groups. The $\bar{Y}_{\cdot\cdot}$ is used here because it is an estimate of the population grand mean, $\mu$, which is used to make predictions in this simple model.
 
 The formula for SS<sub>Total</sub> may look daunting but it is just the sum of the squared residuals computed from each observation relative to the grand mean (Figure \@ref(fig:FullModelResids1)).
 
@@ -113,13 +114,13 @@ ggplot(data=aqua) +
 
 The RSS for the full model using separate group means is called SS<sub>Within</sub> and is computed with
 
-\[ \text{SS}_{\text{Within}} = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2} \]
+$$ \text{SS}_{\text{Within}} = \sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2} $$
 
 where $\bar{Y}_{i\cdot}$ are the sample group means as computed with 
 
-\[ \bar{Y}_{\cdot\cdot} = \frac{\sum_{j=1}^{n_{i}}Y_{ij}}{n_{i}} \]
+$$ \bar{Y}_{\cdot\cdot} = \frac{\sum_{j=1}^{n_{i}}Y_{ij}}{n_{i}} $$
 
-The $\bar{Y}_{i\cdot}$ are used here because they are an estimate of the population group means, &mu;<sub>i</sub>, which are used to make predictions in this full model. Again, the formula for SS<sub>Within</sub> may look imposing but it is just the sum of the squared residuals computed from each observation to the observation's group mean (Figure \@ref(fig:SimpleModelResids1)).
+The $\bar{Y}_{i\cdot}$ are used here because they are an estimate of the population group means, $\mu_{i}$, which are used to make predictions in this full model. Again, the formula for SS<sub>Within</sub> may look imposing but it is just the sum of the squared residuals computed from each observation to the observation's group mean (Figure \@ref(fig:SimpleModelResids1)).
 
 ```{r SimpleModelResids1, echo=FALSE, fig.cap='Biological oxygen demand versus sample location with the group means shown as blue horizontal segments. Residuals from the group means are shown by blue vertical dashed lines. The sum of these residuals is SS<sub>Within</sub>.'}
 ggplot(data=aqua) +
@@ -149,18 +150,18 @@ ggplot(data=aqua) +
 
 Thus, SS<sub>Total</sub> measures the lack-of-fit of the grand mean to the data or the lack-of-fit of the simple model. SS<sub>Within</sub>, in contrast, measures the lack-of-fit of the group means to the data or the lack-of-fit of the full model.
 
-In this example, SS<sub>Total</sub>=`r formatC(sum(aqua$residS^2),format="f",digits=2)` and SS<sub>Within</sub>=`r formatC(sum(aqua$residF^2),format="f",digits=2)`. Because SS<sub>Within</sub> is less than SS<sub>Total</sub> that means that the full model that uses &mu;<sub>i</sub> fits the data better than the simple model that uses just &mu;.
+In this example, SS<sub>Total</sub>=`r formatC(sum(aqua$residS^2),format="f",digits=2)` and SS<sub>Within</sub>=`r formatC(sum(aqua$residF^2),format="f",digits=2)`. Because SS<sub>Within</sub> is less than SS<sub>Total</sub> that means that the full model that uses &mu;<sub>i</sub> fits the data better than the simple model that uses just $\mu$.
 
 However, we knew that this was going to happen as the full model always fits better. What we need now is a measure of how much better the full model fits or, equivalently, a measure of how much the lack-of-fit was reduced by using the full model rather than the simple model.
 
 ### SS<sub>Among</sub>
 An useful property of SS<sub>Total</sub> is that it "partitions" into two parts according to the following simple formula
 
-\[ \text{SS}_{\text{Total}} = \text{SS}_{\text{Within}} + \text{SS}_{\text{Among}} \]
+$$ \text{SS}_{\text{Total}} = \text{SS}_{\text{Within}} + \text{SS}_{\text{Among}} $$
 
 This introduces a new quantity, SS<sub>Among</sub>. A quick re-arrangement of the partitioning of SS<sub>Total</sub> shows that
 
-\[ \text{SS}_{\text{Among}} = \text{SS}_{\text{Total}} - \text{SS}_{\text{Within}} \]
+$$ \text{SS}_{\text{Among}} = \text{SS}_{\text{Total}} - \text{SS}_{\text{Within}} $$
 
 Thus, SS<sub>Among</sub> records how much the lack-of-fit was reduced by using the full model rather than the simple model. In other words, SS<sub>Among</sub> records how much "better" the full model fits the data than the simple model.
 
@@ -172,8 +173,7 @@ SS<sub>Among</sub> is the **benefit** (i.e., reduction in lack-of-fit) of using 
 
 SS<sub>Among</sub> can also be thought of in a different way. It can be algebraically shown that 
 
-\[ \text{SS}_{\text{Among}} = \sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2}
- \]
+$$ \text{SS}_{\text{Among}} = \sum_{i=1}^{I}n_{i}\left(\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}\right)^{2} $$
 
 Again, this looks complicated, but the main part to focus on is $\bar{Y}_{i\cdot}-\bar{Y}_{\cdot\cdot}$, which shows that SS<sub>Among</sub> is primarily concerned with measuring the distance between the group means (i.e., $\bar{Y}_{i\cdot}$) and the grand mean (i.e., $\bar{Y}_{\cdot\cdot}$; Figure \@ref(fig:BothModelResids)).
 
@@ -223,11 +223,11 @@ In this example, df<sub>Total</sub>=`r nrow(aqua)`-1 because there is one parame
 
 Interestingly df<sub>Total</sub> partitions in the same way as SS<sub>Total</sub>; i.e., 
 
-\[ \text{df}_{\text{Total}} = \text{df}_{\text{Within}} + \text{df}_{\text{Among}} \]
+$$ \text{df}_{\text{Total}} = \text{df}_{\text{Within}} + \text{df}_{\text{Among}} $$
 
 This introduces another new quantity, df<sub>Among</sub>. A quick re-arrangement of the partitioning of df<sub>Total</sub> shows that
 
-\[ \text{df}_{\text{Among}} = \text{df}_{\text{Total}} - \text{df}_{\text{Within}} \]
+$$ \text{df}_{\text{Among}} = \text{df}_{\text{Total}} - \text{df}_{\text{Within}} $$
 
 In this case, df<sub>Among</sub>=`r nrow(aqua)-1`-`r nrow(aqua)-2`=1.
 
@@ -248,9 +248,9 @@ MS<sub>Total</sub> and MS<sub>Within</sub> measure "noise" -- i.e., variability 
 
 Before moving on to discuss MS<sub>Among</sub>, it is worth noting that MS<sub>Total</sub> is
 
-\[ \text{MS}_{\text{Total}} = \frac{\text{SS}_{\text{Total}}}{\text{df}_{\text{Total}}} = \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2}}{n-1} \]
+$$ \text{MS}_{\text{Total}} = \frac{\text{SS}_{\text{Total}}}{\text{df}_{\text{Total}}} = \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{\cdot\cdot}\right)^{2}}{n-1} $$
 
-Realizing that the double summation simply means to "sum across all individuals" it is seen that this is the variance (s<sup>2</sup>) from your introductory statistics course. In other words it is just the variability of the individuals around a mean that ignores that there are groups.
+Realizing that the double summation simply means to "sum across all individuals" it is seen that this is the variance ($s^{2}$) from your introductory statistics course. In other words it is just the variability of the individuals around a mean that ignores that there are groups.
 
 <aside>
 MS<sub>Total</sub>=s<sup>2</sup>
@@ -258,7 +258,7 @@ MS<sub>Total</sub>=s<sup>2</sup>
 
 Similarly, MS<sub>Within</sub> is
 
-\[ \text{MS}_{\text{Within}} = \frac{\text{SS}_{\text{Within}}}{\text{df}_{\text{Within}}} = \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}}{\sum_{i=1}^{I}n_{i}-I} \]
+$$ \text{MS}_{\text{Within}} = \frac{\text{SS}_{\text{Within}}}{\text{df}_{\text{Within}}} = \frac{\sum_{i=1}^{I}\sum_{j=1}^{n_{i}}\left(Y_{ij}-\bar{Y}_{i\cdot}\right)^{2}}{\sum_{i=1}^{I}n_{i}-I} $$
 
 It is not hard to show algebraically (and for just two groups) that the numerator is $n_{1}s_{1}^{2}+n_{2}s_{2}^{2}$ and that the denominator is $n_{1}+n_{2}-2$. This numerator and denominator are then simply the pooled sample variance ($s_{p}^{2}$) from the 2-sample t-test. Thus, MS<sub>Within</sub> with two groups is the same as $s_{p}^{2}$ from the 2-sample t-test.
 
@@ -280,7 +280,7 @@ Additionally, MS<sub>Among</sub> is a ratio of the "benefit" (i.e., SS<sub>Among
 # Ratio of Variances (Signal-to-Noise)
 From the above discussion we have a measure of potential "signal" in MS<sub>Among</sub> and actual "noise" around the full model (the model representing the "signal") in MS<sub>Within</sub>. The ratio of this "signal" to "noise" is called an F test statistic; i.e.,
 
-\[ \text{F}=\frac{\text{MS}_{\text{Among}}}{\text{MS}_{\text{Within}}} = \frac{\text{Signal}}{\text{Noise}} = \frac{\text{Variance Explained by Full Model}}{\text{Variance Unexplained by Full Model}} \]
+$$ \text{F}=\frac{\text{MS}_{\text{Among}}}{\text{MS}_{\text{Within}}} = \frac{\text{Signal}}{\text{Noise}} = \frac{\text{Variance Explained by Full Model}}{\text{Variance Unexplained by Full Model}} $$
 
 If the F-ratio is "large," then a great deal more variability was explained (i.e., more "signal") than was unexplained by the full model (i.e., "less noise") and one would conclude that the full model fits the data significantly better than the simple model, even considering the increased complexity of the full model.
 
@@ -333,7 +333,8 @@ An ANOVA table for the BOD measurements at the inlet and outlet sources to the a
 ```{r ANOVA1, echo=FALSE}
 aov <- lm(BOD~src,data=aqua)
 knitr::kable(anova(aov),booktabs=TRUE,digits=4,
-             caption='An ANOVA table for biological oxygen demand measurements at two locations of the aquaculture facility. Note that the "Total" row is not shown.')
+             caption='An ANOVA table for biological oxygen demand measurements at two locations of the aquaculture facility. Note that the "Total" row is not shown.') %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
 
 These results indicate that H<sub>0</sub> should be rejected (i.e., F-test p-value `r kPvalue(anova(aov)[1,"Pr(>F)"],include.p=FALSE,latex=FALSE)`). Thus, the full model fits the data significantly better than the simple model even given the difference in complexity between the two models and sampling variability. Therefore, there is a significant difference in mean BOD between the two locations.
@@ -341,7 +342,7 @@ These results indicate that H<sub>0</sub> should be rejected (i.e., F-test p-val
 In addition to the primary objective of comparing the full and simple models, several items of interest can be identified from an ANOVA table. Using the table above as an example, note the following items:
 
 * The variance within groups is equal to MS<sub>Within</sub> (e.g., MS<sub>Residuals</sub>=0.2556 in this case). This is $s_{p}^{2}$ from the two-sample t-test (because there are only two groups here).
-* The common variance about the mean ($s_{Y}^{2}$) is given by MS<sub>Total</sub> (e.g., $=\frac{20.6756+4.6008}{1+18}$=1.3303).
+* The common variance about the mean ($s^{2}$) is given by MS<sub>Total</sub> (e.g., $=\frac{20.6756+4.6008}{1+18}$=1.3303).
 
 &nbsp;
 
@@ -365,15 +366,15 @@ Thus, the exact same results for a two-sample t-test are obtained whether the an
 &nbsp;
 
 # One More Look at MS and F-test
-Recall from your introductory statistics course that a sampling distribution is the distribution of a statistic from all possible samples. For example, the Central Limit Theorem states that the distribution of sample means is approximately normal, centered on &mu;, with a standard error of $\frac{\sigma}{\sqrt{n}}$ as long as assumptions about the sample size are met. Further recall that the sampling distribution of the sample means is centered on &mu; because the sample mean is an unbiased estimator of &mu;. Similarly, it is also known that the center of the sampling distribution of s<sup>2</sup> is equal to &sigma;<sup>2</sup> because s<sup>2</sup> is an unbiased estimate of &sigma;<sup>2</sup>.
+Recall from your introductory statistics course that a sampling distribution is the distribution of a statistic from all possible samples. For example, the Central Limit Theorem states that the distribution of sample means is approximately normal, centered on &mu;, with a standard error of $\frac{\sigma}{\sqrt{n}}$ as long as assumptions about the sample size are met. Further recall that the sampling distribution of the sample means is centered on &mu; because the sample mean is an unbiased estimator of &mu;. Similarly, it is also known that the center of the sampling distribution of $s^{2}$ is equal to $\sigma^{2}$ because $s^{2}$ is an unbiased estimate of $\sigma^{2}$.
 
-MS<sub>Within</sub> and MS<sub>Among</sub> are statistics just as x&#772; and s<sup>2</sup> are statistics. Thus, MS<sub>Within</sub> and MS<sub>Among</sub> are subject to sampling variability and have sampling distributions. It can be shown^[This derivation is beyond the scope of this course.] that the center of the sampling distribution of MS<sub>Within</sub> is &sigma;<sup>2</sup> and the center of the sampling distribution of MS<sub>Among</sub> is
+MS<sub>Within</sub> and MS<sub>Among</sub> are statistics just as $\bar{x}$ and $s^{2}$ are statistics. Thus, MS<sub>Within</sub> and MS<sub>Among</sub> are subject to sampling variability and have sampling distributions. It can be shown^[This derivation is beyond the scope of this course.] that the center of the sampling distribution of MS<sub>Within</sub> is $\sigma^{2}$ and the center of the sampling distribution of MS<sub>Among</sub> is
 
-\[ \sigma^{2} + \frac{1}{I-1}\sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2} \]
+$$ \sigma^{2} + \frac{1}{I-1}\sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2} $$
 
-Thus, MS<sub>Among</sub> consists of two "sources" of variability. The first source (&sigma;<sup>2</sup>) is the natural variability that exists among individuals. The second source $\left(\frac{1}{I-1}\sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2}\right)$ is related to differences among the group means. Therefore, if the group means are all equal -- i.e., &mu;<sub>1</sub>=&mu;<sub>2</sub>= $\cdots$ = &mu;<sub>I</sub> = &mu; -- then the second source of variability is equal to zero and MS<sub>Among</sub> will equal MS<sub>Within</sub>. As soon as the groups begin to differ, the second source of variability will be greater than 0 and MS<sub>Among</sub> will be greater than MS<sub>Within</sub>.
+Thus, MS<sub>Among</sub> consists of two "sources" of variability. The first source ($\sigma^{2}$) is the natural variability that exists among individuals. The second source $\left(\frac{1}{I-1}\sum_{i=1}^{I}n_{i}\left(\mu_{i}-\mu\right)^{2}\right)$ is related to differences among the group means. Therefore, if the group means are all equal -- i.e., $\mu_{1}$=$\mu_{2}$= $\cdots$ = $\mu_{I}$ = $\mu$ -- then the second source of variability is equal to zero and MS<sub>Among</sub> will equal MS<sub>Within</sub>. As soon as the groups begin to differ, the second source of variability will be greater than 0 and MS<sub>Among</sub> will be greater than MS<sub>Within</sub>.
 
-From this, it follows that if the null hypothesis of equal population means is true (i.e., one mean fits all groups), then the center of the sampling distribution of both MS<sub>Within</sub> and MS<sub>Among</sub> is &sigma;<sup>2</sup>. Therefore, if the null hypothesis is true, then the F test-statistic is expected to be equal to 1, on average, which will always result in a large p-value and a DNR H<sub>0</sub> conclusion. However, if the null hypothesis is false (i.e., separate means are needed for all groups), then the center of the sampling distribution of MS<sub>Within</sub> is &sigma;<sup>2</sup> but the center of the sampling distribution of MS<sub>Among</sub> is &sigma;<sup>2</sup> + "something", where the "something" is greater than 0 and gets larger as the means become "more different."  Thus, if the null hypothesis is false then the F test-statistic is expected to be greater than 1 and will get larger as the null hypothesis gets "more false."  This analysis of sampling distribution theory illustrates once again that (1) MS<sub>Among</sub> consists of multiple sources of variability and (2) "large" values of the F test-statistic indicate that the null hypothesis is incorrect.
+From this, it follows that if the null hypothesis of equal population means is true (i.e., one mean fits all groups), then the center of the sampling distribution of both MS<sub>Within</sub> and MS<sub>Among</sub> is $\sigma^{2}$. Therefore, if the null hypothesis is true, then the F test-statistic is expected to be equal to 1, on average, which will always result in a large p-value and a DNR H<sub>0</sub> conclusion. However, if the null hypothesis is false (i.e., separate means are needed for all groups), then the center of the sampling distribution of MS<sub>Within</sub> is $\sigma^{2}$ but the center of the sampling distribution of MS<sub>Among</sub> is $\sigma^{2}$ + "something", where the "something" is greater than 0 and gets larger as the means become "more different."  Thus, if the null hypothesis is false then the F test-statistic is expected to be greater than 1 and will get larger as the null hypothesis gets "more false."  This analysis of sampling distribution theory illustrates once again that (1) MS<sub>Among</sub> consists of multiple sources of variability and (2) "large" values of the F test-statistic indicate that the null hypothesis is incorrect.
 
 
 # Corrections {.appendix}

@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 2
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -66,12 +67,14 @@ dmns.tn <- summary(mc.tn,infer=TRUE)$contrasts
 
 A science fair student designed an experiment to determine the effect of increased densities of nematodes on the growth of tomato seedlings. The student hypothesized that nematodes would negatively affect the growth of tomato seedlings -- i.e., growth of seedlings would be lower at higher nematode densities. The statistical hypotheses to be examined were
 
-\[ \begin{split}
-   H_{0}&: \mu_{0} = \mu_{1000} = \mu_{5000} = \mu_{10000} \\
-   H_{A}&:\text{At least one pair of means is different}
-\end{split} \]
+$$
+\begin{split}
+   \text{H}_{\text{0}}&: \mu_{0} = \mu_{1000} = \mu_{5000} = \mu_{10000} \\
+   \text{H}_{\text{A}}&:\text{At least one pair of means is different}
+\end{split}
+$$
 
-where &mu; is the mean growth of the tomato seedlings and the subscripts identify densities of nematodes (see below).
+where $\mu$ is the mean growth of the tomato seedlings and the subscripts identify densities of nematodes (see below).
 
 The student had 16 pots of a homogeneous soil type in which he "stocked" a known density of nematodes. The densities of nematodes used were 0, 1000, 5000, or 10000 nematodes per pot. The density of nematodes to be stocked in each pot was randomly assigned. After stocking the pots with nematodes, tomato seedlings, which had been selected to be as nearly identical in size and health as possible, were transplanted into each pot. The exact pot that a seedling was transplanted into was again randomly selected. Each pot was placed under a growing light in the same laboratory and allowed to grow for six weeks. Watering regimes and any other handling necessary during the six weeks was kept the same as much as possible among the pots. After six weeks, the plants were removed from the growing conditions and the growth of the seedling (in cm) from the beginning of the experiment was recorded.
 
@@ -169,12 +172,14 @@ dmns.afbt <- mcsum.afbt$contrasts
 
 The statistical hypotheses to be examined are
 
-\[ \begin{split}
-   H_{0}&: \mu_{Oak} = \mu_{Rowan} = \mu_{Sycamore} \\
-   H_{A}&:\text{At least one pair of means is different}
-\end{split} \]
+$$
+\begin{split}
+   \text{H}_{\text{0}}&: \mu_{Oak} = \mu_{Rowan} = \mu_{Sycamore} \\
+   \text{H}_{\text{A}}&:\text{At least one pair of means is different}
+\end{split}
+$$
 
-where &mu; is the mean foraging rate of the ants and the subscripts identify the type of tree examined.
+where $\mu$ is the mean foraging rate of the ants and the subscripts identify the type of tree examined.
 
 The data appear to be independent as long as the separate trees were not in close proximity to each other. It is possible that the researchers examined one species of tree entirely within one "forest" of those trees. This would mean that the individuals within a species were somehow related, which would violate the independence assumption. In addition, the researchers could have looked at one specimen of each species all in a certain location, such that one tree could influence another tree. This again would violate the independence assumption. There is no indication that either of the scenarios occurred so I will assume that the individuals are independent both within- and among-groups.
 
@@ -278,12 +283,13 @@ mns.pdbt <- mcsum.pdbt$emmeans
 
 Mathematical models are used to predict flood flow frequency and estimates of peak discharge for the Mississippi River watershed. These models are important for forecasting potential dangers to the public. A civil engineer was interested in determining whether four different methods for estimating flood flow frequency produce equivalent estimates of peak discharge when applied to the same watershed. The statistical hypotheses to be examined are
 
-\[ \begin{split}
-   H_{0}&: \mu_{1} = \mu_{2} = \mu_{3} = \mu_{4} \\
-   H_{A}&:\text{At least one pair of means is different}
-\end{split} \]
+$$\begin{split}
+   \text{H}_{\text{0}}&: \mu_{1} = \mu_{2} = \mu_{3} = \mu_{4} \\
+   \text{H}_{\text{A}}&:\text{At least one pair of means is different}
+\end{split}
+$$
 
-where &mu; is the mean peak discharge estimate and the subscripts generically identify the four different methods for estimating peak discharge.
+where $\mu$ is the mean peak discharge estimate and the subscripts generically identify the four different methods for estimating peak discharge.
 
 Each estimation method was used six times on the watershed and the resulting discharge estimates (in cubic feet per second) were recorded.
 

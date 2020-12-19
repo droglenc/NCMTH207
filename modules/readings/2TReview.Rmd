@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 2
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -28,23 +29,23 @@ The null hypothesis for a 2-sample t-test is H<sub>0</sub>: &mu;<sub>1</sub>=&mu
 Hypotheses
 </aside>
 
-The 2-sample t-test assumes that (i) inividuals in the populations are independent; (ii) the sample size (n) is great than 40, greater than 15 and the histograms are not strongly skewed, or the histograms are normally distributed; and (iii) the population variances are equal. The assumption of equal variances for the 2-sample t-test is tested with Levene's test, which uses H<sub>0</sub>: &sigma;<sub>1</sub><sup>2</sup>=&sigma;<sub>2</sub><sup>2</sup> and H<sub>0</sub>: &sigma;<sub>1</sub><sup>2</sup>&ne;&sigma;<sub>2</sub><sup>2</sup>, where &sigma;<sup>2</sup> is the population variance. If H<sub>0</sub> is rejected for Levene's test then the variances for both populations are assumed to be equal, such that only one combined sample variance needs to be estimated. That combined sample variance is called the *the pooled sample variance* and is computed as a weighted mean of the two sample variances,
+The 2-sample t-test assumes that (i) inividuals in the populations are independent; (ii) the sample size (n) is great than 40, greater than 15 and the histograms are not strongly skewed, or the histograms are normally distributed; and (iii) the population variances are equal. The assumption of equal variances for the 2-sample t-test is tested with Levene's test, which uses H<sub>0</sub>: $\sigma_{1}^{2}=\sigma_{2}^{2}$ and H<sub>A</sub>: $\sigma_{1}^{2}\ne\sigma_{2}^{2}$, where $\sigma^{2}$ is the population variance. If H<sub>0</sub> is rejected for Levene's test then the variances for both populations are assumed to be equal, such that only one combined sample variance needs to be estimated. That combined sample variance is called the *the pooled sample variance* and is computed as a weighted mean of the two sample variances,
 
 <aside>
 Assumptions
 </aside>
 
-\[ s_{p}^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2} \]
+$$ s_{p}^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2} $$
 
-If the three assumptions are met then the statistic for the 2-sample t-test is x&#772;<sub>1</sub>-x&#772;<sub>2</sub> which is immediately standardized to a t test statistic with
+If the three assumptions are met then the statistic for the 2-sample t-test is $\bar{x}_{1}-\bar{x}_{2}$ which is immediately standardized to a t test statistic with
 
 <aside>
 Statistic and test statistic
 </aside>
 
-\[ t=\frac{\bar{x}_{1}-\bar{x}_{2}}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}} \]
+$$ t=\frac{\bar{x}_{1}-\bar{x}_{2}}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}} $$
 
-The t test statistic is converted to a p-value using a t-distribution with n<sub>2</sub>+n<sub>2</sub>-2 df. Of course, a p-value < &alpha; means that H<sub>0</sub> is rejected and the two population means appear to be different. A confidence interval would then be used to fully describe which population mean was greater (or smaller) and by how much.
+The t test statistic is converted to a p-value using a t-distribution with n<sub>1</sub>+n<sub>2</sub>-2 df. Of course, a p-value < &alpha; means that H<sub>0</sub> is rejected and the two population means appear to be different. A confidence interval would then be used to fully describe which population mean was greater (or smaller) and by how much.
 
 <aside>
 p-value and decision
@@ -137,7 +138,7 @@ The ratio of signal to noise can be a useful metaphor for understanding hypothes
 <aside>
 ![Signal-to-Noise](../zimgs/signal_to_noise.png)
 </aside>
-In a 2-sample t-test, the "signal" is the difference in the two group means (Figure \@ref(fig:SignalNoise1)), which is measured by x&#772;<sub>1</sub>-x&#772;<sub>2</sub>, the numerator of the t-test statistic. The bigger the difference in sample means the stronger the "signal" that the population means are different.
+In a 2-sample t-test, the "signal" is the difference in the two group means (Figure \@ref(fig:SignalNoise1)), which is measured by $\bar{x}_{1}-\bar{x}_{2}$, the numerator of the t-test statistic. The bigger the difference in sample means the stronger the "signal" that the population means are different.
 
 <aside>
 "Signal" is the difference in sample means
@@ -160,7 +161,7 @@ tmp +
             angle=90,vjust=-0.5)
 ```
 
-"Noise" is sampling variability, the fact that statistics (e.g., x&#772;<sub>1</sub> and x&#772;<sub>2</sub>) vary from sample to sample. Sampling variability in a 2-sample t-test is measured by $SE_{\bar{x}_{1}-\bar{x}_{2}}$, which is the denominator of the t test statistic, or $\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}$. This SE increases with increasing $s_{p}^{2}$ and decreases with increasing n<sub>1</sub> qne n<sub>2</sub>. So the "noise" increases as the natural variability of individuals around their group means (i.e., $s_{p}^{2}$) increases (Figure \@ref(fig:SignalNoise2)), but decreases as the sample size increases.
+"Noise" is sampling variability, the fact that statistics (e.g., $\bar{x}_{1}$ and $\bar{x}_{2}$) vary from sample to sample. Sampling variability in a 2-sample t-test is measured by $SE_{\bar{x}_{1}-\bar{x}_{2}}$, which is the denominator of the t test statistic, or $\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}$. This SE increases with increasing $s_{p}^{2}$ and decreases with increasing n<sub>1</sub> and n<sub>2</sub>. So the "noise" increases as the natural variability of individuals around their group means (i.e., $s_{p}^{2}$) increases (Figure \@ref(fig:SignalNoise2)), but decreases as the sample size increases.
 
 <aside>
 "Noise" is sampling variability
@@ -205,7 +206,7 @@ ggplot(data=d,mapping=aes(y=y,x=grp,color=grp)) +
 
 The t test statistic is a measure of signal (i.e., difference in sample means) to noise (i.e., sampling variability as measured by the SE)
 
-\[ t=\frac{\bar{x}_{1}-\bar{x}_{2}}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}} = \frac{\text{Signal}}{\text{Noise}} \]
+$$ t=\frac{\bar{x}_{1}-\bar{x}_{2}}{\sqrt{s_{p}^{2}\left(\frac{1}{n_{1}}+\frac{1}{n_{2}} \right)}} = \frac{\text{Signal}}{\text{Noise}} $$
 
 Thus, larger values of the t test statistic indicate a larger signal-to-noise ratio. Larger t test statistics are further into the tail of the t distribution and result in smaller p-values. Therefore, small p-values represent larger signal-to-noise ratios and are more likely to lead to concluding that the population means differ. In other words, you were able to detect the "signal" through the "noise."
 

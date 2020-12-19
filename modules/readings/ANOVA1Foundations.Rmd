@@ -6,6 +6,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
+    css: "../../css/distill_readings.css"
 ---
 
 ```{r setup, include=FALSE}
@@ -70,11 +71,11 @@ head(opp)
 # Analytical Foundation
 The generic null hypothesis for a one-way ANOVA is
 
-\[ H_{0}: \mu_{1} = \mu_{2} = \ldots = \mu_{I} \]
+$$ \text{H}_{\text{0}}: \mu_{1} = \mu_{2} = \ldots = \mu_{I} $$
 
-where I is the total number of groups or populations.^[From this, it is evident that the one-way ANOVA is a direct extension of the [2-sample t-test](2TReview.html).] The alternative hypothesis is complicated because not all pairs of means need differ for the null hypothesis to be rejected. Thus, the alternative hypothesis for a one-way ANOVA is "wordy" and is often written as
+where $I$ is the total number of groups or populations.^[From this, it is evident that the one-way ANOVA is a direct extension of the [2-sample t-test](2TReview.html).] The alternative hypothesis is complicated because not all pairs of means need differ for the null hypothesis to be rejected. Thus, the alternative hypothesis for a one-way ANOVA is "wordy" and is often written as
 
-\[ H_{A}:\text{At least one pair of means is different} \]
+$$ \text{H}_{\text{A}}:\text{At least one pair of means is different} $$
 
 A rejection of H<sub>0</sub> in favor of H<sub>A</sub> is a statement that *some* difference in group means exists. It does not clearly indicate which group means differ. Methods to identify which group means differ are in [the Multiple Comparisons module](ANOVA1MultipleComparisons).
 
@@ -82,7 +83,7 @@ A rejection of H<sub>0</sub> in favor of H<sub>A</sub> is a statement that *some
 Rejecting H<sub>0</sub> **just** means that **some** group means differ.
 </aside>
 
-The simple (Y<sub>ij</sub> = &mu; + &epsilon;<sub>ij</sub>) and full (Y<sub>ij</sub> = &mu;<sub>i</sub> + &epsilon;<sub>ij</sub>) models for the one-way ANOVA are the same as those for the [2-sample t-test](2TReview.html), except that there are I>2 means in the full model. Thus, SS<sub>total</sub>, SS<sub>within</sub>, and SS<sub>among</sub> are computed using the same formulae shown in the [Model Comparision module](ModelComparison.html), except to again note that I>2. The degrees-of-freedom are also computed similarly -- i.e., df<sub>Within</sub>=n-I and df<sub>Among</sub>=I-1. The MS, F, and p-value are also computed in the same way.^[The MS, F, and p-value are computed the same in nearly every ANOVA table encountered in this class.]
+The simple ($Y_{ij} = \mu + \epsilon_{ij}$) and full ($Y_{ij} = \mu_{i} + \epsilon_{ij}$) models for the one-way ANOVA are the same as those for the [2-sample t-test](2TReview.html), except that there are $I$>2 means in the full model. Thus, SS<sub>total</sub>, SS<sub>within</sub>, and SS<sub>among</sub> are computed using the same formulae shown in the [Model Comparision module](ModelComparison.html), except to again note that $I$>2. The degrees-of-freedom are also computed similarly -- i.e., df<sub>Within</sub>=$n$-$I$ and df<sub>Among</sub>=$I$-1. The MS, F, and p-value are also computed in the same way.^[The MS, F, and p-value are computed the same in nearly every ANOVA table encountered in this class.]
 
 <aside>
 A 2-Sample t-Test is simply a special case of a One-Way ANOVA.
@@ -170,13 +171,14 @@ An ANOVA table (Table \@ref(tab:ANOVA1)) is use to display the results from a on
 
 ```{r ANOVA1, echo=FALSE}
 knitr::kable(aov1,booktabs=TRUE,digits=4,
-             caption='An ANOVA table for immunoglobuling concentration by season (or month) for New Zealand opossums. Note that the "Total" row is not shown.')
+             caption='An ANOVA table for immunoglobuling concentration by season (or month) for New Zealand opossums. Note that the "Total" row is not shown.') %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
 
 In addition to the usual meanings attached to MS<sub>Among</sub>, MS<sub>Among</sub>, and MS<sub>Total</sub>,^[Note that MS<sub>Total</sub> **must** be computed from SS<sub>Total</sub> and df<sub>Total</sub> and not by summing MS<sub>Among</sub> an MS<sub>Within</sub>.] the following can be discerned from this ANOVA table.
 
-* df<sub>Among</sub>=`r aov1$Df[1]` and because df<sub>Among</sub>=I-1, then I=`r aov1$Df[1]+1`. This confirms that there are `r kCounts(aov1$Df[1]+1)` groups in this analysis.
-* df<sub>Total</sub>=df<sub>Among</sub>+df<sub>Within</sub>=`r aov1$Df[1]`+`r aov1$Df[2]`=`r sum(aov1$Df)`. Because df<sub>Total</sub>=n-1, then n=`r sum(aov1$Df)+1`. This shows that there are `r kCounts(sum(aov1$Df)+1)` individuals in this analysis.
+* df<sub>Among</sub>=`r aov1$Df[1]` and because df<sub>Among</sub>=$I$-1, then $I$=`r aov1$Df[1]+1`. This confirms that there are `r kCounts(aov1$Df[1]+1)` groups in this analysis.
+* df<sub>Total</sub>=df<sub>Among</sub>+df<sub>Within</sub>=`r aov1$Df[1]`+`r aov1$Df[2]`=`r sum(aov1$Df)`. Because df<sub>Total</sub>=$n$-1, then $n$=`r sum(aov1$Df)+1`. This shows that there are `r kCounts(sum(aov1$Df)+1)` individuals in this analysis.
 * There is a significant difference in the mean immunoglobulin values among the three months because the p-value=`r kPvalue(aov1$"Pr(>F)"[1],include.p=FALSE,latex=FALSE)`<&alpha;.
 
 &nbsp;
