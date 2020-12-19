@@ -51,22 +51,22 @@ tadsum <- right_join(tadsum.tx,tadsum.d,by="density") %>%
 rm(tadsum.tx,tadsum.d,tadsum.u,gmn)
 ```
 
-In this module we will examine the analytical foundation of a Two-Way ANOVA. In many ways, this foundation is very similar to that for the One-Way ANOVA. However, there are some striking differences which we will discuss here.
+In this module we will examine the analytical foundation of a Two-Way ANOVA. In many ways, this foundation is very similar to that for the One-Way ANOVA. However, there are some striking differences. The similarities and differences are discussed here.
 
 # Terminology
 ### Definitions
 Some terminology must be developed before discussing the objective criteria for determining the significance of main and interaction effects in a Two-Way ANOVA. The tadpole body mass study discussed in [the previous module](ANOVA2Foundations1.html) was an experiment with two *factors*: UV-B light intensity with two *levels* (High and Low) and the density of tadpoles with three *levels* (1, 2, and 4 tadpoles). The combination of these two factors created six *treatments* with 15 individuals or *replicates* per treatment.^[These terms are not defined specifically here as it is assumed that you were introduced to basic experimental design terms in your introductory statistics course.]
 
 ### Graphing
-Two-factor studies can be visualized with the response variable (body mass) on the y-axis, levels of one factor on the x-axis, and levels of the other factor shown with different colors or different symbols. It does not make a difference which factor is on the x-axis, though I usually put the factor that has more levels there as it makes for a less cluttered figure.
+Two-factor studies can be visualized with the response variable on the y-axis, levels of one factor on the x-axis, and levels of the other factor shown with different colors or symbols. It does not make a difference which factor is on the x-axis, though putting the factor with more levels on the x-axis makes for a less cluttered graph.
 
-In this module, two graphs will be shown side-by-side. These are the same data but the role of the factor variables in the plot are reversed. For example, Figure \@ref(fig:TadpoleObs)-Left has tadpole density on the x-axis with different colors for the UV-B light levels and Figure \@ref(fig:TadpoleObs)-Right has UV-B light intensity on the x-axis and different colors for the tadpole densities.
+In this module, two graphs will often be shown side-by-side. These are the same data but the role of the factor variables in the plot are reversed. For example, Figure \@ref(fig:TadpoleObs)-Left has tadpole density on the x-axis with different colors for the UV-B light levels and Figure \@ref(fig:TadpoleObs)-Right has UV-B light intensity on the x-axis with different colors for the tadpole densities.
 
-```{r TadpoleObs, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Tadpole body mass by density and UV-B light intensity factors. The two panels differ only in which factor variable is displayed on the x-axis."}
+```{r TadpoleObs, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Tadpole body mass by density and UV-B light intensity factors. The points are jittered with respect to the x-axis so that each point can be seen. The two panels differ only in which factor variable is displayed on the x-axis."}
 obs1 <- ggplot() +
   geom_point(data=tad,aes(x=density,y=mass),color="white") +
   geom_point(data=tad,aes(x=densityjit,y=mass,color=uvb)) +
-  scale_color_manual(name="UV-B",values=clrs2) +
+  scale_color_manual(name="UV-B:",values=clrs2) +
   labs(x="Density (Tadpoles per Tank)",y="Body Mass (g)") +
   theme_NCStats() +
   theme(legend.position="top",legend.box.spacing=unit(0,units="mm"),
@@ -85,15 +85,15 @@ obs1 + obs2
 ```
 
 ### Symbols
-In a study like this with two factors, one of the factors can be generically labeled as Factor A and the other factor can be generically labeled as Factor B. Ultimately it does not make a difference which factor is considered first. In this example, we will consider tadpole density as the first (A) factor and UV-B light intensity as the second (B) factor.
+In a two-factor study, one of the factors is generically labeled as Factor A and the other factor is generically labeled as Factor B. Ultimately it does not make a difference which factor is considered first. In this example, tadpole density will be the first (A) factor and UV-B light intensity will be the second (B) factor.
 
-Factor A has $a$ levels and Factor B has $b$ levels. Thus, in the tadpole example $a$=3 (1, 2, and 4 tadpoles per tank) and $b$=2 (High and Low UV-B light intensity). We will use $i$ to index the first (A) factor and $j$ to index the second (B) factor. Thus, $i$ can vary from 1 (first level) to $a$ (last level) and, similarly, $j$ can vary from 1 to $b$.
+Factor A has $a$ levels and Factor B has $b$ levels. In the tadpole example, $a$=3 (1, 2, and 4 tadpoles per tank) and $b$=2 (High and Low UV-B light intensity). We use $i$ to index the first (A) factor and $j$ to index the second (B) factor. Thus, $i$ varies from 1 (first level) to $a$ (last level) and $j$ varies from 1 to $b$.
 
-As was the case in this example, and for the sake of simplicity, the same number of replicates are used per treatment.^[An experiment where each treatment has the same number of replicates is called a balanced design.] With this consideration, $m$ is defined as the number of replicates per treatment. Thus, in this case $m$=15. We will use $k$ as an index for the individuals **within** a treatment. Thus, $k$ can vary from 1 to $m$.
+For the sake of simplicity the same number of replicates are used in each treatment.^[An experiment where each treatment has the same number of replicates is called a balanced design.] With this $m$ is the number of replicates *per treatment*. In the tadpole example $m$=15. We use $k$ as an index for individuals **within** a treatment. Thus, $k$ varies from 1 to $m$ for each treatment.
 
-With these definitions, the response variable recorded on the $k$th individual in the treatment defined by the $i$th level of Factor A and the $j$th level of the Factor B is denoted by $Y_{ijk}$. For example, the body mass of tadpoles in the seventh tank ($k$=7) that received 1 tadpole ($i$=1) and low UV-B light ($j$=2) would $Y_{127}$ (Figure \@ref(fig:TadpoleObs2)).
+With these definitions, the response variable recorded on the $k$th individual in the treatment defined by the $i$th level of Factor A and the $j$th level of the Factor B is denoted by $Y_{ijk}$. For example, the body mass of tadpoles in the seventh tank ($k$=7) that received 1 tadpole ($i$=1) and low UV-B light ($j$=2) would be $Y_{127}$ (Figure \@ref(fig:TadpoleObs2)).
 
-```{r TadpoleObs2, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Tadpole body mass by density and UV-B light intensity factors. The two panels differ only in which factor variable is displayed on the x-axis."}
+```{r TadpoleObs2, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Tadpole body mass by density and UV-B light intensity factors. The points are jittered with respect to the x-axis so that each point can be seen. The two panels differ only in which factor variable is displayed on the x-axis."}
 obs1_26 <- obs1 +
   annotate(geom="text",x=2.1,y=2.9,
            label=expression(Y[127]),parse=TRUE,
@@ -109,7 +109,7 @@ obs2_26 <- obs2 +
 obs1_26 + obs2_26
 ```
 
-The mean response for the $i$th level of Factor A and the $j$th level of Factor B is denoted by $\overline{Y}_{ij\cdot}$. These are called **treatment means** in an experiment or **group means** in an observational study. For example, the treatment mean body mass for tadpoles in the 1 tadpole density and low UV-B light intensity would be $\overline{Y}_{12\cdot}$ (Figure \@ref(fig:TadpoleTMNS)).^[This figure is similar to the interaction plots from the previous module.] Note that the dot is used to replace the subscript that was summed across when computing the mean. To calculate a treatment mean we summed across the individuals in a treatment or the $k$ subscript.
+The mean response for the $i$th level of Factor A and the $j$th level of Factor B is denoted by $\overline{Y}_{ij\cdot}$. The $\overline{Y}_{ij\cdot}$ are called **treatment means** in an experiment or **group means** in an observational study. The "dot" in $\overline{Y}_{ij\cdot}$ replaces the subscript in $Y_{ijk}$ that was summed across when computing the mean. Treatment means are calculated by summing across individuals in a treatment (the $k$ subscript), thus the $k$ subscript is replaced with a dot. As an example, the treatment mean body mass for tadpoles in the 1 tadpole density ($i$=1) and low UV-B light intensity ($k$=2) would be $\overline{Y}_{12\cdot}$ (Figure \@ref(fig:TadpoleTMNS)).^[This figure is similar to the interaction plots from the previous module.] 
 
 ```{r TadpoleTMNS, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Same as Figure \\@ref(fig:TadpoleObs2) except that six treatments means are shown with horizontal blue segments."}
 tmns1 <- obs1 +
@@ -131,7 +131,7 @@ tmns2 <- obs2 +
 tmns1 + tmns2
 ```
 
-The mean response for the $i$th level of Factor A is given by $\overline{Y}_{i\cdot\cdot}$. For example, the mean body mass for tadpoles in the 1 tadpole density is $\overline{Y}_{1\cdot\cdot}$ (Figure \@ref(fig:TadpoleLMNS)-Left). Again, the dots are used to replace the subscripts that were summed across when computing the mean. To calculate this **level mean** we summed the individuals in each treatment (across the $k$ subscript) and then summed across UV-B light levels, or across the $j$ subscript.
+The mean response for the $i$th level of Factor A is given by $\overline{Y}_{i\cdot\cdot}$. These **level means** are calculated by first summing individuals in each treatment (the $k$ subscript) and then summing across UV-B light levels (the $j$ subscript); thus, both the $k$ and $j$ subscripts are replaced with a "dot." For example, the mean body mass for tadpoles in the 1 tadpole density ($i$=1) is $\overline{Y}_{1\cdot\cdot}$ (Figure \@ref(fig:TadpoleLMNS)-Left).
 
 ```{r TadpoleLMNS, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Same as Figure \\@ref(fig:TadpoleObs2) except that three density level means are shown on the left and two UV-B light level means are shown on the right with horizontal orange segments."}
 lmns1 <- obs1 +
@@ -155,9 +155,9 @@ lmns2 <- obs2 +
 lmns1 + lmns2
 ```
 
-Similarly, the mean response for the $j$th level of Factor B is given by $\overline{Y}_{\cdot j\cdot}$. For example, the mean body mass for tadpoles in the low UV-B light intensity is $\overline{Y}_{\cdot2\cdot}$ (Figure \@ref(fig:TadpoleLMNS)-Right). Again, the dots replace the subscripts that were summed across when computing the mean. To calculate this **level mean** we summed the individuals in each treatment (across the $k$ subscript) and then summed across tadpole densities, or across the $i$ subscript.
+Similarly, the mean response for the $j$th level of Factor B is given by $\overline{Y}_{\cdot j\cdot}$. These **level means** are calculated by first summing individuals in each treatment (the $k$ subscript) and then summing across tadpole density levels (the $i$ subscript); thus, both the $k$ and $i$ subscripts are replaced with a "dot." For example, the mean body mass for tadpoles in the low UV-B light intensity ($j$=2) is $\overline{Y}_{\cdot2\cdot}$ (Figure \@ref(fig:TadpoleLMNS)-Right).
 
-Finally, the mean response regardless of level of any factor is given by $\overline{Y}_{\cdot\cdot\cdot}$ and is called the **grand mean** (Figure \@ref(fig:TadpoleGMN)). The grand mean is computed by summing the individuals in each treatment, then summing across UV-B light intensities, and then summing across the tadpole densities; thus, this means has a dot in all three subscript positions.
+Finally, the mean response regardless of level of any factor is given by $\overline{Y}_{\cdot\cdot\cdot}$ and is called the **grand mean** (Figure \@ref(fig:TadpoleGMN)). The grand mean is calculated by summing individuals in each treatment, then summing across UV-B light intensities, and then summing across tadpole densities; thus, all three subscripts are replaced with a "dot."
 
 ```{r TadpoleGMN, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Same as Figure \\@ref(fig:TadpoleObs2) except that the grand means is shown with a horizontal red segment in each panel."}
 gmn1 <- obs1 +
@@ -185,7 +185,7 @@ gmn1 + gmn2
 
 # Total and Within SS, df, and MS
 ### Models
-The total and with SS and df^[Thus, also the MS.] are effectively the same with a Two-Way ANOVA as with a One-Way ANOVA, though their calculation may look more complicated. In a Two-Way ANOVA, the *full model* uses a separate mean for each treatment group and the *simple model* uses a single grand mean for all treatment groups. In essence, the simple model says that each treatment mean should be modeled by a common mean (Figure \@ref(fig:2WayModels)-Left), whereas the full model says that each treatment mean should be modeled by a separate mean (Figure \@ref(fig:2WayModels)-Right). It should be evident that this is the same simple and full model used in a One-Way ANOVA.
+The total and within SS and df^[Thus, also the MS.] are effectively the same with a Two-Way ANOVA as with a One-Way ANOVA, though their calculation may look more complicated. In a Two-Way ANOVA, the *full model* uses a separate mean for each treatment group and the *simple model* uses a single grand mean for all treatment groups. In essence, the simple model says that each treatment mean should be modeled by a common mean (Figure \@ref(fig:2WayModels)-Left), whereas the full model says that each treatment mean should be modeled by a separate mean (Figure \@ref(fig:2WayModels)-Right). It should be evident that this is the same simple and full models used in a One-Way ANOVA.
 
 ```{r 2WayModels, echo=FALSE, fig.width=7, fig.height=4, fig.cap="Tadpole body mass by density and UV-B light levels (different colored points) with the grand mean of the simple model (Left) and the treatments means of the full model (Right) shown."}
 fmdl <- obs1 +
@@ -205,24 +205,24 @@ smdl+fmdl
 ```
 
 ### SS<sub>Total</sub>, df<sub>Total</sub>, and MS<sub>Total</sub>
-As discussed with a One-Way ANOVA, SS<sub>Total</sub> measures the lack-of-fit of the observations around the simple model of a grand mean. Visually, this computation sums the square of the vertical distance of each point from the red line at the grand mean in Figure \@ref(fig:2WayModels)-Left); i.e., 
+As discussed with a One-Way ANOVA, SS<sub>Total</sub> measures the lack-of-fit of the observations around the simple model of a grand mean. Visually, this computation sums the square of the vertical distance of each point from the red line at the grand mean in Figure \@ref(fig:2WayModels)-Left; i.e., 
 
 $$ \text{SS}_{\text{Total}} = \sum_{i=1}^{a}\sum_{j=1}^{b}\sum_{k=1}^{m}\left(Y_{ijk}-\overline{Y}_{\cdot\cdot\cdot}\right)^{2} $$
 
-This formula may appear intimidating but focus on the part being summed -- $\left(Y_{ijk}-\overline{Y}_{\cdot\cdot\cdot}\right)^{2}$. This is simply the square of each observation ($Y_{ijk}$) from the simple model of a grand mean ($\overline{Y}_{\cdot\cdot\cdot}$). The three summations simply mean to sum across individuals, then across levels of Factor B, and then across levels of Factor A. In other words, sum the squared residuals across all individuals, exactly what you did for a One-Way ANOVA.
+This formula may appear intimidating but focus on the part being summed -- $\left(Y_{ijk}-\overline{Y}_{\cdot\cdot\cdot}\right)^{2}$. This is simply the square of each observation ($Y_{ijk}$) from the simple model of a grand mean ($\overline{Y}_{\cdot\cdot\cdot}$). The three summations simply mean^[Read summations from right-to-left ... in this case the summation across $k$ and then across $j$ and then across $i$] to sum across individuals, then across levels of Factor B, and then across levels of Factor A. In other words, sum the squared residuals across *all* individuals, exactly what you did for a One-Way ANOVA.
 
-The total degrees-of-freedom is still the total number of individuals ($n$) minus 1 because only one parameter (the grand mean) is being used. Note, however, that $n=abm$, or the number of treatments ($ab$) times the number of replicates (or individuals) per treatment. Thus df<sub>Total</sub>=$abm-1$.
+The total degrees-of-freedom is still the total number of individuals ($n$) minus 1 because only one parameter (the grand mean) is being used in the simple model. Note, however, that $n=abm$, or the number of treatments ($ab$) times the number of replicates (or individuals) per treatment. Thus df<sub>Total</sub>=$abm-1$.
 
 The MS<sub>Total</sub> is (as always) SS<sub>Total</sub> divided by df<sub>Total</sub> and represents the variance of **individuals** around the grand mean (or simple model).
 
 ### SS<sub>Within</sub>, df<sub>Within</sub>, and MS<sub>Within</sub>
-Not surprisingly, SS<sub>Within</sub> measures the lack-of-fit of the observations around the full model of separate means for each treatment. Visually, this computation sums the square of the vertical distance of each point from the blue line at the corresponding treatment mean in Figure \@ref(fig:2WayModels)-Right); i.e., 
+Not surprisingly, SS<sub>Within</sub> measures the lack-of-fit of the observations around the full model of separate means for each treatment. Visually, this computation sums the square of the vertical distance of each point from the blue line at the corresponding treatment mean in Figure \@ref(fig:2WayModels)-Right; i.e., 
 
 $$ \text{SS}_{\text{Within}} = \sum_{i=1}^{a}\sum_{j=1}^{b}\sum_{k=1}^{m}\left(Y_{ijk}-\overline{Y}_{ij\cdot}\right)^{2} $$
 
-Again focus on the part of the formula being summed -- $\left(Y_{ijk}-\overline{Y}_{ij\cdot}\right)^{2}$. This is simply the square of each observation ($Y_{ijk}$) from each treatment mean ($\overline{Y}_{ij\cdot}$). The three summations are the same as for SS<sub>Total</sub>; i.e., sum the squared residuals across all individuals.
+Again focus on the part of the formula being summed -- $\left(Y_{ijk}-\overline{Y}_{ij\cdot}\right)^{2}$. This is the square of each observation ($Y_{ijk}$) from each treatment mean ($\overline{Y}_{ij\cdot}$). The three summations are the same as for SS<sub>Total</sub>; i.e., sum the squared residuals across **all* individuals.
 
-The within degrees-of-freedom is still the total number of individuals ($n$) minus number of groups, because a separate mean is used for each treatment/group. Thus df<sub>Within</sub>=$abm-m$ or df<sub>Within</sub>=$ab(m-1)$.
+The within degrees-of-freedom is still the total number of individuals ($n$) minus the number of groups, because a separate mean is used for each treatment/group in the full model. Thus df<sub>Within</sub>=$abm-ab$ or df<sub>Within</sub>=$ab(m-1)$.
 
 The MS<sub>Within</sub> is (as always) SS<sub>Within</sub> divided by df<sub>Within</sub> and represents the variance of **individuals** around the treatment/group means (or full model).
 
@@ -233,7 +233,7 @@ The SS<sub>Among</sub> is usually found by subtraction (i.e., SS<sub>Total</sub>
 
 $$ \text{SS}_{\text{Among}} = m\sum_{i=1}^{a}\sum_{j=1}^{b}\left(\overline{Y}_{ij\cdot}-\overline{Y}_{\cdot\cdot\cdot}\right)^{2} $$
 
-Once again focus on the part being summed, which is simply the square of the difference between each treatment mean ($\overline{Y}_{ij\cdot}$) and the grand mean ($\overline{Y}_{\cdot\cdot\cdot}$; Figure \@ref(fig:2WayAmong)). Thus, as before, SS<sub>Among</sub> measures how different the treatment means are. The rest of the formula simply sums the differences in means across all treatments^[First across levels of Factor B and then across levels of Factor A.] and then multiplies by $m$ to account for the $m$ individuals that went into each treatment mean.^[Multiplying by m simply scales the summation to the same number of individuals as summed in SS<sub>Total</sub> and SS<sub>Within</sub>; i.e., allowing a comparison of apples to apples.]
+Again focus on the part being summed, which is the square of the difference between each treatment mean ($\overline{Y}_{ij\cdot}$) and the grand mean ($\overline{Y}_{\cdot\cdot\cdot}$; Figure \@ref(fig:2WayAmong)). Thus, as before, SS<sub>Among</sub> measures how different the treatment means are. The rest of the formula simply sums the differences in means across all treatments^[First across levels of Factor B and then across levels of Factor A.] and then multiplies by $m$ to account for the $m$ individuals that went into calculating each treatment mean.^[Multiplying by m scales the summation to the same number of individuals as summed in SS<sub>Total</sub> and SS<sub>Within</sub>; i.e., allowing a comparison of apples to apples.]
 
 ```{r 2WayAmong, echo=FALSE, fig.width=3.5, fig.height=4, fig.cap='Mean tadpole body mass by density and UV-B light levels (not differentiated) with the grand mean of the simple model (red horizontal line) and the treatments means of the full model (blue horizontal lines) shown. Vertical dashed lines are "residuals" between the two types of means. Note that the y-axis scale is different than all previous plots.'}
 ggplot() +
@@ -260,24 +260,24 @@ ggplot() +
         aspect.ratio=1)
 ```
 
-The df<sub>Among</sub> can also be obtained by subtraction (i.e., df<sub>Among</sub>=df<sub>Total</sub>-df<sub>Within</sub>), which indicates that df<sub>Among</sub> measures the difference in complexity^[Difference in number of estimated parameters in the models.] between the simple and full models. It can also easily be shown that df<sub>Among</sub>=$ab-1$, or the number of treatments/groups minus 1, which is exactly as it was with the One-Way ANOVA.
+The among df may be obtained by subtraction (i.e., df<sub>Among</sub>=df<sub>Total</sub>-df<sub>Within</sub>), which indicates that df<sub>Among</sub> measures the difference in complexity^[Difference in number of estimated parameters in the models.] between the simple and full models. It can also easily be shown that df<sub>Among</sub>=$ab-1$, or the number of treatments/groups minus 1, which is exactly as it was with the One-Way ANOVA.
 
-Finally, MS<sub>Among</sub> is equal to SS<sub>Among</sub> divided by df<sub>Among</sub> and represents the variance of **treatment/group means**. Thus, the larger MS<sub>Among</sub> the more different the means are. Of course, we would calculate the F-ratio test statistic and compute the corresponding p-value to determine if MS<sub>Among</sub> is "large" relative to MS<sub>Within</sub> and that we should conclude that there is a significant difference in treatment/group means.
+Finally, MS<sub>Among</sub> is equal to SS<sub>Among</sub> divided by df<sub>Among</sub> and represents the variance of **treatment/group means**. Thus, the larger MS<sub>Among</sub> is the more different the treatment/group means are. Of course, an F-ratio test statistic and corresponding p-value should be calculated to determine if MS<sub>Among</sub> is "large" relative to MS<sub>Within</sub> and whether we should conclude that there is a significant difference in treatment/group means.
 
 ### Partitioning SS<sub>Among</sub>
-To this point, everything in a Two-Way ANOVA has been the same as it was for a One-Way ANOVA, just with a few more symbols. However, an issue occurs if H<sub>0</sub> is rejected in favor of H<sub>A</sub>. In this situation, we would conclude that there is a significant difference in treatment/group means. However, as discussed in [the previous module](ANOVA2Foundations1.html) a difference in treatment means could be related to differences in Factor A level means, differences in Factor B level means, or differences in means due to the interaction of Factor A and Factor B. Which factor, factors, or their interaction is responsible for the difference in treatments means must be teased out in an objectiv way.
+To this point, everything in a Two-Way ANOVA has been the same as it was for a One-Way ANOVA, just with a few more symbols. However, an issue occurs if H<sub>0</sub> is rejected in favor of H<sub>A</sub>. If this occurs, then we would conclude that there is a significant difference in treatment/group means. However, as discussed in [the previous module](ANOVA2Foundations1.html), a difference in treatment means could be related to differences in Factor A level means, differences in Factor B level means, or differences in means due to the interaction of Factor A and Factor B. Which factor, factors, or their interaction is responsible for the difference in treatments means must be teased out in an objective way.
 
-Yust as SS<sub>Total</sub> was partitioned into parts (i.e., into SS<sub>Among</sub> and SS<sub>Within</sub>), SS<sub>Among</sub> can be partitioned into parts due to differences in the levels of Factor A, differences in the levels of Factor B, and differences in the interaction among the two factors. In other words,
+Just as SS<sub>Total</sub> partitioned into parts (i.e., SS<sub>Among</sub> and SS<sub>Within</sub>), SS<sub>Among</sub> partitions into parts due to differences in the levels of Factor A, differences in the levels of Factor B, and differences in the interaction among the two factors. In other words,
 
 $$ SS_{Among} = SS_{A} + SS_{B} + SS_{A:B} $$
 
 where A:B represents the interaction between Factor A and Factor B.
 
-Furthermore, it can be shown that
+It can be shown that
 
 $$ \text{SS}_{\text{A}} = mb\sum_{i=1}^{a}\left(\overline{Y}_{i\cdot\cdot}-\overline{Y}_{\cdot\cdot\cdot}\right)^{2} $$
 
-Again, focus on the part that is summed, which is the square of the differences in the Factor A level means and the grand mean (Figure \@ref(fig:2WayAB)-Left). Thus, SS<sub>A</sub> measures how different the Factor A levels means are, just as you would expect. Note that the rest of the formula says that you must sum across the Factor A levels and then multiply by the number of Factor B levels and individuals that were summed across when constructing the level means.
+Again, focus on the part that is summed, which is the square of the differences in the Factor A level means and the grand mean (Figure \@ref(fig:2WayAB)-Left). Thus, SS<sub>A</sub> measures how different the Factor A levels means are, just as you would expect. Note that the rest of the formula says that you must sum across the Factor A levels and then multiply by the number of individuals that went into calculating the Factor A levels means (i.e., $m$ individuals across $b$ levels of Factor B).
 
 ```{r 2WayAB, echo=FALSE, fig.width=7, fig.height=4, fig.cap='Mean tadpole body mass by density and UV-B light levels (not differentiated) with the grand mean of the simple model (red horizontal line) and the level means shown for the tadpole densities (Left) or UV-B light intensities (Right). Vertical dashed lines are "residuals" between respective level means and the grand means.'}
 SSA <- ggplot() +
@@ -335,9 +335,9 @@ The interaction SS is difficult to describe or to visualize, but it is easily ca
 
 $$ SS_{A:B} = SS_{Among} - SS_{A} - SS_{B} $$
 
-The df<sub>Among</sub> partitions in the same way that SS<sub>Among</sub> partitions; i.e., df<sub>Among</sub>=df<sub>A</sub>+df<sub>B</sub>+df<sub>A:B</sub>. Further, dfdf<sub>A</sub>=$a-1$ and df<sub>B</sub>=$b-1$; their respective number of level means minus 1, as you would expect. The df<sub>A:B</sub> is most easily found by subtraction (df<sub>A:B</sub>=df<sub>Among</sub>-df<sub>A</sub>-df<sub>B</sub>), but is also df<sub>A:B</sub>=$(a-1)(b-1)$.)
+The df<sub>Among</sub> partitions in the same way that SS<sub>Among</sub> partitions; i.e., df<sub>Among</sub>=df<sub>A</sub>+df<sub>B</sub>+df<sub>A:B</sub>. Further, df<sub>A</sub>=$a-1$ and df<sub>B</sub>=$b-1$; their respective number of level means minus 1, as you would expect. The df<sub>A:B</sub> is most easily found by subtraction (df<sub>A:B</sub>=df<sub>Among</sub>-df<sub>A</sub>-df<sub>B</sub>), but is also df<sub>A:B</sub>=$(a-1)(b-1)$.)
 
-Of course, MS<sub>A</sub>, MS<sub>B</sub>, and MS<sub>A:B</sub> are all computed by dividing the corresponding SS by the df. Thus, MS<sub>A</sub> is the variance explained by Factor A, or the difference in the factor a level means. If MS<sub>A</sub> is "large" relative to MS<sub>Within</sub> then there is likely a difference in the Factor A level means and there is a so-called Factor A main effect. The same argument can be made for Factor B.
+Of course, MS<sub>A</sub>, MS<sub>B</sub>, and MS<sub>A:B</sub> are all computed by dividing the corresponding SS by the df. Thus, MS<sub>A</sub> is the variance explained by Factor A, or the difference in the Factor A level means. If MS<sub>A</sub> is "large" relative to MS<sub>Within</sub> then there is likely a difference in the Factor A level means and there is a so-called Factor A main effect. The same argument can be made for Factor B.
 
 The MS<sub>A:B</sub> is more difficult to describe, but can be thought of as the variance explained by the interaction between Factor A and Factor B. If MS<sub>A:B</sub> is "large" relative to MS<sub>Within</sub> then there is likely a difference in means due to an interaction between factors A an B and there is a so-called interaction effect.
 
@@ -359,14 +359,14 @@ knitr::kable(aov1,booktabs=TRUE,digits=c(0,3,3,3,5),
 
 The following observations or conclusions can be drawn from Table \@ref(tab:ANOVA2).
 
-* There must be three levels of density (i.e., one more that df<sub>density</sub>).
-* There must be two levels of UV-B light intensity (i.e., one more that df<sub>uvb</sub>).
-* There must be 90 individuals (or replicates) (i.e., one more than df<sub>Total</sub>=2+1+2+84=89.)
+* There are three levels of density (i.e., one more that df<sub>density</sub>).
+* There are two levels of UV-B light intensity (i.e., one more that df<sub>uvb</sub>).
+* There are 90 individuals (or replicates) (i.e., one more than df<sub>Total</sub>=2+1+2+84=89.)
 * The variance of individuals around the grand mean is MS<sub>Total</sub>=`r formatC(sum(aov1$"Sum Sq")/sum(aov1$Df),format="f",digits=3)` (=$\frac{`r paste(formatC(aov1$"Sum Sq",format="f",digits=3),collapse="+")`}{`r paste(aov1$"Df",collapse="+")`}$ = $\frac{`r formatC(sum(aov1$"Sum Sq"),format="f",digits=3)`}{`r sum(aov1$Df)`}$).
 * The variance of individuals around the treatment means is MS<sub>Within</sub>=`r formatC(aov1$"Mean Sq"[4],format="f",digits=3)`.
 * The variance of treatment means around the grand mean is MS<sub>Among</sub>=`r formatC(sum(aov1$"Sum Sq"[-4])/sum(aov1$Df[-4]),format="f",digits=3)` (=$\frac{`r paste(formatC(aov1$"Sum Sq"[-4],format="f",digits=3),collapse="+")`}{`r paste(aov1$"Df"[-4],collapse="+")`}$ = $\frac{`r formatC(sum(aov1$"Sum Sq"[-4]),format="f",digits=3)`}{`r sum(aov1$Df[-4])`}$).
-* The variance of density level means aruond the grand mean is MS<sub>density</sub>=`r formatC(aov1$"Mean Sq"[1],format="f",digits=3)`.
-* The variance of UV-B level means aruond the grand mean is MS<sub>uvb</sub>=`r formatC(aov1$"Mean Sq"[2],format="f",digits=3)`.
+* The variance of density level means around the grand mean is MS<sub>density</sub>=`r formatC(aov1$"Mean Sq"[1],format="f",digits=3)`.
+* The variance of UV-B level means around the grand mean is MS<sub>uvb</sub>=`r formatC(aov1$"Mean Sq"[2],format="f",digits=3)`.
 * There is not a significant interaction effect (`r kPvalue(aov1$"Pr(>F)"[3],latex=FALSE)`).
 * There is not a significant UV-B light intensity main effect (`r kPvalue(aov1$"Pr(>F)"[2],latex=FALSE)`).
 * There is a significant tadpole density effect (`r kPvalue(aov1$"Pr(>F)"[1],latex=FALSE)`), which means that the mean body mass differs for at least one pair of tadpole densities.^[We will disucss methods to identify which pairs differ in [the next module](ANOVA2Analysis).]
