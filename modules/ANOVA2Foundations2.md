@@ -29,7 +29,7 @@ XXX
 ## Preparation for Class
 Use the resources below to answer [these questions](prep/ANOVA2Foundations2). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~8 pages)
+* **Primary Resources** (~10 pages)
   * [Reading](readings/ANOVA2Foundations2){:target="_blank"}
 
 ----

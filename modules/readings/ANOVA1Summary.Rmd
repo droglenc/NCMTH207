@@ -44,7 +44,7 @@ The process of fitting and interpreting linear models is as much an art as it is
 
 &nbsp;
 
-# Example -- Nematodes (*No Transformation*)
+# Nematodes (*No Transformation*)
 ```{r TNAnalysis, echo=FALSE, results='hide', fig.show='hide'}
 TN <- read.csv("http://derekogle.com/NCMTH207/modules/readings/data/TomatoNematode.csv")
 TN$density <- factor(TN$density)
@@ -141,7 +141,7 @@ From this analysis, it appears that there is a "critical" density of nematodes f
 
 &nbsp;
 
-# Example -- Ant Foraging (*Transformation*)
+# Ant Foraging (*Transformation*)
 ```{r AFAnalysis, echo=FALSE, results='hide', fig.show='hide'}
 AF <- read.csv("http://derekogle.com/NCMTH207/modules/readings/data/Ants.csv")
 lm.af <- lm(Food~Tree,data=AF)
@@ -254,7 +254,7 @@ ggplot() +
 
 &nbsp;
 
-# Example -- Peak Discharge (*Transformation*)
+# Peak Discharge (*Transformation*)
 ```{r PDAnalysis, echo=FALSE, results='hide', fig.show='hide'}
 PD <- read.csv("http://derekogle.com/NCMTH207/modules/readings/data/PeakDischarge.csv")
 PD$method <- factor(PD$method)
