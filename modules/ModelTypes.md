@@ -30,7 +30,7 @@ XXX
 Use the resources below to answer [these questions](prep/ModelTypes). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
 * **Primary Resources** (~4 pages)
-  * [Reading](readings/ModelTypes){:target="_blank"}
+  * [Reading](http://derekogle.com/Book207/ModelTypes.html){:target="_blank"}
 
 ----
 
