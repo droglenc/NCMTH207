@@ -30,7 +30,7 @@ XXX
 Use the resources below to answer [these questions](prep/2TReview). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
 * **Primary Resources** (~6 pages)
-  * [Reading](readings/2TReview){:target="_blank"}
+  * [Reading](http://derekogle.com/Book207/T2Review.html){:target="_blank"}
 
 ----
 

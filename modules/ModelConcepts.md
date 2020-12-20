@@ -30,7 +30,7 @@ XXX
 Use the resources below to answer [these questions](prep/ModelConcepts).
 
 * **Primary Resources** (~5 pages)
-  * [Reading](readings/ModelConcepts){:target="_blank"}
+  * [Reading](http://derekogle.com/Book207/ModelConcepts.html){:target="_blank"}
 
 ----
 
