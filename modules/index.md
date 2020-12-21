@@ -13,7 +13,7 @@ title: Learning Modules
 #### One-Way ANOVA
 
 {:start="5"}
-1. [Conceptual Foundational](ANOVA1Foundations)
+1. [Conceptual Foundation](ANOVA1Foundations)
 1. [Multiple Comparisons](ANOVA1MultipleComparisons)
 1. [Assumption Checking](ANOVA1Assumptions)
 1. [Transformations](ANOVA1Transformations)

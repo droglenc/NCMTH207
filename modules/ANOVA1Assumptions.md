@@ -30,7 +30,7 @@ XXX
 Use the resources below to answer [these questions](prep/ANOVA1Assumptions). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
 * **Primary Resources** (~4 pages)
-  * [Reading](readings/ANOVA1Assumptions){:target="_blank"}
+  * [Reading](http://derekogle.com/Book207/ANOVA1Assumptions.html){:target="_blank"}
 
 ----
 

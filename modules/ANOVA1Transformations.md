@@ -30,7 +30,7 @@ XXX
 Use the resources below to answer [these questions](prep/ANOVA1Transformations). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
 * **Primary Resources** (~9 pages)
-  * [Reading](readings/ANOVA1Transformations){:target="_blank"}
+  * [Reading](http://derekogle.com/Book207/ANOVA1Transformations.html){:target="_blank"}
 
 ----
 

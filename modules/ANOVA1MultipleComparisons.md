@@ -30,7 +30,7 @@ XXX
 Use the resources below to answer [these questions](prep/ANOVA1MultipleComparisons). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
 * **Primary Resources** (~3 pages)
-  * [Reading](readings/ANOVA1MultipleComparisons){:target="_blank"}
+  * [Reading](http://derekogle.com/Book207/ANOVA1MultipleComparisons.html){:target="_blank"}
 
 ----
 
