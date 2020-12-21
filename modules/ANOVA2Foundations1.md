@@ -30,7 +30,7 @@ XXX
 Use the resources below to answer [these questions](prep/ANOVA2Foundations1). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
 * **Primary Resources** (~6 pages)
-  * [Reading](readings/ANOVA2Foundations1){:target="_blank"}
+  * [Reading](http://derekogle.com/Book207/ANOVA2Foundations1.html){:target="_blank"}
 
 ----
 
