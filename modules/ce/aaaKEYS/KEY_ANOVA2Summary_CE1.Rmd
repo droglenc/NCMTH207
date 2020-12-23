@@ -1,0 +1,178 @@
+---
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA Summary"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ANOVA2Summary_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(emmeans)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+<div class="alert alert-warning">
+<ul>
+  <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
+  <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
+</ul>
+</div>
+
+
+# Ruffe Weight
+The statistical hypotheses to be examined were
+
+$$
+\begin{split}
+   H_{0}&: \text{no year effect}: \mu_{1995} = \mu_{1996} = \mu_{1997} \\
+   H_{A}&: \text{year effect}: \text{At least one pair of level means is different}
+\end{split}
+$$
+
+$$
+\begin{split}
+   H_{0}&: \text{no sex effect}: \mu_{female} = \mu_{male} \\
+   H_{A}&: \text{sexr effect}: \mu_{female} \neq \mu_{male}
+\end{split}
+$$
+
+$$
+\begin{split}
+   H_{0}&: \text{no interaction effect} \\
+   H_{A}&: \text{interaction effect}
+\end{split}
+$$
+
+where $\mu$ is the mean weight of Ruffe and the subscripts identify the levels of each factor as defined above.
+
+```{r RuffeData, echo=FALSE, results="hide", fig.show="hide"}
+ruf <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/Ruffe_Flag.csv")
+ruf <- filter(ruf,Sex!="unknown")
+ruf$Year <- factor(ruf$Year)
+
+lm1.ruf <- lm(Weight~Year+Sex+Year:Sex,data=ruf)
+
+xtabs(~Sex+Year,data=ruf)
+
+assumptionCheck(lm1.ruf)
+assumptionCheck(lm1.ruf,lambday=0)
+
+ruf$logWeight <- log(ruf$Weight)
+lm1.ruft <- lm(logWeight~Sex+Year+Sex:Year,data=ruf)
+anova(lm1.ruft)
+
+aov1.ruft <- anova(lm1.ruft)
+p.aov1.ruft <- aov1.ruft$"Pr(>F)"
+mc1.ruft <- emmeans(lm1.ruft,specs=pairwise~Year:Sex,tran="log",type="response")
+( mc1sum.ruft <- summary(mc1.ruft,infer=TRUE) )
+```
+```{r echo=FALSE}
+p.lev.ruf <- levenesTest(Weight~Year*Sex,data=ruf)$"Pr(>F)"[1]
+p.ad.ruf <- adTest(lm1.ruf$residuals)$p.value
+p.out.ruf <- outlierTest(lm1.ruf)$bonf.p
+
+p.lev.ruft <- levenesTest(logWeight~Sex*Year,data=ruf)$"Pr(>F)"[1]
+p.ad.ruft <- adTest(lm1.ruft$residuals)$p.value
+p.out.ruft <- outlierTest(lm1.ruft)$bonf.p
+
+YRS <- min(mc1sum.ruft$contrasts$p.value[c(3,12)])
+```
+
+This study is not at all balanced as many different sample sizes of Ruffe were captured each year and of each sex. 
+
+There is among-year independence as each Ruffe was sacrificed upon captured. There is also between-sex independence as each Ruffe cannot be both male and female. However, there may be issues with within-year independence as many of the Ruffe were likely captured together in the same gear. Thus, if similar weighted Ruffe tend to congregate together and, thus, get captured together then that could be an issue. It is unlikely though that this is a big issue as Ruffe were captured at several times throughout the year. I will assume that the independence assumption has been adequately met.
+
+Variances among the treatments appear not to be constant (Levene's `r kPvalue(p.lev.ruf,latex=FALSE)`) and the boxplots of residuals are quite divergent; the residuals do not appear to be approximately normally distributed and are quite right-skewed (Anderson-Darling `r kPvalue(p.ad.ruf,latex=FALSE)`); and there are significant outliers (outlier test `r kPvalue(p.out.ruf,latex=FALSE)`). Clearly the assumptions are not met and a transformation should be considered.
+
+No transformation worked perfectly for these data. A log transformation still had unequal variances (Levene's `r kPvalue(p.lev.ruft,latex=FALSE)`), but the boxplots of residuals are no longer wildly divergent; the residuals do appear to be approximately normally distributed (`r kPvalue(p.ad.ruft,latex=FALSE)`); and there are no longer any significant outliers (outlier test `r kPvalue(p.out.ruft,latex=FALSE)`). The hypothesis tests are likely very sensitive to slight departures from the assumptions as the sample size is quite larger. Given this, I will assume that the assumptions adequately met on the log scale and continue to analyze the data with this transformation.
+
+There appears to be a significant interaction effect (`r kPvalue(p.aov1.ruft[3],latex=FALSE)`); thus, the main effects cannot be interpreted directly from these results.
+
+Tukey's multiple comparisons show that the mean weight of female Ruffe was between `r formatC(mc1sum.ruft$contrasts$lower.CL[8],format="f",digits=2)` and `r formatC(mc1sum.ruft$contrasts$upper.CL[8],format="f",digits=2)` times greater than the mean weight of female Ruffe in 1996 (`r kPvalue(mc1sum.ruft$contrasts$p.value[8],latex=FALSE)`), but that male and female mean weight did not differ in the other two years (p&ge;`r kPvalue(YRS,include.p=FALSE,latex=FALSE)`). The mean weight of female Ruffe increased between `r formatC(1/mc1sum.ruft$contrasts$upper.CL[1],format="f",digits=2)` and `r formatC(1/mc1sum.ruft$contrasts$lower.CL[1],format="f",digits=2)` times from 1995 to 1996 (`r kPvalue(mc1sum.ruft$contrasts$p.value[1],latex=FALSE)`), but stayed the same from 1996 to 1997 (`r kPvalue(mc1sum.ruft$contrasts$p.value[6],latex=FALSE)`). In contrast, the mean weight of males stayed the same from 1995 to 1996 (`r kPvalue(mc1sum.ruft$contrasts$p.value[13],latex=FALSE)`), but was between `r formatC(1/mc1sum.ruft$contrasts$upper.CL[15],format="f",digits=2)` and `r formatC(1/mc1sum.ruft$contrasts$lower.CL[15],format="f",digits=2)` times greater in 1996 than in 1997 (`r kPvalue(mc1sum.ruft$contrasts$p.value[15],latex=FALSE)`).
+
+The mean weight of Ruffe did not vary consistently among years and sexes. Female Ruffe were heavier in 1996 and 1997 than in 1995, on average, but male Ruffe only slightly heavier in 1997 compared to 1996. Regardless, there is no evidence for a downward trend in weight of Ruffe, thus there is little evidence that a density-dependent effect had yet to affect this population of Ruffe.
+
+### R Code and Results
+```{r fig.width=7}
+<<RuffeData>>
+```
+```{r fig.width=4.5}
+pd <- position_dodge(width=0.1)
+ggplot(data=mc1sum.ruft$emmeans,
+       mapping=aes(x=Year,group=Sex,color=Sex,
+                   y=response,ymin=lower.CL,ymax=upper.CL)) +
+  geom_line(position=pd,size=1.1,alpha=0.25) +
+  geom_errorbar(position=pd,size=2,width=0) +
+  geom_point(position=pd,size=2,pch=21,fill="white") +
+  labs(y="Weight (g)",x="Year of Capture") +
+  theme_NCStats()
+
+```
+
+&nbsp;
+
+# Pied Flycatcher
+```{r Flycatcher, echo=FALSE , results="hide", fig.show="hide"}
+pf <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/PiedFlycatcher.csv")
+pf$csm <- factor(pf$csm,levels=c("reduced","control","enlarged"))
+lm1.pf <- lm(mfr~csm+fh+csm:fh,data=pf)
+xtabs(~csm+fh,data=pf)
+assumptionCheck(lm1.pf)
+anova(lm1.pf)
+
+lm1.pf.noint <- lm(mfr~csm+fh,data=pf)
+mc1.pf.csm <- emmeans(lm1.pf.noint,specs=pairwise~csm)
+( mc1sum.pf.csm <- summary(mc1.pf.csm,infer=TRUE) )
+mc1.pf.fh <- emmeans(lm1.pf.noint,specs=pairwise~fh)
+( mc1sum.pf.fh <- summary(mc1.pf.fh,infer=TRUE) )
+```
+```{r echo=FALSE}
+p.lev.pf <- levenesTest(mfr~csm*fh,data=pf)$"Pr(>F)"[1]
+p.ad.pf <- adTest(lm1.pf$residuals)$p.value
+p.out.pf <- outlierTest(lm1.pf)$bonf.p
+p.aov1.pf <- anova(lm1.pf)$"Pr(>F)"
+```
+
+This study is not at all balanced as many different sample sizes were in each treatment. It is not clear why this is the case, though I suspect some things went "wrong" in some of the treatments as most sample sizes are near 14 except for the control clutch size and reduce forehead patch size group.
+
+We really need more information to fully assess independence in this case. However, the author randomly assigned clutch size and forehead manipulations, so the individuals are likely dependent enough. A lack of dependency could come from the nests being in close proximity to each other such that the activities of one male bird would affect the others. There is, however, no evidence to either support or refute this.
+
+The variances appear to be equal (Levene's `r kPvalue(p.lev.pf,latex=FALSE)`) and the boxplots of residuals are fairly similar; the residuals do appear to be approximately normally distributed (`r kPvalue(p.ad.pf,latex=FALSE)`); and there are no significant outliers (outlier test `r kPvalue(p.out.pf,latex=FALSE)`). The assumptions appear to be met on the original scale and thus will not be transformed.
+
+There does not appear to be a significant interaction effect (`r kPvalue(p.aov1.pf[3],latex=FALSE)`). There does however appear to be main effects for both the clutch size manipulation (`r kPvalue(p.aov1.pf[1],latex=FALSE)`) and forehead patch size manipulation (`r kPvalue(p.aov1.pf[2],latex=FALSE)`) factors.
+
+The mean male feeding rate was between `r formatC(-1*mc1sum.pf.csm$contrasts$upper.CL[1], format="f",digits=2)` and `r formatC(-1*mc1sum.pf.csm$contrasts$lower.CL[1], format="f",digits=2)` units lower for the reduced clutch size than the control clutch size (`r kPvalue(mc1sum.pf.csm$contrasts$p.value[1],latex=FALSE)`). The mean male feeding rate for the enlarged clutch size did not differ significantly from the control (`r kPvalue(mc1sum.pf.csm$contrasts$p.value[3],latex=FALSE)`) or reduced (`r kPvalue(mc1sum.pf.csm$contrasts$p.value[2],latex=FALSE)`) clutch sizes. The mean male feeding rate was between `r formatC(mc1sum.pf.fh$contrasts$lower.CL[1],format="f",digits=2)` and `r formatC(mc1sum.pf.fh$contrasts$upper.CL[1],format="f",digits=2)` greater for the reduced forehead flycatchers than those with unmanipulated foreheads (`r kPvalue(mc1sum.pf.fh$contrasts$p.value[1],latex=FALSE)`).
+
+Sanz's hypotheses were generally supported. The feeding rate of the males was supported when brood demand (i.e., clutch) size increased from the reduced to the control treatments, but not from the control to enlarge treatments and also not statistically from the reduced to enlarged treatments. Thus, there may be a threshold clutch size above which feeding rate of males does not increase. There is some evidence as well to support the hypothesis that feeding rate of males increased as attractiveness decreased (i.e., as the forehead patch size was reduced).
+
+### R Code and Results
+```{r fig.width=7}
+<<Flycatcher>>
+```
+```{r fig.width=4.5}
+mc1.pf <- emmeans(lm1.pf,specs=pairwise~csm:fh)
+( mc1sum.pf <- summary(mc1.pf,infer=TRUE) )
+pd <- position_dodge(width=0.1)
+ggplot(data=mc1sum.pf$emmeans,
+       mapping=aes(x=csm,group=fh,color=fh,
+                   y=emmean,ymin=lower.CL,ymax=upper.CL)) +
+  geom_line(position=pd,size=1.1,alpha=0.25) +
+  geom_errorbar(position=pd,size=2,width=0) +
+  geom_point(position=pd,size=2,pch=21,fill="white") +
+  labs(y="Male Feeding Rate",x="Clutch Size Manipulation") +
+  theme_NCStats()
+```
+
+

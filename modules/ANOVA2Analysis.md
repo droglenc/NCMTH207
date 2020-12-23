@@ -36,4 +36,4 @@ Use the resources below to answer [these questions](prep/ANOVA2Analysis). [[*Pro
 
 ## Practice
 
-* [Assignment](ce/ANOVA2Analysis_CE1) ... [ANSWER KEY](cex/KEY_ANOVA2Analysis_CE)
+* [Assignment](ce/ANOVA2Analysis_CE1)
