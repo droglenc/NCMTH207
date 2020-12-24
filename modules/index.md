@@ -30,8 +30,12 @@ title: Learning Modules
 #### Simple Linear Regression (SLR)
 
 {:start="14"}
-1. Hello
-1. good bye
+1. [Foundations](SLRFoundations)
+1. [Inference](SLRInference)
+1. [Models](SLRModels)
+1. [Assumptions](SLRAssumptions)
+1. [Transformations](SLRTransformations)
+1. [Summary](SLRSummary)
 
 #### Indicator Variable Regression (IVR)
 
