@@ -11,6 +11,8 @@ css: "/css/modules.css"
 Use the preparation readings and videos to prepare written answers for the following questions. Please contact <a href="mailto:dogle@northland.edu">Dr. Ogle</a> if you have questions.
 </div>
 
+1. What kind of variables are used in an SLR?
+1. What are the two goals of an SLR?
 1. Write the equation of a line (the way statisticians write it) and define all symbols used.
 1. Define a slope (note that you may need to look at your introductory statistics notes).
 1. Define an intercept (note that you may need to look at your introductory statistics notes).
