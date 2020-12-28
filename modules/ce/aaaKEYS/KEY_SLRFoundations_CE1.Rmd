@@ -1,0 +1,106 @@
+---
+title: "Exercise Key"
+subtitle: "SLR Foundations"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_SLRFoundations_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+
+br <- data.frame(year=1970:1990,
+                 propmale=c(0.5134,0.5126,0.5125,0.5128,0.5133,0.5132,0.5128,
+                            0.5128,0.5129,0.5127,0.5129,0.5126,0.5123,0.5127,
+                            0.5122,0.5126,0.5122,0.5120,0.5121,0.5120,0.5120))
+lm.br <- lm(propmale~year,data=br)
+sum.br <- summary(lm.br)
+cf.br <-coef(lm.br)
+ci.br <- confint(lm.br)
+r2.br <- rSquared(lm.br)
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+  </ol>
+</ul>
+</div>
+
+----
+
+# Male-Female Birth Ratio
+
+1. The equation of the best-fit line is PropMale=`r formatC(cf.br[1],format="f",digits=3)``r formatC(cf.br[2],format="f",digits=6)`Year.
+1. The slope means that for every increase of one year that the proportion of males decreases by between `r formatC(-1*ci.br[2,2],format="f",digits=6)` and `r formatC(-1*ci.br[2,1],format="f",digits=6)`, on average.
+1. The intercept means that in theoretical year 0 the proportion of males was between `r formatC(ci.br[1,1],format="f",digits=6)` and `r formatC(ci.br[1,2],format="f",digits=6)`, on average. This obviously does not make sense as year 0 is an extreme extrapolation.
+1. The r<sup>2</sup> means that `r formatC(100*r2.br,format="f",digits=1)` of the variability in the proportion of males is explained by knowing the year of the sample.
+1. The predicted proportion of males in 1990 is `r formatC(predict(lm.br,data.frame(year=2000)),format="f",digits=4)`.
+1. The predicted proportion of males in 1990 is `r formatC(predict(lm.br,data.frame(year=2000)),format="f",digits=4)`. This value should be interpreted cautiously as it is an extrapolation.
+1. The residual for 1980 is `r formatC(0.5129-predict(lm.br,data.frame(year=2000)),format="f",digits=4)` (=0.5129-`r formatC(predict(lm.br,data.frame(year=1980)),format="f",digits=4)`).
+1. The best-fit line is shown in the plot below.
+
+### R Code and Results.
+```{r eval=FALSE}
+br <- read.csv("BirthRatio.csv")
+```
+```{r prompt=FALSE}
+lm.br <- lm(propmale~year,data=br)
+cbind(Est=coef(lm.br),confint(lm.br))
+rSquared(lm.br)
+ggplot(data=br,mapping=aes(x=year,y=propmale)) +  
+  geom_point(pch=21,color="black",fill="lightgray") +  
+  labs(x="Year",y="Proportion of Births that were Male") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm",se=FALSE)
+```
+
+&nbsp;
+
+# Willow Flycatcher Migration
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
+lm.wfc <- lm(winglen~date,data=wfc)
+sum.wfc <- summary(lm.wfc)
+cf.wfc <-coef(lm.wfc)
+ci.wfc <- confint(lm.wfc)
+r2.wfc <- rSquared(lm.wfc)
+```
+
+1. The equation of the best-fit line is WingLength=`r formatC(cf.wfc[1],format="f",digits=3)``r formatC(cf.wfc[2],format="f",digits=6)`Days.
+1. The slope means that for every increase of one day that the wing length decreases by between `r formatC(-1*ci.wfc[2,2],format="f",digits=3)` and `r formatC(-1*ci.wfc[2,1],format="f",digits=3)` mm, on average.
+1. The intercept means that on January 1 (i.e., Day=0) was between `r formatC(ci.wfc[1,1],format="f",digits=1)` and `r formatC(ci.wfc[1,2],format="f",digits=1)` mm, on average. This could make sense as January 1 is a reasonable day, but it is an extrapolation of approximately 140 days so it is unlikely a realistic estimate.
+1. The r<sup>2</sup> means that `r formatC(100*r2.wfc,format="f",digits=1)` of the variability in wing length is explained by knowing the day of migration.
+1. The predicted wing length on day 160 is `r formatC(predict(lm.wfc,data.frame(date=160)),format="f",digits=1)` mm.
+1. The residual for day 149 is `r formatC(66.4-predict(lm.wfc,data.frame(date=149)),format="f",digits=1)` (=66.4-`r formatC(predict(lm.wfc,data.frame(date=149)),format="f",digits=1)`) mm.
+1. The predicted wing length on day 140 is `r formatC(predict(lm.wfc,data.frame(date=140)),format="f",digits=1)` mm. This value is not an extrapolation so this is a valid prediction.
+1. The best-fit line is shown in the plot below.
+ 
+### R Code and Results.
+```{r prompt=FALSE}
+wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
+lm.wfc <- lm(winglen~date,data=wfc)
+cbind(Est=coef(lm.wfc),confint(lm.wfc))
+rSquared(lm.wfc)
+ggplot(data=wfc,mapping=aes(x=date,y=winglen)) +  
+  geom_point(pch=21,color="black",fill="lightgray") +  
+  labs(x="Days Since Jan. 1",y="Wing Length (mm)") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm",se=FALSE)
+```

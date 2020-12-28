@@ -46,7 +46,7 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 1. Interpret the value of the y-intercept (using the 95% confidence interval). Comment on whether this interpretation makes sense and why or why not?
 1. Interpret the r<sup>2</sup> value (with a complete sentence).
 1. Predict the wing length for birds on day 160. Show your answer using your calculator and a function in R.
-1. Calculate the residual for day 150. Physically interpret or explain what this value means.
+1. Calculate the residual for day 149. Physically interpret or explain what this value means.
 1. Predict the wing length for day 140. Comment on the validity of the prediction (with an explanation for your thoughts).
 1. Construct a graphic that demonstrates the linear model fit.
 

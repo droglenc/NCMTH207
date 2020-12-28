@@ -29,7 +29,8 @@ In [this previous exercise](SLRFoundations_CE1.html#willow-flycatcher-migration)
 1. Is there a significant relationship between wing length and date of migration? Provide appropriate support.
 1. Describe the relationship (with appropriate interval) between wing length and date of migration.
 1. Predict (with appropriate interval) the wing length for **a** bird that migrated on day 160.
-1. Predict (with appropriate interval) the mean wing length for **all** birds that migrated on day 155.
+1. Predict (with appropriate interval) the mean wing length for **all** birds that migrated on day 160.
+1. Which of the last two predictions is least precise? Explain why.
 
 &nbsp;
 
