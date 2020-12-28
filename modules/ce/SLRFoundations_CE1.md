@@ -33,7 +33,7 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 1. Predict the proportion of males for 1990. Show your answer using your calculator and a function in R.
 1. Predict the proportion of males for 2020. Comment on the validity of the prediction (with an explanation for your thoughts).
 1. Calculate the residual for 1980. Physically interpret or explain what this value means.
-1. Construct a graphic the demonstrates the linear model fit.
+1. Construct a graphic that demonstrates the linear model fit.
 
 &nbsp;
 
@@ -48,7 +48,7 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 1. Predict the wing length for birds on day 160. Show your answer using your calculator and a function in R.
 1. Calculate the residual for day 150. Physically interpret or explain what this value means.
 1. Predict the wing length for day 140. Comment on the validity of the prediction (with an explanation for your thoughts).
-1. Construct a graphic the demonstrates the linear model fit.
+1. Construct a graphic that demonstrates the linear model fit.
 
 <!----
 also could use old wheatears or ashland climate questions
