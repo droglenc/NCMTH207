@@ -31,7 +31,8 @@ Use the preparation readings and videos to prepare written answers for the follo
 1. Carefully explain what is meant to be contained in a confidence interval (for a prediction).
 1. Carefully explain what is meant to be contained in a prediction interval.
 1. Is a "confidence interval" or a "prediction interval" narrower? Explain why.
-
+1. What R function is used to make predictions in R? What argument do you use to make a confidence interval? A prediction interval?
+1. 
 
 
 

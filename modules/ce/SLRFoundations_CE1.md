@@ -12,7 +12,7 @@ css: "/css/modules.css"
 ----
 
 ## Male-Female Birth Ratio
-<img src="../zimgs/boy-girl-infants.jpg" alt="Boy and Girl Infants" class="img-right">
+<img src="../zimgs/boy-girl-infants.jpg" alt="Decoration" class="img-right">
 [Davis *et al.* (1998)](https://www.researchgate.net/publication/51325887_Reduced_Ratio_of_Male_to_Female_Births_in_Several_Industrial_Countries_A_Sentinel_Health_Indicator){:target="_blank"} observed a decline in the ratio of male to female births in several industrialized countries and explored whether that result was an indicator of larger health issues. The data below are the proportion of male births (PropMale) for the United States. Use these data to answer the questions further below. [*Note: The data are wrapped onto multiple lines simply to save space. Carefully check that your data entry is correct.*]
 
 <pre>
@@ -32,7 +32,7 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 1. Interpret the r<sup>2</sup> value (with a complete sentence).
 1. Predict the proportion of males for 1990. Show your answer using your calculator and a function in R.
 1. Predict the proportion of males for 2020. Comment on the validity of the prediction (with an explanation for your thoughts).
-1. Calculate the residual for 1980. Physically interpret or explain what this values means.
+1. Calculate the residual for 1980. Physically interpret or explain what this value means.
 1. Construct a graphic the demonstrates the linear model fit.
 
 &nbsp;
@@ -45,8 +45,8 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 1. Interpret the value of the slope (using the 95% confidence interval).
 1. Interpret the value of the y-intercept (using the 95% confidence interval). Comment on whether this interpretation makes sense and why or why not?
 1. Interpret the r<sup>2</sup> value (with a complete sentence).
-1. Predict the wing lengt for birds on day 160. Show your answer using your calculator and a function in R.
-1. Calculate the residual for day 150. Physically interpret or explain what this values means.
+1. Predict the wing length for birds on day 160. Show your answer using your calculator and a function in R.
+1. Calculate the residual for day 150. Physically interpret or explain what this value means.
 1. Predict the wing length for day 140. Comment on the validity of the prediction (with an explanation for your thoughts).
 1. Construct a graphic the demonstrates the linear model fit.
 
