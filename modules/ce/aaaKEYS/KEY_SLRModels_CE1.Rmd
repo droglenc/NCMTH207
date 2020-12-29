@@ -1,0 +1,132 @@
+---
+title: "Exercise Key"
+subtitle: "SLR Models"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_SLRModels_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+  </ol>
+</ul>
+</div>
+
+----
+
+# Male-Female Birth Ratio
+```{r echo=FALSE}
+br <- data.frame(year=1970:1990,
+                 propmale=c(0.5134,0.5126,0.5125,0.5128,0.5133,0.5132,0.5128,
+                            0.5128,0.5129,0.5127,0.5129,0.5126,0.5123,0.5127,
+                            0.5122,0.5126,0.5122,0.5120,0.5121,0.5120,0.5120))
+lm.br <- lm(propmale~year,data=br)
+sum.br <- summary(lm.br)
+aov.br <- anova(lm.br)
+SST.br <- sum(aov.br[,"Sum Sq"])
+dfT.br <- sum(aov.br[,"Df"])
+MST.br <- SST.br/dfT.br
+```
+
+1. The df<sub>Residual</sub>=n-2, thus n is df<sub>Residual</sub>+2. In this case df<sub>Residual</sub>=`r aov.br[2,"Df"]` so n is `r aov.br[2,"Df"]+2`.
+1. The variance of the proportion of males among years ignoring any relationship with year is MS<sub>Total</sub>=`r formatC(MST.br,format="f",digits=8)`(=$\frac{`r formatC(SST.br,format="f",digits=8)`}{`r dfT.br`}$).
+1. The variance of the proportion of males among years after taking into account the relationship between proportion of males and year is MS<sub>Residual</sub>=`r formatC(aov.br[2,"Mean Sq"],format="f",digits=8)`.
+1. There is a significant relationship between the proportions of males and years (`r kPvalue(aov.br[1,"Pr(>F)"],digits=6,latex=FALSE)`).
+1. The p-values here (`r kPvalue(aov.br[1,"Pr(>F)"],digits=6,latex=FALSE)`) and from the slope test on the previous exercise (`r kPvalue(sum.br$coefficients[2,"Pr(>|t|)"],digits=6,latex=FALSE)`) are the same. This occurs because the two tests effectively test the same null and alternative hypothesis. Furthermore, an F with 1 an `r aov.br[2,"Df"]` df is equal to the square of a t with `r aov.br[2,"Df"]` df.
+
+### R Code and Results.
+```{r eval=FALSE, prompt=FALSE}
+br <- read.csv("BirthRatio.csv")
+```
+```{r prompt=FALSE}
+lm.br <- lm(propmale~year,data=br)
+anova(lm.br)
+summary(lm.br)
+```
+
+&nbsp;
+
+# Willow Flycatcher Migration
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
+lm.wfc <- lm(winglen~date,data=wfc)
+sum.wfc <- summary(lm.wfc)
+aov.wfc <- anova(lm.wfc)
+r2.wfc <- rSquared(lm.wfc)
+SST.wfc <- sum(aov.wfc[,"Sum Sq"])
+dfT.wfc <- sum(aov.wfc[,"Df"])
+MST.wfc <- SST.wfc/dfT.wfc
+```
+
+1. The df<sub>Total</sub>=n-1, thus n is df<sub>Total</sub>+1. In this case df<sub>Total</sub>=`r dfT.wfc` so n is `r dfT.wfc+1`.
+1. There is a significant relationship between wing length and day of migration (`r kPvalue(aov.wfc[1,"Pr(>F)"],latex=FALSE)`).
+1. The F-ratio here (=`r formatC(aov.wfc[1,"F value"],format="f",digits=4)`) is the square of t test statistic for the slope from the previous exercise (=`r formatC(sum.wfc$coefficients[2,"t value"],format="f",digits=4)`<sup>2</sup>=`r formatC(sum.wfc$coefficients[2,"t value"]^2,format="f",digits=4)`). This occurs because the two tests effectively test the same null and alternative hypothesis. Furthermore, an F with 1 an `r aov.wfc[2,"Df"]` df is equal to the square of a t with `r aov.wfc[2,"Df"]` df.
+1. The percent of the variability in wing length is explained by knowing the day of migration is `r formatC(r2.wfc*100,format="f",digits=1)` (i.e., 100r<sup>2</sup>).
+1. The variance of wing length among birds after taking into account day of migration is MS<sub>Residual</sub>=`r formatC(aov.wfc[2,"Mean Sq"],format="f",digits=3)`.
+1. The variance of wing length among birds ignoring any relationship with day of migration is MS<sub>Total</sub>=`r formatC(MST.wfc,format="f",digits=3)`(=$\frac{`r formatC(SST.wfc,format="f",digits=3)`}{`r dfT.wfc`}$).
+
+### R Code and Results.
+```{r prompt=FALSE}
+wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
+lm.wfc <- lm(winglen~date,data=wfc)
+summary(lm.wfc)
+rSquared(lm.wfc)
+anova(lm.wfc)
+```
+
+&nbsp;
+
+# Car Drive Ratio and Gas Mileage
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+gas <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv")
+gasI <- filter(gas,type=="Import")
+lm.gas <- lm(mpg~drat,data=gasI)
+sum.gas <- summary(lm.gas)
+r2.gas <- rSquared(lm.gas)
+aov.gas <- anova(lm.gas)
+SST.gas <- sum(aov.gas[,"Sum Sq"])
+dfT.gas <- sum(aov.gas[,"Df"])
+MST.gas <- SST.gas/dfT.gas
+```
+
+1. There is not a significant relationship between gas mileage and drive ratio for imported cars (`r kPvalue(aov.gas[1,"Pr(>F)"],latex=FALSE)`).
+1. The percent of the variability in gas mileage explained by knowing the drive ratio of an imported car is `r formatC(r2.gas*100,format="f",digits=1)`. Note that $r^{2}$=$\frac{\text{SS}_{\text{Regression}}}{\text{SS}_{\text{Total}}}$=$\frac{`r formatC(aov.gas[1,"Sum Sq"],format="f",digits=3)`}{`r formatC(SST.gas,format="f",digits=3)`}$=`r formatC(aov.gas[1,"Sum Sq"]/SST.gas,format="f",digits=3)`.
+1. The variance of gas mileage among cars after taking into account drive ratio is MS<sub>Residual</sub>=`r formatC(aov.gas[2,"Mean Sq"],format="f",digits=3)`.
+1. The variance of gas mileage among cars ignoring any relationship with drive ratio is MS<sub>Total</sub>=`r formatC(MST.gas,format="f",digits=3)`(=$\frac{`r formatC(SST.gas,format="f",digits=3)`}{`r dfT.gas`}$).
+1. The plot is shown below.
+
+### R Code and Results.
+```{r prompt=FALSE}
+gas <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv")
+gasI <- filter(gas,type=="Import")
+lm.gas <- lm(mpg~drat,data=gasI)
+summary(lm.gas)
+rSquared(lm.gas)
+anova(lm.gas)
+ggplot(data=gasI,mapping=aes(x=drat,y=mpg)) +  
+  geom_point(pch=21,color="black",fill="lightgray") +  
+  labs(x="Drive Ratio",y="Miles per Gallon") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm")
+```
