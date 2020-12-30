@@ -16,7 +16,6 @@ output:
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
 modHTML_CEKeys("KEY_SLRAssumptions_CE1")
 ```
-
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
 source("../../../rhelpers/knitr_setup.R")
@@ -39,12 +38,16 @@ source("../../../rhelpers/knitr_setup.R")
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
 lm.wfc <- lm(winglen~date,data=wfc)
-
+p.ad.wfc <- adTest(lm.wfc$residuals)$p.value
+p.out.wfc <- outlierTest(lm.wfc)$bonf.p
 ```
 
+The form of the relationship appears to be linear and homoscedastic as there is no obvious curvature or funnel (or cone) shape to the residual plot (shown below). The residuals appear to be normal (Anderson-Darling `r kPvalue(p.ad.wfc,latex=FALSE)`; histogram not strongly skewed) and there are no obvious outliers (`r kPvalue(p.out.wfc,latex=FALSE)`) or influential points (residual plot below).
+
+I would be concerned about independence if a number of birds were captured on the same day. However a quick look at the data shows that multiple (and only a few) birds were captured on only a few days. Thus, I don't see any obvious dependency between birds.
 
 ### R Code and Results.
-```{r prompt=FALSE}
+```{r prompt=FALSE, fig.width=7}
 wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
 lm.wfc <- lm(winglen~date,data=wfc)
 assumptionCheck(lm.wfc)
@@ -53,17 +56,41 @@ assumptionCheck(lm.wfc)
 &nbsp;
 
 # Rattlesnake Rattling
+```{r echo=FALSE}
+rs <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes.csv")
+lm.rs <- lm(freq~weight,data=rs)
+p.ad.rs <- adTest(lm.rs$residuals)$p.value
+p.out.rs <- outlierTest(lm.rs)$bonf.p
+```
+
+The form of the relationship appears to be non-linear and possibly heteroscedastic as there is a clear curve evident in the residual plot (shown below) and a possible funneling, though that is difficult to see because of the curvature. The residuals do not appear to be normal (Anderson-Darling `r kPvalue(p.ad.rs,latex=FALSE)` and the histogram is moderately strongly right-skewed) and there is an apparently outlier (`r kPvalue(p.out.rs,latex=FALSE)`) at a large predicted frequency. I suspect that the outlier is related to the non-linear form.
+
+There is little evidence in the background on which to base an assessment of independence. However, the data indicates that individual snakes were used (there is a variable that appears to be a snake identification code). As long as all of the snakes are not relate in any way then the independence assumption is likely adequately met.
 
 ### R Code and Results.
-```{r prompt=FALSE}
-gas <- read.csv("")
+```{r prompt=FALSE, fig.width=7}
+rs <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes.csv")
+lm.rs <- lm(freq~weight,data=rs)
+assumptionCheck(lm.rs)
 ```
 
 &nbsp;
 
 # Initial COVID-19 Cases
+```{r echo=FALSE}
+cv <- read.csv("https://derekogle.com/NCMTH207/modules/ce/data/CovidUK.csv")
+lm.cv <- lm(Cum_Cases~Days_Since_10,data=cv)
+p.ad.cv <- adTest(lm.cv$residuals)$p.value
+p.out.cv <- outlierTest(lm.cv)$bonf.p
+```
+
+The form of the relationship is clearly non-linear as there is a clear strong curve evident in the residual plot (shown below). The data look homoscedastic around the curve, though that is difficult to see because of the curvature. The residuals do not appear to be normal (Anderson-Darling `r kPvalue(p.ad.cv,latex=FALSE)` and the histogram is moderately strongly right-skewed) and there is an apparently outlier (`r kPvalue(p.out.cv,latex=FALSE)`) at a large predicted cumulative number of cases. I suspect that the outlier is related to the non-linear form.
+
+Independence is clearly in question here because cumulative number of cases on one day is surely relate to the number of cases prior to it. However, this is partly what the analysis is about, to see how cumulative case increase through time so it is likely OK to proceed.
 
 ### R Code and Results.
-```{r prompt=FALSE}
-gas <- read.csv("")
+```{r prompt=FALSE, fig.width=7}
+cv <- read.csv("https://derekogle.com/NCMTH207/modules/ce/data/CovidUK.csv")
+lm.cv <- lm(Cum_Cases~Days_Since_10,data=cv)
+assumptionCheck(lm.cv)
 ```
