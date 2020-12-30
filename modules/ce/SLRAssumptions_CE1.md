@@ -27,4 +27,8 @@ In [this](SLRFoundations_CE1.html#willow-flycatcher-migration),  [this](SLRInfer
 
 # Initial COVID-19 Cases
 <img src="../zimgs/COVID.jpg" alt="Decoration" class="img-right">
-The COVID-19 virus tends to spread according to an exponential growth model durings its initial breakout period. To examine if this was the case in the United Kingdom, the number of new cases and the cumulative number of cases on each day since the 10th case was confirmed were recorded in [CovidUK.csv](data/CovidUK.csv).[^These data are from [this page](https://www.cebm.net/covid-19/exponential-growth-what-it-is-why-it-matters-and-how-to-spot-it/).] This file does not contain any data after the first days when "lockdown measures" were put in place. Load these data into RStudio and assess the assumptions for a model used to predict the number of cumulative COVID-19 cases by day since the 10th case was confirmed.
+The COVID-19 virus tends to spread according to an exponential growth model durings its initial breakout period. To examine if this was the case in the United Kingdom, the number of new cases and the cumulative number of cases on each day since the 10th case was confirmed were recorded in [CovidUK.csv](data/CovidUK.csv).[^CovidData] This file does not contain any data after the first days when "lockdown measures" were put in place. Load these data into RStudio and assess the assumptions for a model used to predict the number of cumulative COVID-19 cases by day since the 10th case was confirmed.
+
+&nbsp;
+
+[:CovidData]: These data are from [this page](https://www.cebm.net/covid-19/exponential-growth-what-it-is-why-it-matters-and-how-to-spot-it/).
