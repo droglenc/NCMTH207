@@ -1,0 +1,69 @@
+---
+title: "Exercise Key"
+subtitle: "SLR Assumptions"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_SLRAssumptions_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+  </ol>
+</ul>
+</div>
+
+----
+
+# Willow Flycatcher Migration
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
+lm.wfc <- lm(winglen~date,data=wfc)
+
+```
+
+
+### R Code and Results.
+```{r prompt=FALSE}
+wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
+lm.wfc <- lm(winglen~date,data=wfc)
+assumptionCheck(lm.wfc)
+```
+
+&nbsp;
+
+# Rattlesnake Rattling
+
+### R Code and Results.
+```{r prompt=FALSE}
+gas <- read.csv("")
+```
+
+&nbsp;
+
+# Initial COVID-19 Cases
+
+### R Code and Results.
+```{r prompt=FALSE}
+gas <- read.csv("")
+```

@@ -12,7 +12,7 @@ Use the preparation readings and videos to prepare written answers for the follo
 </div>
 
 1. What are the four assumptions of a One-Way ANOVA?
-1. Which two assumptions are critical for a One-Way ANOVA and which on is the One-Way ANOVA resilient to?
+1. Which two assumptions are most critical for a One-Way ANOVA and which one is the One-Way ANOVA resilient to?
 1. How is the independence assumption tested?
 1. How is the equal variances assumption tested?
 1. What are the hypotheses for Levene's Test?
