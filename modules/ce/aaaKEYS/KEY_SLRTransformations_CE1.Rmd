@@ -1,0 +1,130 @@
+---
+title: "Exercise Key"
+subtitle: "SLR Transformations"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_SLRTransformations_CE1")
+```
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+  </ol>
+</ul>
+</div>
+
+----
+
+# Rattlesnake Rattling
+```{r echo=FALSE}
+rs <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes.csv")
+rs$logfreq <- log(rs$freq)
+rs$logweight <- log(rs$weight)
+lm.rst <- lm(logfreq~logweight,data=rs)
+p.ad.rst <- adTest(lm.rst$residuals)$p.value
+p.out.rst <- outlierTest(lm.rst)$bonf.p
+aov.rst <- anova(lm.rst)
+cfs.rst <- cbind(Est=coef(lm.rst),confint(lm.rst))  ## log-log scale
+btcfs.rst <- exp(cfs.rst) ## back-transformed to original scale
+nd <- data.frame(logweight=log(454))
+plog454 <- predict(lm.rst,newdata=nd,interval="prediction")  # log scale
+btplog454 <- exp(plog454) ## back-transformed to original scale
+clog454 <- predict(lm.rst,newdata=nd,interval="confidence")  # log scale
+btclog454 <- exp(clog454) ## back-transformed to original scale
+```
+
+1. When transformed to the log-log scale, the form of the relationship appears to be linear and largely homoscedastic as there is no clear curve or funneling evident in the residual plot (shown below). The residuals do appear to be normal (Anderson-Darling `r kPvalue(p.ad.rst,latex=FALSE)`) and there are not apparent outliers (`r kPvalue(p.out.rst,latex=FALSE)`).
+1. There is a significant relationship between log peak frequency and log weight of the rattlesnakes (ANOVA `r kPvalue(aov.rst$"Pr(>F)"[1],latex=FALSE)`). The scatterplot with the best-fit line superimposed is shown below.
+1. The log peak frequency decreases between `r formatC(-1*cfs.rst["logweight","97.5 %"],format="f",digits=3)` and `r formatC(-1*cfs.rst["logweight","2.5 %"],format="f",digits=3)` for each unit increase in log weight of the rattlesnakes.
+1. The peak frequency is multiplied by a value between `r formatC(btcfs.rst["logweight","2.5 %"],format="f",digits=3)` and `r formatC(btcfs.rst["logweight","97.5 %"],format="f",digits=3)` for each 2.718 unit increase in weight of the rattlesnakes. In other words, the peak frequency decreases between `r formatC(100*(1-btcfs.rst["logweight","2.5 %"]),format="f",digits=1)` and `r formatC(100*(1-btcfs.rst["logweight","97.5 %"]),format="f",digits=1)`% for each 2.718 unit increase in weight of the rattlesnakes.
+1. The peak frequency for a 454 g rattlesnake is between `r formatC(btplog454[1,"lwr"],format="f",digits=3)` and `r formatC(btplog454[1,"upr"],format="f",digits=3)` kHz.
+1. The mean peak frequency for all 454 g rattlesnakes is between `r formatC(btclog454[1,"lwr"],format="f",digits=3)` and `r formatC(btclog454[1,"upr"],format="f",digits=3)` kHz.
+
+### R Code and Results.
+```{r prompt=FALSE, fig.width=7}
+rs <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes.csv")
+lm.rs <- lm(freq~weight,data=rs)
+assumptionCheck(lm.rs,lambday=0,lambdax=0)
+rs$logfreq <- log(rs$freq)
+rs$logweight <- log(rs$weight)
+lm.rst <- lm(logfreq~logweight,data=rs)
+anova(lm.rst)
+```
+```{r prompt=FALSE}
+ggplot(data=rs,mapping=aes(x=logweight,y=logfreq)) +  
+  geom_point(pch=21,color="black",fill="lightgray") +  
+  labs(x="log Weight",y="log Peak Frequency") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm")
+( cfs.rst <- cbind(Est=coef(lm.rst),confint(lm.rst)) )  ## log-log scale
+exp(cfs.rst) ## back-transformed to original scale
+nd <- data.frame(logweight=log(454))
+( plog454 <- predict(lm.rst,newdata=nd,interval="prediction") )  # log scale
+exp(plog454) ## back-transformed to original scale
+( clog454 <- predict(lm.rst,newdata=nd,interval="confidence") )  # log scale
+exp(clog454) ## back-transformed to original scale
+```
+
+&nbsp;
+
+# Initial COVID-19 Cases
+```{r echo=FALSE}
+cv <- read.csv("https://derekogle.com/NCMTH207/modules/ce/data/CovidUK.csv")
+lm.cv <- lm(Cum_Cases~Days_Since_10,data=cv)
+cv$logCum_Cases <- log(cv$Cum_Cases)
+lm.cvt <- lm(logCum_Cases~Days_Since_10,data=cv)
+p.ad.cvt <- adTest(lm.cvt$residuals)$p.value
+p.out.cvt <- outlierTest(lm.cvt)$bonf.p
+aov.cvt <- anova(lm.cvt)
+cfs.cvt <- cbind(Est=coef(lm.cvt),confint(lm.cvt))  ## log-log scale
+btcfs.cvt <- exp(cfs.cvt) ## back-transformed to original scale
+nd <- data.frame(Days_Since_10=c(20,40))
+plogCC <- predict(lm.cvt,newdata=nd,interval="prediction")  # log scale
+pCC <- exp(plogCC) ## back-transformed to original scale
+```
+
+1. Assuming exponential growth implies that only the response variable, cumulative cases, should be transformed to the log scale. This was shown in the reading.
+1. This assumption removes the primary curve in the raw data (see residual plot below) but the data seems to have a bit of a cycle as shown in the scatterplot with best-fit line below. The log cumulative cases are below the best-fit line for about the first nine and last six days and generall above the line for the other days. However, there also seems to be a cycle about every 7 days or so ... possibly due to reporting on weekends. Homoscedasticity, normality (Anderson-Darling `r kPvalue(p.ad.cvt,latex=FALSE)`), and no outlier (`r kPvalue(p.out.cvt,latex=FALSE)`) all appear to be largely met.
+1. There is a significant relationship between log cumulative cases and days since the 10th confirmed case (ANOVA `r kPvalue(aov.cvt$"Pr(>F)"[1],latex=FALSE)`). The scatterplot with the best-fit line superimposed is also shown below.
+1. The log cumulative cases increases between `r formatC(cfs.cvt["Days_Since_10","2.5 %"],format="f",digits=3)` and `r formatC(cfs.cvt["Days_Since_10","97.5 %"],format="f",digits=3)` each day.
+1. The cumulative cases increases by a multiple between `r formatC(btcfs.cvt["Days_Since_10","2.5 %"],format="f",digits=3)` and `r formatC(btcfs.cvt["Days_Since_10","97.5 %"],format="f",digits=3)` each day. In other words, the cumulative cases increases by between `r formatC(100*(btcfs.cvt["Days_Since_10","2.5 %"]-1),format="f",digits=1)` and `r formatC(100*(btcfs.cvt["Days_Since_10","97.5 %"]-1),format="f",digits=1)`% each day.
+1. The cumulative cases are predicted to be between `r formatC(pCC[1,"lwr"],format="f",digits=0)` and `r formatC(pCC[1,"upr"],format="f",digits=0)` on day 20.
+1. The cumulative cases are predicted to be between `r formatC(pCC[2,"lwr"],format="f",digits=0)` and `r formatC(pCC[2,"upr"],format="f",digits=0)` on day 40. One would have to assume continued exponential growth out to at least day 40 for this prediction to be meaningful.
+
+### R Code and Results.
+```{r prompt=FALSE, fig.width=7}
+cv <- read.csv("https://derekogle.com/NCMTH207/modules/ce/data/CovidUK.csv")
+lm.cv <- lm(Cum_Cases~Days_Since_10,data=cv)
+assumptionCheck(lm.cv,lambday=0)
+cv$logCum_Cases <- log(cv$Cum_Cases)
+```
+```{r prompt=FALSE}
+ggplot(data=cv,mapping=aes(x=Days_Since_10,y=logCum_Cases)) +
+  geom_point(pch=21,color="black",fill="lightgray") +  
+  labs(x="Days Since 10th Case Confirmed",y="log Cumulative Cases") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm")
+( cfs.cvt <- cbind(Est=coef(lm.rst),confint(lm.rst)) )  ## log-log scale
+exp(cfs.cvt) ## back-transformed to original scale
+nd <- data.frame(Days_Since_10=c(20,40))
+( plogCC <- predict(lm.cvt,newdata=nd,interval="prediction") )  # log scale
+exp(plogCC) ## back-transformed to original scale
+```

@@ -12,7 +12,7 @@ Use the preparation readings and videos to prepare written answers for the follo
 </div>
 
 1. What are the four assumptions of a One-Way ANOVA?
-1. Which two assumptions are critical for a One-Way ANOVA and which on is the One-Way ANOVA resilient to?
+1. Which two assumptions are critical for a One-Way ANOVA and which one is the One-Way ANOVA resilient to?
 1. What are the five most common transformations (by name and by power value)?
 1. Which of those five transformations is "strongest" (i.e., handles the most skewed data)?
 1. Which of those five transformations is the transformation that you should try first and that you hope works (relative to the other transformations)? Why?
