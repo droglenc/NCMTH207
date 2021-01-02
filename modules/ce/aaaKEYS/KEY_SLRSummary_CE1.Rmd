@@ -1,0 +1,103 @@
+---
+title: "Exercise Key"
+subtitle: "SLR Summary"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_SLRSummary_CE1")
+```
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>There are no "groups" in simple linear regression; thus, you do not assess "within-" and "among-group" independence here.</li>
+  <li>Use the ANOVA table p-value rather than the summary table slope p-value to assess the relationship as this will generalize to the next module.</li>
+  <li>When describing the relationship, use the confidence interval for the slope. Don't just use the slope.</li>
+  <li>When back-transforming the slope to describe the relationship on the original scale, note that "a change in log(x) of 1" should be back-transformed to "a change in x of e<sup>1</sup>" which is where the 2.718 below came from. Also, note that the back-transformed slope indicates a "multiplicative" change such that the value is Y is multiplied by the back-transformed slope rather than added to.
+  <li>The predictions should use prediction intervals as the original authors were interested in predicting the weight of an individual bear.</li>
+  </ol>
+</ul>
+</div>
+
+----
+
+# Black Bear Weight
+```{r echo=FALSE}
+bb <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/BlackBears.csv")
+bb <- filter(bb,age>1)
+n <- nrow(bb)
+lm.bb <- lm(weight~length,data=bb)
+p.ad.bb <- adTest(lm.bb$residuals)$p.value
+p.out.bb <- outlierTest(lm.bb)$bonf.p
+
+bb$loglength <- log(bb$length)
+bb$logweight <- log(bb$weight)
+lm.bbt <- lm(logweight~loglength,data=bb)
+p.ad.bbt <- adTest(lm.bbt$residuals)$p.value
+p.out.bbt <- outlierTest(lm.bbt)$bonf.p
+aov.bbt <- anova(lm.bbt)
+cfs.bbt <- cbind(Est=coef(lm.bbt),confint(lm.bbt))  ## log-log scale
+btcfs.bbt <- exp(cfs.bbt) ## back-transformed to original scale
+lens <- c(130,160,190)
+nd <- data.frame(loglength=log(lens))
+p.logw <- predict(lm.bbt,newdata=nd,interval="prediction")
+p.weight <- cbind(obs=1:3,length=lens,exp(p.logw))
+```
+
+Measuring the live body weight of large-bodied animals can be impractical when equipment needed to weigh individuals is inadequate or unavailable. Thus, the objective of this analysis is to determine if body weight can be predicted from body length for non-cub bears (i.e., older than one year of age). 
+
+A total of `r n` bears were examined for this study. There is not nearly enough information in the background to full address the independence assumption, but it is unlikely that the weight of any one bear will have much of an impact on any other bear, let alone have an impact on all other bears. Thus, the independence assumption is adequately met.
+
+The un-transformed data are clearly non-linear and heteroscedastic (see first residual plot below); thus a transformation should be considered. Through a process of trial-and-error, and realizing that weight-length data follows a power function relationship for most organisms, both weight and length were log-transformed. With this transformation the data were largely linear and homoscedastic (see second residual plot below). In addition, the residuals were normal (Anderson-Darling test `r kPvalue(p.ad.bbt,latex=FALSE)`) and absent of significant outliers (outlier test `r kPvalue(p.out.bbt,latex=FALSE)`). Thus, the analysis will continue with a log-log transformation.
+
+There is a significant relationship between log weight and log length of the black bears (ANOVA `r kPvalue(aov.bbt$"Pr(>F)"[1],latex=FALSE)`). In fact, `r formatC(100*rSquared(lm.bbt),format="f",digits=1)`% of the variability in log weight is explained by log length. The scatterplot with the best-fit line superimposed shown below illustrates the strength of the relationship.
+
+The log weight of a bear increases between `r formatC(cfs.bbt["loglength","2.5 %"],format="f",digits=3)` and `r formatC(cfs.bbt["loglength","97.5 %"],format="f",digits=3)` for each unit increase in log body lengt of the bears. More importantly the weight is multiplied by a value between `r formatC(btcfs.bbt["loglength","2.5 %"],format="f",digits=3)` and `r formatC(btcfs.bbt["loglength","97.5 %"],format="f",digits=3)` for each 2.718 unit increase in length of the bear.
+
+As an example, the weight for a bear with a body length of 130 cm is between `r formatC(p.weight[1,"lwr"],format="f",digits=1)` and `r formatC(p.weight[1,"upr"],format="f",digits=1)` kg.
+
+These results indicated a fairly strong relationship between weight and length that can be used to predict weight from length, though the precision of this estimate is fairly poor.
+
+### R Code and Results.
+```{r prompt=FALSE, fig.width=7}
+bb <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/BlackBears.csv")
+bb <- filter(bb,age>1)
+n <- nrow(bb)
+lm.bb <- lm(weight~length,data=bb)
+assumptionCheck(lm.bb)
+assumptionCheck(lm.bb,lambday=0,lambdax=0)
+bb$loglength <- log(bb$length)
+bb$logweight <- log(bb$weight)
+lm.bbt <- lm(logweight~loglength,data=bb)
+anova(lm.bbt)
+rSquared(lm.bbt)
+cfs.bbt <- cbind(Est=coef(lm.bbt),confint(lm.bbt))  ## log-log scale
+btcfs.bbt <- exp(cfs.bbt) ## back-transformed to original scale
+lens <- c(130,160,190)
+nd <- data.frame(loglength=log(lens))
+( p.logw <- predict(lm.bbt,newdata=nd,interval="prediction") )  ## Log scale
+cbind(obs=1:3,length=lens,exp(p.logw)) ## Back-transformed
+```
+```{r prompt=FALSE}
+ggplot(data=bb,mapping=aes(x=loglength,y=logweight)) +  
+  geom_point(pch=21,color="black",fill="lightgray") +  
+  labs(x="log Length",y="log Weight") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm")
+```
