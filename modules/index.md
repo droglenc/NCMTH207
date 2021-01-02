@@ -40,11 +40,13 @@ title: Learning Modules
 #### Indicator Variable Regression (IVR)
 
 {:start="18"}
-1. Hello
-1. good bye
+1. [Variables](IVRVariables)
+1. [Models & Sub-Models](IVRModels)
+1. [Testing](IVRTesting)
+1. [Analysis](IVRAnalysis)
+1. [Summary](IVRSummary)
 
 #### Logistic Regressions
 
-{:start="22"}
+{:start="23"}
 1. Hello
-1. good bye
