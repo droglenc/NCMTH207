@@ -39,7 +39,7 @@ title: Learning Modules
 
 #### Indicator Variable Regression (IVR)
 
-{:start="18"}
+{:start="20"}
 1. [Variables](IVRVariables)
 1. [Models & Sub-Models](IVRModels)
 1. [Testing](IVRTesting)
@@ -48,5 +48,5 @@ title: Learning Modules
 
 #### Logistic Regressions
 
-{:start="23"}
+{:start="25"}
 1. Hello
