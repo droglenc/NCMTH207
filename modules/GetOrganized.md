@@ -1,0 +1,37 @@
+---
+layout: page
+title: Getting Organized
+css: /css/modules.css
+---
+
+
+## Preparation for Class
+
+Complete the following items to be prepared for the first day of class (*the last two items will not be needed until the second day of class*).
+
+* [Complete Webpage Scavenger Hunt](Prep/GetOrganized_Hunt){:target="_blank"}
+* [Initiate MSTeams Site](Prep/GetOrganized_MSTeams){:target="_blank"}
+* [Initiate Gradescope Grading Site](Prep/GetOrganized_Gradescope){:target="_blank"}
+* [Install R, RStudio, NCStats](../resources/index.html#software-installation-links){:target="_blank"} (follow directions in links under "Software Installation")
+    * *Note: If you have use R previously then you want to make sure that you are using at least R version 4.0.0, RStudio version 1.3.0, and NCStats version 0.4.8*
+* [Setup and Brief Introduction to R/RStudio](bookR/RStart.html){:target="_blank"}
+
+----
+
+## In-Class Activities
+
+The following items will be completed in class.
+
+* Discuss syllabus and class webpage (go over answers to scavenger hunt)
+* Orient to class page on my.northland.edu (see [quick link on class homepage](../){:target="_blank"})
+* Orient to Piazza discussion site (see [quick link on class homepage](../){:target="_blank"})
+* Take "Getting Organized -- Prep Check" on Gradescope (see [quick link on class homepage](../){:target="_blank"}) [*Note: all answers from Webpage Scavenger Hunt*]
+* Submit [first module assignment](CE/GetOrganized_CE1) on GradeScope
+
+&nbsp;
+
+----
+
+## Archived Materials
+
+* None yet

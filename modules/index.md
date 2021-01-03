@@ -5,6 +5,8 @@ title: Learning Modules
 
 #### Foundations
 
+* [Getting Organized](GetOrganized)
+
 1. [Model Types](ModelTypes)
 1. [2-Sample t-test Review](2TReview)
 1. [Concept of Models](ModelConcepts)
