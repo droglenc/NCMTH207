@@ -1,0 +1,103 @@
+---
+title: "Exercise Key"
+subtitle: "IVR Variables"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_IVRVariables_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+</ul>
+</div>
+
+----
+
+# Nurse Wages
+
+1. The response variable is wages.
+1. The covariate is months of experience.
+1. The factor is gender (female and male).
+1. As there are two groups in this analysis and females comes before males, I created the following indicator variable.
+    * FEM=1 if "female", 0 otherwise (i.e., "male")
+1. The very simple table connecting the groups to the indicator variables codes is as follows:
+```{r echo=FALSE}
+data.frame(group=c("female","male"),FEM=c(0,1)) %>%
+  knitr::kable(booktabs=TRUE,row.names=FALSE) %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+<ol start="6">
+<li>The only interaction variables would be between months of experience and FEM; thus, experience:FEM.</li>
+<ol>
+
+&nbsp;
+
+# Turtle Nesting Ecology
+
+1. The response variable is clutch size.
+1. The covariate is curved carapace length (CCL).
+1. The factor is location (or region).
+1. As there are five groups in this analysis and the "Arabian Gulf" turtles are to be the reference group, I created the following four indicator variables.
+    * IO=1 if in the "Indian Ocean" group, 0 otherwise
+    * RS=1 if in the "Red Sea" group, 0 otherwise
+    * CO=1 if in the "Caribbean" group, 0 otherwise
+    * WA=1 if in the "West Atlantic" group, 0 otherwise
+1. The table connecting the groups to the indicator variable codes is as follows:
+```{r echo=FALSE}
+data.frame(Region=c("Arabian Gulf","Indian Ocean","Red Sea","Caribbean","West Atlantic"),
+           IO=c(0,1,0,0,0),
+           RS=c(0,0,1,0,0),
+           CO=c(0,0,0,1,0),
+           WA=c(0,0,0,0,1)) %>%
+  knitr::kable(booktabs=TRUE,row.names=FALSE) %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+<ol start="6">
+<li>The interaction variables are IO:CCL, RS:CCL, CO:CCL, and WA:CCL.</li>
+<ol>
+
+&nbsp;
+
+# Water Quality Near a Gold Mine
+
+1. The response variable is phosphorous level measurement.
+1. The covariate is distance from the gold mine (DISTANCE).
+1. The factor is type of phosphorous.
+1. The levels should be changed so that "total" is first; e.g., "total", "dissolved", and "soluble".
+1. As there are three groups in this analysis and "total" is to be the reference group, I created the following two indicator variables.
+    * DP=1 if the "total dissolved phosphorous" group, 0 otherwise
+    * SP=1 if the "soluble reactive phosphorous" group, 0 otherwise
+1. The table connecting the groups to the indicator variable codes is as follows:
+```{r echo=FALSE}
+data.frame(Type=c("Total P","Total Dissolved P","Soluble Reactive P"),
+           DP=c(0,1,0),
+           SP=c(0,0,1)) %>%
+  knitr::kable(booktabs=TRUE,row.names=FALSE) %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+<ol start="7">
+<li>The interaction variables are DP:DISTANCE and SP:DISTANCE.</li>
+<ol>
