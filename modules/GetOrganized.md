@@ -65,7 +65,7 @@ The following items will be completed in class.
 
 * Discuss syllabus and class webpage (go over answers to scavenger hunt).
 * Turn in written answers to syllabus scavenger hunt on Gradescope (see [quick link on class homepage](../){:target="_blank"}).
-* Submit [first module assignment](CE/GetOrganized_CE1) on GradeScope.
+* Submit [first module assignment](ce/GetOrganized_CE1) on GradeScope.
 
 &nbsp;
 
