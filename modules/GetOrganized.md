@@ -4,29 +4,54 @@ title: Getting Organized
 css: /css/modules.css
 ---
 
+## Pre-Requisite Knowledge
+You should be familiar with the following topics from your Introductory Statistics course. We will very briefly review these items but you will be expected to be comfortable with these topics at the start of the course. [*Links are to the topic in the Introductory Statistics course that I teach at Northland.*]
+
+* [Definitions of variable types](http://derekogle.com/NCMTH107/modules/FoundationalDefns.html){:target="_blank"}.
+* [Hypotheses, p-values, &alpha;, and making decisions](http://derekogle.com/NCMTH107/modules/HypTesting.html){:target="_blank"}.
+* [Confidence intervals](http://derekogle.com/NCMTH107/modules/ConfRegions.html){:target="_blank"}.
+* [Linear regression](http://derekogle.com/NCMTH107/modules/LinearRegression.html){:target="_blank"}.
+* [2-Sample t-test](http://derekogle.com/NCMTH107/modules/2Samplet.html){:target="_blank"}.
+
+In addition, you will want to have some familiarity with the R software. I would suggest reviewing the items listed below. Again, we will only very briefly review these during the course so it is best to familiarize yourself with the topics before the course starts.
+
+* [Setup and Brief Introduction to R/RStudio](http://derekogle.com/NCMTH107/modules/bookR/RStart.html){:target="_blank"}
+* [Linear regression in R](http://derekogle.com/NCMTH107/modules/RRegression.html){:target="_blank"}.
+* [2-Sample t-test in R](http://derekogle.com/NCMTH107/modules/Rttests.html){:target="_blank"}.
+
+&nbsp;
 
 ## Preparation for Class
-
-Complete the following items to be prepared for the first day of class (*the last two items will not be needed until the second day of class*).
+Please complete the following items to be prepared for the first day of class.
 
 * [Complete Webpage Scavenger Hunt](prep/GetOrganized_Hunt){:target="_blank"}
 * [Initiate MSTeams Site](prep/GetOrganized_MSTeams){:target="_blank"}
 * [Initiate Gradescope Grading Site](prep/GetOrganized_Gradescope){:target="_blank"}
-* [Install R, RStudio, NCStats](../resources/index.html#software-installation-links){:target="_blank"} (follow directions in links under "Software Installation")
-    * *Note: If you have use R previously then you want to make sure that you are using at least R version 4.0.0, RStudio version 1.3.0, and NCStats version 0.4.8*
-* [Setup and Brief Introduction to R/RStudio](bookR/RStart.html){:target="_blank"}
+* Install R and Related Software
+    * Install R (*you need at least vers 4.0.0*) ... [for Windows](https://cran.r-project.org/bin/windows/base/R-4.0.3-win.exe) ... [for Macs](https://cran.r-project.org/bin/macosx/R-4.0.3.pkg) ... *just accept defaults*
+    * Install RStudio (*you need at least vers 1.3.0*) ... [Choose Windows/Mac here](https://rstudio.com/products/rstudio/download/#download) ... *just accept defaults*
+    * Install NCStats (*you need at least vers 0.4.8*) ... copy-and-paste the following three lines into the "Console" of RStudio (and hit return)
+
+```
+if (!require('manipulate')) utils::install.packages('manipulate')
+if (!require('remotes')) install.packages('remotes'); require('remotes')
+remotes::install_github('droglenc/NCStats',type='binary')
+```
+
+* Create a folder on your computer or your "T:/" drive where you will save all of your work (especially R work) for this course this semester. 
+
+Contact me if you have any issues with any of the above items.
+
+&nbsp;
 
 ----
 
 ## In-Class Activities
-
 The following items will be completed in class.
 
-* Discuss syllabus and class webpage (go over answers to scavenger hunt)
-* Orient to class page on my.northland.edu (see [quick link on class homepage](../){:target="_blank"})
-* Orient to Piazza discussion site (see [quick link on class homepage](../){:target="_blank"})
-* Take "Getting Organized -- Prep Check" on Gradescope (see [quick link on class homepage](../){:target="_blank"}) [*Note: all answers from Webpage Scavenger Hunt*]
-* Submit [first module assignment](CE/GetOrganized_CE1) on GradeScope
+* Discuss syllabus and class webpage (go over answers to scavenger hunt).
+* Turn in written answers to syllabus scavenger hunt on Gradescope (see [quick link on class homepage](../){:target="_blank"}).
+* Submit [first module assignment](CE/GetOrganized_CE1) on GradeScope.
 
 &nbsp;
 
