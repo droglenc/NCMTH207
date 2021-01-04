@@ -9,9 +9,9 @@ css: /css/modules.css
 
 Complete the following items to be prepared for the first day of class (*the last two items will not be needed until the second day of class*).
 
-* [Complete Webpage Scavenger Hunt](Prep/GetOrganized_Hunt){:target="_blank"}
-* [Initiate MSTeams Site](Prep/GetOrganized_MSTeams){:target="_blank"}
-* [Initiate Gradescope Grading Site](Prep/GetOrganized_Gradescope){:target="_blank"}
+* [Complete Webpage Scavenger Hunt](prep/GetOrganized_Hunt){:target="_blank"}
+* [Initiate MSTeams Site](prep/GetOrganized_MSTeams){:target="_blank"}
+* [Initiate Gradescope Grading Site](prep/GetOrganized_Gradescope){:target="_blank"}
 * [Install R, RStudio, NCStats](../resources/index.html#software-installation-links){:target="_blank"} (follow directions in links under "Software Installation")
     * *Note: If you have use R previously then you want to make sure that you are using at least R version 4.0.0, RStudio version 1.3.0, and NCStats version 0.4.8*
 * [Setup and Brief Introduction to R/RStudio](bookR/RStart.html){:target="_blank"}
