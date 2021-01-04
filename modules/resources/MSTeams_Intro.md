@@ -5,6 +5,10 @@ subtitle: Getting Organized
 css: "/css/modules.css"
 ---
 
+<div class="alert alert-warning">
+Note that there is a short assignment at the very bottom of this page.
+</div>
+
 Microsoft Teams is a group communication and collaboration platform that you will primarily use to ask me questions. One of the main features that I like about MS Teams is that it allows you to show me your computer so that I can more quickly help you shoot R-related problems. You are likely familiar with Teams from other classes at Northland. However, below is a quick guide to getting started.
 
 ## Getting the App
@@ -41,7 +45,7 @@ You can join the MTH207 team by, in MSTeams,
 &nbsp;
 
 ## Using Teams
-The MTH207 Team has four channels as seen in the screenshot above:
+The MTH207 Team currently has four main channels as seen in the screenshot above:
 
 * **General**: For asking general questions (due dates, how to install R, etc.).
 * **Class Preparation Reading Questions**: For asking questions about the module preparation readings.
@@ -58,7 +62,7 @@ You can also contribute to previous conversation by replying to previous message
 
 I have Teams organized so that I will get notified when you post a question. Thus, I hope that this will be an efficient way to ask me questions outside of class and a way so that other students can learn from the answers.
 
-For "official" office hours, I will open up a meeting at the appointe time (see the syllabus). When you go to the "Office Hours" channel you will see a banner that will give you an option to "Join" the ongoing meeting.
+For "official" office hours, I will open up a meeting at the appointed time (see the syllabus). When you go to the "Office Hours" channel you will see a banner that will give you an option to "Join" the ongoing meeting.
 
 ![MSTeams Join Meeting](../zimgs/MSTeams_JoinMeeting.JPG)
 
@@ -82,3 +86,7 @@ The video below has a few more hints on how to use Teams for class.
 
 [![](http://img.youtube.com/vi/PasT3Q1ZR_I/0.jpg)](http://www.youtube.com/watch?v=PasT3Q1ZR_I)
 
+&nbsp;
+
+## Assignment
+To demonstrate to me that you have joined the course Team please go to the "Initial Message" channel and start a new conversation where you ask me a questions (about anything ... class-related, me, Northlan, life)?
