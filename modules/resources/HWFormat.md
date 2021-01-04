@@ -1,10 +1,24 @@
 ---
 layout: page
-author: Derek H. Ogle
-title: Make an Assignment Notebook
+title: Homework Format
+css: /css/modules.css
 ---
 
-# Getting Started
+## Gradescope
+All assignments in this course will be turned in on GradeScope. You should have received an e-mail from me inviting you to activate a GradeScope account and join this class. Make sure to follow the directions in that e-mail. If you do not have that e-mail you can also access Gradescope from the [quick link on the class homepage](../../){:target="_blank"} (you will need to email me for the access code (as [described here](https://www.gradescope.com/#help-center-item-student-adding-a-course){:target="_blank"})). Let me know if you have any questions.
+
+Read [the last page of this document](https://gradescope-static-assets.s3-us-west-2.amazonaws.com/help/submitting_hw_guide.pdf){:target="_blank"} for how to upload the PDF to Gradescope. When submitting your document you will identify on which pages you answer each question ... please do this carefully and completely (if your answer spans two pages, then make sure to select both pages).
+
+Gradescope provides a [list of FAQs for students here](https://help.gradescope.com/category/cyk4ij2dwi-student-workflow){:target="_blank"}.
+
+&nbsp;
+
+## Exercises Without R
+A few exercises this semester can be completed without using R. For these exercises, you can either type or hand-write your answers. If you type your answers then you will need to convert the document to a PDF for turning in via GradeScope. If you hand-write your answers then you will need to create a PDF of your hand-written document. The [first two pages of this document](https://gradescope-static-assets.s3-us-west-2.amazonaws.com/help/submitting_hw_guide.pdf){:target="_blank"} explains how to use your device to create a PDF from your hand-written papers. [Here are more apps](https://pdf.wondershare.com/mobile-app/free-photo-to-pdf-app.html) for creating a PDF of your hand-written work. **Please take a few moments to make sure that what you turn in is easy to read, clear (i.e., not blurry), as large as possible, and complete.**
+
+&nbsp;
+
+## Exercises With R
 Notebooks in RStudio are an efficient way to enter R code, show results of R code, write answers to assignment questions, and compile all of that to a PDF that can be handed in.
 
 For class assignments, start by downloading [this template](https://raw.githubusercontent.com/droglenc/NCMTH207/gh-pages/modules/resources/R%20Assignment%20Template.Rmd) (right-click, don't change the name) to a folder where you plan to store all of your class-related work. Then open the template in RStudio and change the Author in line 3 to your name. Save the template with this change. Every time you start an assignment you should open this template file and follow the directions below.
@@ -90,6 +104,10 @@ Once you are comfortable that your R code runs without error and that you have a
 To compile the Notebook to MSWord, select the small arrow on the icon that either says "Preview" or "Knit" and select "Knit to Word". If you get an error related to the name of your Notebook file, then simply select "Knit to Word" a second time. If the document does not produce an MSWord document (this make take several seconds) then there may be an error in your R code.
 
 ![Notebook Knit to Word](../zimgs/Notebook_KnitWord.JPG)
+
+Some exercises, in addition to using R, may require you to perform calculations that are more efficiently done by hand than by typing into the computer (e.g., some long equations). In these instances, you could take a picture of the hand-written work and paste it into the end of your MSWord file. If doing this, make sure you refer to this work when answering the questions in the RStudio notebook (e.g., answer with "See hand calculations at the end of the document.") Do not paste in your photos until after you have compiled your final R notebook as compiling it will replace any previously compiled MSWord documents.
+
+A PDF can be created from the MSWord document with File..Save As menu and then change the "Save as type" to "PDF." The PDF can then be handed in via GradeScope. 
 
 <br>
 <br>
