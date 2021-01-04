@@ -77,3 +77,12 @@ When you do this you will then need to select which window or screen to share. I
 ![MSTeams Share Content Screen](../zimgs/MSTeams_ShareContentScreen.JPG)
 
 When you are finished with the meeting just press the red "Leave" button in the upper-right corner.
+
+The video below has a few more hints on how to use Teams for class.
+
+<!-- blank line -->
+<figure class="video_container">
+  <iframe src="https://youtu.be/PasT3Q1ZR_I" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+<!-- blank line -->
+
