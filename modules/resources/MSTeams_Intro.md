@@ -49,7 +49,7 @@ The MTH207 Team currently has four main channels as seen in the screenshot above
 
 * **General**: For asking general questions (due dates, how to install R, etc.).
 * **Class Preparation Reading Questions**: For asking questions about the module preparation readings.
-* **Module Exercise Questions**: For asking questions about the module exercises.
+* **Module Assignment Questions**: For asking questions about the module exercises.
 * **Office Hours**: For attending "official" office hours (see syllabus) and for out of office hour discussions with Derek.
 
 In each channel you can start a new conversation (i.e., question) by pressing the "New Conversation" button.

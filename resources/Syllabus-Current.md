@@ -33,10 +33,11 @@ What you learn in <strong>Biometry</strong> will help with these questions.
 
 * Class [Description](http://catalog.northland.edu/preview_course_nopop.php?catoid=19&coid=13539){:target="_blank"} and [Learning Outcomes](#learning-outcomes)
 * [Assistance](#assistance) -- [Instructor](#instructor--derek-ogle), [Accommodations](#accommodations), and [Academic Alerts](#academic-alerts)
-
-
-* Grading -- [Quizzes](#quizzes), [Exercises](#exercises), [Portfolio](#portfolio), [Overall Grade](#overall-grade)
-* Expectations -- [Ownership of Learning](#ownership-of-learning), [Work Outside of Class](#work-outside-of-class), [Classroom Conduct and Academic Integrity](#classroom-conduct-and-academic-integrity)
+* [Course Workflow](#course-workflow)
+* [Grading](#grading) -- [Incompletes](#incomplete-grades) and [Midterms](#midterm-grades)
+* [Expectations](#expectations) -- [Ownership of Learning](#ownership-of-learning), [Work Outside of Class](#work-outside-of-class), [Classroom Conduct and Academic Integrity](#classroom-conduct-and-academic-integrity)
+* [Title IX Statement](#title-ix-statement)
+* [COVID-19 Statement](#covid-19-statement)
 
 ----
 
@@ -63,15 +64,15 @@ I will answer to "Derek", "Doctor Ogle", "Professor Ogle", or "Doctor Professor 
 
 I am committed to your doing well in this course and see it as my responsibility to help you both in and out of the designated class period. You will soon see that this course is designed in such a way that your learning of the material will depend on your asking questions of me. There are several good ways to do this.
 
-- Attend class. Most of class time will be allocated to you working on modular exercises. I will be available during these times to answer your questions.
-- Ask questions on the course MS Teams site. There are separate channels for questions regarding [module preparation readings](https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"}, [module exercises](https://teams.microsoft.com/l/channel/19%3a1e6b964abdf147449dd0b108a7ee01b9%40thread.tacv2/Module%2520Exercise%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"}, and [general questions](https://teams.microsoft.com/l/channel/19%3aea18d6dd26f24c7fba62ef9ab7cc6297%40thread.tacv2/General?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"}. Simply start a new conversation with your question and I will answer it ASAP. Other students may also answer your question.
+- Attend class. Most of class time will be allocated to you working on modular assignments. I will be available during these times to answer your questions.
+- Ask questions on the course MS Teams site. There are separate channels for questions regarding module preparation readings, module assignments, and general questions (see [quick links on course homepage](../)). Simply start a new conversation with your question and I will answer it ASAP. Other students may also answer your question.
 - I will old virtual office hours on Teams Monday through Thursday from 830-930 **pm**. You can simply join the meeting that I open in the [Office Hours channel](https://teams.microsoft.com/l/channel/19%3a3be6df4c9fde4473b4b06d536c09fe1a%40thread.tacv2/Office%2520Hours?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"} at that time.
 - I will also generally be available at my computer during early and late mornings on class days. I will try to respond to queries ASAP during these times.
 - Finally, you may send me [anonymous feedback, suggestions, or questions](https://www.surveymonkey.com/r/F7S7GNJ){:target="_blank"}.
 
 Please see or contact me if you have questions regarding this course. 
 
-I want to create an inclusive and accessible learning environment for those of you that have a condition (e.g., attention, learning, vision, hearing, mental, physical, or other health-related concern) that may require special accommodations. *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course. If you have a condition that requires accommodations but *you have not yet established services* through OAR, then you should contact Jennifer Newago as soon as possible (Ponzio 230, x1387, or <a href="mailto:accommodations@northland.edu">accommodations@northland.edu</a>). It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law. <a href="https://my.northland.edu/life/be-healthy/accommodations/">More information is available here.</a>
+I want to create an inclusive and accessible learning environment for those of you that have a condition (e.g., attention, learning, vision, hearing, mental, physical, or other health-related concern) that may require special accommodations. *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course. If you have a condition that requires accommodations but *you have not yet established services* through OAR, then you should contact Jennifer Newago as soon as possible (Ponzio 230, x1387, or <a href="mailto:accommodations@northland.edu">accommodations@northland.edu</a>). It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law. <a href="https://my.northland.edu/life/be-healthy/accommodations/" target="_blank">More information is available here.</a>
 
 
 ### Academic Alerts
@@ -87,9 +88,7 @@ This course is taught in a "flipped format", which loosely means that you will b
 
 The course is composed of [29 modules](../modules/index) of material which roughly corresponds to one module per day. Below describes a general format of instruction that you should follow for each module.
 
-1. **Prepare Module Material** -- Each module has a reading that describes the major concepts of the module. These readings are detailed and derived from my lecture notes from years past. I have worked very hard to make these readings short and readable, but the fact of the matter is that some concepts in this course require more explanation and some of that explanation is subtle. As appropriate I have added visuals to explain concepts and highlighted key definitions and concepts in boxes. **You need to engage thoroughly with these readings**. By this, I mean that you should need to be focused (i.e,. not distracted) while reading these and you need to think about concepts that don't make sense to you on your first read. **A cursory run through the readings will not be adequate.**
-
-To guide your reading, I have created "reading questions" for each module. These questions are below the "Preparation for Class" heading on each module webpage (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). As you read the reading you should answer each "reading question." I prefer that your answers are (neatly) hand-written as [there is some evidence](https://www.npr.org/2016/04/17/474525392/attention-students-put-your-laptops-away){:target="_blank"} that **concepts are better retained when you write, rather than type, them**. Questions you have about the reading or the reading questions can be asked on the ["Class Preparation Reading Questions" channel](https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"} on the course Teams page.
+1. **Prepare Module Material** -- Each module has a reading that describes the major concepts of the module. These readings are detailed and derived from my lecture notes from years past. I have worked very hard to make these readings short and readable, but the fact of the matter is that some concepts in this course require more explanation and some of that explanation is subtle. As appropriate I have added visuals to explain concepts and highlighted key definitions and concepts in boxes. **You need to engage thoroughly with these readings**. By this, I mean that you should need to be focused (i.e,. not distracted) while reading these and you need to think about concepts that don't make sense to you on your first read. **A cursory run through the readings will not be adequate.**<br><br>To guide your reading, I have created "reading questions" for each module. These questions are below the "Preparation for Class" heading on each module webpage (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). As you read the reading you should answer each "reading question." I prefer that your answers are (neatly) hand-written as [there is some evidence](https://www.npr.org/2016/04/17/474525392/attention-students-put-your-laptops-away){:target="_blank"} that **concepts are better retained when you write, rather than type, them**. Questions you have about the reading or the reading questions can be asked on the ["Class Preparation Reading Questions" channel](https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"} on the course Teams page.<br></br>
 
 Your answers to the reading questions should be turned into me, via GradeScope ([quick link on class homepage](../){:target="_blank"}), by 1100 am on the day that the module will be covered in class (see the [Dates page](Dates-Current.html)). I will grade your answers according to the following rubric.
 
@@ -104,10 +103,9 @@ Your answers to the reading questions should be turned into me, via GradeScope (
   </table>
 </div>
 
-1. **Class Time** -- The initial part of class time will consist of a short introduction to the module exercises and a quick discussion of any questions that you all had from the preparation reading. Following this you will work on the module's application exercises. I expect you to attend class to get direct help from me and to work on course material during the portion of the 1230-400 period when you are not "attending" class. If you are diligent and focused, you will likely finish most of the module exercises during this time.
-1. **Complete an Applied Assignment** -- Module assignments are listed under the "Practice" section on the module webpage (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). Assignments should be prepared as described here for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is due by 1200 (noon) on the day after the class period dedicated to the module.
-
-I will "grade for content" (i.e., whether the work is done correctly or not) 50-100% of each module exercise assignment. Questions that I did not "grade for content" will be "graded for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will also be available on the module webpage.
+{:start="2"}
+1. **Class Time** -- The initial part of class time will consist of a short introduction to the module assignment and a quick discussion of any questions that you all had from the preparation reading. Following this you will work on the module's application assignment. I expect you to attend class to get direct help from me and to work on course material during the portion of the 1230-400 period when you are not "attending" class. If you are diligent and focused, you will likely finish most of the module assignment during this time.
+1. **Complete an Applied Assignment** -- Module assignments are listed under the "Practice" section on the module webpage (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). Assignments should be prepared as described here for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is due by 1200 (noon) on the day after the class period dedicated to the module.<br><br>I will "grade for content" (i.e., whether the work is done correctly or not) 50-100% of each module assignment. Questions that I did not "grade for content" will be "graded for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will also be available on the module webpage.
 
 <br>
 
@@ -115,22 +113,23 @@ I will "grade for content" (i.e., whether the work is done correctly or not) 50-
 <img src="../img/ClassStructure.JPG" width="70%" height="70%">
 </center>
 
+<br>
 ----
 
 ## Grading
 <img class="img-right" src="../img/grading.jpg">
-An overall grade will be computed from the module reading preparation answers and exercises described in the ["Course Workflow" section](#course-workflow) and a final exam. Module reading preparation answers and exercises not submitted by the due date time will not be accepted. However, your lowest four items of each will be dropped when computing your overall grade.
+An overall grade will be computed from the module reading preparation answers and assignments described in the ["Course Workflow" section](#course-workflow) and a final exam. Module reading preparation answers and assignments not submitted by the due date time will not be accepted. However, your lowest four items of each will be dropped when computing your overall grade.
 
 The final exam is an opportunity for you to show a synthetic understanding of all material from throughout the course. The final exam will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the final exam.
 
-An overall score will be computed from the items and associated weights listed in the table below. Grades on individual module reading preparation answers and exercises can be found on the class Gradescope page ([quick link on class homepage](../){:target="_blank"}). I will update your percentage grades for the reading preparation answers and exercises on mycourses.northland.edu ([quick link on class homepage](../)) at the end of each week, which will then show your grade as of that time. You can also compute your overall grade at any time by entering your percentage scores in the boxes below for completed assessments. To project your future grade, also include percentages for future assessments.
+An overall score will be computed from the items and associated weights listed in the table below. Grades on individual module reading preparation answers and assignments can be found on the class Gradescope page ([quick link on class homepage](../){:target="_blank"}). I will update your percentage grades for the reading preparation answers and assignments on mycourses.northland.edu ([quick link on class homepage](../)) at the end of each week, which will then show your grade as of that time. You can also compute your overall grade at any time by entering your percentage scores in the boxes below for completed assessments. To project your future grade, also include percentages for future assessments.
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
 
 <form name="GRADECALC">
 <table class="grader" width="70%">
 <tr><th width="15%"></th>
-<th width="28%">Reading Prep<br>Quizzes</th>
+<th width="28%">Reading Prep</th>
 <th width="28%">Assignments</th>
 <th width="29%">Final Exam</th>
 </tr>
@@ -179,13 +178,12 @@ This course is designed in a way that you will have to actively, rather than pas
 * Prepare for some course content on your own prior to class.
 * Use class and the Piazza discussion site to ask questions and seek help.
 * Assess your own performance by reviewing your graded work an comparing your answers on assignments to the answer key (which will also contain hints related to common mistakes).
-* Assess if you need more practice and complete additional exercises provided for most modules.
 * Ask for help from me (the professor) both during and outside of class. See [Assistance](#assistance) section above.
 * Maintain focus for an extended period of time (1.5 h for each class).
 
 ### Work Outside of Class
 <img class="img-right" src="../img/studying.jpg" alt="Decoration">
-As a general rule-of-thumb[^studytime], you are expected to spend 2-3 hours of time outside of class for each hour in class. For this course, you will meet for 7.5 hours per week and, thus, you should dedicate between 15 and 22.5 hours of time outside of class time preparing for class, completing assignments, reviewing your work, and asking questions or for help. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you may consider the aid of apps (e.g., [Forest](https://www.forestapp.cc/)) designed to reduce distractions from devices.[^DistractionAids]  
+As a general rule-of-thumb[^studytime], you are expected to spend 2-3 hours of time outside of class for each hour in class. For this course, you will meet for more than 8 hours per week and, thus, you should dedicate between 16 and 24 hours of time outside of class time preparing for class, completing assignments, reviewing your work, and asking questions or for help. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you may consider the aid of apps (e.g., [Forest](https://www.forestapp.cc/){:target="_blank"}) designed to reduce distractions from devices.[^DistractionAids]  
 
 If you feel that you are spending too much time on some assignments or preparations because you are "stuck," then start your work earlier so that you can stop (and do other things) and make plans to seek help (see [assistance section above](#assistance)).
 
