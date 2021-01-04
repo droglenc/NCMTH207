@@ -1,0 +1,68 @@
+---
+title: "EDIT TO PUT MODULE NAME HERE"
+author: "EDIT TO PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %d-%b-%y')`"
+output:
+  word_document: default
+editor_options:
+  chunk_output_type: inline
+---
+
+----
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results="hide"}
+## Generally you will not edit this chunk at all.
+knitr::opts_chunk$set(fig.width=4, fig.height=4, prompt=TRUE, comment="")
+options(show.signif.stars=FALSE)
+library(NCStats)
+library(ggplot2)
+```
+
+# EDIT THIS WITH FIRST SECTION HEADING TEXT
+EDIT THIS WITH TEXT
+
+<br>
+
+### R Code and Results
+```{r}
+# You will put R code in chunks like this (delete this comment)
+```
+
+<br>
+<br>
+
+# EDIT THIS WITH SECOND SECTION HEADING TEXT
+EDIT THIS WITH TEXT
+
+<br>
+
+### R Code and Results
+```{r}
+# You will put R code in chunks like this (delete this comment)
+```
+
+<br>
+<br>
+
+# EDIT THIS WITH THIRD SECTION HEADING TEXT
+EDIT THIS WITH TEXT
+
+<br>
+
+### R Code and Results
+```{r}
+# You will put R code in chunks like this (delete this comment)
+```
+
+<br>
+<br>
+
+# EDIT THIS WITH FOURTH SECTION HEADING TEXT
+EDIT THIS WITH TEXT
+
+<br>
+
+### R Code and Results
+```{r}
+# You will put R code in chunks like this (delete this comment)
+```
