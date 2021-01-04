@@ -1,20 +1,17 @@
 ---
 layout: page
 author: Derek H. Ogle
-title: MTH107 FAQ
-subtitle: Make an Assignment Notebook
+title: Make an Assignment Notebook
 ---
-
-----
 
 # Getting Started
 Notebooks in RStudio are an efficient way to enter R code, show results of R code, write answers to assignment questions, and compile all of that to a PDF that can be handed in.
 
-For class assignments, start by downloading [this template](https://raw.githubusercontent.com/droglenc/NCMTH107/gh-pages/resources/FAQs/R%20Assignment%20Template.Rmd) (right-click, don't change the name) to a folder where you plan to store all of your class-related work. Then open the template in RStudio and change the Author in line 3 to your name. Save the template with this change. Every time you start an assignment you should open this template file and follow the directions below.
+For class assignments, start by downloading [this template](https://raw.githubusercontent.com/droglenc/NCMTH207/gh-pages/modules/resources/R%20Assignment%20Template.Rmd) (right-click, don't change the name) to a folder where you plan to store all of your class-related work. Then open the template in RStudio and change the Author in line 3 to your name. Save the template with this change. Every time you start an assignment you should open this template file and follow the directions below.
 
-Open your template file in RStudio and immediately save it (File .. Save As) with a different name (e.g., "Assignment1" ... make sure that the name does not have a "dot" in it). Then edit the Title in line 2 to something that represents the assignment (e.g., "Linear Regression in R"). Do not change anything else in the first 21 lines.
+Open your template file in RStudio and immediately save it (File .. Save As) with a different name (e.g., "Module5.Rmd" ... make sure that the name ends with ".Rmd" and there are no other "dots" in the name). Then edit the Title in line 2 to something that represents the assignment (e.g., "Linear Regression"). Do not change anything else in the first 21 lines.
 
-![Notebook Top](Figs/Notebook_TopLines.JPG)
+![Notebook Top](../zimgs/Notebook_TopLines.JPG)
 
 <br>
 
@@ -38,7 +35,7 @@ Sentences can be included by simply typing the text at the beginning of any line
 ## Numbered Lists for Your Answers
 A numbered item list is created by starting a line with "1." followed by what you want after the number (e.g., your answer). If there are no blank lines between consecutive "1." items then RStudio will automatically iterate the number when the document is compiled. For example, typing this will produce the result further below ...
 
-![Notebook Numbered List](Figs/Notebook_NumberedList.JPG)
+![Notebook Numbered List](../zimgs/Notebook_NumberedList.JPG)
 
 A univariate EDA for penguin body mass is
 
@@ -55,11 +52,11 @@ My preference is to include a subsection of R code and results **AFTER** you hav
 
 All R code is entered into a "code chunk." Code chunks begin with three backticks followed by curly brackets around "r" (see line 33 below) and end with three backticks (see line 36 below). Between the beginning and ending of the code chunk can be any viable R code. For example,
 
-![Notebook Code Chunk](Figs/Notebook_Code1.JPG)
+![Notebook Code Chunk](../zimgs/Notebook_Code1.JPG)
 
 In RStudio, each code chunk will have three "icons" in the upper-right portion of the gray chunk (see above). Pressing the right-most icon (right-pointing green arrow) will run the code in the current chunk and show the results immediately below the chunk. For example,
 
-![Notebook Code Chunk Run](Figs/Notebook_Code1Run.JPG)
+![Notebook Code Chunk Run](../zimgs/Notebook_Code1Run.JPG)
 
 If the code in this chunk depends on code in previous chunks being run then press the middle icon (gray down arrow pointing to a green horizontal line) to run all code in chunks above the current chunk. If the code in previous chunks had already been run then this is unnecessary.
 
@@ -70,7 +67,7 @@ Once you are comfortable that your R code runs without error and that you have a
 
 To compile the Notebook to MSWord, select the small arrow on the icon that either says "Preview" or "Knit" and select "Knit to Word". If you get an error related to the name of your Notebook file, then simply select "Knit to Word" a second time. If the document does not produce an MSWord document (this make take several seconds) then there may be an error in your R code.
 
-![Notebook Knit to Word](Figs/Notebook_KnitWord.JPG)
+![Notebook Knit to Word](../zimgs/Notebook_KnitWord.JPG)
 
 <br>
 <br>
@@ -82,24 +79,24 @@ Many of the assignments will require you to load a data file for analysis. The d
 ## Vertical Spacing
 If you would like to add some vertical spacing between parts of your notebook (e.g., between sections, between code and paragraphs, etc.) then add a "br" between less than and greater than signs (see below) with a blank line both above and below it where you want the vertical spacing. For example,
 
-![Use of br](Figs/Notebook_UseOfBR.JPG)
+![Use of br](../zimgs/Notebook_UseOfBR.JPG)
 
 ## Code Chunk Custom Settings
 Code chunks can have a variety of settings. The most important settings can be controlled through the left-most "gear" icon. My most common change here is to change the figure width to be smaller (to 4 inches wide) and, if you want the plot to be square, to change the figure height to the same value. I may also "turn off" the warnings and messages, but I never do this immediately as I would like to see those first before deciding that I should "hide" them. Below shows the gear box for changing the figure width and how the code chunk and result is changed.
 
-![Notebook Code Chunk Run](Figs/Notebook_Code2Run.JPG)
+![Notebook Code Chunk Run](../zimgs/Notebook_Code2Run.JPG)
 
 ## Document Preview
 The results of code chunks can be run as described above. However, an HTML version of the entire document can be viewed within RStudio. This is particularly useful as you are building your complete document. Compiling a completed document to MSWord (and then ultimately a PDF) is described in the next section.
 
 Before previewing, I select the "gear" icon in the script window toolbar and change "Preview in Window" to "Preview in Viewer Pane."
 
-![Notebook Preview Setting](Figs/Notebook_PreviewSetting.JPG)
+![Notebook Preview Setting](../zimgs/Notebook_PreviewSetting.JPG)
 
 I then select the small arrow on the icon to the left of the gear icon that will either say "Preview" or "Knit" and select "Preview HTML".
 
-![Notebook Previewer](Figs/Notebook_Previewer.JPG)
+![Notebook Previewer](../zimgs/Notebook_Previewer.JPG)
 
 RStudio will then run your script and, if there are no errors, show a preview of the document in the lower-right pane (which may expand to be just the right pane).
 
-![Notebook Preview](Figs/Notebook_Preview.JPG)
+![Notebook Preview](../zimgs/Notebook_Preview.JPG)
