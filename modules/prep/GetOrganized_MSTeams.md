@@ -80,9 +80,5 @@ When you are finished with the meeting just press the red "Leave" button in the 
 
 The video below has a few more hints on how to use Teams for class.
 
-<!-- blank line -->
-<figure class="video_container">
-  <iframe src="https://youtu.be/PasT3Q1ZR_I" frameborder="0" allowfullscreen="true"> </iframe>
-</figure>
-<!-- blank line -->
+[![](http://img.youtube.com/vi/PasT3Q1ZR_I/0.jpg)](http://www.youtube.com/watch?v=PasT3Q1ZR_I "")
 
