@@ -32,7 +32,9 @@ What you learn in <strong>Biometry</strong> will help with these questions.
 ## Syllabus Contents
 
 * Class [Description](http://catalog.northland.edu/preview_course_nopop.php?catoid=19&coid=13539){:target="_blank"} and [Learning Outcomes](#learning-outcomes)
-* [Assistance](#assistance) -- [Instructor](#instructor--derek-ogle), [Tutor](#tutor), [Accommodations](#accommodations), and [Academic Alerts](#academic-alerts)
+* [Assistance](#assistance) -- [Instructor](#instructor--derek-ogle), [Accommodations](#accommodations), and [Academic Alerts](#academic-alerts)
+
+
 * Grading -- [Quizzes](#quizzes), [Exercises](#exercises), [Portfolio](#portfolio), [Overall Grade](#overall-grade)
 * Expectations -- [Ownership of Learning](#ownership-of-learning), [Work Outside of Class](#work-outside-of-class), [Classroom Conduct and Academic Integrity](#classroom-conduct-and-academic-integrity)
 
@@ -53,112 +55,99 @@ At the end of this class you will be able to ...
 
 
 ## Assistance
-<img class="img-right" src="../img/help.jpg">
-Sources for out-of-class assistance and opportunities for in-class accommodations are described further below. Please use these throughout the semester as appropriate.[^help]
-
-* *Questions don’t expose the lack of knowledge of the asker, but rather expose opportunities for clarification for the original communicator* - [Julia Steward Lowndes](https://blogs.scientificamerican.com/observations/open-software-means-kinder-science/)
-* *Never apologize for asking for what you need, if you don't ask - the answer will always be no.* - Rachel Wolchin
-* *Asking for other's guidance helps you see what you may not be able to see. It's always important to check your ego and ask for help.* - Ken Blanchard
-* *The only mistake you can make is not asking for help.* - Sandeep Jauhar
+> Don't be afraid to ask questions. Don't be afraid to ask for help when you need it. I do that every day. Asking for help isn't a sign of weakness, its a sign of strength. It shows you have the courage to admit when you don't know something, and to learn something new. -- President Barack Obama
 
 ### Instructor -- Derek Ogle
 <img class="img-right" src="../img/DerekOgle1.jpg">
-I am committed to your doing well in this course and see it as my responsibility to help you both in and out of the designated class period. I will be available in CSE228 whenever my door is open, but also specifically for office hours from 1-3p on Monday, Wednesday, and Friday. You can also anonymously ask me and other students questions on the [Piazza Class Discussion Site](https://piazza.com/northland/winter2020/mth207/home){:target="_blank"}, which I will monitor regularly. Finally, you may send me [anonymous feedback, suggestions, or questions](https://www.surveymonkey.com/r/F7S7GNJ){:target="_blank"}. Please see or contact me if you have any questions regarding this course.
+I will answer to "Derek", "Doctor Ogle", "Professor Ogle", or "Doctor Professor Ogle, Sir" ... whichever you prefer. &#x1F600;
 
-### Tutor
-There are no tutors for Biomery this term. Please see or contact me if you have questions.
+I am committed to your doing well in this course and see it as my responsibility to help you both in and out of the designated class period. You will soon see that this course is designed in such a way that your learning of the material will depend on your asking questions of me. There are several good ways to do this.
 
-### Accommodations
-I want to create an inclusive and accessible learning environment for those of you that have a condition (e.g., attention, learning, vision, hearing, mental, physical, or other health-related concern) that may require special accommodations. *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course. If you have a condition that requires accommodations but *you have not yet established services* through OAR, then you should contact Jennifer Newago as soon as possible (Ponzio 230, x1387, or <a href="mailto:accomodations@northland.edu">accomodations@northland.edu</a>). It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law. <a href="https://my.northland.edu/life/be-healthy/accommodations/">More information is available here.</a>
+- Attend class. Most of class time will be allocated to you working on modular exercises. I will be available during these times to answer your questions.
+- Ask questions on the course MS Teams site. There are separate channels for questions regarding [module preparation readings](https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"}, [module exercises](https://teams.microsoft.com/l/channel/19%3a1e6b964abdf147449dd0b108a7ee01b9%40thread.tacv2/Module%2520Exercise%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"}, and [general questions](https://teams.microsoft.com/l/channel/19%3aea18d6dd26f24c7fba62ef9ab7cc6297%40thread.tacv2/General?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"}. Simply start a new conversation with your question and I will answer it ASAP. Other students may also answer your question.
+- I will old virtual office hours on Teams Monday through Thursday from 830-930 **pm**. You can simply join the meeting that I open in the [Office Hours channel](https://teams.microsoft.com/l/channel/19%3a3be6df4c9fde4473b4b06d536c09fe1a%40thread.tacv2/Office%2520Hours?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"} at that time.
+- I will also generally be available at my computer during early and late mornings on class days. I will try to respond to queries ASAP during these times.
+- Finally, you may send me [anonymous feedback, suggestions, or questions](https://www.surveymonkey.com/r/F7S7GNJ){:target="_blank"}.
+
+Please see or contact me if you have questions regarding this course. 
+
+I want to create an inclusive and accessible learning environment for those of you that have a condition (e.g., attention, learning, vision, hearing, mental, physical, or other health-related concern) that may require special accommodations. *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course. If you have a condition that requires accommodations but *you have not yet established services* through OAR, then you should contact Jennifer Newago as soon as possible (Ponzio 230, x1387, or <a href="mailto:accommodations@northland.edu">accommodations@northland.edu</a>). It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law. <a href="https://my.northland.edu/life/be-healthy/accommodations/">More information is available here.</a>
+
 
 ### Academic Alerts
-<img class="img-right" src="../img/alert.jpg">
-As you adjust to college, you may benefit from working with a professional on your organization, motivation, and stress level. If I observe you struggling with th course early in the semester then I may file an “Academic Alert” about you. If this happens, you will receive an e-mail from me that explains steps you can take to improve your performance in the course. Our Academic Success Coordinator, Gina Kirsten, will receive the alert and will likely also reach out to you to set up a time to further discuss ways to improve in the course. **Academic Alerts are not punitive**, they are simply an attempt to help you get back on track in this course as soon as possible.
+If I observe you "struggling" with the course early in the semester then I may file an "Academic Alert" about you. If this happens, you will receive an e-mail from me that will suggest steps you can take to improve your performance in the course. Our Academic Success Coordinator, Megan McPeak, will receive the alert and will likely also reach out to you. **Academic Alerts are not punitive**, they are simply an attempt to help you get back on track in this course as soon as possible.
+
+----
+
+## Course Workflow
+<img class="img-right" src="../img/StudyOnline.jpg" alt="Decoration">
+The course is scheduled to meet every weekday from 1230-400pm. However, because of physical distancing guidelines, half of you will meet with me in the classroom from 1230-210 and the other half will meet with me in the clasroom from 220-400. I will expect that you are working on coursework when you are not physically in the classroom and at other times as needed.
+
+This course is taught in a "flipped format", which loosely means that you will be responsible for obtaining factual content prior to coming to class and will then use class time with me to apply and expand upon what you learned prior to class. I teach this course in this format because I believe the science that indicates that deeper learning is achieved with this model and I find that students need more help from me when applying concepts. Additionally, this format allows for teaching face-to-face, on-line, or a hybrid of both as necessary.
+
+The course is composed of [29 modules](../modules/index) of material which roughly corresponds to one module per day. Below describes a general format of instruction that you should follow for each module.
+
+1. **Prepare Module Material** -- Each module has a reading that describes the major concepts of the module. These readings are detailed and derived from my lecture notes from years past. I have worked very hard to make these readings short and readable, but the fact of the matter is that some concepts in this course require more explanation and some of that explanation is subtle. As appropriate I have added visuals to explain concepts and highlighted key definitions and concepts in boxes. **You need to engage thoroughly with these readings**. By this, I mean that you should need to be focused (i.e,. not distracted) while reading these and you need to think about concepts that don't make sense to you on your first read. **A cursory run through the readings will not be adequate.**
+
+To guide your reading, I have created "reading questions" for each module. These questions are below the "Preparation for Class" heading on each module webpage (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). As you read the reading you should answer each "reading question." I prefer that your answers are (neatly) hand-written as [there is some evidence](https://www.npr.org/2016/04/17/474525392/attention-students-put-your-laptops-away){:target="_blank"} that **concepts are better retained when you write, rather than type, them**. Questions you have about the reading or the reading questions can be asked on the ["Class Preparation Reading Questions" channel](https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7){:target="_blank"} on the course Teams page.
+
+Your answers to the reading questions should be turned into me, via GradeScope ([quick link on class homepage](../){:target="_blank"}), by 1100 am on the day that the module will be covered in class (see the [Dates page](Dates-Current.html)). I will grade your answers according to the following rubric.
+
+<div class="container-fluid">
+  <table class="table table-bordered">
+  <thead>
+    <tr class="info"><th>5 points</th><th>4-1 points</th><th>0 points</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>All questions were answered thoughtfully and fully.</td><td>Various numbers of questions were not answered, were answered incorrectly, or cursorily (i.e., without care or depth of thought).</td><td>Very few answers were provided or were correct; substantial portions were copied from someone else; or questions were not turned in.</td></tr>
+  </tbody>
+  </table>
+</div>
+
+1. **Class Time** -- The initial part of class time will consist of a short introduction to the module exercises and a quick discussion of any questions that you all had from the preparation reading. Following this you will work on the module's application exercises. I expect you to attend class to get direct help from me and to work on course material during the portion of the 1230-400 period when you are not "attending" class. If you are diligent and focused, you will likely finish most of the module exercises during this time.
+1. **Complete an Applied Assignment** -- Module assignments are listed under the "Practice" section on the module webpage (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). Assignments should be prepared as described here for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is due by 1200 (noon) on the day after the class period dedicated to the module.
+
+I will "grade for content" (i.e., whether the work is done correctly or not) 50-100% of each module exercise assignment. Questions that I did not "grade for content" will be "graded for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will also be available on the module webpage.
+
+<br>
+
+<center>
+<img src="../img/ClassStructure.JPG" width="70%" height="70%">
+</center>
 
 ----
 
 ## Grading
 <img class="img-right" src="../img/grading.jpg">
-An overall grade will be computed from the items described below and in the <a href="#overall-grade">Overall Grade section</a> further below.
+An overall grade will be computed from the module reading preparation answers and exercises described in the ["Course Workflow" section](#course-workflow) and a final exam. Module reading preparation answers and exercises not submitted by the due date time will not be accepted. However, your lowest four items of each will be dropped when computing your overall grade.
 
-### Quizzes
-Six one-hour quizzes will be given on the dates shown on the [Dates page](Dates-Current){:target="_blank"}. Make-up quizzes will be provided only if you have a fixed commitment of sufficient importance that was set before the beginning of the semester or a verifiable medical condition. You will not be allowed to take a missed quiz without my prior approval. The final quiz will not be given early. Your two highest quiz grades will be "worth more" and your two lowest quiz grades will be "worth less" in your final grade (see [grading table](#overall-grade)).
+The final exam is an opportunity for you to show a synthetic understanding of all material from throughout the course. The final exam will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the final exam.
 
-### Exercises
-Several exercises will be assigned per [module](../modules/){:target="_blank"}. **PRINTED** answers to the exercises are due at the **beginning of the class period on the due date announced in class**. **Exercises will not be accepted after I have posted the answer key** (which I often due before coming to class). Each exercise will be graded according to the following rubric.
-
-<div class="container-fluid">
-  <table class="table table-bordered">
-  <thead>
-    <tr class="info"><th>4 points</th><th>3-1 points</th><th>0 points</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>All parts of the exercise were completed in full; all steps of the work (e.g., intermediate calculations, R code) are provided; and the work was neat, orderly and followed the <a href="hwformat.html">homework format</a> exactly.</td><td>Some parts of the exercise were either not attempted or were incomplete; all steps were not shown; or the work was not as neat and orderly as it should have been or did not follow the <a href="hwformat.html">homework format</a> exactly.</td><td>Very little of the exercise was completed; many steps not shown; substantial amounts of the work was copied from someone else; or work was messy and unorganized or did not follow the <a href="hwformat.html">homework format</a>.</td></tr>
-  </tbody>
-  </table>
-</div>
-
-If you meet with me in my office **before the end of the second week of classes** AND **at least two other times outside of class with legitimate questions** then your lowest (approximate) one-third of homework grades will be dropped when computing your overall percentage.
-
-### Portfolio
-<img class="img-right" src="../img/portfolio.png">
-The portfolio will consist of analyses using four of the five major course topics (one-way ANOVA, two-way ANOVA, simple linear regression, indicator variable regression, logistic regression) of data of interest to you. The data may come from you, an online data repository or other reputable internet source ([examples here](data_207#possible-sources-of-portfolio-data){:target="_blank"}), any other reliable source, or extracted from a figure ([example here](digitizing){:target="_blank"}) or table. **You MAY NOT use data provided to you by another professor, agency, or employer (some exceptions may be made to this rule BUT you MUST clear it with me BEFORE contacting them).** You MAY NOT use data from a textbook or any of my webpages. The data must be able to be appropriately analyzed by one of the main topics learned in class and **the one-way ANOVA cannot have the same response variable and explanatory variable as your two-way ANOVA and the simple linear regression cannot have the same response variable and quantitative explanatory variable as your indicator variable regression**. In addition, the **one-way ANOVA must have more than two groups.** 
-
-You must submit an initial proposal to me (see [Dates page](Dates-Current.html)) that briefly describes the data that you will use (including your source for the data), the questions to be asked or hypotheses to be tested with the data, the response and explanatory variables, the types (i.e., quantitative or categorical) of those variable(s), which topic you will use to answer the questions or test the hypotheses, and why you will use that topic. Please follow the format shown in [this example proposal](portfolio_proposal_example){:target="_blank"}. The initial proposal is worth an **all-or-nothing 10%** of the overall grade for the portfolio. *I strongly urge you to discuss your proposal with me before turning it in.*
-
-For the final portfolio paper, you will write a report for each data set/topic with the following sections:
-
-* Introduction: thoroughly describe background information needed to understand the data, why the data are important, why you are interested in the data, what the objectives of the study were (i.e., the research and statistical hypotheses), and what you expect to see and why.
-* Data Collection Methods: thoroughly describe the methodology you (or the authors) used to collect and you used to analyze the data. Specifically note your sample size, including by group for the one-way ANOVA, two-way ANOVA, and indicator variable regression.
-* Data Analysis Methods: describe which test you used to examine your hypothesis, discuss any follow-up tests (e.g., multiple comparisons), and declare your rejection level.
-* Assumptions: describe all assumption checking and, if necessary, data transformations (you must both demonstrate that a transformation is needed and that it accomplished meeting the assumptions).
-* Results: describe the results of your analysis.
-    * For one-way ANOVA ... provide an omnibus test, multiple comparisons results, specific interpretation of differences if they exist, and an appropriate plot that demonstrates your results. Back-transform results as appropriate.
-    * For two-way ANOVA ... provide an omnibus test or tests, multiple comparisons results, specific interpretation of differences if they exist, and an appropriate plot that demonstrates your results. Back-transform results as appropriate.
-    * For simple linear regression ... provide an omnibus test, specific interpretation of the slope, an appropriate prediction (with interpretation), and an appropriate plot that demonstrates your results. Back-transform results as appropriate.
-    * For indicator variable regression ... provide an omnibus test or tests, specific interpretation of differences in slopes and intercepts, specific interpretation of slopes and intercepts, predictions (with interpretations) that demonstrate your results, and an appropriate plot that demonstrates your results. Back-transform results as appropriate.
-    * For logistic regression ... provide an omnibus test, specific interpretation of the slope and back-transformed slope; predictions (with interpretations) of log(odds), odds, and probabilities; and an appropriate plot that demonstrates your results.
-* Discussion: describe how what you found relates to your objectives and hypotheses (and reasoning) from the introduction. Suggest where further research in this area should go from here.
-* Works cited: list of references (if any) used to support your project.
-
-The **full examples in each module reading provide excellent examples for how each analysis in your portfolio may look**.
-
-It is possible that all four analyses can be conducted from the same large data set. Thus, it is possible to have a single introduction and single data collection methods section, but separate data analysis methods, assumption checking, results, and discussion sections. Alternatively, if different data sets are used for each topic, then separate introduction, data collection methods, data analysis methods, assumption checking, results, and discussion sections will be required. The final portfolio should be typed, grammatically correct, and refer to supporting figures and tables. The due date for the final portfolio is shown on the [Dates page](Dates-Current.html).
-
-
-### Overall Grade
-An overall score will be computed from the items and associated weights listed in the table below (and described above). To compute your current grade, enter your percentage scores in the boxes for completed assessments. Enter your highest quiz scores as "Q1" and "Q2" and your lowest quiz scores as "Q5" and "Q6". To project your future grade, also include percentages for future assessments. [*It is your responsibility to track your scores on the individual assessments.*]
+An overall score will be computed from the items and associated weights listed in the table below. Grades on individual module reading preparation answers and exercises can be found on the class Gradescope page ([quick link on class homepage](../){:target="_blank"}). I will update your percentage grades for the reading preparation answers and exercises on mycourses.northland.edu ([quick link on class homepage](../)) at the end of each week, which will then show your grade as of that time. You can also compute your overall grade at any time by entering your percentage scores in the boxes below for completed assessments. To project your future grade, also include percentages for future assessments.
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
 
 <form name="GRADECALC">
-<table class="grader">
-<tr><th></th>
-<th><a href="#quizzes">Q1</A></th>
-<th><a href="#quizzes">Q2</A></th>
-<th><a href="#quizzes">Q3</A></th>
-<th><a href="#quizzes">Q4</A></th>
-<th><a href="#quizzes">Q5</A></th>
-<th><a href="#quizzes">Q6</A></th>
-<th><a href="#exercises">Exercises</a></th>
-<th><a href="#portfolio">Portfolio</A></th></tr>
+<table class="grader" width="70%">
+<tr><th width="15%"></th>
+<th width="28%">Reading Prep<br>Quizzes</th>
+<th width="28%">Assignments</th>
+<th width="29%">Final Exam</th>
+</tr>
 
-<tr><th>Weight</th>
-<th>13%</th><th>13%</th><th>10%</th><th>10%</th>
-<th>7%</th><th>7%</th><th>10%</th><th>30%</th></tr>
+<tr style="vertical-align:bottom"><th>Weight</th>
+<th>15%<br><img src="../img/bar5.JPG" width="15" height="23"></th>
+<th>60%<br><img src="../img/bar5.JPG" width="15" height="90"></th>
+<th>25%<br><img src="../img/bar5.JPG" width="15" height="38"></th></tr>
 
 <tr><th>Percent</th>
-<td><input type="text" name="Q1_SC" size="3" tabindex="2" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q2_SC" size="3" tabindex="3" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q3_SC" size="3" tabindex="4" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q4_SC" size="3" tabindex="5" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q5_SC" size="3" tabindex="6" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="Q6_SC" size="3" tabindex="7" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="HW_SC" size="3" tabindex="8" onchange="calc_grade(this.form)"></td>
-<td><input type="text" name="PROJ_SC" size="3" tabindex="9" onchange="calc_grade(this.form)"></td></tr>
+<td><input type="text" name="PREP_SC" size="3" tabindex="1" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="HW_SC" size="3" tabindex="2" onchange="calc_grade(this.form)"></td>
+<td><input type="text" name="FNL_SC" size="3" tabindex="3" onchange="calc_grade(this.form)"></td>
+</tr>
 
-<tr><th colspan="5">Overall Percentage: <input type="text" name="SCORE" size="4"></th>
-<th colspan="4">Projected Grade: <input type="text" name="GRADE" size="2"></th></tr>
+<tr><th colspan="2">Overall: <input type="text" name="SCORE" size="4"></th>
+<th colspan="2">Grade: <input type="text" name="GRADE" size="2"></th></tr>
 </table>
 </form>
 
@@ -171,44 +160,45 @@ Your letter grade will be assigned from your overall percentage (rounded to a wh
   <tr><td>D+ 67-69</td><td>D  60-66</td><td>F   0-59</td></tr>
 </table>
 
-#### Note About Incomplete Grades
+#### Incomplete Grades
 An incomplete grade will be given ONLY in extreme circumstances that are beyond your control, such as a major illness, and will ONLY be given if you have successfully completed the entire course except for the final exam. This is in accordance with [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades").
 
-#### Note About Midterm Grades
-I will submit a "midterm grade" for you approximately half-way through the semester. This grade will include only about 1/3rd of the items that will be included in your overall final grade. Also note that I will assign the "worst possible" letter grade that I can for your midterm grade because I believe that it is better to know the worst rather than the best-case scenario at that point of the semester and the material at the end of the semester is a little more difficult than the material at the beginning of the semester. Of course, see me if you have questions about your midterm grade.
+#### Midterm Grades
+I will submit a "midterm grade" for you approximately half-way through the semester. This grade will by my best guess at your lowest possible final grade. I assign this "worst-case" midterm grade because I believe that it is better to know the worst rather than the best-case scenario at that point of the semester and the material at the end of the semester is a little more difficult than the material at the beginning of the semester. Of course, see me if you have questions about your midterm grade.
 
 ----
 
 ## Expectations
 
 ### Ownership of Learning
-<img class="img-right" src="../img/student-reflection-and-ownership_orig.png" alt="Ownership of Learning">
+<img class="img-right" src="../img/student-reflection-and-ownership_orig.png" alt="Decoration">
 This course is designed in a way that you will have to actively, rather than passively, engage in the course content. In this way, it may differ from some of your other courses. In particular, in this course you will need to:
 
-* Interact with the course material on a near daily basis (i.e., you will not be able to ignore the class for several days).
-* Multi-task material from multiple modules (i.e., you may be finishing exercises for one module while preparing for class on another module).
-* Prepare for some course content on your own prior to class. See [Work Outside of Class](#work-outside-of-class) section below.
-* Assess your own performance on exercises by comparing your answers to an answer key (which will also contain hints related to common mistakes).
+* Interact with the course material **daily**.
+* Multi-task material from multiple modules (i.e., you may be finishing the assignment for one module while preparing for the next module).
+* Prepare for some course content on your own prior to class.
+* Use class and the Piazza discussion site to ask questions and seek help.
+* Assess your own performance by reviewing your graded work an comparing your answers on assignments to the answer key (which will also contain hints related to common mistakes).
+* Assess if you need more practice and complete additional exercises provided for most modules.
 * Ask for help from me (the professor) both during and outside of class. See [Assistance](#assistance) section above.
-* Maintain focus for an extended period of time (1 h for each class, 2 h for quizzes).
+* Maintain focus for an extended period of time (1.5 h for each class).
 
 ### Work Outside of Class
-<img class="img-right" src="../img/studying.jpg" alt="Studying Hours">
-As a general rule-of-thumb[^2], you are expected to spend 2-3 hours of time outside of class for each hour in class. This course meets for 5 hours per week and, thus, you should dedicate between 10 and 15 hours of time outside of class preparing for class, completing exercises, and studying for quizzes. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you may consider enlisting the aid of apps (e.g., [Forest](https://www.forestapp.cc/)) designed to reduce distractions from devices.[^DistractionDevices]  
+<img class="img-right" src="../img/studying.jpg" alt="Decoration">
+As a general rule-of-thumb[^studytime], you are expected to spend 2-3 hours of time outside of class for each hour in class. For this course, you will meet for 7.5 hours per week and, thus, you should dedicate between 15 and 22.5 hours of time outside of class time preparing for class, completing assignments, reviewing your work, and asking questions or for help. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you may consider the aid of apps (e.g., [Forest](https://www.forestapp.cc/)) designed to reduce distractions from devices.[^DistractionAids]  
 
-If you feel that you are spending too much time on some exercises or preparations because you are "stuck," then start your work earlier so that you can stop (and do other things) and make plans to see [me](#instructor--derek-ogle) for help.
+If you feel that you are spending too much time on some assignments or preparations because you are "stuck," then start your work earlier so that you can stop (and do other things) and make plans to seek help (see [assistance section above](#assistance)).
 
 
 ### Classroom Conduct and Academic Integrity
-<img class="img-right" src="../img/cell-cheat.jpg" alt="Conduct and Integrity">
-My intent is to create a classroom environment where solid learning of statistics can occur. One part of this environment is a well-organized course structure built upon relevant learning resources and interesting realistic exercises. Another part is my availability to assist you in learning from these resources and exercises. A third part is your conduct within the classroom. My expectations of you are that you will fully engage in the course (see above) and be respectful of all others in the class. At a minimum, I expect you to adhere to the following behaviors:
+<img class="img-right" src="../img/cell-cheat.jpg" alt="Decoration">
+My intent is to create a classroom environment where learning can occur. One part of this environment is a well-organized course structure built upon relevant learning resources and interesting realistic exercises. Another part is my availability to assist you in learning from these resources and exercises. A third part is your conduct within the classroom. My expectations of you are that you will fully engage in the course (see above) and be respectful of all others in the class. At a minimum, I expect you to adhere to the following behaviors:
 
 * Please arrive to class on time. If you arrive late, then take the first available seat as quietly as possible. If you need to leave early, then please sit near the exit.
 * Please attend the entire class period. Leaving class early defeats the purpose of the class period, does not take advantage of resources (i.e., the professor) that can significantly help your learning, and does not build statistical stamina. Please take care of your personal needs (e.g., using the restroom) before class so that you can stay focused for the entire class period.
 * Please turn your computer on immediately so that you can promptly begin the daily preparation check.
 * Please limit computer use to class work.
-* Please **do not use your own computer** during class unless you clear it with me at the beginning of the semester.
-* Please turn off and store out-of-sight cell phones and other electronic devices.
+* Please turn off and store out-of-sight cell phones and other electronic devices (except for your computer).
 * Please **do not listen to music** (or otherwise wear ear buds) during class.
 * Please do not have side discussions while I or others are speaking to the entire class.
 *	Please do not sleep in class -- this is rude and distracting to others.
@@ -216,16 +206,42 @@ My intent is to create a classroom environment where solid learning of statistic
 
 Finally, note that the [College's Academic Integrity Statement & Policy](https://my.northland.edu/student-policies/academic-policies/#academic-integrity){:target="_blank"} will be followed in this course. Please make sure that you are familiar with its content.
 
+---
+
+## Title IX Statement
+In accordance with Title IX and other local, state, and federal laws, Northland College is committed to providing an environment free of all forms of discrimination, including sex and gender-based discrimination. This includes, but is not limited to sexual violence, sexual harassment, dating violence, and stalking. If you or someone you know has been affected or is currently being affected by these types of behaviors that are limiting one’s ability to participate in this course or any other Northland College sponsored program or activity, please know that there are options, and resources are available. You can also make a report by contacting the [Title IX Coordinator](mailto:titleix@northland.edu).
+
+I am not a confidential resource. As a College employee I am considered a mandatory reporter and am required to report incidents of sexual- and gender-based discrimination and sexual misconduct to the Title IX Coordinator, as we want to ensure that you are connected with the campus support resources offered by the College and the surrounding community. To learn more, please visit the [Northland College Title IX website](https://my.northland.edu/life/titleix/){:target="_blank"}.
+
+
+---
+
+## COVID-19 Statement
+<img class="img-right" src="../img/covid19.jpg" alt="Decoration">
+As you are aware, the circumstances surrounding COVID-19 are ever-changing. Thus, it is possible that the college may make decisions that will affect how this course is administered. In addition, you may miss some class periods out of an abundance of caution if you are ill. I have designed the course to "work" whether we are face-to-face, remote, or somewhere in between. If you should have to miss class for any reason, please e-mail me promptly to explain to me your situation. I will work with you to help you stay up with class material as best as possible. If face-to-face classes are canceled then I will communicate with you promptly about how we will continue with class. **Communication will be key to stay abreast of the current situation and how it relates to our class ... so please keep me informed of your circumstances and regularly monitor your Northland e-mail.**
+
+<img class="img-right" src="../img/mask.jpg" alt="Decoration">
+It is my hope that we can maintain a face-to-face classroom for the entire session. You can help with this by doing the following things related to our class.
+
+- Monitor your temperature and check for symptoms of COVID-19 as described under "DAILY SELF CHECKS" on [this page](https://www.northland.edu/about/reopening-plan/#beahviors-that-reduce-spread){:target="_blank"}. If your temperature is elevated or you have symptoms please don't come to class, notify the [Office of Health Services](https://www.northland.edu/dir/jennifer-newago/){:target="_blank"}, and notify me.
+- Thoroughly [wash your hands](https://www.northland.edu/about/reopening-plan/#hand-hygiene){:target="_blank"} prior to entering the classroom.
+- Please [properly wear your mask](https://www.hopkinsmedicine.org/health/conditions-and-diseases/coronavirus/proper-mask-wearing-coronavirus-prevention-infographic){:target="_blank"} at all times when entering the building and the classroom. This is in compliance with [Northland's face covering policy](https://my.northland.edu/student-policies/student-rights/#covid-face){:target="_blank"}. &#x1F637;
+- Please enter the back (south) door and exit the front (north) door to the classroom (the doors will be marked).
+- Maintain proper [physical/social distance](https://www.northland.edu/about/reopening-plan/#social-distancing){:target="_blank"} (six feet) from other students while in the classroom. In our computer classroom, please only sit at a desk that has both a chair and a computer.
+- Wipe down your desk, keyboard, and mouse with the provided wipes. **You are also welcome to bring and use your own computer.**
+- In general, but especially if you are using the college's computers, please refrain from touching your face (mouth and eyes) with your hands.
+- Communicate issues to me (see [ways to communicate to me above](#instructor--derek-ogle)) so that I am aware and can try to address the issues.
+
+I will follow the college's official policy with respect to COVID-related absences.[^CovidAbsence] If you miss your designated class period then you may remotely attend the 830-930 class period via the appropriately dated "online meeting" on our mycourses.northland.edu page ([see quick link on class homepage]("../"){:target="_blank"}). A recording of the session will also be made and can be accessed from the same mycourses.northland.edu page.
+
 ----
 
 ### Footnotes
 
-[^help]: Quotes from [BurnishedChaos.com](https://burnishedchaos.com/quotes-about-asking-for-help/){:target="_blank"}.
-
 [^email]: While I am pretty open-minded and not much of a stickler when it comes to e-mail etiquette, some professors are. And it is always better to send an appropriate rather than an inappropriate e-mail. [Here](https://www.scribendi.com/advice/how_to_email_a_professor.en.html) and [here](https://www.insidehighered.com/views/2015/04/16/advice-students-so-they-dont-sound-silly-emails-essay) are some good suggestions for e-mailing professors.
 
-[^1]: I believe the research (e.g., [here](http://www.medicaldaily.com/why-using-pen-and-paper-not-laptops-boosts-memory-writing-notes-helps-recall-concepts-ability-268770){:target="_blank"}, [here](http://www.pbs.org/wgbh/nova/next/body/taking-notes-by-hand-could-improve-memory-wt/){:target="_blank"}, and [here](http://www.lifehack.org/articles/featured/writing-and-remembering-why-we-remember-what-we-write.html){:target="_blank"}) that suggests that you are more likely to remember concepts if you hand-write those concepts down, rather than copy-and-pasting or typing the text.
+[^studytime]: General advice for how much time should be spent outside of class for each hour inside of class can be found, among many, [here](https://www.collegeparentcentral.com/2010/02/is-your-college-student-investing-enough-time-studying/){:target="_blank"}, [here](http://classroom.synonym.com/ratio-studying-class-time-college-1075.html){:target="_blank"}, [here](https://www.usu.edu/asc/studysmart/pdf/estimating_study_hours.pdf){:target="_blank"}, and [here](http://collegelife.about.com/od/academiclife/f/How-Much-Time-Should-I-Spend-Studying-In-College.htm){:target="_blank"}.
 
-[^2]: General advice for how much time should be spent outside of class for each hour inside of class can be found, among many, [here](https://www.collegeparentcentral.com/2010/02/is-your-college-student-investing-enough-time-studying/){:target="_blank"}, [here](http://classroom.synonym.com/ratio-studying-class-time-college-1075.html){:target="_blank"}, [here](https://www.usu.edu/asc/studysmart/pdf/estimating_study_hours.pdf){:target="_blank"}, and [here](http://collegelife.about.com/od/academiclife/f/How-Much-Time-Should-I-Spend-Studying-In-College.htm){:target="_blank"}.
+[^DistractionAids]: Also see the following resources for other apps that may help you eliminate distractions from your devices ... [here](https://georgehalachev.com/2019/01/15/7-apps-that-will-help-you-beat-procrastination/){:target="_blank"}, [here](https://www.careercontessa.com/advice/best-apps-chronic-procrastinator/){:target="_blank"}, [here](https://highschoolhints.com/6-apps-that-will-stop-your-procrastinating/){:target="_blank"}, or [here](https://remotebliss.com/procrastination-apps/){:target="_blank"}.
 
-[^DistractionDevices]: The following links provide other resources to help you handle distractions from your device ...[here](https://georgehalachev.com/2019/01/15/7-apps-that-will-help-you-beat-procrastination/), [here](https://www.careercontessa.com/advice/best-apps-chronic-procrastinator/), [here](https://highschoolhints.com/6-apps-that-will-stop-your-procrastinating/), or [here](https://remotebliss.com/procrastination-apps/).
+[^CovidAbsence]: If a student feels ill, has an elevated temperature, or a positive symptom check relevant to COVID-19, they should not attend in-person classes or activities, but remain at home (their room if they live on campus).  They will not be penalized for their absence(s), as long as they notify their instructors of an illness prior to the beginning of the class session or activity.  The student should notify the office of Health Services about their positive temperature or COVID-19 symptom check.<br><br>If the Office of Health Services obtains a positive COVID-19 test from a student or determines that as a result of a known contact a student should be quarantined, the Office will notify instructors of a student’s absence from class for an undetermined duration.  Students who miss in-person classes or activities because they have been quarantined, in isolation, or because they are ill, either as a consequence of COVID-19 or otherwise, will not be penalized for their absences.<br><br>When a student is able, they are expected to keep up with class material that is available to them online, complete and submit assignments and to participate in virtual course activities, when such virtual activities are available.  Otherwise, the instructor will work with the student to arrange for appropriate extensions for required assignments.
