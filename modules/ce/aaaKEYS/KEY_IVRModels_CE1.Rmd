@@ -1,0 +1,156 @@
+---
+title: "Exercise Key"
+subtitle: "IVR Models"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_IVRModels_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+</ul>
+</div>
+
+----
+
+# Nurse Wages
+
+1. The ultimate full model is $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE$.
+1. Table shown below
+
+```{r echo=FALSE}
+data.frame(Gender=c("female","male"),MALE=c(0,1),
+           "Sub-Model ($\\mu_{WAGE|EXPER}=$)"=c("$\\alpha+\\beta EXPER$",
+                      "$(\\alpha+\\delta_{1})+(\\beta+\\gamma_{1})EXPER$"),
+           check.names=FALSE) %>%
+  knitr::kable(booktabs=TRUE,row.names=FALSE) %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+<ol start="3">
+  <li> Meanings of the parameters are below.</li>
+    <ul>
+      <li>$\alpha$: y-intercept of female nurses (reference group).
+      <li>$\beta$: slope of female nurses (reference group).
+      <li>$\delta_{1}$: difference in y-intercept from male to female nurses.
+      <li>$\gamma_{1}$: difference in slope from male to female nurses.
+    </ul>
+  <li>I would expect $\beta$ to be <strong>positive</strong> because if wages increases with experience then I would expect a positive relationship or slope.</li>
+  <li>I would expect $\gamma_{1}$ to be <strong>negative</strong> because if a slower rate means a shallower or smaller slope; thus, if males have a smaller slope then $\gamma_{1}$ must be negative.</li>
+  <li>I would expect $\delta_{1}$ to be <strong>zero</strong> because the mean wage with no experience describes the y-intercept. If there is no difference in mean wage with no experience for males and females then they have the same intercept or no difference in intercpet, so $\delta_{1}$=0.</li>
+  <li>I would expect $\delta_{1}$ to be <strong>positive</strong> because the descriptions states that the lines are parallel (i.e., $\gamma_{1}$=0) and the male line is always above the female line, incluing at the y-intercept.</li>
+</ol>
+
+&nbsp;
+
+# Turtle Nesting Ecology
+```{r TurtleData, echo=FALSE}
+ht <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv")
+ht$Region <- factor(ht$Region,
+                    levels=c("Arabian Gulf","Indian Ocean","Red Sea",
+                             "Caribbean","West Atlantic"))
+ivr.ht <- lm(Clutch.Size~CCL+Region+CCL:Region,data=ht)
+cfs.ht <- formatC(cbind(Ests=coef(ivr.ht),confint(ivr.ht)),format="f",digits=2)
+```
+```{r TurtlePreds, echo=FALSE, results="hide"}
+nd <- data.frame(CCL=c(90,90,90),Region=c("Arabian Gulf","Indian Ocean","Caribbean"))
+( p90 <- cbind(nd,predict(ivr.ht,newdata=nd,interval="confidence")) )
+```
+
+1. The ultimate full model is $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+$ $\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA$.
+1. Table shown below
+
+```{r echo=FALSE}
+data.frame(Region=c("Arabian Gulf","Indian Ocean","Red Sea","Caribbean","West Atlantic"),
+           IO=c(0,1,0,0,0),
+           RS=c(0,0,1,0,0),
+           CO=c(0,0,0,1,0),
+           WA=c(0,0,0,0,1),
+           "Sub-Model ($\\mu_{CSIZE|CCL}=$)"=c("$\\alpha+\\beta CCL$",
+                      "$(\\alpha+\\delta_{1})+(\\beta+\\gamma_{1})CCL$",
+                      "$(\\alpha+\\delta_{2})+(\\beta+\\gamma_{2})CCL$",
+                      "$(\\alpha+\\delta_{3})+(\\beta+\\gamma_{3})CCL$",
+                      "$(\\alpha+\\delta_{4})+(\\beta+\\gamma_{4})CCL$"),
+           check.names=FALSE) %>%
+  knitr::kable(booktabs=TRUE,row.names=FALSE) %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+<ol start="3">
+<li>The "(Intercept)" estimate is $\hat{\alpha}$ and thus means that the mean clutch size when the curved carapace length is zero is `r cfs.ht["(Intercept)","Ests"]` for turtles from the Arabian Gulf (the reference group).</li>
+<li>The "covariate" (CCL) estimate is $\hat{\beta}$ and thus means that the mean clutch size of turtles from the Arabian Gulf (the reference group) will increase by `r cfs.ht["CCL","Ests"]` when the curved carapace length increases by 1 cm.</li>
+<li>The first interaction (CCL:RegionIndianOcean) estimate is $\hat{\gamma}_{1}$ and thus means that the slope for turtles from the Indian Ocean is `r cfs.ht["CCL:RegionIndian Ocean","Ests"]` less than the slope for turtles from the Arabian Gulf. Thus, mean clutch size increases at a slower rate with increasing curved carapace length for turtles from the Indian Ocean than turtles from the Arabian Gulf.</li>
+<li>The third indicator (RegionCaribbeaan) estimate is $\hat{\delta}_{3}$ and thus means that the y-intercept for turtles from the Caribbean is `r cfs.ht["RegionCaribbean","Ests"]` more than the y-intercept for turtles from the Arabian Gulf. Thus, mean clutch size when the curved carapace length is zero is greater in the Caribbean than the Arabian Gulf. This is mostly meaningless because a carapace length of zero is meaningless.</li>
+<li>I am 95% confident that the mean clutch size for all turtles from the Arabian Gulf with a curved carapace length of 90 cm will be between `r formatC(p90[1,"lwr"],format="f",digits=1)` and `r formatC(p90[1,"upr"],format="f",digits=1)`.</li>
+</ol>
+
+#### R Code and Results
+```{r prompt=FALSE}
+<<TurtleData>>
+cbind(Est=coef(ivr.ht),confint(ivr.ht))
+<<TurtlePreds>>
+```
+
+&nbsp;
+
+# Water Quality Near a Gold Mine
+```{r GoldMineData, echo=FALSE}
+gm <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/GoldMine.csv")
+gm$type <- factor(gm$type,levels=c("total","dissolved","soluble"))
+ivr.gm <- lm(phosp~distance+type+distance:type,data=gm)
+cfs.gm <- cbind(Ests=coef(ivr.gm),confint(ivr.gm))
+```
+
+1. The ultimate full model is $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP+$ $\gamma_{1}DIST:DP+\gamma_{2}DIST:SP$.
+1. Table shown below
+
+```{r echo=FALSE}
+data.frame(Type=c("Total P","Total Dissolved P","Soluble Reactive P"),
+           DP=c(0,1,0),
+           SP=c(0,0,1),
+           "Sub-Model ($\\mu_{P|DIST}=$)"=c("$\\alpha+\\beta DIST$",
+                      "$(\\alpha+\\delta_{1})+(\\beta+\\gamma_{1})DIST$",
+                      "$(\\alpha+\\delta_{2})+(\\beta+\\gamma_{2})DIST$"),
+           check.names=FALSE) %>%
+  knitr::kable(booktabs=TRUE,row.names=FALSE) %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+<ol start="3">
+<li>The "covariate" (distance) estimate is $\hat{\beta}$ and thus means that the mean total (reference group) phosphorous level will decrease by `r formatC(-1*cfs.gm["distance","Ests"],format="f",digits=2)` ppm when the distance from the gold mine increases by 1 km.</li>
+<li>The "(Intercept)" estimate is $\hat{\alpha}$ and thus means that the mean total (reference group) phosphorous at 0 km from the gold mine is `r formatC(cfs.gm["(Intercept)","Ests"],format="f",digits=2)` ppm.</li>
+<li>The first indicator (typedissolved) estimate is $\hat{\delta}_{1}$ and thus means that the y-intercept for dissolve phosphorous is `r formatC(-1*cfs.gm["typedissolved","Ests"],format="f",digits=2)` ppm less than the y-intercept for total phosphorous. The, the mean dissolved phosphorous is lower than the mean total phosphorous 0 km from the gold mine.
+<li>The second interaction (distance:typesoluble) estimate is $\hat{\gamma}_{2}$ and thus means that the slope for solube phosphorous is `r formatC(-1*cfs.gm["distance:typesoluble","Ests"],format="f",digits=2)` less than the slope for total phosphorous. Thus, solube phosphorous declines at a slower rate than total phosphrous as you move away from the gold mine.</li>
+<li>The figure is below.</li>
+</ol>
+
+#### R Code and Results
+```{r prompt=FALSE, fig.width=4.5}
+<<GoldMineData>>
+cbind(Est=coef(ivr.gm),confint(ivr.gm))
+ggplot(data=gm,mapping=aes(x=distance,y=phosp,color=type)) +  
+  geom_point() +  
+  labs(x="Distance from Gold Mine (km)",y="Phosphrous Level (ppm)") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm",se=FALSE)
+```

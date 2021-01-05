@@ -13,7 +13,7 @@ css: "/css/modules.css"
 
 # Nurse Wages
 <img src="../zimgs/Nurses.jpg" alt="Decoration" class="img-right">
-In [this previous exercise](IVRVariables.html#nurse-wages) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
+In [this previous exercise](IVRVariables_CE1.html#nurse-wages) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
 1. Write the ultimate full model for this situation.
 1. Create a table like that in the reading that shows the sub-model for each group.
@@ -27,7 +27,7 @@ In [this previous exercise](IVRVariables.html#nurse-wages) you prepared the vari
 
 ## Turtle Nesting Ecology
 <img src="../zimgs/hawksbill-turtle.jpg" alt="Decoration" class="img-right">
-In [this previous exercise](IVRVariables.html#turtle-nesting-ecology) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
+In [this previous exercise](IVRVariables_CE1.html#turtle-nesting-ecology) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
 1. Write the ultimate full model for this situation.
 1. Create a table like that in the reading that shows the sub-model for each group.
@@ -39,21 +39,22 @@ The data for this situation are in HawksbillTurtles.csv ([download](https://raw.
 1. Interpret the meaning of the estimate in the row with your covariate variable.
 1. Interpret the meaning of the estimate in the row with your **first** interaction variable.
 1. Interpret the meaning of the estimate in the row with your **third** indicator variable.
+1. Predict the mean clutch size for all turtles from the "Arabian Gulf", "Caribbean", and the "Indian Ocean" with a curved carapace length of 90 cm. Interpret the interval for the Arabian Gulf turtles.
 
 &nbsp;
 
 ## Water Quality Near a Gold Mine
 <img src="../zimgs/GoldMineWQ.jpg" alt="Decoration" class="img-right">
-In [this previous exercise](IVRVariables.html#water-quality-near-a-gold-mine) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
+In [this previous exercise](IVRVariables_CE1.html#water-quality-near-a-gold-mine) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
 1. Write the ultimate full model for this situation.
 1. Create a table like that in the reading that shows the sub-model for each group.
 
 The data for this situation are in [GoldMine.csv](data/GoldMine.csv). Load these data and **reorder the groups so that total phosphorous is the reference group.** Then fit the ultimate full model and create a table of parameter estimates (and confidence intervals) that can be used to answer the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
-{:start=3}
+{:start="3"}
 1. Interpret the meaning of the estimate in the row with your covariate variable.
 1. Interpret the meaning of the "(Intercept)" estimate.
-1. Interpret the meaning of the estimate in the row with your **second** interaction variable.
 1. Interpret the meaning of the estimate in the row with your **first** indicator variable.
+1. Interpret the meaning of the estimate in the row with your **second** interaction variable.
 1. Construct a plot that shows the separate regression lines for the groups.

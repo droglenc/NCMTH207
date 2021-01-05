@@ -35,27 +35,27 @@ source("../../../rhelpers/knitr_setup.R")
 
 # Nurse Wages
 
-1. The response variable is wages.
-1. The covariate is months of experience.
+1. The response variable is WAGE.
+1. The covariate is months of EXPERience.
 1. The factor is gender (female and male).
 1. As there are two groups in this analysis and females comes before males, I created the following indicator variable.
-    * FEM=1 if "female", 0 otherwise (i.e., "male")
+    * MALE=1 if "male", 0 otherwise (i.e., "female")
 1. The very simple table connecting the groups to the indicator variables codes is as follows:
 ```{r echo=FALSE}
-data.frame(group=c("female","male"),FEM=c(0,1)) %>%
+data.frame(group=c("female","male"),MALE=c(0,1)) %>%
   knitr::kable(booktabs=TRUE,row.names=FALSE) %>%
   kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
 
 <ol start="6">
-<li>The only interaction variables would be between months of experience and FEM; thus, experience:FEM.</li>
+<li>The only interaction variables would be between months of EXPERience and MALE; thus, experience:FEM.</li>
 <ol>
 
 &nbsp;
 
 # Turtle Nesting Ecology
 
-1. The response variable is clutch size.
+1. The response variable is clutch size (CSIZE).
 1. The covariate is curved carapace length (CCL).
 1. The factor is location (or region).
 1. As there are five groups in this analysis and the "Arabian Gulf" turtles are to be the reference group, I created the following four indicator variables.
@@ -82,8 +82,8 @@ data.frame(Region=c("Arabian Gulf","Indian Ocean","Red Sea","Caribbean","West At
 
 # Water Quality Near a Gold Mine
 
-1. The response variable is phosphorous level measurement.
-1. The covariate is distance from the gold mine (DISTANCE).
+1. The response variable is phosphorous level measurement (P).
+1. The covariate is distance from the gold mine (DIST).
 1. The factor is type of phosphorous.
 1. The levels should be changed so that "total" is first; e.g., "total", "dissolved", and "soluble".
 1. As there are three groups in this analysis and "total" is to be the reference group, I created the following two indicator variables.
