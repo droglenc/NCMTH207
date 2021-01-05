@@ -34,6 +34,7 @@ In [this previous exercise](IVRVariables.html#turtle-nesting-ecology) you prepar
 
 The data for this situation are in HawksbillTurtles.csv ([download](https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv), [meta](https://github.com/droglenc/NCData/blob/master/HawksbillTurtles_meta.txt)). Load these data and **reorder the regions so that it will be easier to distinguish regions in the Middle East (Arabian Gulf, Indian Ocean, and Red Sea) from those in the Atlantic (Caribbean and West Atlantic) and allow the Arabian Gulf to be the reference group.** Then fit the ultimate full model and create a table of parameter estimates (and confidence intervals) that can be used to answer the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
+{:start=3}
 1. Interpret the meaning of the "(Intercept)" estimate.
 1. Interpret the meaning of the estimate in the row with your covariate variable.
 1. Interpret the meaning of the estimate in the row with your **first** interaction variable.
@@ -50,6 +51,7 @@ In [this previous exercise](IVRVariables.html#water-quality-near-a-gold-mine) yo
 
 The data for this situation are in [GoldMine.csv](data/GoldMine.csv). Load these data and **reorder the groups so that total phosphorous is the reference group.** Then fit the ultimate full model and create a table of parameter estimates (and confidence intervals) that can be used to answer the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
+{:start=3}
 1. Interpret the meaning of the estimate in the row with your covariate variable.
 1. Interpret the meaning of the "(Intercept)" estimate.
 1. Interpret the meaning of the estimate in the row with your **second** interaction variable.
