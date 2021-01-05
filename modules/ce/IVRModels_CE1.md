@@ -18,10 +18,10 @@ In [this previous exercise](IVRVariables.html#nurse-wages) you prepared the vari
 1. Write the ultimate full model for this situation.
 1. Create a table like that in the reading that shows the sub-model for each group.
 1. Interpret the meanings of each parameter in your model.
-1. What type of value (positive, negative, zero) would you expect for $\beta$ if wage increased with increasing months of experience for both groups? Explain.
-1. What type of value would you expect for $\gamma_{1}$ if mean wage increased at a slower rate with increasing months of experience for male than female nurses? Explain.
-1. what type of value would you expect for $\delta_{1}$ if the mean wage for females with no experience was the same as the mean wage for males with no experience? Explain.
-1. what type of value would you expect for $\delta_{1}$ if $\gamma_{1}$=0 and the mean wage for females was less than the mean wage for males with the same amount of experience? Explain.
+1. What type of value (positive, negative, zero) would you expect for &beta; if wage increased with increasing months of experience for both groups? Explain.
+1. What type of value would you expect for &gamma;<sub>1</sub> if mean wage increased at a slower rate with increasing months of experience for male than female nurses? Explain.
+1. what type of value would you expect for &delta;<sub>1</sub> if the mean wage for females with no experience was the same as the mean wage for males with no experience? Explain.
+1. what type of value would you expect for &delta;<sub>1</sub> if &gamma;<sub>1</sub>=0 and the mean wage for females was less than the mean wage for males with the same amount of experience? Explain.
 
 &nbsp;
 
