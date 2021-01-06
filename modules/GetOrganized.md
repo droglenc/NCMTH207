@@ -53,7 +53,7 @@ Contact me if you have any issues with any of the above items.
 Please do the following things in preparation for the first day of class.
 
 * [Complete Webpage Scavenger Hunt](prep/GetOrganized_Hunt){:target="_blank"}
-* [Read about Homework Format](resources/HWFormat){:target="_blank"}
+* [Read about Homework Format](resources/hwformat){:target="_blank"}
     * We will discuss this in class but I would like you to be familiar with it before the first day of class.
 
 &nbsp;
