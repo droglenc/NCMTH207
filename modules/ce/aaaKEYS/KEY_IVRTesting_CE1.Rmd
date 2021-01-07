@@ -1,0 +1,114 @@
+---
+title: "Exercise Key"
+subtitle: "IVR Testing"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_IVRTesting_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+</ul>
+</div>
+
+----
+
+# Nurse Wages
+
+1. The hypotheses for the parallel lines test are:
+    * H<sub>A</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE$.
+    * H<sub>0</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE$.
+1. The hypotheses for the coincident lines test are:
+    * H<sub>A</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE$.
+    * H<sub>0</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER$.
+1. The hypotheses for the relationship test are:
+    * H<sub>A</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER$.
+    * H<sub>0</sub> $\mu_{WAGE|EXPER,MALE} = \alpha$.
+ 
+&nbsp;
+
+# Turtle Nesting Ecology
+```{r TurtleData, echo=FALSE, results="hide"}
+ht <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv")
+ht$Region <- factor(ht$Region,
+                    levels=c("Arabian Gulf","Indian Ocean","Red Sea",
+                             "Caribbean","West Atlantic"))
+ivr.ht <- lm(Clutch.Size~CCL+Region+CCL:Region,data=ht)
+anova(ivr.ht)
+```
+```{r echo=FALSE}
+aov.ht <- anova(ivr.ht)
+aov.ht.plt <- kPvalue(aov.ht$"Pr(>F)"[3],latex=FALSE)
+aov.ht.clt <- kPvalue(aov.ht$"Pr(>F)"[2],latex=FALSE)
+aov.ht.rt <- kPvalue(aov.ht$"Pr(>F)"[1],latex=FALSE)
+```
+
+1. The models for parallel lines test are as follows:
+    * H<sub>A</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+$ $\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA$.
+    * H<sub>0</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA$.
+1. The models for coincident lines test are as follows:
+    * H<sub>A</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA$.
+    * H<sub>0</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL$.
+1. The lines appear to be parallel across all regions (`r aov.ht.plt`). Thus, the relationship between clutch size and curved carapace length does NOT differ among the regions.
+1. The intercepts appear to differ among some of the regions (`r aov.ht.clt`). Thus, the mean clutch size at the same curved carapace length, no matter what that carapace length is, differs among some regions.
+1. There does appear to be a significant relationship between clutch size and curved carapace length (`r aov.ht.rt`).
+
+#### R Code and Results
+```{r prompt=FALSE}
+<<TurtleData>>
+```
+
+&nbsp;
+
+# Water Quality Near a Gold Mine
+```{r GoldMineData, echo=FALSE}
+gm <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/GoldMine.csv")
+gm$type <- factor(gm$type,levels=c("total","dissolved","soluble"))
+ivr.gm <- lm(phosp~distance+type+distance:type,data=gm)
+anova(ivr.gm)
+```
+```{r echo=FALSE}
+aov.gm <- anova(ivr.gm)
+aov.gm.plt <- kPvalue(aov.gm$"Pr(>F)"[3],latex=FALSE)
+aov.gm.clt <- kPvalue(aov.gm$"Pr(>F)"[2],latex=FALSE)
+aov.gm.rt <- kPvalue(aov.gm$"Pr(>F)"[1],latex=FALSE)
+```
+
+1. The models for parallel lines test are as follows:
+    * H<sub>A</sub>: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP+$ $\gamma_{1}DIST:DP+\gamma_{2}DIST:SP$.
+    * H<sub>0</sub: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP$.
+1. The models for coincident lines test are as follows:
+    * H<sub>A</sub>: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP$.
+    * H<sub>0</sub>: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST$.
+1. The lines appear to be parallel across all three types of phosphorous (`r aov.gm.plt`). Thus, the relationship between phosphorous level and distance from the gold mine does NOT differ among phosphorous types.
+1. The intercepts appear to differ among some of the phosphorous types (`r aov.gm.clt`). Thus, the mean phosphorous level at the same distand from the gold mine, no matter what that distance is, differs among phosphorous types
+1. There does appear to be a significant relationship between phosphorous level and distance from the gold mine (`r aov.gm.rt`).
+
+#### R Code and Results
+```{r prompt=FALSE, fig.width=4.5}
+<<GoldMineData>>
+ggplot(data=gm,mapping=aes(x=distance,y=phosp,color=type)) +  
+  labs(x="Distance from Gold Mine (km)",y="Phosphrous Level (ppm)") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm",se=FALSE)
+```
