@@ -12,7 +12,7 @@ Note that there is a short assignment at the very bottom of this page.
 Microsoft Teams is a group communication and collaboration platform that you will primarily use to ask me questions. One of the main features that I like about MS Teams is that it allows you to show me your computer so that I can more quickly help you shoot R-related problems. You are likely familiar with Teams from other classes at Northland. However, below is a quick guide to getting started.
 
 ## Getting the App
-You can get the MS Teams app through your Northland account. There are multiple ways to do this but the easiest is install the app [from this page](https://teams.microsoft.com/uswe-01/downloads) (*select the "Download Teams" button and follow the directions*).
+You can get the MS Teams app through your Northland account. There are multiple ways to do this but the easiest is install the app [from this page](https://teams.microsoft.com/uswe-01/downloads){:target="_blank"} (*select the "Download Teams" button and follow the directions*).
 
 In previous classes you may have accessed Teams through your web browser. I have found that Teams works more fluidly as an app than through the browser. Thus, I encourage you to install and run Teams through the app if you are using your own computer. If you choose to run Teams through the browser than you will need to use Chrome (*especially if you are using a Mac*) or Edge (rather than Firefox, Safari, IE, etc) to be able to project video (i.e., show me your screen).
 
@@ -82,7 +82,7 @@ When you are finished with the meeting just press the red "Leave" button in the 
 
 The video below has a few more hints on how to use Teams for class.
 
-[![](http://img.youtube.com/vi/PasT3Q1ZR_I/0.jpg)](http://www.youtube.com/watch?v=PasT3Q1ZR_I)
+[![](http://img.youtube.com/vi/PasT3Q1ZR_I/0.jpg)](http://www.youtube.com/watch?v=PasT3Q1ZR_I){:target="_blank"}
 
 &nbsp;
 
