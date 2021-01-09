@@ -48,7 +48,7 @@ title: Learning Modules
 1. [Analysis](IVRAnalysis)
 1. [Summary](IVRSummary)
 
-#### Logistic Regressions
+#### Logistic Regression
 
 {:start="25"}
 1. Hello
