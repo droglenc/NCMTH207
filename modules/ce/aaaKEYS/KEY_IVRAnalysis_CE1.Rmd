@@ -1,6 +1,6 @@
 ---
 title: "Exercise Key"
-subtitle: "IVR Testing"
+subtitle: "IVR Analysis"
 author: Derek H. Ogle
 layout: page
 css: "/css/modules.css"
@@ -14,11 +14,12 @@ output:
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Renders an appropriate HTML file and moves to CE directory
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_IVRTesting_CE1")
+modHTML_CEKeys("KEY_IVRAnalysis_CE1")
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
+library(emmeans)
 source("../../../rhelpers/knitr_setup.R")
 ```
 
@@ -33,20 +34,6 @@ source("../../../rhelpers/knitr_setup.R")
 
 ----
 
-# Nurse Wages
-
-1. The hypotheses for the parallel lines test are:
-    * H<sub>A</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE$.
-    * H<sub>0</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE$.
-1. The hypotheses for the coincident lines test are:
-    * H<sub>A</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE$.
-    * H<sub>0</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER$.
-1. The hypotheses for the relationship test are:
-    * H<sub>A</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER$.
-    * H<sub>0</sub> $\mu_{WAGE|EXPER,MALE} = \alpha$.
- 
-&nbsp;
-
 # Turtle Nesting Ecology
 ```{r TurtleData, echo=FALSE, results="hide"}
 ht <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv")
@@ -56,26 +43,38 @@ ht$Region <- factor(ht$Region,
 ivr.ht <- lm(Clutch.Size~CCL+Region+CCL:Region,data=ht)
 anova(ivr.ht)
 ```
+```{r TurtleData2, echo=FALSE, results="hide"}
+ivr.ht2 <- lm(Clutch.Size~CCL+Region,data=ht)
+ivr.mc2 <- emmeans(ivr.ht2,pairwise~Region)
+( ivr.summc2 <- summary(ivr.mc2,infer=TRUE) )
+```
+
 ```{r echo=FALSE}
+ad.ht.p <- kPvalue(adTest(ivr.ht$residuals)$p.value,latex=FALSE)
+out.ht.p <- kPvalue(outlierTest(ivr.ht)*bonf.p,latex=FALSE)
 aov.ht <- anova(ivr.ht)
 aov.ht.plt <- kPvalue(aov.ht$"Pr(>F)"[3],latex=FALSE)
 aov.ht.clt <- kPvalue(aov.ht$"Pr(>F)"[2],latex=FALSE)
 aov.ht.rt <- kPvalue(aov.ht$"Pr(>F)"[1],latex=FALSE)
+mc.AG.p1 <- kPvalue(max(ivr.summc2$contrasts$p.value[2:4]),latex=FALSE,include.p=FALSE)
+mc.AG.p2 <- kPvalue(ivr.summc2$contrasts$p.value[1],latex=FALSE)
+mc.nonAG.p <- kPvalue(min(ivr.summc2$contrasts$p.value[-(1:4)]),latex=FALSE,include.p=FALSE)
 ```
 
-1. The models for parallel lines test are as follows:
-    * H<sub>A</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+$ $\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA$.
-    * H<sub>0</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA$.
-1. The models for coincident lines test are as follows:
-    * H<sub>A</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA$.
-    * H<sub>0</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL$.
-1. The lines appear to be parallel across all regions (`r aov.ht.plt`). Thus, the relationship between clutch size and curved carapace length does NOT differ among the regions.
-1. The intercepts appear to differ among some of the regions (`r aov.ht.clt`). Thus, the mean clutch size at the same curved carapace length, no matter what that carapace length is, differs among some regions.
-1. There does appear to be a significant relationship between clutch size and curved carapace length (`r aov.ht.rt`).
+1. The turtles appear to be independent as there is no clear connection between individual turtles either within or among the regions. Of course, one could argue a connection within regions but that is the factor being explored so any dependencies there should be revealed in the analysis.<br><br>The residual plot show no curvature or obvious funneling, so the linearity and homoscedasticity assumptions appear to be met. The histogram of residuals is apparently not normal (Anderson-Darling `r ad.ht.p`) but is is not strongly skewed to the normality assumption is adequately met. There are two potential outliers evident in the lower-right corner of the residual plot and the left tail of the histogram of residuals but these are not statistically significant (outlier test `r out.ht.p`). Thus, the assumptions are adequately met on the original scale and no transformation is needed.
+1. No transformation is needed, the assumptions are adequately met.
+1. No need to identify which group slopes are different because the parallel lines test indicates that no slopes differ (`r aov.ht.plt`).
+1. Not needed as no slopes differ.
+1. It is appropriate to check for differences in intercepts because the coincident lines test indicates that some intercepts do differ (`r aov.ht.clt`). It appears that the intercept for the Arabian Gulf differs from the intercept of Red Sea, Caribbean, and West Atlantic regions (`r mc.AG.p1`), but not from the Indian Ocean (`r mc.AG.p2`). None of the intercepts from the Indian Ocean, Red Sea, Caribbean, and West Atlantic regions differ (`r mc.nonAG.p`). 
+1. The mean clutch size at the mean curved carapace length is between `r formatC(-1*ivr.mcsum2$contrasts$lower.CL[2],format="f",digits=2)` and `r formatC(-1*ivr.mcsum2$contrasts$upper.CL[2],format="f",digits=2)` lower for turtles from the Arabian Gulf than those from the Red Sea.
+1. The mean clutch size at the mean curved carapace length is between `r formatC(-1*ivr.mcsum2$contrasts$lower.CL[5],format="f",digits=2)` lower and `r formatC(ivr.mcsum2$contrasts$upper.CL[5],format="f",digits=2)` greater for turtles from the Indian Ocean than those from the Red Sea.
+1. The mean clutch size at the **maximum** curved carapace length does NOT differ between turtles from the Indian Ocean and West Atlantic regions (`r kPvalue(ivr.mcsum2$contrasts$p.value[7],latex=FALSE)`). Because the lines for these two regions are parallel evidence for a significant difference at any one curved carapace length (i.e., along the x-axis) is evidence for a significant difference at all curved carapace lengths. Of course, the opposite (not a significant difference) holds true as well.
 
 #### R Code and Results
 ```{r prompt=FALSE}
 <<TurtleData>>
+assumptionCheck(ivr.ht)
+<<TurtleData2>>
 ```
 
 &nbsp;
@@ -85,14 +84,27 @@ aov.ht.rt <- kPvalue(aov.ht$"Pr(>F)"[1],latex=FALSE)
 gm <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/GoldMine.csv")
 gm$type <- factor(gm$type,levels=c("total","dissolved","soluble"))
 ivr.gm <- lm(phosp~distance+type+distance:type,data=gm)
-anova(ivr.gm)
 ```
+```{r GoldMineData2, echo=FALSE, results="hide"}
+gm$logphosp <- log(gm$phosp)
+ivr.gmt <- lm(logphosp~distance+type+distance:type,data=gm)
+mc.gmt <- emtrends(ivr.gmt,specs=pairwise~type,var="distance")
+( mcsum.gmt <- summary(mc.gmt,infer=TRUE) )
+```
+
 ```{r echo=FALSE}
-aov.gm <- anova(ivr.gm)
-aov.gm.plt <- kPvalue(aov.gm$"Pr(>F)"[3],latex=FALSE)
-aov.gm.clt <- kPvalue(aov.gm$"Pr(>F)"[2],latex=FALSE)
-aov.gm.rt <- kPvalue(aov.gm$"Pr(>F)"[1],latex=FALSE)
+ad.gm.p <- kPvalue(adTest(ivr.gm$residuals)$p.value,latex=FALSE)
+out.gm.p <- kPvalue(outlierTest(ivr.gm)*bonf.p,latex=FALSE)
+ad.gm.pt <- kPvalue(adTest(ivr.gmt$residuals)$p.value,latex=FALSE)
+out.gm.pt <- kPvalue(outlierTest(ivr.gmt)*bonf.p,latex=FALSE)
+
+aov.gmt <- anova(ivr.gmt)
+aov.gmt.plt <- kPvalue(aov.gm$"Pr(>F)"[3],latex=FALSE)
+
+
 ```
+
+
 
 1. The models for parallel lines test are as follows:
     * H<sub>A</sub>: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP+$ $\gamma_{1}DIST:DP+\gamma_{2}DIST:SP$.
@@ -107,6 +119,10 @@ aov.gm.rt <- kPvalue(aov.gm$"Pr(>F)"[1],latex=FALSE)
 #### R Code and Results
 ```{r prompt=FALSE, fig.width=4.5}
 <<GoldMineData>>
+assumptionCheck(ivr.gm)
+assumptionCheck(ivr.gm,lambday=0)
+<<GoldMineData2>>
+
 ggplot(data=gm,mapping=aes(x=distance,y=phosp,color=type)) +  
   labs(x="Distance from Gold Mine (km)",y="Phosphrous Level (ppm)") +  
   theme_NCStats() +  
