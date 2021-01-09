@@ -35,5 +35,6 @@ In [this](IVRVariables_CE1.html#water-quality-near-a-gold-mine), [this](IVRModel
 1. If appropriate, identify (and provide evidence for) which groups have different slopes. If not appropriate, than say so (and explain why). [*Note that if you transformed your data here then you will need to perform a parallel-lines test that is different than what you did last exercise.*]
 1. If appropriate, describe the difference in slopes for the two groups that are **most** different. *Make sure to use a confidence interval.*
 1. If appropriate, describe the difference in slopes for the two groups that are **least** different (*whether significantly different or not*). *Make sure to use a confidence interval.*
+1. Interpret (*on the scale on which the model was fit*) the slope for the total phosphrous group.
 1. If appropriate, identify (and provide evidence for) which groups have different intercepts. If not appropriate, than say so (and explain why). [*Note that if you transformed your data here then you will need to perform a parallel-lines test that is different than what you did last exercise.*]
 1. If appropriate, describe the difference in mean (back-transformed?) phosphorous level for the mean (back-transformed?) distance from the gold mine for the two groups that are **most** different. *Make sure to use a confidence interval.*

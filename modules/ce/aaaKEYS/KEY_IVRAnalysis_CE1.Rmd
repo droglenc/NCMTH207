@@ -46,19 +46,19 @@ anova(ivr.ht)
 ```{r TurtleData2, echo=FALSE, results="hide"}
 ivr.ht2 <- lm(Clutch.Size~CCL+Region,data=ht)
 ivr.mc2 <- emmeans(ivr.ht2,pairwise~Region)
-( ivr.summc2 <- summary(ivr.mc2,infer=TRUE) )
+( ivr.mcsum2 <- summary(ivr.mc2,infer=TRUE) )
 ```
 
 ```{r echo=FALSE}
 ad.ht.p <- kPvalue(adTest(ivr.ht$residuals)$p.value,latex=FALSE)
-out.ht.p <- kPvalue(outlierTest(ivr.ht)*bonf.p,latex=FALSE)
+out.ht.p <- kPvalue(outlierTest(ivr.ht)$bonf.p,latex=FALSE)
 aov.ht <- anova(ivr.ht)
 aov.ht.plt <- kPvalue(aov.ht$"Pr(>F)"[3],latex=FALSE)
 aov.ht.clt <- kPvalue(aov.ht$"Pr(>F)"[2],latex=FALSE)
 aov.ht.rt <- kPvalue(aov.ht$"Pr(>F)"[1],latex=FALSE)
-mc.AG.p1 <- kPvalue(max(ivr.summc2$contrasts$p.value[2:4]),latex=FALSE,include.p=FALSE)
-mc.AG.p2 <- kPvalue(ivr.summc2$contrasts$p.value[1],latex=FALSE)
-mc.nonAG.p <- kPvalue(min(ivr.summc2$contrasts$p.value[-(1:4)]),latex=FALSE,include.p=FALSE)
+mc.AG.p1 <- kPvalue(max(ivr.mcsum2$contrasts$p.value[2:4]),latex=FALSE,include.p=FALSE)
+mc.AG.p2 <- kPvalue(ivr.mcsum2$contrasts$p.value[1],latex=FALSE)
+mc.nonAG.p <- kPvalue(min(ivr.mcsum2$contrasts$p.value[-(1:4)]),latex=FALSE,include.p=FALSE)
 ```
 
 1. The turtles appear to be independent as there is no clear connection between individual turtles either within or among the regions. Of course, one could argue a connection within regions but that is the factor being explored so any dependencies there should be revealed in the analysis.<br><br>The residual plot show no curvature or obvious funneling, so the linearity and homoscedasticity assumptions appear to be met. The histogram of residuals is apparently not normal (Anderson-Darling `r ad.ht.p`) but is is not strongly skewed to the normality assumption is adequately met. There are two potential outliers evident in the lower-right corner of the residual plot and the left tail of the histogram of residuals but these are not statistically significant (outlier test `r out.ht.p`). Thus, the assumptions are adequately met on the original scale and no transformation is needed.
@@ -71,7 +71,7 @@ mc.nonAG.p <- kPvalue(min(ivr.summc2$contrasts$p.value[-(1:4)]),latex=FALSE,incl
 1. The mean clutch size at the **maximum** curved carapace length does NOT differ between turtles from the Indian Ocean and West Atlantic regions (`r kPvalue(ivr.mcsum2$contrasts$p.value[7],latex=FALSE)`). Because the lines for these two regions are parallel evidence for a significant difference at any one curved carapace length (i.e., along the x-axis) is evidence for a significant difference at all curved carapace lengths. Of course, the opposite (not a significant difference) holds true as well.
 
 #### R Code and Results
-```{r prompt=FALSE}
+```{r prompt=FALSE, fig.width=7}
 <<TurtleData>>
 assumptionCheck(ivr.ht)
 <<TurtleData2>>
@@ -94,37 +94,35 @@ mc.gmt <- emtrends(ivr.gmt,specs=pairwise~type,var="distance")
 
 ```{r echo=FALSE}
 ad.gm.p <- kPvalue(adTest(ivr.gm$residuals)$p.value,latex=FALSE)
-out.gm.p <- kPvalue(outlierTest(ivr.gm)*bonf.p,latex=FALSE)
+out.gm.p <- kPvalue(max(outlierTest(ivr.gm)$bonf.p),latex=FALSE)
 ad.gm.pt <- kPvalue(adTest(ivr.gmt$residuals)$p.value,latex=FALSE)
-out.gm.pt <- kPvalue(outlierTest(ivr.gmt)*bonf.p,latex=FALSE)
+out.gm.pt <- kPvalue(outlierTest(ivr.gmt)$bonf.p,latex=FALSE)
 
 aov.gmt <- anova(ivr.gmt)
-aov.gmt.plt <- kPvalue(aov.gm$"Pr(>F)"[3],latex=FALSE)
-
+aov.gmt.plt <- kPvalue(aov.gmt$"Pr(>F)"[3],latex=FALSE)
 
 ```
 
-
-
-1. The models for parallel lines test are as follows:
-    * H<sub>A</sub>: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP+$ $\gamma_{1}DIST:DP+\gamma_{2}DIST:SP$.
-    * H<sub>0</sub: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP$.
-1. The models for coincident lines test are as follows:
-    * H<sub>A</sub>: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST+$$\delta_{1}DP+\delta_{2}SP$.
-    * H<sub>0</sub>: $\mu_{P|DIST,\cdots} = \alpha+\beta DIST$.
-1. The lines appear to be parallel across all three types of phosphorous (`r aov.gm.plt`). Thus, the relationship between phosphorous level and distance from the gold mine does NOT differ among phosphorous types.
-1. The intercepts appear to differ among some of the phosphorous types (`r aov.gm.clt`). Thus, the mean phosphorous level at the same distance from the gold mine, no matter what that distance is, differs among phosphorous types
-1. There does appear to be a significant relationship between phosphorous level and distance from the gold mine (`r aov.gm.rt`).
+1. The phosphorous measurements do not appear to be independent either within or among types. First, there is a clear lack of independence among types as each type was recorded at the same location -- of phosphorous level is high for one type at a location it is likely higher for the other types. There is a lack of independence within groups because the measurements are arranged spatially (distance from the goldmine). Both of these issues, however, are related to the explanatory variables in the analysis so it is likely OK to proceed.<br><br>The residual plot shows a clear curvature and obvious funneling, so the linearity and homoscedasticity assumptions are not met. The histogram of residuals is apparently not normal (Anderson-Darling `r ad.gm.p`) and is fairly strongly right-skewed so the normality assumption is not met. There are clear outliers (outlier test `r out.gm.p`). Thus, the assumptions are not met on the original scale so a transformation is needed.
+1. Log-transforming the phosphorous level results in a residual plot that does not exhibit curvature or funneling; thus, the linearity and homoscedasticity assumptions are met on this scale. The histogram of residuals is normal (Anderson-Darling `r ad.gm.pt`) and is not strongly skewed so the normality assumption is adequately met. There are no outliers evident (outlier test `r out.gm.pt`). Thus, the assumptions are adequately met on the log-transformed phosphorous level scale.
+1. The parallel lines test indicates that the slopes differ between some types of phosphorous (`r aov.gmt.plt`). In fact it appears that teh slope for the soluble phosphorous is less than the slope for both total (`r kPvalue(mcsum.gmt$contrasts$p.value[2],latex=FALSE)`) and dissolved (`r kPvalue(mcsum.gmt$contrasts$p.value[3],latex=FALSE)`) phosphorous. There was no difference in slopes between total and dissolved phosphorous (`r kPvalue(mcsum.gmt$contrasts$p.value[1],latex=FALSE)`).
+1. The slope for total phosphorous is between `r formatC(mcsum.gmt$contrasts$lower.CL[2],format="f",digits=3)` and `r formatC(mcsum.gmt$contrasts$upper.CL[2],format="f",digits=3)` greater than the slope for soluble phosphorous.
+1. The slope for total phosphorous is between `r formatC(mcsum.gmt$contrasts$lower.CL[1],format="f",digits=3)` lower and `r formatC(mcsum.gmt$contrasts$upper.CL[1],format="f",digits=3)` greater than the slope for dissolved phosphorous.
+1. The slope for the total phosphorous type indicates that as the distance from the gold mine increases by 1 km that log total phosphorus declines by between `r formatC(-1*mcsum.gmt$distance.trend$upper.CL[1],format="f",digits=3)` and `r formatC(-1*mcsum.gmt$distance.trend$lower.CL[1],format="f",digits=3)`.
+1. It is not appropriate to discuss differences in intercepts because the lines are not parallel.
+1. It is not appropriate to discuss differences in intercepts because the lines are not parallel.
 
 #### R Code and Results
-```{r prompt=FALSE, fig.width=4.5}
+```{r prompt=FALSE, fig.width=7}
 <<GoldMineData>>
 assumptionCheck(ivr.gm)
 assumptionCheck(ivr.gm,lambday=0)
 <<GoldMineData2>>
-
-ggplot(data=gm,mapping=aes(x=distance,y=phosp,color=type)) +  
-  labs(x="Distance from Gold Mine (km)",y="Phosphrous Level (ppm)") +  
+```
+```{r prompt=FALSE, fig.width=4.5}
+ggplot(data=gm,mapping=aes(x=distance,y=logphosp,color=type)) +
+  geom_point() +
+  labs(x="Distance from Gold Mine (km)",y="log Phosphrous Level (ppm)") +  
   theme_NCStats() +  
   geom_smooth(method="lm",se=FALSE)
 ```
