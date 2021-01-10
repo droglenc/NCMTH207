@@ -1,0 +1,225 @@
+---
+layout: page
+title: Quick-R Explanation
+subtitle: How to Filter Data
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>There are many examples during this course where a subset of a data frame will be required for an exercise. Creating a subset from a larger data frame is called “filtering” and uses <code>filter()</code> from the <code>dplyr</code> package, which his loaded automatically when <code>NCStats</code> is loaded. Thus, make sure that the <code>NCStats</code> package gets loaded.</p>
+<pre class="r"><code>library(NCStats)</code></pre>
+<p>For simplicity, a simple data frame of data from the 1990 census for Ashland and Bayfield (WI) counties will be used here. These data are built-in to the <code>NCStats</code> package and thus are load below with <code>data()</code>.</p>
+<pre class="r"><code>data(ABCens90)
+str(ABCens90)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    30335 obs. of  3 variables:
+##  $ race: Factor w/ 5 levels &quot;asian&quot;,&quot;black&quot;,..: 5 5 5 5 5 5 5 5 5 5 ...
+##  $ sex : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ age : int  0 0 0 0 0 0 0 0 0 0 ...</code></pre>
+<pre class="r"><code>headtail(ABCens90)</code></pre>
+<pre><code>##        race    sex age
+## 1     white   male   0
+## 2     white   male   0
+## 3     white   male   0
+## 30333 other female  12
+## 30334 other female  30
+## 30335 other female  33</code></pre>
+<p>The “levels” of the two caterogial variables are shown below.</p>
+<pre class="r"><code>unique(ABCens90$race)</code></pre>
+<pre><code>## [1] white   black   natAmer asian   other  
+## Levels: asian black natAmer other white</code></pre>
+<pre class="r"><code>unique(ABCens90$sex)</code></pre>
+<pre><code>## [1] male   female
+## Levels: female male</code></pre>
+</div>
+<div id="the-filter-function" class="section level1">
+<h1>The <code>filter()</code> Function</h1>
+<p>The <code>filter()</code> function requires two arguments. The first argument is the data frame from which the subset should be drawn. The second argument is a condition statement that describes how the subset should be drawn from the original data frame. For example, the condition statement will be R code that says to select all males from the sex variable, all people that had an age greater than 50, or all people that identified as either Native American or Black. The condition statement will usually start with the name of a variable, followed by an “operator”, and then “values” of the variable. Specific types of conditions statement are explained in the following sections.</p>
+<p>The results of <code>filter()</code> should be saved to an object so that it can be used in further analyses (after all you filtered for a reason).</p>
+</div>
+<div id="isolating-one-group" class="section level1">
+<h1>Isolating One Group</h1>
+<p>One group can be isolated from the original data frame using the <code>==</code> operator. For example, the code below is used to select all <code>male</code>s from the <code>sex</code> variable.</p>
+<pre class="r"><code>justmales &lt;- filter(ABCens90,sex==&quot;male&quot;)
+unique(justmales$sex)  ## should be just male</code></pre>
+<pre><code>## [1] male
+## Levels: female male</code></pre>
+</div>
+<div id="isolating-two-groups" class="section level1">
+<h1>Isolating Two Groups</h1>
+<p>Two groups can be isolated form the original data using the <code>%in%</code> operator. For example, the code below is used to select all individuals that identify as Native American or Black.</p>
+<pre class="r"><code>NAorBlack &lt;- filter(ABCens90,race %in% c(&quot;natAmer&quot;,&quot;black&quot;))
+unique(NAorBlack$race)  ## should be just natAmer and black</code></pre>
+<pre><code>## [1] black   natAmer
+## Levels: asian black natAmer other white</code></pre>
+</div>
+<div id="eliminating-one-group" class="section level1">
+<h1>Eliminating One Group</h1>
+<p>A group can be eliminated (thus, isolating all of the other groups) with the <code>!=</code> operator. For example, the code below is used to eliminate all individuals that identified as White.</p>
+<pre class="r"><code>notWhite &lt;- filter(ABCens90,race!=&quot;white&quot;)
+unique(notWhite$race)  ## should not include white</code></pre>
+<pre><code>## [1] black   natAmer asian   other  
+## Levels: asian black natAmer other white</code></pre>
+</div>
+<div id="isolating-based-on-a-quantitative-variable" class="section level1">
+<h1>Isolating Based on a Quantitative Variable</h1>
+<p>Individuals may be selected based on a quantitative variable using obvious operators. For example, the code below selects all individuals that are older than 50.</p>
+<pre class="r"><code>older50 &lt;- filter(ABCens90,age&gt;50)
+min(older50$age)</code></pre>
+<pre><code>## [1] 51</code></pre>
+<p>Simlarly the code below select all individuals that are less than or equal to 30.</p>
+<pre class="r"><code>lte30 &lt;- filter(ABCens90,age&lt;=30)
+max(lte30$age)</code></pre>
+<pre><code>## [1] 30</code></pre>
+</div>
+<div id="isolating-based-on-two-conditions" class="section level1">
+<h1>Isolating Based on Two Conditions</h1>
+<p>Two conditions can be combined as an “and”, such that both conditions must be met, by separating the conditions with commas. For example, the code below selects Native American females.</p>
+<pre class="r"><code>NAFemale &lt;- filter(ABCens90,race==&quot;natAmer&quot;,sex==&quot;female&quot;)
+unique(NAFemale$race)  ## should be just natAmer</code></pre>
+<pre><code>## [1] natAmer
+## Levels: asian black natAmer other white</code></pre>
+<pre class="r"><code>unique(NAFemale$sex)  ## should be just female</code></pre>
+<pre><code>## [1] female
+## Levels: female male</code></pre>
+<p>Two conditions can be combined as an “or”, such that either condition (or both) must be met, by separating the conditions with an <code>|</code>. For example, the code below finds all individuals that identified as “other” for their race or were older than 90.</p>
+<pre class="r"><code>weird &lt;- filter(ABCens90,race==&quot;other&quot; | age&gt;95)
+weird</code></pre>
+<pre><code>##       race    sex age
+## 1    white   male  96
+## 2    white   male  96
+## 3    white   male  96
+## 4    white   male  96
+## 5    white   male  96
+## 6    white   male  96
+## 7    white   male  96
+## 8    white   male  96
+## 9    white   male  96
+## 10   white   male  96
+## 11   white   male  96
+## 12   white   male  96
+## 13   white   male  96
+## 14   white   male  96
+## 15   white   male  96
+## 16   white   male  96
+## 17   white   male  96
+## 18   white   male  96
+## 19   white   male  96
+## 20   white   male  96
+## 21   white   male  96
+## 22   white female  96
+## 23   white female  96
+## 24   white female  96
+## 25   white female  96
+## 26   white female  96
+## 27   white female  96
+## 28   white female  96
+## 29   white female  96
+## 30   white female  96
+## 31   white female  96
+## 32   white female  96
+## 33   white female  96
+## 34   white female  96
+## 35   white female  96
+## 36   white female  96
+## 37   white female  96
+## 38   white female  96
+## 39   white female  96
+## 40   white female  96
+## 41   white female  96
+## 42   white female  96
+## 43   white female  96
+## 44   white female  96
+## 45   white female  96
+## 46   white female  96
+## 47   white female  96
+## 48   white female  96
+## 49   white female  96
+## 50   white female  96
+## 51   white female  96
+## 52   white female  96
+## 53   white female  96
+## 54   white female  96
+## 55   white female  96
+## 56   white female  96
+## 57 natAmer female  96
+## 58   other   male   2
+## 59   other   male   1
+## 60   other   male   1
+## 61   other   male   6
+## 62   other   male   6
+## 63   other   male   8
+## 64   other   male   9
+## 65   other   male   9
+## 66   other   male   9
+## 67   other   male  21
+## 68   other   male  21
+## 69   other   male  21
+## 70   other   male  21
+## 71   other   male  21
+## 72   other   male  21
+## 73   other   male  21
+## 74   other   male  28
+## 75   other   male  30
+## 76   other   male  30
+## 77   other   male  32
+## 78   other   male  35
+## 79   other   male  36
+## 80   other   male  54
+## 81   other female   8
+## 82   other female   9
+## 83   other female  13
+## 84   other female  12
+## 85   other female  30
+## 86   other female  33</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+---
+title: Quick-R Explanation
+subtitle: How to Filter Data
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 4.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+# Renders an appropriate HTML file for the webpage
+setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/resources/")
+source("../../rhelpers/rhelpers.R")
+modHTML("R_HowTo_Filter")
+```
+
+# Introduction
+There are many examples during this course where a subset of a data frame will be required for an exercise. Creating a subset from a larger data frame is called "filtering" and uses `filter()` from the `dplyr` package, which his loaded automatically when `NCStats` is loaded. Thus, make sure that the `NCStats` package gets loaded.
+
+```{r emessage=FALSE, warning=FALSE}
+library(NCStats)
+```
+
+For simplicity, a simple data frame of data from the 1990 census for Ashland and Bayfield (WI) counties will be used here. These data are built-in to the `NCStats` package and thus are load below with `data()`.
+
+```{r}
+data(ABCens90)
+str(ABCens90)
+headtail(ABCens90)
+```
+
+The "levels" of the two caterogial variables are shown below.
+
+```{r}
+unique(ABCens90$race)
+unique(ABCens90$sex)
+```
+
+# The `filter()` Function
+The `filter()` function requires two arguments. The first argument is the data frame from which the subset should be drawn. The second argument is a condition statement that describes how the subset should be drawn from the original data frame. For example, the condition statement will be R code that says to select all males from the sex variable, all people that had an age greater than 50, or all people that identified as either Native American or Black. The condition statement will usually start with the name of a variable, followed by an "operator", and then "values" of the variable. Specific types of conditions statement are explained in the following sections.
+
+The results of `filter()` should be saved to an object so that it can be used in further analyses (after all you filtered for a reason).
+
+# Isolating One Group
+One group can be isolated from the original data frame using the `==` operator. For example, the code below is used to select all `male`s from the `sex` variable.
+
+```{r}
+justmales <- filter(ABCens90,sex=="male")
+unique(justmales$sex)  ## should be just male
+```
+
+# Isolating Two Groups
+Two groups can be isolated form the original data using the `%in%` operator. For example, the code below is used to select all individuals that identify as Native American or Black.
+
+```{r}
+NAorBlack <- filter(ABCens90,race %in% c("natAmer","black"))
+unique(NAorBlack$race)  ## should be just natAmer and black
+```
+
+# Eliminating One Group
+A group can be eliminated (thus, isolating all of the other groups) with the `!=` operator. For example, the code below is used to eliminate all individuals that identified as White.
+
+```{r}
+notWhite <- filter(ABCens90,race!="white")
+unique(notWhite$race)  ## should not include white
+```
+
+# Isolating Based on a Quantitative Variable
+Individuals may be selected based on a quantitative variable using obvious operators. For example, the code below selects all individuals that are older than 50.
+
+```{r}
+older50 <- filter(ABCens90,age>50)
+min(older50$age)
+```
+
+Simlarly the code below select all individuals that are less than or equal to 30.
+
+```{r}
+lte30 <- filter(ABCens90,age<=30)
+max(lte30$age)
+```
+
+# Isolating Based on Two Conditions
+Two conditions can be combined as an "and", such that both conditions must be met, by separating the conditions with commas. For example, the code below selects Native American females.
+
+```{r}
+NAFemale <- filter(ABCens90,race=="natAmer",sex=="female")
+unique(NAFemale$race)  ## should be just natAmer
+unique(NAFemale$sex)  ## should be just female
+```
+
+Two conditions can be combined as an "or", such that either condition (or both) must be met, by separating the conditions with an `|`. For example, the code below finds all individuals that identified as "other" for their race or were older than 90.
+
+```{r}
+weird <- filter(ABCens90,race=="other" | age>95)
+weird
+```
