@@ -1,101 +1,145 @@
 ---
-title: Quick-R Explanation
-subtitle: How to Filter Data
-author: Derek H. Ogle
-layout: page
-css: "/css/modules.css"
+title: "Filter or Subset Data in R"
+description: |
+  How to make a data frame with only some individuals from a larger data frame.
 output:
-  html_document:
-    fig_height: 3.5
-    fig_width: 4.5
-    self_contained: false
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
 ---
 
-```{r echo=FALSE, eval=FALSE, warning=FALSE}
-# Renders an appropriate HTML file for the webpage
-setwd("C:/aaaWork/Web/GitHub/NCMTH207/modules/resources/")
-source("../../rhelpers/rhelpers.R")
-modHTML("R_HowTo_Filter")
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, comment="#R>  ")
 ```
 
-# Introduction
-There are many examples during this course where a subset of a data frame will be required for an exercise. Creating a subset from a larger data frame is called "filtering" and uses `filter()` from the `dplyr` package, which his loaded automatically when `NCStats` is loaded. Thus, make sure that the `NCStats` package gets loaded.
+There are many examples during this course where a subset of a data frame will be required for an exercise. Creating a subset from a larger data frame is called "filtering" and uses `filter()` from the `dplyr` package, which is loaded automatically with `NCStats`.
 
-```{r emessage=FALSE, warning=FALSE}
+<aside>
+Make sure to load `NCStats` with `library(NCStats)`
+</aside>
+
+```{r message=FALSE, warning=FALSE}
 library(NCStats)
 ```
 
-For simplicity, a simple data frame of data from the 1990 census for Ashland and Bayfield (WI) counties will be used here. These data are built-in to the `NCStats` package and thus are load below with `data()`.
+Example data used here is from Mirex.csv [[data](https://raw.githubusercontent.com/droglenc/NCData/master/Mirex.csv), [meta](https://raw.githubusercontent.com/droglenc/NCData/master/Mirex_meta.txt)], which is loaded below.
 
 ```{r}
-data(ABCens90)
-str(ABCens90)
-headtail(ABCens90)
+Mirex <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Mirex.csv")
+str(Mirex)
 ```
 
-The "levels" of the two caterogial variables are shown below.
+The "levels" of `species` and `year` are shown below (to aid understanding their use below).
 
 ```{r}
-unique(ABCens90$race)
-unique(ABCens90$sex)
+unique(Mirex$species)
+unique(Mirex$year)
 ```
+
+&nbsp;
 
 # The `filter()` Function
-The `filter()` function requires two arguments. The first argument is the data frame from which the subset should be drawn. The second argument is a condition statement that describes how the subset should be drawn from the original data frame. For example, the condition statement will be R code that says to select all males from the sex variable, all people that had an age greater than 50, or all people that identified as either Native American or Black. The condition statement will usually start with the name of a variable, followed by an "operator", and then "values" of the variable. Specific types of conditions statement are explained in the following sections.
+The `filter()` function requires two arguments. The first argument is the data frame from which the subset should be drawn. The second argument is a condition statement that describes how the subset should be drawn from the original data frame. For example, the condition statement will be R code that says to select all cohos from the species variable, all fish that had a weight greater than 5 kg, or all years between 1982 and 1992. The condition statement will usually start with the name of a variable, followed by an "operator," and then "values" of the variable (Table \@ref(tab:filterComps)). Specific types of conditions statement are explained in the following sections.
 
-The results of `filter()` should be saved to an object so that it can be used in further analyses (after all you filtered for a reason).
+<aside>
+Results of `filter()` are saved to an object for future use (i.e., you filtered for a reason).
+
+Examine the new data frame after filtering to ensure that it contains the data you intended.
+</aside>
+
+```{r filterComps, echo=FALSE}
+tmp <- data.frame(
+  c('`var==value`','`var!=value`','`var %in% c(value1,value2)`',
+    '`var`>`value`','`var`>=`value`','`var`<`value`','`var`<=`value`',
+    'condition1,condition2','condition1 | condition2'),
+  c('All rows where `var` **IS equal** to `value`',
+    'All rows where `var` **is NOT equal** to `value`',
+    'All rows where `var` **IS IN** vector of `value`s^[`value` should be a character, factor, or integer.]',
+    'All rows where `var` is **greater than** `value`^[`value` must be numeric.]',
+    'All rows where `var` is **greater than or equal to** `value`^[`value` must be numeric.]',
+    'All rows where `var` is **less than** `value`^[`value` must be numeric.]',
+    'All rows where `var` is **less than or equal to** `value`^[`value` must be numeric.]',
+    'All rows where **BOTH** conditions are true',
+    'All rows where **ONE or BOTH** conditions are true^[Note that this "or" operator is a "vertical line"" which is typed with the shift-backslash key.]')
+)
+names(tmp) <- c("Comparison Operator",
+                "Rows Returned from Original Data Frame")
+knitr::kable(tmp,booktabs=TRUE,caption="Comparison operators used in `filter()` and their results. Note that `var` generically represents a variable in the original data frame and `value` is a generic value or level. Both `var` and `val` would be replaced with specific items (see examples in following sections).") %>%
+  kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
+```
+
+&nbsp;
 
 # Isolating One Group
-One group can be isolated from the original data frame using the `==` operator. For example, the code below is used to select all `male`s from the `sex` variable.
+One group can be isolated from the original data frame using the `==` operator. For example, the code below select all `coho`s from the `species` variable.
+
+<aside>
+**Two equals signs** are used in a condition for "is it equal to."
+
+Values after the "operator" must be in quotes for categorical variables.
+</aside>
 
 ```{r}
-justmales <- filter(ABCens90,sex=="male")
-unique(justmales$sex)  ## should be just male
+cohos <- filter(Mirex,species=="coho")
+unique(cohos$species)  ## CHECK - should be just coho
 ```
+
+&nbsp;
 
 # Isolating Two Groups
-Two groups can be isolated form the original data using the `%in%` operator. For example, the code below is used to select all individuals that identify as Native American or Black.
+Two groups can be isolated from the original data using the `%in%` operator. For example, the code below selects all individuals that were in either 1986 or 1996.
+
+<aside>
+Values after the "operator" are not in quotes for quantitative variables.
+</aside>
 
 ```{r}
-NAorBlack <- filter(ABCens90,race %in% c("natAmer","black"))
-unique(NAorBlack$race)  ## should be just natAmer and black
+yr86n96 <- filter(Mirex,year %in% c(1986,1996))
+unique(yr86n96$year)  ## CHECK - should be just 1986 and 1996
 ```
+
+&nbsp;
 
 # Eliminating One Group
-A group can be eliminated (thus, isolating all of the other groups) with the `!=` operator. For example, the code below is used to eliminate all individuals that identified as White.
+A group can be eliminated (thus, isolating all of the other groups) with the `!=` operator. For example, the code below eliminates all individuals that were not `coho`s (leaving just `chinook` in this example).
 
 ```{r}
-notWhite <- filter(ABCens90,race!="white")
-unique(notWhite$race)  ## should not include white
+notcoho <- filter(Mirex,species!="coho")
+unique(notcoho$species)  ## CHECK - should not include coho
 ```
 
-# Isolating Based on a Quantitative Variable
-Individuals may be selected based on a quantitative variable using obvious operators. For example, the code below selects all individuals that are older than 50.
+&nbsp;
+
+# Isolating Relative to a Quantitative Variable
+Individuals may be selected based on the relative value of a quantitative variable using obvious operators. For example, the code below selects all fish that weighed more than 5 kg.
 
 ```{r}
-older50 <- filter(ABCens90,age>50)
-min(older50$age)
+heavier5kg <- filter(Mirex,weight>5)
+min(heavier5kg$weight)  ## CHECK - should be greater than 5
 ```
 
-Simlarly the code below select all individuals that are less than or equal to 30.
+Similarly the code below selects all fish with a mirex concentration less than or equal to 0.2.
 
 ```{r}
-lte30 <- filter(ABCens90,age<=30)
-max(lte30$age)
+mirexlt2 <- filter(Mirex,mirex<=0.2)
+max(mirexlt2$mirex)  ## CHECK - should not be greater than 0.2
 ```
 
-# Isolating Based on Two Conditions
-Two conditions can be combined as an "and", such that both conditions must be met, by separating the conditions with commas. For example, the code below selects Native American females.
+&nbsp;
+
+# Two Conditions
+### Must Have Both
+Individuals that meet both of two conditions (i.e., **must** have this **and** that) are selected by separating the two conditions with a comma in `filter()`. For example, the code below selects `coho`s with a `weight` less than 1 kg.
 
 ```{r}
-NAFemale <- filter(ABCens90,race=="natAmer",sex=="female")
-unique(NAFemale$race)  ## should be just natAmer
-unique(NAFemale$sex)  ## should be just female
+smallcoho <- filter(Mirex,species=="coho",weight<1)
+smallcoho  ## CHECK -- should be all coho and all weights less than 1
 ```
 
-Two conditions can be combined as an "or", such that either condition (or both) must be met, by separating the conditions with an `|`. For example, the code below finds all individuals that identified as "other" for their race or were older than 90.
+### Can Have Either
+Individuals that meet one or both of two conditions (i.e., **can** have this **or** that) are selected by separating the two conditions with a `|` in `filter()`. For example the code below selects fish from 1992 or that had a weight greater than or equal to 13 kg.
 
 ```{r}
-weird <- filter(ABCens90,race=="other" | age>95)
+weird <- filter(Mirex,year==1992 | weight>=13)
 weird
 ```
