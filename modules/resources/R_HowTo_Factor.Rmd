@@ -1,0 +1,99 @@
+---
+title: "Handle Factors in R"
+description: |
+  How to convert seemingly quantitative to categorical variables and how to reorder the levels of categorical variables.
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, comment="#R>  ")
+```
+
+Two common "issues" you will run into in this course is the need to turn a variable that R sees as quantitative into a categorical (or factor) variable and how to rearrange the order of levels within a categorical (or factor) variable. Handling both of these cases is described below.
+
+Example data used here is from Mirex.csv [[data](https://raw.githubusercontent.com/droglenc/NCData/master/Mirex.csv), [meta](https://raw.githubusercontent.com/droglenc/NCData/master/Mirex_meta.txt)], which is loaded below.
+
+```{r}
+Mirex <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Mirex.csv")
+```
+
+&nbsp;
+
+# Convert Quantitative to Factor Variables
+### Quick View
+Change a variable to a factor with `factor()`. For example,
+
+```{r eval=FALSE}
+Mirex$year <- factor(Mirex$year)
+```
+
+### Explanation
+At times a variable that represents groups -- i.e., a categorical variable -- will be entered with numeric values. For example, `Mirex` contains `year` which records the year the fish was captured. In this example, there are relatively few years, the years are not contiguous, and hypotheses will be used to determine if the mean response differs among years. Thus, `year` contains "groups" and should be treated as a categorical variable.
+
+R, however, treats `year` as if it is an `int`eger, or quantitative variable because it simply "see" numbers.
+
+```{r}
+str(Mirex)
+```
+
+`year` is forced to be a factor that defines groupings with `factor()`. When simply converting to a factor `factor()` only requires the variable (in `dataframe$var` format) as an argument. The result should be saved to a variable in the data frame. For example, `year` in `Mirex` is replaced with a factored version below.
+
+```{r}
+Mirex$year <- factor(Mirex$year)
+```
+
+`year` is now a factor variable.
+
+```{r}
+str(Mirex)
+```
+
+As a side note, it is seen in the `Mirex` structure that `species` is a character (`chr`) variable rather than a factor. In analyses in this course, character variables will ultimately be treated as factor variables so there is no need to explicitly convert them to factors.
+
+&nbsp;
+
+# Change Order of Levels
+### Quick View
+Change order of levels by setting level order in `levels=` of `factor()`. For example,
+
+```{r eval=FALSE}
+Mirex$species <- factor(Mirex$species,levels=c("coho","chinook"))
+```
+
+### Explanation
+R treats the levels of categorical variables alphabetically unless a specific order was set. For example, the levels for `species` are
+
+<aside>
+R treats groups alphabetically by default.
+</aside>
+
+```{r}
+unique(Mirex$species)
+```
+
+Here R will treat `chinook` as the "first level" because it alphabetically precedes `coho`. This default order is evident in tables and figures; e.g.,
+
+```{r}
+xtabs(~species,data=Mirex)
+```
+
+In some analyses, groups will need to be in a different order. The order of levels is controlled by setting the specific order with `levels=` in `factor()`. For example, the order of the levels in `species` is changed below.
+
+<aside>
+The names in `levels=` must be spelled exactly as they appear in the original variable.
+</aside>
+
+```{r}
+Mirex$species <- factor(Mirex$species,levels=c("coho","chinook"))
+```
+
+This change in order will then be evident in subsequent tables and figures.
+
+```{r}
+xtabs(~species,data=Mirex)
+```
+
+If a variable has more groups then the list of groups in `levels=` will simply be longer.
