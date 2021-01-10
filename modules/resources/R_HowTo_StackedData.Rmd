@@ -1,0 +1,49 @@
+---
+title: "Stacked Data in R"
+description: |
+  How to enter data in stacked format to allow easy use in linear modeling.
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, comment="#R>  ")
+```
+
+Data must be entered in stacked format in R for use with linear models. In this format each column corresponds to a *variable* and each row corresponds to an *individual*. For example, the following data are methyl mercury levels recorded for mussels sampled from two locations, which are labeled as "impacted" and "reference."
+
+<aside>
+Data should generally be entered in **stacked** format.
+</aside>
+
+```
+  impacted   0.011  0.054  0.056  0.095  0.051  0.077
+  reference  0.031  0.040  0.029  0.066  0.018  0.042  0.044
+```
+
+These data would look like the following in stacked format.
+
+<aside>
+The first row in stacked format is always the names of the variables.
+</aside>
+
+```
+location   mercury
+impacted   0.011
+impacted   0.054
+impacted   0.056
+impacted   0.095
+impacted   0.051
+impacted   0.077
+reference  0.031
+reference  0.040
+reference  0.029
+reference  0.066
+reference  0.018
+reference  0.042
+reference  0.044
+```
+
+In this format each row corresponds to one mussel and each column corresponds to one of the two variables that was recorded about the mussels. For example, the first mussel was from the `impacted` location and had a mercury level of `0.011`.
