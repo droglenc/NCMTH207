@@ -38,7 +38,7 @@ In [this](SLRFoundations_CE1.html#willow-flycatcher-migration) and [this](SLRInf
 
 ## Car Drive Ratio and Gas Mileage
 <img src="../zimgs/cars93.jpg" alt="1993 Car" class="img-right">
-In [a previous exercise](SLRInference_CE1.html#car-horsepower-and-gas-mileage) you examined the relationship between a car's horsepower and its gas mileage. In this exercise, you will examine the relationship between a car's drive-ratio (a measure of the gearing between the transmission and the wheels) and gas mileage **for only IMPORTed cars** (see the *type* variable. Use the same data, but with the variables *drat* and *mpg* to develop a model that can be used to predict gas mileage (mpg) from the drive ratio **for only IMPORTed cars**. Use your results to answer the questions below.
+In [a previous exercise](SLRInference_CE1.html#car-horsepower-and-gas-mileage) you examined the relationship between a car's horsepower and its gas mileage. In this exercise, you will examine the relationship between a car's drive-ratio (a measure of the gearing between the transmission and the wheels) and gas mileage **for only IMPORTed cars** (see the *type* variable and [this](../resources/R_HowTo_Filter.html){:target="_blank"}). Use the same data, but with the variables *drat* and *mpg* to develop a model that can be used to predict gas mileage (mpg) from the drive ratio **for only IMPORTed cars**. Use your results to answer the questions below.
 
 1. Is there a significant relationship between gas mileage and drive ratio for imported cars? Provide appropriate support.
 1. What percent of the variability in gas mileage was explained by knowing the value of the drive ratio? Demonstrate how this value is calculated from results in the ANOVA table.
