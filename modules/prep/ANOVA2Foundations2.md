@@ -5,10 +5,8 @@ subtitle: Two-Way ANOVA Analytical Foundation
 css: "/css/modules.css"
 ---
 
-----
-
 <div class="alert alert-warning">
-Use the preparation readings and videos to prepare written answers for the following questions. Please contact <a href="mailto:dogle@northland.edu">Dr. Ogle</a> if you have questions.
+Use the preparation reading to prepare hand-written answers for the following questions. Please contact <a href="https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7)" target="_blank">Dr. Ogle</a> if you have questions.
 </div>
 
 1. Define *factor*, *levels*, *treatments*, and *replicates*. [Note that you may need to refer to [your "Data Production"" chapter from your introductory statistics course.](http://derekogle.com/NCMTH107/modules/DataProduction.html)
@@ -36,3 +34,7 @@ Use the preparation readings and videos to prepare written answers for the follo
     1. "Total sum" of square differences between Factor B level means and the grand mean.
 1. Define each of the following in terms of what variance it measures: MS<sub>Total</sub>, MS<sub>Within</sub>, MS<sub>Among</sub>, MS<sub>A</sub>, and MS<sub>B</sub>.
 1. The ANOVA table has three F-ratio test statistics. Show how each one is calculated.
+
+<ul>
+<li>[<b>Optional</b>] What questions do you have from this reading that you would like me to address? [<i>Please be as specific as possible. Don't just say "everything" or "I don't understand anything." Of course, you can <a href="https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7" target="_blank">ask me questions about the reading before class on MS Teams</a>.]</i></li>
+</ul>
