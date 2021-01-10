@@ -21,7 +21,7 @@ Stream A: 8.97 9.12 9.41 8.67 9.94 8.28 7.86 7.51 9.18 7.68
 Stream B: 6.67 5.83 6.84 6.86 5.89 7.42 6.56 5.99 5.33 6.69
 </pre>
 
-Load these data into R and answer the following questions. Make sure to show and refer to R code and results as needed.
+Load these data into R and answer the following questions [*[This](../resources/R_HowTo_StackedData.html){:target="_blank"} and [this](http://derekogle.com/NCMTH107/resources/FAQs/enter-data.html){:target="_blank"} may be helpful for entering these data.*]. Make sure to show and refer to R code and results as needed.
 
 1. Write the null and alternative hypotheses using symbols specific to this question and making sure to define all symbols (especially the parameter).
 1. Check the assumptions including performing appropriate hypothesis tests as needed. [*Because the sample size is so small assume that the distributions are normally distributed.*]
