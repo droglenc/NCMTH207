@@ -29,5 +29,5 @@ Use the preparation reading to prepare hand-written answers for the following qu
 1. What do you expect for the p-value of a 2-sample t-test to be if the signal-to-noise ratio is very small (i.e., much more noise than signal)?
 
 <ul>
-<li>[<strong>Optional</strong>] What questions do you have from this reading that you would like me to address? [<emph>Please be as specific as possible. Saying "everything" or "I don't understand anything" is not helpful. Of course, you can <a href="https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7" target="_blank">ask me questions about the reading before class on MS Teams</a>.</emph></li>
+<li>[<b>Optional</b>] What questions do you have from this reading that you would like me to address? [<i>Please be as specific as possible. Saying "everything" or "I don't understand anything" is not helpful. Of course, you can <a href="https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7" target="_blank">ask me questions about the reading before class on MS Teams</a>.</i></li>
 </ul>
