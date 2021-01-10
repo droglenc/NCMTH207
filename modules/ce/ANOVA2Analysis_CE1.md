@@ -17,7 +17,7 @@ Ruffe (*Gymnocephalus cernuus*) are an invasive fish to Lake Superior. After fir
 
 Towards this end, biologists collected ruffe from the Flag River every other week during the summer months over three years. As Ruffe are an invasive species, each specimen was sacrificed upon capture. For each specimen, the biologists recorded the weights (g) and sex (as male, female, or unknown based on macroscopic examination of sexual organs). Sex was recorded because weight is sexually dimorphic (i.e., differs by sex) for many fish.
 
-These data were recorded in [Ruffe_Flag.csv](data/Ruffe_Flag.csv). I strongly urge you to remove the "unknown" sex fish from the data frame as they are generally fish born in that year and do not yet compete directly with known sex fish. In addition, year of capture should be converted to a factor as it was recorded as a number.
+These data were recorded in [Ruffe_Flag.csv](data/Ruffe_Flag.csv). I strongly urge you to remove the "unknown" sex fish from the data frame as they are generally fish born in that year and do not yet compete directly with known sex fish (*[this](../resources/R_HowTo_Filter.html){:target="_blank"} may be helpful*). In addition, year of capture should be converted to a factor as it was recorded as a number.
 
 Use these data (with the suggested modifications) to produce results for each question below. In this exercise, you should get results from R for each question and think about what this means and how it informs what you will do in subsequent questions. In the next module you will produce more formal answers to each question.
 
