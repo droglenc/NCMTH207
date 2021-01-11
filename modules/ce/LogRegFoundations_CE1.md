@@ -52,10 +52,10 @@ Make generalized conclusions for the questions below from observations of your r
 <img src="../zimgs/cucumbers.jpg" alt="Decoration" class="img-right">
 [Diaz-Perez (2019)](https://www.mdpi.com/2073-4395/9/1/17){:target="_blank"} explored factors that affected the marketability of cucumbers. In one part of their study the found that logistic regression model for the Levantino cultivar was logit(p)=6.430-0.330DOS, where p is the probability of selling the cucumber (i.e., marketabilitiy) and DOS is the number of days that the cucumber was stored before it was attempted to be sold. Use this information to answer the questions below.
 
-1. Predict the log odds that a cucumber that was stored for 10 days would be sold.
-1. Predict the odds that a cucumber that was stored for 10 days would be sold.
-1. Predict the probability that a cucumber that was stored for 10 days would be sold.
-1. Predict the log odds that a cucumber that was stored for 11 days would be sold.
+1. Predict the log odds that a cucumber that was stored for 14 days would be sold.
+1. Predict the odds that a cucumber that was stored for 14 days would be sold.
+1. Predict the probability that a cucumber that was stored for 14 days would be sold.
+1. Predict the log odds that a cucumber that was stored for 15 days would be sold.
 1. Subtract your answers from questions 1 and 4. What does this equal?
-1. Predict the odds that a cucumber that was stored for 11 days would be sold.
+1. Predict the odds that a cucumber that was stored for 15 days would be sold.
 1. Divide your answers from questions 2 and 5. How does this compare to the exponentiated slope?
