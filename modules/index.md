@@ -51,4 +51,7 @@ title: Learning Modules
 #### Logistic Regression
 
 {:start="25"}
-1. Hello
+1. [Foundations](LogRegFoundations)
+1. [Models and Predictions](LogRegModels)
+1. [Analysis](LogRegAnalysis)
+1. [Summary](LogRegSummary)
