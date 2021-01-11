@@ -32,13 +32,13 @@ If a die is fair then each face (i.e., number) will appear equally often when th
 1. What is the probability of *not* rolling a six?
 1. What is the odds of *not* rolling a six?
 1. What is the log odds of *not* rolling a six?
-1. What is the probability of rolling a four, five, orsix?
+1. What is the probability of rolling a four, five, or six?
 1. What is the odds of rolling a four, five, or six?
 1. What is the log odds of rolling a four, five, or six?
 
 Make generalized conclusions for the questions below from observations of your results above.
 
-{:start="7"}
+{:start="10"}
 1. What is the value of the odds when the probability is 0.50?
 1. What is the value of the odds when the probability is <0.50?
 1. What is the value of the odds when the probability is >0.50?
