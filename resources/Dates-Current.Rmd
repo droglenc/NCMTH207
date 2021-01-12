@@ -20,7 +20,7 @@ modHTML("Dates-Current")
 library(dplyr)
 options(knitr.kable.NA = '')
 ## Read data, make data with day and topic with link
-d <- readxl::read_excel("Dates_W20A.xlsx") %>%
+d <- readxl::read_excel("Dates_W21A.xlsx") %>%
   dplyr::mutate(Date=as.Date(Date)) %>%
   dplyr::mutate(Date2=paste0(DOW,", ",format(Date,"%b-%d")),
                 Topic=ifelse(is.na(url),Topic,
@@ -33,7 +33,7 @@ For each class period ("Date"), the module to prepare for is shown under "Topic.
 </div>
 
 <div class="alert alert-warning">
-**Group Blackwell** will meet "in-person" from 830-1015 on weeks 3, 5, and 7 and from 1030-1130 on weeks 2, 4, and 6. **Group Nightingale** will meet "in-person" from 830-1015 on weeks 2, 4, and 6 and from 1030-1130 on weeks 3, 5, and 7. There will be modifications to this general schedule that will be announced in class. <a href="Groups_Current.html">Group assignments are here.</a>
+Group [Julie **Ivy**](https://www.youtube.com/watch?v=oAV4z6vgfys) (XXX) will meet "in-person" from 1230-210. Group [Megan **Price**](https://www.youtube.com/watch?v=orW01w8a4zY) (XXX) will meet "in-person" from 220-400. Modifications to this general schedule will be announced in class.</a>
 </div>
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
