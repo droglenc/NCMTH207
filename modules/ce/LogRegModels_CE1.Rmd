@@ -58,7 +58,7 @@ cfs.bat %>%
   knitr::kable(booktabs=TRUE,digits=c(3,3,3)) %>%
   kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE}
 ggplot(data=bat,mapping=aes(x=canine,y=subsp01)) +
   geom_point(alpha=0.25) +
   scale_y_continuous(name="Probability of 'cinereus'",expand=expansion(mult=0.02)) +
