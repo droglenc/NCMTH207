@@ -19,7 +19,7 @@ modHTML_CEKeys("KEY_LogRegAnalysis_CE1")
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 library(NCStats)
-library(emmeans)
+library(ggplot2)
 source("../../../rhelpers/knitr_setup.R")
 ```
 
@@ -29,45 +29,143 @@ source("../../../rhelpers/knitr_setup.R")
 </ul>
 </div>
 
+# Ruffe Feeding
+```{r RuffeData, echo=FALSE, message=FALSE, results="hide", cache=FALSE}
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+Ruffe <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet.csv")
+Ruffe <- filter(Ruffe,loc=="Allouez")
+Ruffe$daph01 <- ifelse(Ruffe$o.daph=="Y",1,0)
+glm.Ruffe <- glm(daph01~len,data=Ruffe,family=binomial)
+anova(glm.Ruffe,test="LRT")
+boot.Ruffe <- car::Boot(glm.Ruffe)
+cbind(Est=coef(glm.Ruffe),confint(boot.Ruffe,type="perc"))
+nd <- data.frame(len=6)
+( lodds6 <- predict(glm.Ruffe,newdata=nd) )
+exp(lodds6)
+( prob6 <- predict(glm.Ruffe,newdata=nd,type="response") )
+prob6.boot <- predProb(6,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
+( prob6.ci <- quantile(prob6.boot,probs=c(0.025,0.975),type=1) )
+x50.boot <- predX(0.5,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
+( x50.ci <- quantile(x50.boot,probs=c(0.025,0.975),type=1) )
+```
+```{r echo=FALSE}
+aov.p.Ruffe <- kPvalue(anova(glm.Ruffe,test="LRT")$"Pr(>Chi)"[2],latex=FALSE)
+cfs.Ruffe <- cbind(Est=coef(glm.Ruffe),confint(boot.Ruffe,type="perc"))
+odds6 <- exp(lodds6)
+```
+
+1. There is a significant relationship between whether or not the Ruffe consumed a *Daphnia* and the length of the Ruffe (LRT `r aov.p.Ruffe`).
+1. The slope says that as the length of the ruffe increases by one mm then the log odds of having consumed a *Daphnia* increases between `r formatC(cfs.Ruffe[2,2],format="f",digits=3)` and `r formatC(cfs.Ruffe[2,3],format="f",digits=3)`.
+1. The exponentiated slope says that as the length of the ruffe increases by one mm then the odds of having consumed a *Daphnia* is between `r formatC(exp(cfs.Ruffe[2,2]),format="f",digits=3)` and `r formatC(exp(cfs.Ruffe[2,3]),format="f",digits=3)` times greater.
+1. The odds that a 6-mm Ruffe will have consumed a *Daphnia* is `r formatC(odds6,format="f",digits=3)`. Thus, the probability that 6-mm Ruffe will have consumed a *Daphnia* is `r formatC(odds6,format="f",digits=3)` times as likely than it not having consumed a *Daphnia*.
+1. The probability that a 6-mm Ruffe will have consumed a *Daphnia* is between `r formatC(prob6.ci[1],format="f",digits=3)` and `r formatC(prob6.ci[2],format="f",digits=3)`.
+1. The length where 50% of Ruffe have consumed a *Daphnia* is between `r formatC(x50.ci[1],format="f",digits=3)` and `r formatC(x50.ci[2],format="f",digits=3)`.
+1. The best-fit logistic regression line is shown below.
+
+### R Code and Results
+```{r warning=FALSE, message=FALSE}
+<<RuffeData>>
+ggplot(data=Ruffe,mapping=aes(x=len,y=daph01)) +
+  geom_point(alpha=0.1) +
+  geom_smooth(method="glm",method.args=list(family=binomial)) +
+  labs(x="Total Length (mm)",y="Probability of Consuming a Daphnia") +
+  theme_NCStats()
+```
+
+&nbsp;
+
+# X-Rated Movies
+```{r XXXData, echo=FALSE, results="hide", cache=TRUE}
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+xxx <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/XMovieAge.csv")
+xxx <- filter(xxx,age<=95)
+xxx$seen01 <- ifelse(xxx$seen=="YES",1,0)
+glm.xxx <- glm(seen01~age,data=xxx,family=binomial)
+anova(glm.xxx,test="LRT")
+boot.xxx <- car::Boot(glm.xxx)
+cbind(Est=coef(glm.xxx),confint(boot.xxx,type="perc"))
+nd <- data.frame(age=50)
+( lodds50 <- predict(glm.xxx,newdata=nd) )
+exp(lodds50)
+( prob50 <- predict(glm.xxx,newdata=nd,type="response") )
+prob50.boot <- predProb(50,boot.xxx$t[,1],boot.xxx$t[,2])
+( prob50.ci <- quantile(prob50.boot,probs=c(0.025,0.975),type=1) )
+x10.boot <- predX(0.1,boot.xxx$t[,1],boot.xxx$t[,2])
+( x10.ci <- quantile(x10.boot,probs=c(0.025,0.975),type=1) )
+x25.boot <- predX(0.25,boot.xxx$t[,1],boot.xxx$t[,2])
+( x25.ci <- quantile(x25.boot,probs=c(0.025,0.975),type=1) )
+```
+```{r echo=FALSE, message=FALSE}
+aov.p.xxx <- kPvalue(anova(glm.xxx,test="LRT")$"Pr(>Chi)"[2],latex=FALSE)
+cfs.xxx <- cbind(Est=coef(glm.xxx),confint(boot.xxx,type="perc"))
+odds50 <- exp(lodds50)
+```
+
+1. There is a significant relationship between whether or not the respondent had watched an x-rated movie in the last year and their age (LRT `r aov.p.xxx`).
+1. The slope says that as the age of the respondent increases by one year then the log odds of having watched an x-rated movie in the last year decreases between `r formatC(cfs.xxx[2,2],format="f",digits=3)` and `r formatC(cfs.xxx[2,3],format="f",digits=3)`.
+1. The exponentiated slope says that as the age of the respondent increases by one year then the odds of having watched an x-rated movie in the last year decreases between `r formatC(exp(cfs.xxx[2,2]),format="f",digits=3)` and `r formatC(exp(cfs.xxx[2,3]),format="f",digits=3)` times. In other words, the odds of having watched an x-rated movie in the last year decline between `r formatC((1-exp(cfs.xxx[2,3]))*100,format="f",digits=1)` and `r formatC((1-exp(cfs.xxx[2,2]))*100,format="f",digits=1)`% for each increase of one year in age.
+1. The odds of a 50-years-old having watched an x-rated movie in the last year is `r formatC(odds50,format="f",digits=3)`. Thus, the probability that 50-year old watched an x-rated movie in the last year is `r formatC(odds50,format="f",digits=3)` times more likely than not having watched an x-rated movie in the last year.
+1. The probability that a 50-years-old will have watched an x-rated movie in the last year is between `r formatC(prob50.ci[1],format="f",digits=3)` and `r formatC(prob50.ci[2],format="f",digits=3)`.
+1. The age where 10% or fewer of respondents are likely to have watch an x-rated movie in the last year is between `r formatC(x10.ci[1],format="f",digits=1)` and `r formatC(x10.ci[2],format="f",digits=1)`.
+1. The age where 25% or more of respondents are likely to have watch an x-rated movie in the last year is between `r formatC(x25.ci[1],format="f",digits=1)` and `r formatC(x25.ci[2],format="f",digits=1)`.
+1. The best-fit logistic regression line is shown below.
 
 
 ### R Code and Results
+```{r warning=FALSE, message=FALSE}
+<<xxxData>>
+ggplot(data=xxx,mapping=aes(x=age,y=seen01)) +
+  geom_point(alpha=0.01) +
+  geom_smooth(method="glm",method.args=list(family=binomial)) +
+  labs(x="Age of Respondent",y="Prob. of Seeing XXX Movie in Last Year") +
+  theme_NCStats()
+```
+
+
+<!----
+# Moose Calf Production
+```{r mooseData, echo=FALSE, results="hide"}
+predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+m <- readxl::read_excel("../data/10_3996_032013-jfwm-028_s1.xls")
+m$calf01 <- ifelse(m$"Calf production status"=="Yes",1,0)
+glm.m <- glm(calf01~Age,data=m,family=binomial)
+anova(glm.m,test="LRT")
+boot.m <- car::Boot(glm.m)
+cbind(Est=coef(glm.m),confint(boot.m,type="perc"))
+nd <- data.frame(Age=10)
+( lodds10 <- predict(glm.m,newdata=nd) )
+exp(lodds10)
+( prob10 <- predict(glm.m,newdata=nd,type="response") )
+prob10.boot <- predProb(10,boot.m$t[,1],boot.m$t[,2])
+( prob10.ci <- quantile(prob10.boot,probs=c(0.025,0.975),type=1) )
+x75.boot <- predX(0.75,boot.m$t[,1],boot.m$t[,2])
+( x75.ci <- quantile(x75.boot,probs=c(0.025,0.975),type=1) )
+```
+```{r}
+aov.p.m <- kPvalue(anova(glm.m,test="LRT")$"Pr(>Chi)"[2],latex=FALSE)
+cfs.m <- cbind(Est=coef(glm.m),confint(boot.m,type="perc"))
+odds10 <- exp(lodds10)
+```
+
+1. There is a significant relationship between whether or not the female had at least one calf and the age of the female (LRT `r aov.p.m`).
+1. The slope says that as the age of the moose increases by one year then the log odds of having at least one calf decreases between `r formatC(cfs.m[2,2],format="f",digits=3)` and `r formatC(cfs.m[2,3],format="f",digits=3)`.
+1. The exponentiated slope says that as the age of the moose increases by one year then the odds of having at least one calf decreases between `r formatC(exp(cfs.m[2,2]),format="f",digits=3)` and `r formatC(exp(cfs.m[2,3]),format="f",digits=3)` times. In other words, the odds of having at least one decline between `r formatC((1-exp(cfs.m[2,3]))*100,format="f",digits=1)` and `r formatC((1-exp(cfs.m[2,3]))*100,format="f",digits=1)`% for each increase of one year in age.
+1. The log odds of a 10-years-old female moose having at least one calf is `r formatC(lodds10,format="f",digits=3)`.
+1. The odds of a 10-years-old female moose having at least one calf is `r formatC(odds10,format="f",digits=3)`. Thus, the probability that 10-year old female moose will have at least one calf is `r formatC(odds10,format="f",digits=1)` times more likely than not having a calf.
+1. The probability that a 10-years-old female moose will have at least one calf is between `r formatC(prob10.ci[1],format="f",digits=3)` and `r formatC(prob10.ci[2],format="f",digits=3)`.
+1. The where 75% or fewer of female moose have at least one calf is between `r formatC(x75.ci[1],format="f",digits=3)` and `r formatC(x75.ci[2],format="f",digits=3)`.
+1. The best-fit logistic regression line is shown below.
+
+### R Code and Results
 ```{r fig.width=7, warning=FALSE}
+<<mooseData>>
+ggplot(data=m,mapping=aes(x=Age,y=calf01)) +
+  geom_point(alpha=0.01) +
+  geom_smooth(method="glm",method.args=list(family=binomial)) +
+  labs(x="Age of Female Moose",y="Probability of At Least 1 Calf") +
+  theme_NCStats()
 ```
-
-# X-Rated Movies
-
-1. The logistic regression model seems to fit the proportions of respondents that had seen an x-rated movie by age (i.e., blue pluses; `r figs("fitplot",display="cite")`).
-1. The estimated slope indicates that the log odds that a respondent has seen an x-rated movie decrease between `r formatC(-1*ci1[2,2],format="f",digits=4)` and `r formatC(-1*ci1[2,1],format="f",digits=4)`, on average, for every increase in age by one year.
-1. The back-transformed estimated slopes indicates that the odds that a respondent has seen an x-rated movie are between `r formatC(exp(ci1[2,1]),format="f",digits=4)` and `r formatC(exp(ci1[2,2]),format="f",digits=4)` as much after an increase of one year.
-1. The log odds of having seen an x-rated movie for a 50-year-old is `r formatC(cf1[1],format="f",digits=4)`+`r formatC(cf1[2],format="f",digits=4)`*50 = `r formatC(log50,format="f",digits=4)`.
-1. The log odds of having seen an x-rated movie for a 50-year-old as computed in R is also `r formatC(log50,format="f",digits=4)` (see code in appendix).
-1. The odds of having seen an x-rated for a 50-year-old is $e^{`r formatC(log50,format="f",digits=4)`}$=`r formatC(exp(log50),format="f",digits=4)`.
-1. The probability of having seen an x-rated for a 50-year-old is $\frac{`r formatC(exp(log50),format="f",digits=4)`}{1+`r formatC(exp(log50),format="f",digits=4)`}$=`r formatC(p50,format="f",digits=4)`.
-1. The probability of having seen an x-rated for a 50-year-old as computed in R is also `r formatC(p50,format="f",digits=4)` (see code in appendix).
-1. The probability of having seen an x-rated movie for a 30-year old is `r formatC(p30,format="f",digits=4)`. Thus, the odds that a 30-year old has seen an x-rated movie is $\frac{`r formatC(p30,format="f",digits=4)`}{1-`r formatC(p30,format="f",digits=4)`}$=`r formatC(p30/(1-p30),format="f",digits=4)`.
-1. The probability of having seen an x-rated movie for a 31-year old is `r formatC(p31,format="f",digits=4)`. Thus, the odds that a 31-year old has seen an x-rated movie is $\frac{`r formatC(p31,format="f",digits=4)`}{1-`r formatC(p31,format="f",digits=4)`}$=`r formatC(p31/(1-p31),format="f",digits=4)`. The ratio of the odds for the 31-year-old to the odds of the 30-year-old is $\frac{`r formatC(p31/(1-p31),format="f",digits=4)`}{`r formatC(p30/(1-p30),format="f",digits=4)`}$ = `r formatC(exp(cf1[2]),format="f",digits=4)`, which is the same as the back-transformed slope (i.e., $e^{`r formatC(cf1[2],format="f",digits=4)`}$).
-
-
-```{r echo=FALSE}
-par(mar=c(3.05,3.05,0.65,1.55),mgp=c(2.1,0.3,0),tcl=-0.2,
-    las=1,cex.lab=0.95,cex.axis=0.9)
-fitPlot(glm1,xlab="Age (yrs)",ylab="Seen an X-Rated Movie?")
-```
-
-`r figs("fitplot")`
-
-
-R Appendix.
-```{r eval=FALSE, prompt=FALSE}
-df <- read.csv("XMovieAge.csv")
-df <- filterD(df,age<96)
-glm1 <- glm(seen~age,data=df,family=binomial)
-fitPlot(glm1,xlab="Age (yrs)",ylab="Seen an X-Rated Movie?")
-coef(glm1)
-confint(glm1)
-predict(glm1,data.frame(age=50))                  # log odds
-predict(glm1,data.frame(age=50),type="response")  # probability
-predict(glm1,data.frame(age=30),type="response")
-predict(glm1,data.frame(age=31),type="response")
-```
+--->
