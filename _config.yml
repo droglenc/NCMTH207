@@ -17,7 +17,7 @@ avatar: "/img/MTH207Logo.jpg"
 navbar-links:
 #  Book: "book"
   Modules: "modules"
-  Resources: "resources"
+#  Resources: "resources"
   Syllabus: "resources/Syllabus-Current"
   Dates: "resources/Dates-Current"
 
