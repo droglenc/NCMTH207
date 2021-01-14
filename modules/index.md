@@ -54,4 +54,3 @@ title: Learning Modules
 1. [Foundations](LogRegFoundations)
 1. [Models and Predictions](LogRegModels)
 1. [Analysis](LogRegAnalysis)
-1. [Summary](LogRegSummary)
