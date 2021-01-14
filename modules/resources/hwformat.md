@@ -5,7 +5,7 @@ css: /css/modules.css
 ---
 
 ## Gradescope
-All assignments in this course will be turned in on GradeScope. You should have received an e-mail from me inviting you to activate a GradeScope account and join this class. Make sure to follow the directions in that e-mail. If you do not have that e-mail you can also access Gradescope from the [quick link on the class homepage](../../){:target="_blank"} (you will need to email me for the access code (as ([described here](https://help.gradescope.com/article/gi7gm49peg-student-add-course){:target="_blank"})). Let me know if you have any questions.
+All assignments in this course will be turned in on GradeScope. You should have received an e-mail from me inviting you to activate a GradeScope account and join this class. Make sure to follow the directions in that e-mail. If you do not have that e-mail you can also access Gradescope from the [quick link on the class homepage](../../){:target="_blank"} (you will need to email me for the access code (as [described here](https://help.gradescope.com/article/gi7gm49peg-student-add-course){:target="_blank"}). Let me know if you have any questions.
 
 Read [the last page of this document](https://gradescope-static-assets.s3-us-west-2.amazonaws.com/help/submitting_hw_guide.pdf){:target="_blank"} for how to upload the PDF to Gradescope. When submitting your document you will identify on which pages you answer each question ... please do this carefully and completely (if your answer spans two pages, then make sure to select both pages).
 
