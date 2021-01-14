@@ -23,4 +23,17 @@ css: "/css/modules.css"
 1. Predict the probability of having at least one calf if the female moose is 10-years-old. Use a confidence interval.
 1. Predict the age at which it is 50-50 whether a moose has at least one calf or not.
 
+&nbsp;
 
+## X-Rated Movies
+<img src="../zimgs/x-rate-movie.jpg" alt="X-rated Movie" class="img-right">
+The [General Sociological Survey (GSS)](http://gss.norc.org/){:target="_blank"} is a very large survey that has been administered 25 times since 1972. The basic purposes of the GSS are to gather data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviors, and attributes; to examine the structure and functioning of society in general as well as the role played by relevant subgroups; to compare the United States to other societies in order to place American society in comparative perspective and develop cross-national models of human society; and to make high-quality data easily accessible to scholars, students, policy makers, and others, with minimal cost and waiting.  One question that was asked in a recent GSS was "Have you watched an x-rated movie in the last year?" The respondent's answer to this question (Yes or No) and age are recorded in XMovieAge.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/XMovieAge.csv), [meta](https://github.com/droglenc/NCData/blob/master/XMovieAge_meta.txt)). Use data **only for individuals 95-years-old or younger** to answer the following questions ([use this](../resources/R_HowTo_Filter.html){:target="_blank"} for help filtering the data).
+
+1. Is there a significant relationship between whether or not the female had at least one calf and the age of the female? Provide evidence.
+1. Interpret the meaning of the slope. Use a confidence interval.
+1. Interpret the meaning of the exponentiated slope. Use a confidence interval.
+1. Predict the odds of having seen an x-rated movie in the last year for a 50-year-old respondent.
+1. Predict the probability of having seen an x-rated movie in the last year for a 50-year-old respondent.
+1. Predict the odds of having seen an x-rated movie in the last year for a 70-year-old, *but only using your results from questions 3 and 5.
+1. What is the age when 10% or fewer of the respondents are likely to have watch an x-rated movie in the last year?
+1. What is the age when 25% or more of the respondents are likely to have watch an x-rated movie in the last year?
