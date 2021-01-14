@@ -21,7 +21,7 @@ css: "/css/modules.css"
 1. Predict the log odds of having at least one calf if the female moose is 10-years-old.
 1. Predict the odds of having at least one calf if the female moose is 10-years-old.
 1. Predict the probability of having at least one calf if the female moose is 10-years-old. Use a confidence interval.
-1. Predict the age at which it is 50-50 whether a moose has at least one calf or not.
+1. Predict the age at which fewer than 75% of female moose are predicted to have at least one calf.
 
 &nbsp;
 
