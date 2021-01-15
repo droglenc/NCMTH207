@@ -88,25 +88,6 @@ The course is scheduled to meet every weekday from 1230-400pm. However, because 
 
 This course is "flipped," which loosely means that you are responsible for obtaining factual content prior to coming to class and will then use class time with me to apply and expand upon what you learned prior to class. I organized the course in this format because I believe the science that indicates that deeper learning is achieved with this model and because I have found that students need more help from me when applying concepts. Additionally, this format allows for teaching face-to-face, on-line, or a hybrid of both as necessary.
 
-The course is composed of daily modules (see link in upper-right) of material. Below describes a general format of instruction that you should follow for each module.
-
-1. **Prepare Module Material** -- Each module has a reading that describes the major concepts of the module. These readings are detailed and derived from my lecture notes from past years. I have worked very hard to make these readings short and readable, but some concepts in this course are subtle and required extensive explanation. As appropriate I have added visuals to explain concepts and highlighted key definitions and concepts in boxes. **You need to engage thoroughly with these readings**. By this, I mean that you need to be focused (i.e., not distracted) while reading and you need to think about concepts that don't make sense to you after your first read. **A cursory readings likely will not be adequate.** Here are [some quick tips for how to read a math textbook](https://www.macalester.edu/max/math-econ-119/howtoread/){:target="_blank"}.[^ReadMath]<br><br>Each module has "reading questions" to guide your reading (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). You should ask questions you have about the reading or the reading questions on the "Class Preparation Reading Questions" channel on the course Teams page ([quick link on class homepage](../){:target="_blank"}). Your preferably **(neatly) hand-written**,[^WriteNotType] answers will be turned in via GradeScope ([quick link on class homepage](../){:target="_blank"}) **by 1100 am on the day that the module will be covered in class** (see the [Dates page](Dates-Current.html)). I will grade your answers according to the following rubric.
-
-<div class="container-fluid">
-  <table class="table table-bordered">
-  <thead>
-    <tr class="info"><th>5 points</th><th>4-1 points</th><th>0 points</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>All questions were answered thoughtfully and fully.</td><td>Various numbers of questions were not answered, were answered incorrectly, or cursorily (i.e., without care or depth of thought).</td><td>Very few answers were provided or were correct; substantial portions were copied from someone else; or questions were not turned in.</td></tr>
-  </tbody>
-  </table>
-</div>
-
-{:start="2"}
-1. **Class Time** -- The initial part of class time will consist of a short introduction to the module assignment and a quick discussion of any questions that you all had from the preparation reading. Following this you will work on the module's application assignment. I expect you to attend class to get direct help from me and to work on course material during the portion of the 1230-400 period when you are not "attending" class. If you are diligent and focused, you will likely finish most of the module assignment during this time.
-1. **Complete an Applied Assignment** -- Module assignments are listed under the "Practice" section on the module webpage (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). Assignments should be prepared as described here for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is due by 1200 (noon) on the day after the class period dedicated to the module.<br><br>I will "grade for content" (i.e., whether the work is done correctly or not) 50-100% of each module assignment. Questions that I did not "grade for content" will be "graded for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will also be available on the module webpage.
-
 <br>
 
 <center>
@@ -114,6 +95,28 @@ The course is composed of daily modules (see link in upper-right) of material. B
 </center>
 
 <br>
+
+The course is composed of daily modules (see link in upper-right) of material. Below describes a general format of instruction that you should follow for each module.
+
+1. **Prepare Module Material** -- Each module has a reading that describes the major concepts of the module. These readings are detailed and derived from my lecture notes from past years. I have worked very hard to make these readings short and readable, but some concepts in this course are subtle and required extensive explanation. As appropriate I have added visuals to explain concepts and highlighted key definitions and concepts in boxes. **You need to engage thoroughly with these readings**. By this, I mean that you need to be focused (i.e., not distracted) while reading and you need to think about concepts that don't make sense to you after your first read. **A cursory readings likely will not be adequate.** Here are [some quick tips for how to read a math textbook](https://www.macalester.edu/max/math-econ-119/howtoread/){:target="_blank"}.[^ReadMath]<br><br>Each module has "reading questions" to guide your reading (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). Please ask questions you have about the reading on the "Class Preparation Reading Questions" Teams channel or during help hours ([quick links on class homepage](../){:target="_blank"}). Your preferably (neatly) **hand-written**,[^WriteNotType] answers will be turned in via GradeScope ([quick link on class homepage](../){:target="_blank"}) **by 1100 am on the day that the module is covered in class** (see [Dates page](Dates-Current.html)). The "assignment" on Gradescope will have the module name and "-- prep" suffix. I will grade your answers according to the following rubric.
+
+<div class="container-fluid">
+  <table class="table table-bordered">
+  <thead>
+    <tr class="info"><th>5 points</th><th>4-1 points</th><th>0 points</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>All questions were answered thoughtfully and fully.</td><td>Various numbers of questions were not answered, were answered incorrectly, or without care or depth of thought.</td><td>Very few answers were provided or were correct; substantial portions were copied from someone else; or questions were not turned in.</td></tr>
+  </tbody>
+  </table>
+</div>
+
+{:start="2"}
+1. **Class Time** -- The initial part of class time will consist of a short introduction to the module assignment and a quick discussion of any questions that you all had from the preparation reading. Following this you will work on the module's application assignment (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). I expect you to attend class to get direct help from me and learn from other students' questions. If you are diligent and focused, you will likely finish most of the module assignment during this time.
+1. **Complete an Applied Assignment** -- Module assignments should be prepared [as described here](../modules/resources/hwformat){:target="_blank"} for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is due by 1200 (noon) on the day after the class period dedicated to the module.<br><br>I will "grade for content" (i.e., whether the work is done correctly or not) 50-100% of each module assignment. Questions that I did not "grade for content" will be "graded for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will also be available on the module webpage.
+
+<br>
+
 ----
 
 ## Grading
