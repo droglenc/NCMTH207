@@ -27,14 +27,9 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/2TReview). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~6 pages)
-  * [Reading](http://derekogle.com/Book207/T2Review.html){:target="_blank"}
-
-----
+* [Reading](http://derekogle.com/Book207/T2Review.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/2TReview)
 
 ## Practice
 
-* [Class Example](cex/2TReview_CEX1) ... [ANNOTATED KEY](cex/KEY_2TReview_CEX1) 
 * [Assignment](ce/2TReview_CE1_pH) ... [ANSWER KEY](ce/KEY_2TReview_CE1_pH)
