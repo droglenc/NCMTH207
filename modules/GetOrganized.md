@@ -26,6 +26,7 @@ I suggest reviewing the items listed below to reacquaint yourself with the R sof
 The following apps should be initiated before the first day of class.
 
 * [MS Teams Course Site](resources/MSTeams_Intro){:target="_blank"}
+    * Note that there is a short assignment at the end of this description that should  be comleted before the first day of class.
 * Gradescope Grading Site
     * You should have received an e-mail from me inviting you to activate a GradeScope account and join this class. Make sure to follow the directions in that e-mail. Contact me if you did not get that e-mail.
 
@@ -53,6 +54,7 @@ Contact me if you have any issues with any of the above items.
 Please do the following things in preparation for the first day of class.
 
 * [Complete Webpage Scavenger Hunt](prep/GetOrganized_Hunt){:target="_blank"}
+    * You should have written answers to these questions when you come to class.
 * [Read about Homework Format](resources/hwformat){:target="_blank"}
     * We will discuss this in class but I would like you to be familiar with it before the first day of class.
 
@@ -65,7 +67,7 @@ The following items will be completed in class.
 
 * Discuss syllabus and class webpage (go over answers to scavenger hunt).
 * Turn in written answers to syllabus scavenger hunt on Gradescope (see [quick link on class homepage](../){:target="_blank"}).
-* Submit [first module assignment](ce/GetOrganized_CE1) on GradeScope.
+* Submit [first module assignment](ce/GetOrganized_CE1) on GradeScope (see [quick link on class homepage](../){:target="_blank"}).
 
 &nbsp;
 
