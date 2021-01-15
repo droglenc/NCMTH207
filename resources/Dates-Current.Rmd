@@ -33,7 +33,7 @@ For each class period ("Date"), the module to prepare for is shown under "Topic.
 </div>
 
 <div class="alert alert-warning">
-Group [Julie **Ivy**](https://www.youtube.com/watch?v=oAV4z6vgfys) (XXX) will meet "in-person" from 1230-210. Group [Megan **Price**](https://www.youtube.com/watch?v=orW01w8a4zY) (XXX) will meet "in-person" from 220-400. Modifications to this general schedule will be announced in class.</a>
+Group [Julie **Ivy**](https://www.youtube.com/watch?v=oAV4z6vgfys) (Aldaba, Becicka, Chevalier, Curtiss, Elder-Hall, Heller, Kavombwe, Kolasch, Lambas, Richard, Schick, Sims, Tapper) will meet "in-person" from 1230-210. Group [Megan **Price**](https://www.youtube.com/watch?v=orW01w8a4zY) (Hockley, Johnson, Loiselle, Orchekowski, Reihe, Ritchie, Shea, Simpson, Vensland, Wanty, Wittmann, Witts) will meet "in-person" from 220-400. Modifications to this general schedule will be announced in class.</a>
 </div>
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
