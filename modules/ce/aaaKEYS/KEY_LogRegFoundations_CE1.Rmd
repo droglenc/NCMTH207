@@ -1,6 +1,6 @@
 ---
 title: "Exercise Key"
-subtitle: "Logistic Regressioni Foundations"
+subtitle: "Logistic Regression Foundations"
 author: Derek H. Ogle
 layout: page
 css: "/css/modules.css"
@@ -33,7 +33,7 @@ source("../../../rhelpers/knitr_setup.R")
 
 ----
 
-# pH in Two Rivers
+# Fair Coin
 
 1. The probability of flipping a head is $\frac{1}{2}$=0.5.
 1. The odds of flipping a head is $\frac{0.5}{0.5}$=1.

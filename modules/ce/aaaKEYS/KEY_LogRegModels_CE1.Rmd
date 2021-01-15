@@ -1,0 +1,86 @@
+---
+title: "Exercise Key"
+subtitle: "Logistic Regression Models"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_LogRegModels_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+----
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Use complete sentences to answer questions.</li>
+</ul>
+</div>
+
+----
+
+# Marketability of Cucumbers
+```{r echo=FALSE}
+alpha <- 6.430
+beta <- -0.330
+ebeta <- exp(beta)
+
+predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+pred90 <- predX(0.9,alpha,beta)
+pred10 <- predX(0.1,alpha,beta)
+```
+
+1. The slope indicates that at the number of days of storage increases by 1 day the the log odds that the cucumber is marketable decreases by `r -1*beta`, on average.
+1. The exponentiated slope indicates that as the number of days of storage increases by 1 day the odds that the cucumber is marketable is `r formatC(ebeta,format="f",digits=3)` times lower, on average. In other words, the probability of marketability of the cucumber is only about `r formatC(100*ebeta,format="f",digits=1)`% of what it was the day before.
+1. The number of days of storage where the marketability of the cucumber is at least 0.90 is `r formatC(pred90,format="f",digits=1)` (=$\frac{log\left(\frac{0.9}{0.1}\right)-`r alpha`}{`r beta`}$).
+1. The number of days of storage where the marketability of the cucumber is just 0.10 is `r formatC(pred10,format="f",digits=1)` (=$\frac{log\left(\frac{0.1}{0.9}\right)-`r alpha`}{`r beta`}$).
+
+&nbsp;
+
+# Bat Subspecies
+```{r echo=FALSE, message=FALSE, cache=TRUE}
+bat <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph.csv") %>%
+  mutate(canine=canine*10,
+         subsp01=ifelse(subsp=="cinereus",1,0))
+glm.bat <- glm(subsp01~canine,data=bat,family="binomial")
+boot.bat <- car::Boot(glm.bat)
+cfs.bat <- round(cbind(Ests=coef(glm.bat),confint(boot.bat,type="perc")),3)
+ecfs.bat <- round(exp(cfs.bat),3)
+lodds3 <- cfs.bat[1,1]+cfs.bat[2,1]*3
+odds3 <- exp(lodds3)
+prob3 <- odds3/(1+odds3)
+lodds4 <- lodds3+cfs.bat[2,1]
+odds4 <- odds3*ecfs.bat[2,1]
+x50 <- -cfs.bat[1,1]/cfs.bat[2,1]
+x95 <- predX(0.95,cfs.bat[1,1],cfs.bat[2,1])
+x5 <- predX(0.05,cfs.bat[1,1],cfs.bat[2,1])
+alpha <- cfs.bat[1,1]
+beta <- cfs.bat[2,1]
+ebeta <- exp(beta)
+```
+
+1. The equation of the best-fit logistic regression line if $log\left(\frac{p}{1-p}\right)$=`r alpha`+`r beta`&times;canine.
+1. The slope means that as the canine tooth height increases by 1 mm the log odds that the bat is a *cinereus* subspecies increases by between `r cfs.bat[2,2]` and `r cfs.bat[2,3]`.
+1. The exponentiated slope means that as the canine tooth height increases by 1 mm the odds that the bat is a *cinereus* subspecies increases between `r formatC(ecfs.bat[2,2],format="f",digits=0)` and `r formatC(ecfs.bat[2,3],format="f",digits=0)` times. *Note that these values are so ridiculous because an increase of 1 mm essentially covers the whole range of observed canine tooth heights.*
+1. The log odds of being a *cinereus* if the canine tooth height is 3 mm is `r alpha`+`r beta`&times;3=`r formatC(lodds3,format="f",digits=3)`.
+1. The odds of being a *cinereus* if the canine tooth height is 3 mm is e<sup>`r formatC(lodds3,format="f",digits=3)`</sup>=`r formatC(odds3,format="f",digits=3)`. This means that the probability of being a *cinereus* is only about `r formatC(100*odds3,format="f",digits=1)`% as much as the probability of being a *semotus* when the canine tooth height is 3 mm.
+1. The probability of being a *cinereus* if the canine tooth height is 3 mm is $\frac{`r formatC(odds3,format="f",digits=3)`}{1+`r formatC(odds3,format="f",digits=3)`}$=`r formatC(prob3,format="f",digits=3)`. This means that only about `r formatC(100*prob3,format="f",digits=1)`% of bats with a canine tooth height of 3 mm are *cinerus*.
+1. The log odds of being a *cinereus* if the canine tooth height is 4 mm is the log odds of being a *cinereus* when the canine tooth height is 3 mm **PLUS** the slope, or `r formatC(lodds3,format="f",digits=3)` + `r beta` = `r formatC(lodds3+beta,format="f",digits=3)`.
+1. The odds of being a *cinereus* if the canine tooth height is 4 is the odds of being a *cinereus* when the canine tooth height is 3 **TIMES** the **exponentiated** slope, or `r formatC(odds3,format="f",digits=3)`&times;`r formatC(ebeta,format="f",digits=0)` = `r formatC(odds3*ebeta,format="f",digits=3)`.
+1. The canine tooth height where it is “50-50” that the bat is *cinereus* is $\frac{-(`r alpha`)}{`r beta`}$=`r formatC(x50,format="f",digits=2)`?
+1. The canine tooth height where you are “very sure” (95% likely) that the bat is a *cinereus* is `r formatC(x95,format="f",digits=1)` (=$\frac{log\left(\frac{0.95}{0.05}\right)-(`r alpha`)}{`r beta`}$).
+1. The canine tooth height where you are “very sure” (95% likely) that the bat is a *semotus* (i.e., not a *cinereus*) is `r formatC(x5,format="f",digits=1)` (=$\frac{log\left(\frac{0.05}{0.95}\right)-(`r alpha`)}{`r beta`}$).
