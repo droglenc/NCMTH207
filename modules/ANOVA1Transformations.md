@@ -27,12 +27,8 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/ANOVA1Transformations). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~9 pages)
-  * [Reading](http://derekogle.com/Book207/ANOVA1Transformations.html){:target="_blank"}
-
-----
+* [Reading](http://derekogle.com/Book207/ANOVA1Transformations.html){:target="_blank"} (~9 pages) and the [Reading Guide](prep/ANOVA1Transformations)
 
 ## Practice
 

@@ -27,12 +27,8 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/ANOVA1Assumptions). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~4 pages)
-  * [Reading](http://derekogle.com/Book207/ANOVA1Assumptions.html){:target="_blank"}
-
-----
+* [Reading](http://derekogle.com/Book207/ANOVA1Assumptions.html){:target="_blank"} (~4 pages) and the [Reading Guide](prep/ANOVA1Assumptions)
 
 ## Practice
 

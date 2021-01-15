@@ -27,12 +27,8 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/ANOVA2Foundations2). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~10 pages)
-  * [Reading](http://derekogle.com/Book207/ANOVA2Foundations2.html){:target="_blank"}
-
-----
+* [Reading](http://derekogle.com/Book207/ANOVA2Foundations2.html){:target="_blank"} (~10 pages) and the [Reading Guide](prep/ANOVA2Foundations2).
 
 ## Practice
 

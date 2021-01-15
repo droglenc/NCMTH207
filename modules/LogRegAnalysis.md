@@ -27,12 +27,8 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/LogRegAnalysis). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~6 pages)
-  * [Reading](http://derekogle.com/Book207/LogRegAnalysis.html){:target="_blank"}
-
-----
+* [Reading](http://derekogle.com/Book207/LogRegAnalysis.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/LogRegAnalysis).
 
 ## Practice
 

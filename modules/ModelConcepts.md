@@ -27,12 +27,8 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/ModelConcepts).
 
-* **Primary Resources** (~5 pages)
-  * [Reading](http://derekogle.com/Book207/ModelConcepts.html){:target="_blank"}
-
-----
+* [Reading](http://derekogle.com/Book207/ModelConcepts.html){:target="_blank"} (~5 pages) and the [Reading Guide](prep/ModelConcepts).
 
 ## Practice
 
