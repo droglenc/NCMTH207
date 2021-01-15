@@ -9,7 +9,7 @@ css: "/css/modules.css"
 Use the preparation reading to prepare hand-written answers for the following questions. Please contact <a href="https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7)" target="_blank">Dr. Ogle</a> if you have questions.
 </div>
 
-1. Define *factor*, *levels*, *treatments*, and *replicates*. [Note that you may need to refer to [your "Data Production"" chapter from your introductory statistics course.](http://derekogle.com/NCMTH107/modules/DataProduction.html)
+1. Define *factor*, *levels*, *treatments*, and *replicates*. [Note that you may need to refer to [your "Data Production" chapter from your introductory statistics course.](http://derekogle.com/NCMTH107/modules/DataProduction.html)
 1. Define each of the following symbols -- *a*, *b*, *m*, *i*, *j*, and *k*.
 1. What generic symbols are used for each of the following:
     1. Observed response variable for an individual.
