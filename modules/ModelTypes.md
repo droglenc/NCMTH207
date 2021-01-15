@@ -27,14 +27,9 @@ XXX
 ----
 
 ## Preparation for Class
-Use the resources below to answer [these questions](prep/ModelTypes). [[*Problems with videos?*](../resources/FAQs/videos){:target="_blank"}]
 
-* **Primary Resources** (~4 pages)
-  * [Reading](http://derekogle.com/Book207/ModelTypes.html){:target="_blank"}
-
-----
+* [Reading](http://derekogle.com/Book207/ModelTypes.html){:target="_blank"} (~4 pages) and the [Reading Guide](prep/ModelTypes)
 
 ## Practice
 
-* [Class Example](cex/ModelTypes_CEX1) ... [ANNOTATED KEY](cex/KEY_ModelTypes_CEX1) 
 * [Assignment](ce/ModelTypes_CE1) ... [ANSWER KEY](cex/KEY_ModelTypes_CE)
