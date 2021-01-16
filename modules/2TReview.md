@@ -13,11 +13,13 @@ css: /css/modules.css
     </div>
     <div id="ILOs" class="panel-collapse collapse">
       <div class="panel-body">
-XXX
 <p>After completing this module, you should be able to ...</p>
 
 <ol>
-  <li></li>
+  <li>Recall the basics of a 2-Sample t-Test (hypotheses, assumptions, statistic, test statistic, decisions) from your introductory statistics course.</li>
+  <li>Recall how to perform the necessary calculations in R for a 2-Sample t-Test (organization of data, functions, plotting).</li>
+  <li>Define (including graphically represent) the meanings of "signal" and "noise" within the context of a 2-Sample t-Test.</li>
+  <li>Explain how the t test statistic (and related p-value) for a 2-Sample t-Test relates "signal" to "noise."</li>
 </ol>
       </div>
     </div>
