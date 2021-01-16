@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/ANOVA2Analysis.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/ANOVA2Analysis).
+* [Reading](http://derekogle.com/Book207/ANOVA2Analysis.html){:target="_blank"} (~8 pages) and the [Reading Guide](prep/ANOVA2Analysis).
 
 ## Practice
 

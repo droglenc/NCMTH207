@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/ANOVA1Transformations.html){:target="_blank"} (~9 pages) and the [Reading Guide](prep/ANOVA1Transformations)
+* [Reading](http://derekogle.com/Book207/ANOVA1Transformations.html){:target="_blank"} (~12 pages) and the [Reading Guide](prep/ANOVA1Transformations)
 
 ## Practice
 

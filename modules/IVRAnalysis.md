@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/IVRAnalysis.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/IVRAnalysis).
+* [Reading](http://derekogle.com/Book207/IVRAnalysis.html){:target="_blank"} (~7 pages) and the [Reading Guide](prep/IVRAnalysis).
 
 ## Practice
 

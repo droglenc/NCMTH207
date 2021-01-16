@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/ANOVA1Assumptions.html){:target="_blank"} (~4 pages) and the [Reading Guide](prep/ANOVA1Assumptions)
+* [Reading](http://derekogle.com/Book207/ANOVA1Assumptions.html){:target="_blank"} (~5 pages) and the [Reading Guide](prep/ANOVA1Assumptions)
 
 ## Practice
 

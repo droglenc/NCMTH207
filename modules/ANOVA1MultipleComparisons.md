@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/ANOVA1MultipleComparisons.html){:target="_blank"} (~3 pages) and the [Reading Guide](prep/ANOVA1MultipleComparisons)
+* [Reading](http://derekogle.com/Book207/ANOVA1MultipleComparisons.html){:target="_blank"} (~5 pages) and the [Reading Guide](prep/ANOVA1MultipleComparisons)
 
 ## Practice
 

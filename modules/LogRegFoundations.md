@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/LogRegFoundations.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/LogRegFoundations).
+* [Reading](http://derekogle.com/Book207/LogRegFoundations.html){:target="_blank"} (~4 pages) and the [Reading Guide](prep/LogRegFoundations).
 
 ## Practice
 

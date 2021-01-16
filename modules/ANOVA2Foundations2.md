@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/ANOVA2Foundations2.html){:target="_blank"} (~10 pages) and the [Reading Guide](prep/ANOVA2Foundations2).
+* [Reading](http://derekogle.com/Book207/ANOVA2Foundations2.html){:target="_blank"} (~12 pages) and the [Reading Guide](prep/ANOVA2Foundations2).
 
 ## Practice
 

@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/LogRegModels.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/LogRegModels).
+* [Reading](http://derekogle.com/Book207/LogRegModels.html){:target="_blank"} (~12 pages) and the [Reading Guide](prep/LogRegModels).
 
 ## Practice
 

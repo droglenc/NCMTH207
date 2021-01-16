@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/IVRSummary.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/IVRSummary).
+* [Reading](http://derekogle.com/Book207/IVRSummary.html){:target="_blank"} (~12 pages) and the [Reading Guide](prep/IVRSummary).
 
 ## Practice
 

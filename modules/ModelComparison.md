@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/ModelComparison.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/ModelComparison).
+* [Reading](http://derekogle.com/Book207/ModelComparison.html){:target="_blank"} (~10 pages) and the [Reading Guide](prep/ModelComparison).
 
 ## Practice
 

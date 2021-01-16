@@ -28,7 +28,7 @@ XXX
 
 ## Preparation for Class
 
-* [Reading](http://derekogle.com/Book207/IVRModels.html){:target="_blank"} (~6 pages) and the [Reading Guide](prep/IVRModels).
+* [Reading](http://derekogle.com/Book207/IVRModels.html){:target="_blank"} (~5 pages) and the [Reading Guide](prep/IVRModels).
 
 ## Practice
 
