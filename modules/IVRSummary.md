@@ -13,11 +13,10 @@ css: /css/modules.css
     </div>
     <div id="ILOs" class="panel-collapse collapse">
       <div class="panel-body">
-XXX
 <p>After completing this module, you should be able to ...</p>
 
 <ol>
-  <li></li>
+  <li>Follow the suggested workflow to produce a full Indicator Variable Regression analysis.</li>
 </ol>
       </div>
     </div>

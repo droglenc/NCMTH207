@@ -13,11 +13,14 @@ css: /css/modules.css
     </div>
     <div id="ILOs" class="panel-collapse collapse">
       <div class="panel-body">
-XXX
 <p>After completing this module, you should be able to ...</p>
 
 <ol>
-  <li></li>
+  <li>Explain why multiple comparisons follow a significant one-way ANOVA.</li>
+  <li>Explain why multiple 2-sample t-tests cannot be used to make all pairwise comparisons.</li>
+  <li>Distinguish between pair-wise and experiment-wise error rates./li>
+  <li>Describe what a Tukey's test is trying to accomplish.</li>
+  <li>Describe which group/treatment means do and do not differ from a table of Tukey test results.</li>
 </ol>
       </div>
     </div>

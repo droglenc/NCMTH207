@@ -13,11 +13,13 @@ css: /css/modules.css
     </div>
     <div id="ILOs" class="panel-collapse collapse">
       <div class="panel-body">
-XXX
 <p>After completing this module, you should be able to ...</p>
 
 <ol>
-  <li></li>
+  <li>Describe why one might use a transformation in a One-Way ANOVA.</li>
+  <li>Explain how a log transformation transform a strongly right-skewed distribution to an approximately normal distribution.</li>
+  <li>Explain why a log transformation is preferred over other power transformations.</li>
+  <li>Explain the meaning of a back-transformed difference in log means on the original scale.</li>
 </ol>
       </div>
     </div>

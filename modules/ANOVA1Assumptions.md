@@ -13,11 +13,12 @@ css: /css/modules.css
     </div>
     <div id="ILOs" class="panel-collapse collapse">
       <div class="panel-body">
-XXX
 <p>After completing this module, you should be able to ...</p>
 
 <ol>
-  <li></li>
+  <li>List the four assumptions of a one-way ANOVA.</li>
+  <li>Describe "independence" and how to determine if within- and among-group indepdence is present.</li>
+  <li>Identify how to test the three assumptions of a one-way ANOVA that can be test from the data.</li>
 </ol>
       </div>
     </div>
