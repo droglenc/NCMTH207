@@ -26,7 +26,7 @@ I suggest reviewing the items listed below to reacquaint yourself with the R sof
 The following apps should be initiated before the first day of class.
 
 * [MS Teams Course Site](resources/MSTeams_Intro){:target="_blank"}
-    * Note that there is a short assignment at the end of this description that should  be comleted before the first day of class.
+    * Note that there is a short assignment at the end of this description that should  be completed before the first day of class.
 * Gradescope Grading Site
     * You should have received an e-mail from me inviting you to activate a GradeScope account and join this class. Make sure to follow the directions in that e-mail. Contact me if you did not get that e-mail.
 
