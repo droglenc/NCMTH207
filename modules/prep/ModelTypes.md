@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Preparation Guide
-subtitle: Module Types
+subtitle: Model Types
 css: "/css/modules.css"
 ---
 
