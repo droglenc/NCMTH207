@@ -62,15 +62,13 @@ At the end of this class you will be able to ...
 <img class="img-right" src="../img/DerekOgle1.jpg">
 I will answer to "Derek", "Doctor Ogle", "Professor Ogle", or "Doctor Professor Ogle, Sir" ... whichever you prefer. &#x1F600;
 
-I am committed to your doing well in this course and see it as my responsibility to help you both in and out of the designated class period. You will soon see that this course is designed in such a way that your learning of the material will depend on your asking questions of me. There are several good ways to do this.
+I am committed to your doing well in this course and see it as my responsibility to help you both in and out of the designated class period. You will soon see that this course is designed in such a way that your learning will depend on your asking questions of me. There are several good ways to do this.
 
 - Attend class. Most of class time will be allocated to you working on modular assignments. I will be available during these times to answer your questions.
 - Ask questions on the course MS Teams site. There are separate channels for questions regarding module preparation readings, module assignments, and general questions (see [quick links on course homepage](../)). Simply start a new conversation with your question and I will answer it ASAP. Other students may also answer your question.
 - I will hold virtual help hours on Teams Monday through Thursday from 830-930 **pm**. You can simply join the meeting that I open in the Help Hours channel  (see [quick links on course homepage](../)) at that time.
 - I will also generally be available at my computer during early and late mornings on class days. I will try to respond to queries ASAP during these times.
 - Finally, you may send me [anonymous feedback, suggestions, or questions](https://www.surveymonkey.com/r/F7S7GNJ){:target="_blank"}.
-
-Please see or contact me if you have questions regarding this course. 
 
 
 ### Accommodations
@@ -84,11 +82,9 @@ If I observe you "struggling" with the course early in the semester then I may f
 
 ## Course Workflow
 <img class="img-right" src="../img/StudyOnline.jpg" alt="Decoration">
-The course is scheduled to meet every weekday from 1230-400pm. However, because of physical distancing guidelines, half of you will meet with me in the classroom from 1230-210 and the other half will meet with me in the classroom from 220-400.
+The course is scheduled to meet every weekday from 1230-400pm. However, because of physical distancing guidelines, half of you will meet with me in the classroom from 1230-210 and the other half will meet with me in the classroom from 220-400. Which group you are in is shown on the [Dates page](Dates-Current.html)).
 
-This course is "flipped," which loosely means that you are responsible for obtaining factual content prior to coming to class and will then use class time with me to apply and expand upon what you learned prior to class. I organized the course in this format because I believe the science that indicates that deeper learning is achieved with this model and because I have found that students need more help from me when applying concepts. Additionally, this format allows for teaching face-to-face, on-line, or a hybrid of both as necessary.
-
-<br>
+This course is "flipped," which loosely means that you are responsible for obtaining factual content prior to coming to class and will then use class time with me to apply and expand upon what you learned prior to class. I organized the course in this format because I believe the research that indicates that deeper learning is achieved with this model, this format allows me to help you more directly when you are applying concepts, and this format allows for teaching face-to-face, on-line, or a hybrid of both as necessary.
 
 <center>
 <img src="../img/ClassStructure.JPG" width="70%" height="70%">
@@ -96,9 +92,9 @@ This course is "flipped," which loosely means that you are responsible for obtai
 
 <br>
 
-The course is composed of daily modules (see link in upper-right) of material. Below describes a general format of instruction that you should follow for each module.
+The course is composed of daily modules (see link in upper-right) of material. The following is a general workflow that will be followed for each module.
 
-1. **Prepare Module Material** -- Each module has a reading that describes the major concepts of the module. These readings are detailed and derived from my lecture notes from past years. I have worked very hard to make these readings short and readable, but some concepts in this course are subtle and required extensive explanation. As appropriate I have added visuals to explain concepts and highlighted key definitions and concepts in boxes. **You need to engage thoroughly with these readings**. By this, I mean that you need to be focused (i.e., not distracted) while reading and you need to think about concepts that don't make sense to you after your first read. **A cursory readings likely will not be adequate.** Here are [some quick tips for how to read a math textbook](https://www.macalester.edu/max/math-econ-119/howtoread/){:target="_blank"}.[^ReadMath]<br><br>Each module has "reading questions" to guide your reading (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). Please ask questions you have about the reading on the "Class Preparation Reading Questions" Teams channel or during help hours ([quick links on class homepage](../){:target="_blank"}). Your preferably (neatly) **hand-written**,[^WriteNotType] answers will be turned in via GradeScope ([quick link on class homepage](../){:target="_blank"}) **by 1100 am on the day that the module is covered in class** (see [Dates page](Dates-Current.html)). The "assignment" on Gradescope will have the module name and "-- prep" suffix. I will grade your answers according to the following rubric.
+1. **Prepare Module Material** -- A detailed reading derived from my past lectures notes describes the major concepts of each module. I have worked very hard to make these readings short and readable, but some concepts in this course are subtle and required extensive explanation. As appropriate I have added visuals to explain concepts and highlighted key definitions and concepts in boxes. **You need to engage thoroughly with these readings**. By this, I mean that you need to be focused (i.e., not distracted) while reading and you need to think hard about concepts that don't make sense to you after your first read. **A cursory reading likely will not be adequate.** Here are [some quick tips for how to read a math textbook](https://www.macalester.edu/max/math-econ-119/howtoread/){:target="_blank"}.[^ReadMath]<br><br>A "Reading Guide" is provided for each module's reading. You should prepare preferably (neatly) **hand-written**,[^WriteNotType] answers to the guide questions. Please ask questions you have about the reading on the "Class Preparation Reading Questions" Teams channel or during help hours ([quick links on class homepage](../){:target="_blank"}). Your "Reading Guide" answers will be turned in via GradeScope ([quick link on class homepage](../){:target="_blank"}) **by 1100 am on the day that the module is covered in class** (see [Dates page](Dates-Current.html)). The "assignment" on Gradescope will have the module name and "-- prep" suffix. I will grade your answers according to the following rubric.
 
 <div class="container-fluid">
   <table class="table table-bordered">
