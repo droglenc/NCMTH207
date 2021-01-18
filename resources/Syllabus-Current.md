@@ -108,18 +108,18 @@ The course is composed of daily modules (see link in upper-right) of material. T
 </div>
 
 {:start="2"}
-1. **Class Time** -- The initial part of class time will consist of a short introduction to the module assignment and a quick discussion of any questions that you all had from the preparation reading. Following this you will work on the module's application assignment (see ["Model Types"](../modules/ModelTypes){:target="_blank"} as an example). I expect you to attend class to get direct help from me and learn from other students' questions. If you are diligent and focused, you will likely finish most of the module assignment during this time.
-1. **Complete an Applied Assignment** -- Module assignments should be prepared [as described here](../modules/resources/hwformat){:target="_blank"} for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is due by 1200 (noon) on the day after the class period dedicated to the module.<br><br>I will "grade for content" (i.e., whether the work is done correctly or not) 50-100% of each module assignment. Questions that I did not "grade for content" will be "graded for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will also be available on the module webpage.
+1. **Class Time** -- The initial part of class time will consist of a short introduction to the module assignment and a quick discussion of any questions that you all had from the preparation reading. Following this you will work on the module's application assignment. I expect you to attend class to get direct help from me and learn from other students' questions. If you are diligent and focused, you will likely finish most of the module assignment during this time.
+1. **Complete an Applied Assignment** -- Module assignments should be prepared [as described here](../modules/resources/hwformat){:target="_blank"} for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is **due by 1200 (noon) on the day after the class period dedicated to the module**.<br><br>I will grade 50-100% of each module assignment "for content" (i.e., whether the work is done correctly or not). Questions that I did not grade "for content" will be graded "for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will be made available on the module webpage.
 
 ----
 
 ## Grading
 <img class="img-right" src="../img/grading.jpg">
-An overall grade will be computed from the module reading preparation answers and assignments described in the ["Course Workflow" section](#course-workflow) and a final exam. Module reading preparation answers and assignments not submitted by the due date time will generally not be accepted (*but please contact me to let me know the circumstances for not being able to complete the work on time*). However, your lowest four reading preparation and assignment scores will be dropped when computing your overall grade.
+An overall grade will be computed from the module reading preparation answers and assignments described in the ["Course Workflow" section](#course-workflow) and a final exam. Module reading preparation answers and assignments not submitted by the due date time will generally not be accepted (*but please contact me to let me know the circumstances for not being able to complete the work on time*). Your lowest four reading preparation AND assignment scores will be dropped when calculating your overall grade.
 
 The final exam is an opportunity for you to show a synthetic understanding of material from throughout the course. The final exam will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the final exam.
 
-An overall score will be computed from the items and associated weights listed in the table below. Grades on individual module reading preparation answers and assignments can be found on the class Gradescope page ([quick link on class homepage](../){:target="_blank"}). I will update your percentage grades for the reading preparation answers and assignments on mycourses.northland.edu ([quick link on class homepage](../)) at the end of each week, which will then show your grade as of that time. You can also compute your overall grade at any time by entering your percentage scores in the boxes below for completed assessments. To project your future grade, also include percentages for future assessments.
+An overall score will be computed from the items and associated weights listed in the table below. Grades on individual module reading preparation answers and assignments will be on the class Gradescope page ([quick link on class homepage](../){:target="_blank"}). I will update your percentage grades for the reading preparation answers and assignments on mycourses.northland.edu ([quick link on class homepage](../)) at the end of each week, which will then show your overall grade as of that time. You can also calculate your overall grade at any time by entering your percentage scores in the boxes below for completed assessments. To project your future grade, also include percentages for future assessments.
 
 <!-- if the assessment weights change then you must change the values in get_wghts() in the grader.js file -->
 
@@ -159,10 +159,10 @@ Your letter grade will be assigned from your overall percentage (rounded to a wh
 <br>
 
 #### Incomplete Grades
-An incomplete grade will be given ONLY in extreme circumstances that are beyond your control, such as a major illness, and will ONLY be given if you have successfully completed the entire course except for the final exam. This is in accordance with [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades").
+An incomplete grade will be given ONLY in extreme circumstances that are beyond your control, such as a major illness, and will ONLY be given if you have successfully completed the entire course except for the final exam. This is in accordance with [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades"). Please communicate with me immediately if something major happens for which you think an incomplete grade is appropriate.
 
 #### Midterm Grades
-I will submit a "midterm grade" for you approximately half-way through the semester. This grade will by my best guess at your lowest possible final grade. I assign this "worst-case" midterm grade because I believe that it is better to know the worst rather than the best-case scenario at that point of the semester. Of course, see me if you have questions about your midterm grade.
+I will submit a "midterm grade" for you approximately half-way through the semester. This grade will by my best guess at your lowest possible final grade (not your overall grade at that time). I assign this "worst-case" midterm grade because I believe that it is better to know the worst rather than the best-case scenario at that point of the semester. Of course, see me if you have questions about your midterm grade.
 
 ----
 
@@ -173,18 +173,18 @@ I will submit a "midterm grade" for you approximately half-way through the semes
 This course is designed in a way that you will have to actively, rather than passively, engage in the course content. In this way, it may differ from some of your other courses. In particular, in this course you will need to:
 
 * Interact with the course material **daily**.
-* Multi-task material from multiple modules (i.e., you may be finishing the assignment for one module while preparing for the next module).
+* Multi-task material from multiple modules (i.e., you will often be finishing the assignment for one module while doing the reading for the next module).
 * Prepare for some course content on your own prior to class.
 * Use class, Teams, and help hours to ask questions and seek help.
-* Assess your own performance by reviewing your graded work and comparing your answers on assignments to the answer key (which will also contain notes related to common mistakes).
-* Ask for help from me (the professor) both during and outside of class. See [Assistance](#assistance) section above.
+* Assess your own performance by reviewing your graded work and comparing your answers on assignments to the answer key.
+* [Ask for help from me](#assistance) both during and outside of class.
 * Maintain focus for an extended period of time (~2 h for each class period).
 
 ### Work Outside of Class
 <img class="img-right" src="../img/studying.jpg" alt="Decoration">
-As a general rule-of-thumb[^studytime], you are expected to work on course material for 2-3 hours of time outside of class for each hour in class. For this course, you will meet for more than 8 hours per week and, thus, you should dedicate between 16 and 24 hours of time outside of class time preparing for class, completing assignments, reviewing your work, and asking questions or for help. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you should consider the aid of apps (e.g., [Forest](https://www.forestapp.cc/){:target="_blank"}) designed to reduce distractions from devices.[^DistractionAids]  
+As a general rule-of-thumb[^studytime], you will need to work on course material for 2-3 hours outside of class for each 1 hour in class. For this course, you will meet for more than 8 hours per week and, thus, you should dedicate between 16 and 24 hours of time outside of class doing the reading, completing assignments, reviewing your work, and asking questions. **The work required for this course can be completed within this amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you should consider apps (e.g., [Forest](https://www.forestapp.cc/){:target="_blank"}) designed to reduce distractions from devices.[^DistractionAids]  
 
-If you feel that you are spending too much time on some assignments or preparations because you are "stuck," then start your work earlier so that you can stop (and do other things) and make plans to seek help (see [assistance section above](#assistance)).
+If you feel that you are spending too much time on some assignments or readings, then start your work earlier so that you can stop (and do other things) and make plans to [seek help](#assistance)).
 
 
 ### Classroom Conduct and Academic Integrity
@@ -192,7 +192,7 @@ If you feel that you are spending too much time on some assignments or preparati
 My intent is to create a classroom environment where learning can occur. One part of this environment is a well-organized course structure built upon relevant learning resources and interesting realistic exercises. Another part is my availability to assist you in learning from these resources and exercises. A third part is your conduct within the classroom. My expectations of you are that you will fully engage in the course (see above) and be respectful of all others in the class. At a minimum, I expect you to adhere to the following behaviors:
 
 * Please arrive to class on time. If you arrive late, then take the first available seat as quietly as possible. If you need to leave early, then please sit near the exit.
-* Please attend the entire class period. Leaving class early defeats the purpose of the class period, does not take advantage of resources (i.e., the professor) that can significantly help your learning, and does not build statistical stamina. Please take care of your personal needs (e.g., using the restroom) before class so that you can stay focused for the entire class period.
+* Please attend the entire class period. Leaving class early defeats the purpose of the class period, does not take advantage of resources (i.e., the professor) that can help your learning, and does not build statistical stamina. Please take care of your personal needs (e.g., using the restroom) before class so that you can stay focused for the entire class period.
 * Please turn your computer on immediately so that you can promptly begin the day's work.
 * Please limit computer use to class work.
 * Please turn off and store out-of-sight cell phones and other electronic devices (except for your computer).
