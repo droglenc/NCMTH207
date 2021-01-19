@@ -8,6 +8,9 @@ mu <- 100
 alphas <- seq(0,10,1)
 sigma_p <- 5
 
+clr_full <- "#1dabe6"
+clr_simple <- "#e43034"
+
 one_iter <- function(ns,mu,alpha,sigma_p) {
   mus <- c(A=mu-alpha,B=mu+alpha)
   dftotal <- sum(ns)-1
@@ -46,17 +49,17 @@ dfsum <- df %>%
 
 main <- ggplot(data=df) +
   geom_crossbar(mapping=aes(x=1.5,y=mu,ymin=mu,ymax=mu),
-                width=1.25,color="red") +
+                width=1.25,color=clr_simple) +
   geom_crossbar(mapping=aes(x=grps,y=mui,ymin=mui,ymax=mui),
-                width=0.25,color="blue") +
+                width=0.25,color=clr_full) +
   geom_segment(mapping=aes(x=grpjit,xend=grpjit,y=y,yend=mui),
-               color="blue",linetype="dashed",size=1) +
+               color=clr_full,linetype="dashed",size=1) +
   geom_point(mapping=aes(x=grpjit,y=y),
              size=2.5,pch=21,fill="gray90",color="black") +
   geom_segment(mapping=aes(x=grps,xend=grps,y=mu,yend=mui),
-               color="red",linetype="dashed",size=1) +
+               color=clr_simple,linetype="dashed",size=1) +
   scale_x_discrete(name="Group") +
-  scale_y_continuous(name="Y",limits=c(80,120)) +
+  scale_y_continuous(name="Response Variable",limits=c(80,120)) +
   theme_classic() +
   theme(axis.text=element_text(size=14),
         axis.title=element_text(size=16))
@@ -66,9 +69,9 @@ SSrng <- c(0,max(dfsum$SSTotal))
 
 SS <- ggplot(data=dfsum,mapping=aes(x=1)) +
   geom_bar(mapping=aes(y=SSTotal),stat="identity",
-           width=0.1,color="black",fill="blue") +
+           width=0.1,color="black",fill=clr_full) +
   geom_bar(mapping=aes(y=SSAmong),stat="identity",
-           width=0.1,color="black",fill="red") +
+           width=0.1,color="black",fill=clr_simple) +
   geom_text(mapping=aes(y=SSTotal),label=expression(SS[Total]),
             parse=TRUE,vjust=-0.5,size=6) +
   geom_text(mapping=aes(y=SSAmong),label=expression(SS[Within]),

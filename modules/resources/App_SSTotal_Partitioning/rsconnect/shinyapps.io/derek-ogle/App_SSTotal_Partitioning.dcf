@@ -5,8 +5,8 @@ account: derek-ogle
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3357717
-bundleId: 3955121
+bundleId: 4117913
 url: https://derek-ogle.shinyapps.io/App_SSTotal_Partitioning/
-when: 1607352459.29833
+when: 1611077356.10477
 asMultiple: FALSE
 asStatic: FALSE
