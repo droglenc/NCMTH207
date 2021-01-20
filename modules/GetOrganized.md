@@ -42,6 +42,12 @@ if (!require('remotes')) install.packages('remotes'); require('remotes')
 remotes::install_github('droglenc/NCStats',type='binary')
 ```
 
+* Install Microsoft Word and Excel (from the Office 365 Suite) ... [follow these directions](https://my.northland.edu/campus-life/campus-services/technology/#accessing-installing-office-365){:target="_blank"}
+    * The web-based versions of Excel and Word are not adequate for our purposes; you need the "full" versions.
+    * This software is free to Northland students as described in the link.
+
+<br>
+
 Regardless if you use your own computer or not, you should do the following before the first day of class.
 
 * Create a folder where you will save all of your work (especially R work) for this course this semester. If you are using the College's computers I suggest creating this folder on the "T:/" drive.
