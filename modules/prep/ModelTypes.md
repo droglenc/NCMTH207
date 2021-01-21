@@ -13,9 +13,9 @@ Use the preparation reading to prepare hand-written answers for the following qu
 1. What is the definition of a response variable?
 1. How do you identify a response variable (in contrast to an explanatory variable)?
 1. What is the difference between a general linear model and a generalIZED linear model?
-1. Which model is used when you have both a quantitative response and explanatory variable?
+1. Which model is used when you have both a quantitative response and a quantitative explanatory variable?
 1. Which model is used when you have a categorical response variable?
-1. Which model is used if the relationship between a quantitative response and a quantitative explanatory should be compare across multiple groups?
+1. Which model is used if the relationship between a quantitative response and a quantitative explanatory should be compared across multiple groups?
 1. Which model is used to predict exam score from how much time a student studied for the exam?
 1. Which model is used to determine if the mean exam score differed among students from different grade levels (FR, SO, JR, SR)?
 
