@@ -1,0 +1,146 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Model Types"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+#3 … I counted stock price correct for either discrete or continuous … it depends on whether you think prices have to stop at the penny or not (I don’t think so … think of gas prices).
+</li>
+<li>
+#5 … this is ordinal because “mixed” is naturally between the other two.
+</li>
+<li>
+#8 … whenver there are two groups that is called binomial, but in our scheme it is nominal (by convention).
+</li>
+<li>
+#9 … age is continuous because it can be measured to many decimals … i.e., 17.348343234 years.
+</li>
+</ul>
+</div>
+<div id="variable-types" class="section level1">
+<h1>Variable Types</h1>
+<ol>
+<li>Temperature (<sup>o</sup>C) is <strong>quantitative-continuous</strong>.</li>
+<li>Habitat complexity (low, medium, high) is <strong>categorical-ordinal</strong>.</li>
+<li>Stock price <strong>quantitative-continuous</strong>.</li>
+<li>Brood size (i.e., number of young) is <strong>quantitative-discrete</strong>.</li>
+<li>Forest type (deciduous, mixed, coniferous) is <strong>categorical-ordinal</strong>.</li>
+<li>Number of docks (on a lake shoreline) is <strong>quantitative-discrete</strong>.</li>
+<li>Continent is <strong>categorical-nominal</strong>.</li>
+<li>Survived (yes, no) is <strong>categorical-nominal</strong>.</li>
+<li>Age (years) is <strong>quantitative-continuous</strong>.</li>
+<li>Race is <strong>categorical-nominal</strong>.</li>
+</ol>
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+#4 &amp; 5may be confusing. Think about which variable may depend on the other variable … whether you think it does depend is immaterial. In both those questions, the dependency only makes sense in one direction.
+</li>
+<li>
+#4 and 5 … “the relationship” is not a variable, thus it cannot be the response variable.
+</li>
+</ul>
+</div>
+</div>
+<div id="response-variables" class="section level1">
+<h1>Response Variables</h1>
+<ol>
+<li><strong>Weight</strong> is the response because it is being predicted.</li>
+<li><strong>Temperature</strong> is the response as we seeing how it is affected by estimated carbon dioxide.</li>
+<li><strong>Metabolic rate</strong> is the response as we want to see if it ix explained (“does it differ”) by sex.</li>
+<li><strong>Satisfaction with deer harvest regulations</strong> is the response because it might be affected by how much money a person makes (but the opposite does not make sense).</li>
+<li><strong>Weight</strong> is response because it might possibly be dependent upon how much money a person makes (but the opposite does not make sense).</li>
+</ol>
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+In the first question, a “menu item” is an individual, not a variable. Thus, it does not enter into the discussion about determining the type of analysis.
+</li>
+<li>
+In all examples in this class there will only ever be one response variable. In these questions, this is most evident in the fourth question. First, “the relationship between” is a type of analysis, not a variable. Thus, one of “hip girth” and “body weight” is the response variable (think y-axis) and the other is the explanatory variable (think x-axis). As these are both quantitative, this is some sort of regression. The relationship (i.e., regression) between these two is going to be compared between two groups; thus, “sex” is another explanatory variable.
+</li>
+<li>
+In question 5, the “number of snails” is categorical because groups were created 1, 2-5, or more than 5 individuals. The actual number of snails was not recorded.
+</li>
+<li>
+In the last three questions remember that the response variable is always plotted on the y-axis. All other variables must be explanatory variables.
+</li>
+</ul>
+</div>
+</div>
+<div id="model-types" class="section level1">
+<h1>Model Types</h1>
+<ol>
+<li>This is a <strong>simple linear regression</strong> because both variables are quantitative (it is not clear which one is the response variable; though, it is likely number of calories).</li>
+<li>This is a <strong>1-way ANOVA</strong> because the response variable (batting average) is quantitative and the explanatory variable (position) is categorical. Additionally, the means are being compared among different groups described by one factor variable.</li>
+<li>This is a <strong>logistic regression</strong> because the response variable (pass (or not) on the first attempt) is categorical (binomial) and the explanatory variable (grade-point-average) is quantitative.</li>
+<li>This is a <strong>indicator variable regression</strong> because the response variable (hip girth or body weight, it is not clear which one) is quantitative and one explanatory variable (hip girth or body weight) is quantitative while the other explanatory variable (sex) is categorical. Additionally, the research is attempting to determine if a relationship between two quantitative variables differs between two groups.</li>
+<li>This is a <strong>2-way ANOVA</strong> because the response variable (body temperature) is quantitative and the two explanatory variables (rock color and group size) are categorical.</li>
+<li>This is a <strong>1-way ANOVA</strong> because the response variable (chick weight) is quantitative and the explanatory variable (feed supplement type) is categorical. Additionally, the means are being compared among diffferent groups described by one factor variable.</li>
+<li>This is a <strong>simple linear regression</strong> because both variables (the environmental health index and overall EPI ) are quantitative (it is not clear which variable is the response).</li>
+<li>This is a <strong>2-way ANOVA</strong> because the response variable (liver weight) is quantitative and the explanatory variables (species [House or Deer Mouse] and where it was located [wild or captive]) are categorical.</li>
+<li>This is a <strong>simple linear regression</strong> because both variables are quantitative (change in GDP and change in unemployment). In addition, the scatterplot has a single regression line.</li>
+<li>This is a <strong>2-way ANOVA</strong> because the response variable (hear rate) is quantitative and the explanatory variables (“condition” [“baseline”, “post-condition”, “post-exposure”] and “treatment” [“yoga”, “rest”]) are categorical.</li>
+<li>This is a <strong>indicator variable regression</strong> because the response variable (clutch mass) is quantitative and one explanatory variable (snout-vent length) is quantitative while the other explanatory variable (tail condition [“tailed”, “tailless”]) is categorical. In addition, a scatterplot with more than one regression line is shown.</li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
