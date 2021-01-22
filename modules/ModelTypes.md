@@ -32,4 +32,4 @@ css: /css/modules.css
 
 ## Practice
 
-* [Assignment](ce/ModelTypes_CE1) ... [ANSWER KEY](cex/KEY_ModelTypes_CE)
+* [Assignment](ce/ModelTypes_CE1) ... [ANSWER KEY](ce/KEY_ModelTypes_CE1)

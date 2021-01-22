@@ -19,6 +19,8 @@ modHTML_CEKeys("KEY_ModelTypes_CE1")
 
 ----
 
+# Variable Types
+
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
@@ -28,8 +30,6 @@ modHTML_CEKeys("KEY_ModelTypes_CE1")
   <li>#9 ... age is continuous because it can be measured to many decimals ... i.e., 17.348343234 years.</li>
 </ul>
 </div>
-
-# Variable Types
 
 1. Temperature (<sup>o</sup>C) is **quantitative-continuous**.
 1. Habitat complexity (low, medium, high) is **categorical-ordinal**.
@@ -44,15 +44,16 @@ modHTML_CEKeys("KEY_ModelTypes_CE1")
  
 ----
 
+# Response Variables
+
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>#4 & 5may be confusing. Think about which variable may depend on the other variable ... whether you think it does depend is immaterial. In both those questions, the dependency only makes sense in one direction.</li>
+  <li>#4 & 5 may be confusing. Think about which variable may depend on the other variable ... whether you think it does depend is immaterial. In both those questions, the dependency only makes sense in one direction.</li>
   <li>#4 and 5 ... "the relationship" is not a variable, thus it cannot be the response variable.</li>
 </ul>
 </div>
 
-# Response Variables
 1. **Weight** is the response because it is being predicted.
 1. **Temperature** is the response as we seeing how it is affected by estimated carbon dioxide.
 1. **Metabolic rate** is the response as we want to see if it ix explained ("does it differ") by sex.
@@ -60,6 +61,8 @@ modHTML_CEKeys("KEY_ModelTypes_CE1")
 1. **Weight** is response because it might possibly be dependent upon how much money a person makes (but the opposite does not make sense).
 
 ----
+
+# Model Types
 
 <div class="alert alert-warning">
 <strong>Note:</strong> 
@@ -71,7 +74,6 @@ modHTML_CEKeys("KEY_ModelTypes_CE1")
 </ul>
 </div>
 
-# Model Types
 1. This is a **simple linear regression** because both variables are quantitative (it is not clear which one is the response variable; though, it is likely number of calories).
 1. This is a **1-way ANOVA** because the response variable (batting average) is quantitative and the explanatory variable (position) is categorical.  Additionally, the means are being compared among different groups described by one factor variable.
 1. This is a **logistic regression** because the response variable (pass (or not) on the first attempt) is categorical (binomial) and the explanatory variable (grade-point-average) is quantitative.
