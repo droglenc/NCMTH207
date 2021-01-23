@@ -19,10 +19,10 @@ css: "/css/modules.css"
 1. Brood size (i.e., number of young)
 1. Forest type (deciduous, mixed, coniferous)
 1. Number of docks (on a lake shoreline)
-1. Continent
+1. Continent (North American, South America, etc.)
 1. Survived (yes, no)
 1. Age (years)
-1. Race
+1. Race (White, Black, Native American, etc.)
 
 &nbsp;
 
@@ -54,7 +54,7 @@ For each question below decide which type of analysis (e.g., one-way ANOVA, two-
 1. Researchers wanted to determine if the body temperature of snails was affected by the color (light, intermediate, or dark) of the intertidal rock which the snail inhabited and whether the snail was found individually, in a small group (2-5 individuals), or a large group (>5 individuals).
 1. An experiment was created to compare the effectiveness of various feed supplements on the growth rate of chickens. Newly hatched chicks were randomly allocated into six groups and each group was given a different feed supplement. The chicks' weights (in grams) after six weeks was recorded. Interest was in determining if mean chick weight differed among the six feed types.<sup id="a1">[1](#f1)</sup>
 1. The 2018 Environmental Performance Index (EPI) ranks 180 countries on 24 performance indicators covering environmental health and ecosystem vitality. These numeric metrics provide a gauge for how close countries are to established environmental policy goals and, thus, offers a scorecard that highlights leaders in environmental performance and provides guidance for countries that aspire to be leaders in sustainability. One goal with these data was to examine the relationship between an environmental health index (a numeric related to air quality, water quality, and lead exposure) and the overall EPI for 180 nations.
-1. Researchers questioned whether morphological changes would occur in rodents held in captivity. To examine this question they measured the liver weight (among other things) of House Mouses (*Mus musculus*) and Deer Mouses (*Peromyscus maniculatus*) captured in the wild and raised in captivity.
+1. Researchers questioned whether morphological changes would occur in rodents held in captivity and whether those changes might differ by speices. To examine this question they measured the liver weight (among other things) of House Mouses (*Mus musculus*) and Deer Mouses (*Peromyscus maniculatus*) captured in the wild or raised in captivity.
 1. [Okun's Law in Macroeconomics](https://en.wikipedia.org/wiki/Okun%27s_law)
 
 ![Okun's Law](../zimgs/OkunsLaw.JPG){:width="350px"}
