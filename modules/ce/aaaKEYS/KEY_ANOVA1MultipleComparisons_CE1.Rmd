@@ -54,7 +54,7 @@ mc1 <- summary(mc,infer=TRUE)
 
 1. The H<sub>0</sub>: &mu;<sub>15C</sub>=&mu;<sub>20C</sub>=&mu;<sub>25C</sub>=&mu;<sub>30C</sub>, where &mu; is the mean days to hatch and the subscripts are the temperatures in the temperature treatments. The H<sub>A</sub>: "mean days to hatch differs between at least one pair of treatment temperatures".
 1. It appears that the mean days to hatch differs between at least one pair of treatment temperatures (`r kPvalue(aov1$"Pr(>F)"[1],latex=FALSE)`<&alpha;).
-1. It appears that the mean days to hatch differs between 30<sup>o</sup>C and 15<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[3],latex=FALSE)`), 20<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[5],latex=FALSE)`), and 25<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[6],latex=FALSE)`). The mean days to hatch did not differ between any other pairs of temperature treatments.
+1. It appears that the mean days to hatch differs between 30<sup>o</sup>C and 15<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[3],latex=FALSE)`), 20<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[5],latex=FALSE)`), and 25<sup>o</sup>C (`r kPvalue(mc1$contrasts$p.value[6],latex=FALSE)`). The mean days to hatch did not differ between any other pairs of temperature treatments (p>`r kPvalue(min(mc1$contrasts$p.value[c(1,2,4)]),latex=FALSE,include.p=FALSE)`).
 1. It appears that the mean days to hatch at 30<sup>o</sup>C was between `r formatC(mc1$contrasts$lower.CL[3],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[3],format="f",digits=1)` days lower than at 15<sup>o</sup>C, between `r formatC(mc1$contrasts$lower.CL[5],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[5],format="f",digits=1)` days lower than at 20<sup>o</sup>C, and between `r formatC(mc1$contrasts$lower.CL[6],format="f",digits=1)` and `r formatC(mc1$contrasts$upper.CL[6],format="f",digits=1)` days lower than at 25<sup>o</sup>C.
 1. The plot of means with 95% confidence intervals is shown below.
 1. It appears that temperature does not affect the mean days to hatch from between 15<sup>o</sup>C to 25<sup>o</sup>C, but declines dramatically from 25<sup>o</sup>C to 30<sup>o</sup>C. Thus, temperature does affect the mean days to hatch but not until temperature is above 25<sup>o</sup>C.
@@ -73,7 +73,8 @@ mc <- emmeans(lm1,specs=pairwise~Temperature)
 ggplot(data=d,mapping=aes(x=Temperature,y=Days)) +
   geom_jitter(alpha=0.25,width=0.05) +
   geom_pointrange(data=mcsum$emmeans,
-                  mapping=aes(x=Temperature,y=emmean,ymin=lower.CL,ymax=upper.CL),
+                  mapping=aes(x=Temperature,y=emmean,
+                              ymin=lower.CL,ymax=upper.CL),
                size=1.1,fatten=2,pch=21,fill="white") +
   labs(y="Days to Hatch",x="Temperature Treatment") +
   theme_NCStats()
@@ -94,7 +95,7 @@ mcS2 <- summary(mcS,infer=TRUE)
 
 1. The H<sub>0</sub>: &mu;<sub>Control</sub>=&mu;<sub>Small</sub>=&mu;<sub>Medium</sub>=&mu;<sub>Large</sub>, where &mu; is the mean total length at the end of the experiment and the subscripts are the tail clipping treatments. The H<sub>A</sub>: "mean total length differs between at least one pair of tail clipping treatments".
 1. It appears that the total length differs between at least one pair of tail clipping treatments (`r kPvalue(aov2$"Pr(>F)"[1],latex=FALSE)`<&alpha;).
-1. It appears that the mean total length differs only between the control (no clipping) treatment and the "large" (10.0-mm) clipping treatment (`r kPvalue(mcS2$contrasts$p.value[3],latex=FALSE)`). The mean total length did not differ between any other pairs of tail clipping treatments.
+1. It appears that the mean total length differs only between the control (no clipping) treatment and the "large" (10.0-mm) clipping treatment (`r kPvalue(mcS2$contrasts$p.value[3],latex=FALSE)`). The mean total length did not differ between any other pairs of tail clipping treatments (p>`r kPvalue(min(mcS2$contrasts$p.value[-3]),latex=FALSE,include.p=FALSE)`).
 1. It appears that the mean total length was between `r formatC(mcS2$contrasts$lower.CL[3],format="f",digits=1)` and `r formatC(mcS2$contrasts$upper.CL[3],format="f",digits=1)` mm lower in the "large" clipping treatment than the control (no clipping) treatment.
 1. The plot of means with 95% confidence intervals is shown below.
 1. It appears that clipping only results in a difference in mean total length if the large (10.0-mm) clipping is compared to no clipping (i.e., control). Part of the reason that few differences in mean total length were observed is because there is a large amount of natural variability among individuals in each group.
