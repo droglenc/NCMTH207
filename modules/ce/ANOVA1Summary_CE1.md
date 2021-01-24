@@ -11,11 +11,13 @@ css: "/css/modules.css"
 
 ----
 
+<!----
 # Iron and Mining
 <img src="../zimgs/Iron_Mining.jpg" alt="Decoration" class="img-right">
 In two previous exercises ([here](ANOVA1Assumptions_CE1.html#iron-and-mining) and [here](ANOVA1Transformations_CE1.html#iron-and-mining)), you have performed partial analyses of whether iron concentrations in streams differed among watersheds with different past mining activities. In this exercise bring those analyses, plus some new analyses, into a complete analysis that follows the workflow and the tenor of the example analyses in the reading.
 
 &nbsp;
+---->
 
 # Speed and Distance Estimation
 <img src="../zimgs/reactiontime.jpg" alt="Decoration" class="img-right">
