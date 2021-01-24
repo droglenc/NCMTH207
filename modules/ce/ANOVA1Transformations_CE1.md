@@ -21,14 +21,14 @@ Create a new variable in the data frame that is the appropriately transformed re
 {:start="2"}
 1. Is there a significant difference in the groups means of the transformed data?
 
-Perform multiple comparisons on the transformed scale (i.e., use `trans=` appropriately in `emmeans()`, but don't use `type="response"` in `summary()` of the `emmeans()` object). Use these results to answer the questions below.
+Perform multiple comparisons on the transformed scale (i.e., use `tran=` appropriately in `emmeans()`, but don't yet use `type="response"` in `summary()`). Use these results to answer the questions below.
 
 {:start="3"}
 1. Specifically which group means (of transformed data) differ?
 1. Interpret the first group mean (i.e., from the `$emmeans` results).
 1. Interpret the first difference of paired means (i.e., from the `$contrasts` results).
 
-Back-transform the multiple comparisons results (i.e., use `type="response"` in `summary()` of the `emmeans()` object). Use these results to answer the questions below.
+Back-transform the multiple comparisons results (i.e., now use `type="response"` in `summary()`). Use these results to answer the questions below.
 
 {:start="6"}
 1. Interpret the first back-transformed group mean (i.e., from the `$emmeans` results).
@@ -46,7 +46,7 @@ Create a new variable in the data frame that is the appropriately transformed re
 {:start="2"}
 1. Is there a significant difference in the groups means of the transformed data?
 
-Perform multiple comparisons on the transformed scale). Use these results to answer the questions below.
+Perform multiple comparisons on the transformed scale. Use these results to answer the questions below.
 
 {:start="3"}
 1. Specifically which group means (of transformed data) differ?
