@@ -10,7 +10,7 @@ Use the preparation reading to prepare hand-written answers for the following qu
 </div>
 
 1. Thoroughly compare and contrast a (generic) simple and full models. You should have at least five characteristics that you discuss.
-1. Define $$Y_{ij}$$, $$Y_{i\cdot}$$, $$Y_{\cdot\cdot}$$, n<sub>i</sub>, n, &epsilon;<sub>ij</sub>.
+1. Define Y<sub>ij</sub>, Y&#772;<sub>i.</sub>, Y&#772;<sub>..</sub>, n<sub>i</sub>, n, &epsilon;<sub>ij</sub>.
 1. What is the simple model in a 2-sample t-test. Express this in symbols, in words, and graphically.
 1. What is the full model in a 2-sample t-test. Express this both in symbols, in words, and graphically.
 1. What is SS<sub>Total</sub>? Express this as a formula and in words with respect to residuals from a model (be specific about which model), as a measure of lack-of-fit, and graphically.
