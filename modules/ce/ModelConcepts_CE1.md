@@ -33,7 +33,7 @@ One potential model for these data is that each observation can be represented b
 1. Describe as fully as possible what the residual for the last individual in Group B means.
 1. Calculate the RSS for this model.
 1. Calculate the residual df for this model.
-1. Calculate the residual MS for this model.
+1. Calculate the residual MS for this model. How does the square root of this value compare to the absolute values of your residuals?
 1. Describe as fully as possible what the square root of this residual MS means.
 
 Another potential model is that each observation can be represented by its corresponding group mean. Use this model (and what you calculated above) to answer the following questions.
@@ -44,7 +44,7 @@ Another potential model is that each observation can be represented by its corre
 1. Describe as fully as possible what the residual for the last individual in Group B means.
 1. Calculate the RSS for this model.
 1. Calculate the residual df for this model.
-1. Calculate the residual MS for this model.
+1. Calculate the residual MS for this model. How does the square root of this value compare to the absolute values of your residuals?
 1. Describe as fully as possible what the square root of this residual MS means.
 
 Results from using the grand mean are usually labeled with "total", whereas those results using group means are usually labeled with "within." With this in mind, answer the following questions.
