@@ -47,6 +47,6 @@ The following questions still refer to values from the ANOVA table.
 {:start="15"}
 1. Explain what the F-ratio means. Your explanation is not simply how it is calculated (i.e., it is not simply a formula), rather it should include two separate explanations focused on variabilities (explained and unexplained) and relative model fits.
 1. How does the F-ratio test statistic from the ANOVA table compare to the t test statistic from the 2-sample t-test? This is not a simple "equals", "less than", or "greater than" answer; there is a specific relationship (as described in the reading).
-1. What three related conclusions can you make from the p-value? These should be related to hypotheses, models, and number of means.
-1. How does the p-value from the ANOVA table compare to the p-value from the 2-sample t-test?
+1. What three related conclusions can you make from the p-value? These should be related to models, hypotheses, and number of means.
+1. How does the p-value from the ANOVA table compare to the p-value from the 2-sample t-test? [*You may need to refer to your results from [this module's exercises](2TReview_CE1_pH.html)*.]
 1. Write an overall conclusion from this study.
