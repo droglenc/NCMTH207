@@ -36,4 +36,4 @@ css: /css/modules.css
 
 ## Practice
 
-* [Assignment](ce/ModelConcepts_CE1) ... [ANSWER KEY](cex/KEY_ModelConcepts_CE)
+* [Assignment](ce/ModelConcepts_CE1) ... [ANSWER KEY](ce/KEY_ModelConcepts_CE)

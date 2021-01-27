@@ -39,4 +39,4 @@ css: /css/modules.css
 
 ## Practice
 
-* [Assignment](ce/ModelComparison_CE1_pH) ... [ANSWER KEY](cex/KEY_ModelComparison_CE_pH)
+* [Assignment](ce/ModelComparison_CE1_pH) ... [ANSWER KEY](ce/KEY_ModelComparison_CE_pH)
