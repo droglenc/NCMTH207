@@ -86,5 +86,20 @@ The video below has a few more hints on how to use Teams for class.
 
 &nbsp;
 
+## Receiving Notifications of Questions
+By default, you will not received notifications of questions from other students and my answers in the channels described above. To get these you must specifically tell Team to notify you as described in the following steps.
+
+* Select a channel from which you want to be notified.
+* Select the three "dots" on the far right side of that channel
+
+![MSTeams Notifications](../zimgs/MSTeams_Notifications.JPG)
+
+* Select "Channel Notifications"
+* Select "All Activity" such that a checkbox will be shown for that item.
+
+My preference is that you do this for at least the "General", "Questions - Class Preparation Reading", and "Questions - Module Assignments" channels.
+
+&nbsp;
+
 ## Assignment
 To demonstrate to me that you have joined the course Team please go to the "Initial Message" channel and start a new conversation where you ask me a questions (about anything ... class-related, me, Northland, life)?
