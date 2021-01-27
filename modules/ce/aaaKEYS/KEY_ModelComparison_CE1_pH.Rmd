@@ -35,8 +35,10 @@ rvr.aov <- anova(lm(pH~river,data=d))
 <strong>Note:</strong> 
 <ul>
   <li>Make sure you show an "R Code and Results" section.</li>
-  <li>Use complete sentences to answer questions and label your results as directed.</li>
-  <li>Questions that ask about a "variance" or "variability" should be answered with an MS, as MS are "true variances" (as described in the reading).
+  <li>Questions that ask about a "variance" or "variability" should be answered with an MS, as MS are "true variances" (as described in the reading).</li>
+  <li>Simple model results are "total" and full model results are "within."</li>
+  <li>When writing the overall conclusion (last question) you can remove all of the statistical jargon (except for possibly the p-value) and simply provide an answer to the study's question ... Is the mean pH different between the two streams.</li>
+  <li>In your conclusion make sure that you say "MEAN" and the mean of what (i.e,. pH). The test is about the summary (i.e., the mean) and not specific observations.</li>
 </ul>
 </div>
 
@@ -50,14 +52,14 @@ rvr.aov <- anova(lm(pH~river,data=d))
 1. The residual df for the full model is **df<sub>Within</sub>=`r rvr.aov$Df[2]`**.
 1. The difference in number of parameters between the two models is **df<sub>Among</sub>=`r rvr.aov$Df[1]`**.
 1. The variance of individuals around the simple model is **MS<sub>Total</sub>=**$\frac{`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`+`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`}{`r rvr.aov$Df[1]`+`r rvr.aov$Df[2]`}$=$\frac{`r formatC(sum(rvr.aov$"Sum Sq"),format="f",digits=4)`}{`r sum(rvr.aov$Df)`}$=**`r formatC(sum(rvr.aov$"Sum Sq")/sum(rvr.aov$Df),format="f",digits=4)`**.
-1. The variance of individuals around the full model is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
-1. The  variance among sample means is **MS<sub>Among</sub>=`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`**.
-1. The amount of "signal" in the data is the measurement of how different the sample means are, which is represented by **MS<sub>Among</sub>=`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`**.
-1. The amount of "noise" in the data is the measurement of how variable individuals are around the group means, which is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
-1. The pooled sample variances for the 2-sample t-test (i.e., $s_{p}^{2}$) is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
+1. The variance of individuals around the full model is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Mean Sq"[2],format="f",digits=4)`**.
+1. The  variance among sample means is **MS<sub>Among</sub>=`r formatC(rvr.aov$"Mean Sq"[1],format="f",digits=4)`**.
+1. The amount of "signal" in the data is the measurement of how different the sample means are, which is represented by **MS<sub>Among</sub>=`r formatC(rvr.aov$"Mean Sq"[1],format="f",digits=4)`**.
+1. The amount of "noise" in the data is the measurement of how variable individuals are around the group means, which is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Mean Sq"[2],format="f",digits=4)`**.
+1. The pooled sample variances for the 2-sample t-test (i.e., $s_{p}^{2}$) is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Mean Sq"[2],format="f",digits=4)`**.
 1. The overall sample variance (i.e., s<sup>2</sup>) is **MS<sub>Total</sub>=`r formatC(sum(rvr.aov$"Sum Sq")/sum(rvr.aov$Df),format="f",digits=4)`**.
-1. The variance not explained by the full model is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Sum Sq"[2],format="f",digits=4)`**.
-1. The variance that is explained by the full model is **MS<sub>Among</sub>=`r formatC(rvr.aov$"Sum Sq"[1],format="f",digits=4)`**.
+1. The variance not explained by the full model is **MS<sub>Within</sub>=`r formatC(rvr.aov$"Mean Sq"[2],format="f",digits=4)`**.
+1. The variance that is explained by the full model is **MS<sub>Among</sub>=`r formatC(rvr.aov$"Mean Sq"[1],format="f",digits=4)`**.
 1. The F-ratio is the ratio of variability that is explained by the full model to the variability that is left unexplained by the full model. In other words it measures what the full model can explain to what it cannot explain. Alternatively the F-ratio is a measure of the reduction in lack-of-fit from the simple to full model to the lack-of-fit of the full model. In other words, it measures how much better than full models fits relative to how poorly it still fits the data.
 1. The F-ratio from the ANOVA table (=`r formatC(rvr.aov$"F value"[1],format="f",digits=3)`) is exactly **the square of the t test statistic** from the 2-sample t-test (`r formatC(rvr.t$statistic,format="f",digits=4)`).
 1. The p-value in the ANOVA table (`r formatC(rvr.aov$"Pr(>F)"[1],digits=4)`) **exactly equals** the p-value from the 2-sample t-test (`r formatC(rvr.t$p.value,digits=4)`).
