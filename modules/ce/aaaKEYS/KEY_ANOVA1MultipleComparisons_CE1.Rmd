@@ -33,12 +33,12 @@ It is not appropriate to conduct multiple comparisons in this example because th
 
 <div class="alert alert-warning">
 <ul>
-  <li>On the first questions, define any symbols used in the hypotheses.</li>
+  <li>On the first question, define any symbols used in the hypotheses.</li>
   <li>On the second question, use the p-value from the ANOVA table. That is the p-value that assesses whether all group means are equal or not. Tukey's multiple comparisons are only used to assess difference in paired means <b>AFTER</b> it has been determined that there is a difference in means.</li>
   <li>In the fourth question, clearly indicate which group is greater (or lesser). Don't just say that you are 95% confident that the difference is between such-and-such.</li>
   <li>In the fifth question include a plot of means with confidence intervals.</li>
   <li>In the last question, note that there is no difference in means for the first three temperatures. So, even though, the plot shows slight differences in the SAMPLE means, those differences were not great enough to conclude that the POPULATION means were different. So, your conclusion should not make it sound like there is a difference among those temperature treatments.</li>
-  <li>Also note in the last question that the conclusion is about the MEAN days to hatch not days to hatche because that is what is tested in the hypotheses.</li>
+  <li>Also note in the last question that the conclusion is about the MEAN days to hatch not days to hatch because that is what is tested in the hypotheses.</li>
   <li>Note how concise the answer key is. Please work to get your answers this concise.</li>
 </ul>
 </div>
@@ -71,7 +71,7 @@ mc <- emmeans(lm1,specs=pairwise~Temperature)
 ( mcsum <- summary(mc,infer=TRUE) )
 
 ggplot(data=d,mapping=aes(x=Temperature,y=Days)) +
-  geom_jitter(alpha=0.25,width=0.05) +
+  geom_jitter(alpha=0.5,width=0.05) +
   geom_pointrange(data=mcsum$emmeans,
                   mapping=aes(x=Temperature,y=emmean,
                               ymin=lower.CL,ymax=upper.CL),
@@ -110,7 +110,7 @@ mcS <- emmeans(lm2,specs=pairwise~Treatment)
 ( mcSsum <- summary(mcS,infer=TRUE) )
 
 ggplot(data=df,mapping=aes(x=Treatment,y=TL)) +
-  geom_jitter(alpha=0.25,width=0.05) +
+  geom_jitter(alpha=0.5,width=0.05) +
   geom_pointrange(data=mcSsum$emmeans,
                   mapping=aes(x=Treatment,y=emmean,ymin=lower.CL,ymax=upper.CL),
                size=1.1,fatten=2,pch=21,fill="white") +

@@ -26,7 +26,7 @@ lm1 <- lm(length~species,data=cuc)
 c1 <- coef(lm1)
 ci1 <- confint(lm1)
 n <- nrow(cuc)
-I <- length(levels(cuc$species))
+I <- length(unique(cuc$species))
 ```
 
 ----
@@ -34,14 +34,11 @@ I <- length(levels(cuc$species))
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>Use complete sentences to answer questions.</li>
   <li>MS<sub>Total</sub> is not usually shown in an ANOVA table but it is an important value (i.e., the overall variance ignoring the groups). I put it in the table for the second question because it was one of the given values.</li>
   <li>When you see a question about a "variance" then it will be answered with an "MS". Questions about variance of individuals will NOT be MS<sub>Among</sub>. Variances ignoring groups uses the simple model and will thus be MS<sub>Total</sub>.</li>
   <li>In the cuckoos question ... </li>
   <ol>
-    <li>When asked to assess differences among "all" group means then you must use the overall p-value found in the ANOVA table.</li>
     <li>Don't say "the groups differ" or the "the mean differs among groups." Be explicit ... say "the mean length of cuckoo eggs differs among the three host species nests."</li>
-    <li>You will be asked to interpret MS and F values in the future. If this is not making sense to you then see me for help.</li>
   </ol>
 </ul>
 </div>
