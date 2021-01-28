@@ -32,4 +32,4 @@ XXX
 
 ## Practice
 
-* [Assignment](ce/IVRTesting_CE1) ... [ANSWER KEY](cex/KEY_IVRTesting_CE)
+* [Assignment](ce/IVRTesting_CE1) ... [ANSWER KEY](ce/KEY_IVRTesting_CE1)

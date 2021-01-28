@@ -32,4 +32,4 @@ XXX
 
 ## Practice
 
-* [Assignment](ce/ANOVA2Analysis_CE1)
+* [Assignment](ce/ANOVA2Analysis_CE1) ... [ANSWER KEY](ce/KEY_ANOVA1Analysis_CE1)

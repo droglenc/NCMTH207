@@ -32,4 +32,4 @@ XXX
 
 ## Practice
 
-* [Assignment](ce/SLRTransformations_CE1) ... [ANSWER KEY](cex/KEY_SLRTransformations_CE)
+* [Assignment](ce/SLRTransformations_CE1) ... [ANSWER KEY](ce/KEY_SLRTransformations_CE1)

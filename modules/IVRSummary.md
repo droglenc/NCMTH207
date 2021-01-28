@@ -31,4 +31,4 @@ css: /css/modules.css
 
 ## Practice
 
-* [Assignment](ce/IVRSummary_CE1) ... [ANSWER KEY](cex/KEY_IVRSummary_CE)
+* [Assignment](ce/IVRSummary_CE1) ... [ANSWER KEY](ce/KEY_IVRSummary_CE1)

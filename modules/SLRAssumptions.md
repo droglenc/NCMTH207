@@ -32,4 +32,4 @@ XXX
 
 ## Practice
 
-* [Assignment](ce/SLRAssumptions_CE1) ... [ANSWER KEY](cex/KEY_SLRAssumptions_CE)
+* [Assignment](ce/SLRAssumptions_CE1) ... [ANSWER KEY](ce/KEY_SLRAssumptions_CE1)

@@ -32,4 +32,4 @@ XXX
 
 ## Practice
 
-* [Assignment](ce/LogRegAnalysis_CE1) ... [ANSWER KEY](cex/KEY_LogRegAnalysis_CE)
+* [Assignment](ce/LogRegAnalysis_CE1) ... [ANSWER KEY](ce/KEY_LogRegAnalysis_CE1)

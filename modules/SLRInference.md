@@ -32,4 +32,4 @@ XXX
 
 ## Practice
 
-* [Assignment](ce/SLRInference_CE1) ... [ANSWER KEY](cex/KEY_SLRInference_CE)
+* [Assignment](ce/SLRInference_CE1) ... [ANSWER KEY](ce/KEY_SLRInference_CE1)
