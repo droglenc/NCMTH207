@@ -36,4 +36,4 @@ css: /css/modules.css
 
 ## Practice
 
-* [Assignment](ce/ANOVA1Foundations_CE1) ... [ANSWER KEY](cex/KEY_ANOVA1Foundations_CE)
+* [Assignment](ce/ANOVA1Foundations_CE1) ... [ANSWER KEY](ce/KEY_ANOVA1Foundations_CE1)
