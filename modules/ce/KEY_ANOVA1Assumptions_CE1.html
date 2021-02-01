@@ -1,0 +1,149 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "One-Way ANOVA Assumptions"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<div id="assumptions-i" class="section level1">
+<h1>Assumptions I</h1>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+In class you were asked to assess the assumptions both with the hypothesis tests and the graphs.
+</li>
+<li>
+Don’t automatically say that the histogram of residuals looks “normally distributed” because it is very unlikely to. You can say that is it is “not strongly skewed.”
+</li>
+<li>
+If you can say where an outlier is located then you should do so.
+</li>
+</ul>
+</div>
+<p>The variances do not appear to be equal as suggested by the Levene’s test p-value (=0.0085) and the somewhat different sized boxes in the boxplots below. The residuals appear to be normal according to the Anderson-Darling p-value (=0.2835) and the histogram below does not look strongly skewed. There is evidence for a significant outlier according to the outlier test p-value (=0.0220) and the distinctly “odd” individual on the boxplot for Group C.</p>
+<div id="r-code-and-results." class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>&gt; df1 &lt;- read.csv(&quot;http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions1.csv&quot;)
+&gt; lm1 &lt;- lm(measure~group,data=df1)
+&gt; assumptionCheck(lm1)</code></pre>
+<p><img src="KEY_ANOVA1Assumptions_CE1_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p> </p>
+</div>
+</div>
+<div id="assumptions-ii" class="section level1">
+<h1>Assumptions II</h1>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+In class you were asked to assess the assumptions both with the hypothesis tests and the graphs.
+</li>
+</ul>
+</div>
+<p>The residuals appear to be not normal according to the Anderson-Darling p-value (&lt;0.00005) and the strongly right-skewed histogram below. There is evidence for a significant outlier according to the outlier test p-value (&lt;0.00005) and by points outside the “whiskers” in the boxplot of residuals. The variances do not appear to be equal based on the different sized boxes in the boxplots below and the Levene’s test p-value (=0.0005).</p>
+<div id="r-code-and-results.-1" class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>&gt; df2 &lt;- read.csv(&quot;http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions2.csv&quot;)
+&gt; lm2 &lt;- lm(measure~group,data=df2)
+&gt; assumptionCheck(lm2)</code></pre>
+<p><img src="KEY_ANOVA1Assumptions_CE1_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p> </p>
+</div>
+</div>
+<div id="temperature-and-turtle-hatchings" class="section level1">
+<h1>Temperature and Turtle Hatchings</h1>
+<div class="alert alert-warning">
+<ul>
+<li>
+For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say “the groups are independent.” Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.
+</li>
+</ul>
+</div>
+<p>The variances appear to be equal as suggested by the Levene’s test p-value (=0.3982). The boxes in the boxplot appears different sized, so the p-value results could be due to the small sample size. The residuals appear to be normal according to the Anderson-Darling p-value (=0.6945) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test p-value (=0.7735). The boxplots of residuals suggest possible outliers though in the 25<sup>o</sup>C and 30<sup>o</sup>C treatments. From this, I conclude that these three assumptions are tentatively met.</p>
+<p>The individuals are likely independent. The background noted that the eggs were put into <strong>individual</strong> containers that were then assigned a temperature. It is not possible for a container to have multiple temperatures, so there is among-group independence. Each container had only one egg so there is likely within-group independence. There is not information about where the eggs came from but under the assumption that they did not all come from the same or only a few nests then this is likely not a dependency problem. All-in-all this assumption is likely largely met.</p>
+<div id="r-code-and-results.-2" class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>&gt; d &lt;- read.csv(&quot;turtles.csv&quot;)
+&gt; d$Temperature &lt;- factor(d$Temperature)</code></pre>
+<pre class="r"><code>&gt; lm3 &lt;- lm(Days~Temperature,data=d)
+&gt; assumptionCheck(lm3)</code></pre>
+<p><img src="KEY_ANOVA1Assumptions_CE1_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p> </p>
+</div>
+</div>
+<div id="iron-and-mining" class="section level1">
+<h1>Iron and Mining</h1>
+<div class="alert alert-warning">
+<ul>
+<li>
+For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say “the groups are independent.” Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.
+</li>
+<li>
+Make sure to address both within- and among-group independence.
+</li>
+<li>
+Don’t automatically say that the boxplots look equal or don’t look equal. In this question that is almost impossible to see because the outliers have a huge effect on the y-axis scale.
+</li>
+</ul>
+</div>
+<p>There is a clear issue with normality here as shown by the Anderson-Darling p-value (=&lt;0.00005) and the histogram below is strongly skewed. In addition there is a clear outlier to the far right (in the abandoned group) as shown by the outlier test p-value (=&lt;0.00005) and the boxplots of residuals. The variances appear to be equal according to the Levene’s test p-value (=0.1077), but this p-value is likely compromised by the normality and outlier issues. The huge outlier also makes the boxplots of residuals largely useless for examining equal variances. It is clear that there are violations of these three assumptions.</p>
+<p>The individuals are likely independent but this is not abundantly clear. The measurements are from 120 <strong>unique</strong> rivers, so there is not multiple measurements on the same river. There is among-group independence as it is not possible for a stream to be in two land uses. Some of the rivers are likely in the same watershed and would likely share some characteristics due to that (e.g., geological, land use, etc.) but this is not the case for all streams. The data are likely independent enough for our purposes.</p>
+<div id="r-code-and-results.-3" class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>&gt; im &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/AcidMineDrainage.csv&quot;)
+&gt; im$use &lt;- factor(im$use,levels=c(&quot;Unmined&quot;,&quot;Reclaimed&quot;,&quot;Abandoned&quot;))
+&gt; assumptionCheck(lm4)</code></pre>
+<p><img src="KEY_ANOVA1Assumptions_CE1_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

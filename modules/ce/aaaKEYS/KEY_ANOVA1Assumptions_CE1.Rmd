@@ -33,7 +33,16 @@ out.p1 <- outlierTest(lm1)$bonf.p[[1]]
 ad.p1 <- adTest(lm1$residuals)$p.value
 ```
 
-The variances do not appear to be equal as suggested by the Levene's test p-value (=`r kPvalue(lev.p1,latex=FALSE,include.p=FALSE)`) and the somewhat different sized boxes in the  boxplots below. The residuals appear to be normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p1,latex=FALSE,include.p=FALSE)`) and the histogram below does not look strongly skewed. There is evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p1,latex=FALSE,include.p=FALSE)`) and the distinctly "odd" individual on the right-side of the residual histogram below.
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>In class you were asked to assess the assumptions both with the hypothesis tests and the graphs.</li>
+  <li>Don't automatically say that the histogram of residuals looks "normally distributed" because it is very unlikely to. You can say that is it is "not strongly skewed."</li>
+  <li>If you can say where an outlier is located then you should do so.</li>
+</ul>
+</div>
+
+The variances do not appear to be equal as suggested by the Levene's test p-value (=`r kPvalue(lev.p1,latex=FALSE,include.p=FALSE)`) and the somewhat different sized boxes in the  boxplots below. The residuals appear to be normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p1,latex=FALSE,include.p=FALSE)`) and the histogram below does not look strongly skewed. There is evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p1,latex=FALSE,include.p=FALSE)`) and the distinctly "odd" individual on the boxplot for Group C.
 
 ### R Code and Results.
 ```{r fig.width=7}
@@ -53,6 +62,13 @@ lev.p2 <- levenesTest(lm2)$"Pr(>F)"[1]
 out.p2 <- outlierTest(lm2)$bonf.p[[1]]
 ad.p2 <- adTest(lm2$residuals)$p.value
 ```
+
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>In class you were asked to assess the assumptions both with the hypothesis tests and the graphs.</li>
+</ul>
+</div>
 
 The residuals appear to be not normal according to the Anderson-Darling p-value (`r kPvalue(ad.p2,latex=FALSE,include.p=FALSE)`) and the strongly right-skewed histogram below. There is evidence for a significant outlier according to the outlier test p-value (`r kPvalue(out.p2,latex=FALSE,include.p=FALSE)`) and by points outside the "whiskers" in the boxplot of residuals. The variances do not appear to be equal based on the different sized boxes in the boxplots below and the Levene's test p-value (=`r kPvalue(lev.p2,latex=FALSE,include.p=FALSE)`). 
 
@@ -83,7 +99,7 @@ ad.p3 <- adTest(lm3$residuals)$p.value
 
 The variances appear to be equal as suggested by the Levene's test p-value (=`r kPvalue(lev.p3,latex=FALSE,include.p=FALSE)`). The boxes in the boxplot appears different sized, so the p-value results could be due to the small sample size. The residuals appear to be normal according to the Anderson-Darling p-value (=`r kPvalue(ad.p3,latex=FALSE,include.p=FALSE)`) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test p-value (=`r kPvalue(out.p3,latex=FALSE,include.p=FALSE)`). The boxplots of residuals suggest possible outliers though in the 25<sup>o</sup>C and 30<sup>o</sup>C treatments. From this, I conclude that these three assumptions are tentatively met.
 
-The individuals are likely independent. The background noted that the eggs were put into **individual** containers that were then assigned a temperature. There is not information about where the eggs came from but under the assumption that they did not all come from the same or only a few nests then this is likely not a dependency problem. All-in-all this assumption is likely largely met.
+The individuals are likely independent. The background noted that the eggs were put into **individual** containers that were then assigned a temperature. It is not possible for a container to have multiple temperatures, so there is among-group independence. Each container had only one egg so there is likely within-group independence. There is not information about where the eggs came from but under the assumption that they did not all come from the same or only a few nests then this is likely not a dependency problem. All-in-all this assumption is likely largely met.
 
 ### R Code and Results.
 ```{r eval=FALSE}
@@ -102,6 +118,8 @@ assumptionCheck(lm3)
 <div class="alert alert-warning">
 <ul>
   <li>For the independence assumption, be clear that you have thought through what it means to be independent within or among groups. It is not adequate to just say "the groups are independent." Also note that there is nothing in the data that speaks to independence. Assessing independence is purely a thought process.</li>
+  <li>Make sure to address both within- and among-group independence.</li>
+  <li>Don't automatically say that the boxplots look equal or don't look equal. In this question that is almost impossible to see because the outliers have a huge effect on the y-axis scale.</li>
 </ul>
 </div>
 
@@ -118,7 +136,7 @@ ad.p4 <- adTest(lm4$residuals)$p.value
 
 There is a clear issue with normality here as shown by the Anderson-Darling p-value (=`r kPvalue(ad.p4,latex=FALSE,include.p=FALSE)`) and the histogram below is strongly skewed. In addition there is a clear outlier to the far right (in the abandoned group) as shown by the outlier test p-value (=`r kPvalue(out.p4,latex=FALSE,include.p=FALSE)`) and the boxplots of residuals. The variances appear to be equal according to the Levene's test p-value (=`r kPvalue(lev.p4,latex=FALSE,include.p=FALSE)`), but this p-value is likely compromised by the normality and outlier issues. The huge outlier also makes the boxplots of residuals largely useless for examining equal variances. It is clear that there are violations of these three assumptions.
 
-The individuals are likely independent but this is not abundantly clear. The measurements are from 120 **unique** rivers, so there is not multiple measurements on the same river. However, some of the rivers are likely in the same watershed and would likely share some characteristics due to that (e.g., geological, land use, etc.). The data are likely independent enough for our purposes.
+The individuals are likely independent but this is not abundantly clear. The measurements are from 120 **unique** rivers, so there is not multiple measurements on the same river. There is among-group independence as it is not possible for a stream to be in two land uses. Some of the rivers are likely in the same watershed and would likely share some characteristics due to that (e.g., geological, land use, etc.) but this is not the case for all streams. The data are likely independent enough for our purposes.
 
 
 ### R Code and Results.
