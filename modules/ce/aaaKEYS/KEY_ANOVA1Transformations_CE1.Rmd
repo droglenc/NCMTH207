@@ -38,7 +38,7 @@ source("../../../rhelpers/knitr_setup.R")
 
 # Assumptions I
 
-```{r Assumptions1, echo=FALSE, warning=FALSE}
+```{r Assumptions1, echo=FALSE, warning=FALSE, message=FALSE}
 df1 <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions1.csv")
 df1$sqrtmeas <- sqrt(df1$measure)
 lm1t <- lm(sqrtmeas~group,data=df1)
