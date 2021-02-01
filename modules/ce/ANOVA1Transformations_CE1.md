@@ -76,3 +76,4 @@ Create a new variable in the data frame that is the appropriately transformed re
 1. Interpret the smallest back-transformed group mean.
 1. Interpret (on the transformed scale) the difference in means for the paired means that are most different.
 1. Interpret the back-transform difference in group means for paired means that are most different.
+1. Construct a plot of the back-transformed means with 95% confidence intervals.
