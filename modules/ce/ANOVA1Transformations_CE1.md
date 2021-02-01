@@ -14,7 +14,7 @@ css: "/css/modules.css"
 # Transformations I
 In [a previous exercise](ANOVA1Assumptions_CE1.html#assumptions-i) you assessed the assumptions of a One-Way ANOVA (except for independence) for the data in [ANOVA1Assumptions1.csv](http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions1.csv). Load those data and fit the untransformed linear model again. Use these data to answer the questions below. Show and refer to results as appropriate.
 
-1. What transformation results in the One-Way ANOVA assumptions to be adequately met. Briefly but completely explain your evidence for why each assumption is now met.
+1. What transformation results in the One-Way ANOVA assumptions to be adequately met.
 
 Create a new variable in the data frame that is the appropriately transformed response variable. Fit a new One-Way ANOVA with this transformed variable. Use it to answer the following questions.
 
@@ -39,7 +39,7 @@ Back-transform the multiple comparisons results (i.e., now use `type="response"`
 # Transformations II
 In [a previous exercise](ANOVA1Assumptions_CE1.html#assumptions-ii) you assessed the assumptions of a One-Way ANOVA (except for independence) for the data in [ANOVA1Assumptions2.csv](http://derekogle.com/NCMTH207/modules/ce/data/ANOVA1Assumptions2.csv). Load those data and fit the untransformed linear model again. Use these data to answer the questions below. Show and refer to results as appropriate.
 
-1. What transformation results in the One-Way ANOVA assumptions to be adequately met. Briefly but completely explain your evidence for why each assumption is now met.
+1. What transformation results in the One-Way ANOVA assumptions to be adequately met.
 
 Create a new variable in the data frame that is the appropriately transformed response variable. Fit a new One-Way ANOVA with this transformed variable. Use it to answer the following questions.
 
