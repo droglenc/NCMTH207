@@ -14,6 +14,7 @@
 
 <title>Exercise Key</title>
 
+<script src="KEY_ANOVA1Transformations_CE1_files/header-attrs-2.6/header-attrs.js"></script>
 <script src="KEY_ANOVA1Transformations_CE1_files/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="KEY_ANOVA1Transformations_CE1_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -23,8 +24,6 @@
 <script src="KEY_ANOVA1Transformations_CE1_files/navigation-1.1/tabsets.js"></script>
 <link href="KEY_ANOVA1Transformations_CE1_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="KEY_ANOVA1Transformations_CE1_files/highlightjs-9.12.0/highlight.js"></script>
-<link href="KEY_ANOVA1Transformations_CE1_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="KEY_ANOVA1Transformations_CE1_files/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -79,6 +78,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="/css/modules.css" type="text/css" />
 
@@ -205,7 +205,7 @@ Refer to specific p-values and graphs when demonstrating that the assumptions ar
 Use the ANOVA table p-value when testing for a difference in group means.
 </li>
 <li>
-In question 2 not the careful wording about how the mean of the transformed variable is what differs (not the mean of the untransformed variable).
+In question 2 be careful to state that it is the mean of the transformed variable that differs (not the mean of the untransformed variable).
 </li>
 <li>
 Use Tukey’s multiple comparison results when identifying specifically which pairs of group means differ.
@@ -220,20 +220,19 @@ Note that when the square root transformation was used that the group mean could
 Note that when the log transformation was used that both the group mean (question 6) and the difference in group means (question 7) could be back-transformed.
 </li>
 <li>
-I find it hard to interpret the back-transformed difference in means (from the log scale) when the ratio is less than 1. Thus, I prefer to flip the ratio and talk about the second group is that many times larger than the first group. This is demonstrated in my “alternatively” sentences for question 7 when a log transformation was used.
+I find it hard to interpret the back-transformed difference in means (from the log scale) when the ratio is less than 1. Thus, I prefer to flip the ratio and talk about how the second group is that many times larger than the first group.
 </li>
 </ul>
 </div>
 <div id="assumptions-i" class="section level1">
 <h1>Assumptions I</h1>
-<pre><code>Note: Use &#39;contrast(regrid(object), ...)&#39; to obtain contrasts of back-transformed estimates</code></pre>
 <ol style="list-style-type: decimal">
 <li>After <strong>square root</strong> transforming, the variances appear to be equal as suggested by the Levene’s test (p=0.2518) and the similar sized boxes in the boxplots below. The residuals appear to be normally distributed according to the Anderson-Darling test (p=0.2174) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test (p=0.2832).</li>
 <li>There appears to be a difference in mean square root of the measurement variable among some of the group means (ANOVA p&lt;0.00005).</li>
 <li>It appears that mean square root of the measurement variable differs between all pairs of groups (p&lt;0.00005), except for the “B” and “D” groups (p=0.8013).</li>
-<li>The mean square root of the measurement variable for the “A” group is 9.92.</li>
-<li>The mean square root of the measurement variable is -9.117 units less for the “A” group than for the “B” group.</li>
-<li>The back-transformed mean of the measurement variable for the “A” group is (=9.92<sup>2</sup>).</li>
+<li>The mean square root of the measurement variable for the “A” group is between 8.48 and 11.36.</li>
+<li>The mean square root of the measurement variable is betwen 6.439 and 11.794 units less for the “A” group than for the “B” group.</li>
+<li>The back-transformed mean of the measurement variable for the “A” group is between 71.97 (=8.48<sup>2</sup>) and 128.94 (=11.36<sup>2</sup>).</li>
 <li>The differences in square root transformed values <strong>can not</strong> be back-transformed!</li>
 </ol>
 <div id="r-code-and-results." class="section level3">
@@ -311,10 +310,10 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 <li>After <strong>log</strong> transforming, the variances appear to be equal as suggested by the Levene’s test (p=0.7675) and the similar sized boxes in the boxplots below. The residuals appear to be normally distributed according to the Anderson-Darling test (p=0.5422) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test (p=0.9257).</li>
 <li>There appears to be a difference in mean log of the measurement variable among some of the group means (ANOVA p&lt;0.00005).</li>
 <li>It appears that mean log of the measurement variable differs between all three groups (p&lt;0.0135).</li>
-<li>The mean log of the measurement variable for the “C” group is 3.16.</li>
-<li>The mean log of the measurement variable is -1.755 units less for the “B” group than for the “C” group.</li>
-<li>The back-transformed mean of the measurement variable for the “C” group is 8.87 (=e<sup>2.18</sup>).</li>
-<li>The mean of the measurement variable for the “B” group is 0.173 as large as the mean for the “C” group. Alternatively, the mean of the measurement variable for the “C” group is 5.784 times larger than the mean for the “B” group.</li>
+<li>The mean log of the measurement variable for the “A” group is between 1.81 and 2.56.</li>
+<li>The mean log of the measurement variable is between 0.135 and 1.415 units greater for the “A” group than for the “B” group.</li>
+<li>The back-transformed mean of the measurement variable for the “A” group is between 6.08 (=e<sup>1.81</sup>) and 12.94 (=e<sup>2.56</sup>).</li>
+<li>The back-transformed mean of the measurement variable for the “A” group is between 1.144 and 4.114 TIMES larger than the back-transformed mean for the “B” group.</li>
 </ol>
 <div id="r-code-and-results.-1" class="section level3">
 <h3>R Code and Results.</h3>
@@ -383,10 +382,10 @@ Tests are performed on the log scale </code></pre>
 <li>After <strong>log</strong> transforming, the variances appear to be equal as suggested by the Levene’s test (p=0.4719) and the similarity in the boxes in the boxplot below. The Anderson-Darling test suggests that the residuals are not normally distributed (p=0.0004), but the histogram below is not strongly skewed so this assumption is adequately met. There is no strong evidence for a significant outlier according to the outlier test (p=0.0565).</li>
 <li>There appears to be a difference in mean log iron concentration in streams among some of the basin types (ANOVA p&lt;0.00005).</li>
 <li>It appears that mean log iron concentration in mines in basins with abandoned mines differs from basins with reclaimed mines (p&lt;0.00005) and basins that were unmined (p&lt;0.00005). The mean log concentration did not differ between streams in basins with reclaimed mines and basins that were not mined (p=0.0694).</li>
-<li>The mean log concentration of iron was lowest in streams in the unmined basin at -1.286.</li>
-<li>The back-transformed mean concentration of iron in streams in the unmined basin is 0.276 mg/L (=e<sup>-1.286</sup>).</li>
-<li>The mean log concentration of iron in streams in the unmined basin was -2.199 units less than the mean log concentration of iron in streams in basins with abandoned mines.</li>
-<li>The mean concentration of iron in streams in the unmined basin was 0.111 as large as the mean concentration of iron in streams in the basin with abandoned mines. Alternatively, mean concentration of iron in streams in the basin with abandoned mines was 9.016 as large as the mean concentration of iron in streams in the unmined basin.</li>
+<li>The mean log concentration of iron was lowest in streams in the unmined basin at between -1.748 and -0.823.</li>
+<li>The back-transformed mean concentration of iron in streams in the unmined basin is between 0.174 mg/L (=e<sup>-1.748</sup>) and 0.439 mg/L (=e<sup>-0.823</sup>).</li>
+<li>The mean log concentration of iron in streams in the unmined basin was between 1.392 and 3.006 units less than the mean log concentration of iron in streams in basins with abandoned mines.</li>
+<li>The mean concentration of iron in streams in the unmined basin was between 0.050 and 0.248 as large as the mean concentration of iron in streams in the basin with abandoned mines. Alternatively, mean concentration of iron in streams in the basin with abandoned mines was between 4.024 and 20.198 times as large as the mean concentration of iron in streams in the unmined basin.</li>
 </ol>
 <div id="r-code-and-results.-2" class="section level3">
 <h3>R Code and Results.</h3>
@@ -447,6 +446,19 @@ Conf-level adjustment: tukey method for comparing a family of 3 estimates
 Intervals are back-transformed from the log scale 
 P value adjustment: tukey method for comparing a family of 3 estimates 
 Tests are performed on the log scale </code></pre>
+<pre class="r"><code>&gt; p1 &lt;- ggplot() +
+    geom_jitter(data=im,mapping=aes(x=use,y=FE),alpha=0.25,width=0.05) +
+    geom_errorbar(data=mcsum3bt$emmeans,
+                  mapping=aes(x=use,y=response,ymin=lower.CL,ymax=upper.CL),
+                  size=2,width=0) +
+    geom_point(data=mcsum3bt$emmeans,mapping=aes(x=use,y=response),
+                 size=2,pch=21,fill=&quot;white&quot;) +
+    labs(y=&quot;Iron Concentration&quot;,x=&quot;Land Use Category&quot;) +
+    theme_NCStats()
+&gt; p1
+&gt; p1 +
+    coord_cartesian(ylim=c(0,10))</code></pre>
+<p><img src="KEY_ANOVA1Transformations_CE1_files/figure-html/unnamed-chunk-7-1.png" width="336" /><img src="KEY_ANOVA1Transformations_CE1_files/figure-html/unnamed-chunk-7-2.png" width="336" /></p>
 </div>
 </div>
 

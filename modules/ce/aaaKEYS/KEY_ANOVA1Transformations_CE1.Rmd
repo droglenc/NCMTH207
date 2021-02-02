@@ -27,12 +27,12 @@ source("../../../rhelpers/knitr_setup.R")
 <ul>
   <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
   <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
-  <li>In question 2 not the careful wording about how the mean of the transformed variable is what differs (not the mean of the untransformed variable).</li>
+  <li>In question 2 be careful to state that it is the mean of the transformed variable that differs (not the mean of the untransformed variable).</li>
   <li>Use Tukey's multiple comparison results when identifying specifically which pairs of group means differ.</li>
   <li>In questions 3-5 you must specifically refer to the mean of the transformed variable.</li>
   <li>Note that when the square root transformation was used that the group mean could be back-transformed (question 6) but the difference in group means could not (question 7).</li>
   <li>Note that when the log transformation was used that both the group mean (question 6) and the difference in group means (question 7) could be back-transformed.</li>
-  <li>I find it hard to interpret the back-transformed difference in means (from the log scale) when the ratio is less than 1. Thus, I prefer to flip the ratio and talk about the second group is that many times larger than the first group. This is demonstrated in my "alternatively" sentences for question 7 when a log transformation was used.</li>
+  <li>I find it hard to interpret the back-transformed difference in means (from the log scale) when the ratio is less than 1. Thus, I prefer to flip the ratio and talk about how the second group is that many times larger than the first group.</li>
 </ul>
 </div>
 
@@ -54,9 +54,9 @@ ad.p1t <- adTest(lm1t$residuals)$p.value
 1. After **square root** transforming, the variances appear to be equal as suggested by the Levene's test (`r kPvalue(lev.p1t,latex=FALSE)`) and the similar sized boxes in the boxplots below. The residuals appear to be normally distributed according to the Anderson-Darling test (`r kPvalue(ad.p1t,latex=FALSE)`) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test (`r kPvalue(out.p1t,latex=FALSE)`).
 1. There appears to be a difference in mean square root of the measurement variable among some of the group means (ANOVA `r kPvalue(aov.p1t,latex=FALSE)`).
 1. It appears that mean square root of the measurement variable differs between all pairs of groups (`r kPvalue(max(mcsum1t$contrasts$p.value[-5]),latex=FALSE)`), except for the "B" and "D" groups (`r kPvalue(mcsum1t$contrasts$p.value[5],latex=FALSE)`).
-1. The mean square root of the measurement variable for the "A" group is `r formatC(mcsum1t$emmeans$emmean[1],format="f",digits=2)`.
-1. The mean square root of the measurement variable is `r formatC(mcsum1t$contrasts$estimate[1],format="f",digits=3)` units less for the "A" group than for the "B" group.
-1. The back-transformed mean of the measurement variable for the "A" group is `r formatC(mcsum1bt$emmeans$emmean[1],format="f",digits=2)` (=`r formatC(mcsum1t$emmeans$emmean[1],format="f",digits=2)`<sup>2</sup>).
+1. The mean square root of the measurement variable for the "A" group is between `r formatC(mcsum1t$emmeans$lower.CL[1],format="f",digits=2)` and `r formatC(mcsum1t$emmeans$upper.CL[1],format="f",digits=2)`.
+1. The mean square root of the measurement variable is betwen `r formatC(-1*mcsum1t$contrasts$upper.CL[1],format="f",digits=3)` and `r formatC(-1*mcsum1t$contrasts$lower.CL[1],format="f",digits=3)` units less for the "A" group than for the "B" group.
+1. The back-transformed mean of the measurement variable for the "A" group is between `r formatC(mcsum1bt$emmeans$lower.CL[1],format="f",digits=2)` (=`r formatC(mcsum1t$emmeans$lower.CL[1],format="f",digits=2)`<sup>2</sup>) and  `r formatC(mcsum1bt$emmeans$upper.CL[1],format="f",digits=2)` (=`r formatC(mcsum1t$emmeans$upper.CL[1],format="f",digits=2)`<sup>2</sup>).
 1. The differences in square root transformed values **can not** be back-transformed!
 
 ### R Code and Results.
@@ -91,10 +91,10 @@ ad.p2t <- adTest(lm2t$residuals)$p.value
 1. After **log** transforming, the variances appear to be equal as suggested by the Levene's test (`r kPvalue(lev.p2t,latex=FALSE)`) and the similar sized boxes in the boxplots below. The residuals appear to be normally distributed according to the Anderson-Darling test (`r kPvalue(ad.p2t,latex=FALSE)`) and the histogram below does not look strongly skewed. There is no evidence for a significant outlier according to the outlier test (`r kPvalue(out.p2t,latex=FALSE)`).
 1. There appears to be a difference in mean log of the measurement variable among some of the group means (ANOVA `r kPvalue(aov.p2t,latex=FALSE)`).
 1. It appears that mean log of the measurement variable differs between all three groups (p<`r kPvalue(max(mcsum2t$contrasts$p.value[1]),latex=FALSE,include.p=FALSE)`).
-1. The mean log of the measurement variable for the "C" group is `r formatC(mcsum2t$emmeans$emmean[3],format="f",digits=2)`.
-1. The mean log of the measurement variable is `r formatC(mcsum2t$contrasts$estimate[3],format="f",digits=3)` units less for the "B" group than for the "C" group.
-1. The back-transformed mean of the measurement variable for the "C" group is `r formatC(mcsum2bt$emmeans$response[1],format="f",digits=2)` (=e<sup>`r formatC(mcsum2t$emmeans$emmean[1],format="f",digits=2)`</sup>).
-1. The mean of the measurement variable for the "B" group is `r formatC(mcsum2bt$contrasts$ratio[3],format="f",digits=3)` as large as the mean for the "C" group. Alternatively, the mean of the measurement variable for the "C" group is `r formatC(1/mcsum2bt$contrasts$ratio[3],format="f",digits=3)` times larger than the mean for the "B" group.
+1. The mean log of the measurement variable for the "A" group is between `r formatC(mcsum2t$emmeans$lower.CL[1],format="f",digits=2)` and  `r formatC(mcsum2t$emmeans$upper.CL[1],format="f",digits=2)`.
+1. The mean log of the measurement variable is between `r formatC(mcsum2t$contrasts$lower.CL[1],format="f",digits=3)` and  `r formatC(mcsum2t$contrasts$upper.CL[1],format="f",digits=3)` units greater for the "A" group than for the "B" group.
+1. The back-transformed mean of the measurement variable for the "A" group is between `r formatC(mcsum2bt$emmeans$lower.CL[1],format="f",digits=2)` (=e<sup>`r formatC(mcsum2t$emmeans$lower.CL[1],format="f",digits=2)`</sup>) and  `r formatC(mcsum2bt$emmeans$upper.CL[1],format="f",digits=2)` (=e<sup>`r formatC(mcsum2t$emmeans$upper.CL[1],format="f",digits=2)`</sup>).
+1. The back-transformed mean of the measurement variable for the "A" group is between `r formatC(mcsum2bt$contrasts$lower.CL[1],format="f",digits=3)` and  `r formatC(mcsum2bt$contrasts$upper.CL[1],format="f",digits=3)` TIMES larger than the back-transformed mean for the "B" group.
 
 ### R Code and Results.
 ```{r fig.width=7, warning=FALSE}
@@ -132,10 +132,10 @@ ad.p3t <- adTest(lm3t$residuals)$p.value
 1. After **log** transforming, the variances appear to be equal as suggested by the Levene's test (`r kPvalue(lev.p3t,latex=FALSE)`) and the similarity in the boxes in the boxplot below. The Anderson-Darling test suggests that the residuals are not normally distributed (`r kPvalue(ad.p3t,latex=FALSE)`), but the histogram below is not strongly skewed so this assumption is adequately met. There is no strong evidence for a significant outlier according to the outlier test (`r kPvalue(out.p3t,latex=FALSE)`).
 1. There appears to be a difference in mean log iron concentration in streams among some of the basin types (ANOVA `r kPvalue(aov.p2t,latex=FALSE)`).
 1. It appears that mean log iron concentration in mines in basins with abandoned mines differs from basins with reclaimed mines (`r kPvalue(mcsum3t$contrasts$p.value[2],latex=FALSE)`) and basins that were unmined (`r kPvalue(mcsum3t$contrasts$p.value[3],latex=FALSE)`). The mean log concentration did not differ between streams in basins with reclaimed mines and basins that were not mined (`r kPvalue(mcsum3t$contrasts$p.value[1],latex=FALSE)`).
-1. The mean log concentration of iron was lowest in streams in the unmined basin at `r formatC(mcsum3t$emmeans$emmean[1],format="f",digits=3)`.
-1. The back-transformed mean concentration of iron in streams in the unmined basin is `r formatC(mcsum3bt$emmeans$response[1],format="f",digits=3)` mg/L (=e<sup>`r formatC(mcsum3t$emmeans$emmean[1],format="f",digits=3)`</sup>).
-1. The mean log concentration of iron in streams in the unmined basin was `r formatC(mcsum3t$contrasts$estimate[2],format="f",digits=3)` units less than the mean log concentration of iron in streams in basins with abandoned mines.
-1. The mean concentration of iron in streams in the unmined basin was `r formatC(mcsum3bt$contrasts$ratio[2],format="f",digits=3)` as large as the mean concentration of iron in streams in the basin with abandoned mines. Alternatively, mean concentration of iron in streams in the basin with abandoned mines was `r formatC(1/mcsum3bt$contrasts$ratio[2],format="f",digits=3)` as large as the mean concentration of iron in streams in the unmined basin.
+1. The mean log concentration of iron was lowest in streams in the unmined basin at between `r formatC(mcsum3t$emmeans$lower.CL[1],format="f",digits=3)` and `r formatC(mcsum3t$emmeans$upper.CL[1],format="f",digits=3)`.
+1. The back-transformed mean concentration of iron in streams in the unmined basin is between `r formatC(mcsum3bt$emmeans$lower.CL[1],format="f",digits=3)` mg/L (=e<sup>`r formatC(mcsum3t$emmeans$lower.CL[1],format="f",digits=3)`</sup>) and `r formatC(mcsum3bt$emmeans$upper.CL[1],format="f",digits=3)` mg/L (=e<sup>`r formatC(mcsum3t$emmeans$upper.CL[1],format="f",digits=3)`</sup>).
+1. The mean log concentration of iron in streams in the unmined basin was between `r formatC(-1*mcsum3t$contrasts$upper.CL[2],format="f",digits=3)` and  `r formatC(-1*mcsum3t$contrasts$lower.CL[2],format="f",digits=3)` units less than the mean log concentration of iron in streams in basins with abandoned mines.
+1. The mean concentration of iron in streams in the unmined basin was between `r formatC(mcsum3bt$contrasts$lower.CL[2],format="f",digits=3)` and `r formatC(mcsum3bt$contrasts$upper.CL[2],format="f",digits=3)` as large as the mean concentration of iron in streams in the basin with abandoned mines. Alternatively, mean concentration of iron in streams in the basin with abandoned mines was between `r formatC(1/mcsum3bt$contrasts$upper.CL[2],format="f",digits=3)` and `r formatC(1/mcsum3bt$contrasts$lower.CL[2],format="f",digits=3)` times larger than the mean concentration of iron in streams in the unmined basin.
 
 ### R Code and Results.
 ```{r fig.width=7, warning=FALSE}
@@ -148,4 +148,18 @@ anova(lm3t)
 mc3t <- emmeans(lm3t,specs=pairwise~use,tran="log")
 ( mcsum3t <- summary(mc3t,infer=TRUE) )
 ( mcsum3bt <- summary(mc3t,infer=TRUE,type="response") )
+```
+```{r fig.show="hold"}
+p1 <- ggplot() +
+  geom_jitter(data=im,mapping=aes(x=use,y=FE),alpha=0.25,width=0.05) +
+  geom_errorbar(data=mcsum3bt$emmeans,
+                mapping=aes(x=use,y=response,ymin=lower.CL,ymax=upper.CL),
+                size=2,width=0) +
+  geom_point(data=mcsum3bt$emmeans,mapping=aes(x=use,y=response),
+               size=2,pch=21,fill="white") +
+  labs(y="Iron Concentration",x="Land Use Category") +
+  theme_NCStats()
+p1
+p1 +
+  coord_cartesian(ylim=c(0,10))
 ```
