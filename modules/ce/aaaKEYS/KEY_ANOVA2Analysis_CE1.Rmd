@@ -1,0 +1,99 @@
+---
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA Summary"
+author: Derek H. Ogle
+layout: page
+css: "/css/modules.css"
+output:
+  html_document:
+    fig_height: 3.5
+    fig_width: 3.5
+    self_contained: false
+---
+
+```{r echo=FALSE, eval=FALSE, warning=FALSE}
+## Renders an appropriate HTML file and moves to CE directory
+source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+modHTML_CEKeys("KEY_ANOVA2Analysis_CE1")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(NCStats)
+library(emmeans)
+source("../../../rhelpers/knitr_setup.R")
+```
+
+<div class="alert alert-warning">
+<ul>
+  <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
+  <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
+</ul>
+</div>
+
+
+# Ruffe Weight
+
+```{r RuffeData, echo=FALSE, results="hide", fig.show="hide"}
+ruf <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/Ruffe_Flag.csv")
+ruf <- filter(ruf,Sex!="unknown")
+ruf$Year <- factor(ruf$Year)
+
+lm1.ruf <- lm(Weight~Year+Sex+Year:Sex,data=ruf)
+
+xtabs(~Sex+Year,data=ruf)
+
+assumptionCheck(lm1.ruf)
+assumptionCheck(lm1.ruf,lambday=0)
+
+ruf$logWeight <- log(ruf$Weight)
+lm1.ruft <- lm(logWeight~Sex+Year+Sex:Year,data=ruf)
+anova(lm1.ruft)
+
+mc1.ruft <- emmeans(lm1.ruft,specs=pairwise~Year:Sex,tran="log")
+( mc1sum.ruft <- summary(mc1.ruft,infer=TRUE) )
+( mc1sum.rufbt <- summary(mc1.ruft,infer=TRUE,type="response") )
+```
+```{r echo=FALSE}
+aov1.ruft <- anova(lm1.ruft)
+p.aov1.ruft <- aov1.ruft$"Pr(>F)"[1:3]
+
+p.lev.ruf <- kPvalue(levenesTest(Weight~Year*Sex,data=ruf)$"Pr(>F)"[1],latex=FALSE)
+p.ad.ruf <- kPvalue(adTest(lm1.ruf$residuals)$p.value,latex=FALSE)
+p.out.ruf <- kPvalue(min(outlierTest(lm1.ruf)$bonf.p),latex=FALSE)
+
+p.lev.ruft <- kPvalue(levenesTest(logWeight~Sex*Year,data=ruf)$"Pr(>F)"[1],latex=FALSE)
+p.ad.ruft <- kPvalue(adTest(lm1.ruft$residuals)$p.value,latex=FALSE)
+p.out.ruft <- kPvalue(outlierTest(lm1.ruft)$bonf.p,latex=FALSE)
+
+YRS <- min(mc1sum.rufbt$contrasts$p.value[c(3,12)])
+```
+
+1. This study is not at all balanced as many different sample sizes of Ruffe were captured each year and of each sex (see `xtabs()` results below).
+1. There is among-year independence as each Ruffe was sacrificed upon captured. There is also between-sex independence as each Ruffe cannot be both male and female. However, there may be issues with within-year independence as many of the Ruffe were likely captured together in the same gear. Thus, if similar weighted Ruffe tend to congregate together and, thus, get captured together then that could be an issue. It is unlikely though that this is a big issue as Ruffe were captured at several times throughout the year. I will assume that the independence assumption has been adequately met.
+1. Variances among the treatments appear not to be constant (Levene's `r p.lev.ruf`) and the boxplots of residuals are quite divergent; the residuals do not appear to be approximately normally distributed and are quite right-skewed (Anderson-Darling `r p.ad.ruf`); and there are significant outliers (outlier test `r p.out.ruf`). Clearly the assumptions are not met and a transformation should be considered.
+1. No transformation worked perfectly for these data. A log transformation still had unequal variances (Levene's `r p.lev.ruft`), but the boxplots of residuals are no longer wildly divergent; the residuals do appear to be approximately normally distributed (`r p.ad.ruft`); and there are no longer any significant outliers (outlier test `r p.out.ruft`). The hypothesis tests are likely very sensitive to slight departures from the assumptions as the sample size is quite large. Given this, I will assume that the assumptions adequately met on the log scale and continue to analyze the data with this transformation.
+1. There appears to be a significant interaction effect (`r kPvalue(p.aov1.ruft[3],latex=FALSE)`); thus, the main effects cannot be interpreted directly from these results.
+1. Tukey's multiple comparisons show that the mean log weight differed between female Ruffe in 1996 and 1997 (`r kPvalue(mc1sum.ruft$contrasts$p.value[1],latex=FALSE)`), female Ruffe in 1996 and male Ruffe in 1995 (`r kPvalue(mc1sum.ruft$contrasts$p.value[7],latex=FALSE)`), female Ruffe in 1996 and male Ruffe in 1996 (`r kPvalue(mc1sum.ruft$contrasts$p.value[8],latex=FALSE)`), female Ruffe in 1997 and male Ruffe in 1996 (`r kPvalue(mc1sum.ruft$contrasts$p.value[11],latex=FALSE)`), and male Ruffe in 1996 and 1997 (`r kPvalue(mc1sum.ruft$contrasts$p.value[15],latex=FALSE)`).
+1. The mean log weight of female Ruffe in 1996 was between `r formatC(mc1sum.ruft$contrasts$lower.CL[8],format="f",digits=2)` and `r formatC(mc1sum.ruft$contrasts$upper.CL[8],format="f",digits=2)` heavier than that of male Ruffe in 1996.
+1. The mean weight of female Ruffe in 1996 was between `r formatC(mc1sum.rufbt$contrasts$lower.CL[8],format="f",digits=2)` and `r formatC(mc1sum.rufbt$contrasts$upper.CL[8],format="f",digits=2)` times heavier than that of male Ruffe in 1996.
+1. The difference in mean log weight of female and male Ruffe in 1997 contains 0, which further indicates that these two groups do not have different mean log weights (i.e., a difference of 0 suggests that both values are the same).
+1. The ratio of back-transformed mean weights of female and male Ruffe in 1997 contains 1, which also further indicates that these two groups do not have different mean log weights (i.e., a ratio of 1 suggests that both values are the same).
+1. Mathematically e<sup>0</sup>=1. Thus, a difference of 0 (the exponent) back-transforms to a ratio of 1.
+1. The plot is shown below.
+1. The mean weight of Ruffe did not vary consistently among years and sexes. Female Ruffe were heavier in 1996 and 1997 than in 1995, on average, but male Ruffe were only slightly heavier in 1997 compared to 1996. Regardless, there is no evidence for a downward trend in weight of Ruffe, thus there is little evidence that a density-dependent effect had yet to affect this population of Ruffe.
+
+### R Code and Results
+```{r fig.width=7}
+<<RuffeData>>
+```
+```{r fig.width=4.5}
+pd <- position_dodge(width=0.1)
+ggplot(data=mc1sum.rufbt$emmeans,
+       mapping=aes(x=Year,group=Sex,color=Sex,
+                   y=response,ymin=lower.CL,ymax=upper.CL)) +
+  geom_line(position=pd,size=1.1,alpha=0.25) +
+  geom_errorbar(position=pd,size=2,width=0) +
+  geom_point(position=pd,size=2,pch=21,fill="white") +
+  labs(y="Weight (g)",x="Year of Capture") +
+  theme_NCStats()
+```

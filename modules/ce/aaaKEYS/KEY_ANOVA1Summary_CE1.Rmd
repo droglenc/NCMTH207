@@ -26,7 +26,8 @@ source("../../../rhelpers/knitr_setup.R")
 <div class="alert alert-warning">
 <ul>
   <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
-  <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
+  <li>Refer to specific p-values for all tests.</li>
+  <li>Use the ANOVA table p-value when testing for a difference in group means. Make sure when interpreting the ANOVA p-value that your language does not make it sound like all means differ ... you don't know that yet.</li>
 </ul>
 </div>
 
@@ -127,17 +128,20 @@ The statistical hypotheses to be examined are
 
 where &mu; is the mean "score" on the speed and distance estimation tests and the subscripts identify the different types of participation in sports.
 
+The study is balanced as there are the same number of individuals in each participation group. The sample size (=`r xtabs(~Group,data=df)[1]`) seems adequate.
+
 The individuals are likely independent but there are some issues to consider. Within the sports participation groups there are some individuals that came from the same team or club. These individuals may be related in some way; e.g., perhaps the team is "elite" such that you would expect the individuals to be excellent at these tests. However, not all individuals are from the same team or club so this is likely not a barrier to independence. There does not seem to be any relationships between individuals across the sports participation groups -- i.e., individuals in the different groups don't appear to be familially related, etc. The data are likely independent enough for our purposes.
 
 The residuals appear normal (Anderson-Darling `r kPvalue(ad.p2,latex=FALSE)`) and the histogram below is only slightly skewed, the variances appear equal (Levene's `r kPvalue(lev.p2,latex=FALSE)`), and there are no significant outliers (outlier test `r kPvalue(out.p1,latex=FALSE)`). Thus, the assumptions are met on the original scale and no transformation will be considered.
 
 There appears to be a difference in mean speed and distance estimation "score" among some of the sports participation groups (ANOVA `r kPvalue(aov.p2,latex=FALSE)`). In fact it appears that all three groups differ from each other (Tukey p&leq;`r kPvalue(max(mcsum2$contrasts$p.value),latex=FALSE,include.p=FALSE)`). Specifically, mean speed and distance estimation "score" for non-practitioners was lower than that for the other two groups -- between `r formatC(-1*mcsum2$contrasts$upper.CL[1])` and `r formatC(-1*mcsum2$contrasts$lower.CL[1])` lower than for those participating in individual sports and between `r formatC(-1*mcsum2$contrasts$upper.CL[2])` and `r formatC(-1*mcsum2$contrasts$lower.CL[2])` lower than for those participating in team sports. Additionally, those participating in individuals sports had mean speed and distance estimation "scores" between `r formatC(mcsum2$contrasts$lower.CL[3])` and `r formatC(mcsum2$contrasts$upper.CL[3])` higher than that for those participating in team sports.
 
-These results indicate that those that participate in sports have higher speed and distance estimation scores than those that do not participated in sports. Furthermore, participting in an individual sport than a team sports appears to be related to a higher speed and distance estimation score.
+These results indicate that those that participate in sports have higher speed and distance estimation scores than those that do not participated in sports. Furthermore, participAting in an individual sport than a team sports appears to be related to a higher speed and distance estimation score.
 
 ### R Code and Results
 ```{r fig.width=7, warning=FALSE}
 <<SDE>>
+xtabs(~Group,data=df)
 lm2 <- lm(SDE~Group,data=df)
 assumptionCheck(lm2)
 anova(lm2)
