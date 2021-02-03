@@ -133,7 +133,7 @@ The residuals appear normal (Anderson-Darling `r kPvalue(ad.p2,latex=FALSE)`) an
 
 There appears to be a difference in mean speed and distance estimation "score" among some of the sports participation groups (ANOVA `r kPvalue(aov.p2,latex=FALSE)`). In fact it appears that all three groups differ from each other (Tukey p&leq;`r kPvalue(max(mcsum2$contrasts$p.value),latex=FALSE,include.p=FALSE)`). Specifically, mean speed and distance estimation "score" for non-practitioners was lower than that for the other two groups -- between `r formatC(-1*mcsum2$contrasts$upper.CL[1])` and `r formatC(-1*mcsum2$contrasts$lower.CL[1])` lower than for those participating in individual sports and between `r formatC(-1*mcsum2$contrasts$upper.CL[2])` and `r formatC(-1*mcsum2$contrasts$lower.CL[2])` lower than for those participating in team sports. Additionally, those participating in individuals sports had mean speed and distance estimation "scores" between `r formatC(mcsum2$contrasts$lower.CL[3])` and `r formatC(mcsum2$contrasts$upper.CL[3])` higher than that for those participating in team sports.
 
-These results indicate that those that participate sports have higher speed and distance estimation scores than those that do not participated in sports. Furthermore, participting in an individual sport than a team sports appears to be related to a higher speed and distance estimation score.
+These results indicate that those that participate in sports have higher speed and distance estimation scores than those that do not participated in sports. Furthermore, participting in an individual sport than a team sports appears to be related to a higher speed and distance estimation score.
 
 ### R Code and Results
 ```{r fig.width=7, warning=FALSE}
@@ -154,3 +154,6 @@ ggplot() +
   labs(x="Sport Participation Group",y="Speed and Distance Estimation 'Score'") +
   theme_NCStats()
 ```
+
+
+
