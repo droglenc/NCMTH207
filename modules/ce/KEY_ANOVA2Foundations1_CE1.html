@@ -1,0 +1,125 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Two-Way ANOVA Conceptual Foundations"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="design-of-a-two-factor-experiment" class="section level1">
+<h1>Design of a Two-Factor Experiment</h1>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Make sure to keep levels separate … need to say the number for each factor.
+</li>
+<li>
+The number of replicates is per treatment … thus, divide total available by the number of treatments.
+</li>
+<li>
+A replicate is an individual or unit of analysis. You should state what that is in this specific case.
+</li>
+</ol>
+</ul>
+</div>
+<ol>
+<li>The response variable is yield of the product.</li>
+<li>The factors are temperature and stirring rates.</li>
+<li>There are three levels of temperature and three levels of stirring rates.</li>
+<li>There are nine (=3×3) treatments.</li>
+<li>There are 4 replicates (=<span class="math inline">\(\frac{36}{9}\)</span>).</li>
+<li>A replicate is a “vessel” in which the product will be heated and stirred.</li>
+<li>I would use <code>sample(36)</code> and select the first four numbers for the first treatment, the second four numbers for the second treatment, and so on.</li>
+</ol>
+</div>
+<div id="means-table-and-interaction-plot" class="section level1">
+<h1>Means Table and Interaction Plot</h1>
+<p>The interaction plots should look like the following.</p>
+<p><img src="KEY_ANOVA2Foundations1_CE1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="interaction-and-main-effects" class="section level1">
+<h1>Interaction and Main Effects</h1>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Make sure that you comment about each type of effect (interaction, row factor, and column factor) even if that effect is not evident. In other words, explicitly state that there is no effect if there is no effect; don’t just leave that effect absent from your answer.
+</li>
+<li>
+If there is an interaction effect, do NOT say that there is “no main effects.” Rather say that the “main effects cannot be assessed because of the interaction effect.”
+</li>
+<li>
+The “lines” do not have to intersect to represent an interaction, they simply do not “track together.” Imagine “lines” that start near the same point but one goes up and the other goes down. They don’t intersect but they certainly don’t track together.
+<li>
+Pay close attention to my descriptions below. Come see me if they do not make sense to you.
+</li>
+</ul>
+</div>
+<ol>
+<li>There is <strong>NO interaction</strong> effect because all “lines” “track together.” There is a <strong>factor A</strong> main effect because all “lines” are not horizontal (implying a difference in factor A level means). There is a <strong>factor B</strong> main effect because all “lines” are not on top of each other (implying a difference in factor B level means).</li>
+<li>There is <strong>NO interaction</strong> effect because all “lines” “track together.” There is <strong>NO factor A</strong> main effect because all “lines” are horizontal (implying no difference in factor A level means). There is a <strong>factor B</strong> main effect because all “lines” are not on top of each other (implying that the factor B level means are not equal).</li>
+<li>There <strong>IS an interaction</strong> effect because the “lines” do not “track together” (in fact they intersect). I will not comment on the main effects because of the presence of the interaction effect.</li>
+<li>There is <strong>NO interaction</strong> effect because all “lines” “track together.” There is a <strong>factor A</strong> main effect because all “lines” are not horizontal (implying a difference in factor A level means). There is a <strong>factor B</strong> main effect because all “lines” are not on top of each other (implying a difference in factor B level means).</li>
+<li>There is <strong>NO interaction</strong> effect because all “lines” “track together.” There is a <strong>factor A</strong> main effect because all “lines” are not horizontal (implying a difference in factor A level means). There is a <strong>factor B</strong> main effect because all “lines” are not on top of each other (implying a difference in factor B level means).</li>
+<li>There <strong>IS an interaction</strong> effect because the “lines” do not “track together” (in fact they intersect). I will not comment on the main effects because of the presence of the interaction effect.</li>
+</ol>
+</div>
+<div id="means-tables" class="section level1">
+<h1>Means Tables</h1>
+<ol>
+<li>Table 1 corresponds to <strong>Figure 5</strong>. It has to be Figure 5 or 6 because those are the only figures with only two levels for Factor A. The means in row “A” and row “B” “track together” implying no interactions as seen in Figure 5.</li>
+<li>Table 2 corresponds to <strong>Figure 2</strong>. Table 2 has the same values in each row for each column, but the columns differ. This implies no interaction effect, a Factor A (“A”, “B”, “C”) effect, but no Factor B (“V”,“W”,“Z”) effect. This corresponds to Figure 2.</li>
+<li>Table 3 corresponds to <strong>Figure 6</strong>. See reasoning for Table 1 (but noting that this table shows an interaction) and noting that all three values for the “B” row are equal.</li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
