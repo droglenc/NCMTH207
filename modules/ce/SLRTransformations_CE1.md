@@ -15,7 +15,7 @@ css: "/css/modules.css"
 <img src="../zimgs/rattlesnake.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](SLRAssumptions_CE1.html#rattlesnake-rattling) you tested the assumptions of a SLR for the relationship between the peak frequency of a rattlesnake's rattle and its weight. Use those data to answer the questions below.
 
-1. Find an appropriate transformation for these data so that the SLR assumptions are met. Provide evidence to support your choice.
+1. Find an appropriate transformation for these data so that the SLR assumptions are met.
 1. Is there a significant relationship between the peak frequency and weight of the rattlesnakes on the transformed scale? Provide numeric *and* graphical evidence.
 1. Describe the relationship between the peak frequency and weight of the rattlesnakes on the transformed scale. Be very careful with your language and use a confidence interval.
 1. Describe the relationship between the peak frequency and weight of the rattlesnakes on the *original* scale. Be very careful with your language and use a confidence interval.

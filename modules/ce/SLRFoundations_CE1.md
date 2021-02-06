@@ -26,6 +26,7 @@ Year:       1984   1985   1986   1987   1988   1989   1990
 PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 </pre>
 
+1. Construct a graphic that demonstrates the linear model fit.
 1. Write the equation of the best-fit line.
 1. Interpret the value of the slope (using the 95% confidence interval).
 1. Interpret the value of the y-intercept (using the 95% confidence interval). Comment on whether this interpretation makes sense and why or why not?
@@ -33,7 +34,6 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 1. Predict the proportion of males for 1990. Show your answer using your calculator and a function in R.
 1. Predict the proportion of males for 2020. Comment on the validity of the prediction (with an explanation for your thoughts).
 1. Calculate the residual for 1980. Physically interpret or explain what this value means.
-1. Construct a graphic that demonstrates the linear model fit.
 
 &nbsp;
 
@@ -41,6 +41,7 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 <img src="../zimgs/willow_flycatcher.jpg" alt="Decoration" class="img-right">
 [Yong and Finch (1997)](https://www.fs.fed.us/rmrs/publications/migration-willow-flycatcher-along-middle-rio-grande) hypothesized that larger Willow Flycatchers (*Empidonax traillii*) migrated up the Middle Rio Grande River earlier than small willow flycatchers. To test this hypothesis they captured flycatchers on several days during their migration and measured the wing length (mm; an index of overall body size) of each bird. They recorded the date that the bird was captured as a Julian date (days since Jan. 1). The results of their study are found in Flycatcher.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv), [meta](https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher_meta.txt)). Use these data to answer the questions below.
 
+1. Construct a graphic that demonstrates the linear model fit.
 1. Write the equation of the best-fit line.
 1. Interpret the value of the slope (using the 95% confidence interval).
 1. Interpret the value of the y-intercept (using the 95% confidence interval). Comment on whether this interpretation makes sense and why or why not?
@@ -48,7 +49,6 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 1. Predict the wing length for birds on day 160. Show your answer using your calculator and a function in R.
 1. Calculate the residual for day 149. Physically interpret or explain what this value means.
 1. Predict the wing length for day 140. Comment on the validity of the prediction (with an explanation for your thoughts).
-1. Construct a graphic that demonstrates the linear model fit.
 
 <!----
 also could use old wheatears or ashland climate questions

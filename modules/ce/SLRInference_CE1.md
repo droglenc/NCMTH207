@@ -43,4 +43,4 @@ Students in the Introduction to Environmental Studies course were interested in 
 1. Predict (with appropriate interval) the mean mpg for all cars with a horsepower of 110.
 1. Predict (with appropriate interval) the mpg for a car with a horsepower of 125.
 1. Make two predictions (using one line of code in R) that can be used to demonstrate the meaning of the estimated slope. Explain how this works.
-1. Provide a plot (with appropriate interval) that illustrates your results.
+1. Provide a plot (with a confidence band) that illustrates the model fit.

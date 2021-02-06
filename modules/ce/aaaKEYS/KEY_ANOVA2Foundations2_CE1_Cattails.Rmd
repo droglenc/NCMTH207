@@ -28,7 +28,7 @@ options(show.signif.stars=FALSE,knitr.kable.NA = '')
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>The key is to construct a table of means similar to what is shown in the R code as `mns`. Then SS<sub>habitat</sub>, SS<sub>year</sub> and SS<sub>Among</sub> are computed by following the SS<sub>A</sub>, SS<sub>B</sub> and SS<sub>Among</sub> formulae from the reading. The SS<sub>A:B</sub> is then found by subtracting both SS<sub>habitat</sub> and SS<sub>year</sub> from SS<sub>Among</sub>. The SS<sub>Within</sub> is found by subtracting SS<sub>Among</sub> from SS<sub>Total</sub>. All degrees-of-freedom are found by formulae in the reading, noting that a=2, b=2 and m=25. The MS, F (but note that the denominator is always MS<sub>Within</sub>), and p-values are found as usual.</li>
+  <li>The key is to construct a table of means similar to what is shown in the R code as `mns`. Then SS<sub>habitat</sub>, SS<sub>year</sub> and SS<sub>Among</sub> are computed by following the SS<sub>A</sub>, SS<sub>B</sub> and SS<sub>Among</sub> formulae from the reading. The SS<sub>A:B</sub> is then found by subtracting both SS<sub>habitat</sub> and SS<sub>year</sub> from SS<sub>Among</sub>. The SS<sub>Within</sub> is found by subtracting SS<sub>Among</sub> from SS<sub>Total</sub>. All degrees-of-freedom are found by formulae in the reading, noting that a=2, b=2 and m=25. The MS, F (but note that the denominator is always MS<sub>Within</sub>), and p-values are found as usual (but make sure use `df1=1` for all but the top row).</li>
   <li>I did this in R just for fun (you did not have to use R except for the p-values).</li>
 </ul>
 </div>
