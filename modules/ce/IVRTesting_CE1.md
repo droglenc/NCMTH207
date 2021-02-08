@@ -28,7 +28,7 @@ In [this](IVRVariables_CE1.html#turtle-nesting-ecology) and [this](IVRModels_CE1
 1. Write the models for the null and alternative hypotheses of a parallel lines test.
 1. Write the models for the null and alternative hypotheses of a coincident lines test (assuming that the lines are parallel).
 
-In [this previous exercise](IVRModels_CE1.html#turtle-nesting-ecology) previous exercise you loaded the data in HawksbillTurtles.csv, reordered the regions, and fit an ultimate full model (from which you interpreted the model parameters). Continue with that data analysis to answer the questions below
+In [this previous exercise](IVRModels_CE1.html#turtle-nesting-ecology) you loaded the data in HawksbillTurtles.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv), [meta](https://github.com/droglenc/NCData/blob/master/HawksbillTurtles_meta.txt)), reordered the regions, and fit an ultimate full model (from which you interpreted model parameters). Continue with that data analysis to answer the questions below.
 
 {:start="3"}
 1. Perform a parallel lines test. Make sure to refer to the appropriate p-value and very carefully interpret what the results mean.
@@ -44,7 +44,7 @@ In [this](IVRVariables_CE1.html#water-quality-near-a-gold-mine) and [this](IVRMo
 1. Write the models for the null and alternative hypotheses of a parallel lines test.
 1. Write the models for the null and alternative hypotheses of a coincident lines test (assuming that the lines are parallel).
 
-In [this previous exercise](IVRModels_CE1.html#water-quality-near-a-gold-mine) previous exercise you loaded the data in GoldMine.csv, reordered the types of phosphorous, and fit an ultimate full model (from which you interpreted the model parameters). Continue with that data analysis to answer the questions below
+In [this previous exercise](IVRModels_CE1.html#water-quality-near-a-gold-mine) previous exercise you loaded the data in [GoldMine.csv](data/GoldMine.csv), reordered the types of phosphorous, and fit an ultimate full model (from which you interpreted the model parameters). Continue with that data analysis to answer the questions below
 
 {:start="3"}
 1. Perform a parallel lines test. Make sure to refer to the appropriate p-value and very carefully interpret what the results mean.
