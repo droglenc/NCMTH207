@@ -30,7 +30,7 @@ In [this](IVRVariables_CE1.html#turtle-nesting-ecology) and [this](IVRModels_CE1
 
 In [this previous exercise](IVRModels_CE1.html#turtle-nesting-ecology) previous exercise you loaded the data in HawksbillTurtles.csv, reordered the regions, and fit an ultimate full model (from which you interpreted the model parameters). Continue with that data analysis to answer the questions below
 
-{:start=3}
+{:start="3"}
 1. Perform a parallel lines test. Make sure to refer to the appropriate p-value and very carefully interpret what the results mean.
 1. If appropriate, perform a coincident lines test (again make sure to refer to the appropriate p-value and carefully interpret what the results mean). If it is not appropriate to perform the coincident lines test then explain why it is not.
 1. If appropriate, perform the relationship test (again make sure to refer to the appropriate p-value and carefully interpret what the results mean). If it is not appropriate to perform the relationship test then explain why it is not.
@@ -46,7 +46,7 @@ In [this](IVRVariables_CE1.html#water-quality-near-a-gold-mine) and [this](IVRMo
 
 In [this previous exercise](IVRModels_CE1.html#water-quality-near-a-gold-mine) previous exercise you loaded the data in GoldMine.csv, reordered the types of phosphorous, and fit an ultimate full model (from which you interpreted the model parameters). Continue with that data analysis to answer the questions below
 
-{:start=3}
+{:start="3"}
 1. Perform a parallel lines test. Make sure to refer to the appropriate p-value and very carefully interpret what the results mean.
 1. If appropriate, perform a coincident lines test (again make sure to refer to the appropriate p-value and carefully interpret what the results mean). If it is not appropriate to perform the coincident lines test then explain why it is not.
 1. If appropriate, perform the relationship test (again make sure to refer to the appropriate p-value and carefully interpret what the results mean). If it is not appropriate to perform the relationship test then explain why it is not.
