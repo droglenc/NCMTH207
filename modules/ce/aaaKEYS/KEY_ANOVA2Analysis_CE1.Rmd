@@ -25,8 +25,16 @@ source("../../../rhelpers/knitr_setup.R")
 
 <div class="alert alert-warning">
 <ul>
-  <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
+  <li>Please be careful with your GradeScope submission ... please carefully choose pages and choose pages that have your answer AND pages that have the supporting information. On future assignments, I will only grade the pages that you select (if the answer or supporting information is not there then it will be counted wrong).</li>
+  <li>Refer to your xtabs() results when discussing whether the study is balanced or not; i.e., provide your evidence.</li>
+  <li>The safest way to deal with the independence assumption is to explicitly answer whether you have among-group and within-group independence. For among-group independence ask yourself if it is possible that each individual is in multiple groups. In this case, is it possible that all fish were both males and females or is it possible that all fish were in multiple years. Explaining why not is addressing among-group independence. For within-group independence ask yourself about any connections within the groups. For example, were all female ruffe somehow connected. This is usually a little harder to write out ... see example below.</li>
+  <li>Refer to specific p-values and graphs when demonstrating that the assumptions are or are not met; i.e., provide evidence. In this assignment, yOu need to both show that the assumptions are not met on the original scale and are met on the log-transformed scale.</li>
   <li>Use the ANOVA table p-value when testing for a difference in group means.</li>
+  <li>In the emmeans() function make sure that you use ONLY the interaction term after pairwise~ as there is an interaction term in this case.</li>
+  <li>The MOST different group means will have the largest absolute value for the "estimate" or "t-ratio" and the smallest p-value.</li>
+  <li>When interpreting the differences on the transformed scale make sure to note that it is for a MEAN LOG of the response variable.</li>
+  <li>When interpreting the "differences" on the back-transformed scale make sure to note that it is for the MEAN of the response variable and make it clear that it was a ratio of means (i.e., times different).</li>
+  <li>Keep the conclusions to more lay or general science language. You don't need p-values and confidence intervals in the conclusion. Just say what your findings are. See below for an example.</li>
 </ul>
 </div>
 
@@ -69,7 +77,7 @@ YRS <- min(mc1sum.rufbt$contrasts$p.value[c(3,12)])
 ```
 
 1. This study is not at all balanced as many different sample sizes of Ruffe were captured each year and of each sex (see `xtabs()` results below).
-1. There is among-year independence as each Ruffe was sacrificed upon captured. There is also between-sex independence as each Ruffe cannot be both male and female. However, there may be issues with within-year independence as many of the Ruffe were likely captured together in the same gear. Thus, if similar weighted Ruffe tend to congregate together and, thus, get captured together then that could be an issue. It is unlikely though that this is a big issue as Ruffe were captured at several times throughout the year. I will assume that the independence assumption has been adequately met.
+1. There is among-year independence as each Ruffe was sacrificed upon capture so no Ruffe was in multiple years. It is possible that Ruffe captured in 1996 were alive in 1995 which could be an issue (e.g., competition) but this is likely not the case will all Ruffe in the year groups. There is also between-sex independence as each Ruffe cannot be both male and female. However, there may be issues with within-year independence as many of the Ruffe were likely captured together in the same gear. Thus, if similar weighted Ruffe tend to congregate together and, thus, get captured together then that could be an issue. It is unlikely though that this is a big issue as Ruffe were captured at several times throughout the year. I will assume that the independence assumption has been adequately met.
 1. Variances among the treatments appear not to be constant (Levene's `r p.lev.ruf`) and the boxplots of residuals are quite divergent; the residuals do not appear to be approximately normally distributed and are quite right-skewed (Anderson-Darling `r p.ad.ruf`); and there are significant outliers (outlier test `r p.out.ruf`). Clearly the assumptions are not met and a transformation should be considered.
 1. No transformation worked perfectly for these data. A log transformation still had unequal variances (Levene's `r p.lev.ruft`), but the boxplots of residuals are no longer wildly divergent; the residuals do appear to be approximately normally distributed (`r p.ad.ruft`); and there are no longer any significant outliers (outlier test `r p.out.ruft`). The hypothesis tests are likely very sensitive to slight departures from the assumptions as the sample size is quite large. Given this, I will assume that the assumptions adequately met on the log scale and continue to analyze the data with this transformation.
 1. There appears to be a significant interaction effect (`r kPvalue(p.aov1.ruft[3],latex=FALSE)`); thus, the main effects cannot be interpreted directly from these results.
