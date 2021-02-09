@@ -16,15 +16,15 @@ Use the preparation reading to prepare hand-written answers for the following qu
 1. How important is it to test the hypotheses that the intercept is equal to zero or not? Explain why it is or is not important.
 1. Explain what you can do to make the intercept more interpretable. What is the "new" interpretation of the intercept.
 1. What R function is used to extract hypothesis tests about the slope and intercept?
-1. What conclusion is made if the default p-value for the slope's hypothesis test is less than &alpha;? What does this say about the best-fit-line? What does it say about $Y$ and $X$?
+1. What conclusion is made if the default p-value for the slope's hypothesis test is less than &alpha;? What does this say about the best-fit-line? What does it say about Y and X?
 1. How is a "fitted value" computed?
 1. How is a "predicted value" computed?
 1. What is the difference in the value of a "fitted value" and a "predicted value"?
 1. What is the conceptual (or interpretational) difference in the value of a "fitted value" and a "predicted value"?
-1. At what value of $X$ is the "fitted value" most precise?
+1. At what value of X is the "fitted value" most precise?
 1. Explain what a "confidence band" is trying to represent?
 1. Explain what a "prediction band" is try to represent?
-1. Is $\text{SE}_{\text{fits}}$ or $\text{SE}_{\text{prediction}}$ larger? Explain why.
+1. Is SE<sub>fits</sub> or SE<sub>prediction</sub>$ larger? Explain why.
 1. Is a "confidence band" or a "prediction band" wider? Explain why.
 1. Carefully explain what is meant to be contained in a confidence interval (for a prediction).
 1. Carefully explain what is meant to be contained in a prediction interval.
