@@ -9,7 +9,7 @@ css: "/css/modules.css"
 Use the preparation reading to prepare hand-written answers for the following questions. Please contact <a href="https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7)" target="_blank">Dr. Ogle</a> if you have questions.
 </div>
 
-1. Define &alpha;&#770;, &beta;&#770;, and &mu;&#770;<sub>Y|X=x<sub>i</sub></sub>.
+1. Define &alpha;&#770;, &beta;&#770;, and &mu;&#770;<sub>Y|X=x<sub>i</sub></sub>.  <span style="position: relative; left: 11px; bottom: 12px; transform: scale(4,0.5); display: inline-block">^</span>&alpha;
 1. Define $s^{2}_{Y|X}$. Explain what it represents on a scatterplot (relative to the best-fit line).
 1. What happens to the SEs of $\hat{\alpha}$, $\hat{\beta}$, and $\hat{\mu}_{Y|X=x_{i}}$ as $s^{2}_{Y|X}$ increases?
 1. Explain the importance of testing whether the slope is equal to zero or not.
