@@ -24,7 +24,7 @@ Use the preparation reading to prepare hand-written answers for the following qu
 1. At what value of X is the "fitted value" most precise?
 1. Explain what a "confidence band" is trying to represent?
 1. Explain what a "prediction band" is try to represent?
-1. Is SE<sub>fits</sub> or SE<sub>prediction</sub>$ larger? Explain why.
+1. Is SE<sub>fits</sub> or SE<sub>prediction</sub> larger? Explain why.
 1. Is a "confidence band" or a "prediction band" wider? Explain why.
 1. Carefully explain what is meant to be contained in a confidence interval (for a prediction).
 1. Carefully explain what is meant to be contained in a prediction interval.
