@@ -9,12 +9,12 @@ css: "/css/modules.css"
 Use the preparation reading to prepare hand-written answers for the following questions. Please contact <a href="https://teams.microsoft.com/l/channel/19%3aebdb6d98f8c748818228211aeea11139%40thread.tacv2/Class%2520Preparation%2520Reading%2520Questions?groupId=6aaae687-f6ed-4518-b9ed-3986bc9e6f4f&tenantId=b70d8bab-80b6-4766-b5da-fcfdabdf71c7)" target="_blank">Dr. Ogle</a> if you have questions.
 </div>
 
-1. Define &alpha;&#770;, &beta;&#770;, and &mu;&#770;<sub>Y|X=x<sub>i</sub></sub>.  <span style="position: relative; left: 11px; bottom: 12px; transform: scale(4,0.5); display: inline-block">^</span>&alpha;
-1. Define $s^{2}_{Y|X}$. Explain what it represents on a scatterplot (relative to the best-fit line).
-1. What happens to the SEs of $\hat{\alpha}$, $\hat{\beta}$, and $\hat{\mu}_{Y|X=x_{i}}$ as $s^{2}_{Y|X}$ increases?
+1. Define &alpha;&#770;, &beta;&#770;, and &mu;&#770;<sub>Y|X=x<sub>i</sub></sub>.
+1. Define s<sup>2</sup><sub>Y|X</sub>. Explain what it represents on a scatterplot (relative to the best-fit line).
+1. What happens to the SEs of &alpha;&#770;, &beta;&#770;, and &mu;&#770;<sub>Y|X=x<sub>i</sub></sub> as s<sup>2</sup><sub>Y|X</sub> increases?
 1. Explain the importance of testing whether the slope is equal to zero or not.
 1. How important is it to test the hypotheses that the intercept is equal to zero or not? Explain why it is or is not important.
-1. Explain what you can do to make the intercept more interpetable. What is the "new" interpretation of the intercept.
+1. Explain what you can do to make the intercept more interpretable. What is the "new" interpretation of the intercept.
 1. What R function is used to extract hypothesis tests about the slope and intercept?
 1. What conclusion is made if the default p-value for the slope's hypothesis test is less than &alpha;? What does this say about the best-fit-line? What does it say about $Y$ and $X$?
 1. How is a "fitted value" computed?
