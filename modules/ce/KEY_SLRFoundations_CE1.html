@@ -1,0 +1,131 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "SLR Foundations"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Use complete sentences to answer questions.
+</li>
+</ol>
+</ul>
+</div>
+<hr />
+<div id="male-female-birth-ratio" class="section level1">
+<h1>Male-Female Birth Ratio</h1>
+<ol>
+<li>The equation of the best-fit line is PropMale=0.620-0.000054Year.</li>
+<li>The slope means that for every increase of one year that the proportion of males decreases by between 0.000035 and 0.000074, on average.</li>
+<li>The intercept means that in theoretical year 0 the proportion of males was between 0.581158 and 0.659013, on average. This obviously does not make sense as year 0 is an extreme extrapolation.</li>
+<li>The r<sup>2</sup> means that 63.7 of the variability in the proportion of males is explained by knowing the year of the sample.</li>
+<li>The predicted proportion of males in 1990 is 0.5115.</li>
+<li>The predicted proportion of males in 1990 is 0.5115. This value should be interpreted cautiously as it is an extrapolation.</li>
+<li>The residual for 1980 is 0.0014 (=0.5129-0.5126).</li>
+<li>The best-fit line is shown in the plot below.</li>
+</ol>
+<div id="r-code-and-results." class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>&gt; br &lt;- read.csv(&quot;BirthRatio.csv&quot;)</code></pre>
+<pre class="r"><code>lm.br &lt;- lm(propmale~year,data=br)
+cbind(Est=coef(lm.br),confint(lm.br))</code></pre>
+<pre><code>                      Est         2.5 %        97.5 %
+(Intercept)  6.200857e-01  5.811580e-01  6.590134e-01
+year        -5.428571e-05 -7.394606e-05 -3.462537e-05</code></pre>
+<pre class="r"><code>rSquared(lm.br)</code></pre>
+<pre><code>[1] 0.6373997</code></pre>
+<pre class="r"><code>ggplot(data=br,mapping=aes(x=year,y=propmale)) +  
+  geom_point(pch=21,color=&quot;black&quot;,fill=&quot;lightgray&quot;) +  
+  labs(x=&quot;Year&quot;,y=&quot;Proportion of Births that were Male&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_SLRFoundations_CE1_files/figure-html/unnamed-chunk-4-1.png" width="336" /></p>
+<p> </p>
+</div>
+</div>
+<div id="willow-flycatcher-migration" class="section level1">
+<h1>Willow Flycatcher Migration</h1>
+<ol>
+<li>The equation of the best-fit line is WingLength=91.070-0.155761Days.</li>
+<li>The slope means that for every increase of one day that the wing length decreases by between 0.004 and 0.307 mm, on average.</li>
+<li>The intercept means that on January 1 (i.e., Day=0) was between 68.6 and 113.5 mm, on average. This could make sense as January 1 is a reasonable day, but it is an extrapolation of approximately 140 days so it is unlikely a realistic estimate.</li>
+<li>The r<sup>2</sup> means that 18.7 of the variability in wing length is explained by knowing the day of migration.</li>
+<li>The predicted wing length on day 160 is 66.1 mm.</li>
+<li>The residual for day 149 is -1.5 (=66.4-67.9) mm.</li>
+<li>The predicted wing length on day 140 is 69.3 mm. This value is not an extrapolation so this is a valid prediction.</li>
+<li>The best-fit line is shown in the plot below.</li>
+</ol>
+<div id="r-code-and-results.-1" class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>wfc &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv&quot;)
+lm.wfc &lt;- lm(winglen~date,data=wfc)
+cbind(Est=coef(lm.wfc),confint(lm.wfc))</code></pre>
+<pre><code>                   Est      2.5 %        97.5 %
+(Intercept) 91.0702393 68.6497096 113.490769073
+date        -0.1557607 -0.3072602  -0.004261186</code></pre>
+<pre class="r"><code>rSquared(lm.wfc)</code></pre>
+<pre><code>[1] 0.186974</code></pre>
+<pre class="r"><code>ggplot(data=wfc,mapping=aes(x=date,y=winglen)) +  
+  geom_point(pch=21,color=&quot;black&quot;,fill=&quot;lightgray&quot;) +  
+  labs(x=&quot;Days Since Jan. 1&quot;,y=&quot;Wing Length (mm)&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_SLRFoundations_CE1_files/figure-html/unnamed-chunk-6-1.png" width="336" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
