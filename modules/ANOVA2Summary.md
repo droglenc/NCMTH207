@@ -31,4 +31,4 @@ css: /css/modules.css
 
 ## Practice
 
-* [Assignment](ce/ANOVA2Summary_CE1) ... [ANSWER KEY](ce/KEY_ANOVA2Summary_CE)
+* [Assignment](ce/ANOVA2Summary_CE1) ... [ANSWER KEY](ce/KEY_ANOVA2Summary_CE1)

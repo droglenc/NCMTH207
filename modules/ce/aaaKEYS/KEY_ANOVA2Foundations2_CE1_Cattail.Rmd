@@ -14,7 +14,7 @@ output:
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Renders an appropriate HTML file and moves to CE directory
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_ANOVA2Foundations2_CE1_Cattails")
+modHTML_CEKeys("KEY_ANOVA2Foundations2_CE1_Cattail")
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
