@@ -1,0 +1,14 @@
+---
+title: "MTH207 Final Exam"
+description: |
+date: "`r Sys.Date()`"
+output: distill::distill_article:
+  toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Coral Reef Algae
+[Schmitt *et al.* (2019)](https://www.pnas.org/content/116/10/4372) used an experiment with a coral reef to examine the ecological theory that under the same environmental conditions, an ecosystem could have more than one community state that is maintained by reinforcing feedbacks. In one part of that study the researchers wanted to test how resilient patches of a coral reef that are dominated by the [*Turbinaria* coral](https://en.wikipedia.org/wiki/Turbinaria_(coral)) are to varying levels of disturbances. Thus, the authors selected patches on a large coral reef that were spatially distant. For each patch they recorded the number of *Turbinaria* individuals. They then randomly selected which patches would receive one of three simulated disturbance treatments. Some patches were left undisturbed as a control, whereas other patches had large bouyant adult individuals removed to simulate a single "large wave" disturbance, and other patches had both adult and some juveniel individuals removed to simulate a more sustained cyclonic storm. The researchers returned to each patch 26 months later and again recorded the number of *Turbinaria* individuals. The researchers ultimately want to determine if there is a relationship between the post-disturbance and pre-disturbance numbers of *Turbinaria* and if that relationship is affected by the type of disturbance. The data for this study are in [CoralReefs.csv](data/CoralReefs.csv).

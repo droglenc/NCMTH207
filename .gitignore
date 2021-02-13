@@ -1,47 +1,9 @@
 ## Stuff that should not be public
 Year_Specific/
-resources/homework-keys/HW/
+resources/FinalExams/keys
+resources/FinalExams/Original_Data
 zzzOld/
 
-## Book materials that do not need to be in the repo
-book/cache/
-book/FBMatter/*.aux
-book/data/zPDFSources/
-book/Figs/*.pdf
-book/Figs/zzzOld/
-book/*.synctex.gz
-book/Biometry.pdf
-book/*.aux
-book/*.bbl
-book/*.blg
-book/*.brf
-book/*.idx
-book/*.ilg
-book/*.ind
-book/*.log
-book/*.maf
-book/*.mt*
-book/*.out
-book/*.tex
-book/*.toc
-book/*-concordance.tex
-book/pdftk.exe
-book/libiconv2.dll
-book/zzzRestrict Printing.txt
-
-## Lecture materials that do not need to be in the repo
-lecture/CEs/*.log
-lecture/CEs/*.synctex.gz
-lecture/CEs/*.tex
-lecture/CEs/Figs/*.pdf
-lecture/HOs/*.aux
-lecture/HOs/*.log
-lecture/HOs/*.out
-lecture/HOs/*.synctex.gz
-lecture/HOs/*.tex
-lecture/HOs/Figs/*.pdf
-lecture/HOs/cache/
-lecture/HOs/zOld/
 
 ## R History files
 .Rhistory
