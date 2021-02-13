@@ -6,8 +6,8 @@ layout: page
 css: "/css/modules.css"
 output:
   html_document:
-    fig_height: 3.5
-    fig_width: 4.5
+    fig_height: 4
+    fig_width: 4
     self_contained: false
 ---
 
@@ -33,7 +33,7 @@ clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")
 
 # Marketability of Cucumbers
 <img src="../zimgs/cucumbers.jpg" alt="Decoration" class="img-right">
-In [this previous exercise] you used these logistic regression results -- logit(p)=6.430-0.330DOS -- for the Levantino cultivar of cucumber to answer questions about cucumber marketability. Continue with this information to answer the questions below.
+In [this previous exercise](LogRegFoundations_CE1#marketability-of-cucumbers) you used these logistic regression results -- logit(p)=6.430-0.330DOS -- for the Levantino cultivar of cucumber to answer questions about cucumber marketability. Continue with this information to answer the questions below.
 
 1. Interpret the slope.
 1. Interpret the exponentiated slope.
@@ -58,7 +58,7 @@ cfs.bat %>%
   knitr::kable(booktabs=TRUE,digits=c(3,3,3)) %>%
   kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 ggplot(data=bat,mapping=aes(x=canine,y=subsp01)) +
   geom_point(alpha=0.25) +
   scale_y_continuous(name="Probability of 'cinereus'",expand=expansion(mult=0.02)) +
