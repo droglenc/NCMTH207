@@ -65,7 +65,7 @@ p.out.rs <- outlierTest(lm.rs)$bonf.p
 
 The form of the relationship appears to be non-linear and possibly heteroscedastic as there is a clear curve evident in the residual plot (shown below) and a possible funneling, though that is difficult to see because of the curvature. The residuals do not appear to be normal (Anderson-Darling `r kPvalue(p.ad.rs,latex=FALSE)` and the histogram is moderately strongly right-skewed) and there is an apparently outlier (`r kPvalue(p.out.rs,latex=FALSE)`) at a large predicted frequency. I suspect that the outlier is related to the non-linear form.
 
-There is little evidence in the background on which to base an assessment of independence. However, the data indicates that individual snakes were used (there is a variable that appears to be a snake identification code). As long as all of the snakes are not relate in any way then the independence assumption is likely adequately met.
+There is little evidence in the background on which to base an assessment of independence. However, the data indicates that individual snakes were used (there is a variable that appears to be a snake identification code). As long as all of the snakes are not related in any way then the independence assumption is likely adequately met.
 
 ### R Code and Results.
 ```{r prompt=FALSE, fig.width=7}
@@ -84,9 +84,9 @@ p.ad.cv <- adTest(lm.cv$residuals)$p.value
 p.out.cv <- outlierTest(lm.cv)$bonf.p
 ```
 
-The form of the relationship is clearly non-linear as there is a clear strong curve evident in the residual plot (shown below). The data look homoscedastic around the curve, though that is difficult to see because of the curvature. The residuals do not appear to be normal (Anderson-Darling `r kPvalue(p.ad.cv,latex=FALSE)` and the histogram is moderately strongly right-skewed) and there is an apparently outlier (`r kPvalue(p.out.cv,latex=FALSE)`) at a large predicted cumulative number of cases. I suspect that the outlier is related to the non-linear form.
+The form of the relationship is clearly non-linear as there is a clear strong curve evident in the residual plot (shown below). The data look homoscedastic around the curve, though that is difficult to see because of the curvature. The residuals do not appear to be normal (Anderson-Darling `r kPvalue(p.ad.cv,latex=FALSE)` and the histogram is moderately strongly right-skewed) and there is an apparent outlier (`r kPvalue(p.out.cv,latex=FALSE)`) at a large predicted cumulative number of cases. I suspect that the outlier is related to the non-linear form.
 
-Independence is clearly in question here because cumulative number of cases on one day is surely relate to the number of cases prior to it. However, this is partly what the analysis is about, to see how cumulative case increase through time so it is likely OK to proceed.
+Independence is clearly in question here because cumulative number of cases on one day is surely related to the number of cases prior to it. However, this is partly what the analysis is about, to see how cumulative case increase through time so it is likely OK to proceed.
 
 ### R Code and Results.
 ```{r prompt=FALSE, fig.width=7}

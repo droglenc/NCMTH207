@@ -74,8 +74,12 @@ aov.ht.rt <- kPvalue(aov.ht$"Pr(>F)"[1],latex=FALSE)
 1. There does appear to be a significant relationship between clutch size and curved carapace length (`r aov.ht.rt`).
 
 #### R Code and Results
-```{r prompt=FALSE}
+```{r prompt=FALSE, fig.width=4.5}
 <<TurtleData>>
+ggplot(data=gm,mapping=aes(x=CCL,y=clutch.size,color=Region)) +  
+  labs(x="Curved Carapace Length (cm)",y="Clutch Size") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm",se=FALSE)
 ```
 
 &nbsp;
