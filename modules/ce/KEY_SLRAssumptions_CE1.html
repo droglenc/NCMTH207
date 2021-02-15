@@ -1,0 +1,127 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "SLR Assumptions"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+For independence it is not adequate to simply say there is no connection among birds or snakes. In addition, it is not sufficient to simply say that the individuals were not measured multiple times as there are many other ways to be dependent. See the answers below for examples of thoughtful reflections on independence.
+</li>
+</ol>
+</ul>
+</div>
+<hr />
+<div id="willow-flycatcher-migration" class="section level1">
+<h1>Willow Flycatcher Migration</h1>
+<p>The form of the relationship appears to be linear and homoscedastic as there is no obvious curvature or funnel (or cone) shape to the residual plot (shown below). The residuals appear to be normal (Anderson-Darling p=0.3240; histogram not strongly skewed) and there are no obvious outliers (p=0.6659) or influential points (residual plot below).</p>
+<p>I would be concerned about independence if (a) birds were sampled multiple times, (b) birds came from the same brood or general breeding area, or (c) birds tended to flock together based on size. There is no indication that all birds were sampled more than once (e.g., there is no ID variable in the data), it is unlikely that all birds came from the same brood or breeding area, and there is no indication that birds flocked together as the data shows that multiple (and only a few) birds were captured on only a few days. Thus, I don’t see any obvious dependency between birds.</p>
+<div id="r-code-and-results." class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>wfc &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv&quot;)
+lm.wfc &lt;- lm(winglen~date,data=wfc)
+assumptionCheck(lm.wfc)</code></pre>
+<p><img src="KEY_SLRAssumptions_CE1_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data=wfc,mapping=aes(x=date,y=winglen)) +  
+  geom_point(pch=21,color=&quot;black&quot;,fill=&quot;lightgray&quot;) +  
+  labs(x=&quot;Date Since 1-Jan&quot;,y=&quot;Wing Length (mm)&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_SLRAssumptions_CE1_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
+<p> </p>
+</div>
+</div>
+<div id="rattlesnake-rattling" class="section level1">
+<h1>Rattlesnake Rattling</h1>
+<p>The form of the relationship appears to be non-linear and possibly heteroscedastic as there is a clear curve evident in the residual plot (shown below) and a possible funneling, though that is difficult to see because of the curvature. The residuals do not appear to be normal (Anderson-Darling p=0.0029 and the histogram is moderately strongly right-skewed) and there is an apparently outlier (p=0.0012) at a large predicted frequency. I suspect that the outlier is related to the non-linear form.</p>
+<p>There is little evidence in the background on which to base an assessment of independence. However, the data indicates that individual snakes were used (there is a variable that appears to be a snake identification code) and were not recorded multiple times. As long as all of the snakes are not related familialy then the independence assumption is likely adequately met.</p>
+<div id="r-code-and-results.-1" class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>rs &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/Rattlesnakes.csv&quot;)
+lm.rs &lt;- lm(freq~weight,data=rs)
+assumptionCheck(lm.rs)</code></pre>
+<p><img src="KEY_SLRAssumptions_CE1_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data=rs,mapping=aes(x=weight,y=freq)) +  
+  geom_point(pch=21,color=&quot;black&quot;,fill=&quot;lightgray&quot;) +  
+  labs(x=&quot;Body Weight (g)&quot;,y=&quot;Rattle Frequency (hz)&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_SLRAssumptions_CE1_files/figure-html/unnamed-chunk-8-1.png" width="336" /></p>
+<p> </p>
+</div>
+</div>
+<div id="initial-covid-19-cases" class="section level1">
+<h1>Initial COVID-19 Cases</h1>
+<p>The form of the relationship is clearly non-linear as there is a clear strong curve evident in the residual plot (shown below). The data look homoscedastic around the curve, though that is difficult to see because of the curvature. The residuals do not appear to be normal (Anderson-Darling p=0.0381 and the histogram is moderately strongly right-skewed) and there is an apparent outlier (p=0.0407) at a large predicted cumulative number of cases. I suspect that the outlier is related to the non-linear form.</p>
+<p>Independence is clearly in question here because cumulative number of cases on one day is surely related to the number of cases prior to it. However, this is partly what the analysis is about – to see how cumulative case increase through time – so it is likely OK to proceed.</p>
+<div id="r-code-and-results.-2" class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>cv &lt;- read.csv(&quot;https://derekogle.com/NCMTH207/modules/ce/data/CovidUK.csv&quot;)
+lm.cv &lt;- lm(Cum_Cases~Days_Since_10,data=cv)
+assumptionCheck(lm.cv)</code></pre>
+<p><img src="KEY_SLRAssumptions_CE1_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data=cv,mapping=aes(x=Days_Since_10,y=Cum_Cases)) +  
+  geom_point(pch=21,color=&quot;black&quot;,fill=&quot;lightgray&quot;) +  
+  labs(x=&quot;Days Since the 10th Case&quot;,y=&quot;Cumulative Cases&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_SLRAssumptions_CE1_files/figure-html/unnamed-chunk-11-1.png" width="336" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
