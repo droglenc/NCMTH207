@@ -26,7 +26,9 @@ source("../../../rhelpers/knitr_setup.R")
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>Use complete sentences to answer questions.</li>
+  <li>Don't include the "mean" in the axis labels if the observed data are shown unless the observed data are means. In these examples the observed data are the frequency of the rattle for an INDIVIDUAL snake and the cumulative number of COVID cases for an INDIVIDUAL day. Thus, "mean" is not part of the variable and thus should not be in the axis labels. In the reading, the MEAN weight loss for a species of petrels was recorded so "mean" was part of the variable and is why it was included in the axis labels. If just the best-fit-line had been shown, without the observed points, then they y-axis would use "mean" because the lines represents a mean.</li>
+  <li>When interpreting the slope on the transformed scale you say as "X" not "mean of X" increases by one and you say "mean of log of Y" not "log of mean of Y" (i.e., logging happened first, then the mean (i.e., best-fit line) was found).</li>
+  <li>For the predictions using a confidence interval, make sure you say "mean" (you are predicting a mean value, not a value, for all individuals). However, for the predictions using a prediction interval, make sure you don't say "mean" (you are predicting a value for a individual, not a mean for that individual).
   </ol>
 </ul>
 </div>
