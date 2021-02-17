@@ -31,6 +31,7 @@ source("../../../rhelpers/knitr_setup.R")
   <li>When describing the relationship, use the confidence interval for the slope. Don't just use the slope.</li>
   <li>When back-transforming the slope to describe the relationship on the original scale, note that "a change in log(x) of 1" should be back-transformed to "a change in x of e<sup>1</sup>" which is where the 2.718 below came from. Also, note that the back-transformed slope indicates a "multiplicative" change such that the value is Y is multiplied by the back-transformed slope rather than added to.
   <li>The predictions should use prediction intervals as the original authors were interested in predicting the weight of an individual bear.</li>
+  <li>Note that r<sup>2</sup> should be interpreted on the transformed scale ... so how much variability in log weight is explained by knowing log length. The r<sup>2</sup> is not relevant on the original scale because homoscedasticity means that the variability explained will not be the same everywhere on the line.</sup>
   </ol>
 </ul>
 </div>
@@ -60,7 +61,11 @@ p.logw <- predict(lm.bbt,newdata=nd,interval="prediction")
 p.weight <- cbind(obs=1:3,length=lens,exp(p.logw))
 ```
 
-Measuring the live body weight of large-bodied animals can be impractical when equipment needed to weigh individuals is inadequate or unavailable. Thus, the objective of this analysis is to determine if body weight can be predicted from body length for non-cub bears (i.e., older than one year of age). 
+Measuring the live body weight of large-bodied animals can be impractical when equipment needed to weigh individuals is inadequate or unavailable. Thus, the objective of this analysis is to determine if body weight can be predicted from body length for non-cub bears (i.e., older than one year of age). The specific hypotheses for this analysis are:
+
+H~0~: "no relationship between weight and length of non-cub black bears"
+
+H~A~: "is a relationship between weight and length of non-cub black bears"
 
 A total of `r n` bears were examined for this study. There is not nearly enough information in the background to full address the independence assumption, but it is unlikely that the weight of any one bear will have much of an impact on any other bear, let alone have an impact on all other bears. Thus, the independence assumption is adequately met.
 
@@ -68,7 +73,7 @@ The un-transformed data are clearly non-linear and heteroscedastic (see first re
 
 There is a significant relationship between log weight and log length of the black bears (ANOVA `r kPvalue(aov.bbt$"Pr(>F)"[1],latex=FALSE)`). In fact, `r formatC(100*rSquared(lm.bbt),format="f",digits=1)`% of the variability in log weight is explained by log length. The scatterplot with the best-fit line superimposed shown below illustrates the strength of the relationship.
 
-The log weight of a bear increases between `r formatC(cfs.bbt["loglength","2.5 %"],format="f",digits=3)` and `r formatC(cfs.bbt["loglength","97.5 %"],format="f",digits=3)` for each unit increase in log body lengt of the bears. More importantly the weight is multiplied by a value between `r formatC(btcfs.bbt["loglength","2.5 %"],format="f",digits=3)` and `r formatC(btcfs.bbt["loglength","97.5 %"],format="f",digits=3)` for each 2.718 unit increase in length of the bear.
+The mean log weight of a bear increases between `r formatC(cfs.bbt["loglength","2.5 %"],format="f",digits=3)` and `r formatC(cfs.bbt["loglength","97.5 %"],format="f",digits=3)` for each unit increase in log body length of the bears. More importantly the mean weight is multiplied by a value between `r formatC(btcfs.bbt["loglength","2.5 %"],format="f",digits=3)` and `r formatC(btcfs.bbt["loglength","97.5 %"],format="f",digits=3)` for each 2.718 unit increase in length of the bear.
 
 As an example, the weight for a bear with a body length of 130 cm is between `r formatC(p.weight[1,"lwr"],format="f",digits=1)` and `r formatC(p.weight[1,"upr"],format="f",digits=1)` kg.
 
@@ -100,4 +105,14 @@ ggplot(data=bb,mapping=aes(x=loglength,y=logweight)) +
   labs(x="log Length",y="log Weight") +  
   theme_NCStats() +  
   geom_smooth(method="lm")
+```
+```{r prompt=FALSE,echo=FALSE,eval=FALSE}
+## messing around
+ggplot(data=bb,mapping=aes(x=length,y=weight)) +  
+  geom_point(pch=21,color="black",fill="lightgray") +  
+  labs(x="Length",y="Weight") +  
+  theme_NCStats() +  
+  geom_smooth(method="lm") +
+  scale_y_continuous(trans="log",breaks=c(10,25,50,100,150,200,300)) +
+  scale_x_continuous(trans="log")
 ```
