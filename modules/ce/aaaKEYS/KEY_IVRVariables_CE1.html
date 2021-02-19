@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Derek H. Ogle" />
+
+
+<title>Exercise Key</title>
+
+<script src="KEY_IVRVariables_CE1_files/header-attrs-2.6/header-attrs.js"></script>
+<script src="KEY_IVRVariables_CE1_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="KEY_IVRVariables_CE1_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="KEY_IVRVariables_CE1_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="KEY_IVRVariables_CE1_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="KEY_IVRVariables_CE1_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="KEY_IVRVariables_CE1_files/navigation-1.1/tabsets.js"></script>
+<link href="KEY_IVRVariables_CE1_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="KEY_IVRVariables_CE1_files/highlightjs-9.12.0/highlight.js"></script>
+<script src="KEY_IVRVariables_CE1_files/kePrint-0.0.1/kePrint.js"></script>
+<link href="KEY_IVRVariables_CE1_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+<link rel="stylesheet" href="/css/modules.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Exercise Key</h1>
+<h3 class="subtitle">IVR Variables</h3>
+<h4 class="author">Derek H. Ogle</h4>
+
+</div>
+
+
+<hr />
+<div id="nurse-wages" class="section level1">
+<h1>Nurse Wages</h1>
+<ol style="list-style-type: decimal">
+<li>The response variable is <strong>WAGE</strong>.</li>
+<li>The covariate is months of <strong>EXPERience</strong>.</li>
+<li>The factor is <strong>gender</strong> (female and male).</li>
+<li>As there are two groups in this analysis and females comes before males, I created the following indicator variable.
+<ul>
+<li>MALE=1 if “male”, 0 otherwise (i.e., “female”)</li>
+</ul></li>
+<li>The very simple table connecting the groups to the indicator variables codes is as follows:
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:right;">
+MALE
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<ol start="6">
+<li>
+The only interaction variables would be between months of EXPERience and MALE; thus, experience:FEM.
+</li>
+<ol>
+<p> </p>
+</div>
+<div id="turtle-nesting-ecology" class="section level1">
+<h1>Turtle Nesting Ecology</h1>
+<ol style="list-style-type: decimal">
+<li>The response variable is <strong>clutch size</strong> (CSIZE).</li>
+<li>The covariate is <strong>curved carapace length</strong> (CCL).</li>
+<li>The factor is <strong>location</strong> (or region).</li>
+<li>As there are five groups in this analysis and the “Arabian Gulf” turtles are to be the reference group, I created the following four indicator variables.
+<ul>
+<li>IO=1 if in the “Indian Ocean” group, 0 otherwise</li>
+<li>RS=1 if in the “Red Sea” group, 0 otherwise</li>
+<li>CO=1 if in the “Caribbean” group, 0 otherwise</li>
+<li>WA=1 if in the “West Atlantic” group, 0 otherwise</li>
+</ul></li>
+<li>The table connecting the groups to the indicator variable codes is as follows:
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Region
+</th>
+<th style="text-align:right;">
+IO
+</th>
+<th style="text-align:right;">
+RS
+</th>
+<th style="text-align:right;">
+CO
+</th>
+<th style="text-align:right;">
+WA
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Arabian Gulf
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Indian Ocean
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red Sea
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Caribbean
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West Atlantic
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<ol start="6">
+<li>
+The interaction variables are IO:CCL, RS:CCL, CO:CCL, and WA:CCL.
+</li>
+<ol>
+<p> </p>
+</div>
+<div id="water-quality-near-a-gold-mine" class="section level1">
+<h1>Water Quality Near a Gold Mine</h1>
+<ol style="list-style-type: decimal">
+<li>The response variable is <strong>phosphorous level</strong> measurement (P).</li>
+<li>The covariate is <strong>distance</strong> from the gold mine (DIST).</li>
+<li>The factor is <strong>type of phosphorous</strong>.</li>
+<li>The levels should be changed so that “total” is first; e.g., “total”, “dissolved”, and “soluble”. As there are three groups in this analysis and “total” is to be the reference group, I created the following two indicator variables.
+<ul>
+<li>DP=1 if the “total dissolved phosphorous” group, 0 otherwise</li>
+<li>SP=1 if the “soluble reactive phosphorous” group, 0 otherwise</li>
+</ul></li>
+<li>The table connecting the groups to the indicator variable codes is as follows:
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:right;">
+DP
+</th>
+<th style="text-align:right;">
+SP
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Total P
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total Dissolved P
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soluble Reactive P
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<ol start="7">
+<li>
+The interaction variables are DP:DISTANCE and SP:DISTANCE.
+</li>
+<ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

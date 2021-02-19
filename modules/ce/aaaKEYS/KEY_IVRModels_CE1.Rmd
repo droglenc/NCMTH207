@@ -27,7 +27,7 @@ source("../../../rhelpers/knitr_setup.R")
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>Use complete sentences to answer questions.</li>
+  <li>XXX.</li>
 </ul>
 </div>
 
@@ -101,13 +101,19 @@ data.frame(Region=c("Arabian Gulf","Indian Ocean","Red Sea","Caribbean","West At
 <li>The "covariate" (CCL) estimate is $\hat{\beta}$ and thus means that the mean clutch size of turtles from the Arabian Gulf (the reference group) will increase by `r cfs.ht["CCL","Ests"]` when the curved carapace length increases by 1 cm.</li>
 <li>The first interaction (CCL:RegionIndianOcean) estimate is $\hat{\gamma}_{1}$ and thus means that the slope for turtles from the Indian Ocean is `r cfs.ht["CCL:RegionIndian Ocean","Ests"]` less than the slope for turtles from the Arabian Gulf. Thus, mean clutch size increases at a slower rate with increasing curved carapace length for turtles from the Indian Ocean than turtles from the Arabian Gulf.</li>
 <li>The third indicator (RegionCaribbeaan) estimate is $\hat{\delta}_{3}$ and thus means that the y-intercept for turtles from the Caribbean is `r cfs.ht["RegionCaribbean","Ests"]` more than the y-intercept for turtles from the Arabian Gulf. Thus, mean clutch size when the curved carapace length is zero is greater in the Caribbean than the Arabian Gulf. This is mostly meaningless because a carapace length of zero is meaningless.</li>
-<li>I am 95% confident that the mean clutch size for all turtles from the Arabian Gulf with a curved carapace length of 90 cm will be between `r formatC(p90[1,"lwr"],format="f",digits=1)` and `r formatC(p90[1,"upr"],format="f",digits=1)`.</li>
+<li>The three predictions are below:</li>
+<ul>
+  <li>Arabian Gulf: clutch size = `r cfs.ht["(Intercept)","Ests"]`+`r cfs.ht["CCL","Ests"]`&times;90 =`r formatC(p90$fit[1],format="f",digits=1)`</li>
+  <li>Indian Ocean: clutch size = (`r cfs.ht["(Intercept)","Ests"]`+`r cfs.ht["RegionIndian Ocean","Ests"]`)+(`r cfs.ht["CCL","Ests"]`+`r cfs.ht["CCL:RegionIndian Ocean","Ests"]`)&times;90 = `r formatC(p90$fit[2],format="f",digits=1)`</li>
+  <li>Caribbean: clutch size = (`r cfs.ht["(Intercept)","Ests"]`+`r cfs.ht["RegionCaribbean","Ests"]`)+(`r cfs.ht["CCL","Ests"]`+`r cfs.ht["CCL:RegionCaribbean","Ests"]`)&times;90 = `r formatC(p90$fit[3],format="f",digits=1)`</li>
+</ul>
 </ol>
 
 #### R Code and Results
 ```{r prompt=FALSE}
 <<TurtleData>>
 cbind(Est=coef(ivr.ht),confint(ivr.ht))
+## You were asked not to use R, but this is what it would look like
 <<TurtlePreds>>
 ```
 
