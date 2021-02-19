@@ -1,0 +1,350 @@
+ID,Island,Plot Name,Transect,PlotType,MeterPoint,DuffDepth
+163,York,Control East,240 degrees,Control,8,4.5
+164,York,Control East,240 degrees,Control,9,5
+165,York,Control East,240 degrees,Control,10,3.5
+166,York,Cedar Fire,N,Fire,0,0.25
+167,York,Cedar Fire,N,Fire,1,0.25
+168,York,Cedar Fire,N,Fire,2,0.6
+169,York,Cedar Fire,N,Fire,3,0.3
+170,York,Cedar Fire,N,Fire,4,0.9
+171,York,Cedar Fire,N,Fire,5,3.4
+172,York,Cedar Fire,N,Fire,6,3
+173,York,Cedar Fire,N,Fire,7,3.5
+177,York,Cedar Fire,240 degrees,Fire,0,0.25
+178,York,Cedar Fire,240 degrees,Fire,1,0.4
+179,York,Cedar Fire,240 degrees,Fire,2,0.5
+180,York,Cedar Fire,240 degrees,Fire,3,0.7
+181,York,Cedar Fire,240 degrees,Fire,4,0.6
+182,York,Cedar Fire,240 degrees,Fire,5,0.8
+183,York,Cedar Fire,240 degrees,Fire,6,0.8
+184,York,Cedar Fire,240 degrees,Fire,7,0.25
+185,York,Cedar Fire,240 degrees,Fire,8,0.4
+186,York,Cedar Fire,240 degrees,Fire,9,1
+187,York,Cedar Fire,240 degrees,Fire,10,0.8
+188,York,Cedar Fire,120 degrees,Fire,0,0.25
+189,York,Cedar Fire,120 degrees,Fire,1,0.25
+190,York,Cedar Fire,120 degrees,Fire,2,0.3
+191,York,Cedar Fire,120 degrees,Fire,3,0.25
+192,York,Cedar Fire,120 degrees,Fire,4,0.9
+193,York,Cedar Fire,120 degrees,Fire,5,0.25
+194,York,Cedar Fire,120 degrees,Fire,6,1.3
+195,York,Cedar Fire,120 degrees,Fire,7,1.4
+196,York,Cedar Fire,120 degrees,Fire,8,2
+197,York,Cedar Fire,120 degrees,Fire,9,1.6
+198,York,Cedar Fire,120 degrees,Fire,10,1.6
+199,Raspberry,Blackfly Fire,240 degrees,Fire,0,1
+200,Raspberry,Blackfly Fire,240 degrees,Fire,1,0.25
+201,Raspberry,Blackfly Fire,240 degrees,Fire,2,2
+202,Raspberry,Blackfly Fire,240 degrees,Fire,3,2
+203,Raspberry,Blackfly Fire,240 degrees,Fire,4,3.4
+204,Raspberry,Blackfly Fire,240 degrees,Fire,5,2.9
+205,Raspberry,Blackfly Fire,240 degrees,Fire,6,4.2
+206,Raspberry,Blackfly Fire,240 degrees,Fire,7,1
+207,Raspberry,Blackfly Fire,240 degrees,Fire,8,2
+208,Raspberry,Blackfly Fire,240 degrees,Fire,9,2.2
+209,Raspberry,Blackfly Fire,240 degrees,Fire,10,0.7
+210,Raspberry,Blackfly Fire,120 degrees,Fire,0,1
+211,Raspberry,Blackfly Fire,120 degrees,Fire,1,1.8
+212,Raspberry,Blackfly Fire,120 degrees,Fire,2,0.8
+213,Raspberry,Blackfly Fire,120 degrees,Fire,3,1.2
+214,Raspberry,Blackfly Fire,120 degrees,Fire,4,0.4
+215,Raspberry,Blackfly Fire,120 degrees,Fire,5,0.5
+216,Raspberry,Blackfly Fire,120 degrees,Fire,6,2
+217,Raspberry,Blackfly Fire,120 degrees,Fire,7,2.2
+218,Raspberry,Blackfly Fire,120 degrees,Fire,8,3.8
+219,Raspberry,Blackfly Fire,120 degrees,Fire,9,4.6
+220,Raspberry,Blackfly Fire,120 degrees,Fire,10,0.8
+221,Raspberry,Blackfly Fire,N,Fire,0,1
+222,Raspberry,Blackfly Fire,N,Fire,1,1
+223,Raspberry,Blackfly Fire,N,Fire,2,1.3
+224,Raspberry,Blackfly Fire,N,Fire,3,0.7
+225,Raspberry,Blackfly Fire,N,Fire,4,1
+226,Raspberry,Blackfly Fire,N,Fire,5,0.7
+227,Raspberry,Blackfly Fire,N,Fire,6,1.7
+228,Raspberry,Blackfly Fire,N,Fire,7,0.7
+229,Raspberry,Blackfly Fire,N,Fire,8,2
+230,Raspberry,Blackfly Fire,N,Fire,9,3.2
+231,Raspberry,Blackfly Fire,N,Fire,10,1.5
+232,Raspberry,Control North,N,Control,0,0.9
+233,Raspberry,Control North,N,Control,1,1.2
+234,Raspberry,Control North,N,Control,2,2
+235,Raspberry,Control North,N,Control,3,3
+236,Raspberry,Control North,N,Control,4,4
+237,Raspberry,Control North,N,Control,5,2.1
+238,Raspberry,Control North,N,Control,6,1.4
+239,Raspberry,Control North,N,Control,7,2.5
+240,Raspberry,Control North,N,Control,8,2.4
+241,Raspberry,Control North,N,Control,9,2.8
+242,Raspberry,Control North,N,Control,10,2.6
+243,Raspberry,Control North,120 degrees,Control,0,0.9
+244,Raspberry,Control North,120 degrees,Control,1,1.3
+245,Raspberry,Control North,120 degrees,Control,2,1.5
+246,Raspberry,Control North,120 degrees,Control,3,2.1
+247,Raspberry,Control North,120 degrees,Control,4,1.2
+248,Raspberry,Control North,120 degrees,Control,5,2.5
+249,Raspberry,Control North,120 degrees,Control,6,2
+250,Raspberry,Control North,120 degrees,Control,7,2.1
+251,Raspberry,Control North,120 degrees,Control,8,2.1
+252,Raspberry,Control North,120 degrees,Control,9,2.4
+253,Raspberry,Control North,120 degrees,Control,10,2.5
+254,Raspberry,Control North,240 degrees,Control,0,0.9
+255,Raspberry,Control North,240 degrees,Control,1,2.1
+256,Raspberry,Control North,240 degrees,Control,2,1.7
+257,Raspberry,Control North,240 degrees,Control,3,2
+258,Raspberry,Control North,240 degrees,Control,4,1.3
+259,Raspberry,Control North,240 degrees,Control,5,1.4
+260,Raspberry,Control North,240 degrees,Control,6,1.7
+261,Raspberry,Control North,240 degrees,Control,7,1.5
+262,Raspberry,Control North,240 degrees,Control,8,1
+263,Raspberry,Control North,240 degrees,Control,9,0.8
+264,Raspberry,Control North,240 degrees,Control,10,1.5
+265,Raspberry,Control South,N,Control,0,3.5
+266,Raspberry,Control South,N,Control,1,2.6
+267,Raspberry,Control South,N,Control,2,3
+268,Raspberry,Control South,N,Control,3,4.3
+269,Raspberry,Control South,N,Control,4,4.5
+270,Raspberry,Control South,N,Control,5,4.7
+271,Raspberry,Control South,N,Control,6,3.2
+272,Raspberry,Control South,N,Control,7,3
+273,Raspberry,Control South,N,Control,8,3
+274,Raspberry,Control South,N,Control,9,2.5
+275,Raspberry,Control South,N,Control,10,3.5
+276,Raspberry,Control South,120 degrees,Control,0,3.5
+277,Raspberry,Control South,120 degrees,Control,1,3.3
+278,Raspberry,Control South,120 degrees,Control,2,3.3
+279,Raspberry,Control South,120 degrees,Control,3,2.8
+280,Raspberry,Control South,120 degrees,Control,4,4.5
+281,Raspberry,Control South,120 degrees,Control,5,2.5
+282,Raspberry,Control South,120 degrees,Control,6,4.5
+283,Raspberry,Control South,120 degrees,Control,7,4.7
+284,Raspberry,Control South,120 degrees,Control,8,4.2
+285,Raspberry,Control South,120 degrees,Control,9,4.5
+286,Raspberry,Control South,120 degrees,Control,10,5
+287,Raspberry,Control South,240 degrees,Control,0,3.5
+288,Raspberry,Control South,240 degrees,Control,1,2.7
+289,Raspberry,Control South,240 degrees,Control,2,3
+290,Raspberry,Control South,240 degrees,Control,3,3.4
+291,Raspberry,Control South,240 degrees,Control,4,2.5
+292,Raspberry,Control South,240 degrees,Control,5,3
+293,Raspberry,Control South,240 degrees,Control,6,3
+294,Raspberry,Control South,240 degrees,Control,7,4
+295,Raspberry,Control South,240 degrees,Control,8,2.7
+296,Raspberry,Control South,240 degrees,Control,9,1.6
+297,Raspberry,Control South,240 degrees,Control,10,0.25
+298,North Twin,Control North,N,Control,0,4.8
+299,North Twin,Control North,N,Control,1,4.5
+300,North Twin,Control North,N,Control,2,4
+301,North Twin,Control North,N,Control,3,3.3
+302,North Twin,Control North,N,Control,4,4
+303,North Twin,Control North,N,Control,5,0.25
+304,North Twin,Control North,N,Control,6,2.7
+305,North Twin,Control North,N,Control,7,2.9
+306,North Twin,Control North,N,Control,8,4.3
+307,North Twin,Control North,N,Control,9,4.3
+308,North Twin,Control North,N,Control,10,4.5
+309,North Twin,Control North,120 degrees,Control,0,4.8
+310,North Twin,Control North,120 degrees,Control,1,4.1
+311,North Twin,Control North,120 degrees,Control,2,4.1
+312,North Twin,Control North,120 degrees,Control,3,4.7
+313,North Twin,Control North,120 degrees,Control,4,7.1
+314,North Twin,Control North,120 degrees,Control,5,4.6
+315,North Twin,Control North,120 degrees,Control,6,3.9
+316,North Twin,Control North,120 degrees,Control,7,5
+317,North Twin,Control North,120 degrees,Control,8,5
+318,North Twin,Control North,120 degrees,Control,9,5.1
+319,North Twin,Control North,120 degrees,Control,10,5.3
+320,North Twin,Control North,240 degrees,Control,0,4.8
+321,North Twin,Control North,240 degrees,Control,1,4.5
+322,North Twin,Control North,240 degrees,Control,2,3.2
+323,North Twin,Control North,240 degrees,Control,3,4.4
+324,North Twin,Control North,240 degrees,Control,4,3.2
+325,North Twin,Control North,240 degrees,Control,5,4.9
+326,North Twin,Control North,240 degrees,Control,6,3.8
+327,North Twin,Control North,240 degrees,Control,7,2.8
+328,North Twin,Control North,240 degrees,Control,8,4
+329,North Twin,Control North,240 degrees,Control,9,3.4
+330,North Twin,Control North,240 degrees,Control,10,4
+331,North Twin,Control South,N,Control,0,4.1
+332,North Twin,Control South,N,Control,1,5.5
+333,North Twin,Control South,N,Control,2,4.3
+336,North Twin,Control South,N,Control,5,3.7
+337,North Twin,Control South,N,Control,6,4
+338,North Twin,Control South,N,Control,7,3.5
+339,North Twin,Control South,N,Control,8,3.6
+340,North Twin,Control South,N,Control,9,4.2
+341,North Twin,Control South,N,Control,10,4.9
+342,North Twin,Control South,120 degrees,Control,0,4.1
+343,North Twin,Control South,120 degrees,Control,1,5.9
+344,North Twin,Control South,120 degrees,Control,2,4.3
+345,North Twin,Control South,120 degrees,Control,3,3.7
+346,North Twin,Control South,120 degrees,Control,4,3.7
+347,North Twin,Control South,120 degrees,Control,5,3.6
+348,North Twin,Control South,120 degrees,Control,6,3.4
+349,North Twin,Control South,120 degrees,Control,7,3.3
+350,North Twin,Control South,120 degrees,Control,8,4.4
+351,North Twin,Control South,120 degrees,Control,9,2.6
+352,North Twin,Control South,120 degrees,Control,10,3.2
+353,North Twin,Control South,240 degrees,Control,0,4.1
+354,North Twin,Control South,240 degrees,Control,1,3.2
+355,North Twin,Control South,240 degrees,Control,2,3.7
+356,North Twin,Control South,240 degrees,Control,3,3
+357,North Twin,Control South,240 degrees,Control,4,4.9
+358,North Twin,Control South,240 degrees,Control,5,3.7
+359,North Twin,Control South,240 degrees,Control,6,4.2
+360,North Twin,Control South,240 degrees,Control,7,2.3
+361,North Twin,Control South,240 degrees,Control,8,2.5
+362,North Twin,Control South,240 degrees,Control,9,3.1
+363,North Twin,Control South,240 degrees,Control,10,2.1
+364,North Twin,1990 Fire,135 degrees,Fire,0,0.3
+365,North Twin,1990 Fire,135 degrees,Fire,1,5
+366,North Twin,1990 Fire,135 degrees,Fire,2,1.5
+367,North Twin,1990 Fire,135 degrees,Fire,3,3.6
+370,North Twin,1990 Fire,135 degrees,Fire,6,2.7
+371,North Twin,1990 Fire,135 degrees,Fire,7,4.5
+372,North Twin,1990 Fire,135 degrees,Fire,8,4.2
+373,North Twin,1990 Fire,135 degrees,Fire,9,5
+374,North Twin,1990 Fire,135 degrees,Fire,10,3.7
+375,North Twin,1990 Fire,90 degrees,Fire,0,0.3
+376,North Twin,1990 Fire,90 degrees,Fire,1,4
+377,North Twin,1990 Fire,90 degrees,Fire,2,3.7
+378,North Twin,1990 Fire,90 degrees,Fire,3,6.2
+379,North Twin,1990 Fire,90 degrees,Fire,4,2
+380,North Twin,1990 Fire,90 degrees,Fire,5,3
+381,North Twin,1990 Fire,90 degrees,Fire,6,4.2
+1,Sand,Control West,N,Control,0,3
+2,Sand,Control West,N,Control,1,2.6
+3,Sand,Control West,N,Control,2,4.5
+12,Sand,Control West,SW,Control,0,3
+13,Sand,Control West,SW,Control,1,4.7
+14,Sand,Control West,SW,Control,2,6
+23,Sand,Control West,SE,Control,0,3
+24,Sand,Control West,SE,Control,1,6
+25,Sand,Control West,SE,Control,2,4
+26,Sand,Control West,SE,Control,3,5
+27,Sand,Control West,SE,Control,4,5
+28,Sand,Control West,SE,Control,5,6
+29,Sand,Control West,SE,Control,6,4.4
+30,Sand,Control West,SE,Control,7,4
+31,Sand,Control West,SE,Control,8,6.5
+32,Sand,Control West,SE,Control,9,4
+33,Sand,Control West,SE,Control,10,3.9
+34,Sand,Control East,N,Control,0,3.5
+35,Sand,Control East,N,Control,1,7
+36,Sand,Control East,N,Control,2,0.25
+37,Sand,Control East,N,Control,3,1.7
+38,Sand,Control East,N,Control,4,4
+39,Sand,Control East,N,Control,5,3.5
+40,Sand,Control East,N,Control,6,4.8
+41,Sand,Control East,N,Control,7,3
+42,Sand,Control East,N,Control,8,3
+43,Sand,Control East,N,Control,9,2.4
+44,Sand,Control East,N,Control,10,3
+45,Sand,Control East,SE,Control,0,3.5
+46,Sand,Control East,SE,Control,1,3.3
+47,Sand,Control East,SE,Control,2,2.8
+48,Sand,Control East,SE,Control,3,4
+49,Sand,Control East,SE,Control,4,3.3
+50,Sand,Control East,SE,Control,5,3
+51,Sand,Control East,SE,Control,6,3.5
+52,Sand,Control East,SE,Control,7,3
+53,Sand,Control East,SE,Control,8,2
+54,Sand,Control East,SE,Control,9,3.4
+55,Sand,Control East,SE,Control,10,3.8
+56,Sand,Control East,SW,Control,0,3.5
+57,Sand,Control East,SW,Control,1,3.3
+58,Sand,Control East,SW,Control,2,2
+59,Sand,Control East,SW,Control,3,3.6
+60,Sand,Control East,SW,Control,4,3.5
+61,Sand,Control East,SW,Control,5,3.5
+62,Sand,Control East,SW,Control,6,2
+63,Sand,Control East,SW,Control,7,3
+64,Sand,Control East,SW,Control,8,4
+65,Sand,Control East,SW,Control,9,3.2
+66,Sand,Control East,SW,Control,10,4.6
+67,Sand,Eagle Tree Fire,N,Fire,0,1.5
+68,Sand,Eagle Tree Fire,N,Fire,1,1
+69,Sand,Eagle Tree Fire,N,Fire,2,1.7
+78,Sand,Eagle Tree Fire,240 degrees,Fire,0,1.5
+79,Sand,Eagle Tree Fire,240 degrees,Fire,1,4
+80,Sand,Eagle Tree Fire,240 degrees,Fire,2,6
+89,Sand,Eagle Tree Fire,120 degrees,Fire,0,1.5
+90,Sand,Eagle Tree Fire,120 degrees,Fire,1,0.5
+91,Sand,Eagle Tree Fire,120 degrees,Fire,2,2
+100,York,Control West,N,Control,0,2
+101,York,Control West,N,Control,1,3.5
+102,York,Control West,N,Control,2,4
+103,York,Control West,N,Control,3,2
+104,York,Control West,N,Control,4,3.7
+105,York,Control West,N,Control,5,4.2
+106,York,Control West,N,Control,6,5.5
+107,York,Control West,N,Control,7,3
+334,North Twin,Control South,N,Control,3,3.2
+335,North Twin,Control South,N,Control,4,4.7
+368,North Twin,1990 Fire,135 degrees,Fire,4,4
+382,North Twin,1990 Fire,90 degrees,Fire,7,2.5
+386,North Twin,1990 Fire,45 degrees,Fire,0,0.3
+387,North Twin,1990 Fire,45 degrees,Fire,1,1
+388,North Twin,1990 Fire,45 degrees,Fire,2,1.3
+389,North Twin,1990 Fire,45 degrees,Fire,3,0.6
+390,North Twin,1990 Fire,45 degrees,Fire,4,0.5
+391,North Twin,1990 Fire,45 degrees,Fire,5,2.4
+392,North Twin,1990 Fire,45 degrees,Fire,6,2
+393,North Twin,1990 Fire,45 degrees,Fire,7,3.5
+394,North Twin,1990 Fire,45 degrees,Fire,8,2
+395,North Twin,1990 Fire,45 degrees,Fire,9,4.3
+396,North Twin,1990 Fire,45 degrees,Fire,10,6
+133,York,Control East,N,Control,0,4.5
+134,York,Control East,N,Control,1,6.5
+135,York,Control East,N,Control,2,5
+136,York,Control East,N,Control,3,5.5
+137,York,Control East,N,Control,4,5.5
+138,York,Control East,N,Control,5,5.5
+139,York,Control East,N,Control,6,4
+140,York,Control East,N,Control,7,4.5
+141,York,Control East,N,Control,8,3.5
+142,York,Control East,N,Control,9,5
+143,York,Control East,N,Control,10,4
+144,York,Control East,120 degrees,Control,0,4.5
+145,York,Control East,120 degrees,Control,1,5.5
+146,York,Control East,120 degrees,Control,2,0.5
+147,York,Control East,120 degrees,Control,3,0.5
+148,York,Control East,120 degrees,Control,4,2.5
+149,York,Control East,120 degrees,Control,5,3.5
+150,York,Control East,120 degrees,Control,6,3.5
+151,York,Control East,120 degrees,Control,7,4.5
+152,York,Control East,120 degrees,Control,8,3.5
+153,York,Control East,120 degrees,Control,9,2.5
+154,York,Control East,120 degrees,Control,10,4
+155,York,Control East,240 degrees,Control,0,4.5
+156,York,Control East,240 degrees,Control,1,2.5
+157,York,Control East,240 degrees,Control,2,7
+158,York,Control East,240 degrees,Control,3,7
+159,York,Control East,240 degrees,Control,4,4.5
+160,York,Control East,240 degrees,Control,5,4.5
+161,York,Control East,240 degrees,Control,6,4.5
+162,York,Control East,240 degrees,Control,7,3
+108,York,Control West,N,Control,8,4.5
+109,York,Control West,N,Control,9,3
+110,York,Control West,N,Control,10,2
+111,York,Control West,120 degrees,Control,0,2
+112,York,Control West,120 degrees,Control,1,5.7
+113,York,Control West,120 degrees,Control,2,1.5
+114,York,Control West,120 degrees,Control,3,2.5
+115,York,Control West,120 degrees,Control,4,2.5
+116,York,Control West,120 degrees,Control,5,3
+117,York,Control West,120 degrees,Control,6,2.5
+118,York,Control West,120 degrees,Control,7,2.5
+119,York,Control West,120 degrees,Control,8,3
+120,York,Control West,120 degrees,Control,9,5
+121,York,Control West,120 degrees,Control,10,5
+122,York,Control West,240 degrees,Control,0,2
+123,York,Control West,240 degrees,Control,1,4.5
+124,York,Control West,240 degrees,Control,2,4
+125,York,Control West,240 degrees,Control,3,4
+126,York,Control West,240 degrees,Control,4,5
+127,York,Control West,240 degrees,Control,5,4.5
+128,York,Control West,240 degrees,Control,6,6
+129,York,Control West,240 degrees,Control,7,5
+130,York,Control West,240 degrees,Control,8,6.5
+131,York,Control West,240 degrees,Control,9,5
+132,York,Control West,240 degrees,Control,10,4.5
