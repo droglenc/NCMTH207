@@ -24,20 +24,11 @@ source("../../../rhelpers/knitr_setup.R")
 
 ----
 
-<div class="alert alert-warning">
-<strong>Note:</strong> 
-<ul>
-  <li>Use complete sentences to answer questions.</li>
-</ul>
-</div>
-
-----
-
 # Nurse Wages
 
-1. The response variable is WAGE.
-1. The covariate is months of EXPERience.
-1. The factor is gender (female and male).
+1. The response variable is **WAGE**.
+1. The covariate is months of **EXPERience**.
+1. The factor is **gender** (female and male).
 1. As there are two groups in this analysis and females comes before males, I created the following indicator variable.
     * MALE=1 if "male", 0 otherwise (i.e., "female")
 1. The very simple table connecting the groups to the indicator variables codes is as follows:
@@ -55,9 +46,9 @@ data.frame(group=c("female","male"),MALE=c(0,1)) %>%
 
 # Turtle Nesting Ecology
 
-1. The response variable is clutch size (CSIZE).
-1. The covariate is curved carapace length (CCL).
-1. The factor is location (or region).
+1. The response variable is **clutch size** (CSIZE).
+1. The covariate is **curved carapace length** (CCL).
+1. The factor is **location** (or region).
 1. As there are five groups in this analysis and the "Arabian Gulf" turtles are to be the reference group, I created the following four indicator variables.
     * IO=1 if in the "Indian Ocean" group, 0 otherwise
     * RS=1 if in the "Red Sea" group, 0 otherwise
@@ -82,11 +73,10 @@ data.frame(Region=c("Arabian Gulf","Indian Ocean","Red Sea","Caribbean","West At
 
 # Water Quality Near a Gold Mine
 
-1. The response variable is phosphorous level measurement (P).
-1. The covariate is distance from the gold mine (DIST).
-1. The factor is type of phosphorous.
-1. The levels should be changed so that "total" is first; e.g., "total", "dissolved", and "soluble".
-1. As there are three groups in this analysis and "total" is to be the reference group, I created the following two indicator variables.
+1. The response variable is **phosphorous level** measurement (P).
+1. The covariate is **distance** from the gold mine (DIST).
+1. The factor is **type of phosphorous**.
+1. The levels should be changed so that "total" is first; e.g., "total", "dissolved", and "soluble". As there are three groups in this analysis and "total" is to be the reference group, I created the following two indicator variables.
     * DP=1 if the "total dissolved phosphorous" group, 0 otherwise
     * SP=1 if the "soluble reactive phosphorous" group, 0 otherwise
 1. The table connecting the groups to the indicator variable codes is as follows:
