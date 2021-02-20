@@ -39,7 +39,8 @@ The data for this situation are in HawksbillTurtles.csv ([data](https://raw.gith
 1. Interpret the meaning of the confidence interval in the row with your covariate variable.
 1. Interpret the meaning of the confidence interval in the row with your **first** interaction variable.
 1. Interpret the meaning of the confidence interval in the row with your **third** indicator variable.
-1. Predict the mean clutch size for all turtles from the "Arabian Gulf", "Caribbean", and the "Indian Ocean" with a curved carapace length of 90 cm. [*You don't need a confidence interval for this and don't use any additional R code.*]
+1. Predict ("by hand" and showing your work) the mean clutch size for all turtles from the "Arabian Gulf", "Caribbean", and the "Indian Ocean" with a curved carapace length of 90 cm. [*You don't need a confidence interval for this and don't use any additional R code.*]
+1. Confirm your predictions in the previous question using two lines of R code.
 
 &nbsp;
 
