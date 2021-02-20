@@ -53,3 +53,14 @@ Keep this in mind when answering the questions below.
 1. Define an indicator variable or variables for the factor variable in the same manner that R would (after you have adjusted the levels so that total phosphorous is the reference group).
 1. Create a table (as shown in the reading) that relates the groups in the factor variable to the codes in the indicator variable(s).
 1. What is/are the interaction variable(s) that would be created for this analysis?
+
+&nbsp;
+
+## Data Preparation for Next Module
+The assignment for the next module is a bit more work than this one. Thus, please prepare the data for next module as described below.
+
+### Turtle Nesting Ecology
+The data for this situation are in HawksbillTurtles.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv), [meta](https://github.com/droglenc/NCData/blob/master/HawksbillTurtles_meta.txt)). Load these data and **reorder the regions so that it will be easier to distinguish regions in the Middle East (Arabian Gulf, Indian Ocean, and Red Sea) from those in the Atlantic (Caribbean and West Atlantic) and allow the Arabian Gulf to be the reference group**. [*Note: [see this for help](../resources/R_HowTo_Factor.html#change-order-of-levels){:target="_blank"}.*]
+
+### Water Quality Near a Gold Mine
+The data for this situation are in [GoldMine.csv](data/GoldMine.csv). Load these data and **reorder the groups so that total phosphorous is the reference group** ... [see this for help](../resources/R_HowTo_Factor.html#change-order-of-levels){:target="_blank"}.

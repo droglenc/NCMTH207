@@ -34,7 +34,7 @@ In [this previous exercise](IVRModels_CE1.html#turtle-nesting-ecology) you loade
 1. Perform a parallel lines test. Make sure to refer to the appropriate p-value and very carefully interpret what the results mean.
 1. If appropriate, perform a coincident lines test (again make sure to refer to the appropriate p-value and carefully interpret what the results mean). If it is not appropriate to perform the coincident lines test then explain why it is not.
 1. If appropriate, perform the relationship test (again make sure to refer to the appropriate p-value and carefully interpret what the results mean). If it is not appropriate to perform the relationship test then explain why it is not.
-1. Construct a plot that shows the separate regression lines for the groups *without any of the observed points*.
+1. Construct a plot that shows the separate regression lines for the groups.
 
 &nbsp;
 
