@@ -13,7 +13,7 @@ css: "/css/modules.css"
 <hr />
 <div id="marketability-of-cucumbers" class="section level1">
 <h1>Marketability of Cucumbers</h1>
-<p><img src="../zimgs/cucumbers.jpg" alt="Decoration" class="img-right"> In [this previous exercise] you used these logistic regression results – logit(p)=6.430-0.330DOS – for the Levantino cultivar of cucumber to answer questions about cucumber marketability. Continue with this information to answer the questions below.</p>
+<p><img src="../zimgs/cucumbers.jpg" alt="Decoration" class="img-right"> In <a href="LogRegFoundations_CE1.html#marketability-of-cucumbers">this previous exercise</a> you used these logistic regression results – logit(p)=6.430-0.330DOS – for the Levantino cultivar of cucumber to answer questions about cucumber marketability. Continue with this information to answer the questions below.</p>
 <ol>
 <li>Interpret the slope.</li>
 <li>Interpret the exponentiated slope.</li>
@@ -25,6 +25,7 @@ css: "/css/modules.css"
 <div id="bat-subspecies" class="section level1">
 <h1>Bat Subspecies</h1>
 <p><img src="../zimgs/bat2.jpg" alt="Hoary Bat" class="img-right"> Researchers measured (among other things) the canine tooth height (cm) from two subspecies of <a href="https://en.wikipedia.org/wiki/Hoary_bat">Hoary bats</a> (<em>Lasiurus cinereus cinereus</em> and <em>Lasiurus cinereus semotus</em>) found in Hawaii. Their primary question was to determine if canine tooth height (hereafter, just tooth height) differed between subspecies and, more importantly to them, could tooth height be used to predict the subspecies of bat. The parameter estimates of the logistic regression model used to predict subspecies (note that <em>cinereus</em> was considered a “success”) from canine tooth height (mm) is shown below. The fitted logistic regression is also shown in the figure below.</p>
+<pre><code>Waiting for profiling to be done...</code></pre>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -50,10 +51,10 @@ Ests
 -35.516
 </td>
 <td style="text-align:right;">
--51.547
+-49.661
 </td>
 <td style="text-align:right;">
--26.622
+-24.217
 </td>
 </tr>
 <tr>
@@ -64,16 +65,16 @@ canine
 11.112
 </td>
 <td style="text-align:right;">
-8.299
+7.589
 </td>
 <td style="text-align:right;">
-16.143
+15.524
 </td>
 </tr>
 </tbody>
 </table>
-<p><img src="LogRegModels_CE1_files/figure-html/unnamed-chunk-4-1.png" width="432" /></p>
-<p>Use this information to answer the questions below.</p>
+<p><img src="LogRegModels_CE1_files/figure-html/unnamed-chunk-4-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Use this information to answer the questions below. <em>Show your work.</em></p>
 <ol>
 <li>What is the equation of the best-fit logistic regression line? Replace parameters with their estimated values and define all other symbols.</li>
 <li>Interpret the slope. Use the confidence interval.</li>
@@ -81,8 +82,8 @@ canine
 <li>Predict the log odds of being a <em>cinereus</em> if the canine tooth height is 3.</li>
 <li>Predict the odds of being a <em>cinereus</em> if the canine tooth height is 3. Write a sentence about what this value means.</li>
 <li>Predict the probability of being a <em>cinereus</em> if the canine tooth height is 3. Write a sentence about what this value means.</li>
-<li>Predict the log odds of being a <em>cinereus</em> if the canine tooth height is 4 but only using your previous prediction and the value of the slope.</li>
-<li>Predict the odds of being a <em>cinereus</em> if the canine tooth height is 4 but only using your previous predication and the value of the exponentiated slope.</li>
+<li>Predict the log odds of being a <em>cinereus</em> if the canine tooth height is 4 but only using your previous prediction and the estimated value of the slope.</li>
+<li>Predict the odds of being a <em>cinereus</em> if the canine tooth height is 4 but only using your previous prediction and the estimated value of the exponentiated slope.</li>
 <li>What is the canine tooth height where it is “50-50” that the bat is <em>cinereus</em> or <em>semotus</em>?</li>
 <li>What is the canine tooth height where you are “very sure” (95% likely) that the bat is a <em>cinereus</em>?</li>
 <li>What is the canine tooth height where you are “very sure” (95% likely) that the bat is a <em>semotus</em>?</li>

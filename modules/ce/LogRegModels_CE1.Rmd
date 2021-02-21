@@ -22,7 +22,6 @@ modHTML("LogRegModels_CE1")
 library(NCStats)
 library(ggplot2)
 source("../../rhelpers/knitr_setup.R")
-clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")
 ```
 
 <div class="alert alert-warning">
@@ -33,7 +32,7 @@ clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")
 
 # Marketability of Cucumbers
 <img src="../zimgs/cucumbers.jpg" alt="Decoration" class="img-right">
-In [this previous exercise](LogRegFoundations_CE1#marketability-of-cucumbers) you used these logistic regression results -- logit(p)=6.430-0.330DOS -- for the Levantino cultivar of cucumber to answer questions about cucumber marketability. Continue with this information to answer the questions below.
+In [this previous exercise](LogRegFoundations_CE1.html#marketability-of-cucumbers) you used these logistic regression results -- logit(p)=6.430-0.330DOS -- for the Levantino cultivar of cucumber to answer questions about cucumber marketability. Continue with this information to answer the questions below.
 
 1. Interpret the slope.
 1. Interpret the exponentiated slope.
@@ -52,8 +51,8 @@ bat <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmor
   mutate(canine=canine*10,
          subsp01=ifelse(subsp=="cinereus",1,0))
 glm.bat <- glm(subsp01~canine,data=bat,family="binomial")
-boot.bat <- car::Boot(glm.bat)
-cfs.bat <- cbind(Ests=coef(glm.bat),confint(boot.bat,type="perc"))
+#boot.bat <- car::Boot(glm.bat)
+cfs.bat <- cbind(Ests=coef(glm.bat),confint(glm.bat,type="perc"))
 cfs.bat %>%
   knitr::kable(booktabs=TRUE,digits=c(3,3,3)) %>%
   kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
@@ -61,14 +60,16 @@ cfs.bat %>%
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 ggplot(data=bat,mapping=aes(x=canine,y=subsp01)) +
   geom_point(alpha=0.25) +
-  scale_y_continuous(name="Probability of 'cinereus'",expand=expansion(mult=0.02)) +
-  scale_x_continuous(name="Canine Tooth Height (mm)",expand=expansion(mult=0.02)) +
+  scale_y_continuous(name="Probability of 'cinereus'",
+                     expand=expansion(mult=0.02)) +
+  scale_x_continuous(name="Canine Tooth Height (mm)",
+                     expand=expansion(mult=0.02)) +
   geom_smooth(method="glm",method.args=list(family="binomial"),
               se=FALSE,size=1,color="black") +
   theme_NCStats()
 ```
 
-Use this information to answer the questions below.
+Use this information to answer the questions below. *Show your work.*
 
 1. What is the equation of the best-fit logistic regression line? Replace parameters with their estimated values and define all other symbols.
 1. Interpret the slope. Use the confidence interval.
@@ -76,8 +77,8 @@ Use this information to answer the questions below.
 1. Predict the log odds of being a *cinereus* if the canine tooth height is 3.
 1. Predict the odds of being a *cinereus* if the canine tooth height is 3. Write a sentence about what this value means.
 1. Predict the probability of being a *cinereus* if the canine tooth height is 3. Write a sentence about what this value means.
-1. Predict the log odds of being a *cinereus* if the canine tooth height is 4 but only using your previous prediction and the value of the slope.
-1. Predict the odds of being a *cinereus* if the canine tooth height is 4 but only using your previous predication and the value of the exponentiated slope.
+1. Predict the log odds of being a *cinereus* if the canine tooth height is 4 but only using your previous prediction and the estimated value of the slope.
+1. Predict the odds of being a *cinereus* if the canine tooth height is 4 but only using your previous prediction and the estimated value of the exponentiated slope.
 1. What is the canine tooth height where it is "50-50" that the bat is *cinereus* or *semotus*?
 1. What is the canine tooth height where you are "very sure" (95% likely) that the bat is a *cinereus*?
 1. What is the canine tooth height where you are "very sure" (95% likely) that the bat is a *semotus*?
