@@ -12,7 +12,23 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# DIRECTIONS
+Each section below describes a situation that requires using one of the five methods of analysis your learned during this course. For each situation you should perform the appropriate analysis and formulate your answer in the same way that you formulated your answers for the "Summary" modules for each method. Please look at your previous work and the feedback that I provided on GradeScope.
 
+Stages of this assignment will be due in GradeScope by (or before) 12 Noon on the days shown below.
+
+* MONDAY: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
+* TUESDAY: Complete write-up for **First** Situation.
+* WEDNESDAY: complete write=up for **Second** Situation.
+* THURSDAY: Complete write-up for **Third** Situation.
+* FRIDAY: Complete write-up for **Fourth** and **Fifth** Situations.
+
+&nbsp;
+
+----
+----
+
+&nbsp;
 
 
 
