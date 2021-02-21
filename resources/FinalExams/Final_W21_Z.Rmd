@@ -1,0 +1,49 @@
+---
+title: "MTH207 Exit Assignment"
+description: |
+  **Version Z**
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# DIRECTIONS
+Each section below describes a situation that requires using one of the five methods of analysis your learned during this course. For each situation you should perform the appropriate analysis and formulate your answer in the same way that you did for the "Summary" modules for each method. Please look at your previous work and the feedback that I provided on GradeScope to build upon and improve your previous work.
+
+Stages of this assignment are due [in GradeScope](https://www.gradescope.com/courses/211889) by (or before) the days and times shown below.
+
+* **MONDAY 11am**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
+* **TUESDAY 5pm**: Complete write-up for the **First** Situation.
+* **WEDNESDAY 5pm**: Complete write=up for the **Second** Situation.
+* **THURSDAY 5pm**: Complete write-up for the **Third** Situation.
+* **FRIDAY 5pm**: Complete write-up for the **Fourth** and **Fifth** Situations.
+
+----
+
+# 1. Coral Reef Disturbance
+[Schmitt *et al.* (2019)](https://www.pnas.org/content/116/10/4372) used an experiment with a [coral reef](https://en.wikipedia.org/wiki/Coral_reef) to examine the ecological theory that under the same environmental conditions, an ecosystem could have more than one community state that is maintained by reinforcing feedbacks. In one part of that study the researchers wanted to test how resilient patches of a coral reef that are dominated by the [*Turbinaria* coral](https://en.wikipedia.org/wiki/Turbinaria_(coral)) are to varying levels of disturbances. Thus, the authors selected patches on a large coral reef that were spatially distant. For each patch they recorded the number of *Turbinaria* individuals. They then randomly selected which patches would receive one of three simulated disturbance treatments. Some patches were left undisturbed as a control, whereas other patches had large bouyant adult individuals removed to simulate a single "large wave" disturbance, and other patches had both adult and some juvenile individuals removed to simulate a more sustained "cyclonic storm" disturbance. The researchers returned to each patch 26 months later and again recorded the number of *Turbinaria* individuals. The researchers ultimately want to determine if there is a relationship between the post-disturbance and pre-disturbance numbers of *Turbinaria* and if that relationship is affected by the type of disturbance. The data for this study are in [**CoralReefs.csv**](data/CoralReefs.csv).
+
+&nbsp;
+
+# 2. Soil Phosphorous
+Soil phosphorous is important as it relats to the invasion of areas with native vegetation by exotic weeds. [Clements (1983)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1442-9993.1983.tb01328.x) studied the soil phosphorous near Sydney (Australia) to determine how soil phosphorous varied with topographical location and soil type. Bushland sites were chosen in [Brisbane Waters National Park](https://www.nationalparks.nsw.gov.au/visit-a-park/parks/brisbane-water-national-park), [Ku-ring-gai Chase National Park](https://www.nationalparks.nsw.gov.au/visit-a-park/parks/kuringgai-chase-national-park), and [Royal National Park](https://www.nationalparks.nsw.gov.au/visit-a-park/parks/royal-national-park) as these areas were relatively unaffected by suburban development, were free from immediate roadside or track effects, and had not been burned for at least two years. Shale-derived and sandstone-derived soils in four topographic locations (north, south, hilltop, and valley) were examined with three 250 m^2^ quadrats in each of the eight combinations of soil type and topography. The researchers attempted to space the quadrats out as much as possible but financial constraints limited their ability to do this. Cores of soil of 75 mm depth and 25 mm diameter, free from surface litter, were collected from within each quadrat and the total soil phosphorous (ppm) was determined for each. Use the data in [**SoilPhosphorous.csv**](data/SoilPhosphorous.csv) to determine the effects of soil type (shale- or sandstone-derived) and topographic location on phosphorous levels.
+
+&nbsp;
+
+# 3. Lichens in Tree Canopies
+Madison Laughlin, in collaboration with Drs. Jonathan Martin and Erik Olson, examined the water-holding capacity of [lichens](https://en.wikipedia.org/wiki/Lichen) in the canopy of old-growth [White Pine (*Pinus strobus*)](https://en.wikipedia.org/wiki/Pinus_strobus) trees in northern Wisconsin. Their overall hypothesis was that the density of lichens on these trees could be substantial such that lichens could play a considerable role in water and other biogeochemical dynamics on the tree and in the ground surrounding the tree. However, lichen communities in the tree canopies is understudied, especially outside of the tropics and Pacific Northwest. Laughlin identified 80 cm^2^ quadrats (sampling areas) at four locations (the [cardinal directions](https://en.wikipedia.org/wiki/Cardinal_direction)) every 2 m over the entire height of three old growth trees on the Bayfield Peninsula. She took a picture of each quadrat and then removed the lichens within each quadrat. In the laboratory Laughlin then estimated the density of lichens as the area (within the quadrat) covered by lichens (cm^2^) and determined the [dry mass](https://www.encyclopedia.com/science/dictionaries-thesauruses-pictures-and-press-releases/dry-mass) (g) of the removed lichens. In one part of her study, Laughlin wanted to determine if the abundance measurement could be used to predict the dry mass of lichens, as it is significantly easier to determine area covered by lichens than to collect the lichens, dry them, and weigh them. Laughlin's data is in [**Lichens.csv**](data/Lichens.csv).
+
+&nbsp;
+
+# 4. Milwaukee Bucks Shooting
+In a basketball game players "shoot" a basketball at a "goal" and if the ball goes through the goal they score points. The number of points depends on the distance from which the ball was shot, with more distant shots counting for three points. The goal of the game is to score more points than your opponent. A student in a previous class hypothesized that the mean number of three-point shots attempted per game in the [National Basketball Association (NBA)](https://www.nba.com/) has increased in recent years as there has been an emphasis on scoring more points as quickly as possible. Data for every NBA game from the 2014-18 seasons is in [**NBA14-18.csv**](data/NBA14-18.csv). Use the data for the [Milwaukee Bucks](https://www.nba.com/bucks/), an NBA team, to examine the student's hypothesis. [*Note that the Bucks are "MIL" in the "Team" variable and the number of three-point shots attempted is in the "FG3.Att" variable. Also carefully examine the "Season" variable.*]
+
+&nbsp;
+
+# 5. Yellow Perch Barotrauma
+Many fishes cannot regulate the air in their air bladder when they are pulled quickly from deep waters (this phenomenon is called [barotrauma](https://en.wikipedia.org/wiki/Barotrauma)). Because of this, many fishes may die when released after being captured. [Knight *et al.* (2019)](https://meridian.allenpress.com/jfwm/article/10/1/69/204139/Is-Barotrauma-an-Important-Factor-in-the-Discard#11051974) examined the effect of barotrauma on the discard mortality of [Yellow Perch](https://en.wikipedia.org/wiki/Yellow_perch) (*Perca flavescens*) in [Lake Erie](https://en.wikipedia.org/wiki/Lake_Erie). One particular area of interest in their research was the effect of depth of capture on the incidence of barotrauma for Yellow Perch. To examine this, they captured Yellow Perch in gillnets set at a variety of depths during a variety of months over six years. For each fish captured, the researchers recorded the fish's total length, whether the fish exhibited signs of barotrauma or not, and at what depth it was captured. These data are found in [**barotrauma.csv**](data/barotrauma.csv). Use these results to examine the effect of depth of capture on signs of barotrauma.

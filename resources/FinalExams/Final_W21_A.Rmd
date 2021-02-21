@@ -1,11 +1,12 @@
 ---
-title: "MTH207 Final Exam"
+title: "MTH207 Exit Assignment"
 description: |
-  Version A
+  **Version A**
 date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
     toc: true
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
@@ -15,30 +16,35 @@ knitr::opts_chunk$set(echo = FALSE)
 # DIRECTIONS
 Each section below describes a situation that requires using one of the five methods of analysis your learned during this course. For each situation you should perform the appropriate analysis and formulate your answer in the same way that you did for the "Summary" modules for each method. Please look at your previous work and the feedback that I provided on GradeScope to build upon and improve your previous work.
 
-Stages of this assignment are due in GradeScope by (or before) 12 Noon on the days shown below.
+Stages of this assignment are due [in GradeScope](https://www.gradescope.com/courses/211889) by (or before) the days and times shown below.
 
-* **MONDAY**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
-* **TUESDAY**: Complete write-up for the **First** Situation.
-* **WEDNESDAY**: complete write=up for the **Second** Situation.
-* **THURSDAY**: Complete write-up for the **Third** Situation.
-* **FRIDAY**: Complete write-up for the **Fourth** and **Fifth** Situations.
+* **MONDAY 11am**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
+* **TUESDAY 5pm**: Complete write-up for the **First** Situation.
+* **WEDNESDAY 5pm**: Complete write=up for the **Second** Situation.
+* **THURSDAY 5pm**: Complete write-up for the **Third** Situation.
+* **FRIDAY 5pm**: Complete write-up for the **Fourth** and **Fifth** Situations.
 
 ----
 
-
-
-&nbsp;
-
-
+# 1. Maritime Fires and Duff Depth
+A changing climate is projected to increase the frequency of lightning strikes on islands within the [Apostle Islands National Lakeshore](https://www.nps.gov/apis/index.htm). These islands support large populations of [Canada Yew](https://www.conifers.org/ta/Taxus_canadensis.php) (*Taxus canadensis*), which is a species of concern in Wisconsin. Very little is known about how maritime forests will respond to fire, which makes it difficult for the Park Service to make management decisions with respect to Canada Yew and other species in these forests. David Moy, working with Drs. Sarah Johnson and Jonathan Martin, sampled vegetation in 10 m^2^ plots relative to four fires that had occurred in the islands in the last 25 years. In one part of their study, multiple transects were created within areas that had been burnt and then in control areas in the general vicinity of the fires but outside of the immediate burn area. Moy recorded the depth (cm) of the ["duff layer"](http://www.firewords.net/definitions/duff_layer.htm) at 1 m intervals along these transects. In this part of the study Moy primarily wanted to determine if the mean depth of the duff layer was reduced in areas that had been burnt, but he also wanted to characterize potential differences in the mean depth of the duff layer among the four islands. Moy's data is in  [**DuffDepth.csv**](data/DuffDepth.csv). [*Note that no transformation is perfect for these data; thus, use a scale where the assumptions "look best" according to the assumption checking plots.*]
 
 &nbsp;
 
+# 2. Salamander Condition
+Amphibians are sensitive to environmental change. Weight is often one of the first characteristics of animals to reflect environmental stress. Thus, weight is a key metric recorded about individuals in animal populations. However, weight is often strongly related to length such that inherently bigger species are heavier, even if they are under environmental stress. Thus, it is critical to understand how weight is related to some measure of length. Taylor Pichler, in collaboration with Dr. Erik Olson, recorded the [snout-vent length](https://en.wikipedia.org/wiki/Snout%E2%80%93vent_length#:~:text=Snout%E2%80%93vent%20length%20(SVL),the%20cloacal%20slit%20(vent).) (mm) and weight (g) of [Blue-Spotted](https://animaldiversity.org/accounts/Ambystoma_laterale/) (*Ambystoma laterale*), [Eastern Red-Backed](https://animaldiversity.org/accounts/Plethodon_cinereus/) (*Plethodon cinereus*), and [Spotted](https://animaldiversity.org/accounts/Ambystoma_maculatum/) (*Ambystoma maculatum*) salamanders from ponds in the Chequamegon-Nicolet National Forest. Their primary objective was to "[e]xamine snout-vent length and body mass between salamander species to gain local insight on monitoring Wisconsin's salamander populations." Their data is [**Salamanders.csv**](data/Salamanders.csv). [*No transformation is perfect for these data; please use the transformation that is typical for these types of data.*]
 
 &nbsp;
 
+# 3. Butterfly Abundance
+Researchers at the University of Colorado-Boulder investigated the effects of habitat characteristics and urbanization on grassland butterfly diversity in 1999 and 2000. The researchers identified 66 sites in the [Boulder County Open Space areas](https://www.bouldercounty.org/departments/parks-and-open-space/) that were as spatially separated as possible while also covering a variety of habitats and urbanization. The researchers recorded four broad habitats for each site (short grass, mixed (short and tall) grass, tall grass, and hayfield) and measurements of the density of buildings and the amount of urban vegatation (i.e., planted trees, shrubbery, and grasses). The researchers also went to each site in July and August 1999 and June, July, and August 2000 to recorded the number of individuals of 30 species of butterflies. For this analysis, they wanted to determine if the mean number of *all* species of butterflies combined differed among the four broad habitat types. The data for this study are in [**Butterflies.csv**](data/Butterflies.csv).
 
 &nbsp;
 
+# 4. Snowmelt
+[Billy Barr](https://en.wikipedia.org/wiki/Billy_Barr_(naturalist)) is an amateur natural historian living at the base of [Gothic Mountain, CO](https://en.wikipedia.org/wiki/Gothic_Mountain). In the early 1970s he began keeping [phenological records](https://en.wikipedia.org/wiki/Phenology) to [stave off boredom](https://www.theatlantic.com/science/archive/2017/01/billy-barr-climate-change/512198/). One of the things that he recorded was the last day that any snow existed on a 5x5 m plot near his home. These data have been used by numerous scientists to understand how climate change is affecting local phenology. [Campbell (2019)](https://www.pnas.org/content/116/26/12901) used and extended Barr's data to better understand the effect of shorter winters on populations of subalpine plants. In one part of her study she examined the relationship between Barr's last day of snow (i.e., the day of snowmelt recorded as the number of days since January 1) and the year of the recording. She used this relationship to predict when several species of plants would be in critical danger of going extinct. Use the data in [**snowmelt.csv**](data/snowmelt.csv) to determine if snowmelt date has decreased over time.
 
 &nbsp;
 
+# 5. Milwaukee Bucks Winning
+In a basketball game, players "shoot" a basketball at a "goal" and if the ball goes through the goal they score points. The number of points depends on the distance from which the ball was shot, with closer shots counting for two points. A two-point shot is called a [field goal](https://en.wikipedia.org/wiki/Field_goal_(basketball)) and field goal percentage is defined as the percentage of field goal shots that were successfully made. The goal of the game is to score more points than your opponent. A student in a previous class hypothesized that the probability of winning a game would be positively related to a team's field goal percentage. Data for every [National Basketball Association (NBA)](https://www.nba.com/) game from the 2014-18 seasons is in [**NBA14-18.csv**](data/NBA14-18.csv). Use the data for the [Milwaukee Bucks](https://www.nba.com/bucks/), an NBA team, to examine the student's hypothesis. [*Note that the Bucks are "MIL" in the "Team" variable, field goal percentage is "FG.Perc", and whether the game was won or not is "WINorLOSS".*]
