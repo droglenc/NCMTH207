@@ -46,7 +46,7 @@ In [this previous exercise](LogRegFoundations_CE1.html#marketability-of-cucumber
 <img src="../zimgs/bat2.jpg" alt="Hoary Bat" class="img-right">
 Researchers measured (among other things) the canine tooth height (cm) from two subspecies of [Hoary bats](https://en.wikipedia.org/wiki/Hoary_bat) (*Lasiurus cinereus cinereus* and *Lasiurus cinereus semotus*) found in Hawaii. Their primary question was to determine if canine tooth height (hereafter, just tooth height) differed between subspecies and, more importantly to them, could tooth height be used to predict the subspecies of bat. The parameter estimates of the logistic regression model used to predict subspecies (note that *cinereus* was considered a "success") from canine tooth height (mm) is shown below. The fitted logistic regression is also shown in the figure below.
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE}
 bat <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph.csv") %>%
   mutate(canine=canine*10,
          subsp01=ifelse(subsp=="cinereus",1,0))
