@@ -1,0 +1,194 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "IVR Testing"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="nurse-wages" class="section level1">
+<h1>Nurse Wages</h1>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Make sure to include the <span class="math inline">\(\mu\)</span> part on the left-hand-side of yoru models.
+</li>
+</ul>
+</div>
+<ol>
+<li>The hypotheses for the parallel lines test are:
+<ul>
+<li>H<sub>A</sub> <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE\)</span>.</li>
+<li>H<sub>0</sub> <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE\)</span>.</li>
+</ul></li>
+<li>The hypotheses for the coincident lines test are:
+<ul>
+<li>H<sub>A</sub> <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE\)</span>.</li>
+<li>H<sub>0</sub> <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER\)</span>.</li>
+</ul></li>
+<li>The hypotheses for the relationship test are:
+<ul>
+<li>H<sub>A</sub> <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER\)</span>.</li>
+<li>H<sub>0</sub> <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha\)</span>.</li>
+</ul></li>
+</ol>
+<p> </p>
+</div>
+<div id="turtle-nesting-ecology" class="section level1">
+<h1>Turtle Nesting Ecology</h1>
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Make sure to include the <span class="math inline">\(\mu\)</span> part on the left-hand-side of yoru models.
+</li>
+<li>
+The parallel lines test indicates that ALL of the lines are statistically parallel.
+</li>
+<li>
+The coincident lines test indicates that SOME of the lines are not coincident.
+</li>
+<li>
+When plotting the lines without any data then the y-axis label should include “mean.”
+</li>
+</ul>
+</div>
+<ol>
+<li>The models for parallel lines test are as follows:
+<ul>
+<li>H<sub>A</sub>: <span class="math inline">\(\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+\)</span><span class="math inline">\(\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+\)</span> <span class="math inline">\(\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA\)</span>.</li>
+<li>H<sub>0</sub>: <span class="math inline">\(\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+\)</span><span class="math inline">\(\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA\)</span>.</li>
+</ul></li>
+<li>The models for coincident lines test are as follows:
+<ul>
+<li>H<sub>A</sub>: <span class="math inline">\(\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+\)</span><span class="math inline">\(\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA\)</span>.</li>
+<li>H<sub>0</sub>: <span class="math inline">\(\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL\)</span>.</li>
+</ul></li>
+<li>The lines appear to be parallel across all regions (p=0.1192). Thus, the relationship between clutch size and curved carapace length does NOT differ among the regions.</li>
+<li>The intercepts appear to differ among some of the regions (p&lt;0.00005). Thus, the mean clutch size at the same curved carapace length, no matter what that carapace length is, differs among some regions.</li>
+<li>There does appear to be a significant relationship between clutch size and curved carapace length (p&lt;0.00005).</li>
+</ol>
+<div id="r-code-and-results" class="section level4">
+<h4>R Code and Results</h4>
+<pre class="r"><code>ht &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv&quot;)
+ht$Region &lt;- factor(ht$Region,
+                    levels=c(&quot;Arabian Gulf&quot;,&quot;Indian Ocean&quot;,&quot;Red Sea&quot;,
+                             &quot;Caribbean&quot;,&quot;West Atlantic&quot;))
+ivr.ht &lt;- lm(Clutch.Size~CCL+Region+CCL:Region,data=ht)
+anova(ivr.ht)</code></pre>
+<pre><code>Analysis of Variance Table
+
+Response: Clutch.Size
+            Df Sum Sq Mean Sq  F value    Pr(&gt;F)
+CCL          1 246757  246757 526.8775 &lt; 2.2e-16
+Region       4  22045    5511  11.7675 5.266e-09
+CCL:Region   4   3461     865   1.8472    0.1192
+Residuals  368 172349     468                   </code></pre>
+<pre class="r"><code>ggplot(data=ht,mapping=aes(x=CCL,y=Clutch.Size,color=Region)) +  
+  labs(x=&quot;Curved Carapace Length (cm)&quot;,y=&quot;Clutch Size&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>Warning: Removed 140 rows containing non-finite values (stat_smooth).</code></pre>
+<p><img src="KEY_IVRTesting_CE1_files/figure-html/unnamed-chunk-4-1.png" width="528" /></p>
+<p> </p>
+</div>
+</div>
+<div id="water-quality-near-a-gold-mine" class="section level1">
+<h1>Water Quality Near a Gold Mine</h1>
+<pre><code>Analysis of Variance Table
+
+Response: phosp
+              Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+distance       1  8863.5  8863.5 48.0590 1.763e-09
+type           2  3135.0  1567.5  8.4992 0.0005016
+distance:type  2     5.0     2.5  0.0137 0.9864185
+Residuals     69 12725.7   184.4                  </code></pre>
+<ol>
+<li>The models for parallel lines test are as follows:
+<ul>
+<li>H<sub>A</sub>: <span class="math inline">\(\mu_{P|DIST,\cdots} = \alpha+\beta DIST+\)</span><span class="math inline">\(\delta_{1}DP+\delta_{2}SP+\)</span> <span class="math inline">\(\gamma_{1}DIST:DP+\gamma_{2}DIST:SP\)</span>.</li>
+<li>H<sub>0&lt;/sub: <span class="math inline">\(\mu_{P|DIST,\cdots} = \alpha+\beta DIST+\)</span><span class="math inline">\(\delta_{1}DP+\delta_{2}SP\)</span>.</li>
+</ul></li>
+<li>The models for coincident lines test are as follows:
+<ul>
+<li>H<sub>A</sub>: <span class="math inline">\(\mu_{P|DIST,\cdots} = \alpha+\beta DIST+\)</span><span class="math inline">\(\delta_{1}DP+\delta_{2}SP\)</span>.</li>
+<li>H<sub>0</sub>: <span class="math inline">\(\mu_{P|DIST,\cdots} = \alpha+\beta DIST\)</span>.</li>
+</ul></li>
+<li>The lines appear to be parallel across all three types of phosphorous (p=0.9864). Thus, the relationship between phosphorous level and distance from the gold mine does NOT differ among phosphorous types.</li>
+<li>The intercepts appear to differ among some of the phosphorous types (p=0.0005). Thus, the mean phosphorous level at the same distance from the gold mine, no matter what that distance is, differs among phosphorous types</li>
+<li>There does appear to be a significant relationship between phosphorous level and distance from the gold mine (p&lt;0.00005).</li>
+</ol>
+<div id="r-code-and-results-1" class="section level4">
+<h4>R Code and Results</h4>
+<pre class="r"><code>gm &lt;- read.csv(&quot;http://derekogle.com/NCMTH207/modules/ce/data/GoldMine.csv&quot;)
+gm$type &lt;- factor(gm$type,levels=c(&quot;total&quot;,&quot;dissolved&quot;,&quot;soluble&quot;))
+ivr.gm &lt;- lm(phosp~distance+type+distance:type,data=gm)
+anova(ivr.gm)</code></pre>
+<pre><code>Analysis of Variance Table
+
+Response: phosp
+              Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+distance       1  8863.5  8863.5 48.0590 1.763e-09
+type           2  3135.0  1567.5  8.4992 0.0005016
+distance:type  2     5.0     2.5  0.0137 0.9864185
+Residuals     69 12725.7   184.4                  </code></pre>
+<pre class="r"><code>ggplot(data=gm,mapping=aes(x=distance,y=phosp,color=type)) +  
+  labs(x=&quot;Distance from Gold Mine (km)&quot;,y=&quot;Phosphrous Level (ppm)&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_IVRTesting_CE1_files/figure-html/unnamed-chunk-6-1.png" width="432" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

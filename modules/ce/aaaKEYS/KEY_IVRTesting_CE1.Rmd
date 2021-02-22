@@ -24,16 +24,13 @@ source("../../../rhelpers/knitr_setup.R")
 
 ----
 
+# Nurse Wages
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>Use complete sentences to answer questions.</li>
+  <li>Make sure to include the $\mu$ part on the left-hand-side of yoru models.</li>
 </ul>
 </div>
-
-----
-
-# Nurse Wages
 
 1. The hypotheses for the parallel lines test are:
     * H<sub>A</sub> $\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE$.
@@ -62,6 +59,15 @@ aov.ht.plt <- kPvalue(aov.ht$"Pr(>F)"[3],latex=FALSE)
 aov.ht.clt <- kPvalue(aov.ht$"Pr(>F)"[2],latex=FALSE)
 aov.ht.rt <- kPvalue(aov.ht$"Pr(>F)"[1],latex=FALSE)
 ```
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>Make sure to include the $\mu$ part on the left-hand-side of yoru models.</li>
+  <li>The parallel lines test indicates that ALL of the lines are statistically parallel.</li>
+  <li>The coincident lines test indicates that SOME of the lines are not coincident.</li>
+  <li>When plotting the lines without any data then the y-axis label should include "mean."</li>
+</ul>
+</div>
 
 1. The models for parallel lines test are as follows:
     * H<sub>A</sub>: $\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+$$\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+$ $\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA$.
