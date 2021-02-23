@@ -25,15 +25,6 @@ source("../../../rhelpers/knitr_setup.R")
 
 ----
 
-<div class="alert alert-warning">
-<strong>Note:</strong> 
-<ul>
-  <li>Use complete sentences to answer questions.</li>
-</ul>
-</div>
-
-----
-
 # Turtle Nesting Ecology
 ```{r TurtleData, echo=FALSE, results="hide"}
 ht <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv")
@@ -61,13 +52,22 @@ mc.AG.p2 <- kPvalue(ivr.mcsum2$contrasts$p.value[1],latex=FALSE)
 mc.nonAG.p <- kPvalue(min(ivr.mcsum2$contrasts$p.value[-(1:4)]),latex=FALSE,include.p=FALSE)
 ```
 
-1. The turtles appear to be independent as there is no clear connection between individual turtles either within or among the regions. Of course, one could argue a connection within regions but that is the factor being explored so any dependencies there should be revealed in the analysis.<br><br>The residual plot show no curvature or obvious funneling, so the linearity and homoscedasticity assumptions appear to be met. The histogram of residuals is apparently not normal (Anderson-Darling `r ad.ht.p`) but is is not strongly skewed to the normality assumption is adequately met. There are two potential outliers evident in the lower-right corner of the residual plot and the left tail of the histogram of residuals but these are not statistically significant (outlier test `r out.ht.p`). Thus, the assumptions are adequately met on the original scale and no transformation is needed.
+<div class="alert alert-warning">
+<strong>Note:</strong> 
+<ul>
+  <li>When checking assumptions don't say the residual plot looks normal unless it really does. The assumption is adequately met if the histogram is "not strongly skewed" which was the case here.</li>
+  <li>For questions 6-8, you need to explicitly say that you are looking at the mean clutch size AT THE MEAN CARAPACE LENGHT (or maximum for #8) ... don't just say intercept as the question was specific. Also, these questions are asking you to interpret the DIFFERENCE, so you use the results from CONTRASTS portion of the output. The results in the EMMEANS portion of the output is about the mean clutch size for each group, not the differences among pairs of groups.</li>
+  <li>When deciding what is most and least different, use the estimated difference not the p-value. The p-value is affected by sample size and variabiity, whereas the estimated difference measures just that.</li>
+</ul>
+</div>
+
+1. The turtles appear to be independent as there is no clear connection between individual turtles either within or among the regions. Turtles within a region could be familially connected but there is no indication that this happened. Of course, one could argue a connection within regions but that is the factor being explored so any dependencies there should be revealed in the analysis.<br><br>The residual plot show no curvature or obvious funneling, so the linearity and homoscedasticity assumptions appear to be met. The histogram of residuals is apparently not normal (Anderson-Darling `r ad.ht.p`) but is is not strongly skewed to the normality assumption is adequately met. There are two potential outliers evident in the lower-right corner of the residual plot and the left tail of the histogram of residuals but these are not statistically significant (outlier test `r out.ht.p`). Thus, the assumptions are adequately met on the original scale and no transformation is needed.
 1. No transformation is needed, the assumptions are adequately met.
 1. No need to identify which group slopes are different because the parallel lines test indicates that no slopes differ (`r aov.ht.plt`).
 1. Not needed as no slopes differ.
 1. It is appropriate to check for differences in intercepts because the coincident lines test indicates that some intercepts do differ (`r aov.ht.clt`). It appears that the intercept for the Arabian Gulf differs from the intercept of Red Sea, Caribbean, and West Atlantic regions (`r mc.AG.p1`), but not from the Indian Ocean (`r mc.AG.p2`). None of the intercepts from the Indian Ocean, Red Sea, Caribbean, and West Atlantic regions differ (`r mc.nonAG.p`). 
-1. The mean clutch size at the mean curved carapace length is between `r formatC(-1*ivr.mcsum2$contrasts$lower.CL[2],format="f",digits=2)` and `r formatC(-1*ivr.mcsum2$contrasts$upper.CL[2],format="f",digits=2)` lower for turtles from the Arabian Gulf than those from the Red Sea.
-1. The mean clutch size at the mean curved carapace length is between `r formatC(-1*ivr.mcsum2$contrasts$lower.CL[5],format="f",digits=2)` lower and `r formatC(ivr.mcsum2$contrasts$upper.CL[5],format="f",digits=2)` greater for turtles from the Indian Ocean than those from the Red Sea.
+1. The mean clutch size at the mean curved carapace length is between `r formatC(-1*ivr.mcsum2$contrasts$upper.CL[4],format="f",digits=2)` and `r formatC(-1*ivr.mcsum2$contrasts$lower.CL[4],format="f",digits=2)` lower for turtles from the Arabian Gulf than those from the West Atlantic.
+1. The mean clutch size at the mean curved carapace length is between `r formatC(-1*ivr.mcsum2$contrasts$lower.CL[10],format="f",digits=2)` lower and `r formatC(ivr.mcsum2$contrasts$upper.CL[10],format="f",digits=2)` greater for turtles from the Caribbean than those from the West Atlantic.
 1. The mean clutch size at the **maximum** curved carapace length does NOT differ between turtles from the Indian Ocean and West Atlantic regions (`r kPvalue(ivr.mcsum2$contrasts$p.value[7],latex=FALSE)`). Because the lines for these two regions are parallel evidence for a significant difference at any one curved carapace length (i.e., along the x-axis) is evidence for a significant difference at all curved carapace lengths. Of course, the opposite (not a significant difference) holds true as well.
 
 #### R Code and Results
@@ -88,8 +88,8 @@ ivr.gm <- lm(phosp~distance+type+distance:type,data=gm)
 ```{r GoldMineData2, echo=FALSE, results="hide"}
 gm$logphosp <- log(gm$phosp)
 ivr.gmt <- lm(logphosp~distance+type+distance:type,data=gm)
-mc.gmt <- emtrends(ivr.gmt,specs=pairwise~type,var="distance")
-( mcsum.gmt <- summary(mc.gmt,infer=TRUE) )
+mc.gmt <- emtrends(ivr.gmt,specs=pairwise~type,var="distance",tran="log")
+( mcsum.gmt <- summary(mc.gmt,infer=TRUE,type="response") )
 ```
 
 ```{r echo=FALSE}
@@ -108,7 +108,7 @@ aov.gmt.plt <- kPvalue(aov.gmt$"Pr(>F)"[3],latex=FALSE)
 1. The parallel lines test indicates that the slopes differ between some types of phosphorous (`r aov.gmt.plt`). In fact it appears that the slope for the soluble phosphorous is less than the slope for both total (`r kPvalue(mcsum.gmt$contrasts$p.value[2],latex=FALSE)`) and dissolved (`r kPvalue(mcsum.gmt$contrasts$p.value[3],latex=FALSE)`) phosphorous. There was no difference in slopes between total and dissolved phosphorous (`r kPvalue(mcsum.gmt$contrasts$p.value[1],latex=FALSE)`).
 1. The slope for total phosphorous is between `r formatC(mcsum.gmt$contrasts$lower.CL[2],format="f",digits=3)` and `r formatC(mcsum.gmt$contrasts$upper.CL[2],format="f",digits=3)` greater than the slope for soluble phosphorous.
 1. The slope for total phosphorous is between `r formatC(mcsum.gmt$contrasts$lower.CL[1],format="f",digits=3)` lower and `r formatC(mcsum.gmt$contrasts$upper.CL[1],format="f",digits=3)` greater than the slope for dissolved phosphorous.
-1. The slope for the total phosphorous type indicates that as the distance from the gold mine increases by 1 km that log total phosphorus declines by between `r formatC(-1*mcsum.gmt$distance.trend$upper.CL[1],format="f",digits=3)` and `r formatC(-1*mcsum.gmt$distance.trend$lower.CL[1],format="f",digits=3)`.
+1. The slope for the total phosphorous type indicates that as the distance from the gold mine increases by 1 km that mean total phosphorus declines by a multiple between `r formatC(mcsum.gmt$emtrends$lower.CL[1],format="f",digits=3)` and `r formatC(mcsum.gmt$emtrends$upper.CL[1],format="f",digits=3)`.
 1. It is not appropriate to discuss differences in intercepts because the lines are not parallel.
 1. It is not appropriate to discuss differences in intercepts because the lines are not parallel.
 
