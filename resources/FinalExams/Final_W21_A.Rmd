@@ -1,5 +1,5 @@
 ---
-title: "MTH207 Exit Assignment"
+title: "MTH207 Capstone Assignment"
 description: |
   **Version A**
 date: "`r Sys.Date()`"
