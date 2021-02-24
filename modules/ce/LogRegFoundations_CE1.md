@@ -58,4 +58,4 @@ Make generalized conclusions for the questions below from observations of your r
 1. Predict the log odds that a cucumber that was stored for 15 days would be sold.
 1. Subtract your answers from questions 1 and 4. What does this equal?
 1. Predict the odds that a cucumber that was stored for 15 days would be sold.
-1. Divide your answers from questions 2 and 5. How does this compare to the exponentiated slope?
+1. Divide your answers from questions 2 and 6. How does this compare to the exponentiated slope?
