@@ -20,7 +20,7 @@ Stages of this assignment are due [in GradeScope](https://www.gradescope.com/cou
 
 * **MONDAY 11am**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
 * **TUESDAY 5pm**: Complete write-up for the **First** Situation.
-* **WEDNESDAY 5pm**: Complete write=up for the **Second** Situation.
+* **WEDNESDAY 5pm**: Complete write-up for the **Second** Situation.
 * **THURSDAY 5pm**: Complete write-up for the **Third** Situation.
 * **FRIDAY 5pm**: Complete write-up for the **Fourth** and **Fifth** Situations.
 
