@@ -28,7 +28,7 @@ source("../../../rhelpers/knitr_setup.R")
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>Use complete sentences to answer questions.</li>
+  <li>XXX.</li>
 </ul>
 </div>
 
@@ -39,7 +39,7 @@ source("../../../rhelpers/knitr_setup.R")
 bat <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmorph2.csv") %>%
   filter(diet!="vampire") %>%
   mutate(logbodywt=log(bodywt),logmob=log(mob))
-
+xtabs(~diet,data=bat)
 ivr1 <- lm(mob~bodywt+diet+bodywt:diet,data=bat)
 assumptionCheck(ivr1)
 assumptionCheck(ivr1,lambday=0,lambdax=0)
@@ -49,9 +49,9 @@ mc1 <- emtrends(ivr1t,specs=pairwise~diet,var="logbodywt",tran="log")
 mc1s <- summary(mc1,infer=TRUE,type="response")
 ```
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 ad.p <- kPvalue(adTest(ivr1$residuals)$p.value,latex=FALSE)
-out.p <- kPvalue(outlierTest(ivr1)$bonf.p,latex=FALSE)
+out.p <- kPvalue(outlierTest(ivr1)$bonf.p[1],latex=FALSE)
 ad.pt <- kPvalue(adTest(ivr1t$residuals)$p.value,latex=FALSE)
 out.pt <- kPvalue(outlierTest(ivr1t)$bonf.p,latex=FALSE)
 aov.t <- anova(ivr1t)
@@ -60,16 +60,43 @@ mc.t.ag <- kPvalue(mc1s$contrasts$p.value[1],latex=FALSE)
 mc.t.ap <- kPvalue(mc1s$contrasts$p.value[2],latex=FALSE)
 mc.t.gp <- kPvalue(mc1s$contrasts$p.value[3],latex=FALSE)
 mc.t.ag.lci <- formatC(mc1s$contrasts$lower.CL[1],format="f",digits=3)
-mc.t.ag.lci <- formatC(mc1s$contrasts$upper.CL[1],format="f",digits=3)
-mc.t.ap.uci <- formatC(mc1s$contrasts$lower.CL[2],format="f",digits=3)
+mc.t.ag.uci <- formatC(mc1s$contrasts$upper.CL[1],format="f",digits=3)
+mc.t.ap.lci <- formatC(mc1s$contrasts$lower.CL[2],format="f",digits=3)
 mc.t.ap.uci <- formatC(mc1s$contrasts$upper.CL[2],format="f",digits=3)
+slope.p <- kPvalue(max(mc1s$emtrends$p.value),latex=FALSE,include.p=FALSE)
 ```
+
+
+Biologists recognize that brains perform different sensory operations for different activities of the animal. As such there is a thought that the size of brains, or the size of particular portions of brains, may differ depending on the primary foraging activity of the animal. For example, senses that are most useful for bats that are insectivorous may be quite different than senses that are most useful for nectar-feeding bats and, as such, bats in these two groups may have differently sized brains.
+
+To assess this hypothesis, Hutcheon et al. (2002) recorded the volume of three brain regions (main olfactory bulb, hippocampus, auditory nuclei) for 63 species of bats (Chiroptera). They were primarily interested in determining if the volume of brain regions differed among broad foraging categories (phytophagous, gleaner, and aerial insectivore). However species of bats differ in overall size and the size of the brain is likely related to overall size (i.e., larger bats likely have larger brains). Thus, they also recorded the body weight for each species of bat so that it could be included in a model as a covariate and, thus, effectively “accounted for” when considering brain size.
+
+With this the response variable is the main olfactory bulb volume (MOB), the covariate is body weight, and the factor variable is the foraging group categories (called "diet" in the data). The first hypothesis to be tested (i.e, parallel lines test) is
+
+* H~0~: "the relationship between MOB and body weight does not differ by foraging group"
+* H~A~: "the relationship between MOB and body weight does differ by foraging group"
+ 
+If this H~0~ is not rejected (i.e., the lines are parallel) then the following two sets of hypotheses will be tested (i.e., coincident lines and relationship tests),
+
+* H~0~: "the mean MOB at the mean body weight does not differ among foraging group"
+* H~A~: "the mean MOB at the mean body weight does differ among foraging group" 
+
+and
+
+* H~0~: "there is not a relationship between MOB and body weight"
+* H~A~: "there is a relationship between MOB and body weight"
+
+The sample size is very unbalanced with very few gleaners in the data set. The data are independent as the MOB and body weight measurements are summary measures for entire species and not measurements on individual bats. It is not realistic to think that summary measurements for entire species are connected across all of the species. The assumptions are clearly not met on the original scale as the residual plot does not show a "random scatter" of points, though it is difficult to tell if the issue is linearity, homoscedasticity, or both. In addition, the residuals are not normally distributed (Anderson-Darling `r ad.p`) or not strongly skewed and several outliers are present (`r out.p`). The assumptions are met when both variables are transformed to the log scale as seen by a residual plot with neither an evident curve or funnel-shape, normally distributed residuals (Anderson-Darling `r ad.pt`), and no outliers (`r out.pt`). Thus, the analysis will continue on the log-log transformed scale.
+
+The relationship between log MOB and log body weight differs among the three foraging groups (parallel lines test `r aov.t.p`). It appears that the slope of this relationship for the aerial insectivore group is different from the slope for gleaners (`r mc.t.ag`) and phytophages (`r mc.t.ap`). The slopes for this relationship do not however differ between gleaners and phytophages (`r mc.t.gp`). Specifically, it appears that the slope for the aerial insectivores is between `r mc.t.ag.lci` and `r mc.t.ag.uci` times greater than the slope for gleaners and between `r mc.t.ap.lci` and `r mc.t.ap.uci` times greater than the slope for phytophages. The slope of the relationship for all three groups was significantly positive (p&leq;`r slope.p`).
+
+In conclusion, there is a significant positive relationship between mean MOB and body weight on the log-log scale (so it is a power function relationship), but that relationship differs among foraging groups. It appears that the mean MOB increases at a faster rate with increasing body weight for aerial insectivores than for gleaners and phytophages. At a constant body weight it appears that the phytophages have a larger mean MOB than gleaners. However, a similar statement cannot be made for aerial insectivores because they have a different relationship between MOB and body weight. An inspection of the graphic though suggests that the mean MOB for aerial insectivores is likely less than that for phytophages and similar ot that for gleaners over the range of observed body weights. In summary, there does appear to be an effect of foraging behavior on the size of the main olfactory bulb, irrespective of the overall size of the bat.
 
 #### R Code and Results
 ```{r prompt=FALSE, fig.width=7}
 <<BatData>>
 ```
-```{r prompt=FALSE, fig.width=4.5}
+```{r prompt=FALSE, fig.width=5, message=FALSE}
 ggplot(data=bat,mapping=aes(x=logbodywt,y=logmob,
                             color=diet,fill=diet)) +
   geom_point() +
