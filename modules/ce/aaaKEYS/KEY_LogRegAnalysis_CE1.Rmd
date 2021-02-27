@@ -14,7 +14,8 @@ output:
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Renders an appropriate HTML file and moves to CE directory
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_LogRegAnalysis_CE1")
+## knit this first and then run this chunk ... because of car::boot
+modHTML_CEKeys("KEY_LogRegAnalysis_CE1",need2render=FALSE)
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -25,7 +26,7 @@ source("../../../rhelpers/knitr_setup.R")
 
 <div class="alert alert-warning">
 <ul>
-  <li>Refer to specific p-values and graphs when demonstrating that the assumptions are met.</li>
+  <li>XXX.</li>
 </ul>
 </div>
 
@@ -48,6 +49,8 @@ prob6.boot <- predProb(6,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 ( prob6.ci <- quantile(prob6.boot,probs=c(0.025,0.975),type=1) )
 x50.boot <- predX(0.5,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 ( x50.ci <- quantile(x50.boot,probs=c(0.025,0.975),type=1) )
+x90.boot <- predX(0.9,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
+( x90.ci <- quantile(x90.boot,probs=c(0.025,0.975),type=1) )
 ```
 ```{r echo=FALSE}
 aov.p.Ruffe <- kPvalue(anova(glm.Ruffe,test="LRT")$"Pr(>Chi)"[2],latex=FALSE)
@@ -56,11 +59,12 @@ odds6 <- exp(lodds6)
 ```
 
 1. There is a significant relationship between whether or not the Ruffe consumed a *Daphnia* and the length of the Ruffe (LRT `r aov.p.Ruffe`).
-1. The slope says that as the length of the ruffe increases by one mm then the log odds of having consumed a *Daphnia* increases between `r formatC(cfs.Ruffe[2,2],format="f",digits=3)` and `r formatC(cfs.Ruffe[2,3],format="f",digits=3)`.
-1. The exponentiated slope says that as the length of the ruffe increases by one mm then the odds of having consumed a *Daphnia* is between `r formatC(exp(cfs.Ruffe[2,2]),format="f",digits=3)` and `r formatC(exp(cfs.Ruffe[2,3]),format="f",digits=3)` times greater.
-1. The odds that a 6-mm Ruffe will have consumed a *Daphnia* is `r formatC(odds6,format="f",digits=3)`. Thus, the probability that 6-mm Ruffe will have consumed a *Daphnia* is `r formatC(odds6,format="f",digits=3)` times as likely than it not having consumed a *Daphnia*.
-1. The probability that a 6-mm Ruffe will have consumed a *Daphnia* is between `r formatC(prob6.ci[1],format="f",digits=3)` and `r formatC(prob6.ci[2],format="f",digits=3)`.
-1. The length where 50% of Ruffe have consumed a *Daphnia* is between `r formatC(x50.ci[1],format="f",digits=3)` and `r formatC(x50.ci[2],format="f",digits=3)`.
+1. The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a *Daphnia* increases between `r formatC(cfs.Ruffe[2,2],format="f",digits=3)` and `r formatC(cfs.Ruffe[2,3],format="f",digits=3)`.
+1. The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a *Daphnia* is between `r formatC(exp(cfs.Ruffe[2,2]),format="f",digits=3)` and `r formatC(exp(cfs.Ruffe[2,3]),format="f",digits=3)` times greater.
+1. The probability that a 6-mm Ruffe will have consumed a *Daphnia* is between `r formatC(prob6.ci[[1]],format="f",digits=3)` and `r formatC(prob6.ci[[2]],format="f",digits=3)`. Thus, only between `r formatC(100*prob6.ci[[1]],format="f",digits=1)`% and `r formatC(100*prob6.ci[[2]],format="f",digits=1)`% of 6-mm Ruffe are likely to have consumed a *Daphnia*.
+1. The odds that a 6-mm Ruffe will have consumed a *Daphnia* is `r formatC(odds6,format="f",digits=3)`. Thus, it is `r formatC(1/odds6,format="f",digits=3)` times more likely that a 6-mm Ruffe has NOT consumed a *Daphnia* than it is that is HAS consumed a *Daphnia*.
+1. The length where 50% of Ruffe have consumed a *Daphnia* is between `r formatC(x50.ci[[1]],format="f",digits=3)` and `r formatC(x50.ci[[2]],format="f",digits=3)`.
+1. The length where 90% of Ruffe have consumed a *Daphnia* is between `r formatC(x90.ci[[1]],format="f",digits=3)` and `r formatC(x90.ci[[2]],format="f",digits=3)`.
 1. The best-fit logistic regression line is shown below.
 
 ### R Code and Results
@@ -75,6 +79,7 @@ ggplot(data=Ruffe,mapping=aes(x=len,y=daph01)) +
 
 &nbsp;
 
+<!----
 # X-Rated Movies
 ```{r XXXData, echo=FALSE, results="hide", cache=TRUE}
 predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
@@ -124,7 +129,6 @@ ggplot(data=xxx,mapping=aes(x=age,y=seen01)) +
 ```
 
 
-<!----
 # Moose Calf Production
 ```{r mooseData, echo=FALSE, results="hide"}
 predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))

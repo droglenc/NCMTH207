@@ -27,7 +27,7 @@ source("../../../rhelpers/knitr_setup.R")
 <div class="alert alert-warning">
 <strong>Note:</strong> 
 <ul>
-  <li>Use complete sentences to answer questions.</li>
+  <li>Make sure you use the "ln" and not the "log" button on your calculator. We always use natural logs in this class.</li>
 </ul>
 </div>
 
@@ -57,30 +57,32 @@ bat <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Batmor
   mutate(canine=canine*10,
          subsp01=ifelse(subsp=="cinereus",1,0))
 glm.bat <- glm(subsp01~canine,data=bat,family="binomial")
-boot.bat <- car::Boot(glm.bat)
-cfs.bat <- round(cbind(Ests=coef(glm.bat),confint(boot.bat,type="perc")),3)
+#boot.bat <- car::Boot(glm.bat)
+cfs.bat <- round(cbind(Ests=coef(glm.bat),confint(glm.bat)),3)
 ecfs.bat <- round(exp(cfs.bat),3)
-lodds3 <- cfs.bat[1,1]+cfs.bat[2,1]*3
-odds3 <- exp(lodds3)
-prob3 <- odds3/(1+odds3)
-lodds4 <- lodds3+cfs.bat[2,1]
-odds4 <- odds3*ecfs.bat[2,1]
-x50 <- -cfs.bat[1,1]/cfs.bat[2,1]
-x95 <- predX(0.95,cfs.bat[1,1],cfs.bat[2,1])
-x5 <- predX(0.05,cfs.bat[1,1],cfs.bat[2,1])
 alpha <- cfs.bat[1,1]
 beta <- cfs.bat[2,1]
 ebeta <- exp(beta)
+
+lodds3 <- alpha+beta*3
+odds3 <- exp(lodds3)
+prob3 <- odds3/(1+odds3)
+lodds4 <- lodds3+beta
+odds4 <- odds3*ebeta
+x50 <- -alpha/beta
+x95 <- predX(0.95,alpha,beta)
+x5 <- predX(0.05,alpha,beta)
+
 ```
 
 1. The equation of the best-fit logistic regression line if $log\left(\frac{p}{1-p}\right)$=`r alpha`+`r beta`&times;canine.
 1. The slope means that as the canine tooth height increases by 1 mm the log odds that the bat is a *cinereus* subspecies increases by between `r cfs.bat[2,2]` and `r cfs.bat[2,3]`.
 1. The exponentiated slope means that as the canine tooth height increases by 1 mm the odds that the bat is a *cinereus* subspecies increases between `r formatC(ecfs.bat[2,2],format="f",digits=0)` and `r formatC(ecfs.bat[2,3],format="f",digits=0)` times. *Note that these values are so ridiculous because an increase of 1 mm essentially covers the whole range of observed canine tooth heights.*
-1. The log odds of being a *cinereus* if the canine tooth height is 3 mm is `r alpha`+`r beta`&times;3=`r formatC(lodds3,format="f",digits=3)`.
-1. The odds of being a *cinereus* if the canine tooth height is 3 mm is e<sup>`r formatC(lodds3,format="f",digits=3)`</sup>=`r formatC(odds3,format="f",digits=3)`. This means that the probability of being a *cinereus* is only about `r formatC(100*odds3,format="f",digits=1)`% as much as the probability of being a *semotus* when the canine tooth height is 3 mm.
-1. The probability of being a *cinereus* if the canine tooth height is 3 mm is $\frac{`r formatC(odds3,format="f",digits=3)`}{1+`r formatC(odds3,format="f",digits=3)`}$=`r formatC(prob3,format="f",digits=3)`. This means that only about `r formatC(100*prob3,format="f",digits=1)`% of bats with a canine tooth height of 3 mm are *cinerus*.
-1. The log odds of being a *cinereus* if the canine tooth height is 4 mm is the log odds of being a *cinereus* when the canine tooth height is 3 mm **PLUS** the slope, or `r formatC(lodds3,format="f",digits=3)` + `r beta` = `r formatC(lodds3+beta,format="f",digits=3)`.
-1. The odds of being a *cinereus* if the canine tooth height is 4 is the odds of being a *cinereus* when the canine tooth height is 3 **TIMES** the **exponentiated** slope, or `r formatC(odds3,format="f",digits=3)`&times;`r formatC(ebeta,format="f",digits=0)` = `r formatC(odds3*ebeta,format="f",digits=3)`.
-1. The canine tooth height where it is “50-50” that the bat is *cinereus* is $\frac{-(`r alpha`)}{`r beta`}$=`r formatC(x50,format="f",digits=2)`?
-1. The canine tooth height where you are “very sure” (95% likely) that the bat is a *cinereus* is `r formatC(x95,format="f",digits=1)` (=$\frac{log\left(\frac{0.95}{0.05}\right)-(`r alpha`)}{`r beta`}$).
-1. The canine tooth height where you are “very sure” (95% likely) that the bat is a *semotus* (i.e., not a *cinereus*) is `r formatC(x5,format="f",digits=1)` (=$\frac{log\left(\frac{0.05}{0.95}\right)-(`r alpha`)}{`r beta`}$).
+1. The log odds of being a *cinereus* if the canine tooth height is 3 mm is `r alpha`+`r beta`&times;3=**`r formatC(lodds3,format="f",digits=3)`**.
+1. The odds of being a *cinereus* if the canine tooth height is 3 mm is e<sup>`r formatC(lodds3,format="f",digits=3)`</sup>=**`r formatC(odds3,format="f",digits=3)`**. This means that the probability of being a *cinereus* is only about `r formatC(100*odds3,format="f",digits=1)`% as much as the probability of being a *semotus* when the canine tooth height is 3 mm. Alternatively, the probability of being a *semotus* is **`r formatC(1/odds3,format="f",digits=3)` times more likely** than being a *cinereus* when canine tooth height is 3 mm.
+1. The probability of being a *cinereus* if the canine tooth height is 3 mm is $\frac{`r formatC(odds3,format="f",digits=3)`}{1+`r formatC(odds3,format="f",digits=3)`}$=**`r formatC(prob3,format="f",digits=3)`**. This means that only about `r formatC(100*prob3,format="f",digits=1)`% of bats with a canine tooth height of 3 mm are likely to be *cinereus*.
+1. The log odds of being a *cinereus* if the canine tooth height is 4 mm is the log odds of being a *cinereus* when the canine tooth height is 3 mm **PLUS** the slope, or `r formatC(lodds3,format="f",digits=3)` + `r beta` = **`r formatC(lodds3+beta,format="f",digits=3)`**.
+1. The odds of being a *cinereus* if the canine tooth height is 4 is the odds of being a *cinereus* when the canine tooth height is 3 **TIMES** the **exponentiated** slope, or `r formatC(odds3,format="f",digits=3)`&times;`r formatC(ebeta,format="f",digits=0)` = **`r formatC(odds3*ebeta,format="f",digits=3)`**.
+1. The canine tooth height where it is “50-50” that the bat is *cinereus* is **`r formatC(x50,format="f",digits=2)` mm** (=$\frac{-(`r alpha`)}{`r beta`}$).
+1. The canine tooth height where you are “very sure” (95% likely) that the bat is a *cinereus* is **`r formatC(x95,format="f",digits=2)`** mm (=$\frac{log\left(\frac{0.95}{0.05}\right)-(`r alpha`)}{`r beta`}$).
+1. The canine tooth height where you are “very sure” (95% likely) that the bat is a *semotus* (i.e., not a *cinereus*) is **`r formatC(x5,format="f",digits=2)` mm** (=$\frac{log\left(\frac{0.05}{0.95}\right)-(`r alpha`)}{`r beta`}$).

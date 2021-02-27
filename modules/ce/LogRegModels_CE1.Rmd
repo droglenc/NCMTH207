@@ -73,12 +73,12 @@ Use this information to answer the questions below. *Show your work.*
 
 1. What is the equation of the best-fit logistic regression line? Replace parameters with their estimated values and define all other symbols.
 1. Interpret the slope. Use the confidence interval.
-1. Interpret the exponentiated slope. Use the confidence interval.
+1. Interpret the exponentiated (i.e., back-transformed) slope. Use the confidence interval.
 1. Predict the log odds of being a *cinereus* if the canine tooth height is 3.
 1. Predict the odds of being a *cinereus* if the canine tooth height is 3. Write a sentence about what this value means.
 1. Predict the probability of being a *cinereus* if the canine tooth height is 3. Write a sentence about what this value means.
-1. Predict the log odds of being a *cinereus* if the canine tooth height is 4 but only using your previous prediction and the estimated value of the slope.
-1. Predict the odds of being a *cinereus* if the canine tooth height is 4 but only using your previous prediction and the estimated value of the exponentiated slope.
+1. Predict the log odds of being a *cinereus* if the canine tooth height is 4 but only using your previous log odds prediction and the estimated value of the slope.
+1. Predict the odds of being a *cinereus* if the canine tooth height is 4 but only using your previous odds prediction and the estimated value of the exponentiated slope.
 1. What is the canine tooth height where it is "50-50" that the bat is *cinereus* or *semotus*?
 1. What is the canine tooth height where you are "very sure" (95% likely) that the bat is a *cinereus*?
 1. What is the canine tooth height where you are "very sure" (95% likely) that the bat is a *semotus*?

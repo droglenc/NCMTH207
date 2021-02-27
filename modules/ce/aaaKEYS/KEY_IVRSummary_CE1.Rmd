@@ -46,7 +46,7 @@ assumptionCheck(ivr1,lambday=0,lambdax=0)
 ivr1t <- lm(logmob~logbodywt+diet+logbodywt:diet,data=bat)
 anova(ivr1t)
 mc1 <- emtrends(ivr1t,specs=pairwise~diet,var="logbodywt",tran="log")
-mc1s <- summary(mc1,infer=TRUE,type="response")
+( mc1s <- summary(mc1,infer=TRUE,type="response") )
 ```
 
 ```{r echo=FALSE, warning=FALSE}

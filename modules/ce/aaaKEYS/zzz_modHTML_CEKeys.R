@@ -1,4 +1,4 @@
-modHTML_CEKeys <- function(fnm) {
+modHTML_CEKeys <- function(fnm,need2render=FALSE) {
   ## Save old working directory
   od <- getwd()
   ## Set working directory
@@ -6,7 +6,7 @@ modHTML_CEKeys <- function(fnm) {
   ## Load some helper files ... specifically modHTML
   source("../../../rhelpers/rhelpers.R")
   ## Renders an appropriate HTML file for the webpage
-  modHTML(fnm)
+  modHTML(fnm,need2render=need2render)
   ## And moves it to make it available to students
   file.rename(from=paste0(fnm,".html"),to=paste0("../",fnm,".html"))
   dir.create(paste0("../",fnm,"_files"),showWarnings=FALSE)
