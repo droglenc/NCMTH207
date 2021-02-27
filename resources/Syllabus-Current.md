@@ -115,9 +115,9 @@ The course is composed of daily modules (see link in upper-right) of material. T
 
 ## Grading
 <img class="img-right" src="../img/grading.jpg">
-An overall grade will be computed from the module reading preparation answers and assignments described in the ["Course Workflow" section](#course-workflow) and a final exam. Module reading preparation answers and assignments not submitted by the due date time will generally not be accepted (*but please contact me to let me know the circumstances for not being able to complete the work on time*). Your lowest four reading preparation AND assignment scores will be dropped when calculating your overall grade.
+An overall grade will be computed from the module reading preparation answers and assignments described in the ["Course Workflow" section](#course-workflow) and a capstone assignment. Module reading preparation answers and assignments not submitted by the due date time will generally not be accepted (*but please contact me to let me know the circumstances for not being able to complete the work on time*). Your lowest four reading preparation AND assignment scores will be dropped when calculating your overall grade.
 
-The final exam is an opportunity for you to show a synthetic understanding of material from throughout the course. The final exam will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the final exam.
+The capstone assignment is an opportunity for you to show a synthetic understanding of material from throughout the course. The assignment will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the capstone assignment is due.
 
 An overall score will be computed from the items and associated weights listed in the table below. Grades on individual module reading preparation answers and assignments will be on the class Gradescope page ([quick link on class homepage](../){:target="_blank"}). I will update your percentage grades for the reading preparation answers and assignments on mycourses.northland.edu ([quick link on class homepage](../)) at the end of each week, which will then show your overall grade as of that time. You can also calculate your overall grade at any time by entering your percentage scores in the boxes below for completed assessments. To project your future grade, also include percentages for future assessments.
 
@@ -128,7 +128,7 @@ An overall score will be computed from the items and associated weights listed i
 <tr><th width="15%"></th>
 <th width="28%">Reading Prep</th>
 <th width="28%">Assignments</th>
-<th width="29%">Final Exam</th>
+<th width="29%">Capstone</th>
 </tr>
 
 <tr style="vertical-align:bottom"><th>Weight</th>
@@ -159,7 +159,7 @@ Your letter grade will be assigned from your overall percentage (rounded to a wh
 <br>
 
 #### Incomplete Grades
-An incomplete grade will be given ONLY in extreme circumstances that are beyond your control, such as a major illness, and will ONLY be given if you have successfully completed the entire course except for the final exam. This is in accordance with [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades"). Please communicate with me immediately if something major happens for which you think an incomplete grade is appropriate.
+An incomplete grade will be given ONLY in extreme circumstances that are beyond your control, such as a major illness, and will ONLY be given if you have successfully completed the entire course except for the capsone assignment. This is in accordance with [Northland College policy](https://my.northland.edu/student-policies/academic-policies/#grades){:target="_blank"} (scroll down to "Incomplete Grades"). Please communicate with me immediately if something major happens for which you think an incomplete grade is appropriate.
 
 #### Midterm Grades
 I will submit a "midterm grade" for you approximately half-way through the semester. This grade will by my best guess at your lowest possible final grade (not your overall grade at that time). I assign this "worst-case" midterm grade because I believe that it is better to know the worst rather than the best-case scenario at that point of the semester. Of course, see me if you have questions about your midterm grade.
