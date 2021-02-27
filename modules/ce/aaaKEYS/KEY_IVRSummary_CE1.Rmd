@@ -14,7 +14,7 @@ output:
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Renders an appropriate HTML file and moves to CE directory
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_IVRAnalysis_CE1")
+modHTML_CEKeys("KEY_IVRSummary_CE1")
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -90,7 +90,7 @@ The sample size is very unbalanced with very few gleaners in the data set. The d
 
 The relationship between log MOB and log body weight differs among the three foraging groups (parallel lines test `r aov.t.p`). It appears that the slope of this relationship for the aerial insectivore group is different from the slope for gleaners (`r mc.t.ag`) and phytophages (`r mc.t.ap`). The slopes for this relationship do not however differ between gleaners and phytophages (`r mc.t.gp`). Specifically, it appears that the slope for the aerial insectivores is between `r mc.t.ag.lci` and `r mc.t.ag.uci` times greater than the slope for gleaners and between `r mc.t.ap.lci` and `r mc.t.ap.uci` times greater than the slope for phytophages. The slope of the relationship for all three groups was significantly positive (p&leq;`r slope.p`).
 
-In conclusion, there is a significant positive relationship between mean MOB and body weight on the log-log scale (so it is a power function relationship), but that relationship differs among foraging groups. It appears that the mean MOB increases at a faster rate with increasing body weight for aerial insectivores than for gleaners and phytophages. At a constant body weight it appears that the phytophages have a larger mean MOB than gleaners. However, a similar statement cannot be made for aerial insectivores because they have a different relationship between MOB and body weight. An inspection of the graphic though suggests that the mean MOB for aerial insectivores is likely less than that for phytophages and similar ot that for gleaners over the range of observed body weights. In summary, there does appear to be an effect of foraging behavior on the size of the main olfactory bulb, irrespective of the overall size of the bat.
+In conclusion, there is a significant positive relationship between mean MOB and body weight on the log-log scale (so it is a power function relationship), but that relationship differs among foraging groups. It appears that the mean MOB increases at a faster rate with increasing body weight for aerial insectivores than for gleaners and phytophages. At a constant body weight it appears that the phytophages have a larger mean MOB than gleaners. However, a similar statement cannot be made for aerial insectivores because they have a different relationship between MOB and body weight. An inspection of the graphic though suggests that the mean MOB for aerial insectivores is likely less than that for phytophages and similar to that for gleaners over the range of observed body weights. In summary, there does appear to be an effect of foraging behavior on the size of the main olfactory bulb, irrespective of the overall size of the bat.
 
 #### R Code and Results
 ```{r prompt=FALSE, fig.width=7}

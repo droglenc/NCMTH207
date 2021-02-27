@@ -1,4 +1,4 @@
-modHTML_CEKeys <- function(fnm,need2render=FALSE) {
+modHTML_CEKeys <- function(fnm,need2render=TRUE) {
   ## Save old working directory
   od <- getwd()
   ## Set working directory
