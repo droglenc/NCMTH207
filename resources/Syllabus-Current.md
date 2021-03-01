@@ -82,7 +82,7 @@ If I observe you "struggling" with the course early in the semester then I may f
 
 ## Course Workflow
 <img class="img-right" src="../img/StudyOnline.jpg" alt="Decoration">
-The course is scheduled to meet every weekday from 1230-400pm. However, because of physical distancing guidelines, half of you will meet with me in the classroom from 1230-210 and the other half will meet with me in the classroom from 220-400. Which group you are in is shown on the [Dates page](Dates-Current.html)).
+The course is scheduled to meet every weekday from 1230-400pm. However, because of physical distancing guidelines, half of you will meet with me in the classroom from 1230-210 and the other half will meet with me in the classroom from 220-400. Which group you are in is shown on the [Dates page](Dates-Current.html).
 
 This course is "flipped," which loosely means that you are responsible for obtaining factual content prior to coming to class and will then use class time with me to apply and expand upon what you learned prior to class. I organized the course in this format because I believe the research that indicates that deeper learning is achieved with this model, this format allows me to help you more directly when you are applying concepts, and this format allows for teaching face-to-face, on-line, or a hybrid of both as necessary.
 
