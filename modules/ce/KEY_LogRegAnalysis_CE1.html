@@ -10,7 +10,7 @@ css: "/css/modules.css"
 <div class="alert alert-warning">
 <ul>
 <li>
-XXX.
+Note that your confidence interval values may be slightly different than mine because there is an inherent randomization that occurs with bootstrapping. They should not be very different.
 </li>
 </ul>
 </div>
@@ -18,12 +18,12 @@ XXX.
 <h1>Ruffe Feeding</h1>
 <ol>
 <li>There is a significant relationship between whether or not the Ruffe consumed a <em>Daphnia</em> and the length of the Ruffe (LRT p&lt;0.00005).</li>
-<li>The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a <em>Daphnia</em> increases between 1.024 and 1.919.</li>
-<li>The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a <em>Daphnia</em> is between 2.784 and 6.813 times greater.</li>
-<li>The probability that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is between 0.014 and 0.111. Thus, only between 1.4% and 11.1% of 6-mm Ruffe are likely to have consumed a <em>Daphnia</em>.</li>
+<li>The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a <em>Daphnia</em> increases between 1.016 and 1.879.</li>
+<li>The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a <em>Daphnia</em> is between 2.761 and 6.544 times greater.</li>
+<li>The probability that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is between 0.014 and 0.109. Thus, only between 1.4% and 10.9% of 6-mm Ruffe are likely to have consumed a <em>Daphnia</em>.</li>
 <li>The odds that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is 0.058. Thus, it is 17.115 times more likely that a 6-mm Ruffe has NOT consumed a <em>Daphnia</em> than it is that is HAS consumed a <em>Daphnia</em>.</li>
-<li>The length where 50% of Ruffe have consumed a <em>Daphnia</em> is between 7.735 and 8.597.</li>
-<li>The length where 90% of Ruffe have consumed a <em>Daphnia</em> is between 9.091 and 10.531.</li>
+<li>The length where 50% of Ruffe have consumed a <em>Daphnia</em> is between 7.727 and 8.574.</li>
+<li>The length where 90% of Ruffe have consumed a <em>Daphnia</em> is between 9.183 and 10.547.</li>
 <li>The best-fit logistic regression line is shown below.</li>
 </ol>
 <div id="r-code-and-results" class="section level3">
@@ -49,8 +49,8 @@ len   1   130.81       162     87.659 &lt; 2.2e-16</code></pre>
 <pre class="r"><code>&gt; boot.Ruffe &lt;- car::Boot(glm.Ruffe)
 &gt; cbind(Est=coef(glm.Ruffe),confint(boot.Ruffe,type=&quot;perc&quot;))</code></pre>
 <pre><code>                   Est      2.5 %    97.5 %
-(Intercept) -10.711628 -15.724727 -8.329919
-len           1.311943   1.023001  1.894172</code></pre>
+(Intercept) -10.711628 -15.485570 -8.319108
+len           1.311943   1.020951  1.897401</code></pre>
 <pre class="r"><code>&gt; nd &lt;- data.frame(len=6)
 &gt; ( lodds6 &lt;- predict(glm.Ruffe,newdata=nd) )</code></pre>
 <pre><code>       1 
@@ -64,15 +64,15 @@ len           1.311943   1.023001  1.894172</code></pre>
 <pre class="r"><code>&gt; prob6.boot &lt;- predProb(6,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 &gt; ( prob6.ci &lt;- quantile(prob6.boot,probs=c(0.025,0.975),type=1) )</code></pre>
 <pre><code>      2.5%      97.5% 
-0.01234338 0.11070911 </code></pre>
+0.01380019 0.10900300 </code></pre>
 <pre class="r"><code>&gt; x50.boot &lt;- predX(0.5,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 &gt; ( x50.ci &lt;- quantile(x50.boot,probs=c(0.025,0.975),type=1) )</code></pre>
 <pre><code>    2.5%    97.5% 
-7.751724 8.561385 </code></pre>
+7.768726 8.582608 </code></pre>
 <pre class="r"><code>&gt; x90.boot &lt;- predX(0.9,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 &gt; ( x90.ci &lt;- quantile(x90.boot,probs=c(0.025,0.975),type=1) )</code></pre>
 <pre><code>     2.5%     97.5% 
- 9.167877 10.477676 </code></pre>
+ 9.159108 10.536225 </code></pre>
 <pre class="r"><code>&gt; ggplot(data=Ruffe,mapping=aes(x=len,y=daph01)) +
     geom_point(alpha=0.1) +
     geom_smooth(method=&quot;glm&quot;,method.args=list(family=binomial)) +
@@ -254,7 +254,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

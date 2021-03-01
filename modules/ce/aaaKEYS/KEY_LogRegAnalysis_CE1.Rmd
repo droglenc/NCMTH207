@@ -13,7 +13,7 @@ output:
 
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Renders an appropriate HTML file and moves to CE directory
-source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
+source("zzz_modHTML_CEKeys.R")
 ## knit this first and then run this chunk ... because of car::boot
 modHTML_CEKeys("KEY_LogRegAnalysis_CE1",need2render=FALSE)
 ```
@@ -26,7 +26,7 @@ source("../../../rhelpers/knitr_setup.R")
 
 <div class="alert alert-warning">
 <ul>
-  <li>XXX.</li>
+  <li>Note that your confidence interval values may be slightly different than mine because there is an inherent randomization that occurs with bootstrapping. They should not be very different.</li>
 </ul>
 </div>
 
