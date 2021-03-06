@@ -44,11 +44,12 @@ dfuture <- d %>%
   rename(Date=Date2)
 ## Put a blank row after each Friday
 blank_rows <- grep("Fri",dfuture$Date)
-if (blank_rows[length(blank_rows)]==nrow(dfuture))
-  blank_rows <- blank_rows[-length(blank_rows)]
-for (i in rev(blank_rows))
-  dfuture <- dplyr::add_row(dfuture,Date=NA,Topic=NA_character_,.after=i)
-
+if (length(blank_rows)>0) {
+  if (blank_rows[length(blank_rows)]==nrow(dfuture))
+    blank_rows <- blank_rows[-length(blank_rows)]
+  for (i in rev(blank_rows))
+    dfuture <- dplyr::add_row(dfuture,Date=NA,Topic=NA_character_,.after=i)
+}
 
 ## Make the kable
 knitr::kable(dfuture,format="html",escape=FALSE) %>%
