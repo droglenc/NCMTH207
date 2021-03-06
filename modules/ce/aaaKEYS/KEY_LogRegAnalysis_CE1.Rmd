@@ -58,7 +58,7 @@ cfs.Ruffe <- cbind(Est=coef(glm.Ruffe),confint(boot.Ruffe,type="perc"))
 odds6 <- exp(lodds6)
 ```
 
-1. There is a significant relationship between whether or not the Ruffe consumed a *Daphnia* and the length of the Ruffe (LRT `r aov.p.Ruffe`).
+1. There is a significant relationship between the probability that the Ruffe consumed a *Daphnia* and the length of the Ruffe (LRT `r aov.p.Ruffe`).
 1. The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a *Daphnia* increases between `r formatC(cfs.Ruffe[2,2],format="f",digits=3)` and `r formatC(cfs.Ruffe[2,3],format="f",digits=3)`.
 1. The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a *Daphnia* is between `r formatC(exp(cfs.Ruffe[2,2]),format="f",digits=3)` and `r formatC(exp(cfs.Ruffe[2,3]),format="f",digits=3)` times greater.
 1. The probability that a 6-mm Ruffe will have consumed a *Daphnia* is between `r formatC(prob6.ci[[1]],format="f",digits=3)` and `r formatC(prob6.ci[[2]],format="f",digits=3)`. Thus, only between `r formatC(100*prob6.ci[[1]],format="f",digits=1)`% and `r formatC(100*prob6.ci[[2]],format="f",digits=1)`% of 6-mm Ruffe are likely to have consumed a *Daphnia*.
