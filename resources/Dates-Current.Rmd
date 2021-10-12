@@ -17,10 +17,11 @@ modHTML("Dates-Current")
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
+sh <- "Dates_W22.xlsx"
 library(dplyr)
 options(knitr.kable.NA = '')
 ## Read data, make data with day and topic with link
-d <- readxl::read_excel("Dates_W21A.xlsx") %>%
+d <- readxl::read_excel("Dates.xlsx",sheet="Current") %>%
   dplyr::mutate(Date=as.Date(Date)) %>%
   dplyr::mutate(Date2=paste0(DOW,", ",format(Date,"%b-%d")),
                 Topic=ifelse(is.na(url),Topic,
@@ -32,9 +33,6 @@ d <- readxl::read_excel("Dates_W21A.xlsx") %>%
 For each class period ("Date"), the module to prepare for is shown under "Topic." Some of the more distant dates are subject to change.
 </div>
 
-<div class="alert alert-warning">
-Group [Julie **Ivy**](https://www.youtube.com/watch?v=oAV4z6vgfys) (Aldaba, Becicka, Chevalier, Curtiss, Elder-Hall, Heller, Hockley, Kolasch, Lambas, Richard, Schick, Sims, Tapper) will meet "in-person" from 1230-210. Group [Megan **Price**](https://www.youtube.com/watch?v=orW01w8a4zY) (Johnson, Loiselle, Marshall, Orchekowski, Reihe, Ritchie, Shea, Simpson, Vensland, Wanty, Wittmann, Witts) will meet "in-person" from 220-400. Modifications to this general schedule will be announced in class.</a>
-</div>
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 ## Get only future dates
@@ -42,20 +40,22 @@ dfuture <- d %>%
   dplyr::filter(Date>=lubridate::today()) %>%
   select(-Date) %>%
   rename(Date=Date2)
-## Put a blank row after each Friday
-blank_rows <- grep("Fri",dfuture$Date)
-if (length(blank_rows)>0) {
+
+## Only continue if there are future dates
+if (nrow(dfuture)>0) {
+  ## Put a blank row after each Friday
+  blank_rows <- grep("F",dfuture$Date)
   if (blank_rows[length(blank_rows)]==nrow(dfuture))
     blank_rows <- blank_rows[-length(blank_rows)]
   for (i in rev(blank_rows))
     dfuture <- dplyr::add_row(dfuture,Date=NA,Topic=NA_character_,.after=i)
-}
 
-## Make the kable
-knitr::kable(dfuture,format="html",escape=FALSE) %>%
-  kableExtra::kable_styling(bootstrap_options=c("condensed","hover","responsive"),
-                            full_width=FALSE,position="center",
-                            fixed_thead=TRUE)
+  ## Make the kable
+  knitr::kable(dfuture,format="html",escape=FALSE) %>%
+    kableExtra::kable_styling(bootstrap_options=c("condensed","hover","responsive"),
+                              full_width=FALSE,position="center",
+                              fixed_thead=TRUE)
+}
 ```
 
 <br>
@@ -70,10 +70,14 @@ dpast <- d %>%
   dplyr::filter(Date<lubridate::today()) %>%
   select(-Date) %>%
   rename(Date=Date2)
-## Make the kable
-knitr::kable(dpast,format="html",escape=FALSE) %>%
-  kableExtra::kable_styling(bootstrap_options=c("condensed","hover","responsive"),
-                            full_width=FALSE,position="center",
-                            fixed_thead=TRUE)
+
+## Only continue if there are past dates
+if (nrow(dpast)>0) {
+  ## Make the kable
+  knitr::kable(dpast,format="html",escape=FALSE) %>%
+    kableExtra::kable_styling(bootstrap_options=c("condensed","hover","responsive"),
+                              full_width=FALSE,position="center",
+                              fixed_thead=TRUE)
+}
 ```
 
