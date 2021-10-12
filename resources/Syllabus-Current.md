@@ -83,7 +83,7 @@ If I observe you "struggling" with the course early in the semester then I may i
 ----
 
 ## Course Workflow
-This course is taught in a "flipped format", which loosely means that you will be responsible for obtaining factual content prior to coming to class and will then use class time with me to apply and expand upon what you learned prior to class. I have taught this class in this format for seven years, largely because I believe the science that indicates that deeper learning is achieved with this model. However, this format also allows for providing more direct assistance as needed.
+This course is taught in a "flipped format", which loosely means that you will be responsible for obtaining factual content prior to coming to class and will then use class time with me to apply and expand upon what you learned prior to class. I have taught this class in this format for several years, largely because I believe the science that indicates that deeper learning is achieved with this model. However, this format also allows for providing more direct assistance as needed.
 
 <center>
 <img src="../img/ClassStructure.JPG" width="70%" height="70%">
