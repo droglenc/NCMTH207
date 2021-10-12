@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 # Nurse Wages
-<img src="../zimgs/Nurses.jpg" alt="Decoration" class="img-right">
 In [this](IVRVariables_CE1.html#nurse-wages) and [this](IVRModels_CE1.html#nurse-wages) previous exercises you prepared variables required of an IVR, identified an ultimate full model and related sub-models, and interpreted model parameters. Continue that exercise by answering the questions below.
 
 1. Write the models for the null and alternative hypotheses of a parallel lines test.
@@ -22,7 +21,6 @@ In [this](IVRVariables_CE1.html#nurse-wages) and [this](IVRModels_CE1.html#nurse
 &nbsp;
 
 ## Turtle Nesting Ecology
-<img src="../zimgs/hawksbill-turtle.jpg" alt="Decoration" class="img-right">
 In [this](IVRVariables_CE1.html#turtle-nesting-ecology) and [this](IVRModels_CE1.html#turtle-nesting-ecology) previous exercise you prepared variables required of an IVR, identified an ultimate full model and related sub-models, and interpreted model parameters. Continue that exercise by answering the questions below.
 
 1. Write the models for the null and alternative hypotheses of a parallel lines test.
@@ -39,7 +37,6 @@ In [this previous exercise](IVRModels_CE1.html#turtle-nesting-ecology) you loade
 &nbsp;
 
 ## Water Quality Near a Gold Mine
-<img src="../zimgs/GoldMineWQ.jpg" alt="Decoration" class="img-right">
 In [this](IVRVariables_CE1.html#water-quality-near-a-gold-mine) and [this](IVRModels_CE1.html#water-quality-near-a-gold-mine) previous exercises you prepared variables required of an IVR, identified an ultimate full model and related sub-models, and interpreted model parameters. Continue that exercise by answering the questions below.
 
 1. Write the models for the null and alternative hypotheses of a parallel lines test.

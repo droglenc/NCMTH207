@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 # Raising Young Cuckoos
-<img src="../zimgs/cuckoo-eggs.jpg" alt="Cuckoo Eggs" class="img-right">
 In [a previous exercise](ANOVA1Foundations_CE1.html$raising-young-cuckoos) you tested whether the mean length of cuckoos eggs laid in the nests of three species of host birds differed among the species. Should you conduct a multiple comparisons procedure for those results? Explain why or why not.
 
 &nbsp;
@@ -20,7 +19,6 @@ In [a previous exercise](ANOVA1Foundations_CE1.html$raising-young-cuckoos) you t
 &nbsp;
 
 ## Temperature and Turtle Hatchings
-<img src="../zimgs/sea_turtles.jpg" alt="Sea Turtles" class="img-right">
 It is widely reported that climate change is having a profound impact on the functioning of ecosystems. Species abundances and distributions are shifting due to the changing environment. The breeding [phenology](https://www.usanpn.org/about/why-phenology){:target="_blank"} of migratory species is also changing in response to environmental change. Furthermore, climate change-induced habitat loss puts species at risk of extinction when no alternative adequate habitat is available. The risk of climate change is particularly pronounced for marine [ectotherms](https://en.wikipedia.org/wiki/Ectotherm){:target="_blank"} as they conform more closely to thermal tolerance limits than terrestrial ectotherms and, in particular, species whose biology and phenology are intimately linked to temperature.
 
 To examine the effect of sand temperature on the phenology of sea turtles, researchers placed individual turtle eggs in individual containers of sand for which the temperature could be controlled. Four temperatures were used with the specific temperature used for each container randomly determined. The researchers then recorded the number of days for the egg in each container to hatch. The results of their study are below.
@@ -44,7 +42,6 @@ Load these data into R and answer the questions below. [*Note: [This](../resourc
 &nbsp;
 
 # Salamander Lengths
-<img src="../zimgs/salamander.jpg" alt="California Tiger Salamander" class="img-right">
 [Polich *et al.* (2013)](https://besjournals.onlinelibrary.wiley.com/doi/10.1002/jwmg.596) examined the effects of tail-clipping on survival and growth of larval [California Tiger Salamanders](https://www.fws.gov/sacramento/es_species/Accounts/Amphibians-Reptiles/ca_tiger_salamander/){:target="_blank"} (*Ambystoma californiense*). In one part of their study, randomly selected larval salamanders were designated for one of four treatment groups which were defined by how much of the salamander’s tail was clipped: “Control”, “Small”, “Medium”, and “Large” were 0.0-, 2.5-, 5.0-, and 10.0-mm tail clips, respectively. The larvae were then released into experimental simulated [vernal pools](https://www.epa.gov/wetlands/vernal-pools){:target="_blank"} where they were fed [*ad libitum*](https://www.pig333.com/pig-glossary/A/ad-libitum-feeding-free-feeding_8/){:target="_blank"} for two weeks. At the end of two weeks, the total length (snout to the end of the tail; mm) was measured and recorded. Their goal for this particular portion of the study was to compare all pairs of tail-clips to determine if the amount of tail-clip had a significant impact on the resultant total length. The data are recorded in Salamanders.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders.csv), [metadata](https://raw.githubusercontent.com/droglenc/NCData/master/Salamanders_meta.txt)). Load these data into R and answer the questions below. [*Note: order the treatments levels from smallest to large clip amount ... [see this for help](../resources/R_HowTo_Factor.html#change-order-of-levels){:target="_blank"}.*]
 
 1. Write the H<sub>0</sub> and H<sub>A</sub> for this study. Make sure to define all symbols.

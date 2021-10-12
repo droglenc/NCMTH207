@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 ## Male-Female Birth Ratio
-<img src="../zimgs/boy-girl-infants.jpg" alt="Decoration" class="img-right">
 In [this](SLRFoundations_CE1.html#male-female-birth-ratio) and [this](SLRInference_CE1.html#male-female-birth-ratio) previous exercises you examined the ratio of male to female births in several industrialized countries. Use those same data to construct an ANOVA table that can be used to answer the questions below.
 
 1. Demonstrate how the number of individuals in the analysis can be determined from df<sub>Residual</sub>.
@@ -24,7 +23,6 @@ In [this](SLRFoundations_CE1.html#male-female-birth-ratio) and [this](SLRInferen
 &nbsp;
 
 # Willow Flycatcher Migration
-<img src="../zimgs/willow_flycatcher.jpg" alt="Decoration" class="img-right">
 In [this](SLRFoundations_CE1.html#willow-flycatcher-migration) and [this](SLRInference_CE1.html#willow-flycatcher-migration) previous exercise you examined the relationship between the date of migration and the wing length of Willow Flycatchers (*Empidonax traillii*) migrating up the Middle Rio Grande River. Use these same data to construct an ANOVA table that can be used to answer the questions below.
 
 1. Demonstrate how the number of individuals in the analysis can be determined from df<sub>Total</sub>.
@@ -37,7 +35,6 @@ In [this](SLRFoundations_CE1.html#willow-flycatcher-migration) and [this](SLRInf
 &nbsp;
 
 ## Car Drive Ratio and Gas Mileage
-<img src="../zimgs/cars93.jpg" alt="1993 Car" class="img-right">
 In [a previous exercise](SLRInference_CE1.html#car-horsepower-and-gas-mileage) you examined the relationship between a car's horsepower and its gas mileage. In this exercise, you will examine the relationship between a car's drive-ratio (a measure of the gearing between the transmission and the wheels; *drat*) and gas mileage (*mpg*) **for only IMPORTed cars** (see the *type* variable and [this](../resources/R_HowTo_Filter.html){:target="_blank"}). Use these data to develop a model that can be used to predict gas mileage (mpg) from the drive ratio for only IMPORTed cars. Use your results to answer the questions below.
 
 1. Is there a significant relationship between gas mileage and drive ratio for imported cars? Provide appropriate support.

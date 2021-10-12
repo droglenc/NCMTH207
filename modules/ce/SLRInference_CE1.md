@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 ## Male-Female Birth Ratio
-<img src="../zimgs/boy-girl-infants.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](SLRFoundations_CE1.html#male-female-birth-ratio) you examined the ratio of male to female births in several industrialized countries. Use those same data to answer the questions below.
 
 1. How much natural variability is there around the best-fit line?
@@ -23,7 +22,6 @@ In [this previous exercise](SLRFoundations_CE1.html#male-female-birth-ratio) you
 &nbsp;
 
 # Willow Flycatcher Migration
-<img src="../zimgs/willow_flycatcher.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](SLRFoundations_CE1.html#willow-flycatcher-migration) you examined the relationship between the date of migration and the wing length of Willow Flycatchers (*Empidonax traillii*) migrating up the Middle Rio Grande River. Use these same data to answer the questions below.
 
 1. Is there a significant relationship between wing length and date of migration? Provide appropriate support.
@@ -35,7 +33,6 @@ In [this previous exercise](SLRFoundations_CE1.html#willow-flycatcher-migration)
 &nbsp;
 
 ## Car Horsepower and Gas Mileage
-<img src="../zimgs/cars93.jpg" alt="1993 Car" class="img-right">
 Students in the Introduction to Environmental Studies course were interested in what characteristics of cars affected the gas mileage (miles per gallon) of a car. Using an internet search they recorded several variables on a sample of makes of cars (note that these data are industry-reported summaries for the make of a car, not measurements on an individual car). Two of the variables that they recorded were *mpg* (miles per gallon of gasoline for the car) and *hp* (horsepower of the car engine). These data, along with many other variables are in CarMPG.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/CarMPG.csv), [meta](https://github.com/droglenc/NCData/blob/master/CarMPG_meta.txt)). Use these data to compute a model that can be used to predict the mpg of a car from its horsepower and then answer the questions below.
 
 1. Is there a significant relationship between mpg and horsepower? Provide appropriate support.

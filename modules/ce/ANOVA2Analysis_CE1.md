@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 ## Ruffe Weight
-<img src="../zimgs/ruffe.jpg" alt="Decoration" class="img-right">
 Ruffe (*Gymnocephalus cernuus*) are an invasive fish to Lake Superior. After first being detected in the Duluth-Superior Harbor in the late 1980s, there was considerable concern about the species negatively impacting native fishes and ultimately moving to other areas of Lake Superior. The U.S. Fish and Wildlife Service conducted reconnaissance sampling at the mouths of tributaries along the south shore of Lake Superior during the 1990s. One of their sampling locations was the Flag River, near Port Wing, WI. Biologists regularly monitor the weight of fish as a fish's weight often declines as intra-specific (i.e., within the same species) competition increases. Thus, a decline in mean weight over time might indicate an increased density of Ruffe.
 
 Towards this end, biologists collected ruffe from the Flag River every other week during the summer months over three years. As Ruffe are an invasive species, each specimen was sacrificed upon capture. For each specimen, the biologists recorded the weights (g) and sex (as male, female, or unknown based on macroscopic examination of sexual organs). Sex was recorded because weight is sexually dimorphic (i.e., differs by sex) for many fish.

@@ -12,8 +12,6 @@ css: "/css/modules.css"
 ----
 
 ## pH in Two Rivers
-<img src="../zimgs/pHrivers.jpg" alt="Measuring pH" class="img-right">
-
 Burke Center researchers recorded the pH at ten locations in two streams that were close in proximity but in different watersheds with markedly different geologies. They wanted to determine if the mean pH differed between the two streams. Their data are shown in the table below.
 
 <pre>

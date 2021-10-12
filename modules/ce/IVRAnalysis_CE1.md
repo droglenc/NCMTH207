@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 ## Turtle Nesting Ecology
-<img src="../zimgs/hawksbill-turtle.jpg" alt="Decoration" class="img-right">
 In [this](IVRVariables_CE1.html#turtle-nesting-ecology), [this](IVRModels_CE1.html#turtle-nesting-ecology), and [this](IVRTesting_CE1.html#turtle-nesting-ecology) previous exercises you prepared variables required of an IVR, identified an ultimate full model and related sub-models, interpreted model parameters, an performed hypothesis tests. Continue with those analyses to answer the questions below.
 
 1. Thoroughly check all assumptions on the original scale.
@@ -27,7 +26,6 @@ In [this](IVRVariables_CE1.html#turtle-nesting-ecology), [this](IVRModels_CE1.ht
 &nbsp;
 
 ## Water Quality Near a Gold Mine
-<img src="../zimgs/GoldMineWQ.jpg" alt="Decoration" class="img-right">
 In [this](IVRVariables_CE1.html#water-quality-near-a-gold-mine), [this](IVRModels_CE1.html#water-quality-near-a-gold-mine), and [this](IVRTesting_CE1.html#water-quality-near-a-gold-mine) previous exercises you prepared variables required of an IVR, identified an ultimate full model and related sub-models, interpreted model parameters, and performed hypothesis tests. Continue those analyses by answering the questions below.
 
 1. Thoroughly check all assumptions on the original scale.

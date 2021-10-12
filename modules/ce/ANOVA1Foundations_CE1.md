@@ -38,7 +38,6 @@ A study that used 54 individuals evenly allocated to 6 treatment groups had a va
 &nbsp;
 
 # Raising Young Cuckoos
-<img src="../zimgs/cuckoo-eggs.jpg" alt="Cuckoo Eggs" class="img-right">
 Many species of cuckoos are brood parasites where the females lay their eggs in the nests of smaller bird species which then raise the cuckoo young at the expense of their own young. Data on the lengths (mm) of cuckoo eggs found in the nests of three bird species - the [tree pipet](https://en.wikipedia.org/wiki/Tree_pipit){:target="_blank"}, [hedge sparrow](https://en.wikipedia.org/wiki/Dunnock){:target="_blank"}, and [pied wagtail](https://www.rspb.org.uk/birds-and-wildlife/bird-and-wildlife-guides/bird-a-z/p/piedwagtail/){:target="_blank"} - are provided in Cuckoos.csv ([download](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos.csv), [meta](https://raw.githubusercontent.com/droglenc/NCData/master/Cuckoos_meta.txt)). Load these data into R, construct a One-Way ANOVA (*make sure to show the* `anova()` *results.*), and answer the following questions.
 
 1. Identify and label with a proper symbol the (a) overall sample size and (b) the number of groups in these data.

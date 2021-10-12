@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 ## Male-Female Birth Ratio
-<img src="../zimgs/boy-girl-infants.jpg" alt="Decoration" class="img-right">
 [Davis *et al.* (1998)](https://www.researchgate.net/publication/51325887_Reduced_Ratio_of_Male_to_Female_Births_in_Several_Industrial_Countries_A_Sentinel_Health_Indicator){:target="_blank"} observed a decline in the ratio of male to female births in several industrialized countries and explored whether that result was an indicator of larger health issues. The data below are the proportion of male births (PropMale) for the United States. Use these data to answer the questions further below. [*Note: The data are wrapped onto multiple lines simply to save space. Carefully check that your data entry is correct.*]
 
 <pre>
@@ -38,7 +37,6 @@ PropMale: 0.5122 0.5126 0.5122 0.5120 0.5121 0.5120 0.5120
 &nbsp;
 
 # Willow Flycatcher Migration
-<img src="../zimgs/willow_flycatcher.jpg" alt="Decoration" class="img-right">
 [Yong and Finch (1997)](https://www.fs.fed.us/rmrs/publications/migration-willow-flycatcher-along-middle-rio-grande) hypothesized that larger Willow Flycatchers (*Empidonax traillii*) migrated up the Middle Rio Grande River earlier than small willow flycatchers. To test this hypothesis they captured flycatchers on several days during their migration and measured the wing length (mm; an index of overall body size) of each bird. They recorded the date that the bird was captured as a Julian date (days since Jan. 1). The results of their study are found in Flycatcher.csv ([data](https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv), [meta](https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher_meta.txt)). Use these data to answer the questions below.
 
 1. Construct a graphic that demonstrates the linear model fit.

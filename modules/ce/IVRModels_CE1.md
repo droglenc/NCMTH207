@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 # Nurse Wages
-<img src="../zimgs/Nurses.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](IVRVariables_CE1.html#nurse-wages) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
 1. Write the ultimate full model for this situation.
@@ -26,7 +25,6 @@ In [this previous exercise](IVRVariables_CE1.html#nurse-wages) you prepared the 
 &nbsp;
 
 ## Turtle Nesting Ecology
-<img src="../zimgs/hawksbill-turtle.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](IVRVariables_CE1.html#turtle-nesting-ecology) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
 1. Write the ultimate full model for this situation.
@@ -45,7 +43,6 @@ The data for this situation are in HawksbillTurtles.csv ([data](https://raw.gith
 &nbsp;
 
 ## Water Quality Near a Gold Mine
-<img src="../zimgs/GoldMineWQ.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](IVRVariables_CE1.html#water-quality-near-a-gold-mine) you prepared the variables required of an IVR. Continue that exercise by answering the questions below. Be careful and specific with your interpretations (i.e., refer to slopes and intercepts and to specific groups in the data (not "reference group" and "first group")).
 
 1. Write the ultimate full model for this situation.

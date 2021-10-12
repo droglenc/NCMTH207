@@ -12,7 +12,6 @@ css: "/css/modules.css"
 ----
 
 # Rattlesnake Rattling
-<img src="../zimgs/rattlesnake.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](SLRAssumptions_CE1.html#rattlesnake-rattling) you tested the assumptions of a SLR for the relationship between the peak frequency of a rattlesnake's rattle and its weight. Use those data to answer the questions below.
 
 1. Find an appropriate transformation for these data so that the SLR assumptions are met.
@@ -26,7 +25,6 @@ In [this previous exercise](SLRAssumptions_CE1.html#rattlesnake-rattling) you te
 &nbsp;
 
 # Initial COVID-19 Cases
-<img src="../zimgs/COVID.jpg" alt="Decoration" class="img-right">
 In [this previous exercise](SLRAssumptions_CE1.html#rattlesnake-rattling) you tested the assumptions of a SLR for the relationship the cumulative number of COVID-19 cases and days since the 10th case was confirmed. Use those data to answer the questions below.
 
 1. What transformation should be used if you assume that the cumulative number of COVID-19 cases increases exponentially across the days.
