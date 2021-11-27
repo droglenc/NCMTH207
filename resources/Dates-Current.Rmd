@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Dates Current
+title: Modules
 author: "Derek H. Ogle"
 css: "/css/syllabus.css"
 output:
@@ -61,7 +61,7 @@ if (nrow(dfuture)>0) {
 
 <br>
 
-# Past Dates
+# Completed
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 ## Get only future dates
