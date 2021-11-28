@@ -25,6 +25,10 @@ For each question below, identify what type of variable the variable is.
 &nbsp;
 
 # pH in Two Rivers
+<div class="alert alert-info">
+Recall from your Introductory Statistics course how (what format and in what software and saved how) these data need to be entered. This <a href="http://derekogle.com/NCMTH107/modules/RData">reading</a> and <a href="http://derekogle.com/NCMTH107/resources/FAQs/stacked-data.html">FAQ</a> may be useful.
+</div>
+
 Burke Center researchers recorded the pH at ten locations in two streams that were close in proximity but in different watersheds with markedly different geologies. They wanted to determine if the mean pH differed between the two streams. Their data are shown in the table below.
 
 <pre>
