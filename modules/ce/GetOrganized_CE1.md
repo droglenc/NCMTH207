@@ -42,11 +42,11 @@ You may find the following general R code useful.
 
 ```
 ggplot(data=DFOBJ,mapping=aes(x=QVAR)) +
-  geom_histogram(binwidth=##,boundary=0,color="black",fill="lightgray") +
+  geom_histogram(binwidth=NUM,boundary=0,color="black",fill="lightgray") +
   labs(y="Frequency of INDIVIDUALS",x="QVAR DESCRIPTION") +
   scale_y_continuous(expand=expansion(mult=c(0,0.05))) +
   theme_NCStats() +
   facet_wrap(vars(CVAR))
 
-Summarize(QVAR~CVAR,data=DFOBJ,digits=##)
+Summarize(QVAR~CVAR,data=DFOBJ,digits=NUM)
 ```

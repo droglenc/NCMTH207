@@ -63,7 +63,7 @@ Please do the following things in preparation for the first day of class.
     * You should have written answers to these questions when you come to class.
 * [Read about Homework Format](resources/hwformat){:target="_blank"}
     * We will discuss this in class but I would like you to be familiar with it before the first day of class.
-    * You should download and save the "template" linked to in the "Exercises With R" section.
+    * You should download and save the "template" linked to in the reading.
 
 &nbsp;
 
