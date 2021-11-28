@@ -8,15 +8,15 @@ css: /css/modules.css
 You should be familiar with the following topics from your Introductory Statistics course. We will very briefly review these items but you will be expected to be comfortable with these topics at the start of the course. [*Links are to these broad topics in my Introductory Statistics course.*]
 
 * [Variable types](http://derekogle.com/NCMTH107/modules/FoundationalDefns.html){:target="_blank"}.
-* [Response and explanatory variables](http://derekogle.com/NCMTH107/modules/DataProduction.html){:target="_blank"}
-* [Hypotheses, p-values, &alpha;, and making decisions](http://derekogle.com/NCMTH107/modules/HypTesting.html){:target="_blank"}.
-* [Confidence intervals](http://derekogle.com/NCMTH107/modules/ConfRegions.html){:target="_blank"}.
+* [Response and explanatory variables](http://derekogle.com/NCMTH107/modules/DataProduction.html){:target="_blank"}.
+* [Hypotheses, p-values, &alpha;, and making decisions](http://derekogle.com/NCMTH107/modules/HypTesting1.html){:target="_blank"}.
+* [Confidence intervals](http://derekogle.com/NCMTH107/modules/ConfRegions1.html){:target="_blank"}.
 * [Linear regression](http://derekogle.com/NCMTH107/modules/LinearRegression.html){:target="_blank"}.
 * [2-Sample t-test](http://derekogle.com/NCMTH107/modules/2Samplet.html){:target="_blank"}.
 
 I suggest reviewing the items listed below to reacquaint yourself with the R software. Again, we will very briefly review these items during the course but you are expected to have some familiarity with them when the course starts.
 
-* [Setup and Brief Introduction to R/RStudio](http://derekogle.com/NCMTH107/modules/bookR/RStart.html){:target="_blank"}
+* [Setup and Brief Introduction to R/RStudio](http://derekogle.com/NCMTH107/modules/RStart.html){:target="_blank"}
 * [Linear regression in R](http://derekogle.com/NCMTH107/modules/RRegression.html){:target="_blank"}.
 * [2-Sample t-test in R](http://derekogle.com/NCMTH107/modules/Rttests.html){:target="_blank"}.
 
@@ -30,7 +30,7 @@ The following apps should be initiated before the first day of class.
 * [Gradescope Grading Site](resources/Gradescope_Intro){:target="_blank"}
     * You should have received an e-mail from me inviting you to activate a GradeScope account and join this class. Make sure to follow the directions in that e-mail. Contact me if you did not get that e-mail.
 
-If you plan to use your own computer to run R/RStudio then you should complete the following items before the first day of class. Note the required version numbers below. If you have previously installed these softwares then you may need to update them (everybody will need to update NCStats). If you plan to use the college computers you do not need to do the next three items.
+If you plan to use your own computer to run R/RStudio then you should complete the following items before the first day of class. Note the required version numbers below. If you have previously installed these softwares then you may need to update them (everybody will need to update NCStats). If you plan to use the college computers you do not need to do the next four items.
 
 * Install R (*at least v 4.0.0*) ... [for Windows](https://cran.r-project.org/bin/windows/base/R-4.0.3-win.exe) ... [for Macs](https://cran.r-project.org/bin/macosx/R-4.0.3.pkg) ... *just accept defaults*
 * Install RStudio (*at least v 1.3.0*) ... [Choose Windows/Mac here](https://rstudio.com/products/rstudio/download/#download){:target="_blank"} ... *just accept defaults*

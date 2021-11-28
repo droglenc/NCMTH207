@@ -81,23 +81,6 @@ If the code in this chunk depends on code in previous chunks being run then pres
 
 <br>
 
-# Document Preview
-The results of code chunks can be run as described above. However, an HTML version of the entire document can be viewed within RStudio, which is useful as you are building your complete document. Compiling a completed document to MSWord (and then ultimately a PDF) is described in the next section.
-
-Before previewing, I select the "gear" icon in the script window toolbar and change "Preview in Window" to "Preview in Viewer Pane."
-
-![Notebook Preview Setting](../zimgs/Notebook_PreviewSetting.JPG)
-
-I then select the small arrow on the icon to the left of the gear icon that will either say "Preview" or "Knit" and select "Preview HTML".
-
-![Notebook Previewer](../zimgs/Notebook_Previewer.JPG)
-
-RStudio will then run your script and, **if there are no errors**, show a preview of the document in the lower-right pane (which may expand to be just the right pane).
-
-![Notebook Preview](../zimgs/Notebook_Preview.JPG)
-
-&nbsp;
-
 # Compiling to MSWord
 Once you are comfortable that your R code runs without error and that you have answered all questions for the assignment, then you should compile your Notebook to a MSWord document. In MSWord you can then save the document to a PDF for handing in via GradeScope.
 
