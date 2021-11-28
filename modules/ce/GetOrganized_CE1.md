@@ -25,7 +25,7 @@ For each question below, identify what type of variable the variable is.
 &nbsp;
 
 # pH in Two Rivers
-<div class="alert alert-info">
+<div class="alert alert-warning">
 Recall from your Introductory Statistics course how (what format and in what software and saved how) these data need to be entered. This <a href="http://derekogle.com/NCMTH107/modules/RData">reading</a> and <a href="http://derekogle.com/NCMTH107/resources/FAQs/stacked-data.html">FAQ</a> may be useful.
 </div>
 
