@@ -127,9 +127,9 @@ An overall grade will be computed from the module reading preparation answers an
 
 <tr style="vertical-align:bottom"><th>Weight</th>
 <th>10%<br><img src="../img/bar5.JPG" width="15" height="10"></th>
-<th>15%<br><img src="../img/bar5.JPG" width="15" height="10"></th>
-<th>35%<br><img src="../img/bar5.JPG" width="15" height="30"></th>
-<th>40%<br><img src="../img/bar5.JPG" width="15" height="50"></th></tr>
+<th>10%<br><img src="../img/bar5.JPG" width="15" height="10"></th>
+<th>30%<br><img src="../img/bar5.JPG" width="15" height="30"></th>
+<th>50%<br><img src="../img/bar5.JPG" width="15" height="50"></th></tr>
 
 <tr><th>Percent</th>
 <td><input type="text" name="ATT_SC" size="3" tabindex="1" onchange="calc_grade(this.form)"></td>
