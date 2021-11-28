@@ -11,19 +11,20 @@ Please review the course syllabus and webpage to find answers for the following 
 
 1. What "names" will I respond to?
 1. At what times of day will you attend class?
-1. What is the name of the software ("app") where I prefer that you ask questionss?
+1. What is the name of the software ("app") where I prefer that you ask questions?
 1. What is an "academic alert"?
-1. How many "modules" are there for this class?
-1. What is the name of the 10th module?
-1. How often will you be required to hand in answers to "module preparation questions"?
-1. When must your completed "module preparation questions" be submitted to the professor?
-1. What is the name of the software ("app") where you will submit the "module preparation questions"?
-1. What percent of your overall grade are the "module preparation questions" worth?
-1. How often will you be required to turn in a "module assignment"?
-1. When must your completed "module assignment" be submitted to the professor?
-1. What is the name of the software ("app") where you will submit your "module assignments"?
-1. What percent of your overall grade are the "module assignments" worth?
+1. What module is scheduled to be covered on 26-Jan?
+1. *When* will you turn in your answers to the module preparation questions for the module covered on 26-Jan?
+1. *Where* will you turn in your answers to the module preparation questions for the module covered on 26-Jan?
+1. What percent of your overall grade are the module preparation questions worth?
+1. *When* will you turn in your answers to the module assignment for the module covered on 26-Jan?
+1. *Where* will you turn in your answers to the module assignment questions for the module covered on 26-Jan?
+1. What percent of your overall grade are the module assignments worth?
 1. Approximately how many hours are you expected to work outside of class time on this course?
+1. Are you allowed to work with friends on Biometry assignments? If so, what must you make sure to do (or not to do)?
+1. Are late assignments accepted?
+1. Who is the Biometry TA?
+1. Where must your cell phones be during class time?
 1. Can you bring your own computer to class? Do you have to have your own computer for class?
 
 <ul>
