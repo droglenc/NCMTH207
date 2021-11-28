@@ -94,22 +94,9 @@ This course is taught in a "flipped format", which loosely means that you will b
 
 The course is composed of daily modules (see link in upper-right) of material. The following is a general workflow that will be followed for each module.
 
-1. **Prepare Module Material** -- A detailed reading and some pertinent videos are provided for each module. **You will need to engage thoroughly with these materials**. By this, I mean that you need to be focused (i.e., not distracted) while reading and you need to think hard about concepts that don't make sense to you after your first read. **A cursory reading likely will not be adequate.** Here are [some quick tips for how to read a math textbook](https://www.macalester.edu/max/math-econ-119/howtoread/){:target="_blank"}.[^ReadMath]<br><br>A "Preparation Guide" is provided for each module's prepartory material. You should prepare (neatly) **hand-written**,[^WriteNotType] answers to the guide questions. Please ask questions you have about the preparatory materials on the "Questions - Preparation Guide" Teams channel or during help hours ([quick links on class homepage](../){:target="_blank"}). Your "Preparation Guide" answers will be turned in via GradeScope ([quick link on class homepage](../){:target="_blank"}) **by 11:59 pm (1 minute before midnight) on the day before the module is covered in class** (see [Modules page](Dates-Current.html)). The "assignment" on Gradescope will have the module name and "-- prep" suffix. I will grade your answers according to the following rubric.
-
-<div class="container-fluid">
-  <table class="table table-bordered">
-  <thead>
-    <tr class="info"><th>5 points</th><th>4-1 points</th><th>0 points</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>All questions were answered thoughtfully and fully and in such a way that it is clear what questions is being answered. Document was hand-written. Answers not nearly identical to someone else's answers.</td><td>Various numbers of questions were not answered, were answered incorrectly, or without care or depth of thought. Note clear what question is being answered. Answers not nearly identical to someone else's answers.</td><td>Very few answers were provided or were correct; answers were nearly identical to someone else's answers; answers were not turned in; or answers were not hand-written.</td></tr>
-  </tbody>
-  </table>
-</div>
-
-{:start="2"}
+1. **Prepare Module Material** -- A detailed reading and some pertinent videos are provided for each module. **You will need to engage thoroughly with these materials**. By this, I mean that you need to be focused (i.e., not distracted) while reading and you need to think hard about concepts that don't make sense to you after your first read. **A cursory reading likely will not be adequate.** Here are [some quick tips for how to read a math textbook](https://www.macalester.edu/max/math-econ-119/howtoread/){:target="_blank"}.[^ReadMath] Please ask questions you have about the preparatory materials on the "Questions - Preparation Guide" Teams channel or during help hours ([quick links on class homepage](../){:target="_blank"}). See grading section below for a related assignment.
 1. **Class Time** -- The initial part of class time will consist of a very short introduction to the module assignment and a quick discussion of any questions that you had from the preparation materials. Following this you will work on the module's application assignment. I expect you to attend class to get direct help from me and learn from other students' questions. If you are diligent and focused, you will likely finish most of the module assignment during this time.
-1. **Complete an Applied Assignment** -- Module assignments should be prepared as described in the ["Getting Organized" module](https://derekogle.com/NCMTH107/modules/Prep/GetOrganized_Gradescope){:target="_blank"} for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is **due by 6 pm on the day after the class period dedicated to the module (or by 6 pm on Sunday for Friday's modules)**.<br><br>I will grade 50-100% of each module assignment "for content" (i.e., whether the work is done correctly or not). Questions that I did not grade "for content" will be graded "for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will be made available on the module webpage.
+1. **Complete an Applied Assignment** -- Following a brief introduction to the module class time will be provided to work on a module assignment. This assignment will likely need to be completed outside of class. The assignment will be turned in as described in the grading section below.
 
 ----
 
@@ -143,12 +130,6 @@ An overall grade will be computed from the module reading preparation answers an
 </table>
 </form>
 
-My philosophies for the grading percentages are as follow:
-
-- *Engagement*: Attending class is important as this is a time to get your questions answered and hear explanations of important concepts and class announcements. However, engagement also includes paying attention and working through the entire class period as described below. The percentage is fairly low however so that missing a class is not too onerous a penalty.
-- *Preparation Guides*: Success in this course is predicated on your preparing for material prior to class and then applying what you learned, or asking questions, during class. This percentage and the grading process described previously acknowledges your effort for this work.
-- *Module Assignments*: Statistics is best learned with practice. In this class practice is your work on module assignments. The percentage for this assessment is intermediate to "give you credit" for this work and to motivate you do do well on the assignments, but to not incur a deep penalty if your work is not perfectly correct as these are the first chances you will have to apply your developing skills and knowledge.
-- *Capstone Assignment*: This assignment will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the assignment is due. It is worth a higher percentage as this will assess your overall development of skills and concepts from the course.
 
 Your letter grade will be assigned from your overall percentage (rounded to a whole number) and the table below.
 
@@ -161,11 +142,40 @@ Your letter grade will be assigned from your overall percentage (rounded to a wh
 
 &nbsp;
 
-#### Engagement
+### Engagement
+**Philosophy**: Attending class is important as this is a time to get your questions answered and hear explanations of important concepts and class announcements. However, engagement also includes paying attention and working through the entire class period as described below. The percentage is fairly low however so that missing a class is not too onerous a penalty.
+
 Engagement will be graded on a 0-1 basis. If you attend, work diligently, and are focused the entire class period then you will earn full credit. However, if you do not attend class, you come substantially late, leave substantially early, or are otherwise unfocused during the class period (i.e., doing other than Biometry work) then you will receive no or only partial credit. If you finish the module assignment during class then please begin to prepare the next module. If you finish that preparation then show me what you have done and you can discretely leave class early.
 
 Absences for school sponsored events (e.g., special sessions of other courses, athletics) will be excused. Other planned absences (e.g., family events, doctor's appointments) *cleared with me in advanced* will be excused. Please see the [COVID-19 section](#covid-19-statement) below with respect to missing class due to illness. Excused absences will **not** negatively impact your attendance grade.
 
+### Preparation Guides
+*Philosophy*: Success in this course is predicated on your preparing for material prior to class and then applying what you learned, or asking questions, during class. This percentage and the grading process described previously acknowledges your effort for this work.
+
+You should prepare (neatly) **hand-written**,[^WriteNotType] answers to the "Preparation Guide" provided for each module's preparatory material. Your "Preparation Guide" answers will be turned in via GradeScope ([quick link on class homepage](../){:target="_blank"}) **by 11:59 pm (1 minute before midnight) on the day before the module is covered in class** (see [Modules page](Dates-Current.html)). The "assignment" on Gradescope will have the module name and "-- prep" suffix. I will grade your answers according to the following rubric.
+
+<div class="container-fluid">
+  <table class="table table-bordered">
+  <thead>
+    <tr class="info"><th>5 points</th><th>4-1 points</th><th>0 points</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>All questions were answered thoughtfully and fully and in such a way that it is clear what questions is being answered. Document was hand-written. Answers not nearly identical to someone else's answers.</td><td>Various numbers of questions were not answered, were answered incorrectly, or without care or depth of thought. Note clear what question is being answered. Answers not nearly identical to someone else's answers.</td><td>Very few answers were provided or were correct; answers were nearly identical to someone else's answers; answers were not turned in; or answers were not hand-written.</td></tr>
+  </tbody>
+  </table>
+</div>
+
+### Module Assignments
+*Philosophy*: Statistics is best learned with practice. In this class practice is your work on module assignments. The percentage for this assessment is intermediate to "give you credit" for this work and to motivate you do do well on the assignments, but to not incur a deep penalty if your work is not perfectly correct as these are the first chances you will have to apply your developing skills and knowledge.
+
+Module assignments should be prepared as described in the ["Getting Organized" module](https://derekogle.com/NCMTH107/modules/Prep/GetOrganized_Gradescope){:target="_blank"} for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is **due by 6 pm on the day after the class period dedicated to the module (or by 6 pm on Sunday for Friday's modules)**.
+
+I will grade 50-100% of each module assignment "for content" (i.e., whether the work is done correctly or not). Questions that I did not grade "for content" will be graded "for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will be made available on the module webpage.
+
+### Capstone Assignment
+*Philosophy*: This assignment will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the assignment is due. It is worth a higher percentage as this will assess your overall development of skills and concepts from the course.
+
+### Administrative Aspects of Grades
 #### Late Work
 Module preparation guide answers and assignments not submitted by the due date time will generally not be accepted. However, I will accept up to two late assignments as long as they are sent to me (as a PDF) before I post the assignment answer key (which I often due immediately after the assignment is due).
 
@@ -177,6 +187,17 @@ An incomplete grade will be given ONLY in extreme circumstances that are beyond 
 
 #### Midterm Grades
 I will submit a "midterm grade" for you approximately half-way through the semester. This grade will by my best guess at your lowest possible final grade. I assign this "worst-case" midterm grade because I believe that it is better to know the worst rather than the best-case scenario at that point of the semester and the material at the end of the semester is a little more difficult than the material at the beginning of the semester. Of course, see me if you have questions about your midterm grade.
+
+#### Working Together
+You may **WORK TOGETHER** on module preparations and assignments but you must **INDEPENDENTLY PRODUCE** what you turn in. In other words, you may discuss assignments together and even make plans for how to answer the questions or perform the calculations together, but the calculations must be your own and your written answers must be in your own words. It is also fine to compare *independently produced* answers as long as you discuss how to correct incorrect answers rather than just copying another person's answer. Also, note that one need not copy verbatim someone else's work to violate this policy; i.e., a slight change to someone else's answer is not acceptable.
+
+Copying the work of a student from a previous semester is also a violation of this policy.
+
+If I suspect that you are violating this policy then I will follow the [College's Academic Integrity Statement & Policy](https://my.northland.edu/student-policies/academic-policies/#academic-integrity){:target="_blank"}. Note that the penalty for non-compliance can range from a zero on the assignment to failure of the course.
+
+You can **NOT** work together on the **Capstone Assignment.** Failure to meet this policy will result in a zero for the capstone assignment.
+
+Please let me know if you have any questions or concerns about this policy.
 
 ----
 
@@ -200,17 +221,6 @@ Finally, note that the [College's Academic Integrity Statement & Policy](https:/
 As a general rule-of-thumb[^studytime], you are expected to spend 2-3 hours of time outside of class for each hour in class. For this course, you will meet for 4.5 hours per week and, thus, you should dedicate between 9 and 13.5 hours of time outside of class time preparing for class, completing assignments, reviewing your work, and asking questions or for help. **The work required for this course can be completed within this expected amount of time, if that time is without distraction**. If monitoring your phone/device is distracting you from getting your work done then you may consider the aid of apps (e.g., [Forest](https://www.forestapp.cc/)) designed to reduce distractions from devices.[^DistractionAids]  
 
 If you feel that you are spending too much time on some assignments or preparations, then start your work earlier so that you can stop (and do other things) and make plans to [seek help](#assistance)).
-
-### Working Together
-You may **WORK TOGETHER** on module preparations and assignments but you must **INDEPENDENTLY PRODUCE** what you turn in. In other words, you may discuss assignments together and even make plans for how to answer the questions or perform the calculations together, but the calculations must be your own and your written answers must be in your own words. It is also fine to compare *independently produced* answers as long as you discuss how to correct incorrect answers rather than just copying another person's answer. Also, note that one need not copy verbatim someone else's work to violate this policy; i.e., a slight change to someone else's answer is not acceptable.
-
-Copying the work of a student from a previous semester is also a violation of this policy.
-
-If I suspect that you are violating this policy then I will follow the [College's Academic Integrity Statement & Policy](https://my.northland.edu/student-policies/academic-policies/#academic-integrity){:target="_blank"}. Note that the penalty for non-compliance can range from a zero on the assignment to failure of the course.
-
-You can **NOT** work together on the **Capstone Assignment.** Failure to meet this policy will result in a zero for the capstone assignment.
-
-Please let me know if you have any questions or concerns about this policy.
 
 ---
 
