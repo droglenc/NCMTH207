@@ -25,8 +25,9 @@ source("../../rhelpers/knitr_setup.R")
 ```
 
 <div class="alert alert-warning">
-  <strong>Note</strong> Your answers to the questions below should follow the <a href="../resources/hwformat" target="_blank">expectations for homework found here</a>. Due date is on the <a href="../../resources/Dates-Current" target="_blank">Dates page.</a>
+  <strong>Note:</strong> Your answers to the questions below should follow the <a href="../resources/hwformat" target="_blank">expectations for homework found here</a>. Questions outside of class can be asked on the Module Assignments-Questions Teams channel (see link on homepage).
 </div>
+
 
 ----
 
@@ -55,7 +56,7 @@ cfs.bat %>%
   knitr::kable(booktabs=TRUE,digits=c(3,3,3)) %>%
   kableExtra::kable_classic(full_width=FALSE,html_font="Cambria")
 ```
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', dev="png"}
 ggplot(data=bat,mapping=aes(x=canine,y=subsp01)) +
   geom_point(alpha=0.25) +
   scale_y_continuous(name="Probability of 'cinereus'",

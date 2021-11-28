@@ -26,7 +26,7 @@ clrs <- c("#1dabe6","#1c366a","#c3ced0","#e43034","#fc4e51","#af060f")
 ```
 
 <div class="alert alert-warning">
-  <strong>Note</strong> Your answers to the questions below should follow the <a href="../resources/hwformat" target="_blank">expectations for homework found here</a>. Due date is on the <a href="../../resources/Dates-Current" target="_blank">Dates page.</a>
+  <strong>Note:</strong> Your answers to the questions below should follow the <a href="../resources/hwformat" target="_blank">expectations for homework found here</a>. Questions outside of class can be asked on the Module Assignments-Questions Teams channel (see link on homepage).
 </div>
 
 ----
@@ -70,7 +70,7 @@ For each interaction plot below determine which effects (interaction, factor A m
   <li>Figure 1. <span style="font-size:150%">&#8628;</span></li>
 </ol>
 
-```{r echo=FALSE}
+```{r echo=FALSE, dev='png'}
 tmp1 <- tibble(fA=rep(c("A","B","C"),each=3),
                fB=rep(c("V","W","Z"),3),
                resp=c(3.5,2.5,1.5,3,2,1,2,1,0))
@@ -88,7 +88,7 @@ intplot1
   <li>Figure 2. <span style="font-size:150%">&#8628;</span></li>
 </ol>
 
-```{r echo=FALSE}
+```{r echo=FALSE, dev='png'}
 tmp2 <- tibble(fA=rep(c("A","B","C"),each=3),
                fB=rep(c("V","W","Z"),3),
                resp=c(3.5,1.5,3.47,3.5,1.5,3.47,3.5,1.5,3.47))
@@ -99,7 +99,7 @@ intplot1 %+% tmp2
   <li>Figure 3. <span style="font-size:150%">&#8628;</span></li>
 </ol>
 
-```{r echo=FALSE}
+```{r echo=FALSE, dev='png'}
 tmp3 <- tibble(fA=rep(c("A","B","C"),each=3),
                fB=rep(c("V","W","Z"),3),
                resp=c(3.0,1.5,3.5,1.25,3.0,1.0,3.0,1.5,3.5))
@@ -110,7 +110,7 @@ intplot1 %+% tmp3
   <li>Figure 4. <span style="font-size:150%">&#8628;</span></li>
 </ol>
 
-```{r echo=FALSE}
+```{r echo=FALSE, dev='png'}
 tmp4 <- tibble(fA=rep(c("A","B","C"),each=2),
                fB=rep(c("W","Z"),3),
                resp=c(2.5,1.5,3.0,2.0,2.25,1.25))
@@ -121,7 +121,7 @@ intplot1 %+% tmp4
   <li>Figure 5. <span style="font-size:150%">&#8628;</span></li>
 </ol>
 
-```{r echo=FALSE}
+```{r echo=FALSE, dev='png'}
 tmp5 <- tibble(fA=rep(c("A","B"),each=3),
                fB=rep(c("V","W","Z"),2),
                resp=c(2.5,3.0,2.25,1.5,2.0,1.25))
@@ -132,7 +132,7 @@ intplot1 %+% tmp5
   <li>Figure 6. <span style="font-size:150%">&#8628;</span></li>
 </ol>
 
-```{r echo=FALSE}
+```{r echo=FALSE, dev='png'}
 tmp6 <- tibble(fA=rep(c("A","B"),each=3),
                fB=rep(c("V","W","Z"),2),
                resp=c(2.5,1.5,2.25,3.0,3.0,3.0))
