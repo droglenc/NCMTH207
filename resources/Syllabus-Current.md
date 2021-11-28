@@ -95,8 +95,7 @@ This course is taught in a "flipped format", which loosely means that you will b
 The course is composed of daily modules (see link in upper-right) of material. The following is a general workflow that will be followed for each module.
 
 1. **Prepare Module Material** -- A detailed reading and some pertinent videos are provided for each module. **You will need to engage thoroughly with these materials**. By this, I mean that you need to be focused (i.e., not distracted) while reading and you need to think hard about concepts that don't make sense to you after your first read. **A cursory reading likely will not be adequate.** Here are [some quick tips for how to read a math textbook](https://www.macalester.edu/max/math-econ-119/howtoread/){:target="_blank"}.[^ReadMath] Please ask questions you have about the preparatory materials on the "Questions - Preparation Guide" Teams channel or during help hours ([quick links on class homepage](../){:target="_blank"}). See grading section below for a related assignment.
-1. **Class Time** -- The initial part of class time will consist of a very short introduction to the module assignment and a quick discussion of any questions that you had from the preparation materials. Following this you will work on the module's application assignment. I expect you to attend class to get direct help from me and learn from other students' questions. If you are diligent and focused, you will likely finish most of the module assignment during this time.
-1. **Complete an Applied Assignment** -- Following a brief introduction to the module class time will be provided to work on a module assignment. This assignment will likely need to be completed outside of class. The assignment will be turned in as described in the grading section below.
+1. **Class Time and Module Assignment** -- The initial part of class time will consist of a very short introduction to the module assignment and a quick discussion of any questions that you had from the preparation materials. Following this you will work on the module's application assignment. I expect you to attend class to get direct help from me and learn from other students' questions. This assignment will likely need some time outside of class to complete. Please ask questions you have about the module assignment on the "Questions - Module Assignment" Teams channel or during help hours ([quick links on class homepage](../){:target="_blank"}). The assignment will be turned in as described in the grading section below.
 
 ----
 
@@ -143,7 +142,7 @@ Your letter grade will be assigned from your overall percentage (rounded to a wh
 &nbsp;
 
 ### Engagement
-**Philosophy**: Attending class is important as this is a time to get your questions answered and hear explanations of important concepts and class announcements. However, engagement also includes paying attention and working through the entire class period as described below. The percentage is fairly low however so that missing a class is not too onerous a penalty.
+*Philosophy*: Attending class is important as this is a time to get your questions answered and hear explanations of important concepts and class announcements. However, engagement also includes paying attention and working through the entire class period as described below. The percentage is fairly low however so that missing a class is not too onerous a penalty.
 
 Engagement will be graded on a 0-1 basis. If you attend, work diligently, and are focused the entire class period then you will earn full credit. However, if you do not attend class, you come substantially late, leave substantially early, or are otherwise unfocused during the class period (i.e., doing other than Biometry work) then you will receive no or only partial credit. If you finish the module assignment during class then please begin to prepare the next module. If you finish that preparation then show me what you have done and you can discretely leave class early.
 
@@ -174,6 +173,8 @@ I will grade 50-100% of each module assignment "for content" (i.e., whether the 
 
 ### Capstone Assignment
 *Philosophy*: This assignment will focus on larger concepts, applications, and interpretations (rather than specific details) from throughout the semester. I will provide you with an explicit study guide approximately one week before the assignment is due. It is worth a higher percentage as this will assess your overall development of skills and concepts from the course.
+
+&nbsp;
 
 ### Administrative Aspects of Grades
 #### Late Work
