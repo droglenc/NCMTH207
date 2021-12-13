@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Getting Organized
+title: Getting Organized I
 css: /css/modules.css
 ---
 
@@ -61,9 +61,6 @@ Please do the following things in preparation for the first day of class.
 
 * [Complete Webpage Scavenger Hunt](prep/GetOrganized_Hunt){:target="_blank"}
     * You should have written answers to these questions when you come to class.
-* [Read about Homework Format](resources/hwformat){:target="_blank"}
-    * We will discuss this in class but I would like you to be familiar with it before the first day of class.
-    * You should download and save the "template" linked to in the reading.
 
 &nbsp;
 
@@ -74,7 +71,6 @@ The following items will be completed in class.
 
 * Discuss [syllabus](../resources/Syllabus_Current.html){:target="_blank"} and class webpage (go over answers to [scavenger hunt](prep/GetOrganized_Hunt){:target="_blank"}).
 * Turn in written answers to syllabus scavenger hunt on Gradescope (see [quick link on class homepage](../){:target="_blank"}).
-* Submit [first module assignment](ce/GetOrganized_CE1) on GradeScope (see [quick link on class homepage](../){:target="_blank"}).
 
 &nbsp;
 
