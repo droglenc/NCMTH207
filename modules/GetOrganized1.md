@@ -32,7 +32,7 @@ The following apps should be initiated before the first day of class.
 
 If you plan to use your own computer to run R/RStudio then you should complete the following items before the first day of class. Note the required version numbers below. If you have previously installed these softwares then you may need to update them (everybody will need to update NCStats). If you plan to use the college computers you do not need to do the next four items.
 
-* Install R (*at least v 4.0.0*) ... [for Windows](https://cran.r-project.org/bin/windows/base/R-4.0.3-win.exe) ... [for Macs](https://cran.r-project.org/bin/macosx/R-4.0.3.pkg) ... *just accept defaults*
+* Install R (*at least v 4.0.0*) ... [for Windows](https://cran.r-project.org/bin/windows/base/R-4.1.2-win.exe) ... [for Macs](https://cran.r-project.org/bin/macosx/base/R-4.1.2.pkg) ... *just accept defaults*
 * Install RStudio (*at least v 1.3.0*) ... [Choose Windows/Mac here](https://rstudio.com/products/rstudio/download/#download){:target="_blank"} ... *just accept defaults*
 * Install NCStats (*at least v 0.4.8*) ... copy-and-paste the following three lines into the "Console" of RStudio (and hit return)
 

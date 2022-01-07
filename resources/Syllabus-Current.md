@@ -42,7 +42,6 @@ What you learn in <strong>Biometry</strong> will help with these questions.
 ----
 
 ## Learning Outcomes
-<img class="img-right" src="../img/outcomes.jpg" alt="Outcomes">
 At the end of this class you will be able to ...
 
 1. explain why statistics is central to scientific inquiry (& your field of interest);
@@ -128,7 +127,6 @@ An overall grade will be computed from the module reading preparation answers an
 <th colspan="2">Grade: <input type="text" name="GRADE" size="2"></th></tr>
 </table>
 </form>
-
 
 Your letter grade will be assigned from your overall percentage (rounded to a whole number) and the table below.
 
