@@ -53,6 +53,17 @@ At the end of this class you will be able to ...
 1. compare and contrast the advantages and limitations of one-factor and two-factor experimental designs; and
 1. write a concise, detailed, accurate, and interesting paper explaining the design and interpreting the results of a statistical analysis.
 
+In addition this course is a required course in the MTH major for which it meets the following outcomes:
+
+* Conceptual understanding of fundamental mathematical reasoning and methods of quantitative analysis,
+* Understanding of mathematical methods for problem-solving,
+* Communication skills using mathematics,
+* Awareness of the breadth of mathematics,
+* Ability and desire to apply mathematics outside the classroom,
+* Proficiency in mathematical terminology and accurate formulation of mathematical ideas. and
+* Use appropriate technology to model, analyze and solve mathematical problems;
+
+----
 
 ## Assistance
 > Don't be afraid to ask questions. Don't be afraid to ask for help when you need it. I do that every day. Asking for help isn't a sign of weakness, its a sign of strength. It shows you have the courage to admit when you don't know something, and to learn something new. -- President Barack Obama
