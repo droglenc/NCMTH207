@@ -63,6 +63,15 @@ In addition this course is a required course in the MTH major for which it meets
 * Proficiency in mathematical terminology and accurate formulation of mathematical ideas. and
 * Use appropriate technology to model, analyze and solve mathematical problems;
 
+Finally this course is a required course in the NRS major (Fisheries and Wildlife emphasis) for which it meets the following outcomes:
+
+* Demonstrate understanding of descriptive statistics,
+* Demonstrate understanding of inferential statistics,
+* Demonstrate foundational quantitative skills necessary to manage natural resources,
+* Manage data and information appropriately,
+* Demonstrate the ability to interpret graphs and tabular data, and
+* Generate appropriate graphs and tables.
+
 ----
 
 ## Assistance
