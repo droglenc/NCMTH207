@@ -7,11 +7,6 @@ css: /css/syllabus.css
 
 <SCRIPT SRC="../js/grader.js"></SCRIPT>
 
-<figure>
-  <img src="../img/data.jpg" alt="Data cartoon">
-  <figcaption><span style="font-size:50%;">From <a href="https://autodesk.typepad.com/bimtoolbox/2015/01/structural-modelling-requirements-for-quantification.html" target="_blank">BIM Toolbox</a></span></figcaption>
-</figure>
-
 <div class="BigQuestions">
 <ul>
   <li>Are two variables related?</li>
