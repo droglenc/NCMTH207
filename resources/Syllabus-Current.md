@@ -86,8 +86,10 @@ I am committed to your doing well in this course and see it as my responsibility
 Please see or contact me if you have questions regarding this course. 
 
 ### Teaching Assistant
-<img class="img-right" src="../img/DerekOgle1.jpg">
-We are fortunate to have Carson Becicka as a teaching assistant thsi semester. Carson will ...
+<img class="img-right" src="../img/Carson.jpg">
+We are fortunate to have Carson Becicka as a teaching assistant this semester. Carson is a senior math and history major at Northland. He balances his time with sustainability leadership in NCSA and outdoor adventures. Carson took Biometry in Winter 2021.
+
+Carson will hold office hours on Tuesday, Thursday, and Sunday from 630-730pm in the Tutoring Center in the basement of the Dexter Library. Please go see him for assistance with module assignments or preparation guides.
 
 ### Accommodations
 I want to create an inclusive and accessible learning environment for those of you that have a condition (e.g., attention, learning, vision, hearing, mental, physical, or other health-related concern) that may require special accommodations. *If you have already established accommodations* with the Office of Accessibility Resources (OAR), please communicate your approved accommodations to me as soon as possible so that we can discuss your needs in this course. If you have a condition that requires accommodations but *you have not yet established services* through OAR, then you should contact the Accommodations Specialist as soon as possible (<a href="mailto:accommodations@northland.edu">accommodations@northland.edu</a>). It is the policy and practice of Northland College to create inclusive and accessible learning environments consistent with federal and state law. <a href="https://my.northland.edu/campus-life/student-welfare/accommodations/" target="_blank">More information is available here.</a>
@@ -180,7 +182,7 @@ You should prepare (neatly) **hand-written**,[^WriteNotType] answers to the "Pre
 ### Module Assignments
 *Philosophy*: Statistics is best learned with practice. In this class practice is your work on module assignments. The percentage for this assessment is intermediate to "give you credit" for this work and to motivate you do do well on the assignments, but to not incur a deep penalty if your work is not perfectly correct as these are the first chances you will have to apply your developing skills and knowledge.
 
-Module assignments should be prepared as described in the ["Getting Organized" module](https://derekogle.com/NCMTH107/modules/Prep/GetOrganized_Gradescope){:target="_blank"} for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is **due by 6 pm on the day after the class period dedicated to the module (or by 6 pm on Sunday for Friday's modules)**.
+Module assignments should be prepared as described in the ["Getting Organized" module](https://derekogle.com/NCMTH107/modules/Prep/GetOrganized_Gradescope){:target="_blank"} for handing in on GradeScope ([quick link on class homepage](../){:target="_blank"}). The assignment on Gradescope will have the module name and "-- assignment" suffix and is **due by 10 pm on the day after the class period dedicated to the module (or by 10 pm on Sunday for Friday's modules)**.
 
 I will grade 50-100% of each module assignment "for content" (i.e., whether the work is done correctly or not). Questions that I did not grade "for content" will be graded "for completeness" (i.e., whether the work was done completely or not). You will receive a short e-mail from me when your graded assignment is available on GradeScope. You are expected to review your grade and comments ([how-to video here](https://youtu.be/TOHCkI12mh0){:target="_blank"}) to better learn the material and to improve on future assignments. Detailed answer keys will be made available on the module webpage.
 
