@@ -87,7 +87,7 @@ Please see or contact me if you have questions regarding this course.
 
 ### Teaching Assistant
 <img class="img-right" src="../img/Carson.jpg">
-We are fortunate to have Carson Becicka as a teaching assistant this semester. Carson is a senior math and history major at Northland. He balances his time with sustainability leadership in NCSA and outdoor adventures. Carson took Biometry in Winter 2021.
+We are fortunate to have Carson Becicka as a teaching assistant this semester. Carson is a senior math and history major, who balances his time with sustainability leadership in NCSA and outdoor adventures. Carson took Biometry in Winter 2021.
 
 Carson will hold office hours on Tuesday, Thursday, and Sunday from 630-730pm in the Tutoring Center in the basement of the Dexter Library. Please go see him for assistance with module assignments or preparation guides.
 
