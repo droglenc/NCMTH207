@@ -29,7 +29,7 @@ d <- readxl::read_excel("Dates_207.xlsx",sheet="W22") %>%
 ```
 
 <div class="alert alert-info">
-For each class period ("Date"), the module to prepare for is shown under "Topic." Some of the more distant dates are subject to change.
+For each class period ("Date"), the module to prepare for is shown under "Topic." Some of the more distant dates are subject to change. <emph>Past dates/modules are shown at the bottom of the page.</emph>
 </div>
 
 
