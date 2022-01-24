@@ -1,0 +1,139 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "2-Sample t Review"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Make sure you show an “R Code and Results” section.
+</li>
+<li>
+Use complete sentences to answer questions.
+</li>
+<li>
+I usually round summary statistics to one more decimal place than the way the data were recorded. In this case pH was recorded to two decimals so I used three decimals for my means. I usually use three or four decimals for the test statistics and p-values.
+</li>
+<li>
+Make sure to define all symbols in your hypotheses.
+</li>
+<li>
+Note the explanation for “independence” in the assumption checking. It is not adequate to just say “there is no connection”; you need to explain why you think there is no connection.
+</li>
+<li>
+When checking equal variances you must explicitly refer to the Levene’s test results.
+</li>
+<li>
+The appropriate statistic is the DIFFERENCE in means, not just the two means.
+</li>
+<li>
+When interpreting the rejection decision and the confidence intervals make sure you use “MEAN ph” and not “the pH”. Hypotheses and confidence intervals are about summaries, not individual values.
+</li>
+<li>
+When making a conclusion make sure you say what is different … say “mean Ph differs between stream A and stream B” not “the group means differ.” Don’t just say “the null hypothesis is rejected” … explain what that means about mean pH.
+</li>
+<li>
+When interpreting the confidence interval after rejecting H<sub>0</sub> make sure to explicitly say which group is larger (or smaller) and by how much.
+</li>
+</ul>
+</div>
+<hr />
+<div id="ph-in-two-rivers" class="section level1">
+<h1>pH in Two Rivers</h1>
+<ol>
+<li>H<sub>0</sub>: μ<sub>A</sub>=μ<sub>B</sub> and H<sub>0</sub>: μ<sub>A</sub>≠μ<sub>B</sub>, where μ is the population mean pH, A is stream A, and B is stream B.</li>
+<li>Assumption checking:
+<ol style="list-style-type: lower-roman">
+<li>Independence: The pH measurements across streams are likely independent of each other because the two streams were said to be in different watersheds with different geologies. It is possible that the measurements were recorded on the same days which could lead to a dependence. As there is no evidence for this I will assume that this assumption is met.<br />
+</li>
+<li>Normality: The questions says to assume that the distributions are normal.</li>
+<li>Equal variances: The population variances appear equal because Levene’s test p-value (0.3745) is greater than α=0.05.</li>
+</ol></li>
+<li>The appropriate statistic is 8.662-6.408=2.254.</li>
+<li>The appropriate test statistic is 6.985 with 18 df.</li>
+<li>The p-value is &lt;0.00005 (or more specifically 1.599e-06).</li>
+<li>This p-value is less than α=0.05, which means that H<sub>0</sub> is rejected and it appears that the mean pH is greater for stream A than for stream B.</li>
+<li>It appears that the mean pH for stream A is between 1.576 and 2.932 greater than the mean pH for stream B.</li>
+<li>The graphic is shown in the R Code and Results section below.</li>
+<li>It appears that the “signal” (difference in means) is greater than the “noise” (sampling variability) because the p-value is much less than α.</li>
+</ol>
+<div id="r-code-and-results" class="section level3">
+<h3>R Code and Results</h3>
+<pre class="r"><code>&gt; d &lt;- read.csv(&quot;phLevels.csv&quot;)</code></pre>
+<pre class="r"><code>&gt; levenesTest(pH~river,data=d)</code></pre>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  1  0.8292 0.3745
+      18               </code></pre>
+<pre class="r"><code>&gt; t.test(pH~river,data=d,var.equal=TRUE)</code></pre>
+<pre><code> Two Sample t-test with pH by river 
+t = 6.9849, df = 18, p-value = 1.599e-06
+alternative hypothesis: true difference in means between group A and group B is not equal to 0 
+95 percent confidence interval:
+ 1.576042 2.931958 
+sample estimates:
+mean in group A mean in group B 
+          8.662           6.408 </code></pre>
+<pre class="r"><code>&gt; ggplot(data=d,mapping=aes(x=river,y=pH)) +
+    geom_jitter(alpha=0.25,width=0.05) +
+    stat_summary(fun.data=mean_cl_normal,geom=&quot;pointrange&quot;,
+                 size=1.1,fatten=2,pch=21,fill=&quot;white&quot;) +
+    labs(y=&quot;pH&quot;,x=&quot;Stream&quot;) +
+    theme_NCStats()</code></pre>
+<p><img src="KEY_2TReview_CE1_pH_files/figure-html/unnamed-chunk-4-1.png" width="336" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
