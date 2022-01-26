@@ -1,0 +1,96 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Model Concepts"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+Use complete sentences to answer questions.
+</li>
+<li>
+Make sure to show your work.
+</li>
+<li>
+When discussing models, means, or residuals make sure to explicitly state what type of mean you are talking about. Say “group means” or “grand mean” not just “mean.”
+</li>
+</ul>
+</div>
+<hr />
+<div id="calculations" class="section level1">
+<h1>Calculations</h1>
+<ol>
+<li>The group means are <strong>ȳ<sub>A</sub>=16</strong> and <strong>ȳ<sub>B</sub>=25</strong>.</li>
+<li>The grand mean is <strong>ȳ=21</strong>.</li>
+<li>The residual from the grand mean for the first individual is 13-21=-8. The residuals from the grand mean for all individuals are – -8, -7, -4, -1, 0, 2, 5, 6, 7.</li>
+<li>The residual from the grand mean for the first individual in group A tells us that that individual is 8 units <em>below</em> average relative to all individuals in the data set, regardless of which group they belong to.</li>
+<li>The residual from the grand mean for the last individual in group B tells us that that individual is 7 units <em>above</em> average relative to all individuals in the data set, regardless of which group they belong to.</li>
+<li>The RSS for the grand mean model is <strong>244</strong>.</li>
+<li>The residual df for the grand mean model is <strong>8</strong>.</li>
+<li>The residual MS for the grand mean model is <span class="math inline">\(\frac{244}{8}\)</span>=<strong>30.50</strong>. The square root of this value is approximately equal to the mean of the absolute values of the residuals (from the grand mean).</li>
+<li>The square root of this residual MS (i.e., 5.52) measures the natural variability of individuals around the grand mean. It is the “noise” around the grand mean.</li>
+<li>The residual from the group mean for the first individual is 13-16=-3. The residuals from the grouop means for all individuals are – -3, -2, 1, 4, -4, -2, 1, 2, 3.</li>
+<li>The residual from the group mean for the first individual in group A tells us that that individual is 3 units <em>below</em> average relative to <em>all individuals in group A</em>.</li>
+<li>The residual from the group mean for the last individual in group B tells us that that individual is 3 units <em>above</em> average relative to <em>all individuals in group B</em>.</li>
+<li>The RSS for the group means model is <strong>64</strong>.</li>
+<li>The residual df for the group means model is <strong>7</strong>.</li>
+<li>The residual MS for the group means model is <span class="math inline">\(\frac{64}{7}\)</span>=<strong>9.14</strong>. The square root of this value is approximately equal to the mean of the absolute values of the residuals (from the observation’s group mean).</li>
+<li>The square root of this residual MS (i.e., 3.02) measures the pooled natural variability of individuals around their respective group means. It is the “noise” around the group means.</li>
+<li>The RSS<sub>Total</sub>-RSS<sub>Within</sub> is 244-64=180. This value is the reduction in RSS from using the group means rather than the grand means. It is the improvement in “lack-of-fit” from using the groupp means rather than the grand mean or how much better the group means model fits compared to the grand mean model.</li>
+<li>The df<sub>Total</sub>-df<sub>Within</sub> is 8-7=1. This value is the difference in number of parameters between the group means and grand mean models. It is how much more complex the group means model is than the grand mean model.</li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
