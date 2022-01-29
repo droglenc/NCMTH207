@@ -30,12 +30,12 @@ To examine the effect of sand temperature on the phenology of sea turtles, resea
 30C:  13  16  19  11  12  18  21  23  29  39
 </pre>
 
-Load these data into R and answer the questions below. [*Note: [This](../resources/R_HowTo_StackedData.html){:target="_blank"} and [this](http://derekogle.com/NCMTH107/resources/FAQs/enter-data.html){:target="_blank"} may be helpful for entering these data. Also, if you enter the temperatures without the "C" (so just numbers) then you will need to to force R to treat the temperatures as categories [as shown here](../resources/R_HowTo_Factor.html){:target="_blank"}.*]
+Load these data into R and answer the questions below. [*Note: [This](../resources/R_HowTo_StackedData.html){:target="_blank"} and [this](http://derekogle.com/NCMTH107/resources/FAQs/enter-data.html){:target="_blank"} may be helpful for entering these data. Also, if you enter the temperatures without the "C" (so just numbers) then you will need to to force R to treat the temperatures as categories [as shown here](../resources/R_HowTo_Factor.html#convert-quantitative-to-factor-variables){:target="_blank"}.*]
 
 1. Write the H<sub>0</sub> and H<sub>A</sub> for this study. Make sure to define all symbols.
 1. Test, at the 5% level, if the mean days to hatch differed among the four temperatures.
 1. If a difference in means was identified, then determine which group means differ significantly from each other and which did not. [*You should have a specific answer for each pair of group means with appropriate statistical support.*]
-1. For each difference in means identified above, provide an appropriate statement that describes the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results and clearly identify which group had a larger mean.*]
+1. For *each* significantly different pair of means identified above, provide an appropriate statement that describes the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results and clearly identify which group had a larger mean.*]
 1. Create a graphic that helps support your answers to the previous question.
 1. Write an overall conclusion about the effect of temperature on the days needed to hatch by these sea turtles.
 
@@ -47,6 +47,6 @@ Load these data into R and answer the questions below. [*Note: [This](../resourc
 1. Write the H<sub>0</sub> and H<sub>A</sub> for this study. Make sure to define all symbols.
 1. Test, at the 5% level, if the mean total length differed among the tail clipping treatments.
 1. If a difference in means was identified, then determine which group means differ significantly from each other and which did not. [*You should have a specific answer for each pair of group means with appropriate statistical support.*]
-1. For each difference in means identified above, provide an appropriate statement that describes the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results and clearly identify which group had a larger mean.*]
+1. For each significantly different pair of means identified above, provide an appropriate statement that describes the amount of difference (use CIs) between the group means. [*Note: Refer to appropriate tabular results and clearly identify which group had a larger mean.*]
 1. Create a graphic that helps support your answers to the previous question.
 1. Write an overall conclusion about the effect of tail clipping on the mean total length of salamanders.
