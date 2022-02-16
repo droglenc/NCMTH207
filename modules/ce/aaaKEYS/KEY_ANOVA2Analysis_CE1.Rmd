@@ -43,7 +43,7 @@ source("../../../rhelpers/knitr_setup.R")
 
 ```{r RuffeData, echo=FALSE, results="hide", fig.show="hide"}
 ruf <- read.csv("http://derekogle.com/NCMTH207/modules/ce/data/Ruffe_Flag.csv")
-ruf <- filter(ruf,Sex!="unknown")
+ruf <- dplyr::filter(ruf,Sex!="unknown")
 ruf$Year <- factor(ruf$Year)
 
 lm1.ruf <- lm(Weight~Year+Sex+Year:Sex,data=ruf)
