@@ -19,8 +19,29 @@ Use the ANOVA table p-value when testing for a difference in group means.
 </div>
 <div id="pied-flycatcher" class="section level1">
 <h1>Pied Flycatcher</h1>
+<p>Sanz (2001) examined the nesting behavior and success for male and female pied flycatchers (<em>Ficedula hypoleuca</em>). He hypothesized that males would be more involved in nesting activities as the level of brood demand increased and as the attractiveness of the male decreased. The author manipulated brood demand by removing two eggs from randomly selected nests and placing these eggs into other randomly selected nests. This created two levels for a clutch-size manipulation factor – reduced and enlarged clutch sizes. A third level consisted of nests where the number of eggs was not manipulated (called the “control” level). The author manipulated the attractiveness of the male by reducing the size of the white patch on the forehead. The forehead patch was reduced in size on randomly selected males by clipping approximately two-thirds of the white feathers. Thus, the experiment consisted of two levels of the forehead patch factor – unmanipulated and reduced. In one aspect of the experiment, Sanz recorded the feeding rate of the male flycatchers on the 13th day post-hatch. The feeding rate was recorded as the number of times the male fed the hatchlings per hour.</p>
+<p>The statistical hypotheses to be examined were</p>
+<p><span class="math display">\[
+\begin{split}
+   H_{0}&amp;: ``\text{no interaction effect&#39;&#39;} \\
+   H_{A}&amp;: ``\text{interaction effect&#39;&#39;}
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+   H_{0}&amp;: ``\text{no clutch size effect&#39;&#39;}: \mu_{reduced} = \mu_{control} = \mu_{enlarged} \\
+   H_{A}&amp;: ``\text{clutch size effect&#39;&#39;}: \text{At least one pair of level means is different}
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+   H_{0}&amp;: ``\text{no attractivness effect&#39;&#39;}: \mu_{reduced} = \mu_{control} \\
+   H_{A}&amp;: ``\text{attractiveness effect&#39;&#39;}: \mu_{reduced} \neq \mu_{control}
+\end{split}
+\]</span></p>
+<p>where <span class="math inline">\(\mu\)</span> is the mean feeding rate of males and the subscripts identify the levels of each factor as defined above.</p>
 <p>This study is not at all balanced as many different sample sizes were in each treatment. It is not clear why this is the case, though I suspect some things went “wrong” in some of the treatments as most sample sizes are near 14 except for the control clutch size and reduce forehead patch size group.</p>
-<p>We really need more information to fully assess independence in this case. However, the author randomly assigned clutch size and forehead manipulations, so the individuals are likely dependent enough. A lack of dependency could come from the nests being in close proximity to each other such that the activities of one male bird would affect the others. There is, however, no evidence to either support or refute this.</p>
+<p>We really need more information to fully assess independence in this case. However, the author randomly assigned clutch size and forehead manipulations, so the individuals are likely independent enough. A lack of dependency could come from the nests being in close proximity to each other such that the activities of one male bird would affect the others. There is, however, no evidence to either support or refute this.</p>
 <p>The variances appear to be equal (Levene’s p=0.5177) and the boxplots of residuals are fairly similar; the residuals do appear to be approximately normally distributed (p=0.5827); and there are no significant outliers (outlier test p&gt;1). The assumptions appear to be met on the original scale and thus will not be transformed.</p>
 <p>There does not appear to be a significant interaction effect (p=0.6072). There does however appear to be main effects for both the clutch size manipulation (p=0.0111) and forehead patch size manipulation (p=0.0499) factors.</p>
 <p>The mean male feeding rate was between 2.10 and 14.22 units lower for the reduced clutch size than the control clutch size (p=0.0054). The mean male feeding rate for the enlarged clutch size did not differ significantly from the control (p=0.4994) or reduced (p=0.0774) clutch sizes. The mean male feeding rate was between 0.03 and 8.19 greater for the reduced forehead flycatchers than those with unmanipulated foreheads (p=0.0482).</p>
@@ -126,7 +147,7 @@ P value adjustment: tukey method for comparing a family of 6 estimates </code></
     geom_line(position=pd,size=1.1,alpha=0.25) +
     geom_errorbar(position=pd,size=2,width=0) +
     geom_point(position=pd,size=2,pch=21,fill=&quot;white&quot;) +
-    labs(y=&quot;Male Feeding Rate&quot;,x=&quot;Clutch Size Manipulation&quot;) +
+    labs(y=&quot;Mean Male Feeding Rate&quot;,x=&quot;Clutch Size Manipulation&quot;) +
     theme_NCStats()</code></pre>
 <p><img src="KEY_ANOVA2Summary_CE1_files/figure-html/unnamed-chunk-5-1.png" width="432" /></p>
 </div>

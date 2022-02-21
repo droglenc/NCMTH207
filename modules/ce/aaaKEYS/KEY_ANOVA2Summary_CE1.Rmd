@@ -53,9 +53,37 @@ p.out.pf <- outlierTest(lm1.pf)$bonf.p
 p.aov1.pf <- anova(lm1.pf)$"Pr(>F)"
 ```
 
+Sanz (2001) examined the nesting behavior and success for male and female pied flycatchers (*Ficedula hypoleuca*). He hypothesized that males would be more involved in nesting activities as the level of brood demand increased and as the attractiveness of the male decreased. The author manipulated brood demand by removing two eggs from randomly selected nests and placing these eggs into other randomly selected nests. This created two levels for a clutch-size manipulation factor -- reduced and enlarged clutch sizes. A third level consisted of nests where the number of eggs was not manipulated (called the "control" level). The author manipulated the attractiveness of the male by reducing the size of the white patch on the forehead. The forehead patch was reduced in size on randomly selected males by clipping approximately two-thirds of the white feathers. Thus, the experiment consisted of two levels of the forehead patch factor -- unmanipulated and reduced. In one aspect of the experiment, Sanz recorded the feeding rate of the male flycatchers on the 13th day post-hatch. The feeding rate was recorded as the number of times the male fed the hatchlings per hour.
+
+The statistical hypotheses to be examined were
+
+
+$$
+\begin{split}
+   H_{0}&: ``\text{no interaction effect''} \\
+   H_{A}&: ``\text{interaction effect''}
+\end{split}
+$$
+
+$$
+\begin{split}
+   H_{0}&: ``\text{no clutch size effect''}: \mu_{reduced} = \mu_{control} = \mu_{enlarged} \\
+   H_{A}&: ``\text{clutch size effect''}: \text{At least one pair of level means is different}
+\end{split}
+$$
+
+$$
+\begin{split}
+   H_{0}&: ``\text{no attractivness effect''}: \mu_{reduced} = \mu_{control} \\
+   H_{A}&: ``\text{attractiveness effect''}: \mu_{reduced} \neq \mu_{control}
+\end{split}
+$$
+
+where $\mu$ is the mean feeding rate of males and the subscripts identify the levels of each factor as defined above.
+
 This study is not at all balanced as many different sample sizes were in each treatment. It is not clear why this is the case, though I suspect some things went "wrong" in some of the treatments as most sample sizes are near 14 except for the control clutch size and reduce forehead patch size group.
 
-We really need more information to fully assess independence in this case. However, the author randomly assigned clutch size and forehead manipulations, so the individuals are likely dependent enough. A lack of dependency could come from the nests being in close proximity to each other such that the activities of one male bird would affect the others. There is, however, no evidence to either support or refute this.
+We really need more information to fully assess independence in this case. However, the author randomly assigned clutch size and forehead manipulations, so the individuals are likely independent enough. A lack of dependency could come from the nests being in close proximity to each other such that the activities of one male bird would affect the others. There is, however, no evidence to either support or refute this.
 
 The variances appear to be equal (Levene's `r kPvalue(p.lev.pf,latex=FALSE)`) and the boxplots of residuals are fairly similar; the residuals do appear to be approximately normally distributed (`r kPvalue(p.ad.pf,latex=FALSE)`); and there are no significant outliers (outlier test `r kPvalue(p.out.pf,latex=FALSE)`). The assumptions appear to be met on the original scale and thus will not be transformed.
 
@@ -79,7 +107,7 @@ ggplot(data=mc1sum.pf$emmeans,
   geom_line(position=pd,size=1.1,alpha=0.25) +
   geom_errorbar(position=pd,size=2,width=0) +
   geom_point(position=pd,size=2,pch=21,fill="white") +
-  labs(y="Male Feeding Rate",x="Clutch Size Manipulation") +
+  labs(y="Mean Male Feeding Rate",x="Clutch Size Manipulation") +
   theme_NCStats()
 ```
 
