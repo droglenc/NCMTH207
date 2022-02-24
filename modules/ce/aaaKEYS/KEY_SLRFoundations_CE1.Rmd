@@ -52,7 +52,7 @@ r2.br <- rSquared(lm.br)
 1. The r<sup>2</sup> means that `r formatC(100*r2.br,format="f",digits=1)` of the variability in the proportion of males is explained by knowing the year of the sample.
 1. The predicted proportion of males in 1990 is `r formatC(predict(lm.br,data.frame(year=2000)),format="f",digits=4)`.
 1. The predicted proportion of males in 1990 is `r formatC(predict(lm.br,data.frame(year=2000)),format="f",digits=4)`. This value should be interpreted cautiously as it is an extrapolation.
-1. The residual for 1980 is `r formatC(0.5129-predict(lm.br,data.frame(year=2000)),format="f",digits=4)` (=0.5129-`r formatC(predict(lm.br,data.frame(year=1980)),format="f",digits=4)`).
+1. The residual for 1980 is `r formatC(0.5129-predict(lm.br,data.frame(year=1980)),format="f",digits=4)` (=0.5129-`r formatC(predict(lm.br,data.frame(year=1980)),format="f",digits=4)`).
 1. The best-fit line is shown in the plot below.
 
 ### R Code and Results.
