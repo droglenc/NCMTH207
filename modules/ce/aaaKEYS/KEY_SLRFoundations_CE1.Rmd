@@ -78,7 +78,7 @@ ggplot(data=br,mapping=aes(x=year,y=propmale)) +
 wfc <- read.csv("https://raw.githubusercontent.com/droglenc/NCData/master/Flycatcher.csv")
 lm.wfc <- lm(winglen~date,data=wfc)
 sum.wfc <- summary(lm.wfc)
-cf.wfc <-coef(lm.wfc)
+cf.wfc <- coef(lm.wfc)
 ci.wfc <- confint(lm.wfc)
 r2.wfc <- rSquared(lm.wfc)
 ```
