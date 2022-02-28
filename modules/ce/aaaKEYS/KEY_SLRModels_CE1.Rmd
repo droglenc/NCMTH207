@@ -112,8 +112,8 @@ MST.gas <- SST.gas/dfT.gas
 
 1. There is not a significant relationship between gas mileage and drive ratio for imported cars (`r kPvalue(aov.gas[1,"Pr(>F)"],latex=FALSE)`).
 1. The percent of the variability in gas mileage explained by knowing the drive ratio of an imported car is `r formatC(r2.gas*100,format="f",digits=1)`. Note that $r^{2}$=$\frac{\text{SS}_{\text{Regression}}}{\text{SS}_{\text{Total}}}$=$\frac{`r formatC(aov.gas[1,"Sum Sq"],format="f",digits=3)`}{`r formatC(SST.gas,format="f",digits=3)`}$=`r formatC(aov.gas[1,"Sum Sq"]/SST.gas,format="f",digits=3)`.
-1. The variance of gas mileage among cars after taking into account drive ratio is MS<sub>Residual</sub>=`r formatC(aov.gas[2,"Mean Sq"],format="f",digits=3)`.
 1. The variance of gas mileage among cars ignoring any relationship with drive ratio is MS<sub>Total</sub>=`r formatC(MST.gas,format="f",digits=3)`(=$\frac{`r formatC(SST.gas,format="f",digits=3)`}{`r dfT.gas`}$).
+1. The variance of gas mileage among cars after taking into account drive ratio is MS<sub>Residual</sub>=`r formatC(aov.gas[2,"Mean Sq"],format="f",digits=3)`.
 1. The plot is shown below.
 
 ### R Code and Results.
