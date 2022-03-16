@@ -67,7 +67,7 @@ H~0~: "no relationship between weight and length of non-cub black bears"
 
 H~A~: "is a relationship between weight and length of non-cub black bears"
 
-A total of `r n` bears were examined for this study. There is not nearly enough information in the background to full address the independence assumption, but it is unlikely that the weight of any one bear will have much of an impact on any other bear, let alone have an impact on all other bears. Thus, the independence assumption is adequately met.
+A total of `r n` bears were examined for this study. There is not nearly enough information in the background to fully address the independence assumption, but it is unlikely that the weight of any one bear will have much of an impact on any other bear, let alone have an impact on all other bears. Thus, the independence assumption is adequately met.
 
 The un-transformed data are clearly non-linear and heteroscedastic (see first residual plot below); thus a transformation should be considered. Through a process of trial-and-error, and realizing that weight-length data follows a power function relationship for most organisms, both weight and length were log-transformed. With this transformation the data were largely linear and homoscedastic (see second residual plot below). In addition, the residuals were normal (Anderson-Darling test `r kPvalue(p.ad.bbt,latex=FALSE)`) and absent of significant outliers (outlier test `r kPvalue(p.out.bbt,latex=FALSE)`). Thus, the analysis will continue with a log-log transformation.
 

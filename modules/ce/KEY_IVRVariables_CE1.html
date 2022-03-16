@@ -1,0 +1,306 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "IVR Variables"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="nurse-wages" class="section level1">
+<h1>Nurse Wages</h1>
+<ol>
+<li>The response variable is <strong>WAGE</strong>.</li>
+<li>The covariate is months of <strong>EXPERience</strong>.</li>
+<li>The factor is <strong>gender</strong> (female and male).</li>
+<li>As there are two groups in this analysis and females comes before males, I created the following indicator variable.
+<ul>
+<li>MALE=1 if “male”, 0 otherwise (i.e., “female”)</li>
+</ul></li>
+<li>The very simple table connecting the groups to the indicator variables codes is as follows:
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:right;">
+MALE
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<ol start="6">
+<li>
+The only interaction variables would be between months of EXPERience and MALE; thus, experience:FEM.
+</li>
+<ol>
+<p> </p>
+</div>
+<div id="turtle-nesting-ecology" class="section level1">
+<h1>Turtle Nesting Ecology</h1>
+<ol>
+<li>The response variable is <strong>clutch size</strong> (CSIZE).</li>
+<li>The covariate is <strong>curved carapace length</strong> (CCL).</li>
+<li>The factor is <strong>location</strong> (or region).</li>
+<li>As there are five groups in this analysis and the “Arabian Gulf” turtles are to be the reference group, I created the following four indicator variables.
+<ul>
+<li>IO=1 if in the “Indian Ocean” group, 0 otherwise</li>
+<li>RS=1 if in the “Red Sea” group, 0 otherwise</li>
+<li>CO=1 if in the “Caribbean” group, 0 otherwise</li>
+<li>WA=1 if in the “West Atlantic” group, 0 otherwise</li>
+</ul></li>
+<li>The table connecting the groups to the indicator variable codes is as follows:
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Region
+</th>
+<th style="text-align:right;">
+IO
+</th>
+<th style="text-align:right;">
+RS
+</th>
+<th style="text-align:right;">
+CO
+</th>
+<th style="text-align:right;">
+WA
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Arabian Gulf
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Indian Ocean
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red Sea
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Caribbean
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West Atlantic
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<ol start="6">
+<li>
+The interaction variables are IO:CCL, RS:CCL, CO:CCL, and WA:CCL.
+</li>
+<ol>
+<p> </p>
+</div>
+<div id="water-quality-near-a-gold-mine" class="section level1">
+<h1>Water Quality Near a Gold Mine</h1>
+<ol>
+<li>The response variable is <strong>phosphorous level</strong> measurement (P).</li>
+<li>The covariate is <strong>distance</strong> from the gold mine (DIST).</li>
+<li>The factor is <strong>type of phosphorous</strong>.</li>
+<li>The levels should be changed so that “total” is first; e.g., “total”, “dissolved”, and “soluble”. As there are three groups in this analysis and “total” is to be the reference group, I created the following two indicator variables.
+<ul>
+<li>DP=1 if the “total dissolved phosphorous” group, 0 otherwise</li>
+<li>SP=1 if the “soluble reactive phosphorous” group, 0 otherwise</li>
+</ul></li>
+<li>The table connecting the groups to the indicator variable codes is as follows:
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:right;">
+DP
+</th>
+<th style="text-align:right;">
+SP
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Total P
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total Dissolved P
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soluble Reactive P
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<ol start="7">
+<li>
+The interaction variables are DP:DISTANCE and SP:DISTANCE.
+</li>
+<ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
