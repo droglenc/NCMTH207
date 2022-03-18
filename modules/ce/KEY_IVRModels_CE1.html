@@ -1,0 +1,438 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "IVR Models"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+XXX.
+</li>
+</ul>
+</div>
+<hr />
+<div id="nurse-wages" class="section level1">
+<h1>Nurse Wages</h1>
+<ol>
+<li>The ultimate full model is <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE\)</span>.</li>
+<li>Table shown below</li>
+</ol>
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Gender
+</th>
+<th style="text-align:right;">
+MALE
+</th>
+<th style="text-align:left;">
+Sub-Model (<span class="math inline">\(\mu_{WAGE|EXPER}=\)</span>)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\alpha+\beta EXPER\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+male
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((\alpha+\delta_{1})+(\beta+\gamma_{1})EXPER\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>
+Meanings of the parameters are below.
+</li>
+<ul>
+<li>
+<span class="math inline">\(\alpha\)</span>: y-intercept of female nurses (reference group).
+<li>
+<span class="math inline">\(\beta\)</span>: slope of female nurses (reference group).
+<li>
+<span class="math inline">\(\delta_{1}\)</span>: difference in y-intercept from male to female nurses.
+<li>
+<span class="math inline">\(\gamma_{1}\)</span>: difference in slope from male to female nurses.
+</ul>
+<li>
+I would expect <span class="math inline">\(\beta\)</span> to be <strong>positive</strong> because if wages increases with experience then I would expect a positive relationship or slope.
+</li>
+<li>
+I would expect <span class="math inline">\(\gamma_{1}\)</span> to be <strong>negative</strong> because if a slower rate means a shallower or smaller slope; thus, if males have a smaller slope then <span class="math inline">\(\gamma_{1}\)</span> must be negative.
+</li>
+<li>
+I would expect <span class="math inline">\(\delta_{1}\)</span> to be <strong>zero</strong> because the mean wage with no experience describes the y-intercept. If there is no difference in mean wage with no experience for males and females then they have the same intercept or no difference in intercpet, so <span class="math inline">\(\delta_{1}\)</span>=0.
+</li>
+<li>
+I would expect <span class="math inline">\(\delta_{1}\)</span> to be <strong>positive</strong> because the descriptions states that the lines are parallel (i.e., <span class="math inline">\(\gamma_{1}\)</span>=0) and the male line is always above the female line, incluing at the y-intercept.
+</li>
+</ol>
+<p> </p>
+</div>
+<div id="turtle-nesting-ecology" class="section level1">
+<h1>Turtle Nesting Ecology</h1>
+<ol>
+<li>The ultimate full model is <span class="math inline">\(\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+\)</span><span class="math inline">\(\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+\)</span> <span class="math inline">\(\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA\)</span>.</li>
+<li>Table shown below</li>
+</ol>
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Region
+</th>
+<th style="text-align:right;">
+IO
+</th>
+<th style="text-align:right;">
+RS
+</th>
+<th style="text-align:right;">
+CO
+</th>
+<th style="text-align:right;">
+WA
+</th>
+<th style="text-align:left;">
+Sub-Model (<span class="math inline">\(\mu_{CSIZE|CCL}=\)</span>)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Arabian Gulf
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\alpha+\beta CCL\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Indian Ocean
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((\alpha+\delta_{1})+(\beta+\gamma_{1})CCL\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Red Sea
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((\alpha+\delta_{2})+(\beta+\gamma_{2})CCL\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Caribbean
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((\alpha+\delta_{3})+(\beta+\gamma_{3})CCL\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West Atlantic
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((\alpha+\delta_{4})+(\beta+\gamma_{4})CCL\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>
+The “(Intercept)” estimate is <span class="math inline">\(\hat{\alpha}\)</span> and thus means that the mean clutch size when the curved carapace length is zero is between -82.89 and 66.85 for turtles from the Arabian Gulf (the reference group).
+</li>
+<li>
+The “covariate” (CCL) estimate is <span class="math inline">\(\hat{\beta}\)</span> and thus means that the mean clutch size of turtles from the Arabian Gulf (the reference group) will increase by between 0.18 and 2.29 when the curved carapace length increases by 1 cm.
+</li>
+<li>
+The first interaction (CCL:RegionIndianOcean) estimate is <span class="math inline">\(\hat{\gamma}_{1}\)</span> and thus means that the slope for turtles from the Indian Ocean is between -6.06 less and 1.24 more than the slope for turtles from the Arabian Gulf. Thus, the slope for turtles from the Indian Ocean is likely not different from the slope of turtles from the Arabian Gulf.
+</li>
+<li>
+The third indicator (RegionCaribbeaan) estimate is <span class="math inline">\(\hat{\delta}_{3}\)</span> and thus means that the y-intercept for turtles from the Caribbean is between -8.01 lower and 177.49 more than the y-intercept for turtles from the Arabian Gulf. Thus, mean clutch size when the curved carapace length is zero is likely not differnt for turtles from the Caribbean and turtles from the Arabian Gulf. This is mostly meaningless because a carapace length of zero is meaningless.
+</li>
+<li>
+The three predictions are below:
+</li>
+<ul>
+<li>
+Arabian Gulf: clutch size = -8.02+1.23×90 =102.8
+</li>
+<li>
+Indian Ocean: clutch size = (-8.02+187.97)+(1.23+-2.41)×90 = 73.7
+</li>
+<li>
+Caribbean: clutch size = (-8.02+84.74)+(1.23+-0.67)×90 = 126.8
+</li>
+</ul>
+</ol>
+<div id="r-code-and-results" class="section level4">
+<h4>R Code and Results</h4>
+<pre class="r"><code>ht &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/HawksbillTurtles.csv&quot;)
+ht$Region &lt;- factor(ht$Region,
+                    levels=c(&quot;Arabian Gulf&quot;,&quot;Indian Ocean&quot;,&quot;Red Sea&quot;,
+                             &quot;Caribbean&quot;,&quot;West Atlantic&quot;))
+ivr.ht &lt;- lm(Clutch.Size~CCL+Region+CCL:Region,data=ht)
+cfs.ht &lt;- formatC(cbind(Ests=coef(ivr.ht),confint(ivr.ht)),format=&quot;f&quot;,digits=2)
+cbind(Est=coef(ivr.ht),confint(ivr.ht))</code></pre>
+<pre><code>                                Est        2.5 %      97.5 %
+(Intercept)              -8.0191114  -82.8867647  66.8485419
+CCL                       1.2312160    0.1766907   2.2857413
+RegionIndian Ocean      187.9734301  -68.3678669 444.3147271
+RegionRed Sea           -67.0526534 -200.1527159  66.0474092
+RegionCaribbean          84.7419159   -8.0103392 177.4941710
+RegionWest Atlantic      46.8994651  -84.7456717 178.5446019
+CCL:RegionIndian Ocean   -2.4123532   -6.0622733   1.2375669
+CCL:RegionRed Sea         1.2973460   -0.6075723   3.2022643
+CCL:RegionCaribbean      -0.6746593   -1.8508311   0.5015126
+CCL:RegionWest Atlantic  -0.2750907   -1.8015122   1.2513307</code></pre>
+<pre class="r"><code>## You were asked not to use R, but this is what it would look like
+nd &lt;- data.frame(CCL=c(90,90,90),Region=c(&quot;Arabian Gulf&quot;,&quot;Indian Ocean&quot;,&quot;Caribbean&quot;))
+( p90 &lt;- cbind(nd,predict(ivr.ht,newdata=nd,interval=&quot;confidence&quot;)) )</code></pre>
+<pre><code>  CCL       Region       fit        lwr      upr
+1  90 Arabian Gulf 102.79033  82.436559 123.1441
+2  90 Indian Ocean  73.65197   2.493721 144.8102
+3  90    Caribbean 126.81291 118.184378 135.4414</code></pre>
+<p> </p>
+</div>
+</div>
+<div id="water-quality-near-a-gold-mine" class="section level1">
+<h1>Water Quality Near a Gold Mine</h1>
+<ol>
+<li>The ultimate full model is <span class="math inline">\(\mu_{P|DIST,\cdots} = \alpha+\beta DIST+\)</span><span class="math inline">\(\delta_{1}DP+\delta_{2}SP+\)</span> <span class="math inline">\(\gamma_{1}DIST:DP+\gamma_{2}DIST:SP\)</span>.</li>
+<li>Table shown below</li>
+</ol>
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:right;">
+DP
+</th>
+<th style="text-align:right;">
+SP
+</th>
+<th style="text-align:left;">
+Sub-Model (<span class="math inline">\(\mu_{P|DIST}=\)</span>)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Total P
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\alpha+\beta DIST\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total Dissolved P
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((\alpha+\delta_{1})+(\beta+\gamma_{1})DIST\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Soluble Reactive P
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((\alpha+\delta_{2})+(\beta+\gamma_{2})DIST\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>
+The “covariate” (distance) estimate is <span class="math inline">\(\hat{\beta}\)</span> and thus means that the mean total (reference group) phosphorous level will decrease by 1.76 ppm when the distance from the gold mine increases by 1 km.
+</li>
+<li>
+The “(Intercept)” estimate is <span class="math inline">\(\hat{\alpha}\)</span> and thus means that the mean total (reference group) phosphorous at 0 km from the gold mine is 49.52 ppm.
+</li>
+<li>
+The first indicator (typedissolved) estimate is <span class="math inline">\(\hat{\delta}_{1}\)</span> and thus means that the y-intercept for dissolve phosphorous is 9.31 ppm less than the y-intercept for total phosphorous. The, the mean dissolved phosphorous is lower than the mean total phosphorous 0 km from the gold mine.
+<li>
+The second interaction (distance:typesoluble) estimate is <span class="math inline">\(\hat{\gamma}_{2}\)</span> and thus means that the slope for solube phosphorous is 0.05 less than the slope for total phosphorous. Thus, solube phosphorous declines at a slower rate than total phosphrous as you move away from the gold mine.
+</li>
+<li>
+The figure is below.
+</li>
+</ol>
+<div id="r-code-and-results-1" class="section level4">
+<h4>R Code and Results</h4>
+<pre class="r"><code>gm &lt;- read.csv(&quot;http://derekogle.com/NCMTH207/modules/ce/data/GoldMine.csv&quot;)
+gm$type &lt;- factor(gm$type,levels=c(&quot;total&quot;,&quot;dissolved&quot;,&quot;soluble&quot;))
+ivr.gm &lt;- lm(phosp~distance+type+distance:type,data=gm)
+cfs.gm &lt;- cbind(Ests=coef(ivr.gm),confint(ivr.gm))
+cbind(Est=coef(ivr.gm),confint(ivr.gm))</code></pre>
+<pre><code>                                Est      2.5 %     97.5 %
+(Intercept)             49.52108103  37.254998 61.7871642
+distance                -1.76331862  -2.635300 -0.8913374
+typedissolved           -9.31068754 -27.156010  8.5346350
+typesoluble            -15.18830863 -32.560995  2.1843779
+distance:typedissolved   0.05362709  -1.191473  1.2987269
+distance:typesoluble    -0.04993832  -1.287360  1.1874829</code></pre>
+<pre class="r"><code>ggplot(data=gm,mapping=aes(x=distance,y=phosp,color=type)) +  
+  geom_point() +  
+  labs(x=&quot;Distance from Gold Mine (km)&quot;,y=&quot;Phosphrous Level (ppm)&quot;) +  
+  theme_NCStats() +  
+  geom_smooth(method=&quot;lm&quot;,se=FALSE)</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_IVRModels_CE1_files/figure-html/unnamed-chunk-7-1.png" width="432" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
