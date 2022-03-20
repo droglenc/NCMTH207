@@ -20,7 +20,7 @@ XXX.
 <div id="nurse-wages" class="section level1">
 <h1>Nurse Wages</h1>
 <ol>
-<li>The ultimate full model is <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE\)</span>.</li>
+<li>The ultimate full model is <span class="math inline">\(\mu_{WAGE|EXPER,MALE} = \alpha+\beta EXPER+\delta_{1}MALE+\gamma_{1}EXPER:MALE\)</span> where <span class="math inline">\(WAGE\)</span> is the earned wage and <span class="math inline">\(EXPER\)</span> is the years of experience.</li>
 <li>Table shown below</li>
 </ol>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -94,7 +94,7 @@ I would expect <span class="math inline">\(\delta_{1}\)</span> to be <strong>pos
 <div id="turtle-nesting-ecology" class="section level1">
 <h1>Turtle Nesting Ecology</h1>
 <ol>
-<li>The ultimate full model is <span class="math inline">\(\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+\)</span><span class="math inline">\(\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+\)</span> <span class="math inline">\(\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA\)</span>.</li>
+<li>The ultimate full model is <span class="math inline">\(\mu_{CSIZE|CCL,\cdots} = \alpha+\beta CCL+\)</span><span class="math inline">\(\delta_{1}IO+\delta_{2}RS+\delta_{3}+\delta_{4}WA+\)</span> <span class="math inline">\(\gamma_{1}CCL:IO+\gamma_{2}CCL:RS+\gamma_{3}CCL:CO+\gamma_{4}CCL:WA\)</span> where <span class="math inline">\(CSIZE\)</span> is clutch size, <span class="math inline">\(CCL\)</span> is the curved carapace length, and the other variables were defined on the previous assignment.</li>
 <li>Table shown below</li>
 </ol>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -284,7 +284,7 @@ nd &lt;- data.frame(CCL=c(90,90,90),Region=c(&quot;Arabian Gulf&quot;,&quot;Indi
 <div id="water-quality-near-a-gold-mine" class="section level1">
 <h1>Water Quality Near a Gold Mine</h1>
 <ol>
-<li>The ultimate full model is <span class="math inline">\(\mu_{P|DIST,\cdots} = \alpha+\beta DIST+\)</span><span class="math inline">\(\delta_{1}DP+\delta_{2}SP+\)</span> <span class="math inline">\(\gamma_{1}DIST:DP+\gamma_{2}DIST:SP\)</span>.</li>
+<li>The ultimate full model is <span class="math inline">\(\mu_{P|DIST,\cdots} = \alpha+\beta DIST+\)</span><span class="math inline">\(\delta_{1}DP+\delta_{2}SP+\)</span> <span class="math inline">\(\gamma_{1}DIST:DP+\gamma_{2}DIST:SP\)</span> wher <span class="math inline">\(P\)</span> is the phosphorous level, <span class="math inline">\(DIST\)</span> is the distance from the gold mine, and the other variables were defined on the previous assignment.</li>
 <li>Table shown below</li>
 </ol>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
