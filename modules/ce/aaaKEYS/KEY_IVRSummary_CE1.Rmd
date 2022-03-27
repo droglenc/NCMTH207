@@ -45,8 +45,8 @@ assumptionCheck(ivr1)
 assumptionCheck(ivr1,lambday=0,lambdax=0)
 ivr1t <- lm(logmob~logbodywt+diet+logbodywt:diet,data=bat)
 anova(ivr1t)
-mc1 <- emtrends(ivr1t,specs=pairwise~diet,var="logbodywt",tran="log")
-( mc1s <- summary(mc1,infer=TRUE,type="response") )
+mc1 <- emtrends(ivr1t,specs=pairwise~diet,var="logbodywt")
+( mc1s <- summary(mc1,infer=TRUE) )
 ```
 
 ```{r echo=FALSE, warning=FALSE}
@@ -61,11 +61,15 @@ mc.t.ap <- kPvalue(mc1s$contrasts$p.value[2],latex=FALSE)
 mc.t.gp <- kPvalue(mc1s$contrasts$p.value[3],latex=FALSE)
 mc.t.ag.lci <- formatC(mc1s$contrasts$lower.CL[1],format="f",digits=3)
 mc.t.ag.uci <- formatC(mc1s$contrasts$upper.CL[1],format="f",digits=3)
-mc.t.ap.lci <- formatC(mc1s$contrasts$lower.CL[2],format="f",digits=3)
-mc.t.ap.uci <- formatC(mc1s$contrasts$upper.CL[2],format="f",digits=3)
+#mc.t.ap.lci <- formatC(mc1s$contrasts$lower.CL[2],format="f",digits=3)
+#mc.t.ap.uci <- formatC(mc1s$contrasts$upper.CL[2],format="f",digits=3)
 slope.p <- kPvalue(max(mc1s$emtrends$p.value),latex=FALSE,include.p=FALSE)
 ```
 
+<div class="w3-panel w3-yellow">
+  <h3>Note</h3>
+  <p>The `emtrends()` function was changed in the recent version of the `emmeans` package and I did not catch this change. Because of this, the use of `tran="log"` in `emtrends()` followed by `type="response"` in `summary()` does not produce the result that I (and many of you) expected. As such, the key below does not do any back-transformation. However, for those of you that tried the back-transformation I graded it as if it returned the result that we expected. I apologize for the confusion. I think for the time being, the best course of action is to not back-transform the results from `emtrends()`.</p>
+</div>
 
 Biologists recognize that brains perform different sensory operations for different activities of the animal. As such there is a thought that the size of brains, or the size of particular portions of brains, may differ depending on the primary foraging activity of the animal. For example, senses that are most useful for bats that are insectivorous may be quite different than senses that are most useful for nectar-feeding bats and, as such, bats in these two groups may have differently sized brains.
 
@@ -88,9 +92,9 @@ and
 
 The sample size is very unbalanced with very few gleaners in the data set. The data are independent as the MOB and body weight measurements are summary measures for entire species and not measurements on individual bats. It is not realistic to think that summary measurements for entire species are connected across all of the species. The assumptions are clearly not met on the original scale as the residual plot does not show a "random scatter" of points, though it is difficult to tell if the issue is linearity, homoscedasticity, or both. In addition, the residuals are not normally distributed (Anderson-Darling `r ad.p`) or not strongly skewed and several outliers are present (`r out.p`). The assumptions are met when both variables are transformed to the log scale as seen by a residual plot with neither an evident curve or funnel-shape, normally distributed residuals (Anderson-Darling `r ad.pt`), and no outliers (`r out.pt`). Thus, the analysis will continue on the log-log transformed scale.
 
-The relationship between log MOB and log body weight differs among the three foraging groups (parallel lines test `r aov.t.p`). It appears that the slope of this relationship for the aerial insectivore group is different from the slope for gleaners (`r mc.t.ag`) and phytophages (`r mc.t.ap`). The slopes for this relationship do not however differ between gleaners and phytophages (`r mc.t.gp`). Specifically, it appears that the slope for the aerial insectivores is between `r mc.t.ag.lci` and `r mc.t.ag.uci` times greater than the slope for gleaners and between `r mc.t.ap.lci` and `r mc.t.ap.uci` times greater than the slope for phytophages. The slope of the relationship for all three groups was significantly positive (p&leq;`r slope.p`).
+The relationship between log MOB and log body weight differs among the three foraging groups (parallel lines test `r aov.t.p`). It appears that the slope of this relationship for the aerial insectivore group is different from the slope for gleaners (`r mc.t.ag`). The slopes for this relationship do not however differ between phytophages and gleaners (`r mc.t.gp`) or aerial insectivores (`r mc.t.ap`). Specifically, it appears that the slope for the aerial insectivores is between `r mc.t.ag.lci` and `r mc.t.ag.uci` greater than the slope for gleaners. The slope of the relationship for all three groups was significantly positive (p&leq;`r slope.p`).
 
-In conclusion, there is a significant positive relationship between mean MOB and body weight on the log-log scale (so it is a power function relationship), but that relationship differs among foraging groups. It appears that the mean MOB increases at a faster rate with increasing body weight for aerial insectivores than for gleaners and phytophages. At a constant body weight it appears that the phytophages have a larger mean MOB than gleaners. However, a similar statement cannot be made for aerial insectivores because they have a different relationship between MOB and body weight. An inspection of the graphic though suggests that the mean MOB for aerial insectivores is likely less than that for phytophages and similar to that for gleaners over the range of observed body weights. In summary, there does appear to be an effect of foraging behavior on the size of the main olfactory bulb, irrespective of the overall size of the bat.
+In conclusion, there is a significant positive relationship between mean MOB and body weight on the log-log scale (so it is a power function relationship), but that relationship differs among foraging groups. It appears that the mean MOB increases at a faster rate with increasing body weight for aerial insectivores than for gleaners. An inspection of the graphic though suggests that the mean MOB for phytophages is generally greater than that for aerial insectivores and gleaners over the range of observed body weights. In summary, there does appear to be some effect of foraging behavior on the size of the main olfactory bulb, irrespective of the overall size of the bat.
 
 #### R Code and Results
 ```{r prompt=FALSE, fig.width=7}
