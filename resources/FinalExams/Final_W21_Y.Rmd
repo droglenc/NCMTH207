@@ -1,0 +1,53 @@
+---
+title: "MTH207 Capstone Assignment"
+description: |
+  **Version Y**
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# DIRECTIONS
+Each section below describes a situation that requires using one of the five methods of analysis your learned during this course. For each situation you should perform the appropriate analysis and formulate your answer in the same way that you did for the "Summary" modules for each method. Please look at your previous work and the feedback that I provided on GradeScope to build upon and improve your previous work.
+
+Stages of this assignment are due [in GradeScope](https://www.gradescope.com/courses/333897) by (or before) the days and times shown below. **Make sure to upload your answers to the correct item in GradeScope (specifically note which version of the assignment that you have).**
+
+* **THURSDAY 7-Apr 10pm**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
+* **SUNDAY 10-Apr 10pm**: Complete write-up for the **First** Situation.
+* **TUESDAY 12-Apr 10pm**: Complete write-up for the **Second** Situation.
+* **THURSDAY 14-Apr 10pm**: Complete write-up for the **Third** Situation.
+* **SUNDAY 17-Apr 10pm**: Complete write-up for the **Fourth** Situation.
+* **TUESDAY 19-Apr 10pm**: Complete write-up for the **Fifth** Situation.
+
+**Any evidence for collaboration with anyone else on this assignment will result in a zero for the assignment. If you have questions, you may only ask me.**
+
+----
+
+# 1. Maritime Fires and Duff Depth
+A changing climate is projected to increase the frequency of lightning strikes on islands within the [Apostle Islands National Lakeshore](https://www.nps.gov/apis/index.htm). These islands support large populations of [Canada Yew](https://www.conifers.org/ta/Taxus_canadensis.php) (*Taxus canadensis*), which is a species of concern in Wisconsin. Very little is known about how maritime forests will respond to fire, which makes it difficult for the Park Service to make management decisions with respect to Canada Yew and other species in these forests. David Moy, working with Drs. Sarah Johnson and Jonathan Martin, sampled vegetation in 10 m^2^ plots relative to four fires that had occurred in the islands in the last 25 years. In one part of their study, multiple transects were created within areas that had been burnt and then in control areas in the general vicinity of the fires but outside of the immediate burn area. Moy recorded the depth (cm) of the ["duff layer"](http://www.firewords.net/definitions/duff_layer.htm) at 1 m intervals along these transects. In this part of the study Moy primarily wanted to determine if the mean depth of the duff layer was reduced in areas that had been burnt, but he also wanted to characterize potential differences in the mean depth of the duff layer among the four islands. Moy's data is in  [**DuffDepth.csv**](data/DuffDepth.csv). [*Note that no transformation is perfect for these data; thus, use a transformation where the assumptions "look best" according to the assumption checking plots.*]
+
+&nbsp;
+
+# 2. Coral Reef Disturbance
+[Schmitt *et al.* (2019)](https://www.pnas.org/content/116/10/4372) used an experiment with a [coral reef](https://en.wikipedia.org/wiki/Coral_reef) to examine the ecological theory that under the same environmental conditions, an ecosystem could have more than one community state that is maintained by reinforcing feedbacks. In one part of that study the researchers wanted to test how resilient patches of a coral reef that are dominated by the [*Turbinaria* coral](https://en.wikipedia.org/wiki/Turbinaria_(coral)) are to varying levels of disturbances. Thus, the authors selected patches on a large coral reef that were spatially distant. For each patch they recorded the number of *Turbinaria* individuals. They then randomly selected which patches would receive one of three simulated disturbance treatments. Some patches were left undisturbed as a control, whereas other patches had large buoyant adult individuals removed to simulate a single "large wave" disturbance, and other patches had both adult and some juvenile individuals removed to simulate a more sustained "cyclonic storm" disturbance. The researchers returned to each patch 26 months later and again recorded the number of *Turbinaria* individuals. The researchers ultimately want to determine if there is a relationship between the post-disturbance and pre-disturbance numbers of *Turbinaria* and if that relationship is affected by the type of disturbance. The data for this study are in [**CoralReefs.csv**](data/CoralReefs.csv).
+
+&nbsp;
+
+# 3. Lichens in Tree Canopies
+Madison Laughlin, in collaboration with Drs. Jonathan Martin and Erik Olson, examined the water-holding capacity of [lichens](https://en.wikipedia.org/wiki/Lichen) in the canopy of old-growth [White Pine (*Pinus strobus*)](https://en.wikipedia.org/wiki/Pinus_strobus) trees in northern Wisconsin. Their overall hypothesis was that the density of lichens on these trees could be substantial, such that lichens could play a considerable role in water and other biogeochemical dynamics on the tree and in the ground surrounding the tree. However, lichen communities in the tree canopies is understudied, especially outside of the tropics and Pacific Northwest. Laughlin identified 80 cm^2^ quadrats (sampling areas) at four locations (the [cardinal directions](https://en.wikipedia.org/wiki/Cardinal_direction)) every 2 m over the entire height of three old growth trees on the Bayfield Peninsula. She took a picture of each quadrat and then removed the lichens within each quadrat. In the laboratory Laughlin then estimated the density of lichens as the area (within the quadrat) covered by lichens (cm^2^) and determined the [dry mass](https://www.encyclopedia.com/science/dictionaries-thesauruses-pictures-and-press-releases/dry-mass) (g) of the removed lichens. In one part of her study, Laughlin wanted to determine if the abundance measurement could be used to predict the dry mass of lichens, as it is significantly easier to determine area covered by lichens than to collect the lichens, dry them, and weigh them. Laughlin's data is in [**Lichens.csv**](data/Lichens.csv).
+
+&nbsp;
+
+# 4. Milwaukee Bucks Winning
+In a basketball game, players "shoot" a basketball at a "goal" and if the ball goes through the goal they score points. The number of points depends on the distance from which the ball was shot, with closer shots counting for two points. A two-point shot is called a [field goal](https://en.wikipedia.org/wiki/Field_goal_(basketball)) and field goal percentage is defined as the percentage of field goal shots that were successfully made. The goal of the game is to score more points than your opponent. A student in a previous class hypothesized that the probability of winning a game would be positively related to a team's field goal percentage. Data for every [National Basketball Association (NBA)](https://www.nba.com/) game from the 2014-18 seasons is in [**NBA14-18.csv**](data/NBA14-18.csv). Use the data for the [Milwaukee Bucks](https://www.nba.com/bucks/), an NBA team, to examine the student's hypothesis. [*Note that the Bucks are "MIL" in the "Team" variable, field goal percentage is "FG.Perc", and whether the game was won or not is "WINorLOSS".*]
+
+&nbsp;
+
+# 5. Butterfly Abundance
+Researchers at the University of Colorado-Boulder investigated the effects of habitat characteristics and urbanization on grassland butterfly diversity in 1999 and 2000. The researchers identified 66 sites in the [Boulder County Open Space areas](https://www.bouldercounty.org/departments/parks-and-open-space/) that were as spatially separated as possible while also covering a variety of habitats and urbanization. The researchers recorded four broad habitats for each site (short grass, mixed (short and tall) grass, tall grass, and hayfield) and measurements of the density of buildings and the amount of urban vegatation (i.e., planted trees, shrubbery, and grasses). The researchers also went to each site in July and August 1999 and June, July, and August 2000 to recorded the number of individuals of 30 species of butterflies. For this analysis, they wanted to determine if the mean number of *all* species of butterflies combined differed among the four broad habitat types. The data for this study are in [**Butterflies.csv**](data/Butterflies.csv).

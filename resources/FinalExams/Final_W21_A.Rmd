@@ -18,16 +18,17 @@ Each section below describes a situation that requires using one of the five met
 
 Stages of this assignment are due [in GradeScope](https://www.gradescope.com/courses/211889) by (or before) the days and times shown below.
 
-* **MONDAY 11am**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
-* **TUESDAY 5pm**: Complete write-up for the **First** Situation.
-* **WEDNESDAY 5pm**: Complete write-up for the **Second** Situation.
-* **THURSDAY 5pm**: Complete write-up for the **Third** Situation.
-* **FRIDAY 5pm**: Complete write-up for the **Fourth** and **Fifth** Situations.
+* **THURSDAY 7-Apr 10pm**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
+* **SUNDAY 10-Apr 10pm**: Complete write-up for the **First** Situation.
+* **TUESDAY 12-Apr 10pm**: Complete write-up for the **Second** Situation.
+* **THURSDAY 14-Apr 10pm**: Complete write-up for the **Third** Situation.
+* **SUNDAY 17-Apr 10pm**: Complete write-up for the **Fourth** Situation.
+* **TUESDAY 19-Apr 10pm**: Complete write-up for the **Fifth** Situation.
 
 ----
 
 # 1. Maritime Fires and Duff Depth
-A changing climate is projected to increase the frequency of lightning strikes on islands within the [Apostle Islands National Lakeshore](https://www.nps.gov/apis/index.htm). These islands support large populations of [Canada Yew](https://www.conifers.org/ta/Taxus_canadensis.php) (*Taxus canadensis*), which is a species of concern in Wisconsin. Very little is known about how maritime forests will respond to fire, which makes it difficult for the Park Service to make management decisions with respect to Canada Yew and other species in these forests. David Moy, working with Drs. Sarah Johnson and Jonathan Martin, sampled vegetation in 10 m^2^ plots relative to four fires that had occurred in the islands in the last 25 years. In one part of their study, multiple transects were created within areas that had been burnt and then in control areas in the general vicinity of the fires but outside of the immediate burn area. Moy recorded the depth (cm) of the ["duff layer"](http://www.firewords.net/definitions/duff_layer.htm) at 1 m intervals along these transects. In this part of the study Moy primarily wanted to determine if the mean depth of the duff layer was reduced in areas that had been burnt, but he also wanted to characterize potential differences in the mean depth of the duff layer among the four islands. Moy's data is in  [**DuffDepth.csv**](data/DuffDepth.csv). [*Note that no transformation is perfect for these data; thus, use a scale where the assumptions "look best" according to the assumption checking plots.*]
+A changing climate is projected to increase the frequency of lightning strikes on islands within the [Apostle Islands National Lakeshore](https://www.nps.gov/apis/index.htm). These islands support large populations of [Canada Yew](https://www.conifers.org/ta/Taxus_canadensis.php) (*Taxus canadensis*), which is a species of concern in Wisconsin. Very little is known about how maritime forests will respond to fire, which makes it difficult for the Park Service to make management decisions with respect to Canada Yew and other species in these forests. David Moy, working with Drs. Sarah Johnson and Jonathan Martin, sampled vegetation in 10 m^2^ plots relative to four fires that had occurred in the islands in the last 25 years. In one part of their study, multiple transects were created within areas that had been burnt and then in control areas in the general vicinity of the fires but outside of the immediate burn area. Moy recorded the depth (cm) of the ["duff layer"](http://www.firewords.net/definitions/duff_layer.htm) at 1 m intervals along these transects. In this part of the study Moy primarily wanted to determine if the mean depth of the duff layer was reduced in areas that had been burnt, but he also wanted to characterize potential differences in the mean depth of the duff layer among the four islands. Moy's data is in  [**DuffDepth.csv**](data/DuffDepth.csv). [*Note that no transformation is perfect for these data; thus, use a transformation where the assumptions "look best" according to the assumption checking plots.*]
 
 &nbsp;
 

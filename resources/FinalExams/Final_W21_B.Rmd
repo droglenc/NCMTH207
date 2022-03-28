@@ -1,0 +1,52 @@
+---
+title: "MTH207 Capstone Assignment"
+description: |
+  **Version B**
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# DIRECTIONS
+Each section below describes a situation that requires using one of the five methods of analysis your learned during this course. For each situation you should perform the appropriate analysis and formulate your answer in the same way that you did for the "Summary" modules for each method. Please look at your previous work and the feedback that I provided on GradeScope to build upon and improve your previous work.
+
+Stages of this assignment are due [in GradeScope](https://www.gradescope.com/courses/333897) by (or before) the days and times shown below. **Make sure to upload your answers to the correct item in GradeScope (specifically note which version of the assignment that you have).**
+
+* **THURSDAY 7-Apr 10pm**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
+* **SUNDAY 10-Apr 10pm**: Complete write-up for the **First** Situation.
+* **TUESDAY 12-Apr 10pm**: Complete write-up for the **Second** Situation.
+* **THURSDAY 14-Apr 10pm**: Complete write-up for the **Third** Situation.
+* **SUNDAY 17-Apr 10pm**: Complete write-up for the **Fourth** Situation.
+* **TUESDAY 19-Apr 10pm**: Complete write-up for the **Fifth** Situation.
+
+**Any evidence for collaboration with anyone else on this assignment will result in a zero for the assignment. If you have questions, you may only ask me.**
+
+----
+
+# 1. Salamander Condition
+Amphibians are sensitive to environmental change. Weight is often one of the first characteristics of animals to reflect environmental stress. Thus, weight is a key metric recorded about individuals in animal populations. However, weight is often strongly related to length such that inherently bigger species are heavier, even if they are under environmental stress. Thus, it is critical to understand how weight is related to some measure of length. Taylor Pichler, in collaboration with Dr. Erik Olson, recorded the [snout-vent length](https://en.wikipedia.org/wiki/Snout%E2%80%93vent_length#:~:text=Snout%E2%80%93vent%20length%20(SVL),the%20cloacal%20slit%20(vent).) (mm) and weight (g) of [Blue-Spotted](https://animaldiversity.org/accounts/Ambystoma_laterale/) (*Ambystoma laterale*), [Eastern Red-Backed](https://animaldiversity.org/accounts/Plethodon_cinereus/) (*Plethodon cinereus*), and [Spotted](https://animaldiversity.org/accounts/Ambystoma_maculatum/) (*Ambystoma maculatum*) salamanders from ponds in the Chequamegon-Nicolet National Forest. Their primary objective was to "[e]xamine snout-vent length and body mass between salamander species to gain local insight on monitoring Wisconsin's salamander populations." Their data is [**Salamanders.csv**](data/Salamanders.csv). [*No transformation is perfect for these data; please use the transformation that is typical for these types of data.*]
+
+&nbsp;
+
+# 2. Soil Phosphorous
+Soil phosphorous is important as it relates to the invasion of areas with native vegetation by exotic weeds. [Clements (1983)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1442-9993.1983.tb01328.x) studied the soil phosphorous near Sydney (Australia) to determine how soil phosphorous varied with topographical location and soil type. Bushland sites were chosen in [Brisbane Waters National Park](https://www.nationalparks.nsw.gov.au/visit-a-park/parks/brisbane-water-national-park), [Ku-ring-gai Chase National Park](https://www.nationalparks.nsw.gov.au/visit-a-park/parks/kuringgai-chase-national-park), and [Royal National Park](https://www.nationalparks.nsw.gov.au/visit-a-park/parks/royal-national-park) as these areas were relatively unaffected by suburban development, were free from immediate roadside or track effects, and had not been burned for at least two years. Shale-derived and sandstone-derived soils in four topographic locations (north, south, hilltop, and valley) were examined with three 250 m^2^ quadrats in each of the eight combinations of soil type and topography. The researchers attempted to space the quadrats out as much as possible but financial constraints limited their ability to do this. Cores of soil of 75 mm depth and 25 mm diameter, free from surface litter, were collected from within each quadrat and the total soil phosphorous (ppm) was determined for each. Use the data in [**SoilPhosphorous.csv**](data/SoilPhosphorous.csv) to determine the effects of soil type (shale- or sandstone-derived) and topographic location on phosphorous levels.
+
+&nbsp;
+
+# 3. Yellow Perch Barotrauma
+Many fishes cannot regulate the air in their air bladder when they are pulled quickly from deep waters (this phenomenon is called [barotrauma](https://en.wikipedia.org/wiki/Barotrauma)). Because of this, many fishes may die when released after being captured. [Knight *et al.* (2019)](https://meridian.allenpress.com/jfwm/article/10/1/69/204139/Is-Barotrauma-an-Important-Factor-in-the-Discard#11051974) examined the effect of barotrauma on the discard mortality of [Yellow Perch](https://en.wikipedia.org/wiki/Yellow_perch) (*Perca flavescens*) in [Lake Erie](https://en.wikipedia.org/wiki/Lake_Erie). One particular area of interest in their research was the effect of depth of capture on the incidence of barotrauma for Yellow Perch. To examine this, they captured Yellow Perch in gillnets set at a variety of depths during a variety of months over six years. For each fish captured, the researchers recorded the fish's total length, whether the fish exhibited signs of barotrauma or not, and at what depth it was captured. These data are found in [**barotrauma.csv**](data/barotrauma.csv). Use these results to examine the effect of depth of capture on signs of barotrauma.
+
+&nbsp;
+
+# 4. Milwaukee Bucks Shooting
+In a basketball game players "shoot" a basketball at a "goal" and if the ball goes through the goal they score points. The number of points depends on the distance from which the ball was shot, with more distant shots counting for three points. The goal of the game is to score more points than your opponent. A student in a previous class hypothesized that the mean number of three-point shots attempted per game in the [National Basketball Association (NBA)](https://www.nba.com/) has increased in recent years as there has been an emphasis on scoring more points as quickly as possible. Data for every NBA game from the 2014-18 seasons is in [**NBA14-18.csv**](data/NBA14-18.csv). Use the data for the [Milwaukee Bucks](https://www.nba.com/bucks/), an NBA team, to examine the student's hypothesis. [*Note that the Bucks are "MIL" in the "Team" variable and the number of three-point shots attempted is in the "FG3.Att" variable. Also carefully examine the "Season" variable.*]
+
+&nbsp;
+
+# 5. Snowmelt
+[Billy Barr](https://en.wikipedia.org/wiki/Billy_Barr_(naturalist)) is an amateur natural historian living at the base of [Gothic Mountain, CO](https://en.wikipedia.org/wiki/Gothic_Mountain). In the early 1970s he began keeping [phenological records](https://en.wikipedia.org/wiki/Phenology) to [stave off boredom](https://www.theatlantic.com/science/archive/2017/01/billy-barr-climate-change/512198/). One of the things that he recorded was the last day that any snow existed on a 5x5 m plot near his home. These data have been used by numerous scientists to understand how climate change is affecting local phenology. [Campbell (2019)](https://www.pnas.org/content/116/26/12901) used and extended Barr's data to better understand the effect of shorter winters on populations of subalpine plants. In one part of her study she examined the relationship between Barr's last day of snow (i.e., the day of snowmelt recorded as the number of days since January 1) and the year of the recording. She used this relationship to predict when several species of plants would be in critical danger of going extinct. Use the data in [**snowmelt.csv**](data/snowmelt.csv) to determine if snowmelt date has decreased over time.
