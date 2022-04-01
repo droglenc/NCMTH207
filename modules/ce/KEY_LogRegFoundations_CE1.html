@@ -1,0 +1,101 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Logistic Regression Foundations"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div id="fair-coin" class="section level1">
+<h1>Fair Coin</h1>
+<ol>
+<li>The probability of flipping a head is <span class="math inline">\(\frac{1}{2}\)</span>=0.5.</li>
+<li>The odds of flipping a head is <span class="math inline">\(\frac{0.5}{0.5}\)</span>=1.</li>
+<li>The odds of flipping a tail is <span class="math inline">\(\frac{0.5}{0.5}\)</span>=1.</li>
+<li>the log odds of flipping a head is log(1)=0.</li>
+</ol>
+<p> </p>
+</div>
+<div id="fair-die" class="section level1">
+<h1>Fair Die</h1>
+<ol>
+<li>The probability of rolling a six is <span class="math inline">\(\frac{1}{6}\)</span>=0.167.</li>
+<li>The odds of rolling a six is <span class="math inline">\(\frac{0.167}{1-0.167}\)</span>=0.2.</li>
+<li>The log odds of rolling a is log(0.2)=-1.609.</li>
+<li>The probability of <em>not</em> rolling a six is <span class="math inline">\(\frac{5}{6}\)</span>=0.833.</li>
+<li>The odds of <em>not</em> rolling a six is <span class="math inline">\(\frac{0.833}{1-0.833}\)</span>=5.</li>
+<li>The log odds of <em>not</em> rolling a is log(5)=1.6094379.</li>
+<li>The probability of rolling a four, five, or six is <span class="math inline">\(\frac{3}{6}\)</span>=0.5.</li>
+<li>The odds of rolling a four, five, or six is <span class="math inline">\(\frac{0.5}{0.5}\)</span>=1.</li>
+<li>The log odds of rolling a four, five, or six is log(1)=0.</li>
+<li>The odds are 1 when the probability is 0.5.</li>
+<li>The odds are between 0 and 1 when the probability is &lt;0.5.</li>
+<li>The odds are &gt;1 when the probability is &gt;0.5.</li>
+<li>The log odds are 0 when the probability is 0.5.</li>
+<li>The log odds are negative when the probability is &lt;0.5.</li>
+<li>The log odds are positive when the probability is &gt;0.5.</li>
+</ol>
+<p> </p>
+</div>
+<div id="marketability-of-cucumbers" class="section level1">
+<h1>Marketability of Cucumbers</h1>
+<ol>
+<li>The log odds for the sale of a cucumber after 14 days in storage is 6.43-0.33×14=1.81.</li>
+<li>The odds for the sale of a cucumber after 14 days in storage is e<sup>1.81</sup>=6.11.</li>
+<li>The probability for the sale of a cucumber after 14 days in storage is <span class="math inline">\(\frac{6.11}{1+6.11}\)</span>=0.859.</li>
+<li>The log odds for the sale of a cucumber after 15 days in storage is 6.43-0.33×15=1.48.</li>
+<li>The difference of log odds is 1.48-1.81=-0.33. This is the same as the slope (β); i.e., the <strong>difference in log odds</strong> after a one unit increase in the explanatory variable.</li>
+<li>The odds for the sale of a cucumber after 15 days in storage is e<sup>1.48</sup>=4.393.</li>
+<li>The ratio of odds is <span class="math inline">\(\frac{4.393}{6.11}\)</span>=0.719. This is the same as the exponentiated slope (e<sup>β</sup>=e<sup>-0.33</sup>=0.719); i.e., the <strong>ratio of odds</strong> after a one unit increase in the explanatory variable.</li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
