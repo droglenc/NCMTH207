@@ -75,7 +75,7 @@ x5 <- predX(0.05,alpha,beta)
 
 ```
 
-1. The equation of the best-fit logistic regression line if $log\left(\frac{p}{1-p}\right)$=`r alpha`+`r beta`&times;canine.
+1. The equation of the best-fit logistic regression line if $log\left(\frac{p}{1-p}\right)$=`r alpha`+`r beta`&times;canine, where p is the probability that the bat is of the *cinereus* subspecies and canine is the height of the canine tooth in mm.
 1. The slope means that as the canine tooth height increases by 1 mm the log odds that the bat is a *cinereus* subspecies increases by between `r cfs.bat[2,2]` and `r cfs.bat[2,3]`.
 1. The exponentiated slope means that as the canine tooth height increases by 1 mm the odds that the bat is a *cinereus* subspecies increases between `r formatC(ecfs.bat[2,2],format="f",digits=0)` and `r formatC(ecfs.bat[2,3],format="f",digits=0)` times. *Note that these values are so ridiculous because an increase of 1 mm essentially covers the whole range of observed canine tooth heights.*
 1. The log odds of being a *cinereus* if the canine tooth height is 3 mm is `r alpha`+`r beta`&times;3=**`r formatC(lodds3,format="f",digits=3)`**.
