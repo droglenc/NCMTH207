@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 # DIRECTIONS
 Each section below describes a situation that requires using one of the five methods of analysis your learned during this course. For each situation you should perform the appropriate analysis and formulate your answer in the same way that you did for the "Summary" modules for each method. Please look at your previous work and the feedback that I provided on GradeScope to build upon and improve your previous work.
 
-Stages of this assignment are due [in GradeScope](https://www.gradescope.com/courses/333897) by (or before) the days and times shown below. **Make sure to upload your answers to the correct item in GradeScope (specifically note which version of the assignment that you have).**
+Stages of this assignment are due [in GradeScope](https://www.gradescope.com/courses/333897) by (or before) the days and times shown below. **Make sure to upload your answers to the correct item in GradeScope (specifically note which version of the assignment that you have).** *All answers should be typed (or from knitting).*
 
 * **THURSDAY 7-Apr 10pm**: For each situation, say which analytical method you plan to use and SPECIFICALLY explain why you have chosen that method (*Hint: think about types of variables*.)
 * **SUNDAY 10-Apr 10pm**: Complete write-up for the **First** Situation.
