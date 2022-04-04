@@ -14,7 +14,7 @@ output:
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
 ## Knit first, makes appropriate HTML file and moves to CE directory
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_LogRegAnalysis_CE1")
+modHTML_CEKeys("KEY_LogRegAnalysis_CE1",need2render=FALSE)
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
