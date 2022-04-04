@@ -18,12 +18,12 @@ Note that your confidence interval values may be slightly different than mine be
 <h1>Ruffe Feeding</h1>
 <ol>
 <li>There is a significant relationship between the probability that the Ruffe consumed a <em>Daphnia</em> and the length of the Ruffe (LRT p&lt;0.00005).</li>
-<li>The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a <em>Daphnia</em> increases between 1.019 and 1.906.</li>
-<li>The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a <em>Daphnia</em> is between 2.769 and 6.729 times greater.</li>
-<li>The probability that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is between 0.014 and 0.107. Thus, only between 1.4% and 10.7% of 6-mm Ruffe are likely to have consumed a <em>Daphnia</em>.</li>
-<li>The odds that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is 0.058. Thus, it is 17.115 times more likely that a 6-mm Ruffe has NOT consumed a <em>Daphnia</em> than it is that is HAS consumed a <em>Daphnia</em>.</li>
-<li>The length where 50% of Ruffe have consumed a <em>Daphnia</em> is between 7.746 and 8.563.</li>
-<li>The length where 90% of Ruffe have consumed a <em>Daphnia</em> is between 9.176 and 10.562.</li>
+<li>The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a <em>Daphnia</em> increases between 1.018 and 1.938.</li>
+<li>The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a <em>Daphnia</em> is between 2.768 and 6.944 times greater.</li>
+<li>The probability that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is between 0.013 and 0.108. Thus, only between 1.3% and 10.8% of 6-mm Ruffe are likely to have consumed a <em>Daphnia</em>.</li>
+<li>The odds that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is 0.058. Thus, it is 17.115 times more likely that a 6-mm Ruffe has NOT consumed a <em>Daphnia</em> than it is that it HAS consumed a <em>Daphnia</em>.</li>
+<li>The length where 50% of Ruffe have consumed a <em>Daphnia</em> is between 7.756 and 8.570 mm.</li>
+<li>The length where 90% of Ruffe have consumed a <em>Daphnia</em> is between 9.118 and 10.533 mm.</li>
 <li>The best-fit logistic regression line is shown below.</li>
 </ol>
 <div id="r-code-and-results" class="section level3">
@@ -48,9 +48,9 @@ NULL                   163    218.467
 len   1   130.81       162     87.659 &lt; 2.2e-16</code></pre>
 <pre class="r"><code>&gt; boot.Ruffe &lt;- car::Boot(glm.Ruffe)
 &gt; cbind(Est=coef(glm.Ruffe),confint(boot.Ruffe,type=&quot;perc&quot;))</code></pre>
-<pre><code>                   Est       2.5 %    97.5 %
-(Intercept) -10.711628 -16.0590802 -8.200433
-len           1.311943   0.9878346  1.934964</code></pre>
+<pre><code>                   Est      2.5 %    97.5 %
+(Intercept) -10.711628 -15.934001 -8.322682
+len           1.311943   1.007326  1.953905</code></pre>
 <pre class="r"><code>&gt; nd &lt;- data.frame(len=6)
 &gt; ( lodds6 &lt;- predict(glm.Ruffe,newdata=nd) )</code></pre>
 <pre><code>       1 
@@ -64,15 +64,15 @@ len           1.311943   0.9878346  1.934964</code></pre>
 <pre class="r"><code>&gt; prob6.boot &lt;- predProb(6,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 &gt; ( prob6.ci &lt;- quantile(prob6.boot,probs=c(0.025,0.975),type=1) )</code></pre>
 <pre><code>      2.5%      97.5% 
-0.01341961 0.10855713 </code></pre>
+0.01237052 0.10864974 </code></pre>
 <pre class="r"><code>&gt; x50.boot &lt;- predX(0.5,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 &gt; ( x50.ci &lt;- quantile(x50.boot,probs=c(0.025,0.975),type=1) )</code></pre>
 <pre><code>    2.5%    97.5% 
-7.771382 8.599448 </code></pre>
+7.722297 8.586595 </code></pre>
 <pre class="r"><code>&gt; x90.boot &lt;- predX(0.9,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
 &gt; ( x90.ci &lt;- quantile(x90.boot,probs=c(0.025,0.975),type=1) )</code></pre>
 <pre><code>     2.5%     97.5% 
- 9.150713 10.584932 </code></pre>
+ 9.141231 10.546048 </code></pre>
 <pre class="r"><code>&gt; ggplot(data=Ruffe,mapping=aes(x=len,y=daph01)) +
     geom_point(alpha=0.1) +
     geom_smooth(method=&quot;glm&quot;,method.args=list(family=binomial)) +

@@ -61,9 +61,9 @@ odds6 <- exp(lodds6)
 1. The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a *Daphnia* increases between `r formatC(cfs.Ruffe[2,2],format="f",digits=3)` and `r formatC(cfs.Ruffe[2,3],format="f",digits=3)`.
 1. The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a *Daphnia* is between `r formatC(exp(cfs.Ruffe[2,2]),format="f",digits=3)` and `r formatC(exp(cfs.Ruffe[2,3]),format="f",digits=3)` times greater.
 1. The probability that a 6-mm Ruffe will have consumed a *Daphnia* is between `r formatC(prob6.ci[[1]],format="f",digits=3)` and `r formatC(prob6.ci[[2]],format="f",digits=3)`. Thus, only between `r formatC(100*prob6.ci[[1]],format="f",digits=1)`% and `r formatC(100*prob6.ci[[2]],format="f",digits=1)`% of 6-mm Ruffe are likely to have consumed a *Daphnia*.
-1. The odds that a 6-mm Ruffe will have consumed a *Daphnia* is `r formatC(odds6,format="f",digits=3)`. Thus, it is `r formatC(1/odds6,format="f",digits=3)` times more likely that a 6-mm Ruffe has NOT consumed a *Daphnia* than it is that is HAS consumed a *Daphnia*.
-1. The length where 50% of Ruffe have consumed a *Daphnia* is between `r formatC(x50.ci[[1]],format="f",digits=3)` and `r formatC(x50.ci[[2]],format="f",digits=3)`.
-1. The length where 90% of Ruffe have consumed a *Daphnia* is between `r formatC(x90.ci[[1]],format="f",digits=3)` and `r formatC(x90.ci[[2]],format="f",digits=3)`.
+1. The odds that a 6-mm Ruffe will have consumed a *Daphnia* is `r formatC(odds6,format="f",digits=3)`. Thus, it is `r formatC(1/odds6,format="f",digits=3)` times more likely that a 6-mm Ruffe has NOT consumed a *Daphnia* than it is that it HAS consumed a *Daphnia*.
+1. The length where 50% of Ruffe have consumed a *Daphnia* is between `r formatC(x50.ci[[1]],format="f",digits=3)` and `r formatC(x50.ci[[2]],format="f",digits=3)` mm.
+1. The length where 90% of Ruffe have consumed a *Daphnia* is between `r formatC(x90.ci[[1]],format="f",digits=3)` and `r formatC(x90.ci[[2]],format="f",digits=3)` mm.
 1. The best-fit logistic regression line is shown below.
 
 ### R Code and Results
