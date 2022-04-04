@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Derek H. Ogle" />
+
+
+<title>Exercise Key</title>
+
+<script src="KEY_LogRegAnalysis_CE1_files/header-attrs-2.11/header-attrs.js"></script>
+<script src="KEY_LogRegAnalysis_CE1_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="KEY_LogRegAnalysis_CE1_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="KEY_LogRegAnalysis_CE1_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="KEY_LogRegAnalysis_CE1_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="KEY_LogRegAnalysis_CE1_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="KEY_LogRegAnalysis_CE1_files/navigation-1.1/tabsets.js"></script>
+<link href="KEY_LogRegAnalysis_CE1_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="KEY_LogRegAnalysis_CE1_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="/css/modules.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Exercise Key</h1>
+<h3 class="subtitle">Logistic Regression Analysis</h3>
+<h4 class="author">Derek H. Ogle</h4>
+
+</div>
+
+
+<div class="alert alert-warning">
+<ul>
+<li>
+Note that your confidence interval values may be slightly different than mine because there is an inherent randomization that occurs with bootstrapping. They should not be very different.
+</li>
+</ul>
+</div>
+<div id="ruffe-feeding" class="section level1">
+<h1>Ruffe Feeding</h1>
+<ol style="list-style-type: decimal">
+<li>There is a significant relationship between the probability that the Ruffe consumed a <em>Daphnia</em> and the length of the Ruffe (LRT p&lt;0.00005).</li>
+<li>The slope says that as the length of the Ruffe increases by one mm then the log odds of having consumed a <em>Daphnia</em> increases between 1.019 and 1.906.</li>
+<li>The exponentiated slope says that as the length of the Ruffe increases by one mm then the odds of having consumed a <em>Daphnia</em> is between 2.769 and 6.729 times greater.</li>
+<li>The probability that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is between 0.014 and 0.107. Thus, only between 1.4% and 10.7% of 6-mm Ruffe are likely to have consumed a <em>Daphnia</em>.</li>
+<li>The odds that a 6-mm Ruffe will have consumed a <em>Daphnia</em> is 0.058. Thus, it is 17.115 times more likely that a 6-mm Ruffe has NOT consumed a <em>Daphnia</em> than it is that is HAS consumed a <em>Daphnia</em>.</li>
+<li>The length where 50% of Ruffe have consumed a <em>Daphnia</em> is between 7.746 and 8.563.</li>
+<li>The length where 90% of Ruffe have consumed a <em>Daphnia</em> is between 9.176 and 10.562.</li>
+<li>The best-fit logistic regression line is shown below.</li>
+</ol>
+<div id="r-code-and-results" class="section level3">
+<h3>R Code and Results</h3>
+<pre class="r"><code>&gt; predProb &lt;- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+&gt; predX &lt;- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+&gt; Ruffe &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCData/master/RuffeLarvalDiet.csv&quot;)
+&gt; Ruffe &lt;- filter(Ruffe,loc==&quot;Allouez&quot;)
+&gt; Ruffe$daph01 &lt;- ifelse(Ruffe$o.daph==&quot;Y&quot;,1,0)
+&gt; glm.Ruffe &lt;- glm(daph01~len,data=Ruffe,family=binomial)
+&gt; anova(glm.Ruffe,test=&quot;LRT&quot;)</code></pre>
+<pre><code>Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: daph01
+
+Terms added sequentially (first to last)
+
+     Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)
+NULL                   163    218.467          
+len   1   130.81       162     87.659 &lt; 2.2e-16</code></pre>
+<pre class="r"><code>&gt; boot.Ruffe &lt;- car::Boot(glm.Ruffe)
+&gt; cbind(Est=coef(glm.Ruffe),confint(boot.Ruffe,type=&quot;perc&quot;))</code></pre>
+<pre><code>                   Est       2.5 %    97.5 %
+(Intercept) -10.711628 -16.0590802 -8.200433
+len           1.311943   0.9878346  1.934964</code></pre>
+<pre class="r"><code>&gt; nd &lt;- data.frame(len=6)
+&gt; ( lodds6 &lt;- predict(glm.Ruffe,newdata=nd) )</code></pre>
+<pre><code>       1 
+-2.83997 </code></pre>
+<pre class="r"><code>&gt; exp(lodds6)</code></pre>
+<pre><code>         1 
+0.05842739 </code></pre>
+<pre class="r"><code>&gt; ( prob6 &lt;- predict(glm.Ruffe,newdata=nd,type=&quot;response&quot;) )</code></pre>
+<pre><code>         1 
+0.05520208 </code></pre>
+<pre class="r"><code>&gt; prob6.boot &lt;- predProb(6,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
+&gt; ( prob6.ci &lt;- quantile(prob6.boot,probs=c(0.025,0.975),type=1) )</code></pre>
+<pre><code>      2.5%      97.5% 
+0.01341961 0.10855713 </code></pre>
+<pre class="r"><code>&gt; x50.boot &lt;- predX(0.5,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
+&gt; ( x50.ci &lt;- quantile(x50.boot,probs=c(0.025,0.975),type=1) )</code></pre>
+<pre><code>    2.5%    97.5% 
+7.771382 8.599448 </code></pre>
+<pre class="r"><code>&gt; x90.boot &lt;- predX(0.9,boot.Ruffe$t[,1],boot.Ruffe$t[,2])
+&gt; ( x90.ci &lt;- quantile(x90.boot,probs=c(0.025,0.975),type=1) )</code></pre>
+<pre><code>     2.5%     97.5% 
+ 9.150713 10.584932 </code></pre>
+<pre class="r"><code>&gt; ggplot(data=Ruffe,mapping=aes(x=len,y=daph01)) +
+    geom_point(alpha=0.1) +
+    geom_smooth(method=&quot;glm&quot;,method.args=list(family=binomial)) +
+    labs(x=&quot;Total Length (mm)&quot;,y=&quot;Probability of Consuming a Daphnia&quot;) +
+    theme_NCStats()</code></pre>
+<p><img src="KEY_LogRegAnalysis_CE1_files/figure-html/unnamed-chunk-4-1.png" width="336" /></p>
+<p> </p>
+<!----
+# X-Rated Movies
+
+
+
+1. There is a significant relationship between whether or not the respondent had watched an x-rated movie in the last year and their age (LRT p<0.00005).
+1. The slope says that as the age of the respondent increases by one year then the log odds of having watched an x-rated movie in the last year decreases between -0.047 and -0.043.
+1. The exponentiated slope says that as the age of the respondent increases by one year then the odds of having watched an x-rated movie in the last year decreases between 0.954 and 0.958 times. In other words, the odds of having watched an x-rated movie in the last year decline between 4.2 and 4.6% for each increase of one year in age.
+1. The odds of a 50-years-old having watched an x-rated movie in the last year is 0.202. Thus, the probability that 50-year old watched an x-rated movie in the last year is 0.202 times more likely than not having watched an x-rated movie in the last year.
+1. The probability that a 50-years-old will have watched an x-rated movie in the last year is between 0.162 and 0.173.
+1. The age where 10% or fewer of respondents are likely to have watch an x-rated movie in the last year is between 62.0 and 64.7.
+1. The age where 25% or more of respondents are likely to have watch an x-rated movie in the last year is between 38.1 and 39.4.
+1. The best-fit logistic regression line is shown below.
+
+
+### R Code and Results
+
+```r
+> ggplot(data=xxx,mapping=aes(x=age,y=seen01)) +
+    geom_point(alpha=0.01) +
+    geom_smooth(method="glm",method.args=list(family=binomial)) +
+    labs(x="Age of Respondent",y="Prob. of Seeing XXX Movie in Last Year") +
+    theme_NCStats()
+```
+
+<img src="KEY_LogRegAnalysis_CE1_files/figure-html/unnamed-chunk-6-1.png" width="336" />
+
+
+# Moose Calf Production
+
+
+```r
+> aov.p.m <- kPvalue(anova(glm.m,test="LRT")$"Pr(>Chi)"[2],latex=FALSE)
+> cfs.m <- cbind(Est=coef(glm.m),confint(boot.m,type="perc"))
+> odds10 <- exp(lodds10)
+```
+
+1. There is a significant relationship between whether or not the female had at least one calf and the age of the female (LRT p=0.0002).
+1. The slope says that as the age of the moose increases by one year then the log odds of having at least one calf decreases between -0.202 and -0.055.
+1. The exponentiated slope says that as the age of the moose increases by one year then the odds of having at least one calf decreases between 0.817 and 0.947 times. In other words, the odds of having at least one decline between 5.3 and 5.3% for each increase of one year in age.
+1. The log odds of a 10-years-old female moose having at least one calf is 0.797.
+1. The odds of a 10-years-old female moose having at least one calf is 2.220. Thus, the probability that 10-year old female moose will have at least one calf is 2.2 times more likely than not having a calf.
+1. The probability that a 10-years-old female moose will have at least one calf is between 0.617 and 0.757.
+1. The where 75% or fewer of female moose have at least one calf is between 5.733 and 10.587.
+1. The best-fit logistic regression line is shown below.
+
+### R Code and Results
+
+```r
+> predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+> predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+> m <- readxl::read_excel("../data/10_3996_032013-jfwm-028_s1.xls")
+> m$calf01 <- ifelse(m$"Calf production status"=="Yes",1,0)
+> glm.m <- glm(calf01~Age,data=m,family=binomial)
+> anova(glm.m,test="LRT")
+```
+
+```
+Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: calf01
+
+Terms added sequentially (first to last)
+
+     Df Deviance Resid. Df Resid. Dev  Pr(>Chi)
+NULL                   415     444.58          
+Age   1   13.806       414     430.77 0.0002027
+```
+
+```r
+> boot.m <- car::Boot(glm.m)
+> cbind(Est=coef(glm.m),confint(boot.m,type="perc"))
+```
+
+```
+                   Est      2.5 %      97.5 %
+(Intercept)  2.0870940  1.5730999  2.70861383
+Age         -0.1289597 -0.1993591 -0.05939881
+```
+
+```r
+> nd <- data.frame(Age=10)
+> ( lodds10 <- predict(glm.m,newdata=nd) )
+```
+
+```
+        1 
+0.7974973 
+```
+
+```r
+> exp(lodds10)
+```
+
+```
+       1 
+2.219978 
+```
+
+```r
+> ( prob10 <- predict(glm.m,newdata=nd,type="response") )
+```
+
+```
+        1 
+0.6894389 
+```
+
+```r
+> prob10.boot <- predProb(10,boot.m$t[,1],boot.m$t[,2])
+> ( prob10.ci <- quantile(prob10.boot,probs=c(0.025,0.975),type=1) )
+```
+
+```
+     2.5%     97.5% 
+0.6277072 0.7540970 
+```
+
+```r
+> x75.boot <- predX(0.75,boot.m$t[,1],boot.m$t[,2])
+> ( x75.ci <- quantile(x75.boot,probs=c(0.025,0.975),type=1) )
+```
+
+```
+     2.5%     97.5% 
+ 5.923967 10.129007 
+```
+
+```r
+> ggplot(data=m,mapping=aes(x=Age,y=calf01)) +
+    geom_point(alpha=0.01) +
+    geom_smooth(method="glm",method.args=list(family=binomial)) +
+    labs(x="Age of Female Moose",y="Probability of At Least 1 Calf") +
+    theme_NCStats()
+```
+
+```
+`geom_smooth()` using formula 'y ~ x'
+```
+
+<img src="KEY_LogRegAnalysis_CE1_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+--->
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
