@@ -35,7 +35,7 @@ source("../../../rhelpers/knitr_setup.R")
 
 ----
 
-# Black Bear Weight
+# Diabetes
 ```{r echo=FALSE}
 predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
 predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
