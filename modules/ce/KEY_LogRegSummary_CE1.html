@@ -1,0 +1,127 @@
+---
+layout: page
+title: "Exercise Key"
+subtitle: "Logistic Regression Summary"
+author: Derek H. Ogle
+css: "/css/modules.css"
+---
+
+
+<hr />
+<div class="alert alert-warning">
+<strong>Note:</strong>
+<ul>
+<li>
+There are no “groups” in logistic regression; thus, you do not assess “within-” and “among-group” independence here.
+</li>
+<li>
+When describing the relationship, use the confidence interval for the back-transformed slope. Don’t just use the back-transformed slope.
+</li>
+</ol>
+</ul>
+</div>
+<hr />
+<div id="diabetes" class="section level1">
+<h1>Diabetes</h1>
+<p>Health service professionals working with the Pima peoples were interested in developing a model that might be used to predict diabetes for women of Pima heritage from other more readily measured variables. To begin this process the researchers derived a dataset from data housed by the National Institute of Diabetes and Digestive and Kidney Diseases for women of Pima heritage that were at least 21 years old. Here I will use plasma glucose concentration (Glucose) to possibly develop a model to predict the presence of diabetes or not.</p>
+<p>The specific hypotheses for this analysis are:</p>
+<p>H<sub>0</sub>: “no relationship between having diabetes and plasma glucose level”</p>
+<p>H<sub>A</sub>: “is a relationship between having diabetes and plasma glucose level”</p>
+<p>A total of 763 women were included in this study. The women are all related in the sense that they are all of Pima heritage and, presumably, from similar areas in Arizona. However, there is no indication that all or even a vast majority of the women are connected in any way beyond that (e.g., familial ties, etc.). Thus, independence is likely met.</p>
+<p>There is considerable variability in the data but the fitted-line plot indicates that the model captures the general increase in the probability of having diabetes with the increase in plasma glucose level (see fitted line plot below).</p>
+<p>There does appear to be a significant relationship between the probability of having diabetes with the increase in plasma glucose level (LRT: p&lt;0.00005). In fact it appears that the odds of having diabetes is between 1.035 and 1.048 times greater when the plasma glucose concentration increases by 1 unit. One unit of increase in glucose concentration does not appear to be a substantial amount, so stated differently, the odds of having diabetes is between 1.413 and 1.602 times greater when the plasma glucose concentration increases by 10 unit. In still other words, the odds of having diabetes is between 41.3 and 60.2% greater when the plasma glucose concentration increases by 10 unit.</p>
+<p>As an example, the probability of having diabetes for a woman with a glucose level of 100 is between 0.129 and 0.194. In addition, the glucose level where 50% of females have diabetes is between 135.9 and 145.8.</p>
+<p>These results indicated a significant relationship between the probability of having diabetes and plasma glucose level for women older the 21 years and of Pima heritage. I also demonstrated how the model could be used to predict the probability that a woman has diabetes give her plasma glucose level.</p>
+<div id="r-code-and-results." class="section level3">
+<h3>R Code and Results.</h3>
+<pre class="r"><code>predProb &lt;- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
+predX &lt;- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
+
+db &lt;- read.csv(&quot;https://raw.githubusercontent.com/droglenc/NCMTH207/gh-pages/modules/ce/data/diabetes.csv&quot;)
+db &lt;- filter(db,Glucose&gt;0)
+nrow(db)</code></pre>
+<pre><code>[1] 763</code></pre>
+<pre class="r"><code>logreg &lt;- glm(Outcome~Glucose,data=db,family=binomial)
+anova(logreg,test=&quot;LRT&quot;)</code></pre>
+<pre><code>Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: Outcome
+
+Terms added sequentially (first to last)
+
+        Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)
+NULL                      762     986.70          
+Glucose  1   200.14       761     786.56 &lt; 2.2e-16</code></pre>
+<pre class="r"><code>b_logreg &lt;- car::Boot(logreg)
+cbind(Ests=coef(logreg),confint(b_logreg,type=&quot;perc&quot;))</code></pre>
+<pre><code>                   Ests       2.5 %      97.5 %
+(Intercept) -5.71508764 -6.69930706 -4.91163037
+Glucose      0.04063362  0.03431723  0.04810239</code></pre>
+<pre class="r"><code>p_prob &lt;- predProb(100,b_logreg$t[,1],b_logreg$t[,2])
+( ci_prob &lt;- quantile(p_prob,c(0.025,0.975),type=1) )</code></pre>
+<pre><code>     2.5%     97.5% 
+0.1294508 0.1928532 </code></pre>
+<pre class="r"><code>p_x &lt;- predX(0.50,b_logreg$t[,1],b_logreg$t[,2])
+( ci_x &lt;- quantile(p_x,c(0.025,0.975),type=1) )</code></pre>
+<pre><code>    2.5%    97.5% 
+135.8575 145.8956 </code></pre>
+<pre class="r"><code>ggplot(data=db,mapping=aes(x=Glucose,y=Outcome)) +
+  geom_point(alpha=0.05) +
+  geom_smooth(method=&quot;glm&quot;,method.args=list(family=binomial)) +
+  labs(x=&quot;Plasma Glucose Concentration&quot;,
+       y=&quot;Probability of Having Diabetes&quot;) +
+  theme_NCStats()</code></pre>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="KEY_LogRegSummary_CE1_files/figure-html/unnamed-chunk-4-1.png" width="336" /></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
