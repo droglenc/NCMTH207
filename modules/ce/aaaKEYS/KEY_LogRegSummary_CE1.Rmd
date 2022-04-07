@@ -12,13 +12,13 @@ output:
 ---
 
 ```{r echo=FALSE, eval=FALSE, warning=FALSE}
-## Renders an appropriate HTML file and moves to CE directory
+## Knit first, then this renders an HTML file and moves to CE directory
 source("modules/ce/aaaKeys/zzz_modHTML_CEKeys.R")
-modHTML_CEKeys("KEY_SLRSummary_CE1")
+modHTML_CEKeys("KEY_LogRegSummary_CE1",need2render=FALSE)
 ```
 ```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(ggplot2)
 library(NCStats)
-library(tidyverse)
 source("../../../rhelpers/knitr_setup.R")
 ```
 
@@ -36,31 +36,25 @@ source("../../../rhelpers/knitr_setup.R")
 ----
 
 # Diabetes
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE}
 predProb <- function(x,alpha,beta) exp(alpha+beta*x)/(1+exp(alpha+beta*x))
 predX <- function(p,alpha,beta) (log(p/(1-p))-alpha)/beta
 
 db <- read.csv("https://raw.githubusercontent.com/droglenc/NCMTH207/gh-pages/modules/ce/data/diabetes.csv")
-db <- filter(db,Glucose>0)
+db <- dplyr::filter(db,Glucose>0)
 n <- nrow(db)
 
 logreg <- glm(Outcome~Glucose,data=db,family=binomial)
 
 aov.db <- anova(logreg,test="LRT")
 b_logreg <- car::Boot(logreg)
-cfs <- cbind(Ests=coef(logreg),confint(b_logreg,type="perc"))
-btslp <- exp(cfs[2,])
+#cfs <- cbind(Ests=coef(logreg),confint(b_logreg,type="perc"))
+btslp <- exp(c(Ests=0.04063362,
+               "95% LCI"=0.03459031,"95% UCI"=0.04710694))
 p_prob <- predProb(100,b_logreg$t[,1],b_logreg$t[,2])
 ci_prob <- quantile(p_prob,c(0.025,0.975),type=1)
 p_x <- predX(0.50,b_logreg$t[,1],b_logreg$t[,2])
 ci_x <- quantile(p_x,c(0.025,0.975),type=1)
-
-ggplot(data=db,mapping=aes(x=Glucose,y=Outcome)) +
-  geom_point(alpha=0.05) +
-  geom_smooth(method="glm",method.args=list(family=binomial)) +
-  labs(x="Plasma Glucose Concentration",
-       y="Probability of Having Diabetes") +
-  theme_NCStats()
 ```
 
 Health service professionals working with the Pima peoples were interested in developing a model that might be used to predict diabetes for women of Pima heritage from other more readily measured variables. To begin this process the researchers derived a dataset from data housed by the National Institute of Diabetes and Digestive and Kidney Diseases for women of Pima heritage that were at least 21 years old. Here I will use plasma glucose concentration (Glucose) to possibly develop a model to predict the presence of diabetes or not.
@@ -75,7 +69,7 @@ A total of `r n` women were included in this study. The women are all related in
 
 There is considerable variability in the data but the fitted-line plot indicates that the model captures the general increase in the probability of having diabetes with the increase in plasma glucose level (see fitted line plot below).
 
-There does appear to be a significant relationship between the probability of having diabetes with the increase in plasma glucose level (LRT: `r kPvalue(aov.db$"Pr(>Chi)"[2],latex=FALSE)`). In fact it appears that the odds of having diabetes is between `r formatC(btslp[["95% LCI"]],format="f",digits=3)` and `r formatC(btslp[["95% UCI"]],format="f",digits=3)` times greater when the plasma glucose concentration increases by 1 unit. One unit of increase in glucose concentration does not appear to be a substantial amount, so stated differently, the odds of having diabetes is between `r formatC(btslp[["95% LCI"]]^10,format="f",digits=3)` and `r formatC(btslp[["95% UCI"]]^10,format="f",digits=3)` times greater when the plasma glucose concentration increases by 10 unit. In still other words, the odds of having diabetes is between `r formatC((btslp[["95% LCI"]]^10-1)*100,format="f",digits=1)` and `r formatC((btslp[["95% UCI"]]^10-1)*100,format="f",digits=1)`% greater when the plasma glucose concentration increases by 10 unit.
+There does appear to be a significant relationship between the probability of having diabetes with the increase in plasma glucose level (LRT: `r kPvalue(aov.db$"Pr(>Chi)"[2],latex=FALSE)`). In fact it appears that the odds of having diabetes is between `r formatC(btslp["95% LCI"],format="f",digits=3)` and `r formatC(btslp["95% UCI"],format="f",digits=3)` times greater when the plasma glucose concentration increases by 1 unit. One unit of increase in glucose concentration does not appear to be a substantial amount, so stated differently, the odds of having diabetes is between `r formatC(btslp["95% LCI"]^10,format="f",digits=3)` and `r formatC(btslp["95% UCI"]^10,format="f",digits=3)` times greater when the plasma glucose concentration increases by 10 unit. In still other words, the odds of having diabetes is between `r formatC((btslp["95% LCI"]^10-1)*100,format="f",digits=1)` and `r formatC((btslp["95% UCI"]^10-1)*100,format="f",digits=1)`% greater when the plasma glucose concentration increases by 10 unit.
 
 As an example, the probability of having diabetes for a woman with a glucose level of 100 is between `r formatC(ci_prob[["2.5%"]],format="f",digits=3)` and `r formatC(ci_prob[["97.5%"]],format="f",digits=3)`. In addition, the glucose level where 50% of females have diabetes is between `r formatC(ci_x[["2.5%"]],format="f",digits=1)` and `r formatC(ci_x[["97.5%"]],format="f",digits=1)`.
 
